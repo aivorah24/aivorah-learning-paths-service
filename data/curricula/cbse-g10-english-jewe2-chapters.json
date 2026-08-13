@@ -1,0 +1,86 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "English",
+ "code": "jewe2",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jewe201.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/english/jewe201.pdf",
+   "pdfFiles": [
+    "jewe201.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jewe202.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/english/jewe202.pdf",
+   "pdfFiles": [
+    "jewe202.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jewe203.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/english/jewe203.pdf",
+   "pdfFiles": [
+    "jewe203.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "jewe205.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/english/jewe205.pdf",
+   "pdfFiles": [
+    "jewe205.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "jewe206.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/english/jewe206.pdf",
+   "pdfFiles": [
+    "jewe206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "jewe207.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/english/jewe207.pdf",
+   "pdfFiles": [
+    "jewe207.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "jewe208.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/english/jewe208.pdf",
+   "pdfFiles": [
+    "jewe208.pdf"
+   ]
+  }
+ ]
+}

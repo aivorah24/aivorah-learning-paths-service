@@ -1,0 +1,109 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Science",
+ "code": "keps2",
+ "imageSubject": "Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "keps201.pdf",
+   "title": "Why Do We Need a Constitution",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps201.pdf",
+   "pdfFiles": [
+    "keps201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "keps202.pdf",
+   "title": "Rights in the Indian Constitution",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps202.pdf",
+   "pdfFiles": [
+    "keps202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "keps203.pdf",
+   "title": "Election and Representation",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps203.pdf",
+   "pdfFiles": [
+    "keps203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "keps204.pdf",
+   "title": "Executive",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps204.pdf",
+   "pdfFiles": [
+    "keps204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "keps205.pdf",
+   "title": "Legislature",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps205.pdf",
+   "pdfFiles": [
+    "keps205.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "keps206.pdf",
+   "title": "Judiciary",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps206.pdf",
+   "pdfFiles": [
+    "keps206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "keps207.pdf",
+   "title": "Federalism",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps207.pdf",
+   "pdfFiles": [
+    "keps207.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "keps208.pdf",
+   "title": "Local Governments",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps208.pdf",
+   "pdfFiles": [
+    "keps208.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "keps209.pdf",
+   "title": "Constitution As a Living Document",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps209.pdf",
+   "pdfFiles": [
+    "keps209.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "keps210.pdf",
+   "title": "The Philosophy of the Constitution",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keps210.pdf",
+   "pdfFiles": [
+    "keps210.pdf"
+   ]
+  }
+ ]
+}

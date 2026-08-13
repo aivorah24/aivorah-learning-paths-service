@@ -1,0 +1,138 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 3",
+ "subject": "English",
+ "code": "cesa1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "cesa101.pdf",
+   "title": "Yellow Blue Orange Black Red Green Purple Yellow Red",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/english/cesa101.pdf",
+   "pdfFiles": [
+    "cesa101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "cesa102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/english/cesa102.pdf",
+   "pdfFiles": [
+    "cesa102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "cesa103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/english/cesa103.pdf",
+   "pdfFiles": [
+    "cesa103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "cesa104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/english/cesa104.pdf",
+   "pdfFiles": [
+    "cesa104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "cesa105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/english/cesa105.pdf",
+   "pdfFiles": [
+    "cesa105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "cesa106.pdf",
+   "title": "Self Assessment",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/english/cesa106.pdf",
+   "pdfFiles": [
+    "cesa106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "cesa107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/english/cesa107.pdf",
+   "pdfFiles": [
+    "cesa107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "cesa108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/english/cesa108.pdf",
+   "pdfFiles": [
+    "cesa108.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "cesa109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/english/cesa109.pdf",
+   "pdfFiles": [
+    "cesa109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "cesa110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/english/cesa110.pdf",
+   "pdfFiles": [
+    "cesa110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "cesa111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/english/cesa111.pdf",
+   "pdfFiles": [
+    "cesa111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "cesa112.pdf",
+   "title": "Self Assessment",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/english/cesa112.pdf",
+   "pdfFiles": [
+    "cesa112.pdf"
+   ]
+  }
+ ]
+}

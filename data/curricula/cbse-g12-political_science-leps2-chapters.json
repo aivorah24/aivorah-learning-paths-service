@@ -1,0 +1,79 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Political Science",
+ "code": "leps2",
+ "imageSubject": "Political Science",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 2,
+   "pdfFile": "leps202.pdf",
+   "title": "Chapter 2",
+   "bookPath": "grade12/political_science/leps202.pdf",
+   "pdfFiles": [
+    "leps202.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "leps203.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade12/political_science/leps203.pdf",
+   "pdfFiles": [
+    "leps203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "leps204.pdf",
+   "title": "Tibet",
+   "bookPath": "grade12/political_science/leps204.pdf",
+   "pdfFiles": [
+    "leps204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "leps205.pdf",
+   "title": "Chapter 5",
+   "bookPath": "grade12/political_science/leps205.pdf",
+   "pdfFiles": [
+    "leps205.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "leps206.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade12/political_science/leps206.pdf",
+   "pdfFiles": [
+    "leps206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "leps207.pdf",
+   "title": "Chapter 7",
+   "bookPath": "grade12/political_science/leps207.pdf",
+   "pdfFiles": [
+    "leps207.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "leps208.pdf",
+   "title": "Chapter 8",
+   "bookPath": "grade12/political_science/leps208.pdf",
+   "pdfFiles": [
+    "leps208.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

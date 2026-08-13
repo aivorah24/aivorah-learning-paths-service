@@ -1,0 +1,185 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Psychology",
+ "code": "lepy1",
+ "imageSubject": "Psychology",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lepy101.pdf",
+   "title": "Variavaria Varia Varia",
+   "bookPath": "grade12/psychology/lepy101.pdf",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Discovering the Attributes of"
+    },
+    {
+     "section": "1.2",
+     "title": "On the"
+    },
+    {
+     "section": "1.3",
+     "title": "All persons do not have the same"
+    }
+   ],
+   "pdfFiles": [
+    "lepy101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lepy102.pdf",
+   "title": "Chapter 2",
+   "bookPath": "grade12/psychology/lepy102.pdf",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Notice what they have done"
+    },
+    {
+     "section": "2.2",
+     "title": "Five-Factor Model of Personality"
+    },
+    {
+     "section": "2.3",
+     "title": "Observe and note your behaviour"
+    }
+   ],
+   "pdfFiles": [
+    "lepy102.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lepy103.pdf",
+   "title": "Chapter 3",
+   "bookPath": "grade12/psychology/lepy103.pdf",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Types of Stress"
+    },
+    {
+     "section": "3.2",
+     "title": "Reprint"
+    },
+    {
+     "section": "3.3",
+     "title": "Respond to the following items on a"
+    },
+    {
+     "section": "3.4",
+     "title": "Which of the following coping"
+    },
+    {
+     "section": "3.5",
+     "title": "Identify a child in your neighbourhood"
+    }
+   ],
+   "pdfFiles": [
+    "lepy103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lepy104.pdf",
+   "title": "Psypsy Psy Psy",
+   "bookPath": "grade12/psychology/lepy104.pdf",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Talk to three people"
+    },
+    {
+     "section": "4.2",
+     "title": "Certain behaviours like eating sand"
+    },
+    {
+     "section": "4.3",
+     "title": "Commonly Abused Substances (Following the DSM-"
+    },
+    {
+     "section": "4.4",
+     "title": "Reprint"
+    },
+    {
+     "section": "4.5",
+     "title": "Can you list some characters in films"
+    }
+   ],
+   "pdfFiles": [
+    "lepy104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lepy105.pdf",
+   "title": "Therther Ther Ther",
+   "bookPath": "grade12/psychology/lepy105.pdf",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Steps in the Formulation of a Client"
+    },
+    {
+     "section": "5.2",
+     "title": "Method of Treatment"
+    },
+    {
+     "section": "5.3",
+     "title": "Your friend is feeling very nervous"
+    }
+   ],
+   "pdfFiles": [
+    "lepy105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lepy106.pdf",
+   "title": "Atat Atat",
+   "bookPath": "grade12/psychology/lepy106.pdf",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "In the days when Americans were said"
+    },
+    {
+     "section": "6.2",
+     "title": "Telling a Lie for Twenty Dollars"
+    }
+   ],
+   "pdfFiles": [
+    "lepy106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lepy107.pdf",
+   "title": "Social Influence and Group Processes Processes",
+   "bookPath": "grade12/psychology/lepy107.pdf",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Identifying Stages of Group"
+    },
+    {
+     "section": "7.2",
+     "title": "The Minimal Group Paradigm Experiments"
+    },
+    {
+     "section": "7.3",
+     "title": "Assessing Polarisation"
+    }
+   ],
+   "pdfFiles": [
+    "lepy107.pdf"
+   ]
+  }
+ ]
+}

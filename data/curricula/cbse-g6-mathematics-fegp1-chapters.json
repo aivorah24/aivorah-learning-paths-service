@@ -1,0 +1,361 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 6",
+ "subject": "Mathematics",
+ "book": "Ganita Prakash",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "fegp101.pdf",
+   "title": "Patterns in",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "What is Mathematics"
+    },
+    {
+     "section": "1.2",
+     "title": "Patterns in Numbers"
+    },
+    {
+     "section": "1.3",
+     "title": "Visualising Number Sequences"
+    },
+    {
+     "section": "1.4",
+     "title": "Relations among Number Sequences"
+    },
+    {
+     "section": "1.5",
+     "title": "Patterns in Shapes"
+    },
+    {
+     "section": "1.6",
+     "title": "Relation to Number Sequences"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp101.pdf",
+   "pdfFiles": [
+    "fegp101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "fegp102.pdf",
+   "title": "Oby",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Point"
+    },
+    {
+     "section": "2.2",
+     "title": "Line Segment"
+    },
+    {
+     "section": "2.5",
+     "title": "Angle"
+    },
+    {
+     "section": "2.6",
+     "title": "Comparing Angles"
+    },
+    {
+     "section": "2.7",
+     "title": "Making Rotating Arms"
+    },
+    {
+     "section": "2.8",
+     "title": "Special Types of Angles"
+    },
+    {
+     "section": "2.9",
+     "title": "Measuring Angles"
+    },
+    {
+     "section": "2.10",
+     "title": "Drawing Angles"
+    },
+    {
+     "section": "2.11",
+     "title": "Types of Angles and their Measures"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp102.pdf",
+   "pdfFiles": [
+    "fegp102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "fegp103.pdf",
+   "title": "Number Play",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Numbers can Tell us Things"
+    },
+    {
+     "section": "3.2",
+     "title": "Supercells"
+    },
+    {
+     "section": "3.3",
+     "title": "Patterns of Numbers on the Number Line"
+    },
+    {
+     "section": "3.4",
+     "title": "Playing with Digits"
+    },
+    {
+     "section": "3.5",
+     "title": "Pretty Palindromic Patterns"
+    },
+    {
+     "section": "3.6",
+     "title": "The Magic Number of Kaprekar"
+    },
+    {
+     "section": "3.7",
+     "title": "Clock and Calendar Numbers"
+    },
+    {
+     "section": "3.8",
+     "title": "Mental Math"
+    },
+    {
+     "section": "3.9",
+     "title": "Playing with Number Patterns"
+    },
+    {
+     "section": "3.10",
+     "title": "An Unsolved Mystery"
+    },
+    {
+     "section": "3.11",
+     "title": "Simple Estimation"
+    },
+    {
+     "section": "3.12",
+     "title": "Games and Winning Strategies"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp103.pdf",
+   "pdfFiles": [
+    "fegp103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "fegp104.pdf",
+   "title": "Viii Vii",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Collecting and Organising Data"
+    },
+    {
+     "section": "4.2",
+     "title": "Pictographs"
+    },
+    {
+     "section": "4.3",
+     "title": "Bar Graphs"
+    },
+    {
+     "section": "4.4",
+     "title": "Drawing a Bar Graph"
+    },
+    {
+     "section": "4.5",
+     "title": "Artistic and Aesthetic Considerations"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp104.pdf",
+   "pdfFiles": [
+    "fegp104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "fegp105.pdf",
+   "title": "Prime Time",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Common Multiples and Common Factors"
+    },
+    {
+     "section": "5.2",
+     "title": "Prime Numbers"
+    },
+    {
+     "section": "5.3",
+     "title": "Co-prime numbers for safekeeping treasures"
+    },
+    {
+     "section": "5.4",
+     "title": "Prime Factorisation"
+    },
+    {
+     "section": "5.5",
+     "title": "Divisibility Tests"
+    },
+    {
+     "section": "5.6",
+     "title": "Fun with numbers"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp105.pdf",
+   "pdfFiles": [
+    "fegp105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "fegp106.pdf",
+   "title": "Perimeter and Area",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Perimeter"
+    },
+    {
+     "section": "6.3",
+     "title": "Area of a Triangle"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp106.pdf",
+   "pdfFiles": [
+    "fegp106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "fegp107.pdf",
+   "title": "Fractions",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Fractional Units and Equal Shares"
+    },
+    {
+     "section": "7.2",
+     "title": "Fractional Units as Parts of a Whole"
+    },
+    {
+     "section": "7.3",
+     "title": "Measuring Using Fractional Units"
+    },
+    {
+     "section": "7.4",
+     "title": "Marking Fraction Lengths on the Number Line"
+    },
+    {
+     "section": "7.5",
+     "title": "Mixed Fractions"
+    },
+    {
+     "section": "7.6",
+     "title": "Equivalent Fractions"
+    },
+    {
+     "section": "7.7",
+     "title": "Comparing Fractions"
+    },
+    {
+     "section": "7.8",
+     "title": "Addition and Subtraction of Fractions"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp107.pdf",
+   "pdfFiles": [
+    "fegp107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "fegp108.pdf",
+   "title": "Adcb",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Artwork"
+    },
+    {
+     "section": "8.2",
+     "title": "Squares and Rectangles"
+    },
+    {
+     "section": "8.3",
+     "title": "Constructing Squares and Rectangles"
+    },
+    {
+     "section": "8.4",
+     "title": "An Exploration in Rectangles"
+    },
+    {
+     "section": "8.5",
+     "title": "Exploring Diagonals of Rectangles and Squares"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp108.pdf",
+   "pdfFiles": [
+    "fegp108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "fegp109.pdf",
+   "title": "Symmetry",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Line of Symmetry"
+    },
+    {
+     "section": "9.2",
+     "title": "Rotational Symmetry"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp109.pdf",
+   "pdfFiles": [
+    "fegp109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "fegp110.pdf",
+   "title": "The Other Side of Zero",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.2",
+     "title": "The Token Model"
+    },
+    {
+     "section": "10.3",
+     "title": "Integers in Other Places"
+    },
+    {
+     "section": "10.4",
+     "title": "Explorations with Integers"
+    }
+   ],
+   "bookPath": "grade6/mathematics/fegp110.pdf",
+   "pdfFiles": [
+    "fegp110.pdf"
+   ]
+  }
+ ]
+}

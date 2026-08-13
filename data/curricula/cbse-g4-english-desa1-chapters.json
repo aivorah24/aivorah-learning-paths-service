@@ -1,0 +1,138 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 4",
+ "subject": "English",
+ "code": "desa1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "desa101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/english/desa101.pdf",
+   "pdfFiles": [
+    "desa101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "desa102.pdf",
+   "title": "Ndattpeacemn Raeefheeatco Eoenloyalove",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/english/desa102.pdf",
+   "pdfFiles": [
+    "desa102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "desa103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/english/desa103.pdf",
+   "pdfFiles": [
+    "desa103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "desa104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/english/desa104.pdf",
+   "pdfFiles": [
+    "desa104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "desa105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/english/desa105.pdf",
+   "pdfFiles": [
+    "desa105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "desa106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/english/desa106.pdf",
+   "pdfFiles": [
+    "desa106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "desa107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/english/desa107.pdf",
+   "pdfFiles": [
+    "desa107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "desa108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/english/desa108.pdf",
+   "pdfFiles": [
+    "desa108.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "desa109.pdf",
+   "title": "Iii",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/english/desa109.pdf",
+   "pdfFiles": [
+    "desa109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "desa110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/english/desa110.pdf",
+   "pdfFiles": [
+    "desa110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "desa111.pdf",
+   "title": "And",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/english/desa111.pdf",
+   "pdfFiles": [
+    "desa111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "desa112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/english/desa112.pdf",
+   "pdfFiles": [
+    "desa112.pdf"
+   ]
+  }
+ ]
+}

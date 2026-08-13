@@ -1,0 +1,433 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Biology",
+ "code": "lebo1",
+ "imageSubject": "Biology",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lebo101.pdf",
+   "title": "Panchanan Maheshwari",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "FLOWER"
+    },
+    {
+     "section": "1.2",
+     "title": "Pre-fertilisation"
+    },
+    {
+     "section": "1.3",
+     "title": "Double Fertilisation"
+    },
+    {
+     "section": "1.4",
+     "title": "Post-fertilisation"
+    },
+    {
+     "section": "1.5",
+     "title": "Apomixis and"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo101.pdf",
+   "pdfFiles": [
+    "lebo101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lebo102.pdf",
+   "title": "Human Reproduction",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "THE MALE REPRODUCTIVE SYSTEM"
+    },
+    {
+     "section": "2.2",
+     "title": "The Female Reproductive"
+    },
+    {
+     "section": "2.4",
+     "title": "Menstrual Cycle"
+    },
+    {
+     "section": "2.5",
+     "title": "Fertilisation and"
+    },
+    {
+     "section": "2.6",
+     "title": "Pregnancy and Embryonic"
+    },
+    {
+     "section": "2.7",
+     "title": "Parturition and Lactation"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo102.pdf",
+   "pdfFiles": [
+    "lebo102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lebo103.pdf",
+   "title": "Strategies",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "REPRODUCTIVE HEALTH"
+    },
+    {
+     "section": "3.2",
+     "title": "Population Explosion and"
+    },
+    {
+     "section": "3.3",
+     "title": "Medical Termination of"
+    },
+    {
+     "section": "3.4",
+     "title": "Sexually Transmitted"
+    },
+    {
+     "section": "3.5",
+     "title": "Infertility"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo103.pdf",
+   "pdfFiles": [
+    "lebo103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lebo104.pdf",
+   "title": "James Watson Francis Crick",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Mendel"
+    },
+    {
+     "section": "4.2",
+     "title": "Inheritance of One Gene"
+    },
+    {
+     "section": "4.3",
+     "title": "INHERITANCE OF TWO GENES"
+    },
+    {
+     "section": "4.4",
+     "title": "Sex Determination"
+    },
+    {
+     "section": "4.5",
+     "title": "PLEIOTROPY"
+    },
+    {
+     "section": "4.6",
+     "title": "SEX DETERMINATION"
+    },
+    {
+     "section": "4.7",
+     "title": "MUTATION"
+    },
+    {
+     "section": "4.8",
+     "title": "GENETIC DISORDERS"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo104.pdf",
+   "pdfFiles": [
+    "lebo104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lebo105.pdf",
+   "title": "Molecular Basis of Inheritance",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "The DNA"
+    },
+    {
+     "section": "5.2",
+     "title": "THE SEARCH FOR GENETIC MATERIAL"
+    },
+    {
+     "section": "5.3",
+     "title": "RNA WORLD"
+    },
+    {
+     "section": "5.4",
+     "title": "REPLICATION"
+    },
+    {
+     "section": "5.5",
+     "title": "Transcription"
+    },
+    {
+     "section": "5.6",
+     "title": "Genetic Code"
+    },
+    {
+     "section": "5.7",
+     "title": "Translation"
+    },
+    {
+     "section": "5.8",
+     "title": "Regulation of Gene"
+    },
+    {
+     "section": "5.9",
+     "title": "Human Genome Project"
+    },
+    {
+     "section": "5.10",
+     "title": "DNA Fingerprinting"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo105.pdf",
+   "pdfFiles": [
+    "lebo105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lebo106.pdf",
+   "title": "Evolution",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "ORIGIN OF LIFE"
+    },
+    {
+     "section": "6.2",
+     "title": "Evolution of Life Forms - A"
+    },
+    {
+     "section": "6.3",
+     "title": "What are the Evidences"
+    },
+    {
+     "section": "6.4",
+     "title": "What is Adaptive"
+    },
+    {
+     "section": "6.5",
+     "title": "Biological Evolution"
+    },
+    {
+     "section": "6.6",
+     "title": "Mechanism of Evolution"
+    },
+    {
+     "section": "6.7",
+     "title": "Hardy - Weinberg"
+    },
+    {
+     "section": "6.9",
+     "title": "Origin and Evolution of"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo106.pdf",
+   "pdfFiles": [
+    "lebo106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lebo107.pdf",
+   "title": "Human Health and Disease",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Common Diseases in"
+    },
+    {
+     "section": "7.2",
+     "title": "Immunity"
+    },
+    {
+     "section": "7.4",
+     "title": "Cancer"
+    },
+    {
+     "section": "7.5",
+     "title": "Drugs and Alcohol Abuse"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo107.pdf",
+   "pdfFiles": [
+    "lebo107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "lebo108.pdf",
+   "title": "Microbes in Human Welfare",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Microbes in Household"
+    },
+    {
+     "section": "8.2",
+     "title": "Microbes in Industrial"
+    },
+    {
+     "section": "8.3",
+     "title": "Microbes in Sewage"
+    },
+    {
+     "section": "8.4",
+     "title": "Microbes in Production of"
+    },
+    {
+     "section": "8.5",
+     "title": "Microbes as Biocontrol"
+    },
+    {
+     "section": "8.6",
+     "title": "Microbes as Biofertilisers"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo108.pdf",
+   "pdfFiles": [
+    "lebo108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "lebo109.pdf",
+   "title": "Herbert Boyer",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "PRINCIPLES OF BIOTECHNOLOGY"
+    },
+    {
+     "section": "9.2",
+     "title": "Tools of Recombinant DNA"
+    },
+    {
+     "section": "9.3",
+     "title": "Processes of Recombinant"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo109.pdf",
+   "pdfFiles": [
+    "lebo109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "lebo110.pdf",
+   "title": "Agriculture",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "BIOTECHNOLOGICAL APPLICATIONS IN"
+    },
+    {
+     "section": "10.2",
+     "title": "Biotechnological"
+    },
+    {
+     "section": "10.3",
+     "title": "Transgenic Animals"
+    },
+    {
+     "section": "10.4",
+     "title": "Ethical Issues"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo110.pdf",
+   "pdfFiles": [
+    "lebo110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "lebo111.pdf",
+   "title": "Ramdeo Misra",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "Populations"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo111.pdf",
+   "pdfFiles": [
+    "lebo111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "lebo112.pdf",
+   "title": "Ecosystem",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "Ecosystem"
+    },
+    {
+     "section": "12.2",
+     "title": "PRODUCTIVITY"
+    },
+    {
+     "section": "12.3",
+     "title": "Decomposition"
+    },
+    {
+     "section": "12.4",
+     "title": "Energy Flow"
+    },
+    {
+     "section": "12.5",
+     "title": "Ecological Pyramids"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo112.pdf",
+   "pdfFiles": [
+    "lebo112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "lebo113.pdf",
+   "title": "Biodiversity and Conservation",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "13.1",
+     "title": "BIODIVERSITY"
+    },
+    {
+     "section": "13.2",
+     "title": "Biodiversity Conservation"
+    }
+   ],
+   "bookPath": "grade12/biology/lebo113.pdf",
+   "pdfFiles": [
+    "lebo113.pdf"
+   ]
+  }
+ ]
+}

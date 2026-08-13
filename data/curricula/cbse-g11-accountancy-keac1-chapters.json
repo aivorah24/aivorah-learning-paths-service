@@ -1,0 +1,266 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Accountancy",
+ "code": "keac1",
+ "imageSubject": "Accountancy",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "keac101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade11/accountancy/keac101.pdf",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Meaning of Accounting"
+    },
+    {
+     "section": "1.2",
+     "title": "Accounting as a Source of Information"
+    },
+    {
+     "section": "1.3",
+     "title": "Objectives of Accounting"
+    },
+    {
+     "section": "1.4",
+     "title": "Role of Accounting"
+    },
+    {
+     "section": "1.5",
+     "title": "Basic Terms in Accounting"
+    }
+   ],
+   "pdfFiles": [
+    "keac101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "keac102.pdf",
+   "title": "Chapter 2",
+   "bookPath": "grade11/accountancy/keac102.pdf",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Generally Accepted Accounting Principles"
+    },
+    {
+     "section": "2.2",
+     "title": "Basic Accounting Concepts"
+    },
+    {
+     "section": "2.3",
+     "title": "Systems of Accounting"
+    },
+    {
+     "section": "2.4",
+     "title": "Basis of Accounting"
+    },
+    {
+     "section": "2.5",
+     "title": "Accounting Standards"
+    }
+   ],
+   "pdfFiles": [
+    "keac102.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "keac103.pdf",
+   "title": "Chapter 3",
+   "bookPath": "grade11/accountancy/keac103.pdf",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Business Transactions and Source Document"
+    },
+    {
+     "section": "3.2",
+     "title": "Accounting Equation"
+    },
+    {
+     "section": "3.3",
+     "title": "Using Debit and Credit"
+    },
+    {
+     "section": "3.4",
+     "title": "Books of Original Entry"
+    },
+    {
+     "section": "3.5",
+     "title": "The Ledger"
+    },
+    {
+     "section": "3.6",
+     "title": "Posting from Journal"
+    }
+   ],
+   "pdfFiles": [
+    "keac103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "keac104.pdf",
+   "title": "Chapter 4",
+   "bookPath": "grade11/accountancy/keac104.pdf",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Cash Book"
+    },
+    {
+     "section": "4.2",
+     "title": "Purchases (Journal) Book"
+    },
+    {
+     "section": "4.3",
+     "title": "Purchases Return (Journal) Book"
+    },
+    {
+     "section": "4.4",
+     "title": "Sales (Journal) Book"
+    },
+    {
+     "section": "4.5",
+     "title": "Sales Return (Journal) Book"
+    },
+    {
+     "section": "4.6",
+     "title": "Journal Proper"
+    },
+    {
+     "section": "4.7",
+     "title": "Balancing the Accounts"
+    }
+   ],
+   "pdfFiles": [
+    "keac104.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "keac105.pdf",
+   "title": "Chapter 5",
+   "bookPath": "grade11/accountancy/keac105.pdf",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Need for Reconciliation"
+    },
+    {
+     "section": "5.2",
+     "title": "Preparation of Bank Reconciliation Statement"
+    }
+   ],
+   "pdfFiles": [
+    "keac105.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "keac106.pdf",
+   "title": "Chapter 6",
+   "bookPath": "grade11/accountancy/keac106.pdf",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Meaning of Trial Balance"
+    },
+    {
+     "section": "6.2",
+     "title": "Objectives of Preparing the Trial Balance"
+    },
+    {
+     "section": "6.3",
+     "title": "Preparation of Trial Balance"
+    },
+    {
+     "section": "6.5",
+     "title": "Searching of Errors"
+    },
+    {
+     "section": "6.6",
+     "title": "Rectification of Errors"
+    }
+   ],
+   "pdfFiles": [
+    "keac106.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "keac107.pdf",
+   "title": "Chapter 7",
+   "bookPath": "grade11/accountancy/keac107.pdf",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Depreciation"
+    },
+    {
+     "section": "7.2",
+     "title": "Depreciation and other Similar Terms"
+    },
+    {
+     "section": "7.3",
+     "title": "Causes of Depreciation"
+    },
+    {
+     "section": "7.4",
+     "title": "Need for Depreciation"
+    },
+    {
+     "section": "7.5",
+     "title": "Factors Affecting the Amount of Depreciation"
+    },
+    {
+     "section": "7.6",
+     "title": "Methods of Calculating Depreciation Amount"
+    },
+    {
+     "section": "7.7",
+     "title": "Straight Line Method and Written Down Method"
+    },
+    {
+     "section": "7.8",
+     "title": "Methods of Recording Depreciation"
+    },
+    {
+     "section": "7.9",
+     "title": "Disposal of Asset"
+    },
+    {
+     "section": "7.10",
+     "title": "Effect of any Addition or Extension to the Existing Asset"
+    },
+    {
+     "section": "7.11",
+     "title": "Provisions"
+    },
+    {
+     "section": "7.12",
+     "title": "Reserves"
+    },
+    {
+     "section": "7.13",
+     "title": "Secret Reserve"
+    }
+   ],
+   "pdfFiles": [
+    "keac107.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

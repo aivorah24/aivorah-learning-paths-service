@@ -1,0 +1,265 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "Mathematics",
+ "code": "gegp1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "gegp101.pdf",
+   "title": "Large Numbers Around Us",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.2",
+     "title": "Land of Tens"
+    },
+    {
+     "section": "1.3",
+     "title": "Of Crores and Crores"
+    },
+    {
+     "section": "1.4",
+     "title": "Exact and Approximate Values"
+    },
+    {
+     "section": "1.5",
+     "title": "Patterns in Products"
+    },
+    {
+     "section": "1.6",
+     "title": "Did You Ever Wonder"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp101.pdf",
+   "pdfFiles": [
+    "gegp101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "gegp102.pdf",
+   "title": "Arithmetic Expressions",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Simple Expressions"
+    },
+    {
+     "section": "2.2",
+     "title": "Reading and Evaluating Complex Expressions"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp102.pdf",
+   "pdfFiles": [
+    "gegp102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "gegp103.pdf",
+   "title": "A Peek Beyond the Point",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "The Need for Smaller Units"
+    },
+    {
+     "section": "3.4",
+     "title": "Decimal Place Value"
+    },
+    {
+     "section": "3.5",
+     "title": "Units of Measurement"
+    },
+    {
+     "section": "3.6",
+     "title": "Locating and Comparing Decimals"
+    },
+    {
+     "section": "3.7",
+     "title": "Addition and Subtraction of Decimals"
+    },
+    {
+     "section": "3.8",
+     "title": "More on the Decimal System"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp103.pdf",
+   "pdfFiles": [
+    "gegp103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "gegp104.pdf",
+   "title": "Expressions Using Letter- Numbers",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "The Notion of Letter-Numbers"
+    },
+    {
+     "section": "4.2",
+     "title": "Revisiting Arithmetic Expressions"
+    },
+    {
+     "section": "4.3",
+     "title": "Omission of the Multiplication Symbol in"
+    },
+    {
+     "section": "4.4",
+     "title": "Simplification of Algebraic Expressions"
+    },
+    {
+     "section": "4.5",
+     "title": "Pick Patterns and Reveal Relationships"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp104.pdf",
+   "pdfFiles": [
+    "gegp104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "gegp105.pdf",
+   "title": "Parallel and Intersecting Lines",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Across the Line"
+    },
+    {
+     "section": "5.2",
+     "title": "Perpendicular Lines"
+    },
+    {
+     "section": "5.3",
+     "title": "Between Lines"
+    },
+    {
+     "section": "5.4",
+     "title": "Parallel and Perpendicular Lines in Paper"
+    },
+    {
+     "section": "5.5",
+     "title": "Transversals"
+    },
+    {
+     "section": "5.6",
+     "title": "Corresponding Angles"
+    },
+    {
+     "section": "5.7",
+     "title": "Drawing Parallel Lines"
+    },
+    {
+     "section": "5.8",
+     "title": "Alternate Angles"
+    },
+    {
+     "section": "5.9",
+     "title": "Parallel Illusions"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp105.pdf",
+   "pdfFiles": [
+    "gegp105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "gegp106.pdf",
+   "title": "Number Play",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Numbers Tell us Things"
+    },
+    {
+     "section": "6.2",
+     "title": "Picking Parity"
+    },
+    {
+     "section": "6.3",
+     "title": "Some Explorations in Grids"
+    },
+    {
+     "section": "6.4",
+     "title": "Nature"
+    },
+    {
+     "section": "6.5",
+     "title": "Digits in Disguise"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp106.pdf",
+   "pdfFiles": [
+    "gegp106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "gegp107.pdf",
+   "title": "A Tale of Three Intersecting Lines",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Equilateral Triangles"
+    },
+    {
+     "section": "7.2",
+     "title": "Constructing a Triangle When its Sides are"
+    },
+    {
+     "section": "7.3",
+     "title": "Construction of Triangles When Some Sides"
+    },
+    {
+     "section": "7.4",
+     "title": "Constructions Related to Altitudes of Triangles"
+    },
+    {
+     "section": "7.5",
+     "title": "Types of Triangles"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp107.pdf",
+   "pdfFiles": [
+    "gegp107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "gegp108.pdf",
+   "title": "Working with Fractions",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Multiplication of Fractions"
+    },
+    {
+     "section": "8.2",
+     "title": "Division of Fractions"
+    },
+    {
+     "section": "8.3",
+     "title": "Some Problems Involving Fractions"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp108.pdf",
+   "pdfFiles": [
+    "gegp108.pdf"
+   ]
+  }
+ ]
+}

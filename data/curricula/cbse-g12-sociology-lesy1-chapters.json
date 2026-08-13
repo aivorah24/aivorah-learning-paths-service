@@ -1,0 +1,164 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Sociology",
+ "code": "lesy1",
+ "imageSubject": "Sociology",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lesy101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/sociology/lesy101.pdf",
+   "pdfFiles": [
+    "lesy101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lesy102.pdf",
+   "title": "Common Concepts and Indicators",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Some TheorieS and ConCep TS in demography"
+    },
+    {
+     "section": "2.2",
+     "title": "Size and growTh of india"
+    },
+    {
+     "section": "2.3",
+     "title": "Age Structure of the IndIAn PoPulAtIon"
+    },
+    {
+     "section": "2.4",
+     "title": "The deClining Sex-raTio in india"
+    },
+    {
+     "section": "2.6",
+     "title": "RuRal-uRban DiffeRences"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy102.pdf",
+   "pdfFiles": [
+    "lesy102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lesy103.pdf",
+   "title": "Nuclear and Extended Family",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Caste and the Caste system"
+    },
+    {
+     "section": "3.3",
+     "title": "Family and Kinship"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy103.pdf",
+   "pdfFiles": [
+    "lesy103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lesy104.pdf",
+   "title": "National and International Markets",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Sociological PerSPectiveS on MarketS"
+    },
+    {
+     "section": "4.2",
+     "title": "UnderStanding caPitaliSM aS a Social SySte M"
+    },
+    {
+     "section": "4.3",
+     "title": "GLOBALISATION"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy104.pdf",
+   "pdfFiles": [
+    "lesy104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lesy105.pdf",
+   "title": "Rural India Urban India",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "What Is Social about socIal"
+    },
+    {
+     "section": "5.2",
+     "title": "Caste and tribe"
+    },
+    {
+     "section": "5.3",
+     "title": "Struggle for women"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy105.pdf",
+   "pdfFiles": [
+    "lesy105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lesy106.pdf",
+   "title": "References",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "The ImporTance of communITy IdenTITy"
+    },
+    {
+     "section": "6.2",
+     "title": "Regionalism in the indian Context"
+    },
+    {
+     "section": "6.3",
+     "title": "Religion-Related issues and"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy106.pdf",
+   "pdfFiles": [
+    "lesy106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lesy107.pdf",
+   "title": "Research",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Variety of Methods"
+    },
+    {
+     "section": "7.2",
+     "title": "Possible theMes and subjects for sMall"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy107.pdf",
+   "pdfFiles": [
+    "lesy107.pdf"
+   ]
+  }
+ ]
+}

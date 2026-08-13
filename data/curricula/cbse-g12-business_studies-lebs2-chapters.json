@@ -1,0 +1,38 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Business Studies",
+ "code": "lebs2",
+ "imageSubject": "Business Studies",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lebs201.pdf",
+   "title": "Chapter 1",
+   "bookPath": "grade12/business_studies/lebs201.pdf",
+   "pdfFiles": [
+    "lebs201.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lebs202.pdf",
+   "title": "Business Studies",
+   "bookPath": "grade12/business_studies/lebs202.pdf",
+   "pdfFiles": [
+    "lebs202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lebs203.pdf",
+   "title": "Business Studies",
+   "bookPath": "grade12/business_studies/lebs203.pdf",
+   "pdfFiles": [
+    "lebs203.pdf"
+   ]
+  }
+ ]
+}

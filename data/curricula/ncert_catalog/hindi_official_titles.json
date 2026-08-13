@@ -1,0 +1,12 @@
+{
+  "_README": "Human-verified NCERT Hindi chapter titles in Devanagari Unicode. Checked FIRST by scripts/extract-hindi-titles.js and always beats the PDF layout parser, because a title read by a person is trustworthy and one inferred from font sizes is not. Anything absent falls through to an honest 'Chapter N' placeholder.",
+  "_keys": "Either a book code (kham1) or a readable name containing the grade and 'hindi' (g11_hindi_aroh). Both resolve. Chapter keys are ch1, ch2, ...",
+  "_apply": "node scripts/extract-hindi-titles.js --grades 2,7,8,9,10,11,12 --apply",
+  "g11_hindi_aroh": {
+    "ch1": "नमक का दरोगा",
+    "ch2": "मियाँ नसीरुद्दीन"
+  },
+  "g11_hindi_vitan": {
+    "ch1": "अपू के साथ ढाई साल"
+  }
+}

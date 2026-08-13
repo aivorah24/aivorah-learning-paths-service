@@ -1,0 +1,82 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Home Science",
+ "code": "lehe1",
+ "imageSubject": "Home_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lehe101.pdf",
+   "title": "Work, Livelihood and Career Unit I",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe101.pdf",
+   "pdfFiles": [
+    "lehe101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lehe102.pdf",
+   "title": "Nutrition, Food Science and Technology Unit Ii",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe102.pdf",
+   "pdfFiles": [
+    "lehe102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lehe103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehe103.pdf",
+   "pdfFiles": [
+    "lehe103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lehe104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehe104.pdf",
+   "pdfFiles": [
+    "lehe104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lehe105.pdf",
+   "title": "Hair Stems and Seeds Bone,",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe105.pdf",
+   "pdfFiles": [
+    "lehe105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lehe106.pdf",
+   "title": "Human Development and Family Studies Unit Iii",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe106.pdf",
+   "pdfFiles": [
+    "lehe106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lehe107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehe107.pdf",
+   "pdfFiles": [
+    "lehe107.pdf"
+   ]
+  }
+ ]
+}

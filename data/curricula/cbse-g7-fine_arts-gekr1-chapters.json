@@ -1,0 +1,233 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "Arts",
+ "code": "gekr1",
+ "imageSubject": "Fine_Arts",
+ "chapters": [
+  {
+   "chapter": 3,
+   "pdfFile": "gekr103.pdf",
+   "title": "Invisible Pillar of Theatre",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr103.pdf",
+   "pdfFiles": [
+    "gekr103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "gekr104.pdf",
+   "title": "Harikathe",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr104.pdf",
+   "pdfFiles": [
+    "gekr104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "gekr105.pdf",
+   "title": "Some Common Musical Terms",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr105.pdf",
+   "pdfFiles": [
+    "gekr105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "gekr106.pdf",
+   "title": "Music, Emotions and Creativity",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr106.pdf",
+   "pdfFiles": [
+    "gekr106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "gekr107.pdf",
+   "title": "Do You",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr107.pdf",
+   "pdfFiles": [
+    "gekr107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "gekr108.pdf",
+   "title": "Folk Songs and Community",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr108.pdf",
+   "pdfFiles": [
+    "gekr108.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "gekr110.pdf",
+   "title": "The Curricular Goals and Competencies Are Given Below",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr110.pdf",
+   "pdfFiles": [
+    "gekr110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "gekr101.pdf",
+   "title": "Note to the Teachers",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr101.pdf",
+   "pdfFiles": [
+    "gekr101.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "Identifies and expresses action, expression, and dialogu"
+    },
+    {
+     "section": "11.2",
+     "title": "Can build stories independently, connecting the various emotio"
+    }
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "gekr113.pdf",
+   "title": "Personalities",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr113.pdf",
+   "pdfFiles": [
+    "gekr113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "gekr114.pdf",
+   "title": "Chapter 14",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr114.pdf",
+   "pdfFiles": [
+    "gekr114.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "gekr115.pdf",
+   "title": "Objects in Icons and Symbols",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr115.pdf",
+   "pdfFiles": [
+    "gekr115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "gekr116.pdf",
+   "title": "Do You",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr116.pdf",
+   "pdfFiles": [
+    "gekr116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "gekr117.pdf",
+   "title": "Do You",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr117.pdf",
+   "pdfFiles": [
+    "gekr117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "gekr118.pdf",
+   "title": "Threading Stories",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr118.pdf",
+   "pdfFiles": [
+    "gekr118.pdf"
+   ]
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "gekr119.pdf",
+   "title": "Calligraphy",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr119.pdf",
+   "pdfFiles": [
+    "gekr119.pdf"
+   ]
+  },
+  {
+   "chapter": 20,
+   "pdfFile": "gekr120.pdf",
+   "title": "Chapter 20",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/fine_arts/gekr120.pdf",
+   "pdfFiles": [
+    "gekr120.pdf"
+   ]
+  },
+  {
+   "chapter": 22,
+   "pdfFile": "gekr102.pdf",
+   "title": "Circle Time",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr102.pdf",
+   "pdfFiles": [
+    "gekr102.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "22.1",
+     "title": "Understands the uniqueness of mime and its difference and simi"
+    },
+    {
+     "section": "22.2",
+     "title": "Can visualise objects accurately in shape, size and weight, an"
+    },
+    {
+     "section": "22.3",
+     "title": "Can bring in stories from personal experience to interpret in"
+    },
+    {
+     "section": "22.4",
+     "title": "Uses the advantages of mime and its universality to perform on"
+    },
+    {
+     "section": "22.5",
+     "title": "Can put together group performance integrating music and humou"
+    }
+   ]
+  },
+  {
+   "chapter": 33,
+   "pdfFile": "gekr109.pdf",
+   "title": "Performance",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/fine_arts/gekr109.pdf",
+   "pdfFiles": [
+    "gekr109.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "33.1",
+     "title": "Participates willingly in the final performance with confidenc"
+    },
+    {
+     "section": "33.2",
+     "title": "Maintains a journal through the preparation period"
+    }
+   ]
+  }
+ ]
+}

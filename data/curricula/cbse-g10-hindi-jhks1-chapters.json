@@ -1,0 +1,94 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "Hindi",
+ "code": "jhks1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jhks101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jhks102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jhks103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "jhks104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "jhks105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "jhks106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "jhks107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "jhks108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "jhks109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "jhks110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "jhks111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "jhks112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhks112.pdf"
+  }
+ ]
+}

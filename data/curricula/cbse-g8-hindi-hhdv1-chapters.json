@@ -1,0 +1,143 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Hindi",
+ "code": "hhdv1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hhdv101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hhdv102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hhdv103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hhdv104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hhdv105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hhdv106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hhdv107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "hhdv108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "hhdv109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "hhdv110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "hhdv111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "hhdv112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "hhdv113.pdf",
+   "title": "Chapter 13",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv113.pdf"
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "hhdv114.pdf",
+   "title": "Chapter 14",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv114.pdf"
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "hhdv115.pdf",
+   "title": "Chapter 15",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv115.pdf"
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "hhdv116.pdf",
+   "title": "Chapter 16",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv116.pdf"
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "hhdv117.pdf",
+   "title": "Chapter 17",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv117.pdf"
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "hhdv118.pdf",
+   "title": "Chapter 18",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv118.pdf"
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "hhdv119.pdf",
+   "title": "Chapter 19",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhdv119.pdf"
+  }
+ ]
+}

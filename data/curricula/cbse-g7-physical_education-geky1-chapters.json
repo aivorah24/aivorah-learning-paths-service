@@ -1,0 +1,72 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "Physical Education and Well Being",
+ "code": "geky1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "geky101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/geky101.pdf",
+   "pdfFiles": [
+    "geky101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "geky102.pdf",
+   "title": "Grains",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/physical_education/geky102.pdf",
+   "pdfFiles": [
+    "geky102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "geky103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/geky103.pdf",
+   "pdfFiles": [
+    "geky103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "geky104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/geky104.pdf",
+   "pdfFiles": [
+    "geky104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "geky105.pdf",
+   "title": "Bcd Mnol",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/physical_education/geky105.pdf",
+   "pdfFiles": [
+    "geky105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "geky106.pdf",
+   "title": "Mid-Term Assessment",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/physical_education/geky106.pdf",
+   "pdfFiles": [
+    "geky106.pdf"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,419 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Science",
+ "code": "hecu1",
+ "imageSubject": "Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hecu101.pdf",
+   "title": "Mar Apr",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/science/hecu101.pdf",
+   "pdfFiles": [
+    "hecu101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hecu102.pdf",
+   "title": "Or Some",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "What Is a Cell"
+    },
+    {
+     "section": "2.2",
+     "title": "What Are the Levels of Organisation in"
+    },
+    {
+     "section": "2.3",
+     "title": "What Are Microorganisms"
+    },
+    {
+     "section": "2.4",
+     "title": "How Are We Connected to Microbes"
+    },
+    {
+     "section": "2.5",
+     "title": "Why Is Cell Considered to Be a Basic Unit"
+    }
+   ],
+   "bookPath": "grade8/science/hecu102.pdf",
+   "pdfFiles": [
+    "hecu102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hecu103.pdf",
+   "title": "Fit India Movement",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Health"
+    },
+    {
+     "section": "3.2",
+     "title": "How Can We Stay Healthy"
+    },
+    {
+     "section": "3.3",
+     "title": "How Do We Know That We Are Unwell"
+    },
+    {
+     "section": "3.4",
+     "title": "Diseases"
+    },
+    {
+     "section": "3.5",
+     "title": "How to Prevent and Control Diseases"
+    }
+   ],
+   "bookPath": "grade8/science/hecu103.pdf",
+   "pdfFiles": [
+    "hecu103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hecu104.pdf",
+   "title": "Aabb",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Does an Electric Current Have a Magnetic"
+    },
+    {
+     "section": "4.2",
+     "title": "Does a Current Carrying Wire Get Hot"
+    },
+    {
+     "section": "4.3",
+     "title": "How Does a Battery Generate Electricity"
+    }
+   ],
+   "bookPath": "grade8/science/hecu104.pdf",
+   "pdfFiles": [
+    "hecu104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hecu105.pdf",
+   "title": "Exploring Forces",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "What Is a Force"
+    },
+    {
+     "section": "5.2",
+     "title": "What Can a Force Do to the Objects on"
+    },
+    {
+     "section": "5.3",
+     "title": "Are Forces an Interaction Between Two"
+    },
+    {
+     "section": "5.4",
+     "title": "What Are the Different Types of Forces"
+    },
+    {
+     "section": "5.5",
+     "title": "Weight and Its Measurement"
+    },
+    {
+     "section": "5.6",
+     "title": "Floating and Sinking"
+    }
+   ],
+   "bookPath": "grade8/science/hecu105.pdf",
+   "pdfFiles": [
+    "hecu105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hecu106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Pressure"
+    },
+    {
+     "section": "6.2",
+     "title": "Pressure Exerted by Air"
+    },
+    {
+     "section": "6.3",
+     "title": "Formation of Wind"
+    },
+    {
+     "section": "6.4",
+     "title": "High-Speed Winds Result in Lowering"
+    },
+    {
+     "section": "6.5",
+     "title": "Storms, Thunderstorms, and Lightning"
+    },
+    {
+     "section": "6.6",
+     "title": "Cyclone"
+    }
+   ],
+   "bookPath": "grade8/science/hecu106.pdf",
+   "pdfFiles": [
+    "hecu106.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hecu107.pdf",
+   "title": "Particulate Nature of Matter",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "What Is Matter Composed of"
+    },
+    {
+     "section": "7.2",
+     "title": "What Decides Different States of Matter"
+    },
+    {
+     "section": "7.3",
+     "title": "How Does the Interparticle Spacing"
+    },
+    {
+     "section": "7.4",
+     "title": "How Particles Move in Different States"
+    }
+   ],
+   "bookPath": "grade8/science/hecu107.pdf",
+   "pdfFiles": [
+    "hecu107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "hecu108.pdf",
+   "title": "Nature of Matter: Elements, Compounds, and Mixtures",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "What Are Mixtures"
+    },
+    {
+     "section": "8.2",
+     "title": "What Are Pure Substances"
+    },
+    {
+     "section": "8.3",
+     "title": "What Are the Types of Pure Substances"
+    },
+    {
+     "section": "8.4",
+     "title": "How Do We Use Elements, Compounds"
+    },
+    {
+     "section": "8.5",
+     "title": "What Are Minerals"
+    }
+   ],
+   "bookPath": "grade8/science/hecu108.pdf",
+   "pdfFiles": [
+    "hecu108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "hecu109.pdf",
+   "title": "The Amazing World of Solutes, Solvents, and Solutions",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "What Are Solute, Solvent, and Solution"
+    },
+    {
+     "section": "9.2",
+     "title": "How Much Solute Can a Fixed Amount of"
+    },
+    {
+     "section": "9.3",
+     "title": "Solubility of Gases"
+    },
+    {
+     "section": "9.4",
+     "title": "Why Do Objects Float or Sink in Water"
+    },
+    {
+     "section": "9.5",
+     "title": "What Is Density"
+    }
+   ],
+   "bookPath": "grade8/science/hecu109.pdf",
+   "pdfFiles": [
+    "hecu109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "hecu110.pdf",
+   "title": "Light: Mirrors and Lenses",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "What Are Spherical Mirrors"
+    },
+    {
+     "section": "10.2",
+     "title": "What Are the Characteristics of Images"
+    },
+    {
+     "section": "10.3",
+     "title": "What Are the Laws of Reflection"
+    },
+    {
+     "section": "10.4",
+     "title": "What Is a Lens"
+    }
+   ],
+   "bookPath": "grade8/science/hecu110.pdf",
+   "pdfFiles": [
+    "hecu110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "hecu111.pdf",
+   "title": "Sunrays",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "How Does the Moon"
+    },
+    {
+     "section": "11.2",
+     "title": "How Did Calendars Come into Existence"
+    },
+    {
+     "section": "11.3",
+     "title": "Are Festivals Related to Astronomical"
+    },
+    {
+     "section": "11.4",
+     "title": "Why Do We Launch Artificial Satellites"
+    }
+   ],
+   "bookPath": "grade8/science/hecu111.pdf",
+   "pdfFiles": [
+    "hecu111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "hecu112.pdf",
+   "title": "How Nature Works in Harmony",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "How Do We Experience and Interpret"
+    },
+    {
+     "section": "12.2",
+     "title": "Who All Live Together in Nature"
+    },
+    {
+     "section": "12.3",
+     "title": "Does Every Organism in a Community"
+    },
+    {
+     "section": "12.4",
+     "title": "What Are the Different Types of Interactions"
+    },
+    {
+     "section": "12.5",
+     "title": "Who Eats Whom"
+    },
+    {
+     "section": "12.6",
+     "title": "What Happens to Waste in Nature"
+    },
+    {
+     "section": "12.7",
+     "title": "How Does One Change Lead to Another"
+    },
+    {
+     "section": "12.8",
+     "title": "How Do Interactions Maintain"
+    },
+    {
+     "section": "12.9",
+     "title": "What Are the Benefits of an Ecosystem"
+    }
+   ],
+   "bookPath": "grade8/science/hecu112.pdf",
+   "pdfFiles": [
+    "hecu112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "hecu113.pdf",
+   "title": "Our Home: Earth, a Unique Life Sustaining Planet",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "13.1",
+     "title": "Why Is Earth a Unique Planet"
+    },
+    {
+     "section": "13.2",
+     "title": "What Do the Planets of Our Solar System"
+    },
+    {
+     "section": "13.3",
+     "title": "What Makes the Earth Suitable for Life to"
+    },
+    {
+     "section": "13.4",
+     "title": "What Allows Life to Be Sustained on Earth"
+    },
+    {
+     "section": "13.5",
+     "title": "What Keeps Life from Disappearing"
+    },
+    {
+     "section": "13.6",
+     "title": "What Are the Threats to Life on Earth"
+    }
+   ],
+   "bookPath": "grade8/science/hecu113.pdf",
+   "pdfFiles": [
+    "hecu113.pdf"
+   ]
+  }
+ ]
+}

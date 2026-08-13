@@ -1,0 +1,162 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 3",
+ "subject": "Mathematics",
+ "code": "cumm1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "cumm101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm101.pdf",
+   "pdfFiles": [
+    "cumm101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "cumm102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm102.pdf",
+   "pdfFiles": [
+    "cumm102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "cumm103.pdf",
+   "title": "End",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/mathematics/cumm103.pdf",
+   "pdfFiles": [
+    "cumm103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "cumm104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm104.pdf",
+   "pdfFiles": [
+    "cumm104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "cumm105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm105.pdf",
+   "pdfFiles": [
+    "cumm105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "cumm106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/mathematics/cumm106.pdf",
+   "pdfFiles": [
+    "cumm106.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "cumm107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm107.pdf",
+   "pdfFiles": [
+    "cumm107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "cumm108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm108.pdf",
+   "pdfFiles": [
+    "cumm108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "cumm109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm109.pdf",
+   "pdfFiles": [
+    "cumm109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "cumm110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm110.pdf",
+   "pdfFiles": [
+    "cumm110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "cumm111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm111.pdf",
+   "pdfFiles": [
+    "cumm111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "cumm112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm112.pdf",
+   "pdfFiles": [
+    "cumm112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "cumm113.pdf",
+   "title": "Chapter 13",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm113.pdf",
+   "pdfFiles": [
+    "cumm113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "cumm114.pdf",
+   "title": "Chapter 14",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cumm114.pdf",
+   "pdfFiles": [
+    "cumm114.pdf"
+   ]
+  }
+ ]
+}

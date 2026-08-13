@@ -1,0 +1,626 @@
+[
+ {
+  "chapterId": "a990f697-d546-4541-9b4e-ee901348db81",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 11,
+  "bookPath": "grade9/hindi/ihsc111.pdf",
+  "pdfFile": "ihsc111.pdf"
+ },
+ {
+  "chapterId": "4eeef457-bec1-4bca-9de6-85ed4257cba0",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 12,
+  "bookPath": "grade9/hindi/ihsc112.pdf",
+  "pdfFile": "ihsc112.pdf"
+ },
+ {
+  "chapterId": "9521561a-7042-48a3-95ee-fe4568a11080",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 13,
+  "bookPath": "grade9/hindi/ihsc113.pdf",
+  "pdfFile": "ihsc113.pdf"
+ },
+ {
+  "chapterId": "2ebbd2be-e3bb-49d2-95d5-71c3ed7e9568",
+  "grade": 9,
+  "subject": "Physical Education and Well Being",
+  "unitNo": 1,
+  "bookPath": "grade9/physical_education/iehp101.pdf",
+  "pdfFile": "iehp101.pdf"
+ },
+ {
+  "chapterId": "a0b0f338-d26a-4957-95ae-4385b3181664",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 1,
+  "bookPath": "grade9/hindi/ihsc101.pdf",
+  "pdfFile": "ihsc101.pdf"
+ },
+ {
+  "chapterId": "304ff1aa-0868-4816-8807-83b783daed2d",
+  "grade": 9,
+  "subject": "English",
+  "unitNo": 3,
+  "bookPath": "grade9/english/iebe103.pdf",
+  "pdfFile": "iebe103.pdf"
+ },
+ {
+  "chapterId": "7dc4e880-3229-4fdb-88ff-de963cae1a88",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 3,
+  "bookPath": "grade9/hindi/ihsc103.pdf",
+  "pdfFile": "ihsc103.pdf"
+ },
+ {
+  "chapterId": "e3e5425e-16c9-4d27-94fb-dba8dd71a470",
+  "grade": 9,
+  "subject": "Physical Education and Well Being",
+  "unitNo": 4,
+  "bookPath": "grade9/physical_education/iehp104.pdf",
+  "pdfFile": "iehp104.pdf"
+ },
+ {
+  "chapterId": "0c314386-a913-4504-af1a-652ce818f8ec",
+  "grade": 9,
+  "subject": "English",
+  "unitNo": 8,
+  "bookPath": "grade9/english/iebe108.pdf",
+  "pdfFile": "iebe108.pdf"
+ },
+ {
+  "chapterId": "544df128-88d0-4004-bf0b-a1edd545dc94",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 10,
+  "bookPath": "grade9/hindi/ihsc110.pdf",
+  "pdfFile": "ihsc110.pdf"
+ },
+ {
+  "chapterId": "67e69129-33dc-4c82-83c3-3a908e1c38bc",
+  "grade": 9,
+  "subject": "Physical Education and Well Being",
+  "unitNo": 12,
+  "bookPath": "grade9/physical_education/iekv112.pdf",
+  "pdfFile": "iekv112.pdf"
+ },
+ {
+  "chapterId": "ab914521-7fb2-44d8-bf30-436522a5916f",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 4,
+  "bookPath": "grade9/hindi/ihsc104.pdf",
+  "pdfFile": "ihsc104.pdf"
+ },
+ {
+  "chapterId": "be0b1ec5-1945-4992-b927-7f092b31d341",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 2,
+  "bookPath": "grade9/hindi/ihsc102.pdf",
+  "pdfFile": "ihsc102.pdf"
+ },
+ {
+  "chapterId": "d2dfe559-a1f5-45a0-8085-6257c4c90c21",
+  "grade": 9,
+  "subject": "Mathematics",
+  "unitNo": 5,
+  "bookPath": "grade9/mathematics/iemh105.pdf",
+  "pdfFile": "iemh105.pdf"
+ },
+ {
+  "chapterId": "e168c934-8a9e-403c-8e1d-a51f3713baa9",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 8,
+  "bookPath": "grade9/hindi/ihsc108.pdf",
+  "pdfFile": "ihsc108.pdf"
+ },
+ {
+  "chapterId": "613a18ce-bb3e-4588-b4b5-e15c91f7e97d",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 5,
+  "bookPath": "grade9/hindi/ihsc105.pdf",
+  "pdfFile": "ihsc105.pdf"
+ },
+ {
+  "chapterId": "c4f19dad-96bf-46c1-80f3-1fe12a615df5",
+  "grade": 9,
+  "subject": "Physical Education and Well Being",
+  "unitNo": 5,
+  "bookPath": "grade9/physical_education/iehp105.pdf",
+  "pdfFile": "iehp105.pdf"
+ },
+ {
+  "chapterId": "155248e8-e008-485f-99a2-14205a8e1711",
+  "grade": 9,
+  "subject": "Mathematics",
+  "unitNo": 4,
+  "bookPath": "grade9/mathematics/iemh104.pdf",
+  "pdfFile": "iemh104.pdf"
+ },
+ {
+  "chapterId": "436b9578-5f2b-46ea-b71b-c6a7a62fed63",
+  "grade": 9,
+  "subject": "Mathematics",
+  "unitNo": 8,
+  "bookPath": "grade9/mathematics/iemh108.pdf",
+  "pdfFile": "iemh108.pdf"
+ },
+ {
+  "chapterId": "d9137f66-91eb-4018-9468-9b1fb5e4e76a",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 7,
+  "bookPath": "grade9/hindi/ihsc107.pdf",
+  "pdfFile": "ihsc107.pdf"
+ },
+ {
+  "chapterId": "c2c89a89-5eee-45f2-a882-f75abedae05b",
+  "grade": 9,
+  "subject": "Physical Education and Well Being",
+  "unitNo": 8,
+  "bookPath": "grade9/physical_education/iekv108.pdf",
+  "pdfFile": "iekv108.pdf"
+ },
+ {
+  "chapterId": "79eec875-eeac-40ef-b294-8472d8324faf",
+  "grade": 9,
+  "subject": "Mathematics",
+  "unitNo": 3,
+  "bookPath": "grade9/mathematics/iemh103.pdf",
+  "pdfFile": "iemh103.pdf"
+ },
+ {
+  "chapterId": "0a2fb2f5-07b2-4a60-91fc-670ce30bb304",
+  "grade": 9,
+  "subject": "Science",
+  "unitNo": 10,
+  "bookPath": "grade9/science/iesc110.pdf",
+  "pdfFile": "iesc110.pdf"
+ },
+ {
+  "chapterId": "277b49f4-af9d-4bf2-9a6b-64a6c8ebf6d3",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 6,
+  "bookPath": "grade9/hindi/ihsc106.pdf",
+  "pdfFile": "ihsc106.pdf"
+ },
+ {
+  "chapterId": "74a778d0-6549-4e3b-a27c-74c311821c1f",
+  "grade": 9,
+  "subject": "English",
+  "unitNo": 17,
+  "bookPath": "grade9/english/iemr117.pdf",
+  "pdfFile": "iemr117.pdf"
+ },
+ {
+  "chapterId": "45927624-f78d-4a8f-8a62-9d67ba617dc5",
+  "grade": 9,
+  "subject": "Mathematics",
+  "unitNo": 1,
+  "bookPath": "grade9/mathematics/iemh101.pdf",
+  "pdfFile": "iemh101.pdf"
+ },
+ {
+  "chapterId": "53c110e2-7b13-4d86-bade-032982396192",
+  "grade": 9,
+  "subject": "Hindi",
+  "unitNo": 9,
+  "bookPath": "grade9/hindi/ihsc109.pdf",
+  "pdfFile": "ihsc109.pdf"
+ },
+ {
+  "chapterId": "1e342e9b-0a8c-4ddb-b5f1-c221f42e29a7",
+  "grade": 9,
+  "subject": "Mathematics",
+  "unitNo": 2,
+  "bookPath": "grade9/mathematics/iemh102.pdf",
+  "pdfFile": "iemh102.pdf"
+ },
+ {
+  "chapterId": "8a3e692d-27f3-49fc-bc9a-a51a03dcdb1a",
+  "grade": 10,
+  "subject": "English",
+  "unitNo": 8,
+  "bookPath": "grade10/english/jeff108.pdf",
+  "pdfFile": "jeff108.pdf"
+ },
+ {
+  "chapterId": "a8cab80b-dcba-4753-b338-91dc4f8447f5",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 2,
+  "bookPath": "grade10/science/jemh102.pdf",
+  "pdfFile": "jemh102.pdf"
+ },
+ {
+  "chapterId": "ce2dfe16-4bb4-4ebb-b1bc-b2fef23d0eb9",
+  "grade": 10,
+  "subject": "English",
+  "unitNo": 1,
+  "bookPath": "grade10/english/jeff101.pdf",
+  "pdfFile": "jeff101.pdf"
+ },
+ {
+  "chapterId": "69f44a54-1a31-4a78-8c3e-e238c67d5810",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 5,
+  "bookPath": "grade10/science/jemh105.pdf",
+  "pdfFile": "jemh105.pdf"
+ },
+ {
+  "chapterId": "44da2ca7-2bf2-4ca1-b32b-2ac398031ca8",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 4,
+  "bookPath": "grade10/science/jemh104.pdf",
+  "pdfFile": "jemh104.pdf"
+ },
+ {
+  "chapterId": "e4f8fb33-64d1-491f-bb47-d7557d994871",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 13,
+  "bookPath": "grade10/science/jemh113.pdf",
+  "pdfFile": "jemh113.pdf"
+ },
+ {
+  "chapterId": "bd8e428e-9245-4dd0-9089-05f4394fc0d1",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 10,
+  "bookPath": "grade10/science/jemh110.pdf",
+  "pdfFile": "jemh110.pdf"
+ },
+ {
+  "chapterId": "0c5ec43d-b486-4a77-adb7-fd29bcdecfc4",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 9,
+  "bookPath": "grade10/science/jemh109.pdf",
+  "pdfFile": "jemh109.pdf"
+ },
+ {
+  "chapterId": "69c79bca-3bb1-48f3-95c1-da771c021d6d",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 6,
+  "bookPath": "grade10/science/jemh106.pdf",
+  "pdfFile": "jemh106.pdf"
+ },
+ {
+  "chapterId": "cfb28653-2a1c-4010-b035-92ba43d77a3b",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 1,
+  "bookPath": "grade10/science/jemh101.pdf",
+  "pdfFile": "jemh101.pdf"
+ },
+ {
+  "chapterId": "30b7535e-68c5-4352-bbdb-5715eaae6dc9",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 7,
+  "bookPath": "grade10/science/jemh107.pdf",
+  "pdfFile": "jemh107.pdf"
+ },
+ {
+  "chapterId": "319ac68c-a6fd-4f55-89ef-4ac3e0399e38",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 3,
+  "bookPath": "grade10/science/jemh103.pdf",
+  "pdfFile": "jemh103.pdf"
+ },
+ {
+  "chapterId": "639e7c61-e926-44a0-b13d-42ad07cd909b",
+  "grade": 10,
+  "subject": "English",
+  "unitNo": 2,
+  "bookPath": "grade10/english/jeff102.pdf",
+  "pdfFile": "jeff102.pdf"
+ },
+ {
+  "chapterId": "89db416c-ed87-462b-93e6-800f6cff0dac",
+  "grade": 10,
+  "subject": "Social Science",
+  "unitNo": 2,
+  "bookPath": "grade10/social_science/jess102.pdf",
+  "pdfFile": "jess102.pdf"
+ },
+ {
+  "chapterId": "73ee3baa-4864-421e-840d-a776374a5690",
+  "grade": 10,
+  "subject": "Social Science",
+  "unitNo": 1,
+  "bookPath": "grade10/social_science/jess101.pdf",
+  "pdfFile": "jess101.pdf"
+ },
+ {
+  "chapterId": "913277d7-f972-432a-bd04-43125f5e893c",
+  "grade": 10,
+  "subject": "English",
+  "unitNo": 5,
+  "bookPath": "grade10/english/jeff105.pdf",
+  "pdfFile": "jeff105.pdf"
+ },
+ {
+  "chapterId": "03ee33fd-7e28-491b-8bbd-997472e146f7",
+  "grade": 10,
+  "subject": "Health and Physical Education",
+  "unitNo": 5,
+  "bookPath": "grade10/physical_education/jehp105.pdf",
+  "pdfFile": "jehp105.pdf"
+ },
+ {
+  "chapterId": "fcd61cbb-e941-422a-9dec-a17c07445108",
+  "grade": 10,
+  "subject": "English",
+  "unitNo": 6,
+  "bookPath": "grade10/english/jeff106.pdf",
+  "pdfFile": "jeff106.pdf"
+ },
+ {
+  "chapterId": "93f06678-838b-40f6-8ed2-ee434998e764",
+  "grade": 10,
+  "subject": "Health and Physical Education",
+  "unitNo": 1,
+  "bookPath": "grade10/physical_education/jehp101.pdf",
+  "pdfFile": "jehp101.pdf"
+ },
+ {
+  "chapterId": "a363a8c7-c15c-4924-b406-8bbb478e29b1",
+  "grade": 10,
+  "subject": "English",
+  "unitNo": 3,
+  "bookPath": "grade10/english/jeff103.pdf",
+  "pdfFile": "jeff103.pdf"
+ },
+ {
+  "chapterId": "29798859-12c4-4b6b-aced-c905a4f9c028",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 11,
+  "bookPath": "grade10/science/jemh111.pdf",
+  "pdfFile": "jemh111.pdf"
+ },
+ {
+  "chapterId": "ed797f5e-5646-4790-8d55-c7ebca62445b",
+  "grade": 10,
+  "subject": "English",
+  "unitNo": 7,
+  "bookPath": "grade10/english/jeff107.pdf",
+  "pdfFile": "jeff107.pdf"
+ },
+ {
+  "chapterId": "b5b75037-375a-4bd6-9762-9f16eab94e5f",
+  "grade": 10,
+  "subject": "Health and Physical Education",
+  "unitNo": 3,
+  "bookPath": "grade10/physical_education/jehp103.pdf",
+  "pdfFile": "jehp103.pdf"
+ },
+ {
+  "chapterId": "28c65070-4ea0-4d93-885a-febe0f9cb559",
+  "grade": 10,
+  "subject": "English",
+  "unitNo": 9,
+  "bookPath": "grade10/english/jeff109.pdf",
+  "pdfFile": "jeff109.pdf"
+ },
+ {
+  "chapterId": "179467c9-88ea-4592-95e0-64d7c5fa5dc5",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 12,
+  "bookPath": "grade10/science/jemh112.pdf",
+  "pdfFile": "jemh112.pdf"
+ },
+ {
+  "chapterId": "f93c2287-c715-4ce1-a7a0-b553a3b5daa9",
+  "grade": 10,
+  "subject": "Health and Physical Education",
+  "unitNo": 4,
+  "bookPath": "grade10/physical_education/jehp104.pdf",
+  "pdfFile": "jehp104.pdf"
+ },
+ {
+  "chapterId": "19aa0364-906f-4c1a-ad0e-d80f23803d1d",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 1,
+  "bookPath": "grade10/hindi/jhks101.pdf",
+  "pdfFile": "jhks101.pdf"
+ },
+ {
+  "chapterId": "f7cb1251-38a2-48da-862a-b6a541a0a465",
+  "grade": 10,
+  "subject": "Health and Physical Education",
+  "unitNo": 9,
+  "bookPath": "grade10/physical_education/jehp109.pdf",
+  "pdfFile": "jehp109.pdf"
+ },
+ {
+  "chapterId": "707b31da-3fe1-45bd-8c4f-f90b545482cc",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 2,
+  "bookPath": "grade10/hindi/jhks102.pdf",
+  "pdfFile": "jhks102.pdf"
+ },
+ {
+  "chapterId": "7f250d64-4035-496e-a993-a42c15963996",
+  "grade": 10,
+  "subject": "Social Science",
+  "unitNo": 3,
+  "bookPath": "grade10/social_science/jess103.pdf",
+  "pdfFile": "jess103.pdf"
+ },
+ {
+  "chapterId": "f4776fa1-8c52-45d1-a0c8-6e04a78da057",
+  "grade": 10,
+  "subject": "Health and Physical Education",
+  "unitNo": 10,
+  "bookPath": "grade10/physical_education/jehp110.pdf",
+  "pdfFile": "jehp110.pdf"
+ },
+ {
+  "chapterId": "a379f12b-61d8-44ae-ae8e-21f00d731e60",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 2,
+  "bookPath": "grade10/hindi/jhks102.pdf",
+  "pdfFile": "jhks102.pdf"
+ },
+ {
+  "chapterId": "45c2be14-0c2a-499f-89bc-cd32caa66ee3",
+  "grade": 10,
+  "subject": "Social Science",
+  "unitNo": 4,
+  "bookPath": "grade10/social_science/jess104.pdf",
+  "pdfFile": "jess104.pdf"
+ },
+ {
+  "chapterId": "c40d0d0d-0635-4bff-9baf-9281c8e49e25",
+  "grade": 10,
+  "subject": "Health and Physical Education",
+  "unitNo": 11,
+  "bookPath": "grade10/physical_education/jehp111.pdf",
+  "pdfFile": "jehp111.pdf"
+ },
+ {
+  "chapterId": "bd1cf870-28ca-4584-b000-5c457bcab680",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 3,
+  "bookPath": "grade10/hindi/jhks103.pdf",
+  "pdfFile": "jhks103.pdf"
+ },
+ {
+  "chapterId": "1ef732d1-b501-4863-a434-819ac6f01afe",
+  "grade": 10,
+  "subject": "Health and Physical Education",
+  "unitNo": 12,
+  "bookPath": "grade10/physical_education/jehp112.pdf",
+  "pdfFile": "jehp112.pdf"
+ },
+ {
+  "chapterId": "4c0dc013-9acd-4a7f-838c-9f5a728faf5f",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 4,
+  "bookPath": "grade10/hindi/jhks104.pdf",
+  "pdfFile": "jhks104.pdf"
+ },
+ {
+  "chapterId": "50e428a5-877b-46c4-ad57-c93eb8c0bd2e",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 5,
+  "bookPath": "grade10/hindi/jhks105.pdf",
+  "pdfFile": "jhks105.pdf"
+ },
+ {
+  "chapterId": "e6e2dbe8-6b39-4ee2-b91f-d42c36b14ef9",
+  "grade": 10,
+  "subject": "Social Science",
+  "unitNo": 5,
+  "bookPath": "grade10/social_science/jess105.pdf",
+  "pdfFile": "jess105.pdf"
+ },
+ {
+  "chapterId": "8ead34d4-ac96-45c0-877e-4c88c3bf7c6f",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 6,
+  "bookPath": "grade10/hindi/jhks106.pdf",
+  "pdfFile": "jhks106.pdf"
+ },
+ {
+  "chapterId": "e7d898cf-cfe5-4e9e-98c4-af938395dcb8",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 7,
+  "bookPath": "grade10/hindi/jhks107.pdf",
+  "pdfFile": "jhks107.pdf"
+ },
+ {
+  "chapterId": "1354d3a4-b378-4e76-a5bf-1c2e7aa0b6d1",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 8,
+  "bookPath": "grade10/hindi/jhks108.pdf",
+  "pdfFile": "jhks108.pdf"
+ },
+ {
+  "chapterId": "7a75f9c1-8155-46c1-b6c9-f4901042d851",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 9,
+  "bookPath": "grade10/hindi/jhks109.pdf",
+  "pdfFile": "jhks109.pdf"
+ },
+ {
+  "chapterId": "d0dfec04-dec9-4b5c-a767-73116f5dee82",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 10,
+  "bookPath": "grade10/hindi/jhks110.pdf",
+  "pdfFile": "jhks110.pdf"
+ },
+ {
+  "chapterId": "dc50d793-4d84-4902-a89f-e10ba1f8a6cf",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 11,
+  "bookPath": "grade10/hindi/jhks111.pdf",
+  "pdfFile": "jhks111.pdf"
+ },
+ {
+  "chapterId": "33e82f8f-ffbc-4a54-8bc2-d2c32ed13722",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 12,
+  "bookPath": "grade10/hindi/jhks112.pdf",
+  "pdfFile": "jhks112.pdf"
+ },
+ {
+  "chapterId": "fbaaee53-ff02-4c12-a561-c969b2b212e5",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 13,
+  "bookPath": "grade10/hindi/jhsc113.pdf",
+  "pdfFile": "jhsc113.pdf"
+ },
+ {
+  "chapterId": "3c3759ea-bff4-40c6-8736-f9303961ef09",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 13,
+  "bookPath": "grade10/hindi/jhsc113.pdf",
+  "pdfFile": "jhsc113.pdf"
+ },
+ {
+  "chapterId": "239d47c9-6526-4d48-993e-516d09f0d40c",
+  "grade": 10,
+  "subject": "Science",
+  "unitNo": 8,
+  "bookPath": "grade10/science/jemh108.pdf",
+  "pdfFile": "jemh108.pdf"
+ },
+ {
+  "chapterId": "3712674d-55e3-4f91-96ff-e65b3d28f83a",
+  "grade": 10,
+  "subject": "Hindi",
+  "unitNo": 14,
+  "bookPath": "grade10/hindi/jhsp114.pdf",
+  "pdfFile": "jhsp114.pdf"
+ }
+]

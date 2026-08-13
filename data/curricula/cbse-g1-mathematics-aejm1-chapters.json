@@ -1,0 +1,113 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 1",
+ "subject": "Mathematics",
+ "code": "aejm1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "aejm101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "aejm102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "aejm103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "aejm104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "aejm105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "aejm106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "aejm107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "aejm108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "aejm109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "aejm110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "aejm111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "aejm112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "aejm113.pdf",
+   "title": "Chapter 13",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/mathematics/aejm113.pdf"
+  }
+ ]
+}

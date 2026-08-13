@@ -1,0 +1,285 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Accountancy",
+ "code": "leac2",
+ "imageSubject": "Accountancy",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "leac201.pdf",
+   "title": "Chapter 1",
+   "bookPath": "grade12/accountancy/leac201.pdf",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Features of a Company"
+    },
+    {
+     "section": "1.2",
+     "title": "Kinds of Companies"
+    },
+    {
+     "section": "1.3",
+     "title": "Share Capital of a Company"
+    },
+    {
+     "section": "1.4",
+     "title": "Nature and Classes of Shares"
+    },
+    {
+     "section": "1.5",
+     "title": "Issue of Shares"
+    },
+    {
+     "section": "1.6",
+     "title": "Accounting Treatment"
+    },
+    {
+     "section": "1.7",
+     "title": "Forfeiture of Shares"
+    }
+   ],
+   "pdfFiles": [
+    "leac201.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "leac202.pdf",
+   "title": "Section I",
+   "bookPath": "grade12/accountancy/leac202.pdf",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Meaning of Debentures"
+    },
+    {
+     "section": "2.2",
+     "title": "Distinction between Shares and Debentures"
+    },
+    {
+     "section": "2.3",
+     "title": "Types of Debentures"
+    },
+    {
+     "section": "2.4",
+     "title": "Issue of Debentures"
+    },
+    {
+     "section": "2.5",
+     "title": "Over Subscription"
+    },
+    {
+     "section": "2.6",
+     "title": "Issue of Debentures for Consideration other than Cash"
+    },
+    {
+     "section": "2.7",
+     "title": "Issue of Debentures as a Collateral Security"
+    },
+    {
+     "section": "2.8",
+     "title": "Terms of Issue of Debentures"
+    },
+    {
+     "section": "2.9",
+     "title": "Interest on Debentures"
+    },
+    {
+     "section": "2.10",
+     "title": "Writing off Discount"
+    },
+    {
+     "section": "2.11",
+     "title": "Redemption of Debentures"
+    },
+    {
+     "section": "2.12",
+     "title": "Redemption by Payment in Lump Sum"
+    },
+    {
+     "section": "2.13",
+     "title": "Redemption by Purchase in Open Market"
+    },
+    {
+     "section": "2.14",
+     "title": "Redemption by Conversion"
+    }
+   ],
+   "pdfFiles": [
+    "leac202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "leac203.pdf",
+   "title": "Chapter 3",
+   "bookPath": "grade12/accountancy/leac203.pdf",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Meaning of Financial Statements"
+    },
+    {
+     "section": "3.2",
+     "title": "Nature of Financial Statements"
+    },
+    {
+     "section": "3.3",
+     "title": "Objectives of Financial Statements"
+    },
+    {
+     "section": "3.4",
+     "title": "Types of Financial Statements"
+    },
+    {
+     "section": "3.5",
+     "title": "Uses and Importance of Financial Statements"
+    },
+    {
+     "section": "3.6",
+     "title": "Limitations of Financial Statements"
+    }
+   ],
+   "pdfFiles": [
+    "leac203.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "leac204.pdf",
+   "title": "Chapter 4",
+   "bookPath": "grade12/accountancy/leac204.pdf",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Meaning of Analysis of Financial Statements"
+    },
+    {
+     "section": "4.2",
+     "title": "Significance of Analysis of Financial Statements"
+    },
+    {
+     "section": "4.3",
+     "title": "Objectives of Analysis of Financial Statements"
+    },
+    {
+     "section": "4.4",
+     "title": "Tools of Analysis of Financial Statements"
+    },
+    {
+     "section": "4.5",
+     "title": "Comparative Statements"
+    },
+    {
+     "section": "4.6",
+     "title": "Common Size Statement"
+    },
+    {
+     "section": "4.7",
+     "title": "Limitations of Financial Analysis"
+    }
+   ],
+   "pdfFiles": [
+    "leac204.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "leac205.pdf",
+   "title": "Chapter 5",
+   "bookPath": "grade12/accountancy/leac205.pdf",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Meaning of Accounting Ratios"
+    },
+    {
+     "section": "5.2",
+     "title": "Objectives of Ratio Analysis"
+    },
+    {
+     "section": "5.3",
+     "title": "Advantages of Ratio Analysis"
+    },
+    {
+     "section": "5.4",
+     "title": "Limitations of Ratio Analysis"
+    },
+    {
+     "section": "5.5",
+     "title": "Types of Ratios"
+    },
+    {
+     "section": "5.6",
+     "title": "Liquidity Ratios"
+    },
+    {
+     "section": "5.7",
+     "title": "Solvency Ratios"
+    },
+    {
+     "section": "5.8",
+     "title": "Activity (or Turnover) Ratio"
+    },
+    {
+     "section": "5.9",
+     "title": "Profitability Ratios"
+    }
+   ],
+   "pdfFiles": [
+    "leac205.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "leac206.pdf",
+   "title": "Chapter 6",
+   "bookPath": "grade12/accountancy/leac206.pdf",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Objectives of Cash Flow Statement"
+    },
+    {
+     "section": "6.2",
+     "title": "Benefits of Cash Flow Statement"
+    },
+    {
+     "section": "6.3",
+     "title": "Cash and Cash Equivalents"
+    },
+    {
+     "section": "6.4",
+     "title": "Cash Flows"
+    },
+    {
+     "section": "6.5",
+     "title": "Classification of Activities for the Preparation of Cas"
+    },
+    {
+     "section": "6.6",
+     "title": "Ascertaining Cash Flow from Operating Activities"
+    },
+    {
+     "section": "6.7",
+     "title": "Ascertainment of Cash Flow from Investing and Financing Activi"
+    },
+    {
+     "section": "6.8",
+     "title": "Preparation of Cash Flow Statement"
+    }
+   ],
+   "pdfFiles": [
+    "leac206.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

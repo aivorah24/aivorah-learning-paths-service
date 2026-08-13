@@ -1,0 +1,71 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Geography",
+ "code": "kegy1",
+ "imageSubject": "Geography",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kegy101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy101.pdf",
+   "pdfFiles": [
+    "kegy101.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kegy102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy102.pdf",
+   "pdfFiles": [
+    "kegy102.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kegy103.pdf",
+   "title": "Ert,",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy103.pdf",
+   "pdfFiles": [
+    "kegy103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kegy104.pdf",
+   "title": "Climate and Vegetation",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy104.pdf",
+   "pdfFiles": [
+    "kegy104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kegy105.pdf",
+   "title": "Types of Forests",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy105.pdf",
+   "pdfFiles": [
+    "kegy105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kegy106.pdf",
+   "title": "Causes, Consequences and Management",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy106.pdf",
+   "pdfFiles": [
+    "kegy106.pdf"
+   ]
+  }
+ ]
+}

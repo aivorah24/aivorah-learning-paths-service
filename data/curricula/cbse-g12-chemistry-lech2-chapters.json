@@ -1,0 +1,522 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Chemistry",
+ "code": "lech2",
+ "imageSubject": "Chemistry",
+ "chapters": [
+  {
+   "chapter": 6,
+   "pdfFile": "lech201.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/chemistry/lech201.pdf",
+   "pdfFiles": [
+    "lech201.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "ClassificationClassification"
+    },
+    {
+     "section": "6.2",
+     "title": "Nomenclature"
+    },
+    {
+     "section": "6.3",
+     "title": "Nature ofNature of"
+    },
+    {
+     "section": "6.4",
+     "title": "Methods of"
+    },
+    {
+     "section": "6.5",
+     "title": "Preparation ofPreparation of"
+    },
+    {
+     "section": "6.6",
+     "title": "PhysicalPhysical"
+    },
+    {
+     "section": "6.7",
+     "title": "ChemicalChemical"
+    },
+    {
+     "section": "6.8",
+     "title": "In the following pairs of halogen compounds, which compound un"
+    },
+    {
+     "section": "6.9",
+     "title": "Identify A, B, C, D, E, R and R"
+    },
+    {
+     "section": "6.10",
+     "title": "Predict all the alkenes that would be formed by dehyd"
+    },
+    {
+     "section": "6.11",
+     "title": "How will you bring about the following conversions"
+    },
+    {
+     "section": "6.12",
+     "title": "Explain why"
+    },
+    {
+     "section": "6.13",
+     "title": "Give the uses of freon"
+    },
+    {
+     "section": "6.14",
+     "title": "Write the structure of the major organic product in each of th"
+    },
+    {
+     "section": "6.15",
+     "title": "Write the mechanism of the following reaction"
+    },
+    {
+     "section": "6.16",
+     "title": "Arrange the compounds of each set in order of reactiv"
+    },
+    {
+     "section": "6.17",
+     "title": "Out of C"
+    },
+    {
+     "section": "6.19",
+     "title": "How the following conversions can be carried out"
+    },
+    {
+     "section": "6.20",
+     "title": "The treatment of alkyl chlorides with aqueous KOH lead"
+    },
+    {
+     "section": "6.21",
+     "title": "Primary alkyl halide C"
+    },
+    {
+     "section": "6.22",
+     "title": "What happens when"
+    }
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lech202.pdf",
+   "title": "Och",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/chemistry/lech202.pdf",
+   "pdfFiles": [
+    "lech202.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "ClassificationClassification"
+    },
+    {
+     "section": "7.2",
+     "title": "Identify allylic alcohols in the above examples"
+    },
+    {
+     "section": "7.3",
+     "title": "Name the following compounds according to IUPAC system"
+    },
+    {
+     "section": "7.4",
+     "title": "Alcohols andAlcohols and"
+    },
+    {
+     "section": "7.5",
+     "title": "Write structures of the products of the following reactions"
+    },
+    {
+     "section": "7.6",
+     "title": "Give structures of the products you would expect when each of"
+    },
+    {
+     "section": "7.7",
+     "title": "Predict the major product of acid catalysed dehydration of"
+    },
+    {
+     "section": "7.8",
+     "title": "Ortho and para nitrophenols are more acidic than pheno"
+    },
+    {
+     "section": "7.9",
+     "title": "Write the equations involved in the following reactions"
+    },
+    {
+     "section": "7.10",
+     "title": "Write the reactions of Williamson synthesis of"
+    },
+    {
+     "section": "7.11",
+     "title": "Which of the following is an appropriate set of react"
+    },
+    {
+     "section": "7.12",
+     "title": "Predict the products of the following reactions"
+    },
+    {
+     "section": "7.13",
+     "title": "Show how will you synthesise"
+    },
+    {
+     "section": "7.14",
+     "title": "Give two reactions that show the acidic nature of phe"
+    },
+    {
+     "section": "7.15",
+     "title": "Explain why is ortho nitrophenol more acidic than orth"
+    },
+    {
+     "section": "7.16",
+     "title": "Explain how does the"
+    },
+    {
+     "section": "7.17",
+     "title": "Give equations of the following reactions"
+    },
+    {
+     "section": "7.18",
+     "title": "Explain the following with an example"
+    },
+    {
+     "section": "7.19",
+     "title": "Write the mechanism of acid dehydration of ethanol to"
+    },
+    {
+     "section": "7.20",
+     "title": "How are the following conversions carried out"
+    },
+    {
+     "section": "7.21",
+     "title": "Name the reagents used in the following reactions"
+    },
+    {
+     "section": "7.22",
+     "title": "Give reason for the higher boiling point of ethanol i"
+    },
+    {
+     "section": "7.23",
+     "title": "Give IUPAC names of the following ethers"
+    },
+    {
+     "section": "7.24",
+     "title": "Write the names of reagents and equations for the preparation"
+    },
+    {
+     "section": "7.25",
+     "title": "Illustrate with examples the limitations of Williamson"
+    },
+    {
+     "section": "7.26",
+     "title": "How is"
+    },
+    {
+     "section": "7.27",
+     "title": "Preparation of ethers by acid dehydration of secondary"
+    },
+    {
+     "section": "7.28",
+     "title": "Write the equation of the reaction of hydrogen iodide"
+    },
+    {
+     "section": "7.29",
+     "title": "Explain the fact that in aryl alkyl ethers (i) the a"
+    },
+    {
+     "section": "7.30",
+     "title": "Write the mechanism of the reaction of HI with methox"
+    },
+    {
+     "section": "7.31",
+     "title": "Write equations of the following reactions"
+    },
+    {
+     "section": "7.32",
+     "title": "Show how would you synthesise the following alcohols f"
+    },
+    {
+     "section": "7.33",
+     "title": "When"
+    }
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "lech203.pdf",
+   "title": "Coch",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/chemistry/lech203.pdf",
+   "pdfFiles": [
+    "lech203.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Nomenclature and Structure of Carbonyl GroupNomenclature"
+    },
+    {
+     "section": "8.2",
+     "title": "Preparation of AldehydesPreparation of Aldehydes"
+    },
+    {
+     "section": "8.3",
+     "title": "Physical"
+    },
+    {
+     "section": "8.4",
+     "title": "Chemical"
+    },
+    {
+     "section": "8.5",
+     "title": "Predict the products of the following reactions"
+    },
+    {
+     "section": "8.6",
+     "title": "Nomenclature and Structure of Carboxyl GroupNomenclature"
+    },
+    {
+     "section": "8.7",
+     "title": "Methods of"
+    },
+    {
+     "section": "8.8",
+     "title": "Physical"
+    },
+    {
+     "section": "8.9",
+     "title": "Chemical ReactionsChemical Reactions"
+    },
+    {
+     "section": "8.10",
+     "title": "Uses ofUses of"
+    },
+    {
+     "section": "8.11",
+     "title": "An organic compound (A) (molecular formula C"
+    },
+    {
+     "section": "8.12",
+     "title": "Arrange the following compounds in increasing order of their p"
+    },
+    {
+     "section": "8.13",
+     "title": "Give simple chemical tests to distinguish between the followin"
+    },
+    {
+     "section": "8.14",
+     "title": "How will you prepare the following compounds from benz"
+    },
+    {
+     "section": "8.15",
+     "title": "How will you bring about the following conversions in not more"
+    },
+    {
+     "section": "8.16",
+     "title": "Describe the following"
+    },
+    {
+     "section": "8.17",
+     "title": "Complete each synthesis by giving missing starting mate"
+    },
+    {
+     "section": "8.18",
+     "title": "Give plausible explanation for each of the following"
+    },
+    {
+     "section": "8.19",
+     "title": "An organic compound contains"
+    },
+    {
+     "section": "8.20",
+     "title": "Although phenoxide ion has more number of resonating s"
+    }
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "lech204.pdf",
+   "title": "Nhch",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/chemistry/lech204.pdf",
+   "pdfFiles": [
+    "lech204.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Structure of Amines"
+    },
+    {
+     "section": "9.2",
+     "title": "ClassificationClassification"
+    },
+    {
+     "section": "9.3",
+     "title": "NomenclatureNomenclature"
+    },
+    {
+     "section": "9.4",
+     "title": "PreparationPreparation"
+    },
+    {
+     "section": "9.5",
+     "title": "Physical"
+    },
+    {
+     "section": "9.6",
+     "title": "Chemical"
+    },
+    {
+     "section": "9.7",
+     "title": "Write chemical reaction of aniline with benzoyl chloride and w"
+    },
+    {
+     "section": "9.8",
+     "title": "Write structures of different isomers corresponding to the mol"
+    },
+    {
+     "section": "9.9",
+     "title": "ChemicalChemical"
+    },
+    {
+     "section": "9.10",
+     "title": "An aromatic compound"
+    },
+    {
+     "section": "9.11",
+     "title": "Complete the following reactions"
+    },
+    {
+     "section": "9.12",
+     "title": "Why cannot aromatic primary amines be prepared by Gabr"
+    },
+    {
+     "section": "9.13",
+     "title": "Write the reactions of (i) aromatic and (ii) aliphatic"
+    },
+    {
+     "section": "9.14",
+     "title": "Give plausible explanation for each of the following"
+    }
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "lech205.pdf",
+   "title": "Cho",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/chemistry/lech205.pdf",
+   "pdfFiles": [
+    "lech205.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "CarbohydratesCarbohydrates"
+    },
+    {
+     "section": "10.2",
+     "title": "What are the expected products of hydrolysis of lactose"
+    },
+    {
+     "section": "10.3",
+     "title": "How do you explain the absence of aldehyde group in"
+    },
+    {
+     "section": "10.4",
+     "title": "The melting points and solubility in water of amino a"
+    },
+    {
+     "section": "10.5",
+     "title": "Where does the water present in the egg go after boiling the e"
+    },
+    {
+     "section": "10.6",
+     "title": "Hormones"
+    },
+    {
+     "section": "10.7",
+     "title": "What products would be formed when a nucleotide from"
+    },
+    {
+     "section": "10.8",
+     "title": "When RNA is hydrolysed, there is no relationship among the qua"
+    },
+    {
+     "section": "10.9",
+     "title": "What happens when D-glucose is treated with the follow"
+    },
+    {
+     "section": "10.10",
+     "title": "Enumerate the reactions of D-glucose which cannot be e"
+    },
+    {
+     "section": "10.11",
+     "title": "What are essential and non-essential amino acids"
+    },
+    {
+     "section": "10.12",
+     "title": "Define the following as related to proteins"
+    },
+    {
+     "section": "10.13",
+     "title": "What are the common types of secondary structure of p"
+    },
+    {
+     "section": "10.14",
+     "title": "What type of bonding helps in stabilising the a-helix structur"
+    },
+    {
+     "section": "10.15",
+     "title": "Differentiate between globular and fibrous proteins"
+    },
+    {
+     "section": "10.16",
+     "title": "How do you explain the amphoteric behaviour of amino"
+    },
+    {
+     "section": "10.17",
+     "title": "What are enzymes"
+    },
+    {
+     "section": "10.18",
+     "title": "What is the effect of denaturation on the structure o"
+    },
+    {
+     "section": "10.19",
+     "title": "How are vitamins classified"
+    },
+    {
+     "section": "10.20",
+     "title": "Why are vitamin A and vitamin C essential to us"
+    },
+    {
+     "section": "10.21",
+     "title": "What are nucleic acids"
+    },
+    {
+     "section": "10.22",
+     "title": "What is the difference between a nucleoside and a nuc"
+    },
+    {
+     "section": "10.23",
+     "title": "The two strands in DNA are not identical but are com"
+    },
+    {
+     "section": "10.24",
+     "title": "Write the important structural and functional difference"
+    },
+    {
+     "section": "10.25",
+     "title": "What are the different types of RNA found in the cel"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,329 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Physics",
+ "code": "leph2",
+ "imageSubject": "Physics",
+ "chapters": [
+  {
+   "chapter": 9,
+   "pdfFile": "leph201.pdf",
+   "title": "Ray Optics and Optical Instruments",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/physics/leph201.pdf",
+   "pdfFiles": [
+    "leph201.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Example"
+    },
+    {
+     "section": "9.2",
+     "title": "REFLECTION OF LIGHT"
+    },
+    {
+     "section": "9.3",
+     "title": "REFRACTION"
+    },
+    {
+     "section": "9.4",
+     "title": "Solution"
+    },
+    {
+     "section": "9.6",
+     "title": "REFRACTION THROUGH A PRISM"
+    },
+    {
+     "section": "9.7",
+     "title": "Reprint"
+    },
+    {
+     "section": "9.8",
+     "title": "The image formed by the first lens serves as the object for th"
+    },
+    {
+     "section": "9.9",
+     "title": "An object of size"
+    },
+    {
+     "section": "9.10",
+     "title": "What is the focal length of a convex lens of focal"
+    },
+    {
+     "section": "9.12",
+     "title": "Observing total internal"
+    },
+    {
+     "section": "9.13",
+     "title": "Prisms designed to bend rays by"
+    },
+    {
+     "section": "9.15",
+     "title": "Use the mirror equation to deduce that"
+    },
+    {
+     "section": "9.18",
+     "title": "The image of a small electric bulb fixed on the wall of a room"
+    },
+    {
+     "section": "9.21",
+     "title": "At what angle should a ray of light be incident on the face of"
+    },
+    {
+     "section": "9.24",
+     "title": "What should be the distance between the object in Exercise"
+    },
+    {
+     "section": "9.25",
+     "title": "Answer the following questions"
+    },
+    {
+     "section": "9.26",
+     "title": "An angular magnification (magnifying power) of"
+    },
+    {
+     "section": "9.30",
+     "title": "Light incident normally on a plane mirror attached to a galvan"
+    },
+    {
+     "section": "9.31",
+     "title": "Figure"
+    }
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "leph202.pdf",
+   "title": "Wave Optics",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/physics/leph202.pdf",
+   "pdfFiles": [
+    "leph202.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "Example"
+    },
+    {
+     "section": "10.2",
+     "title": "HUYGENS PRINCIPLE"
+    },
+    {
+     "section": "10.3",
+     "title": "REFRACTION AND REFLECTION OF"
+    },
+    {
+     "section": "10.4",
+     "title": "COHERENT AND INCOHERENT"
+    },
+    {
+     "section": "10.5",
+     "title": "INTERFERENCE"
+    },
+    {
+     "section": "10.6",
+     "title": "DIFFRACTION"
+    },
+    {
+     "section": "10.16",
+     "title": "Holding two blades to"
+    }
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "leph203.pdf",
+   "title": "Dual Nature of Radiation and Matter",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/physics/leph203.pdf",
+   "pdfFiles": [
+    "leph203.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "Find the"
+    },
+    {
+     "section": "11.2",
+     "title": "ELECTRON"
+    },
+    {
+     "section": "11.3",
+     "title": "PHOTOELECTRIC EFFECT"
+    },
+    {
+     "section": "11.4",
+     "title": "EXPERIMENTAL STUDY OF PHOTOELECTRIC"
+    },
+    {
+     "section": "11.5",
+     "title": "PHOTOELECTRIC EFFECT AND WAVE THEORY"
+    },
+    {
+     "section": "11.6",
+     "title": "EINSTEIN"
+    },
+    {
+     "section": "11.7",
+     "title": "PARTICLE NATURE OF LIGHT"
+    },
+    {
+     "section": "11.8",
+     "title": "WAVE NATURE OF MATTER"
+    },
+    {
+     "section": "11.9",
+     "title": "Light of wavelength"
+    },
+    {
+     "section": "11.10",
+     "title": "What is the de Broglie wavelength of"
+    },
+    {
+     "section": "11.11",
+     "title": "Show that the wavelength of electromagnetic radiation i"
+    }
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "leph204.pdf",
+   "title": "Atoms",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/physics/leph204.pdf",
+   "pdfFiles": [
+    "leph204.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "The magnitude of this force is"
+    },
+    {
+     "section": "12.2",
+     "title": "Example"
+    },
+    {
+     "section": "12.3",
+     "title": "Experimental data points (shown by"
+    },
+    {
+     "section": "12.4",
+     "title": "FIGURE"
+    },
+    {
+     "section": "12.5",
+     "title": "THE LINE SPECTRA OF THE HYDROGEN ATOM"
+    },
+    {
+     "section": "12.6",
+     "title": "DE BROGLIE"
+    },
+    {
+     "section": "12.7",
+     "title": "The radius of the innermost electron orbit of a hydro"
+    },
+    {
+     "section": "12.9",
+     "title": "In accordance with the Bohr"
+    }
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "leph205.pdf",
+   "title": "Nuclei",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/physics/leph205.pdf",
+   "pdfFiles": [
+    "leph205.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "13.1",
+     "title": "Reprint"
+    },
+    {
+     "section": "13.2",
+     "title": "ATOMIC MASSES AND COMPOSITION OF NUCLEUS"
+    },
+    {
+     "section": "13.3",
+     "title": "SIZE OF THE NUCLEUS"
+    },
+    {
+     "section": "13.4",
+     "title": "MASS-E"
+    },
+    {
+     "section": "13.5",
+     "title": "NUCLEAR FORCE"
+    },
+    {
+     "section": "13.6",
+     "title": "RADIOACTIVITY"
+    },
+    {
+     "section": "13.7",
+     "title": "NUCLEAR ENERGY"
+    },
+    {
+     "section": "13.8",
+     "title": "How long can an electric lamp of"
+    },
+    {
+     "section": "13.9",
+     "title": "Calculate the height of the potential barrier for a h"
+    },
+    {
+     "section": "13.10",
+     "title": "From the relation R"
+    }
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "leph206.pdf",
+   "title": "Semiconductor",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/physics/leph206.pdf",
+   "pdfFiles": [
+    "leph206.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "14.1",
+     "title": "An intrinsic semiconductor"
+    },
+    {
+     "section": "14.2",
+     "title": "CLASSIFICATION OF METALS, CONDUCTORS AND"
+    },
+    {
+     "section": "14.3",
+     "title": "INTRINSIC SEMICONDUCTOR"
+    },
+    {
+     "section": "14.4",
+     "title": "EXTRINSIC SEMICONDUCTOR"
+    },
+    {
+     "section": "14.5",
+     "title": "When a forward bias is applied to a p-n junction, it"
+    },
+    {
+     "section": "14.6",
+     "title": "SEMICONDUCTOR DIODE"
+    },
+    {
+     "section": "14.7",
+     "title": "APPLICATION OF JUNCTION DIODE AS A RECTIFIER"
+    }
+   ]
+  }
+ ]
+}

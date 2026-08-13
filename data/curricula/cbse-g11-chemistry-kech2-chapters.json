@@ -1,0 +1,262 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Chemistry",
+ "code": "kech2",
+ "imageSubject": "Chemistry",
+ "chapters": [
+  {
+   "chapter": 7,
+   "pdfFile": "kech201.pdf",
+   "title": "Oxidation and Reduction Reactions",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/chemistry/kech201.pdf",
+   "pdfFiles": [
+    "kech201.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "CLASSICAL IDEA OF REDOX REACTIONS"
+    },
+    {
+     "section": "7.2",
+     "title": "REDOX REACTIONS IN TERMS OF"
+    },
+    {
+     "section": "7.3",
+     "title": "OXIDATION NUMBER"
+    },
+    {
+     "section": "7.4",
+     "title": "REDOX REACTIONS AND ELECTRODE"
+    },
+    {
+     "section": "7.5",
+     "title": "Calculate the oxidation number of sulphur, chromium and nitrog"
+    },
+    {
+     "section": "7.6",
+     "title": "Write formulas for the following compounds"
+    },
+    {
+     "section": "7.8",
+     "title": "While sulphur dioxide and hydrogen peroxide can act as oxidisi"
+    },
+    {
+     "section": "7.9",
+     "title": "Consider the reactions"
+    },
+    {
+     "section": "7.10",
+     "title": "The compound AgF"
+    },
+    {
+     "section": "7.11",
+     "title": "Whenever a reaction between an oxidising agent and a reducing"
+    },
+    {
+     "section": "7.12",
+     "title": "How do you count for the following observations"
+    },
+    {
+     "section": "7.13",
+     "title": "Identify the substance oxidised reduced, oxidising agent and r"
+    },
+    {
+     "section": "7.14",
+     "title": "Consider the reactions"
+    },
+    {
+     "section": "7.15",
+     "title": "Justify giving reactions that among halogens, fluorine is the"
+    },
+    {
+     "section": "7.16",
+     "title": "Why does the following reaction occur"
+    },
+    {
+     "section": "7.17",
+     "title": "Consider the reactions"
+    },
+    {
+     "section": "7.19",
+     "title": "Balance the following equations in basic medium by ion-electro"
+    },
+    {
+     "section": "7.20",
+     "title": "What sorts of informations can you draw from the following rea"
+    },
+    {
+     "section": "7.21",
+     "title": "The Mn"
+    },
+    {
+     "section": "7.22",
+     "title": "Consider the elements"
+    },
+    {
+     "section": "7.23",
+     "title": "Chlorine is used to purify drinking water"
+    },
+    {
+     "section": "7.24",
+     "title": "Refer to the periodic table given in your book and now answer"
+    },
+    {
+     "section": "7.25",
+     "title": "In Ostwald"
+    },
+    {
+     "section": "7.26",
+     "title": "Using the standard electrode potentials given in the Table"
+    },
+    {
+     "section": "7.27",
+     "title": "Predict the products of electrolysis in each of the following"
+    },
+    {
+     "section": "7.28",
+     "title": "Arrange the following metals in the order in which they displa"
+    },
+    {
+     "section": "7.29",
+     "title": "Given the standard electrode potentials"
+    },
+    {
+     "section": "7.30",
+     "title": "Depict the galvanic cell in which the reaction Zn(s)"
+    }
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kech202.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/chemistry/kech202.pdf",
+   "pdfFiles": [
+    "kech202.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "8.7",
+     "title": "Fundamental cOncePts in"
+    }
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "kech203.pdf",
+   "title": "Hydrocarbons",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/chemistry/kech203.pdf",
+   "pdfFiles": [
+    "kech203.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "CLASSIFICATION"
+    },
+    {
+     "section": "9.2",
+     "title": "ALKANES"
+    },
+    {
+     "section": "9.3",
+     "title": "ALKENES"
+    },
+    {
+     "section": "9.4",
+     "title": "ALKYNES"
+    },
+    {
+     "section": "9.5",
+     "title": "AROMATIC HYDROCARBON"
+    },
+    {
+     "section": "9.6",
+     "title": "CARCINOGENICITY AND TOXICITY"
+    },
+    {
+     "section": "9.7",
+     "title": "Propanal and pentan-"
+    },
+    {
+     "section": "9.8",
+     "title": "Write chemical equations for combustion reaction of the follow"
+    },
+    {
+     "section": "9.9",
+     "title": "Draw the cis and trans structures of hex-"
+    },
+    {
+     "section": "9.10",
+     "title": "Why is benzene extra ordinarily stable though it contains thre"
+    },
+    {
+     "section": "9.11",
+     "title": "What are the necessary conditions for any system to be aromati"
+    },
+    {
+     "section": "9.12",
+     "title": "Explain why the following systems are not aromatic"
+    },
+    {
+     "section": "9.13",
+     "title": "How will you convert benzene into"
+    },
+    {
+     "section": "9.14",
+     "title": "In the alkane H"
+    },
+    {
+     "section": "9.15",
+     "title": "What effect does branching of an alkane chain has on its boili"
+    },
+    {
+     "section": "9.16",
+     "title": "Addition of HBr to propene yields"
+    },
+    {
+     "section": "9.17",
+     "title": "Write down the products of ozonolysis of"
+    },
+    {
+     "section": "9.18",
+     "title": "Arrange benzene, n-hexane and ethyne in decreasing order of ac"
+    },
+    {
+     "section": "9.19",
+     "title": "Why does benzene undergo electrophilic substitution reactions"
+    },
+    {
+     "section": "9.20",
+     "title": "How would you convert the following compounds into benzene"
+    },
+    {
+     "section": "9.21",
+     "title": "Write structures of all the alkenes which on hydrogenation giv"
+    },
+    {
+     "section": "9.22",
+     "title": "Arrange the following set of compounds in order of their decre"
+    },
+    {
+     "section": "9.23",
+     "title": "Out of benzene, m"
+    },
+    {
+     "section": "9.24",
+     "title": "Suggest the name of a Lewis acid other than anhydrous aluminiu"
+    },
+    {
+     "section": "9.25",
+     "title": "Why is Wurtz reaction not preferred for the preparation of alk"
+    }
+   ]
+  }
+ ]
+}

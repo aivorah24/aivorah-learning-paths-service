@@ -1,0 +1,86 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Physical Education and Well Being",
+ "code": "hekb1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hekb101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/physical_education/hekb101.pdf",
+   "pdfFiles": [
+    "hekb101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hekb102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/physical_education/hekb102.pdf",
+   "pdfFiles": [
+    "hekb102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hekb103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/physical_education/hekb103.pdf",
+   "pdfFiles": [
+    "hekb103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hekb104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/physical_education/hekb104.pdf",
+   "pdfFiles": [
+    "hekb104.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hekb105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/physical_education/hekb105.pdf",
+   "pdfFiles": [
+    "hekb105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hekb106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/physical_education/hekb106.pdf",
+   "pdfFiles": [
+    "hekb106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hekb107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/physical_education/hekb107.pdf",
+   "pdfFiles": [
+    "hekb107.pdf"
+   ]
+  }
+ ]
+}

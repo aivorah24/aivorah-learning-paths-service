@@ -1,0 +1,157 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "English",
+ "code": "lekl1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lekl101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/lekl101.pdf",
+   "pdfFiles": [
+    "lekl101.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lekl102.pdf",
+   "title": "Task",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/lekl102.pdf",
+   "pdfFiles": [
+    "lekl102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lekl103.pdf",
+   "title": "Task",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/lekl103.pdf",
+   "pdfFiles": [
+    "lekl103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lekl104.pdf",
+   "title": "Omorrow",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/lekl104.pdf",
+   "pdfFiles": [
+    "lekl104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lekl105.pdf",
+   "title": "Task",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/lekl105.pdf",
+   "pdfFiles": [
+    "lekl105.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "lekl111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lekl111.pdf",
+   "pdfFiles": [
+    "lekl111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "lekl112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/lekl112.pdf",
+   "pdfFiles": [
+    "lekl112.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "lekl113.pdf",
+   "title": "Chapter 13",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lekl113.pdf",
+   "pdfFiles": [
+    "lekl113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "lekl114.pdf",
+   "title": "Task",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/lekl114.pdf",
+   "pdfFiles": [
+    "lekl114.pdf"
+   ]
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "lekl115.pdf",
+   "title": "Chapter 15",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lekl115.pdf",
+   "pdfFiles": [
+    "lekl115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "lekl116.pdf",
+   "title": "Chapter 16",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lekl116.pdf",
+   "pdfFiles": [
+    "lekl116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "lekl117.pdf",
+   "title": "Chapter 17",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lekl117.pdf",
+   "pdfFiles": [
+    "lekl117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "lekl118.pdf",
+   "title": "Chapter 18",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lekl118.pdf",
+   "pdfFiles": [
+    "lekl118.pdf"
+   ]
+  },
+  {
+   "chapter": 21,
+   "pdfFile": "lekl121.pdf",
+   "title": "Task",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/lekl121.pdf",
+   "pdfFiles": [
+    "lekl121.pdf"
+   ]
+  }
+ ]
+}

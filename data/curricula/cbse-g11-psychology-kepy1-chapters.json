@@ -1,0 +1,176 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Psychology",
+ "code": "kepy1",
+ "imageSubject": "Psychology",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kepy101.pdf",
+   "title": "Understanding Mind and Behaviour",
+   "bookPath": "grade11/psychology/kepy101.pdf",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "POPULAR NOTIONS ABOUT THE DISCIPLINE"
+    },
+    {
+     "section": "1.2",
+     "title": "Reprint"
+    },
+    {
+     "section": "1.3",
+     "title": "Reprint"
+    }
+   ],
+   "pdfFiles": [
+    "kepy101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kepy102.pdf",
+   "title": "Goals of Psychological Enquiry",
+   "bookPath": "grade11/psychology/kepy102.pdf",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Two American psychologists, Bibb Latane and"
+    },
+    {
+     "section": "2.2",
+     "title": "Reprint"
+    },
+    {
+     "section": "2.3",
+     "title": "Telephone Survey"
+    },
+    {
+     "section": "2.4",
+     "title": "Reprint"
+    },
+    {
+     "section": "2.5",
+     "title": "ANALYSIS OF DATA"
+    }
+   ],
+   "pdfFiles": [
+    "kepy102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kepy103.pdf",
+   "title": "Meaning of Development",
+   "bookPath": "grade11/psychology/kepy103.pdf",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "OVERVIEW OF DEVELOPMENTAL STAGES"
+    },
+    {
+     "section": "3.2",
+     "title": "Socio-emotional Development"
+    },
+    {
+     "section": "3.3",
+     "title": "Moral Development"
+    },
+    {
+     "section": "3.4",
+     "title": "Act like a boy if you are a girl or act like a girl if"
+    }
+   ],
+   "pdfFiles": [
+    "kepy103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kepy104.pdf",
+   "title": "Nature and Varieties of Stimulus",
+   "bookPath": "grade11/psychology/kepy104.pdf",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Reprint"
+    },
+    {
+     "section": "4.3",
+     "title": "Reprint"
+    }
+   ],
+   "pdfFiles": [
+    "kepy104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kepy105.pdf",
+   "title": "Nature of Learning",
+   "bookPath": "grade11/psychology/kepy105.pdf",
+   "subtopics": [
+    {
+     "section": "5.2",
+     "title": "Reprint"
+    },
+    {
+     "section": "5.3",
+     "title": "Reprint"
+    }
+   ],
+   "pdfFiles": [
+    "kepy105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kepy106.pdf",
+   "title": "Nature of Memory",
+   "bookPath": "grade11/psychology/kepy106.pdf",
+   "pdfFiles": [
+    "kepy106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kepy107.pdf",
+   "title": "Nature of Thinking",
+   "bookPath": "grade11/psychology/kepy107.pdf",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Concepts"
+    },
+    {
+     "section": "7.2",
+     "title": "Problem"
+    },
+    {
+     "section": "7.3",
+     "title": "Process of Creative Thinking"
+    }
+   ],
+   "pdfFiles": [
+    "kepy107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kepy108.pdf",
+   "title": "Nature of Motivation",
+   "bookPath": "grade11/psychology/kepy108.pdf",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "NATURE OF EMOTIONS"
+    }
+   ],
+   "pdfFiles": [
+    "kepy108.pdf"
+   ]
+  }
+ ]
+}

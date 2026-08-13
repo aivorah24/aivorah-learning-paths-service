@@ -1,0 +1,73 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Political Science",
+ "code": "leps1",
+ "imageSubject": "Political Science",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "leps101.pdf",
+   "title": "Leaders of the Soviet Union",
+   "bookPath": "grade12/political_science/leps101.pdf",
+   "pdfFiles": [
+    "leps101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "leps102.pdf",
+   "title": "Timeline of European Integration",
+   "bookPath": "grade12/political_science/leps102.pdf",
+   "pdfFiles": [
+    "leps102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "leps103.pdf",
+   "title": "Hdi",
+   "bookPath": "grade12/political_science/leps103.pdf",
+   "pdfFiles": [
+    "leps103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "leps104.pdf",
+   "title": "Imf Imf",
+   "bookPath": "grade12/political_science/leps104.pdf",
+   "pdfFiles": [
+    "leps104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "leps105.pdf",
+   "title": "Steps",
+   "bookPath": "grade12/political_science/leps105.pdf",
+   "pdfFiles": [
+    "leps105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "leps106.pdf",
+   "title": "Antarctica",
+   "bookPath": "grade12/political_science/leps106.pdf",
+   "pdfFiles": [
+    "leps106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "leps107.pdf",
+   "title": "Steps",
+   "bookPath": "grade12/political_science/leps107.pdf",
+   "pdfFiles": [
+    "leps107.pdf"
+   ]
+  }
+ ]
+}

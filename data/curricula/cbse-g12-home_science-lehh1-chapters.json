@@ -1,0 +1,65 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Home Science",
+ "code": "lehh1",
+ "imageSubject": "Home_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lehh101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehh101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lehh102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehh102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lehh103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehh103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lehh104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehh104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lehh105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehh105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lehh106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehh106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lehh107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehh107.pdf"
+  }
+ ]
+}

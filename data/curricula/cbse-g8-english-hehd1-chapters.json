@@ -1,0 +1,90 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "English",
+ "code": "hehd1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hehd101.pdf",
+   "title": "Iii",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hehd101.pdf",
+   "pdfFiles": [
+    "hehd101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hehd102.pdf",
+   "title": "Andaman Islands",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hehd102.pdf",
+   "pdfFiles": [
+    "hehd102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hehd103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/english/hehd103.pdf",
+   "pdfFiles": [
+    "hehd103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hehd104.pdf",
+   "title": "Iii",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hehd104.pdf",
+   "pdfFiles": [
+    "hehd104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hehd105.pdf",
+   "title": "William Blake",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hehd105.pdf",
+   "pdfFiles": [
+    "hehd105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hehd106.pdf",
+   "title": "Iii",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hehd106.pdf",
+   "pdfFiles": [
+    "hehd106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hehd107.pdf",
+   "title": "Firdaus Kanga",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hehd107.pdf",
+   "pdfFiles": [
+    "hehd107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "hehd108.pdf",
+   "title": "Uskin Bond",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hehd108.pdf",
+   "pdfFiles": [
+    "hehd108.pdf"
+   ]
+  }
+ ]
+}

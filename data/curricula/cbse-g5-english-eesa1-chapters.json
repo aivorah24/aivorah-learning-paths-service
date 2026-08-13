@@ -1,0 +1,89 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 5",
+ "subject": "English",
+ "code": "eesa1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "eesa101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "eesa102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "eesa103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "eesa104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "eesa105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "eesa106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "eesa107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "eesa108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "eesa109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "eesa110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/english/eesa110.pdf"
+  }
+ ]
+}

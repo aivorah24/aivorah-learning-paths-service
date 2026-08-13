@@ -1,0 +1,117 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 4",
+ "subject": "The World Around Us",
+ "code": "deev1",
+ "imageSubject": "EVS",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "deev101.pdf",
+   "title": "Post Office",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/evs/deev101.pdf",
+   "pdfFiles": [
+    "deev101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "deev102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deev102.pdf",
+   "pdfFiles": [
+    "deev102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "deev103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/evs/deev103.pdf",
+   "pdfFiles": [
+    "deev103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "deev104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deev104.pdf",
+   "pdfFiles": [
+    "deev104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "deev105.pdf",
+   "title": "Koqlcisab Uesebtepe Ptomangoa",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/evs/deev105.pdf",
+   "pdfFiles": [
+    "deev105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "deev106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deev106.pdf",
+   "pdfFiles": [
+    "deev106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "deev107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deev107.pdf",
+   "pdfFiles": [
+    "deev107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "deev108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deev108.pdf",
+   "pdfFiles": [
+    "deev108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "deev109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deev109.pdf",
+   "pdfFiles": [
+    "deev109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "deev110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deev110.pdf",
+   "pdfFiles": [
+    "deev110.pdf"
+   ]
+  }
+ ]
+}

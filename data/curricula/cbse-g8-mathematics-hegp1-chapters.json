@@ -1,0 +1,209 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Mathematics",
+ "code": "hegp1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hegp101.pdf",
+   "title": "A Square and a Cube",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Square Numbers"
+    },
+    {
+     "section": "1.2",
+     "title": "Cubic Numbers"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp101.pdf",
+   "pdfFiles": [
+    "hegp101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hegp102.pdf",
+   "title": "Power Play",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Experiencing the Power Play"
+    },
+    {
+     "section": "2.2",
+     "title": "Exponential Notation and Operations"
+    },
+    {
+     "section": "2.3",
+     "title": "The Other Side of Powers"
+    },
+    {
+     "section": "2.4",
+     "title": "Powers of"
+    },
+    {
+     "section": "2.5",
+     "title": "Did You Ever Wonder"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp102.pdf",
+   "pdfFiles": [
+    "hegp102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hegp103.pdf",
+   "title": "A Story of Numbers",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Reema"
+    },
+    {
+     "section": "3.2",
+     "title": "Some Early Number Systems"
+    },
+    {
+     "section": "3.3",
+     "title": "The Idea of a Base"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp103.pdf",
+   "pdfFiles": [
+    "hegp103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hegp104.pdf",
+   "title": "Quadrilaterals",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Rectangles and Squares"
+    },
+    {
+     "section": "4.2",
+     "title": "Angles in a Quadrilateral"
+    },
+    {
+     "section": "4.3",
+     "title": "More Quadrilaterals with Parallel Opposite"
+    },
+    {
+     "section": "4.4",
+     "title": "Quadrilaterals with Equal Sidelengths"
+    },
+    {
+     "section": "4.5",
+     "title": "Playing with Quadrilaterals"
+    },
+    {
+     "section": "4.6",
+     "title": "Kite and Trapezium"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp104.pdf",
+   "pdfFiles": [
+    "hegp104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hegp105.pdf",
+   "title": "Number Play",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Is This a Multiple Of"
+    },
+    {
+     "section": "5.2",
+     "title": "Checking Divisibility Quickly"
+    },
+    {
+     "section": "5.3",
+     "title": "Digits in Disguise"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp105.pdf",
+   "pdfFiles": [
+    "hegp105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hegp106.pdf",
+   "title": "We Distribute, Yet Things Multiply",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Some Properties of Multiplication"
+    },
+    {
+     "section": "6.2",
+     "title": "Special Cases of the Distributive Property"
+    },
+    {
+     "section": "6.3",
+     "title": "Mind the Mistake, Mend the Mistake"
+    },
+    {
+     "section": "6.4",
+     "title": "This Way or That Way, All Ways Lead to the Bay"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp106.pdf",
+   "pdfFiles": [
+    "hegp106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hegp107.pdf",
+   "title": "Proportional",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Observing Similarity in Change"
+    },
+    {
+     "section": "7.2",
+     "title": "Ratios"
+    },
+    {
+     "section": "7.3",
+     "title": "Ratios in their Simplest Form"
+    },
+    {
+     "section": "7.4",
+     "title": "Problem Solving with Proportional Reasoning"
+    },
+    {
+     "section": "7.5",
+     "title": "Sharing, but Not Equally"
+    },
+    {
+     "section": "7.6",
+     "title": "Unit Conversions"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp107.pdf",
+   "pdfFiles": [
+    "hegp107.pdf"
+   ]
+  }
+ ]
+}

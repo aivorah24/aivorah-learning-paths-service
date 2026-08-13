@@ -1,0 +1,113 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 2",
+ "subject": "English",
+ "code": "bemr1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "bemr101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "bemr102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "bemr103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "bemr104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "bemr105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "bemr106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "bemr107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "bemr108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "bemr109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "bemr110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "bemr111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "bemr112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "bemr113.pdf",
+   "title": "Chapter 13",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/english/bemr113.pdf"
+  }
+ ]
+}

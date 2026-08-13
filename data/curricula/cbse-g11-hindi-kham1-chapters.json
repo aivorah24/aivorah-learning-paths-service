@@ -1,0 +1,122 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Hindi",
+ "code": "kham1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kham101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kham102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kham103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kham104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kham105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kham106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kham107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kham108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "kham109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "kham110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "kham111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "kham112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "kham113.pdf",
+   "title": "Chapter 13",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham113.pdf"
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "kham114.pdf",
+   "title": "Chapter 14",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham114.pdf"
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "kham115.pdf",
+   "title": "Chapter 15",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham115.pdf"
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "kham116.pdf",
+   "title": "Chapter 16",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/kham116.pdf"
+  }
+ ]
+}

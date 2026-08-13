@@ -1,0 +1,59 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 6",
+ "subject": "English",
+ "code": "fepr1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "fepr101.pdf",
+   "title": "Fables and Folk Tales",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/english/fepr101.pdf",
+   "pdfFiles": [
+    "fepr101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "fepr102.pdf",
+   "title": "Tdk",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/english/fepr102.pdf",
+   "pdfFiles": [
+    "fepr102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "fepr103.pdf",
+   "title": "Let Us Know Our Neem",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/english/fepr103.pdf",
+   "pdfFiles": [
+    "fepr103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "fepr104.pdf",
+   "title": "Sports and Wellness",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/english/fepr104.pdf",
+   "pdfFiles": [
+    "fepr104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "fepr105.pdf",
+   "title": "Culture and Tradition",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/english/fepr105.pdf",
+   "pdfFiles": [
+    "fepr105.pdf"
+   ]
+  }
+ ]
+}

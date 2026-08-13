@@ -1,0 +1,106 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 6",
+ "subject": "Social Science",
+ "book": "Exploring Society",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "fees101.pdf",
+   "title": "Introduction – Why Social Science?",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "fees102.pdf",
+   "title": "Oceans and Continents",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "fees103.pdf",
+   "title": "Landforms and Life",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "fees104.pdf",
+   "title": "Timeline and Sources of History",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "fees105.pdf",
+   "title": "India, That Is Bharat",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "fees106.pdf",
+   "title": "The Beginnings of Indian Civilisation",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "fees107.pdf",
+   "title": "India’s Cultural Roots",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "fees108.pdf",
+   "title": "Unity in Diversity, or ‘Many in the One’",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "fees109.pdf",
+   "title": "Family and Community",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "fees110.pdf",
+   "title": "Grassroots Democracy – Part 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "fees111.pdf",
+   "title": "Grassroots Democracy – Part 2",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "fees112.pdf",
+   "title": "Grassroots Democracy – Part 3",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "fees113.pdf",
+   "title": "The Value of Work",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees113.pdf"
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "fees114.pdf",
+   "title": "Economic Activities Around Us",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees114.pdf"
+  }
+ ]
+}

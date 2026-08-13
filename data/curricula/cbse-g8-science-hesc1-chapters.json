@@ -1,0 +1,542 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Science",
+ "code": "hesc1",
+ "imageSubject": "Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hesc101.pdf",
+   "title": "Crop Production and Management Crop Production and Management",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Agricultural Practices"
+    },
+    {
+     "section": "1.2",
+     "title": "BasicPractices of Crop"
+    },
+    {
+     "section": "1.3",
+     "title": "Preparation of Soil"
+    },
+    {
+     "section": "1.4",
+     "title": "Sowing"
+    },
+    {
+     "section": "1.5",
+     "title": "Adding Manure and"
+    },
+    {
+     "section": "1.6",
+     "title": "Irrigation"
+    },
+    {
+     "section": "1.7",
+     "title": "Protection from Weeds"
+    },
+    {
+     "section": "1.8",
+     "title": "Harvesting"
+    },
+    {
+     "section": "1.9",
+     "title": "Storage"
+    },
+    {
+     "section": "1.10",
+     "title": "Food from Animals"
+    }
+   ],
+   "bookPath": "grade8/science/hesc101.pdf",
+   "pdfFiles": [
+    "hesc101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hesc102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Microorganisms"
+    },
+    {
+     "section": "2.2",
+     "title": "Where do Microorganisms"
+    },
+    {
+     "section": "2.3",
+     "title": "Microorganisms and Us"
+    },
+    {
+     "section": "2.4",
+     "title": "Harmful Microorganisms"
+    },
+    {
+     "section": "2.5",
+     "title": "Food Preservation"
+    },
+    {
+     "section": "2.6",
+     "title": "Nitrogen Fixation"
+    },
+    {
+     "section": "2.7",
+     "title": "Nitrogen cycle"
+    }
+   ],
+   "bookPath": "grade8/science/hesc102.pdf",
+   "pdfFiles": [
+    "hesc102.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hesc103.pdf",
+   "title": "Coal and Petroleum",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "Petroleum"
+    },
+    {
+     "section": "3.3",
+     "title": "Natural Gas"
+    },
+    {
+     "section": "3.4",
+     "title": "Some Natural Resources"
+    }
+   ],
+   "bookPath": "grade8/science/hesc103.pdf",
+   "pdfFiles": [
+    "hesc103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hesc104.pdf",
+   "title": "Combustion and Flame",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "What is Combustion"
+    },
+    {
+     "section": "4.2",
+     "title": "How Do We Control Fire"
+    },
+    {
+     "section": "4.3",
+     "title": "Types of Combustion"
+    },
+    {
+     "section": "4.4",
+     "title": "Flame"
+    },
+    {
+     "section": "4.5",
+     "title": "Structure of a Flame"
+    },
+    {
+     "section": "4.6",
+     "title": "What is a Fuel"
+    },
+    {
+     "section": "4.7",
+     "title": "Fuel Efficiency"
+    }
+   ],
+   "bookPath": "grade8/science/hesc104.pdf",
+   "pdfFiles": [
+    "hesc104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hesc105.pdf",
+   "title": "Conservation of Plants and Animals Conservation of Plants and Animals",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Deforestation and Its"
+    },
+    {
+     "section": "5.2",
+     "title": "Consequences of"
+    },
+    {
+     "section": "5.3",
+     "title": "Conservation of Forest"
+    },
+    {
+     "section": "5.4",
+     "title": "Biosphere Reserve"
+    },
+    {
+     "section": "5.5",
+     "title": "Flora and Fauna"
+    },
+    {
+     "section": "5.6",
+     "title": "Endemic Species"
+    },
+    {
+     "section": "5.7",
+     "title": "Wildlife Sanctuary"
+    },
+    {
+     "section": "5.8",
+     "title": "National Park"
+    },
+    {
+     "section": "5.9",
+     "title": "Red Data Book"
+    },
+    {
+     "section": "5.10",
+     "title": "Migration"
+    },
+    {
+     "section": "5.11",
+     "title": "Recycling of Paper"
+    },
+    {
+     "section": "5.12",
+     "title": "Reforestation"
+    }
+   ],
+   "bookPath": "grade8/science/hesc105.pdf",
+   "pdfFiles": [
+    "hesc105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hesc106.pdf",
+   "title": "Reproduction in Animals",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Modes of Reproduction"
+    },
+    {
+     "section": "6.2",
+     "title": "Sexual Reproduction"
+    },
+    {
+     "section": "6.3",
+     "title": "Asexual Reproduction"
+    }
+   ],
+   "bookPath": "grade8/science/hesc106.pdf",
+   "pdfFiles": [
+    "hesc106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hesc107.pdf",
+   "title": "Reaching the Age of Adolescence Reaching the Age of Adolescence",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Adolescence and Puberty"
+    },
+    {
+     "section": "7.2",
+     "title": "Changes at Puberty"
+    },
+    {
+     "section": "7.3",
+     "title": "Secondary Sexual"
+    },
+    {
+     "section": "7.4",
+     "title": "Role of Hormones in"
+    },
+    {
+     "section": "7.5",
+     "title": "Reproductive Phase of"
+    },
+    {
+     "section": "7.6",
+     "title": "How is the Sex of the"
+    },
+    {
+     "section": "7.7",
+     "title": "Hormones other than"
+    },
+    {
+     "section": "7.8",
+     "title": "Role of Hormones in"
+    },
+    {
+     "section": "7.9",
+     "title": "Reproductive Health"
+    }
+   ],
+   "bookPath": "grade8/science/hesc107.pdf",
+   "pdfFiles": [
+    "hesc107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "hesc108.pdf",
+   "title": "Force and Pressure",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Force"
+    },
+    {
+     "section": "8.2",
+     "title": "Forces are due to an"
+    },
+    {
+     "section": "8.3",
+     "title": "Exploring Forces"
+    },
+    {
+     "section": "8.5",
+     "title": "Force can Change the"
+    },
+    {
+     "section": "8.6",
+     "title": "Contact Forces"
+    },
+    {
+     "section": "8.7",
+     "title": "Non-contact Forces"
+    },
+    {
+     "section": "8.8",
+     "title": "Pressure"
+    },
+    {
+     "section": "8.9",
+     "title": "Pressure Exerted by"
+    },
+    {
+     "section": "8.10",
+     "title": "Atmospheric Pressure"
+    }
+   ],
+   "bookPath": "grade8/science/hesc108.pdf",
+   "pdfFiles": [
+    "hesc108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "hesc109.pdf",
+   "title": "Friction Friction",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Force of Friction"
+    },
+    {
+     "section": "9.2",
+     "title": "Factors affecting Friction"
+    },
+    {
+     "section": "9.3",
+     "title": "Friction"
+    },
+    {
+     "section": "9.4",
+     "title": "Increasing and Reducing"
+    },
+    {
+     "section": "9.5",
+     "title": "Wheels Reduce Friction"
+    },
+    {
+     "section": "9.6",
+     "title": "Fluid Friction"
+    }
+   ],
+   "bookPath": "grade8/science/hesc109.pdf",
+   "pdfFiles": [
+    "hesc109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "hesc110.pdf",
+   "title": "Sound Sound",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "Sound is Produced by a"
+    },
+    {
+     "section": "10.2",
+     "title": "Sound Produced by"
+    },
+    {
+     "section": "10.3",
+     "title": "Sound Needs a Medium"
+    },
+    {
+     "section": "10.4",
+     "title": "We Hear Sound through"
+    },
+    {
+     "section": "10.5",
+     "title": "Amplitude, Time Period"
+    },
+    {
+     "section": "10.6",
+     "title": "Audible and Inaudible"
+    },
+    {
+     "section": "10.7",
+     "title": "Noise and Music"
+    },
+    {
+     "section": "10.8",
+     "title": "Noise Pollution"
+    }
+   ],
+   "bookPath": "grade8/science/hesc110.pdf",
+   "pdfFiles": [
+    "hesc110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "hesc111.pdf",
+   "title": "Chemical Effects of Electric Current Chemical Effects of",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "Do Liquids Conduct"
+    },
+    {
+     "section": "11.2",
+     "title": "Chemical Effects of"
+    },
+    {
+     "section": "11.3",
+     "title": "Electroplating"
+    }
+   ],
+   "bookPath": "grade8/science/hesc111.pdf",
+   "pdfFiles": [
+    "hesc111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "hesc112.pdf",
+   "title": "Some Natural Phenomena Some Natural Phenomena",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "Lightning"
+    },
+    {
+     "section": "12.2",
+     "title": "Charging by Rubbing"
+    },
+    {
+     "section": "12.3",
+     "title": "Types of Charges and"
+    },
+    {
+     "section": "12.4",
+     "title": "Transfer of Charge"
+    },
+    {
+     "section": "12.5",
+     "title": "The Story of Lightning"
+    },
+    {
+     "section": "12.6",
+     "title": "Lightning Safety"
+    },
+    {
+     "section": "12.7",
+     "title": "Earthquakes"
+    }
+   ],
+   "bookPath": "grade8/science/hesc112.pdf",
+   "pdfFiles": [
+    "hesc112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "hesc113.pdf",
+   "title": "Light Light",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "13.1",
+     "title": "What makes Things"
+    },
+    {
+     "section": "13.2",
+     "title": "Laws of Reflection"
+    },
+    {
+     "section": "13.3",
+     "title": "Regular and Diffused"
+    },
+    {
+     "section": "13.4",
+     "title": "Reflected Light Can be"
+    },
+    {
+     "section": "13.5",
+     "title": "Multiple Images"
+    },
+    {
+     "section": "13.6",
+     "title": "Sunlight"
+    },
+    {
+     "section": "13.7",
+     "title": "What is inside Our Eyes"
+    },
+    {
+     "section": "13.8",
+     "title": "Care of the Eyes"
+    },
+    {
+     "section": "13.9",
+     "title": "Visually Impaired"
+    },
+    {
+     "section": "13.10",
+     "title": "What is the Braille"
+    }
+   ],
+   "bookPath": "grade8/science/hesc113.pdf",
+   "pdfFiles": [
+    "hesc113.pdf"
+   ]
+  }
+ ]
+}

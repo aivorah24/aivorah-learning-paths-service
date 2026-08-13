@@ -1,0 +1,490 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 9",
+ "subject": "Physical Education and Well Being",
+ "code": "iekv1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "iekv101.pdf",
+   "title": "Rabi",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.2",
+     "title": "Agro-climatic relationship"
+    },
+    {
+     "section": "1.3",
+     "title": "Processes related to agricultural"
+    },
+    {
+     "section": "1.4",
+     "title": "Selection of vocation"
+    },
+    {
+     "section": "1.5",
+     "title": "While doing work related to agriculture"
+    },
+    {
+     "section": "1.6",
+     "title": "Assess your learning"
+    }
+   ],
+   "bookPath": "grade9/physical_education/iekv101.pdf",
+   "pdfFiles": [
+    "iekv101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "iekv102.pdf",
+   "title": "Portfolio",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.2",
+     "title": "Process chart"
+    },
+    {
+     "section": "2.3",
+     "title": "Site visit"
+    },
+    {
+     "section": "2.4",
+     "title": "Designing the layout"
+    },
+    {
+     "section": "2.5",
+     "title": "Selecting materials"
+    },
+    {
+     "section": "2.6",
+     "title": "Selecting tools for doing work"
+    },
+    {
+     "section": "2.7",
+     "title": "Making Bill of Materials"
+    },
+    {
+     "section": "2.8",
+     "title": "Pot preparation and sowing"
+    },
+    {
+     "section": "2.9",
+     "title": "Maintenance and recording"
+    },
+    {
+     "section": "2.10",
+     "title": "Harvesting and storage"
+    },
+    {
+     "section": "2.11",
+     "title": "Packaging and transport"
+    },
+    {
+     "section": "2.12",
+     "title": "While developing the rooftop garden"
+    },
+    {
+     "section": "2.13",
+     "title": "Assess your learning"
+    }
+   ],
+   "bookPath": "grade9/physical_education/iekv102.pdf",
+   "pdfFiles": [
+    "iekv102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "iekv103.pdf",
+   "title": "Portfolio",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "Process chart"
+    },
+    {
+     "section": "3.3",
+     "title": "Site visit"
+    },
+    {
+     "section": "3.4",
+     "title": "Setting up a precision farming"
+    },
+    {
+     "section": "3.5",
+     "title": "Selecting materials"
+    },
+    {
+     "section": "3.6",
+     "title": "Selecting tools"
+    },
+    {
+     "section": "3.7",
+     "title": "Making Bill of Materials"
+    },
+    {
+     "section": "3.8",
+     "title": "Building a precision farming unit"
+    },
+    {
+     "section": "3.9",
+     "title": "Preparing an organic biofertiliser"
+    },
+    {
+     "section": "3.10",
+     "title": "Identification and management"
+    },
+    {
+     "section": "3.11",
+     "title": "Harvesting, packaging and"
+    },
+    {
+     "section": "3.12",
+     "title": "While setting up your precision farming"
+    },
+    {
+     "section": "3.13",
+     "title": "Assess your learning"
+    }
+   ],
+   "bookPath": "grade9/physical_education/iekv103.pdf",
+   "pdfFiles": [
+    "iekv103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "iekv104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade9/physical_education/iekv104.pdf",
+   "pdfFiles": [
+    "iekv104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "iekv105.pdf",
+   "title": "Task",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.2",
+     "title": "Processing material"
+    },
+    {
+     "section": "5.3",
+     "title": "Choosing material for a specific"
+    },
+    {
+     "section": "5.4",
+     "title": "Key common processes"
+    },
+    {
+     "section": "5.5",
+     "title": "Selection of vocation"
+    },
+    {
+     "section": "5.6",
+     "title": "When working with materials"
+    },
+    {
+     "section": "5.7",
+     "title": "Assess your learning"
+    }
+   ],
+   "bookPath": "grade9/physical_education/iekv105.pdf",
+   "pdfFiles": [
+    "iekv105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "iekv106.pdf",
+   "title": "Portfolio",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.2",
+     "title": "Process Chart"
+    },
+    {
+     "section": "6.3",
+     "title": "Site visit"
+    },
+    {
+     "section": "6.4",
+     "title": "Making a technical drawing of"
+    },
+    {
+     "section": "6.5",
+     "title": "Selecting materials"
+    },
+    {
+     "section": "6.6",
+     "title": "Selecting tools"
+    },
+    {
+     "section": "6.7",
+     "title": "Bill of Materials"
+    },
+    {
+     "section": "6.8",
+     "title": "Minor repair and maintenance"
+    },
+    {
+     "section": "6.9",
+     "title": "Making a structure"
+    },
+    {
+     "section": "6.10",
+     "title": "Finishing the product"
+    },
+    {
+     "section": "6.11",
+     "title": "While constructing a structure"
+    },
+    {
+     "section": "6.12",
+     "title": "Assess your learning"
+    }
+   ],
+   "bookPath": "grade9/physical_education/iekv106.pdf",
+   "pdfFiles": [
+    "iekv106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "iekv107.pdf",
+   "title": "Portfolio",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.2",
+     "title": "Process chart"
+    },
+    {
+     "section": "7.3",
+     "title": "Site visit"
+    },
+    {
+     "section": "7.4",
+     "title": "Technical drawing of apparel"
+    },
+    {
+     "section": "7.5",
+     "title": "Selecting materials"
+    },
+    {
+     "section": "7.6",
+     "title": "Selecting tools"
+    },
+    {
+     "section": "7.7",
+     "title": "Bill of Materials"
+    },
+    {
+     "section": "7.8",
+     "title": "Basics of apparel making"
+    },
+    {
+     "section": "7.9",
+     "title": "Marking and cutting fabric"
+    },
+    {
+     "section": "7.10",
+     "title": "Sewing the product"
+    },
+    {
+     "section": "7.11",
+     "title": "Finishing the product"
+    },
+    {
+     "section": "7.12",
+     "title": "While making apparel"
+    },
+    {
+     "section": "7.13",
+     "title": "Assess your learning"
+    }
+   ],
+   "bookPath": "grade9/physical_education/iekv107.pdf",
+   "pdfFiles": [
+    "iekv107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "iekv108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade9/physical_education/iekv108.pdf",
+   "pdfFiles": [
+    "iekv108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "iekv109.pdf",
+   "title": "Task",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.2",
+     "title": "Developing service orientation"
+    },
+    {
+     "section": "9.3",
+     "title": "Creating service environments"
+    },
+    {
+     "section": "9.4",
+     "title": "Consent"
+    },
+    {
+     "section": "9.5",
+     "title": "Service quality criteria"
+    },
+    {
+     "section": "9.6",
+     "title": "Selection of vocation"
+    },
+    {
+     "section": "9.7",
+     "title": "While delivering human services"
+    },
+    {
+     "section": "9.8",
+     "title": "Assess your learning"
+    }
+   ],
+   "bookPath": "grade9/physical_education/iekv109.pdf",
+   "pdfFiles": [
+    "iekv109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "iekv110.pdf",
+   "title": "Did You Know",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.2",
+     "title": "Process chart"
+    },
+    {
+     "section": "10.3",
+     "title": "Site visit"
+    },
+    {
+     "section": "10.4",
+     "title": "Selecting materials"
+    },
+    {
+     "section": "10.5",
+     "title": "Selecting tools"
+    },
+    {
+     "section": "10.6",
+     "title": "Bill of Materials (BoM)"
+    },
+    {
+     "section": "10.7",
+     "title": "Consent"
+    },
+    {
+     "section": "10.8",
+     "title": "Preparation for the service"
+    },
+    {
+     "section": "10.9",
+     "title": "Providing the service"
+    },
+    {
+     "section": "10.10",
+     "title": "While delivering the service"
+    },
+    {
+     "section": "10.11",
+     "title": "Assess your learning"
+    }
+   ],
+   "bookPath": "grade9/physical_education/iekv110.pdf",
+   "pdfFiles": [
+    "iekv110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "iekv111.pdf",
+   "title": "Portfolio",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.2",
+     "title": "Process chart"
+    },
+    {
+     "section": "11.3",
+     "title": "Site visit"
+    },
+    {
+     "section": "11.4",
+     "title": "Selecting materials"
+    },
+    {
+     "section": "11.5",
+     "title": "Selecting tools"
+    },
+    {
+     "section": "11.6",
+     "title": "Bill of Materials (BoM)"
+    },
+    {
+     "section": "11.7",
+     "title": "Consent form"
+    },
+    {
+     "section": "11.8",
+     "title": "Preparation for service"
+    },
+    {
+     "section": "11.9",
+     "title": "Delivering the service"
+    },
+    {
+     "section": "11.10",
+     "title": "While performing the service"
+    },
+    {
+     "section": "11.11",
+     "title": "Assess your learning"
+    }
+   ],
+   "bookPath": "grade9/physical_education/iekv111.pdf",
+   "pdfFiles": [
+    "iekv111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "iekv112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iekv112.pdf",
+   "pdfFiles": [
+    "iekv112.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

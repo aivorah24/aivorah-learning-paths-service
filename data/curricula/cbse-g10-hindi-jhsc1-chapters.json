@@ -1,0 +1,138 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "Hindi",
+ "code": "jhsc1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jhsc101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsc101.pdf",
+   "pdfFiles": [
+    "jhsc101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jhsc102.pdf",
+   "title": "Coo",
+   "bookPath": "grade10/hindi/jhsc102.pdf",
+   "pdfFiles": [
+    "jhsc102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jhsc103.pdf",
+   "title": "Chapter 3",
+   "bookPath": "grade10/hindi/jhsc103.pdf",
+   "pdfFiles": [
+    "jhsc103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "jhsc104.pdf",
+   "title": "Chapter 4",
+   "bookPath": "grade10/hindi/jhsc104.pdf",
+   "pdfFiles": [
+    "jhsc104.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "jhsc105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsc105.pdf",
+   "pdfFiles": [
+    "jhsc105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "jhsc106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsc106.pdf",
+   "pdfFiles": [
+    "jhsc106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "jhsc107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsc107.pdf",
+   "pdfFiles": [
+    "jhsc107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "jhsc108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsc108.pdf",
+   "pdfFiles": [
+    "jhsc108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "jhsc109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsc109.pdf",
+   "pdfFiles": [
+    "jhsc109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "jhsc110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsc110.pdf",
+   "pdfFiles": [
+    "jhsc110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "jhsc111.pdf",
+   "title": "Chapter 11",
+   "bookPath": "grade10/hindi/jhsc111.pdf",
+   "pdfFiles": [
+    "jhsc111.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "jhsc112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsc112.pdf",
+   "pdfFiles": [
+    "jhsc112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "jhsc113.pdf",
+   "title": "Ooo",
+   "bookPath": "grade10/hindi/jhsc113.pdf",
+   "pdfFiles": [
+    "jhsc113.pdf"
+   ]
+  }
+ ]
+}

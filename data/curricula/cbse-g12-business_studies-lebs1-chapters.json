@@ -1,0 +1,65 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Business Studies",
+ "code": "lebs1",
+ "imageSubject": "Business Studies",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lebs101.pdf",
+   "title": "Nature and Significance of Management Learning",
+   "bookPath": "grade12/business_studies/lebs101.pdf",
+   "pdfFiles": [
+    "lebs101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lebs102.pdf",
+   "title": "Principles of Management",
+   "bookPath": "grade12/business_studies/lebs102.pdf",
+   "pdfFiles": [
+    "lebs102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lebs103.pdf",
+   "title": "Business Environment",
+   "bookPath": "grade12/business_studies/lebs103.pdf",
+   "pdfFiles": [
+    "lebs103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lebs104.pdf",
+   "title": "Chapter 4",
+   "bookPath": "grade12/business_studies/lebs104.pdf",
+   "pdfFiles": [
+    "lebs104.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lebs105.pdf",
+   "title": "Organising",
+   "bookPath": "grade12/business_studies/lebs105.pdf",
+   "pdfFiles": [
+    "lebs105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lebs106.pdf",
+   "title": "Staffing",
+   "bookPath": "grade12/business_studies/lebs106.pdf",
+   "pdfFiles": [
+    "lebs106.pdf"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,461 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Physics",
+ "code": "leph1",
+ "imageSubject": "Physics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "leph101.pdf",
+   "title": "Electric Charges and Fields",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "What is the force between two small charged spheres"
+    },
+    {
+     "section": "1.2",
+     "title": "ELECTRIC CHARGE"
+    },
+    {
+     "section": "1.3",
+     "title": "CONDUCTORS AND INSULATORS"
+    },
+    {
+     "section": "1.4",
+     "title": "BASIC PROPERTIES OF ELECTRIC"
+    },
+    {
+     "section": "1.5",
+     "title": "COULOMB"
+    },
+    {
+     "section": "1.6",
+     "title": "FORCES BETWEEN MULTIPLE CHARGES"
+    },
+    {
+     "section": "1.7",
+     "title": "ELECTRIC"
+    },
+    {
+     "section": "1.8",
+     "title": "ELECTRIC FIELD LINES"
+    },
+    {
+     "section": "1.9",
+     "title": "ELECTRIC FLUX"
+    },
+    {
+     "section": "1.10",
+     "title": "ELECTRIC DIPOLE"
+    },
+    {
+     "section": "1.11",
+     "title": "DIPOLE IN A UNIFORM EXTERNAL"
+    },
+    {
+     "section": "1.12",
+     "title": "CONTINUOUS CHARGE DISTRIBUTION"
+    },
+    {
+     "section": "1.13",
+     "title": "GAUSS"
+    },
+    {
+     "section": "1.14",
+     "title": "APPLICATIONS OF GAUSS"
+    },
+    {
+     "section": "1.15",
+     "title": "What is the net flux of the uniform electric field o"
+    },
+    {
+     "section": "1.16",
+     "title": "Careful measurement of the electric field at the surfa"
+    },
+    {
+     "section": "1.22",
+     "title": "An infinite line charge produces a field of"
+    },
+    {
+     "section": "1.23",
+     "title": "Two large, thin metal plates are parallel and close to each ot"
+    }
+   ],
+   "bookPath": "grade12/physics/leph101.pdf",
+   "pdfFiles": [
+    "leph101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "leph102.pdf",
+   "title": "Ntroductionntroduction Ntroductionntroduction Ntroduction",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Equation ("
+    },
+    {
+     "section": "2.2",
+     "title": "ELECTROSTATIC POTENTIAL"
+    },
+    {
+     "section": "2.3",
+     "title": "POTENTIAL DUE TO A POINT CHARGE"
+    },
+    {
+     "section": "2.4",
+     "title": "POTENTIAL DUE TO"
+    },
+    {
+     "section": "2.5",
+     "title": "POTENTIAL DUE TO A SYSTEM OF CHARGES"
+    },
+    {
+     "section": "2.6",
+     "title": "EQUIPOTENTIAL SURFACES"
+    },
+    {
+     "section": "2.7",
+     "title": "POTENTIAL ENERGY OF A SYSTEM OF CHARGES"
+    },
+    {
+     "section": "2.8",
+     "title": "POTENTIAL ENERGY IN AN EXTERNAL FIELD"
+    },
+    {
+     "section": "2.9",
+     "title": "ELECTROSTATICS OF CONDUCTORS"
+    },
+    {
+     "section": "2.10",
+     "title": "DIELECTRICS AND POLARISATION"
+    },
+    {
+     "section": "2.11",
+     "title": "CAPACITORS AND CAPACITANCE"
+    },
+    {
+     "section": "2.12",
+     "title": "THE PARALLEL PLATE CAPACITOR"
+    },
+    {
+     "section": "2.13",
+     "title": "EFFECT OF DIELECTRIC ON CAPACITANCE"
+    },
+    {
+     "section": "2.14",
+     "title": "COMBINATION OF CAPACITORS"
+    },
+    {
+     "section": "2.15",
+     "title": "ENERGY STORED IN A CAPACITOR"
+    }
+   ],
+   "bookPath": "grade12/physics/leph102.pdf",
+   "pdfFiles": [
+    "leph102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "leph103.pdf",
+   "title": "Current Electricity",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "The storage battery of a car has an emf of"
+    },
+    {
+     "section": "3.2",
+     "title": "ELECTRIC CURRENT"
+    },
+    {
+     "section": "3.3",
+     "title": "ELECTRIC CURRENTS IN CONDUCTORS"
+    },
+    {
+     "section": "3.4",
+     "title": "Example"
+    },
+    {
+     "section": "3.5",
+     "title": "DRIFT OF ELECTRONS AND THE ORIGIN"
+    },
+    {
+     "section": "3.6",
+     "title": "LIMITATIONS OF OHM"
+    },
+    {
+     "section": "3.7",
+     "title": "RESISTIVITY OF VARIOUS MATERIALS"
+    },
+    {
+     "section": "3.8",
+     "title": "TEMPERATURE DEPENDENCE OF RESISTIVITY"
+    },
+    {
+     "section": "3.9",
+     "title": "ELECTRICAL ENERGY, POWER"
+    },
+    {
+     "section": "3.10",
+     "title": "CELLS, EMF, INTERNAL RESISTANCE"
+    },
+    {
+     "section": "3.12",
+     "title": "KIRCHHOFF"
+    },
+    {
+     "section": "3.13",
+     "title": "Two cells of emf"
+    }
+   ],
+   "bookPath": "grade12/physics/leph103.pdf",
+   "pdfFiles": [
+    "leph103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "leph104.pdf",
+   "title": "Moving Charges and Magnetism",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Example"
+    },
+    {
+     "section": "4.2",
+     "title": "MAGNETIC FORCE"
+    },
+    {
+     "section": "4.3",
+     "title": "MOTION IN A MAGNETIC FIELD"
+    },
+    {
+     "section": "4.4",
+     "title": "MAGNETIC FIELD DUE TO A CURRENT"
+    },
+    {
+     "section": "4.5",
+     "title": "MAGNETIC FIELD ON THE AXIS OF A CIRCULAR"
+    },
+    {
+     "section": "4.6",
+     "title": "AMPERE"
+    },
+    {
+     "section": "4.7",
+     "title": "Solution (a) Consider the case r"
+    },
+    {
+     "section": "4.8",
+     "title": "FORCE BETWEEN TWO PARALLEL"
+    },
+    {
+     "section": "4.9",
+     "title": "The ampere is the value of that steady current which, when mai"
+    },
+    {
+     "section": "4.10",
+     "title": "Solution"
+    },
+    {
+     "section": "4.11",
+     "title": "In a chamber, a uniform magnetic field of"
+    },
+    {
+     "section": "4.12",
+     "title": "Reprint"
+    }
+   ],
+   "bookPath": "grade12/physics/leph104.pdf",
+   "pdfFiles": [
+    "leph104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "leph105.pdf",
+   "title": "Magnetism and Matter",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "The arrangement"
+    },
+    {
+     "section": "5.2",
+     "title": "Example"
+    },
+    {
+     "section": "5.3",
+     "title": "MAGNETISM AND GAUSS"
+    },
+    {
+     "section": "5.4",
+     "title": "MAGNETISATION AND MAGNETIC INTENSITY"
+    },
+    {
+     "section": "5.5",
+     "title": "Solution"
+    }
+   ],
+   "bookPath": "grade12/physics/leph105.pdf",
+   "pdfFiles": [
+    "leph105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "leph106.pdf",
+   "title": "Electromagnetic Induction",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "The magnitude of the induced emf in a circuit is equal"
+    },
+    {
+     "section": "6.2",
+     "title": "THE EXPERIMENTS OF FARADAY AND"
+    },
+    {
+     "section": "6.3",
+     "title": "MAGNETIC FLUX"
+    },
+    {
+     "section": "6.4",
+     "title": "FARADAY"
+    },
+    {
+     "section": "6.5",
+     "title": "Reprint"
+    },
+    {
+     "section": "6.6",
+     "title": "MOTIONAL ELECTROMOTIVE FORCE"
+    },
+    {
+     "section": "6.7",
+     "title": "Example"
+    },
+    {
+     "section": "6.8",
+     "title": "We explained the above example with air as the medium within t"
+    },
+    {
+     "section": "6.9",
+     "title": "Reprint"
+    },
+    {
+     "section": "6.10",
+     "title": "Example"
+    }
+   ],
+   "bookPath": "grade12/physics/leph106.pdf",
+   "pdfFiles": [
+    "leph106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "leph107.pdf",
+   "title": "Alternating Current",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Reprint"
+    },
+    {
+     "section": "7.2",
+     "title": "AC VOLTAGE APPLIED TO A RESISTOR"
+    },
+    {
+     "section": "7.4",
+     "title": "AC VOLTAGE APPLIED TO AN INDUCTOR"
+    },
+    {
+     "section": "7.5",
+     "title": "AC VOLTAGE APPLIED"
+    },
+    {
+     "section": "7.6",
+     "title": "AC VOLTAGE APPLIED TO A SERIES LCR CIRCUIT"
+    },
+    {
+     "section": "7.7",
+     "title": "POWER IN AC CIRCUIT"
+    },
+    {
+     "section": "7.8",
+     "title": "FIGURE"
+    },
+    {
+     "section": "7.9",
+     "title": "Since f is negative, the current in the circuit lags"
+    },
+    {
+     "section": "7.10",
+     "title": "Example"
+    }
+   ],
+   "bookPath": "grade12/physics/leph107.pdf",
+   "pdfFiles": [
+    "leph107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "leph108.pdf",
+   "title": "Electromagnetic Waves",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Heinrich Rudolf Hertz"
+    },
+    {
+     "section": "8.2",
+     "title": "DISPLACEMENT CURRENT"
+    },
+    {
+     "section": "8.3",
+     "title": "ELECTROMAGNETIC WAVES"
+    },
+    {
+     "section": "8.4",
+     "title": "ELECTROMAGNETIC SPECTRUM"
+    },
+    {
+     "section": "8.7",
+     "title": "The amplitude of the magnetic field part of a harmoni"
+    },
+    {
+     "section": "8.8",
+     "title": "Suppose that the electric field amplitude of an electromagneti"
+    },
+    {
+     "section": "8.9",
+     "title": "The terminology of different parts of the electromagnet"
+    },
+    {
+     "section": "8.10",
+     "title": "In a plane electromagnetic wave, the electric field os"
+    }
+   ],
+   "bookPath": "grade12/physics/leph108.pdf",
+   "pdfFiles": [
+    "leph108.pdf"
+   ]
+  }
+ ]
+}

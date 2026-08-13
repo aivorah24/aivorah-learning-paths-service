@@ -1,0 +1,40 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 5",
+ "subject": "Physical Education and Well Being",
+ "code": "eeky1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "eeky101.pdf",
+   "title": "Did You",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/physical_education/eeky101.pdf",
+   "pdfFiles": [
+    "eeky101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "eeky102.pdf",
+   "title": "Did You",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/physical_education/eeky102.pdf",
+   "pdfFiles": [
+    "eeky102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "eeky103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/physical_education/eeky103.pdf",
+   "pdfFiles": [
+    "eeky103.pdf"
+   ]
+  }
+ ]
+}

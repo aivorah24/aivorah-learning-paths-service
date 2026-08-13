@@ -1,0 +1,91 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Economics",
+ "code": "kest1",
+ "imageSubject": "Economics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kest101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/economics/kest101.pdf",
+   "pdfFiles": [
+    "kest101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kest102.pdf",
+   "title": "Errors",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/economics/kest102.pdf",
+   "pdfFiles": [
+    "kest102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kest103.pdf",
+   "title": "Data",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/economics/kest103.pdf",
+   "pdfFiles": [
+    "kest103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kest104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/economics/kest104.pdf",
+   "pdfFiles": [
+    "kest104.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kest105.pdf",
+   "title": "Abcdefgh",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/economics/kest105.pdf",
+   "pdfFiles": [
+    "kest105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kest106.pdf",
+   "title": "Correlation",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/economics/kest106.pdf",
+   "pdfFiles": [
+    "kest106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kest107.pdf",
+   "title": "Onstructionofanindexnumber",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/economics/kest107.pdf",
+   "pdfFiles": [
+    "kest107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kest108.pdf",
+   "title": "Example of Questionnaire to Be Used for This Project Report",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/economics/kest108.pdf",
+   "pdfFiles": [
+    "kest108.pdf"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,349 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "Science",
+ "code": "jemh1",
+ "imageSubject": "Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jemh101.pdf",
+   "title": "Real N",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.2",
+     "title": "The Fundamental Theorem of Arithmetic"
+    },
+    {
+     "section": "1.3",
+     "title": "Revisiting Irrational Numbers"
+    },
+    {
+     "section": "1.4",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh101.pdf",
+   "pdfFiles": [
+    "jemh101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jemh102.pdf",
+   "title": "Polynomials",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.2",
+     "title": "Geometrical Meaning of the Zeroes of a Polynomial"
+    },
+    {
+     "section": "2.3",
+     "title": "Relationship between Zeroes and Coefficients of a Polynomial"
+    },
+    {
+     "section": "2.4",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh102.pdf",
+   "pdfFiles": [
+    "jemh102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jemh103.pdf",
+   "title": "Pair of Linear Equations",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "Graphical Method of Solution of a Pair of Linear Equations"
+    },
+    {
+     "section": "3.3",
+     "title": "Algebraic Methods of Solving a Pair of Linear Equations"
+    },
+    {
+     "section": "3.4",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh103.pdf",
+   "pdfFiles": [
+    "jemh103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "jemh104.pdf",
+   "title": "Quadratic Equations",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.2",
+     "title": "Quadratic Equations"
+    },
+    {
+     "section": "4.3",
+     "title": "Solution of a Quadratic Equation by Factorisation"
+    },
+    {
+     "section": "4.4",
+     "title": "Nature of Roots"
+    },
+    {
+     "section": "4.5",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh104.pdf",
+   "pdfFiles": [
+    "jemh104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "jemh105.pdf",
+   "title": "Arithmetic Progressions",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.2",
+     "title": "Arithmetic Progressions"
+    },
+    {
+     "section": "5.4",
+     "title": "Sum of First n Terms of an AP"
+    },
+    {
+     "section": "5.5",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh105.pdf",
+   "pdfFiles": [
+    "jemh105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "jemh106.pdf",
+   "title": "Triangles",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.2",
+     "title": "Similar Figures"
+    },
+    {
+     "section": "6.3",
+     "title": "Similarity of Triangles"
+    },
+    {
+     "section": "6.4",
+     "title": "Criteria for Similarity of Triangles"
+    },
+    {
+     "section": "6.5",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh106.pdf",
+   "pdfFiles": [
+    "jemh106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "jemh107.pdf",
+   "title": "Coordinate Geometry",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.2",
+     "title": "Distance Formula"
+    },
+    {
+     "section": "7.3",
+     "title": "Section Formula"
+    },
+    {
+     "section": "7.4",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh107.pdf",
+   "pdfFiles": [
+    "jemh107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "jemh108.pdf",
+   "title": "Trigonometry",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.2",
+     "title": "Trigonometric Ratios"
+    },
+    {
+     "section": "8.3",
+     "title": "Trigonometric Ratios of Some Specific Angles"
+    },
+    {
+     "section": "8.4",
+     "title": "Trigonometric Identities"
+    },
+    {
+     "section": "8.5",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh108.pdf",
+   "pdfFiles": [
+    "jemh108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "jemh109.pdf",
+   "title": "Some Applications of",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Heights and Distances"
+    },
+    {
+     "section": "9.2",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh109.pdf",
+   "pdfFiles": [
+    "jemh109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "jemh110.pdf",
+   "title": "Circles",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.2",
+     "title": "Tangent to a Circle"
+    },
+    {
+     "section": "10.3",
+     "title": "Number of Tangents from a Point on a Circle"
+    },
+    {
+     "section": "10.4",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh110.pdf",
+   "pdfFiles": [
+    "jemh110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "jemh111.pdf",
+   "title": "Areas Related to Circles",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "Areas of Sector and Segment of a Circle"
+    },
+    {
+     "section": "11.2",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh111.pdf",
+   "pdfFiles": [
+    "jemh111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "jemh112.pdf",
+   "title": "Surface Areas and",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "12.2",
+     "title": "Surface Area of a Combination of Solids"
+    },
+    {
+     "section": "12.3",
+     "title": "Volume of a Combination of Solids"
+    },
+    {
+     "section": "12.4",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh112.pdf",
+   "pdfFiles": [
+    "jemh112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "jemh113.pdf",
+   "title": "Statistics",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "13.2",
+     "title": "Mean of Grouped Data"
+    },
+    {
+     "section": "13.3",
+     "title": "Mode of Grouped Data"
+    },
+    {
+     "section": "13.4",
+     "title": "Median of Grouped Data"
+    },
+    {
+     "section": "13.5",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh113.pdf",
+   "pdfFiles": [
+    "jemh113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "jemh114.pdf",
+   "title": "Probability",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "14.1",
+     "title": "Probability"
+    },
+    {
+     "section": "14.2",
+     "title": "Summary"
+    }
+   ],
+   "bookPath": "grade10/science/jemh114.pdf",
+   "pdfFiles": [
+    "jemh114.pdf"
+   ]
+  }
+ ]
+}

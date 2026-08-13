@@ -1,0 +1,169 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "Mathematics",
+ "code": "gegp2",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "gegp201.pdf",
+   "title": "Geometric Twins",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Geometric Twins"
+    },
+    {
+     "section": "1.2",
+     "title": "Congruence of Triangles"
+    },
+    {
+     "section": "1.3",
+     "title": "Angles of Isosceles and Equilateral Triangles"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp201.pdf",
+   "pdfFiles": [
+    "gegp201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "gegp202.pdf",
+   "title": "Operations with Integers",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.2",
+     "title": "Multiplication of Integers"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp202.pdf",
+   "pdfFiles": [
+    "gegp202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "gegp203.pdf",
+   "title": "Finding Common Ground",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "The Greatest of All"
+    },
+    {
+     "section": "3.2",
+     "title": "Least, but not Last"
+    },
+    {
+     "section": "3.3",
+     "title": "Patterns, Properties, and a Pretty Procedure"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp203.pdf",
+   "pdfFiles": [
+    "gegp203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "gegp204.pdf",
+   "title": "Another Peek Beyond the Point",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.2",
+     "title": "Decimal Multiplication"
+    },
+    {
+     "section": "4.3",
+     "title": "Decimal Division"
+    },
+    {
+     "section": "4.4",
+     "title": "Look Before You Leap"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp204.pdf",
+   "pdfFiles": [
+    "gegp204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "gegp205.pdf",
+   "title": "Connecting",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Of Questions and Statements"
+    },
+    {
+     "section": "5.2",
+     "title": "Representative Values"
+    },
+    {
+     "section": "5.3",
+     "title": "Visualising Data"
+    },
+    {
+     "section": "5.4",
+     "title": "Data Detective"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp205.pdf",
+   "pdfFiles": [
+    "gegp205.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "gegp206.pdf",
+   "title": "Constructions and Tilings",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Geometric Constructions"
+    },
+    {
+     "section": "6.2",
+     "title": "Tiling"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp206.pdf",
+   "pdfFiles": [
+    "gegp206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "gegp207.pdf",
+   "title": "Finding the Unknown",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Find the Unknowns"
+    },
+    {
+     "section": "7.2",
+     "title": "Solving Equations Systematically"
+    },
+    {
+     "section": "7.3",
+     "title": "Mind the Mistake, Mend the Mistake"
+    }
+   ],
+   "bookPath": "grade7/mathematics/gegp207.pdf",
+   "pdfFiles": [
+    "gegp207.pdf"
+   ]
+  }
+ ]
+}

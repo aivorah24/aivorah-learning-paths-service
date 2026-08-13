@@ -1,0 +1,533 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Physics",
+ "code": "keph1",
+ "imageSubject": "Physics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "keph101.pdf",
+   "title": "Units and Measurement",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Fill in the blanks"
+    },
+    {
+     "section": "1.2",
+     "title": "THE INTERNATIONAL SYSTEM OF UNITS"
+    },
+    {
+     "section": "1.3",
+     "title": "Significant figures"
+    },
+    {
+     "section": "1.4",
+     "title": "Dimensions of physical"
+    },
+    {
+     "section": "1.5",
+     "title": "Dimensional formulae and"
+    },
+    {
+     "section": "1.6",
+     "title": "Dimensional analysis and its"
+    },
+    {
+     "section": "1.8",
+     "title": "Answer the following"
+    },
+    {
+     "section": "1.9",
+     "title": "The photograph of a house occupies an area of"
+    },
+    {
+     "section": "1.10",
+     "title": "State the number of significant figures in the following"
+    },
+    {
+     "section": "1.11",
+     "title": "The length, breadth and thickness of a rectangular sheet of me"
+    },
+    {
+     "section": "1.12",
+     "title": "The mass of a box measured by a grocer"
+    },
+    {
+     "section": "1.14",
+     "title": "The unit of length convenient on the atomic scale is known as"
+    },
+    {
+     "section": "1.15",
+     "title": "One mole of an ideal gas at standard temperature and"
+    },
+    {
+     "section": "1.16",
+     "title": "Explain this common observation clearly"
+    },
+    {
+     "section": "1.17",
+     "title": "The Sun is a hot plasma (ionized matter) with its inner core a"
+    }
+   ],
+   "bookPath": "grade11/physics/keph101.pdf",
+   "pdfFiles": [
+    "keph101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "keph102.pdf",
+   "title": "Motion in a Straight Line",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "In which of the following examples of motion, can the"
+    },
+    {
+     "section": "2.2",
+     "title": "Instantaneous velocity and"
+    },
+    {
+     "section": "2.3",
+     "title": "Acceleration"
+    },
+    {
+     "section": "2.4",
+     "title": "Kinematic equations for"
+    },
+    {
+     "section": "2.5",
+     "title": "Relative velocity"
+    },
+    {
+     "section": "2.7",
+     "title": "Read each statement below carefully and state with reasons and"
+    },
+    {
+     "section": "2.9",
+     "title": "Explain clearly, with examples, the distinction between"
+    },
+    {
+     "section": "2.11",
+     "title": "In Exercises"
+    },
+    {
+     "section": "2.12",
+     "title": "Look at the graphs (a) to (d) (Fig"
+    },
+    {
+     "section": "2.13",
+     "title": "Figure"
+    },
+    {
+     "section": "2.15",
+     "title": "Suggest a suitable physical situation for each of the followin"
+    },
+    {
+     "section": "2.16",
+     "title": "Figure"
+    },
+    {
+     "section": "2.17",
+     "title": "Figure"
+    },
+    {
+     "section": "2.18",
+     "title": "Figure"
+    }
+   ],
+   "bookPath": "grade11/physics/keph102.pdf",
+   "pdfFiles": [
+    "keph102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "keph103.pdf",
+   "title": "Motion in a Plane",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "State, for each of the following physical quantities, if it is"
+    },
+    {
+     "section": "3.2",
+     "title": "SCALARS AND VECTORS"
+    },
+    {
+     "section": "3.3",
+     "title": "Multiplication of vectors by"
+    },
+    {
+     "section": "3.4",
+     "title": "Addition and subtraction of"
+    },
+    {
+     "section": "3.5",
+     "title": "Resolution of vectors"
+    },
+    {
+     "section": "3.6",
+     "title": "Vector addition"
+    },
+    {
+     "section": "3.7",
+     "title": "Motion in a plane"
+    },
+    {
+     "section": "3.8",
+     "title": "Motion in a plane with"
+    },
+    {
+     "section": "3.9",
+     "title": "Projectile motion"
+    },
+    {
+     "section": "3.10",
+     "title": "Uniform circular motion"
+    },
+    {
+     "section": "3.12",
+     "title": "The ceiling of a long hall is"
+    },
+    {
+     "section": "3.15",
+     "title": "An aircraft executes a horizontal loop of radius"
+    },
+    {
+     "section": "3.16",
+     "title": "Read each statement below carefully and state, with reasons, i"
+    },
+    {
+     "section": "3.17",
+     "title": "The position of a particle is given by"
+    },
+    {
+     "section": "3.20",
+     "title": "For any arbitrary motion in space, which of the following rela"
+    },
+    {
+     "section": "3.21",
+     "title": "Read each statement below carefully and state, with reasons an"
+    },
+    {
+     "section": "3.22",
+     "title": "An aircraft is flying at a height of"
+    }
+   ],
+   "bookPath": "grade11/physics/keph103.pdf",
+   "pdfFiles": [
+    "keph103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "keph104.pdf",
+   "title": "Laws of Motion",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Give the magnitude and direction of the net force acting on"
+    },
+    {
+     "section": "4.2",
+     "title": "Aristotle"
+    },
+    {
+     "section": "4.3",
+     "title": "The law of inertia"
+    },
+    {
+     "section": "4.4",
+     "title": "Newton"
+    },
+    {
+     "section": "4.5",
+     "title": "Newton"
+    },
+    {
+     "section": "4.6",
+     "title": "Newton"
+    },
+    {
+     "section": "4.7",
+     "title": "Conservation of momentum"
+    },
+    {
+     "section": "4.8",
+     "title": "Equilibrium of a particle"
+    },
+    {
+     "section": "4.9",
+     "title": "Common forces in mechanics"
+    },
+    {
+     "section": "4.10",
+     "title": "Circular motion"
+    },
+    {
+     "section": "4.11",
+     "title": "Solving problems in"
+    },
+    {
+     "section": "4.14",
+     "title": "Figure"
+    },
+    {
+     "section": "4.15",
+     "title": "Two bodies of masses"
+    },
+    {
+     "section": "4.16",
+     "title": "Two masses"
+    },
+    {
+     "section": "4.18",
+     "title": "Two billiard balls each of mass"
+    },
+    {
+     "section": "4.22",
+     "title": "If, in Exercise"
+    },
+    {
+     "section": "4.23",
+     "title": "Explain why"
+    }
+   ],
+   "bookPath": "grade11/physics/keph104.pdf",
+   "pdfFiles": [
+    "keph104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "keph105.pdf",
+   "title": "Work, Energy and Power",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "The sign of work done by a force on a body is important to und"
+    },
+    {
+     "section": "5.2",
+     "title": "Notions of work and kinetic"
+    },
+    {
+     "section": "5.3",
+     "title": "Given in Fig"
+    },
+    {
+     "section": "5.4",
+     "title": "Kinetic energy"
+    },
+    {
+     "section": "5.5",
+     "title": "Work done by a variable force"
+    },
+    {
+     "section": "5.6",
+     "title": "The work-energy theorem for"
+    },
+    {
+     "section": "5.7",
+     "title": "The concept of potential"
+    },
+    {
+     "section": "5.8",
+     "title": "The conservation of"
+    },
+    {
+     "section": "5.9",
+     "title": "The potential energy of a"
+    },
+    {
+     "section": "5.10",
+     "title": "Power"
+    },
+    {
+     "section": "5.11",
+     "title": "Collisions"
+    },
+    {
+     "section": "5.12",
+     "title": "An electron and a proton are detected in a cosmic ray experime"
+    },
+    {
+     "section": "5.16",
+     "title": "Two identical ball bearings in contact with each other"
+    },
+    {
+     "section": "5.17",
+     "title": "The bob A of a pendulum released from"
+    },
+    {
+     "section": "5.18",
+     "title": "The bob of a pendulum is released from a horizontal"
+    },
+    {
+     "section": "5.21",
+     "title": "The blades of a windmill sweep out a circle of area"
+    }
+   ],
+   "bookPath": "grade11/physics/keph105.pdf",
+   "pdfFiles": [
+    "keph105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "keph106.pdf",
+   "title": "Systems of Particles and Rotational Motion",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Give the location of the centre of mass of a (i) sphere, (ii)"
+    },
+    {
+     "section": "6.2",
+     "title": "Centre of mass"
+    },
+    {
+     "section": "6.3",
+     "title": "Motion of centre of mass"
+    },
+    {
+     "section": "6.4",
+     "title": "Linear momentum of a"
+    },
+    {
+     "section": "6.5",
+     "title": "Vector product of two vectors"
+    },
+    {
+     "section": "6.6",
+     "title": "Angular velocity and its"
+    },
+    {
+     "section": "6.7",
+     "title": "Torque and angular"
+    },
+    {
+     "section": "6.8",
+     "title": "Equilibrium of a rigid body"
+    },
+    {
+     "section": "6.9",
+     "title": "Moment of inertia"
+    },
+    {
+     "section": "6.10",
+     "title": "Kinematics of rotational"
+    },
+    {
+     "section": "6.11",
+     "title": "Dynamics of rotational"
+    },
+    {
+     "section": "6.12",
+     "title": "Angular momentum in case"
+    },
+    {
+     "section": "6.14",
+     "title": "To maintain a rotor at a uniform angular speed of"
+    },
+    {
+     "section": "6.15",
+     "title": "From a uniform disk of radius R, a circular hole of radius R"
+    },
+    {
+     "section": "6.17",
+     "title": "The oxygen molecule has a mass of"
+    }
+   ],
+   "bookPath": "grade11/physics/keph106.pdf",
+   "pdfFiles": [
+    "keph106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "keph107.pdf",
+   "title": "Gravitation",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Answer the following"
+    },
+    {
+     "section": "7.2",
+     "title": "Kepler"
+    },
+    {
+     "section": "7.3",
+     "title": "Universal law of"
+    },
+    {
+     "section": "7.4",
+     "title": "The gravitational"
+    },
+    {
+     "section": "7.5",
+     "title": "Acceleration due to"
+    },
+    {
+     "section": "7.6",
+     "title": "Acceleration due to"
+    },
+    {
+     "section": "7.7",
+     "title": "Gravitational potential"
+    },
+    {
+     "section": "7.8",
+     "title": "Escape speed"
+    },
+    {
+     "section": "7.9",
+     "title": "Earth satellites"
+    },
+    {
+     "section": "7.10",
+     "title": "Energy of an orbiting"
+    },
+    {
+     "section": "7.11",
+     "title": "For the above problem, the direction of the gravitatio"
+    },
+    {
+     "section": "7.13",
+     "title": "How will you"
+    },
+    {
+     "section": "7.16",
+     "title": "Assuming the earth to be a sphere of uniform mass density, how"
+    },
+    {
+     "section": "7.18",
+     "title": "The escape speed of a projectile on the earth"
+    },
+    {
+     "section": "7.20",
+     "title": "Two stars each of one solar mass ("
+    },
+    {
+     "section": "7.21",
+     "title": "Two heavy spheres each of mass"
+    }
+   ],
+   "bookPath": "grade11/physics/keph107.pdf",
+   "pdfFiles": [
+    "keph107.pdf"
+   ]
+  }
+ ]
+}

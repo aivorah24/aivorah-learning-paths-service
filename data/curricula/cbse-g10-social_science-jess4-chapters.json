@@ -1,0 +1,63 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "Social Science",
+ "code": "jess4",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jess401.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess401.pdf",
+   "pdfFiles": [
+    "jess401.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jess402.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/social_science/jess402.pdf",
+   "pdfFiles": [
+    "jess402.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jess403.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/social_science/jess403.pdf",
+   "pdfFiles": [
+    "jess403.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "jess404.pdf",
+   "title": "Dna",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess404.pdf",
+   "pdfFiles": [
+    "jess404.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "jess405.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/social_science/jess405.pdf",
+   "pdfFiles": [
+    "jess405.pdf"
+   ]
+  }
+ ]
+}

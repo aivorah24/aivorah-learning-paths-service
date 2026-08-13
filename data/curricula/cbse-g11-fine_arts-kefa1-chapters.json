@@ -1,0 +1,89 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Fine Art",
+ "code": "kefa1",
+ "imageSubject": "Fine_Arts",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kefa101.pdf",
+   "title": "Prehistoric Rock Paintings",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/fine_arts/kefa101.pdf",
+   "pdfFiles": [
+    "kefa101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kefa102.pdf",
+   "title": "Arts of the Indus Valley",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/fine_arts/kefa102.pdf",
+   "pdfFiles": [
+    "kefa102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kefa103.pdf",
+   "title": "Arts of the Mauryan Period",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/fine_arts/kefa103.pdf",
+   "pdfFiles": [
+    "kefa103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kefa104.pdf",
+   "title": "Post-Mauryan Trends in Indian Art and Architecture",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/fine_arts/kefa104.pdf",
+   "pdfFiles": [
+    "kefa104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kefa105.pdf",
+   "title": "Later Mural Traditions",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/fine_arts/kefa105.pdf",
+   "pdfFiles": [
+    "kefa105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kefa106.pdf",
+   "title": "Emple Emple Empleemple",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/fine_arts/kefa106.pdf",
+   "pdfFiles": [
+    "kefa106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kefa107.pdf",
+   "title": "Indian Bronze Sculpture",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/fine_arts/kefa107.pdf",
+   "pdfFiles": [
+    "kefa107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kefa108.pdf",
+   "title": "Some Aspects of Indo",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/fine_arts/kefa108.pdf",
+   "pdfFiles": [
+    "kefa108.pdf"
+   ]
+  }
+ ]
+}

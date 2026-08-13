@@ -1,0 +1,31 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Hindi",
+ "code": "lhvt1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lhvt101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhvt101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lhvt102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhvt102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lhvt103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhvt103.pdf"
+  }
+ ]
+}

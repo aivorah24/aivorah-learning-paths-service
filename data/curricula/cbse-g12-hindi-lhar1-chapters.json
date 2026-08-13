@@ -1,0 +1,115 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Hindi",
+ "code": "lhar1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lhar101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lhar102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lhar103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lhar104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lhar105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lhar106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lhar107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "lhar108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "lhar109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "lhar110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "lhar111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "lhar112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "lhar113.pdf",
+   "title": "Chapter 13",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar113.pdf"
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "lhar114.pdf",
+   "title": "Chapter 14",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar114.pdf"
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "lhar115.pdf",
+   "title": "Chapter 15",
+   "needsTitleReview": true,
+   "bookPath": "grade12/hindi/lhar115.pdf"
+  }
+ ]
+}

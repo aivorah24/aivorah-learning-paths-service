@@ -1,0 +1,24 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Hindi",
+ "code": "khan1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "khan101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khan101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "khan102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khan102.pdf"
+  }
+ ]
+}

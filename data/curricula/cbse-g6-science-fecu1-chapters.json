@@ -1,0 +1,360 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 6",
+ "subject": "Science",
+ "code": "fecu1",
+ "imageSubject": "Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "fecu101.pdf",
+   "title": "The Wonderful World of Science",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade6/science/fecu101.pdf",
+   "pdfFiles": [
+    "fecu101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "fecu102.pdf",
+   "title": "Abc",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Diversity in Plants and Animals Around Us"
+    },
+    {
+     "section": "2.2",
+     "title": "How to Group Plants and Animals"
+    },
+    {
+     "section": "2.3",
+     "title": "Plants"
+    }
+   ],
+   "bookPath": "grade6/science/fecu102.pdf",
+   "pdfFiles": [
+    "fecu102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "fecu103.pdf",
+   "title": "From Farm to Plate",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "What Do We Eat"
+    },
+    {
+     "section": "3.2",
+     "title": "What are the Components of Food"
+    },
+    {
+     "section": "3.3",
+     "title": "How to Test Different Components"
+    },
+    {
+     "section": "3.4",
+     "title": "Balanced Diet"
+    },
+    {
+     "section": "3.5",
+     "title": "Millets"
+    },
+    {
+     "section": "3.6",
+     "title": "Food Miles"
+    }
+   ],
+   "bookPath": "grade6/science/fecu103.pdf",
+   "pdfFiles": [
+    "fecu103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "fecu104.pdf",
+   "title": "Acb",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Magnetic and Non-magnetic Materials"
+    },
+    {
+     "section": "4.2",
+     "title": "Poles of Magnet"
+    },
+    {
+     "section": "4.3",
+     "title": "Finding Directions"
+    },
+    {
+     "section": "4.4",
+     "title": "Attraction and Repulsion between Magnets"
+    },
+    {
+     "section": "4.5",
+     "title": "Fun with Magnets"
+    }
+   ],
+   "bookPath": "grade6/science/fecu104.pdf",
+   "pdfFiles": [
+    "fecu104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "fecu105.pdf",
+   "title": "Measurement of Length and Motion",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "How do we Measure"
+    },
+    {
+     "section": "5.2",
+     "title": "Standard Units"
+    },
+    {
+     "section": "5.3",
+     "title": "Correct Way of Measuring Length"
+    },
+    {
+     "section": "5.4",
+     "title": "Measuring the Length of a Curved Line"
+    },
+    {
+     "section": "5.5",
+     "title": "Describing Position"
+    },
+    {
+     "section": "5.6",
+     "title": "Moving Things"
+    },
+    {
+     "section": "5.7",
+     "title": "Types of Motion"
+    }
+   ],
+   "bookPath": "grade6/science/fecu105.pdf",
+   "pdfFiles": [
+    "fecu105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "fecu106.pdf",
+   "title": "Materials Around Us",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Observing Objects Around Us"
+    },
+    {
+     "section": "6.2",
+     "title": "How to Group Materials"
+    },
+    {
+     "section": "6.3",
+     "title": "What are the different Properties of"
+    },
+    {
+     "section": "6.4",
+     "title": "What is Matter"
+    }
+   ],
+   "bookPath": "grade6/science/fecu106.pdf",
+   "pdfFiles": [
+    "fecu106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "fecu107.pdf",
+   "title": "Abcabc",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Hot or Cold"
+    },
+    {
+     "section": "7.2",
+     "title": "Temperature"
+    },
+    {
+     "section": "7.3",
+     "title": "Measuring Temperature"
+    }
+   ],
+   "bookPath": "grade6/science/fecu107.pdf",
+   "pdfFiles": [
+    "fecu107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "fecu108.pdf",
+   "title": "A Journey through States of Water",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Investigating Water"
+    },
+    {
+     "section": "8.2",
+     "title": "Another Mystery"
+    },
+    {
+     "section": "8.3",
+     "title": "What are the Different States of Water"
+    },
+    {
+     "section": "8.4",
+     "title": "How can We change the States of Water"
+    },
+    {
+     "section": "8.5",
+     "title": "How can Water be Evaporated Faster or"
+    },
+    {
+     "section": "8.7",
+     "title": "How Do clouds Give us Rain"
+    }
+   ],
+   "bookPath": "grade6/science/fecu108.pdf",
+   "pdfFiles": [
+    "fecu108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "fecu109.pdf",
+   "title": "Methods of Separation in Everyday Life",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade6/science/fecu109.pdf",
+   "pdfFiles": [
+    "fecu109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "fecu110.pdf",
+   "title": "Abcdef",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "What Sets the Living Apart from the"
+    },
+    {
+     "section": "10.2",
+     "title": "Essential Conditions for Germination"
+    },
+    {
+     "section": "10.3",
+     "title": "Growth and Movement in Plants"
+    },
+    {
+     "section": "10.4",
+     "title": "Life Cycle of a Plant"
+    },
+    {
+     "section": "10.5",
+     "title": "Life Cycle of Animals"
+    }
+   ],
+   "bookPath": "grade6/science/fecu110.pdf",
+   "pdfFiles": [
+    "fecu110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "fecu111.pdf",
+   "title": "Nature’s Treasures",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "11.2",
+     "title": "Water"
+    },
+    {
+     "section": "11.3",
+     "title": "Energy from the Sun"
+    },
+    {
+     "section": "11.4",
+     "title": "Forests"
+    },
+    {
+     "section": "11.5",
+     "title": "Soil, Rocks and Minerals"
+    },
+    {
+     "section": "11.6",
+     "title": "Fossil Fuels"
+    },
+    {
+     "section": "11.7",
+     "title": "Natural Resources"
+    },
+    {
+     "section": "11.8",
+     "title": "Resources We use"
+    }
+   ],
+   "bookPath": "grade6/science/fecu111.pdf",
+   "pdfFiles": [
+    "fecu111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "fecu112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "Stars and Constellations"
+    },
+    {
+     "section": "12.2",
+     "title": "Night Sky Watching"
+    },
+    {
+     "section": "12.3",
+     "title": "Our Solar System"
+    },
+    {
+     "section": "12.4",
+     "title": "The Milky Way Galaxy"
+    },
+    {
+     "section": "12.5",
+     "title": "The Universe"
+    }
+   ],
+   "bookPath": "grade6/science/fecu112.pdf",
+   "pdfFiles": [
+    "fecu112.pdf"
+   ]
+  }
+ ]
+}

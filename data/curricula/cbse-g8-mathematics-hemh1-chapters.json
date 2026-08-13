@@ -1,0 +1,331 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Mathematics",
+ "code": "hemh1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hemh101.pdf",
+   "title": "Try These",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.2",
+     "title": "Properties of Rational Numbers"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh101.pdf",
+   "pdfFiles": [
+    "hemh101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hemh102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.2",
+     "title": "Solving Equations having the Variable on"
+    },
+    {
+     "section": "2.3",
+     "title": "Reducing Equations to Simpler Form"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh102.pdf",
+   "pdfFiles": [
+    "hemh102.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hemh103.pdf",
+   "title": "Try These",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "Sum of the Measures of the Exterior Angles of a"
+    },
+    {
+     "section": "3.3",
+     "title": "Kinds of Quadrilaterals"
+    },
+    {
+     "section": "3.4",
+     "title": "Some Special Parallelograms"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh103.pdf",
+   "pdfFiles": [
+    "hemh103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hemh104.pdf",
+   "title": "Think, Discuss and Write",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Looking for Information"
+    },
+    {
+     "section": "4.2",
+     "title": "Circle Graph or Pie Chart"
+    },
+    {
+     "section": "4.3",
+     "title": "Chance and Probability"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh104.pdf",
+   "pdfFiles": [
+    "hemh104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hemh105.pdf",
+   "title": "Try These",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.2",
+     "title": "Properties of Square Numbers"
+    },
+    {
+     "section": "5.3",
+     "title": "Some More Interesting Patterns"
+    },
+    {
+     "section": "5.4",
+     "title": "Finding the Square of a Number"
+    },
+    {
+     "section": "5.5",
+     "title": "Square Roots"
+    },
+    {
+     "section": "5.6",
+     "title": "Square Roots of Decimals"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh105.pdf",
+   "pdfFiles": [
+    "hemh105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hemh106.pdf",
+   "title": "Try These",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.2",
+     "title": "Cubes"
+    },
+    {
+     "section": "6.3",
+     "title": "Cube Roots"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh106.pdf",
+   "pdfFiles": [
+    "hemh106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hemh107.pdf",
+   "title": "Try These",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Recalling Ratios and Percentages"
+    },
+    {
+     "section": "7.2",
+     "title": "Finding Discounts"
+    },
+    {
+     "section": "7.3",
+     "title": "Sales Tax"
+    },
+    {
+     "section": "7.4",
+     "title": "Compound Interest"
+    },
+    {
+     "section": "7.5",
+     "title": "Deducing a Formula for Compound Interest"
+    },
+    {
+     "section": "7.6",
+     "title": "Applications of Compound Interest Formula"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh107.pdf",
+   "pdfFiles": [
+    "hemh107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "hemh108.pdf",
+   "title": "Try These",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Addition and Subtraction of Algebraic"
+    },
+    {
+     "section": "8.2",
+     "title": "Multiplication of Algebraic Expressions"
+    },
+    {
+     "section": "8.3",
+     "title": "Multiplying a Monomial by a Monomial"
+    },
+    {
+     "section": "8.4",
+     "title": "Multiplying a Monomial by a Polynomial"
+    },
+    {
+     "section": "8.5",
+     "title": "Multiplying a Polynomial by a Polynomial"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh108.pdf",
+   "pdfFiles": [
+    "hemh108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "hemh109.pdf",
+   "title": "Try These",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.2",
+     "title": "Area of a Polygon"
+    },
+    {
+     "section": "9.3",
+     "title": "Solid Shapes"
+    },
+    {
+     "section": "9.4",
+     "title": "Surface Area of Cube, Cuboid and Cylinder"
+    },
+    {
+     "section": "9.5",
+     "title": "Volume of Cube, Cuboid and Cylinder"
+    },
+    {
+     "section": "9.6",
+     "title": "Volume and Capacity"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh109.pdf",
+   "pdfFiles": [
+    "hemh109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "hemh110.pdf",
+   "title": "Try These Try These",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.2",
+     "title": "Powers with Negative Exponents"
+    },
+    {
+     "section": "10.3",
+     "title": "Laws of Exponents"
+    },
+    {
+     "section": "10.4",
+     "title": "Use of Exponents to Express Small Numbers"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh110.pdf",
+   "pdfFiles": [
+    "hemh110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "hemh111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.2",
+     "title": "Direct Proportion"
+    },
+    {
+     "section": "11.3",
+     "title": "Inverse Proportion"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh111.pdf",
+   "pdfFiles": [
+    "hemh111.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "hemh112.pdf",
+   "title": "Try These",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "12.2",
+     "title": "What is Factorisation"
+    },
+    {
+     "section": "12.3",
+     "title": "Division of Algebraic Expressions"
+    },
+    {
+     "section": "12.4",
+     "title": "Division of Algebraic Expressions Continued"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh112.pdf",
+   "pdfFiles": [
+    "hemh112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "hemh113.pdf",
+   "title": "Think, Discuss and Write",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "13.2",
+     "title": "Some Applications"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hemh113.pdf",
+   "pdfFiles": [
+    "hemh113.pdf"
+   ]
+  }
+ ]
+}

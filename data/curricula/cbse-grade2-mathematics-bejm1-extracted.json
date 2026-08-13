@@ -1,0 +1,140 @@
+{
+  "curriculum": "CBSE",
+  "grade": "Grade 2",
+  "subject": "Mathematics",
+  "code": "bejm1",
+  "units": [
+    {
+      "unitNo": 1,
+      "title": "A Day at the Beach",
+      "topics": [
+        {
+          "name": "A Day at the Beach",
+          "kind": "Lesson",
+          "page": null,
+          "match": "a day at the beach"
+        }
+      ]
+    },
+    {
+      "unitNo": 2,
+      "title": "Shapes Around us",
+      "topics": [
+        {
+          "name": "Shapes Around us",
+          "kind": "Lesson",
+          "page": null,
+          "match": "shapes around us"
+        }
+      ]
+    },
+    {
+      "unitNo": 3,
+      "title": "Fun with Numbers",
+      "topics": [
+        {
+          "name": "Fun with Numbers",
+          "kind": "Lesson",
+          "page": null,
+          "match": "fun with numbers"
+        }
+      ]
+    },
+    {
+      "unitNo": 4,
+      "title": "Shadow Story (Togalu)",
+      "topics": [
+        {
+          "name": "Shadow Story (Togalu)",
+          "kind": "Lesson",
+          "page": null,
+          "match": "shadow story (togalu)"
+        }
+      ]
+    },
+    {
+      "unitNo": 5,
+      "title": "Playing with Lines",
+      "topics": [
+        {
+          "name": "Playing with Lines",
+          "kind": "Lesson",
+          "page": null,
+          "match": "playing with lines"
+        }
+      ]
+    },
+    {
+      "unitNo": 6,
+      "title": "Decoration for Festival",
+      "topics": [
+        {
+          "name": "Decoration for Festival",
+          "kind": "Lesson",
+          "page": null,
+          "match": "decoration for festival"
+        }
+      ]
+    },
+    {
+      "unitNo": 7,
+      "title": "Rani’s Gift",
+      "topics": [
+        {
+          "name": "Rani’s Gift",
+          "kind": "Lesson",
+          "page": null,
+          "match": "rani’s gift"
+        }
+      ]
+    },
+    {
+      "unitNo": 8,
+      "title": "Grouping and Sharing",
+      "topics": [
+        {
+          "name": "Grouping and Sharing",
+          "kind": "Lesson",
+          "page": null,
+          "match": "grouping and sharing"
+        }
+      ]
+    },
+    {
+      "unitNo": 9,
+      "title": "Which Season is it?",
+      "topics": [
+        {
+          "name": "Which Season is it?",
+          "kind": "Lesson",
+          "page": null,
+          "match": "which season is it?"
+        }
+      ]
+    },
+    {
+      "unitNo": 10,
+      "title": "Fun at the Fair",
+      "topics": [
+        {
+          "name": "Fun at the Fair",
+          "kind": "Lesson",
+          "page": null,
+          "match": "fun at the fair"
+        }
+      ]
+    },
+    {
+      "unitNo": 11,
+      "title": "Data Handling",
+      "topics": [
+        {
+          "name": "Data Handling",
+          "kind": "Lesson",
+          "page": null,
+          "match": "data handling"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "curriculum": "CBSE",
+  "grade": "Grade 2",
+  "subject": "English",
+  "code": "bemr1",
+  "units": [
+    {
+      "unitNo": 1,
+      "title": "My Bicycle",
+      "topics": [
+        {
+          "name": "My Bicycle",
+          "kind": "Poem",
+          "page": null,
+          "match": "my bicycle"
+        }
+      ]
+    },
+    {
+      "unitNo": 2,
+      "title": "Picture Reading",
+      "topics": [
+        {
+          "name": "Picture Reading",
+          "kind": "Story",
+          "page": null,
+          "match": "picture reading"
+        }
+      ]
+    },
+    {
+      "unitNo": 3,
+      "title": "It is Fun",
+      "topics": [
+        {
+          "name": "It is Fun",
+          "kind": "Poem",
+          "page": null,
+          "match": "it is fun"
+        }
+      ]
+    },
+    {
+      "unitNo": 4,
+      "title": "Seeing without Seeing",
+      "topics": [
+        {
+          "name": "Seeing without Seeing",
+          "kind": "Story",
+          "page": null,
+          "match": "seeing without seeing"
+        }
+      ]
+    },
+    {
+      "unitNo": 5,
+      "title": "Come Back Soon",
+      "topics": [
+        {
+          "name": "Come Back Soon",
+          "kind": "Poem",
+          "page": null,
+          "match": "come back soon"
+        }
+      ]
+    },
+    {
+      "unitNo": 6,
+      "title": "Between Home and School",
+      "topics": [
+        {
+          "name": "Between Home and School",
+          "kind": "Lesson",
+          "page": null,
+          "match": "between home and school"
+        }
+      ]
+    },
+    {
+      "unitNo": 7,
+      "title": "This is My Town",
+      "topics": [
+        {
+          "name": "This is My Town",
+          "kind": "Poem",
+          "page": null,
+          "match": "this is my town"
+        }
+      ]
+    },
+    {
+      "unitNo": 8,
+      "title": "A Show of Clouds",
+      "topics": [
+        {
+          "name": "A Show of Clouds",
+          "kind": "Poem",
+          "page": null,
+          "match": "a show of clouds"
+        }
+      ]
+    },
+    {
+      "unitNo": 9,
+      "title": "My Name",
+      "topics": [
+        {
+          "name": "My Name",
+          "kind": "Story",
+          "page": null,
+          "match": "my name"
+        }
+      ]
+    },
+    {
+      "unitNo": 10,
+      "title": "The Crow",
+      "topics": [
+        {
+          "name": "The Crow",
+          "kind": "Poem",
+          "page": null,
+          "match": "the crow"
+        }
+      ]
+    },
+    {
+      "unitNo": 11,
+      "title": "The Smart Monkey",
+      "topics": [
+        {
+          "name": "The Smart Monkey",
+          "kind": "Story",
+          "page": null,
+          "match": "the smart monkey"
+        }
+      ]
+    },
+    {
+      "unitNo": 12,
+      "title": "Little Drops of Water",
+      "topics": [
+        {
+          "name": "Little Drops of Water",
+          "kind": "Poem",
+          "page": null,
+          "match": "little drops of water"
+        }
+      ]
+    },
+    {
+      "unitNo": 13,
+      "title": "We are all Indians",
+      "topics": [
+        {
+          "name": "We are all Indians",
+          "kind": "Lesson",
+          "page": null,
+          "match": "we are all indians"
+        }
+      ]
+    }
+  ]
+}

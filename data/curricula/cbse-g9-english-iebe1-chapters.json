@@ -1,0 +1,91 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 9",
+ "subject": "English",
+ "code": "iebe1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "iebe101.pdf",
+   "title": "Points to Remember",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iebe101.pdf",
+   "pdfFiles": [
+    "iebe101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "iebe102.pdf",
+   "title": "Chart Your Future At Career Mela",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iebe102.pdf",
+   "pdfFiles": [
+    "iebe102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "iebe103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade9/english/iebe103.pdf",
+   "pdfFiles": [
+    "iebe103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "iebe104.pdf",
+   "title": "Caring for the Elderly",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iebe104.pdf",
+   "pdfFiles": [
+    "iebe104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "iebe105.pdf",
+   "title": "Notice",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iebe105.pdf",
+   "pdfFiles": [
+    "iebe105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "iebe106.pdf",
+   "title": "Act I",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iebe106.pdf",
+   "pdfFiles": [
+    "iebe106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "iebe107.pdf",
+   "title": "Asatisfytb Luygbkcull Dmandgjfoo",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iebe107.pdf",
+   "pdfFiles": [
+    "iebe107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "iebe108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade9/english/iebe108.pdf",
+   "pdfFiles": [
+    "iebe108.pdf"
+   ]
+  }
+ ]
+}

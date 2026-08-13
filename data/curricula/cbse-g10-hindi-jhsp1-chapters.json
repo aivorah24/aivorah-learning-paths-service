@@ -1,0 +1,108 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "Hindi",
+ "code": "jhsp1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jhsp101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jhsp102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jhsp103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "jhsp104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "jhsp105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "jhsp106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "jhsp107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "jhsp108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "jhsp109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "jhsp110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "jhsp111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "jhsp112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "jhsp113.pdf",
+   "title": "Chapter 13",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp113.pdf"
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "jhsp114.pdf",
+   "title": "Chapter 14",
+   "needsTitleReview": true,
+   "bookPath": "grade10/hindi/jhsp114.pdf"
+  }
+ ]
+}

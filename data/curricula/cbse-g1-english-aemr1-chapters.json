@@ -1,0 +1,53 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 1",
+ "subject": "English",
+ "code": "aemr1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "aemr101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade1/english/aemr101.pdf",
+   "pdfFiles": [
+    "aemr101.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "aemr103.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "bookPath": "grade1/english/aemr103.pdf",
+   "pdfFiles": [
+    "aemr103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "aemr106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade1/english/aemr106.pdf",
+   "pdfFiles": [
+    "aemr106.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "aemr108.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "bookPath": "grade1/english/aemr108.pdf",
+   "pdfFiles": [
+    "aemr108.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

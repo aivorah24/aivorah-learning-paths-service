@@ -1,0 +1,182 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Sociology",
+ "code": "lesy2",
+ "imageSubject": "Sociology",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lesy201.pdf",
+   "title": "References",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Understanding Colonialism"
+    },
+    {
+     "section": "1.2",
+     "title": "Urbanisation and indUstrialisation"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy201.pdf",
+   "pdfFiles": [
+    "lesy201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lesy202.pdf",
+   "title": "References",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Social reform movementS in the"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy202.pdf",
+   "pdfFiles": [
+    "lesy202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lesy203.pdf",
+   "title": "References",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "The PanchayaTi Raj and The challenges"
+    },
+    {
+     "section": "3.2",
+     "title": "Political Parties, Pressure and interest"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy203.pdf",
+   "pdfFiles": [
+    "lesy203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lesy204.pdf",
+   "title": "References",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "AgrAriAn Structure"
+    },
+    {
+     "section": "4.6",
+     "title": "Globalisation, liberalisation"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy204.pdf",
+   "pdfFiles": [
+    "lesy204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lesy205.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Images of IndustrIal socIety"
+    },
+    {
+     "section": "5.2",
+     "title": "IndustrIalIsatIon In IndIa"
+    },
+    {
+     "section": "5.3",
+     "title": "How People FInd Jobs"
+    },
+    {
+     "section": "5.4",
+     "title": "How Is work carrIed out"
+    },
+    {
+     "section": "5.5",
+     "title": "Working conditions"
+    },
+    {
+     "section": "5.6",
+     "title": "Home-based work"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy205.pdf",
+   "pdfFiles": [
+    "lesy205.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lesy206.pdf",
+   "title": "References",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Are GlobAl InterconnectIons"
+    },
+    {
+     "section": "6.2",
+     "title": "UnderstAndInG GlobAlIsAtIon"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy206.pdf",
+   "pdfFiles": [
+    "lesy206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lesy207.pdf",
+   "title": "References",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "The Beginnings of Modern Mass Media"
+    },
+    {
+     "section": "7.2",
+     "title": "Mass Media in independenT india"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy207.pdf",
+   "pdfFiles": [
+    "lesy207.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "lesy208.pdf",
+   "title": "References",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Features oF a Social Movement"
+    },
+    {
+     "section": "8.6",
+     "title": "Caste Based MoveMents"
+    }
+   ],
+   "bookPath": "grade12/sociology/lesy208.pdf",
+   "pdfFiles": [
+    "lesy208.pdf"
+   ]
+  }
+ ]
+}

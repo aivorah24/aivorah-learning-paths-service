@@ -1,0 +1,74 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "English",
+ "code": "levt1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "levt101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/levt101.pdf",
+   "pdfFiles": [
+    "levt101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "levt102.pdf",
+   "title": "Iii",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/levt102.pdf",
+   "pdfFiles": [
+    "levt102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "levt103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/levt103.pdf",
+   "pdfFiles": [
+    "levt103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "levt104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/levt104.pdf",
+   "pdfFiles": [
+    "levt104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "levt105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/levt105.pdf",
+   "pdfFiles": [
+    "levt105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "levt106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/levt106.pdf",
+   "pdfFiles": [
+    "levt106.pdf"
+   ]
+  }
+ ]
+}

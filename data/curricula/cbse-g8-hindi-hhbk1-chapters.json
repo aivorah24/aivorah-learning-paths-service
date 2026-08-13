@@ -1,0 +1,73 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Hindi",
+ "code": "hhbk1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hhbk101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhbk101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hhbk102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhbk102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hhbk103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhbk103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hhbk104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhbk104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hhbk105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhbk105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hhbk106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhbk106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hhbk107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhbk107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "hhbk108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhbk108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "hhbk109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade8/hindi/hhbk109.pdf"
+  }
+ ]
+}

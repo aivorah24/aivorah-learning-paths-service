@@ -1,0 +1,95 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Social Science",
+ "code": "hees2",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hees201.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees201.pdf",
+   "pdfFiles": [
+    "hees201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hees202.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees202.pdf",
+   "pdfFiles": [
+    "hees202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hees203.pdf",
+   "title": "Bce",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees203.pdf",
+   "pdfFiles": [
+    "hees203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hees204.pdf",
+   "title": "Courts in India",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees204.pdf",
+   "pdfFiles": [
+    "hees204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hees205.pdf",
+   "title": "Equality",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees205.pdf",
+   "pdfFiles": [
+    "hees205.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hees206.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.7",
+     "title": "Pension"
+    }
+   ],
+   "bookPath": "grade8/social_science/hees206.pdf",
+   "pdfFiles": [
+    "hees206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hees207.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees207.pdf",
+   "pdfFiles": [
+    "hees207.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "hees208.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees208.pdf",
+   "pdfFiles": [
+    "hees208.pdf"
+   ]
+  }
+ ]
+}

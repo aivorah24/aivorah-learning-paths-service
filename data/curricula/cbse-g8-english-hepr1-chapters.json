@@ -1,0 +1,59 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "English",
+ "code": "hepr1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hepr101.pdf",
+   "title": "Wit and Wisdom",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hepr101.pdf",
+   "pdfFiles": [
+    "hepr101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hepr102.pdf",
+   "title": "Values and Dispositions",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hepr102.pdf",
+   "pdfFiles": [
+    "hepr102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hepr103.pdf",
+   "title": "Mystery and Magic",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hepr103.pdf",
+   "pdfFiles": [
+    "hepr103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hepr104.pdf",
+   "title": "Environment",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hepr104.pdf",
+   "pdfFiles": [
+    "hepr104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hepr105.pdf",
+   "title": "Science and Curiosity",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/hepr105.pdf",
+   "pdfFiles": [
+    "hepr105.pdf"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,119 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "History",
+ "code": "lehs3",
+ "imageSubject": "History",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lehs301.pdf",
+   "title": "Theme Nine",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "An auction in Burdwan"
+    },
+    {
+     "section": "1.2",
+     "title": "The problem of unpaid revenue"
+    },
+    {
+     "section": "1.3",
+     "title": "Why zamindars defaulted on payments"
+    },
+    {
+     "section": "1.4",
+     "title": "The rise of the jotedars"
+    },
+    {
+     "section": "1.5",
+     "title": "The zamindars resist"
+    },
+    {
+     "section": "1.6",
+     "title": "The Fifth Report"
+    }
+   ],
+   "bookPath": "grade12/history/lehs301.pdf",
+   "pdfFiles": [
+    "lehs301.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lehs302.pdf",
+   "title": "Theme Ten",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Celebrating the saviours"
+    },
+    {
+     "section": "5.2",
+     "title": "English women and the honour of Britain"
+    },
+    {
+     "section": "5.3",
+     "title": "Vengeance and retribution"
+    },
+    {
+     "section": "5.4",
+     "title": "The performance of terror"
+    },
+    {
+     "section": "5.5",
+     "title": "No time for clemency"
+    },
+    {
+     "section": "5.6",
+     "title": "Nationalist imageries"
+    }
+   ],
+   "bookPath": "grade12/history/lehs302.pdf",
+   "pdfFiles": [
+    "lehs302.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lehs303.pdf",
+   "title": "Theme Eleven",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Public voice and private scripts"
+    },
+    {
+     "section": "6.2",
+     "title": "Framing a picture"
+    },
+    {
+     "section": "6.3",
+     "title": "Through police eyes"
+    },
+    {
+     "section": "6.4",
+     "title": "From newspapers"
+    }
+   ],
+   "bookPath": "grade12/history/lehs303.pdf",
+   "pdfFiles": [
+    "lehs303.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lehs304.pdf",
+   "title": "Theme Twelve",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/history/lehs304.pdf",
+   "pdfFiles": [
+    "lehs304.pdf"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "English",
+ "code": "gepr1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "gepr101.pdf",
+   "title": "Learning Together",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/english/gepr101.pdf",
+   "pdfFiles": [
+    "gepr101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "gepr102.pdf",
+   "title": "Wit and Humour",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/english/gepr102.pdf",
+   "pdfFiles": [
+    "gepr102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "gepr103.pdf",
+   "title": "Dreams and Discoveries",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/english/gepr103.pdf",
+   "pdfFiles": [
+    "gepr103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "gepr104.pdf",
+   "title": "Travel and Adventure",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/english/gepr104.pdf",
+   "pdfFiles": [
+    "gepr104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "gepr105.pdf",
+   "title": "Bravehearts",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/english/gepr105.pdf",
+   "pdfFiles": [
+    "gepr105.pdf"
+   ]
+  }
+ ]
+}

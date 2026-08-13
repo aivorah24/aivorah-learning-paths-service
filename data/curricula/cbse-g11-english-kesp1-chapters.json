@@ -1,0 +1,49 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "English",
+ "code": "kesp1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kesp101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/english/kesp101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kesp102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/english/kesp102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kesp103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/english/kesp103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kesp104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/english/kesp104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kesp105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/english/kesp105.pdf"
+  }
+ ]
+}

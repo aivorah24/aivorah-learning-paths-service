@@ -1,0 +1,118 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 5",
+ "subject": "The World Around Us",
+ "code": "eeev1",
+ "imageSubject": "EVS",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "eeev101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeev101.pdf",
+   "pdfFiles": [
+    "eeev101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "eeev102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeev102.pdf",
+   "pdfFiles": [
+    "eeev102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "eeev103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeev103.pdf",
+   "pdfFiles": [
+    "eeev103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "eeev104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeev104.pdf",
+   "pdfFiles": [
+    "eeev104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "eeev105.pdf",
+   "title": "Specimenspecimen",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/evs/eeev105.pdf",
+   "pdfFiles": [
+    "eeev105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "eeev106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeev106.pdf",
+   "pdfFiles": [
+    "eeev106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "eeev107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeev107.pdf",
+   "pdfFiles": [
+    "eeev107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "eeev108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeev108.pdf",
+   "pdfFiles": [
+    "eeev108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "eeev109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeev109.pdf",
+   "pdfFiles": [
+    "eeev109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "eeev110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeev110.pdf",
+   "pdfFiles": [
+    "eeev110.pdf"
+   ]
+  }
+ ]
+}

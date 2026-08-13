@@ -1,0 +1,150 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 6",
+ "subject": "Social Science",
+ "code": "fees1",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "fees101.pdf",
+   "title": "Theme E",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees101.pdf",
+   "pdfFiles": [
+    "fees101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "fees102.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees102.pdf",
+   "pdfFiles": [
+    "fees102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "fees103.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees103.pdf",
+   "pdfFiles": [
+    "fees103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "fees104.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees104.pdf",
+   "pdfFiles": [
+    "fees104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "fees105.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees105.pdf",
+   "pdfFiles": [
+    "fees105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "fees106.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees106.pdf",
+   "pdfFiles": [
+    "fees106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "fees107.pdf",
+   "title": "Unesco",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees107.pdf",
+   "pdfFiles": [
+    "fees107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "fees108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade6/social_science/fees108.pdf",
+   "pdfFiles": [
+    "fees108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "fees109.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees109.pdf",
+   "pdfFiles": [
+    "fees109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "fees110.pdf",
+   "title": "All India State Level",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees110.pdf",
+   "pdfFiles": [
+    "fees110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "fees111.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees111.pdf",
+   "pdfFiles": [
+    "fees111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "fees112.pdf",
+   "title": "Property Taxwater Charges Solid Waste Management Business,",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees112.pdf",
+   "pdfFiles": [
+    "fees112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "fees113.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees113.pdf",
+   "pdfFiles": [
+    "fees113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "fees114.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade6/social_science/fees114.pdf",
+   "pdfFiles": [
+    "fees114.pdf"
+   ]
+  }
+ ]
+}

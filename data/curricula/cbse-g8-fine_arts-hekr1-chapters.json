@@ -1,0 +1,196 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Arts",
+ "code": "hekr1",
+ "imageSubject": "Fine_Arts",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hekr101.pdf",
+   "title": "Note to the Teachers",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr101.pdf",
+   "pdfFiles": [
+    "hekr101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hekr102.pdf",
+   "title": "Scripts for Stage",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr102.pdf",
+   "pdfFiles": [
+    "hekr102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hekr103.pdf",
+   "title": "Theatre-Making",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr103.pdf",
+   "pdfFiles": [
+    "hekr103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hekr104.pdf",
+   "title": "Do You",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr104.pdf",
+   "pdfFiles": [
+    "hekr104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hekr105.pdf",
+   "title": "Note to the Teachers",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr105.pdf",
+   "pdfFiles": [
+    "hekr105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hekr106.pdf",
+   "title": "The Science of Sound",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr106.pdf",
+   "pdfFiles": [
+    "hekr106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hekr107.pdf",
+   "title": "Carnatic Music",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr107.pdf",
+   "pdfFiles": [
+    "hekr107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "hekr108.pdf",
+   "title": "Inspiration and Imagination Inspiring Artists",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr108.pdf",
+   "pdfFiles": [
+    "hekr108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "hekr109.pdf",
+   "title": "Traditional Music in Popular Culture",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr109.pdf",
+   "pdfFiles": [
+    "hekr109.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "hekr110.pdf",
+   "title": "Inner Dynamics of Dance",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr110.pdf",
+   "pdfFiles": [
+    "hekr110.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "Recognises the importance of breath control in both stillness"
+    },
+    {
+     "section": "11.2",
+     "title": "Displays enthusiasm in choreographing dance compositions that"
+    }
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "hekr116.pdf",
+   "title": "Still Life in Colour",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr116.pdf",
+   "pdfFiles": [
+    "hekr116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "hekr117.pdf",
+   "title": "People in Places",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr117.pdf",
+   "pdfFiles": [
+    "hekr117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "hekr118.pdf",
+   "title": "Chapter 18",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr118.pdf",
+   "pdfFiles": [
+    "hekr118.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "hekr119.pdf",
+   "title": "Campaign for Art Awareness",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr119.pdf",
+   "pdfFiles": [
+    "hekr119.pdf"
+   ]
+  },
+  {
+   "chapter": 22,
+   "pdfFile": "hekr112.pdf",
+   "title": "Dance for Well-Being",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr112.pdf",
+   "pdfFiles": [
+    "hekr112.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "22.2",
+     "title": "Makes a conscious effort to recite hasta shlokas with correspo"
+    }
+   ]
+  },
+  {
+   "chapter": 33,
+   "pdfFile": "hekr114.pdf",
+   "title": "A Presentation of Dance and Choreography",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/fine_arts/hekr114.pdf",
+   "pdfFiles": [
+    "hekr114.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "33.1",
+     "title": "Actively participates in all stages of a dance production, inc"
+    },
+    {
+     "section": "33.2",
+     "title": "Demonstrates an understanding of the mythological and cultural"
+    }
+   ]
+  }
+ ]
+}

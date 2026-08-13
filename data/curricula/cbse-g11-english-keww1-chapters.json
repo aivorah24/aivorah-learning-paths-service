@@ -1,0 +1,215 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "English",
+ "code": "keww1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "keww101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww101.pdf",
+   "pdfFiles": [
+    "keww101.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "keww102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww102.pdf",
+   "pdfFiles": [
+    "keww102.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "keww103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww103.pdf",
+   "pdfFiles": [
+    "keww103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "keww104.pdf",
+   "title": "Howard Garrideb",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww104.pdf",
+   "pdfFiles": [
+    "keww104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "keww105.pdf",
+   "title": "Bout the Author",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww105.pdf",
+   "pdfFiles": [
+    "keww105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "keww106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww106.pdf",
+   "pdfFiles": [
+    "keww106.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "keww107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww107.pdf",
+   "pdfFiles": [
+    "keww107.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "keww108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww108.pdf",
+   "pdfFiles": [
+    "keww108.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "keww111.pdf",
+   "title": "Poetry",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww111.pdf",
+   "pdfFiles": [
+    "keww111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "keww112.pdf",
+   "title": "About the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww112.pdf",
+   "pdfFiles": [
+    "keww112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "keww113.pdf",
+   "title": "About the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww113.pdf",
+   "pdfFiles": [
+    "keww113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "keww114.pdf",
+   "title": "Bout the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww114.pdf",
+   "pdfFiles": [
+    "keww114.pdf"
+   ]
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "keww115.pdf",
+   "title": "About the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww115.pdf",
+   "pdfFiles": [
+    "keww115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "keww116.pdf",
+   "title": "About the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww116.pdf",
+   "pdfFiles": [
+    "keww116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "keww117.pdf",
+   "title": "About the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww117.pdf",
+   "pdfFiles": [
+    "keww117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "keww118.pdf",
+   "title": "Bout the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww118.pdf",
+   "pdfFiles": [
+    "keww118.pdf"
+   ]
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "keww119.pdf",
+   "title": "Bout the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww119.pdf",
+   "pdfFiles": [
+    "keww119.pdf"
+   ]
+  },
+  {
+   "chapter": 20,
+   "pdfFile": "keww120.pdf",
+   "title": "Bout the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww120.pdf",
+   "pdfFiles": [
+    "keww120.pdf"
+   ]
+  },
+  {
+   "chapter": 21,
+   "pdfFile": "keww121.pdf",
+   "title": "Bout the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww121.pdf",
+   "pdfFiles": [
+    "keww121.pdf"
+   ]
+  },
+  {
+   "chapter": 22,
+   "pdfFile": "keww122.pdf",
+   "title": "Bout the Poet",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/english/keww122.pdf",
+   "pdfFiles": [
+    "keww122.pdf"
+   ]
+  }
+ ]
+}

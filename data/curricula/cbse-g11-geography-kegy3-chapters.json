@@ -1,0 +1,79 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Geography",
+ "code": "kegy3",
+ "imageSubject": "Geography",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kegy301.pdf",
+   "title": "Ssentials of Map Making",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy301.pdf",
+   "pdfFiles": [
+    "kegy301.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kegy302.pdf",
+   "title": "Methods of Scale",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy302.pdf",
+   "pdfFiles": [
+    "kegy302.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kegy303.pdf",
+   "title": "Parallels of Latitudes",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy303.pdf",
+   "pdfFiles": [
+    "kegy303.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kegy304.pdf",
+   "title": "Map Projection",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy304.pdf",
+   "pdfFiles": [
+    "kegy304.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kegy305.pdf",
+   "title": "Methods of Relief Representation",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/geography/kegy305.pdf",
+   "pdfFiles": [
+    "kegy305.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kegy306.pdf",
+   "title": "Natural Sensorobject Surface",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.7",
+     "title": "Whiskbroom Scanners"
+    },
+    {
+     "section": "6.8",
+     "title": "Pushbroom Scanners"
+    }
+   ],
+   "bookPath": "grade11/geography/kegy306.pdf",
+   "pdfFiles": [
+    "kegy306.pdf"
+   ]
+  }
+ ]
+}

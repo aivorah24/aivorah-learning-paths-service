@@ -1,0 +1,130 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "Social Science",
+ "code": "gees1",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "gees101.pdf",
+   "title": "Geographical Diversity of India",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade7/social_science/gees101.pdf",
+   "pdfFiles": [
+    "gees101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "gees102.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees102.pdf",
+   "pdfFiles": [
+    "gees102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "gees103.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees103.pdf",
+   "pdfFiles": [
+    "gees103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "gees104.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees104.pdf",
+   "pdfFiles": [
+    "gees104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "gees105.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees105.pdf",
+   "pdfFiles": [
+    "gees105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "gees106.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees106.pdf",
+   "pdfFiles": [
+    "gees106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "gees107.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees107.pdf",
+   "pdfFiles": [
+    "gees107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "gees108.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees108.pdf",
+   "pdfFiles": [
+    "gees108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "gees109.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees109.pdf",
+   "pdfFiles": [
+    "gees109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "gees110.pdf",
+   "title": "Preamble of the Indian Constitution We, the",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees110.pdf",
+   "pdfFiles": [
+    "gees110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "gees111.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees111.pdf",
+   "pdfFiles": [
+    "gees111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "gees112.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees112.pdf",
+   "pdfFiles": [
+    "gees112.pdf"
+   ]
+  }
+ ]
+}

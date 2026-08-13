@@ -1,0 +1,60 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "Social Science",
+ "code": "jess2",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jess201.pdf",
+   "title": "Notes for Teachers Notes for the Teacher",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess201.pdf",
+   "pdfFiles": [
+    "jess201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jess202.pdf",
+   "title": "Notes for the Teacher",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess202.pdf",
+   "pdfFiles": [
+    "jess202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jess203.pdf",
+   "title": "Notes for the Teacher",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess203.pdf",
+   "pdfFiles": [
+    "jess203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "jess204.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess204.pdf",
+   "pdfFiles": [
+    "jess204.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "jess205.pdf",
+   "title": "Notes for the Teacher",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess205.pdf",
+   "pdfFiles": [
+    "jess205.pdf"
+   ]
+  }
+ ]
+}

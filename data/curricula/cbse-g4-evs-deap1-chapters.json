@@ -1,0 +1,305 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 4",
+ "subject": "The World Around Us",
+ "code": "deap1",
+ "imageSubject": "EVS",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "deap101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap101.pdf",
+   "pdfFiles": [
+    "deap101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "deap102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap102.pdf",
+   "pdfFiles": [
+    "deap102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "deap103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap103.pdf",
+   "pdfFiles": [
+    "deap103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "deap104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap104.pdf",
+   "pdfFiles": [
+    "deap104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "deap105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap105.pdf",
+   "pdfFiles": [
+    "deap105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "deap106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap106.pdf",
+   "pdfFiles": [
+    "deap106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "deap107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap107.pdf",
+   "pdfFiles": [
+    "deap107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "deap108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap108.pdf",
+   "pdfFiles": [
+    "deap108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "deap109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap109.pdf",
+   "pdfFiles": [
+    "deap109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "deap110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap110.pdf",
+   "pdfFiles": [
+    "deap110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "deap111.pdf",
+   "title": "Do Not Pluck Flowers",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/evs/deap111.pdf",
+   "pdfFiles": [
+    "deap111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "deap112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap112.pdf",
+   "pdfFiles": [
+    "deap112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "deap113.pdf",
+   "title": "Chapter 13",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap113.pdf",
+   "pdfFiles": [
+    "deap113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "deap114.pdf",
+   "title": "Chapter 14",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap114.pdf",
+   "pdfFiles": [
+    "deap114.pdf"
+   ]
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "deap115.pdf",
+   "title": "Chapter 15",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap115.pdf",
+   "pdfFiles": [
+    "deap115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "deap116.pdf",
+   "title": "Chapter 16",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap116.pdf",
+   "pdfFiles": [
+    "deap116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "deap117.pdf",
+   "title": "Chapter 17",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap117.pdf",
+   "pdfFiles": [
+    "deap117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "deap118.pdf",
+   "title": "Chapter 18",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap118.pdf",
+   "pdfFiles": [
+    "deap118.pdf"
+   ]
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "deap119.pdf",
+   "title": "Chapter 19",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap119.pdf",
+   "pdfFiles": [
+    "deap119.pdf"
+   ]
+  },
+  {
+   "chapter": 20,
+   "pdfFile": "deap120.pdf",
+   "title": "Chapter 20",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap120.pdf",
+   "pdfFiles": [
+    "deap120.pdf"
+   ]
+  },
+  {
+   "chapter": 21,
+   "pdfFile": "deap121.pdf",
+   "title": "Chapter 21",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap121.pdf",
+   "pdfFiles": [
+    "deap121.pdf"
+   ]
+  },
+  {
+   "chapter": 22,
+   "pdfFile": "deap122.pdf",
+   "title": "Chapter 22",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap122.pdf",
+   "pdfFiles": [
+    "deap122.pdf"
+   ]
+  },
+  {
+   "chapter": 23,
+   "pdfFile": "deap123.pdf",
+   "title": "Chapter 23",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap123.pdf",
+   "pdfFiles": [
+    "deap123.pdf"
+   ]
+  },
+  {
+   "chapter": 24,
+   "pdfFile": "deap124.pdf",
+   "title": "Chapter 24",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap124.pdf",
+   "pdfFiles": [
+    "deap124.pdf"
+   ]
+  },
+  {
+   "chapter": 25,
+   "pdfFile": "deap125.pdf",
+   "title": "Chapter 25",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap125.pdf",
+   "pdfFiles": [
+    "deap125.pdf"
+   ]
+  },
+  {
+   "chapter": 26,
+   "pdfFile": "deap126.pdf",
+   "title": "Chapter 26",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap126.pdf",
+   "pdfFiles": [
+    "deap126.pdf"
+   ]
+  },
+  {
+   "chapter": 27,
+   "pdfFile": "deap127.pdf",
+   "title": "Chapter 27",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/evs/deap127.pdf",
+   "pdfFiles": [
+    "deap127.pdf"
+   ]
+  }
+ ]
+}

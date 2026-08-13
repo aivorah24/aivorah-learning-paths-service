@@ -1,0 +1,173 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Computer Science",
+ "code": "kecs1",
+ "imageSubject": "Computer Science",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kecs101.pdf",
+   "title": "Cpu",
+   "bookPath": "grade11/computer_science/kecs101.pdf",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "IntroductIon to computer SyStem"
+    },
+    {
+     "section": "1.7",
+     "title": "Software"
+    }
+   ],
+   "pdfFiles": [
+    "kecs101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kecs102.pdf",
+   "title": "Data",
+   "bookPath": "grade11/computer_science/kecs102.pdf",
+   "subtopics": [
+    {
+     "section": "2.3",
+     "title": "Conversion between number systems"
+    }
+   ],
+   "pdfFiles": [
+    "kecs102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kecs103.pdf",
+   "title": "Big Data",
+   "bookPath": "grade11/computer_science/kecs103.pdf",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "ArtIfIcIAl IntellIgence (AI)"
+    },
+    {
+     "section": "3.3",
+     "title": "BIg dAtA"
+    },
+    {
+     "section": "3.4",
+     "title": "Internet of thIngs (Iot)"
+    },
+    {
+     "section": "3.7",
+     "title": "BlockchAIns"
+    }
+   ],
+   "pdfFiles": [
+    "kecs103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kecs104.pdf",
+   "title": "Input",
+   "bookPath": "grade11/computer_science/kecs104.pdf",
+   "subtopics": [
+    {
+     "section": "4.2",
+     "title": "StepS for problem SolvIng"
+    },
+    {
+     "section": "4.3",
+     "title": "Algorithm"
+    },
+    {
+     "section": "4.6",
+     "title": "Verifying Algorithms"
+    }
+   ],
+   "pdfFiles": [
+    "kecs104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kecs105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade11/computer_science/kecs105.pdf",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "IntroductIon to Python"
+    },
+    {
+     "section": "5.2",
+     "title": "Python Keywords"
+    },
+    {
+     "section": "5.3",
+     "title": "IdentIfIers"
+    },
+    {
+     "section": "5.4",
+     "title": "VarIables"
+    },
+    {
+     "section": "5.7",
+     "title": "Data types"
+    },
+    {
+     "section": "5.11",
+     "title": "InPut and outPut"
+    }
+   ],
+   "pdfFiles": [
+    "kecs105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kecs106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade11/computer_science/kecs106.pdf",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Write a menu driven program that has options to"
+    },
+    {
+     "section": "6.2",
+     "title": "SelectIon"
+    },
+    {
+     "section": "6.3",
+     "title": "IndentatIon"
+    },
+    {
+     "section": "6.5",
+     "title": "Break and contInue Statement"
+    }
+   ],
+   "pdfFiles": [
+    "kecs106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kecs107.pdf",
+   "title": "Speed Thrills But Kills",
+   "bookPath": "grade11/computer_science/kecs107.pdf",
+   "subtopics": [
+    {
+     "section": "7.2",
+     "title": "FunctIons"
+    }
+   ],
+   "pdfFiles": [
+    "kecs107.pdf"
+   ]
+  }
+ ]
+}

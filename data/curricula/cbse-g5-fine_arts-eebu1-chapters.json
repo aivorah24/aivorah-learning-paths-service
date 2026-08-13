@@ -1,0 +1,199 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 5",
+ "subject": "Arts",
+ "code": "eebu1",
+ "imageSubject": "Fine_Arts",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "eebu101.pdf",
+   "title": "Objects On the Move",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu101.pdf",
+   "pdfFiles": [
+    "eebu101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "eebu102.pdf",
+   "title": "Peeping Out of the Window",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu102.pdf",
+   "pdfFiles": [
+    "eebu102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "eebu103.pdf",
+   "title": "Picturing Stories",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu103.pdf",
+   "pdfFiles": [
+    "eebu103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "eebu104.pdf",
+   "title": "Imaginary Beings",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu104.pdf",
+   "pdfFiles": [
+    "eebu104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "eebu105.pdf",
+   "title": "Spreading the Message",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu105.pdf",
+   "pdfFiles": [
+    "eebu105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "eebu106.pdf",
+   "title": "Assessment",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu106.pdf",
+   "pdfFiles": [
+    "eebu106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "eebu107.pdf",
+   "title": "Stitch It for a Story",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu107.pdf",
+   "pdfFiles": [
+    "eebu107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "eebu108.pdf",
+   "title": "Time, Team, Technique",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu108.pdf",
+   "pdfFiles": [
+    "eebu108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "eebu109.pdf",
+   "title": "View and Review",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu109.pdf",
+   "pdfFiles": [
+    "eebu109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "eebu110.pdf",
+   "title": "Sing and Play",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu110.pdf",
+   "pdfFiles": [
+    "eebu110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "eebu111.pdf",
+   "title": "Music Around Me",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu111.pdf",
+   "pdfFiles": [
+    "eebu111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "eebu112.pdf",
+   "title": "Sounds and Instruments",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu112.pdf",
+   "pdfFiles": [
+    "eebu112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "eebu113.pdf",
+   "title": "Building Blocks",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu113.pdf",
+   "pdfFiles": [
+    "eebu113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "eebu114.pdf",
+   "title": "Ideas and Inspiration",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu114.pdf",
+   "pdfFiles": [
+    "eebu114.pdf"
+   ]
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "eebu115.pdf",
+   "title": "My Everyday Activities in Modes of Dance",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu115.pdf",
+   "pdfFiles": [
+    "eebu115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "eebu116.pdf",
+   "title": "Dancing with Rhythm and Tempos",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu116.pdf",
+   "pdfFiles": [
+    "eebu116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "eebu117.pdf",
+   "title": "Dances of My Nation",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu117.pdf",
+   "pdfFiles": [
+    "eebu117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "eebu118.pdf",
+   "title": "My Dance Expresses Emotions and Narrates Stories",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu118.pdf",
+   "pdfFiles": [
+    "eebu118.pdf"
+   ]
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "eebu119.pdf",
+   "title": "My Dance and Your Dance",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/fine_arts/eebu119.pdf",
+   "pdfFiles": [
+    "eebu119.pdf"
+   ]
+  }
+ ]
+}

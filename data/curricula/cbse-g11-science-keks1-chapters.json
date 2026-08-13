@@ -1,0 +1,107 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Science",
+ "code": "keks1",
+ "imageSubject": "Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "keks101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/science/keks101.pdf",
+   "pdfFiles": [
+    "keks101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "keks102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/science/keks102.pdf",
+   "pdfFiles": [
+    "keks102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "keks103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/science/keks103.pdf",
+   "pdfFiles": [
+    "keks103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "keks104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/science/keks104.pdf",
+   "pdfFiles": [
+    "keks104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "keks105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/science/keks105.pdf",
+   "pdfFiles": [
+    "keks105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "keks106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/science/keks106.pdf",
+   "pdfFiles": [
+    "keks106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "keks107.pdf",
+   "title": "Ayush",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/science/keks107.pdf",
+   "pdfFiles": [
+    "keks107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "keks108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/science/keks108.pdf",
+   "pdfFiles": [
+    "keks108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "keks109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/science/keks109.pdf",
+   "pdfFiles": [
+    "keks109.pdf"
+   ]
+  }
+ ]
+}

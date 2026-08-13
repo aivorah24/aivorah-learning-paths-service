@@ -1,0 +1,59 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Sociology",
+ "code": "kesy1",
+ "imageSubject": "Sociology",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kesy101.pdf",
+   "title": "Sociology and Society",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/sociology/kesy101.pdf",
+   "pdfFiles": [
+    "kesy101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kesy102.pdf",
+   "title": "Introducing Sociology",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/sociology/kesy102.pdf",
+   "pdfFiles": [
+    "kesy102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kesy103.pdf",
+   "title": "Introducing Sociology",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/sociology/kesy103.pdf",
+   "pdfFiles": [
+    "kesy103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kesy104.pdf",
+   "title": "Culture and Socialisation",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/sociology/kesy104.pdf",
+   "pdfFiles": [
+    "kesy104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kesy105.pdf",
+   "title": "Introducing Sociology",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/sociology/kesy105.pdf",
+   "pdfFiles": [
+    "kesy105.pdf"
+   ]
+  }
+ ]
+}

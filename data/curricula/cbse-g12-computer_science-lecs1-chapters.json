@@ -1,0 +1,311 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Computer Science",
+ "code": "lecs1",
+ "imageSubject": "Computer Science",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lecs101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade12/computer_science/lecs101.pdf",
+   "subtopics": [
+    {
+     "section": "1.2",
+     "title": "Syntax ErrorS"
+    },
+    {
+     "section": "1.3",
+     "title": "ExcEptIonS"
+    },
+    {
+     "section": "1.4",
+     "title": "BuIlt-In ExcEptIonS"
+    },
+    {
+     "section": "1.6",
+     "title": "HandlIng ExcEptIonS"
+    },
+    {
+     "section": "1.7",
+     "title": "FInally clauSE"
+    }
+   ],
+   "pdfFiles": [
+    "lecs101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lecs102.pdf",
+   "title": "File Handling in Python",
+   "bookPath": "grade12/computer_science/lecs102.pdf",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "IntroductIon to FIles"
+    },
+    {
+     "section": "2.4",
+     "title": "WrItIng to a text FIle"
+    },
+    {
+     "section": "2.7",
+     "title": "CREATING AND TRAVERSING A TEXT FILE"
+    }
+   ],
+   "pdfFiles": [
+    "lecs102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lecs103.pdf",
+   "title": "Chapter 3",
+   "bookPath": "grade12/computer_science/lecs103.pdf",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "Stack"
+    },
+    {
+     "section": "3.4",
+     "title": "ImplementatIon of Stack In python"
+    },
+    {
+     "section": "3.5",
+     "title": "NotatioNs for arithmetic expressioNs"
+    }
+   ],
+   "pdfFiles": [
+    "lecs103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lecs104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade12/computer_science/lecs104.pdf",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "IntroductIon to Queue"
+    },
+    {
+     "section": "4.3",
+     "title": "ImplementatIon of Queue usIng python"
+    },
+    {
+     "section": "4.4",
+     "title": "IntroductIon to deQue"
+    },
+    {
+     "section": "4.5",
+     "title": "ImplementatIon of deQue usIng python"
+    }
+   ],
+   "pdfFiles": [
+    "lecs104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lecs105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade12/computer_science/lecs105.pdf",
+   "subtopics": [
+    {
+     "section": "5.2",
+     "title": "BuBBle Sort"
+    },
+    {
+     "section": "5.3",
+     "title": "Selection Sort"
+    },
+    {
+     "section": "5.4",
+     "title": "InsertIon sort"
+    },
+    {
+     "section": "5.5",
+     "title": "Time ComplexiTy of AlgoriThms"
+    }
+   ],
+   "pdfFiles": [
+    "lecs105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lecs106.pdf",
+   "title": "Stop Else",
+   "bookPath": "grade12/computer_science/lecs106.pdf",
+   "subtopics": [
+    {
+     "section": "6.2",
+     "title": "LInear Search"
+    },
+    {
+     "section": "6.3",
+     "title": "BInary Search"
+    },
+    {
+     "section": "6.4",
+     "title": "Search By haShIng"
+    }
+   ],
+   "pdfFiles": [
+    "lecs106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lecs107.pdf",
+   "title": "Raw Data",
+   "bookPath": "grade12/computer_science/lecs107.pdf",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "IntroductIon to data"
+    }
+   ],
+   "pdfFiles": [
+    "lecs107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "lecs108.pdf",
+   "title": "Studentguardianattendance",
+   "bookPath": "grade12/computer_science/lecs108.pdf",
+   "subtopics": [
+    {
+     "section": "8.2",
+     "title": "FIle SyStem"
+    },
+    {
+     "section": "8.5",
+     "title": "KeyS In a relatIonal databaSe"
+    }
+   ],
+   "pdfFiles": [
+    "lecs108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "lecs109.pdf",
+   "title": "Int",
+   "bookPath": "grade12/computer_science/lecs109.pdf",
+   "subtopics": [
+    {
+     "section": "9.2",
+     "title": "Structured Query Language (SQL)"
+    },
+    {
+     "section": "9.4",
+     "title": "SQL for data defInItIon"
+    },
+    {
+     "section": "9.5",
+     "title": "SQL for data ManIpuLatIon"
+    },
+    {
+     "section": "9.6",
+     "title": "SQL for data Query"
+    }
+   ],
+   "pdfFiles": [
+    "lecs109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "lecs110.pdf",
+   "title": "Sri",
+   "bookPath": "grade12/computer_science/lecs110.pdf",
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "IntroductIon to computer networks"
+    },
+    {
+     "section": "10.6",
+     "title": "IdentIfyIng nodes In a networked"
+    }
+   ],
+   "pdfFiles": [
+    "lecs110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "lecs111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade12/computer_science/lecs111.pdf",
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "ConCept of CommuniCation"
+    },
+    {
+     "section": "11.2",
+     "title": "Components of Data CommuniCation"
+    }
+   ],
+   "pdfFiles": [
+    "lecs111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "lecs112.pdf",
+   "title": "Lan",
+   "bookPath": "grade12/computer_science/lecs112.pdf",
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "ThreaTs and PrevenTion"
+    },
+    {
+     "section": "12.2",
+     "title": "Malware"
+    },
+    {
+     "section": "12.6",
+     "title": "Firewall"
+    },
+    {
+     "section": "12.7",
+     "title": "Cookies"
+    }
+   ],
+   "pdfFiles": [
+    "lecs112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "lecs113.pdf",
+   "title": "Chapter 13",
+   "needsTitleReview": true,
+   "bookPath": "grade12/computer_science/lecs113.pdf",
+   "subtopics": [
+    {
+     "section": "13.2",
+     "title": "ApproAches for solvIng projects"
+    }
+   ],
+   "pdfFiles": [
+    "lecs113.pdf"
+   ]
+  }
+ ]
+}

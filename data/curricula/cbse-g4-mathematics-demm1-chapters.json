@@ -1,0 +1,156 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 4",
+ "subject": "Mathematics",
+ "code": "demm1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "demm101.pdf",
+   "title": ": Shapes Around Us",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade4/mathematics/demm101.pdf",
+   "pdfFiles": [
+    "demm101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "demm102.pdf",
+   "title": "Start",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/demm102.pdf",
+   "pdfFiles": [
+    "demm102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "demm103.pdf",
+   "title": "Two Ways",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/demm103.pdf",
+   "pdfFiles": [
+    "demm103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "demm104.pdf",
+   "title": "Comparing Numbers",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/demm104.pdf",
+   "pdfFiles": [
+    "demm104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "demm105.pdf",
+   "title": "Parts and Wholes",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/demm105.pdf",
+   "pdfFiles": [
+    "demm105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "demm106.pdf",
+   "title": ": Measuring Length",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade4/mathematics/demm106.pdf",
+   "pdfFiles": [
+    "demm106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "demm107.pdf",
+   "title": "Mawlynnongmawlynnong",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/demm107.pdf",
+   "pdfFiles": [
+    "demm107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "demm108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/demm108.pdf",
+   "pdfFiles": [
+    "demm108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "demm109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/demm109.pdf",
+   "pdfFiles": [
+    "demm109.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "demm110.pdf",
+   "title": "Tho",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/demm110.pdf",
+   "pdfFiles": [
+    "demm110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "demm111.pdf",
+   "title": "Cat",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/demm111.pdf",
+   "pdfFiles": [
+    "demm111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "demm112.pdf",
+   "title": ": Ticking Clocks and Turning Calendar",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade4/mathematics/demm112.pdf",
+   "pdfFiles": [
+    "demm112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "demm113.pdf",
+   "title": ": The Transport Museum",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade4/mathematics/demm113.pdf",
+   "pdfFiles": [
+    "demm113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "demm114.pdf",
+   "title": "Chapter 14",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/demm114.pdf",
+   "pdfFiles": [
+    "demm114.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

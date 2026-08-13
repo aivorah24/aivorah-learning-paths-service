@@ -1,0 +1,164 @@
+{
+  "curriculum": "CBSE",
+  "grade": "Grade 1",
+  "subject": "Mathematics",
+  "code": "aejm1",
+  "units": [
+    {
+      "unitNo": 1,
+      "title": "Finding the Furry Cat!",
+      "topics": [
+        {
+          "name": "Finding the Furry Cat!",
+          "kind": "Lesson",
+          "page": null,
+          "match": "finding the furry cat!"
+        }
+      ]
+    },
+    {
+      "unitNo": 2,
+      "title": "What is Long? What is Round?",
+      "topics": [
+        {
+          "name": "What is Long? What is Round?",
+          "kind": "Lesson",
+          "page": null,
+          "match": "what is long? what is round?"
+        }
+      ]
+    },
+    {
+      "unitNo": 3,
+      "title": "Mango Treat",
+      "topics": [
+        {
+          "name": "Mango Treat",
+          "kind": "Lesson",
+          "page": null,
+          "match": "mango treat"
+        }
+      ]
+    },
+    {
+      "unitNo": 4,
+      "title": "Dotty Bug and her Designs",
+      "topics": [
+        {
+          "name": "Dotty Bug and her Designs",
+          "kind": "Lesson",
+          "page": null,
+          "match": "dotty bug and her designs"
+        }
+      ]
+    },
+    {
+      "unitNo": 5,
+      "title": "How Many?",
+      "topics": [
+        {
+          "name": "How Many?",
+          "kind": "Lesson",
+          "page": null,
+          "match": "how many?"
+        }
+      ]
+    },
+    {
+      "unitNo": 6,
+      "title": "Vegetable Farm",
+      "topics": [
+        {
+          "name": "Vegetable Farm",
+          "kind": "Lesson",
+          "page": null,
+          "match": "vegetable farm"
+        }
+      ]
+    },
+    {
+      "unitNo": 7,
+      "title": "Lina’s Family Get Together",
+      "topics": [
+        {
+          "name": "Lina’s Family Get Together",
+          "kind": "Lesson",
+          "page": null,
+          "match": "lina’s family get together"
+        }
+      ]
+    },
+    {
+      "unitNo": 8,
+      "title": "Fun with Numbers",
+      "topics": [
+        {
+          "name": "Fun with Numbers",
+          "kind": "Lesson",
+          "page": null,
+          "match": "fun with numbers"
+        }
+      ]
+    },
+    {
+      "unitNo": 9,
+      "title": "Utsav",
+      "topics": [
+        {
+          "name": "Utsav",
+          "kind": "Lesson",
+          "page": null,
+          "match": "utsav"
+        }
+      ]
+    },
+    {
+      "unitNo": 10,
+      "title": "How do I Spend my Day?",
+      "topics": [
+        {
+          "name": "How do I Spend my Day?",
+          "kind": "Lesson",
+          "page": null,
+          "match": "how do i spend my day?"
+        }
+      ]
+    },
+    {
+      "unitNo": 11,
+      "title": "A Visit to an Amusement Park",
+      "topics": [
+        {
+          "name": "A Visit to an Amusement Park",
+          "kind": "Lesson",
+          "page": null,
+          "match": "a visit to an amusement park"
+        }
+      ]
+    },
+    {
+      "unitNo": 12,
+      "title": "How Much Can We Spend ?",
+      "topics": [
+        {
+          "name": "How Much Can We Spend ?",
+          "kind": "Lesson",
+          "page": null,
+          "match": "how much can we spend ?"
+        }
+      ]
+    },
+    {
+      "unitNo": 13,
+      "title": "So Many Toys",
+      "topics": [
+        {
+          "name": "So Many Toys",
+          "kind": "Lesson",
+          "page": null,
+          "match": "so many toys"
+        }
+      ]
+    }
+  ]
+}

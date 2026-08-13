@@ -1,0 +1,80 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "Social Science",
+ "code": "jess1",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jess101.pdf",
+   "title": "Development of Resources",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess101.pdf",
+   "pdfFiles": [
+    "jess101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jess102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/social_science/jess102.pdf",
+   "pdfFiles": [
+    "jess102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jess103.pdf",
+   "title": "Water Scarcity and the Need for Water Conservation and Management",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess103.pdf",
+   "pdfFiles": [
+    "jess103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "jess104.pdf",
+   "title": "Types of Farming",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess104.pdf",
+   "pdfFiles": [
+    "jess104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "jess105.pdf",
+   "title": "Mode of Occurrence of Minerals",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess105.pdf",
+   "pdfFiles": [
+    "jess105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "jess106.pdf",
+   "title": "Importance of Manufacturing",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess106.pdf",
+   "pdfFiles": [
+    "jess106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "jess107.pdf",
+   "title": "Transport",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess107.pdf",
+   "pdfFiles": [
+    "jess107.pdf"
+   ]
+  }
+ ]
+}

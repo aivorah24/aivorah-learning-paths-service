@@ -1,0 +1,185 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 2",
+ "subject": "Hindi",
+ "code": "bhsr1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "bhsr101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "bhsr102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "bhsr103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "bhsr104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "bhsr105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "bhsr106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "bhsr107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "bhsr108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "bhsr109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "bhsr110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "bhsr111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "bhsr112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "bhsr113.pdf",
+   "title": "Chapter 13",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr113.pdf"
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "bhsr114.pdf",
+   "title": "Chapter 14",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr114.pdf"
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "bhsr115.pdf",
+   "title": "Chapter 15",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr115.pdf"
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "bhsr116.pdf",
+   "title": "Chapter 16",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr116.pdf"
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "bhsr117.pdf",
+   "title": "Chapter 17",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr117.pdf"
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "bhsr118.pdf",
+   "title": "Chapter 18",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr118.pdf"
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "bhsr119.pdf",
+   "title": "Chapter 19",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr119.pdf"
+  },
+  {
+   "chapter": 20,
+   "pdfFile": "bhsr120.pdf",
+   "title": "Chapter 20",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr120.pdf"
+  },
+  {
+   "chapter": 21,
+   "pdfFile": "bhsr121.pdf",
+   "title": "Chapter 21",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr121.pdf"
+  },
+  {
+   "chapter": 22,
+   "pdfFile": "bhsr122.pdf",
+   "title": "Chapter 22",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr122.pdf"
+  },
+  {
+   "chapter": 23,
+   "pdfFile": "bhsr123.pdf",
+   "title": "Chapter 23",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr123.pdf"
+  },
+  {
+   "chapter": 24,
+   "pdfFile": "bhsr124.pdf",
+   "title": "Chapter 24",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr124.pdf"
+  },
+  {
+   "chapter": 25,
+   "pdfFile": "bhsr125.pdf",
+   "title": "Chapter 25",
+   "needsTitleReview": true,
+   "bookPath": "grade2/hindi/bhsr125.pdf"
+  }
+ ]
+}

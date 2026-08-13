@@ -1,0 +1,81 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Home Science",
+ "code": "lehe2",
+ "imageSubject": "Home_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lehe201.pdf",
+   "title": "Fabric and Apparel Unit Iv",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe201.pdf",
+   "pdfFiles": [
+    "lehe201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lehe202.pdf",
+   "title": "Fashion Terminology",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe202.pdf",
+   "pdfFiles": [
+    "lehe202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lehe203.pdf",
+   "title": "Name of the Hospital",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe203.pdf",
+   "pdfFiles": [
+    "lehe203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lehe204.pdf",
+   "title": "Resource Management Unit V",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe204.pdf",
+   "pdfFiles": [
+    "lehe204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lehe205.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe205.pdf",
+   "pdfFiles": [
+    "lehe205.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lehe206.pdf",
+   "title": "Communication and Extension Unit Vi",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/home_science/lehe206.pdf",
+   "pdfFiles": [
+    "lehe206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lehe207.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/home_science/lehe207.pdf",
+   "pdfFiles": [
+    "lehe207.pdf"
+   ]
+  }
+ ]
+}

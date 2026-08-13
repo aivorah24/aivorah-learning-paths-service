@@ -1,0 +1,89 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "English",
+ "code": "heih1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "heih101.pdf",
+   "title": "Rudyard Kipling",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/heih101.pdf",
+   "pdfFiles": [
+    "heih101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "heih102.pdf",
+   "title": "Iii",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/heih102.pdf",
+   "pdfFiles": [
+    "heih102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "heih103.pdf",
+   "title": "Trespassers Will Be Prosecuted",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/heih103.pdf",
+   "pdfFiles": [
+    "heih103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "heih104.pdf",
+   "title": "Jjjjjjjjjjj",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/heih104.pdf",
+   "pdfFiles": [
+    "heih104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "heih105.pdf",
+   "title": "Somerset Maugham",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/heih105.pdf",
+   "pdfFiles": [
+    "heih105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "heih106.pdf",
+   "title": "Ruskin Bond",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/heih106.pdf",
+   "pdfFiles": [
+    "heih106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "heih107.pdf",
+   "title": "Iii",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/heih107.pdf",
+   "pdfFiles": [
+    "heih107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "heih108.pdf",
+   "title": "Salient Features of Ancient Education System",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/english/heih108.pdf",
+   "pdfFiles": [
+    "heih108.pdf"
+   ]
+  }
+ ]
+}

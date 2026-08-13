@@ -1,0 +1,86 @@
+{
+  "curriculum": "CBSE",
+  "grade": "Grade 1",
+  "subject": "English",
+  "code": "aemr1",
+  "units": [
+    {
+      "unitNo": 1,
+      "title": "My Family and Me",
+      "topics": [
+        {
+          "name": "Two Little Hands",
+          "kind": "Poem",
+          "page": null,
+          "match": "two little hands"
+        },
+        {
+          "name": "Greetings",
+          "kind": "Lesson",
+          "page": null,
+          "match": "greetings"
+        }
+      ]
+    },
+    {
+      "unitNo": 2,
+      "title": "Life Around Us",
+      "topics": [
+        {
+          "name": "Picture Time",
+          "kind": "Activity",
+          "page": null,
+          "match": "picture time"
+        },
+        {
+          "name": "The Cap-seller and the Monkeys",
+          "kind": "Story",
+          "page": null,
+          "match": "the cap-seller and the monkeys"
+        },
+        {
+          "name": "A Farm",
+          "kind": "Poem",
+          "page": null,
+          "match": "a farm"
+        }
+      ]
+    },
+    {
+      "unitNo": 3,
+      "title": "Food",
+      "topics": [
+        {
+          "name": "Fun with Pictures",
+          "kind": "Activity",
+          "page": null,
+          "match": "fun with pictures"
+        },
+        {
+          "name": "The Food we Eat",
+          "kind": "Lesson",
+          "page": null,
+          "match": "the food we eat"
+        }
+      ]
+    },
+    {
+      "unitNo": 4,
+      "title": "Seasons",
+      "topics": [
+        {
+          "name": "The Four Seasons",
+          "kind": "Lesson",
+          "page": null,
+          "match": "the four seasons"
+        },
+        {
+          "name": "Anandi’s Rainbow",
+          "kind": "Story",
+          "page": null,
+          "match": "anandi’s rainbow"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 3",
+ "subject": "The World Around Us",
+ "code": "ceev1",
+ "imageSubject": "EVS",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "ceev101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/evs/ceev101.pdf",
+   "pdfFiles": [
+    "ceev101.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "ceev102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev102.pdf",
+   "pdfFiles": [
+    "ceev102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "ceev103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev103.pdf",
+   "pdfFiles": [
+    "ceev103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "ceev104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev104.pdf",
+   "pdfFiles": [
+    "ceev104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "ceev105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev105.pdf",
+   "pdfFiles": [
+    "ceev105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "ceev106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev106.pdf",
+   "pdfFiles": [
+    "ceev106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "ceev107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev107.pdf",
+   "pdfFiles": [
+    "ceev107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "ceev108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev108.pdf",
+   "pdfFiles": [
+    "ceev108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "ceev109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/evs/ceev109.pdf",
+   "pdfFiles": [
+    "ceev109.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "ceev110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev110.pdf",
+   "pdfFiles": [
+    "ceev110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "ceev111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev111.pdf",
+   "pdfFiles": [
+    "ceev111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "ceev112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/ceev112.pdf",
+   "pdfFiles": [
+    "ceev112.pdf"
+   ]
+  }
+ ]
+}

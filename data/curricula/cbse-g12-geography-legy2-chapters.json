@@ -1,0 +1,99 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Geography",
+ "code": "legy2",
+ "imageSubject": "Geography",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "legy201.pdf",
+   "title": "Population",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy201.pdf",
+   "pdfFiles": [
+    "legy201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "legy202.pdf",
+   "title": "Human Settlements",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy202.pdf",
+   "pdfFiles": [
+    "legy202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "legy203.pdf",
+   "title": "Land Resources and Agriculture",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy203.pdf",
+   "pdfFiles": [
+    "legy203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "legy204.pdf",
+   "title": "Water Resources",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy204.pdf",
+   "pdfFiles": [
+    "legy204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "legy205.pdf",
+   "title": "Mineral and Energy Resources",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy205.pdf",
+   "pdfFiles": [
+    "legy205.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "legy206.pdf",
+   "title": "Planning and Sustainable Development in",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy206.pdf",
+   "pdfFiles": [
+    "legy206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "legy207.pdf",
+   "title": "Transport and Communication",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy207.pdf",
+   "pdfFiles": [
+    "legy207.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "legy208.pdf",
+   "title": "International Trade",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy208.pdf",
+   "pdfFiles": [
+    "legy208.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "legy209.pdf",
+   "title": "Geographical Perspective On Selected Issues",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy209.pdf",
+   "pdfFiles": [
+    "legy209.pdf"
+   ]
+  }
+ ]
+}

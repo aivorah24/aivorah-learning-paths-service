@@ -1,0 +1,58 @@
+{
+  "curriculum": "CBSE",
+  "grade": "Grade 6",
+  "subject": "English",
+  "book": "Poorvi",
+  "units": [
+    {
+      "unit": "Fables and Folk Tales",
+      "chapter": 1,
+      "pdfFile": "fepr101.pdf",
+      "topics": [
+        { "name": "A Bottle of Dew", "kind": "Story", "match": "a bottle of dew" },
+        { "name": "The Raven and the Fox", "kind": "Poem", "match": "the raven and the fox" },
+        { "name": "Rama to the Rescue", "kind": "Graphic story", "match": "rama to the rescue" }
+      ]
+    },
+    {
+      "unit": "Friendship",
+      "chapter": 2,
+      "pdfFile": "fepr102.pdf",
+      "topics": [
+        { "name": "The Unlikely Best Friends", "kind": "Story", "match": "unlikely" },
+        { "name": "The Chair", "kind": "Story", "match": "the chair" }
+      ]
+    },
+    {
+      "unit": "Nurturing Nature",
+      "chapter": 3,
+      "pdfFile": "fepr103.pdf",
+      "topics": [
+        { "name": "Neem Baba", "kind": "Conversation", "match": "neem baba" },
+        { "name": "What a Bird Thought", "kind": "Poem", "match": "what a bird thought" },
+        { "name": "Spices that Heal Us", "kind": "Letter", "match": "spices that heal" }
+      ]
+    },
+    {
+      "unit": "Sports and Wellness",
+      "chapter": 4,
+      "pdfFile": "fepr104.pdf",
+      "topics": [
+        { "name": "Change of Heart", "kind": "Story", "match": "change of heart" },
+        { "name": "The Winner", "kind": "Poem", "match": "the winner" },
+        { "name": "Yoga — A Way of Life", "kind": "Non-fiction", "match": "yoga" }
+      ]
+    },
+    {
+      "unit": "Culture and Tradition",
+      "chapter": 5,
+      "pdfFile": "fepr105.pdf",
+      "topics": [
+        { "name": "Kalakritiyon ka Bharat", "kind": "Narrative", "match": "kalakritiyon" },
+        { "name": "The Kites", "kind": "Poem", "match": "the kites" },
+        { "name": "Ila Sachani: Embroidering Dreams with her Feet", "kind": "Real-life story", "match": "ila sachani" },
+        { "name": "National War Memorial", "kind": "Poem", "match": "national war memorial" }
+      ]
+    }
+  ]
+}

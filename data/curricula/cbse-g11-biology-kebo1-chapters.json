@@ -1,0 +1,633 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Biology",
+ "code": "kebo1",
+ "imageSubject": "Biology",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kebo101.pdf",
+   "title": "Diversity in the Living World",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "DIVERSITY IN THE LIVING WORLD"
+    },
+    {
+     "section": "1.2",
+     "title": "Taxonomic"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo101.pdf",
+   "pdfFiles": [
+    "kebo101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kebo102.pdf",
+   "title": "Biological Classification",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Kingdom Monera"
+    },
+    {
+     "section": "2.2",
+     "title": "Kingdom Protista"
+    },
+    {
+     "section": "2.3",
+     "title": "Kingdom Fungi"
+    },
+    {
+     "section": "2.4",
+     "title": "Kingdom Plantae"
+    },
+    {
+     "section": "2.5",
+     "title": "Kingdom"
+    },
+    {
+     "section": "2.6",
+     "title": "Viruses, Viroids"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo102.pdf",
+   "pdfFiles": [
+    "kebo102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kebo103.pdf",
+   "title": "Plant Kingdom",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Algae"
+    },
+    {
+     "section": "3.2",
+     "title": "Bryophytes"
+    },
+    {
+     "section": "3.3",
+     "title": "Pteridophytes"
+    },
+    {
+     "section": "3.4",
+     "title": "Gymnosperms"
+    },
+    {
+     "section": "3.5",
+     "title": "Angiosperms"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo103.pdf",
+   "pdfFiles": [
+    "kebo103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kebo104.pdf",
+   "title": "Animal Kingdom",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "BASIS OF CLASSIFICATION"
+    },
+    {
+     "section": "4.2",
+     "title": "Classification of"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo104.pdf",
+   "pdfFiles": [
+    "kebo104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kebo105.pdf",
+   "title": "Structural Organisation in Plants and Animals",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "THE ROOT"
+    },
+    {
+     "section": "5.2",
+     "title": "The Stem"
+    },
+    {
+     "section": "5.3",
+     "title": "The Leaf"
+    },
+    {
+     "section": "5.4",
+     "title": "The Inflorescence"
+    },
+    {
+     "section": "5.5",
+     "title": "The Flower"
+    },
+    {
+     "section": "5.6",
+     "title": "The Fruit"
+    },
+    {
+     "section": "5.7",
+     "title": "The Seed"
+    },
+    {
+     "section": "5.8",
+     "title": "Semi-technical"
+    },
+    {
+     "section": "5.9",
+     "title": "Description of"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo105.pdf",
+   "pdfFiles": [
+    "kebo105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kebo106.pdf",
+   "title": "Anatomy of Flowering Plants",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "THE TISSUE SYSTEM"
+    },
+    {
+     "section": "6.2",
+     "title": "Anatomy of"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo106.pdf",
+   "pdfFiles": [
+    "kebo106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kebo107.pdf",
+   "title": "Structural Organisation in Animals",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "ORGAN AND ORGAN SYSTEM"
+    },
+    {
+     "section": "7.2",
+     "title": "Frogs"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo107.pdf",
+   "pdfFiles": [
+    "kebo107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kebo108.pdf",
+   "title": "Pplo",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "WHAT IS A CELL"
+    },
+    {
+     "section": "8.2",
+     "title": "CELL THEORY"
+    },
+    {
+     "section": "8.3",
+     "title": "An Overview of"
+    },
+    {
+     "section": "8.4",
+     "title": "Prokaryotic Cells"
+    },
+    {
+     "section": "8.5",
+     "title": "Eukaryotic Cells"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo108.pdf",
+   "pdfFiles": [
+    "kebo108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "kebo109.pdf",
+   "title": "Biomolecules",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "HOW TO ANALYSE CHEMICAL COMPOSITION"
+    },
+    {
+     "section": "9.2",
+     "title": "Primary and"
+    },
+    {
+     "section": "9.3",
+     "title": "Biomacromolecules"
+    },
+    {
+     "section": "9.4",
+     "title": "Proteins"
+    },
+    {
+     "section": "9.5",
+     "title": "Polysaccharides"
+    },
+    {
+     "section": "9.6",
+     "title": "Nucleic Acids"
+    },
+    {
+     "section": "9.7",
+     "title": "Structure of"
+    },
+    {
+     "section": "9.8",
+     "title": "Enzymes"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo109.pdf",
+   "pdfFiles": [
+    "kebo109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "kebo110.pdf",
+   "title": "Cell Cycle and Cell Division",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "CELL CYCLE"
+    },
+    {
+     "section": "10.3",
+     "title": "Significance of"
+    },
+    {
+     "section": "10.4",
+     "title": "Meiosis"
+    },
+    {
+     "section": "10.5",
+     "title": "Significance of"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo110.pdf",
+   "pdfFiles": [
+    "kebo110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "kebo111.pdf",
+   "title": "Plant Physiology",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "WHAT DO WE KNOW"
+    },
+    {
+     "section": "11.2",
+     "title": "Early"
+    },
+    {
+     "section": "11.3",
+     "title": "Where does"
+    },
+    {
+     "section": "11.4",
+     "title": "How many"
+    },
+    {
+     "section": "11.5",
+     "title": "What is Light"
+    },
+    {
+     "section": "11.6",
+     "title": "The Electron"
+    },
+    {
+     "section": "11.7",
+     "title": "Where are the"
+    },
+    {
+     "section": "11.8",
+     "title": "The C"
+    },
+    {
+     "section": "11.9",
+     "title": "Photorespiration"
+    },
+    {
+     "section": "11.10",
+     "title": "Factors"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo111.pdf",
+   "pdfFiles": [
+    "kebo111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "kebo112.pdf",
+   "title": "Respiration in Plants",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "Do Plants"
+    },
+    {
+     "section": "12.2",
+     "title": "Glycolysis"
+    },
+    {
+     "section": "12.3",
+     "title": "Fermentation"
+    },
+    {
+     "section": "12.4",
+     "title": "Aerobic"
+    },
+    {
+     "section": "12.5",
+     "title": "THE RESPIRATORY BALANCE SHEET"
+    },
+    {
+     "section": "12.6",
+     "title": "Amphibolic"
+    },
+    {
+     "section": "12.7",
+     "title": "Respiratory"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo112.pdf",
+   "pdfFiles": [
+    "kebo112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "kebo113.pdf",
+   "title": "Plant Growth and Development",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "13.1",
+     "title": "Growth"
+    },
+    {
+     "section": "13.2",
+     "title": "Differentiation"
+    },
+    {
+     "section": "13.3",
+     "title": "Development"
+    },
+    {
+     "section": "13.4",
+     "title": "Plant Growth"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo113.pdf",
+   "pdfFiles": [
+    "kebo113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "kebo114.pdf",
+   "title": "Human Physiology",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "14.1",
+     "title": "RESPIRATORY ORGANS"
+    },
+    {
+     "section": "14.2",
+     "title": "Mechanism of"
+    },
+    {
+     "section": "14.3",
+     "title": "Exchange of"
+    },
+    {
+     "section": "14.4",
+     "title": "Transport of"
+    },
+    {
+     "section": "14.5",
+     "title": "Regulation of"
+    },
+    {
+     "section": "14.6",
+     "title": "Disorders of"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo114.pdf",
+   "pdfFiles": [
+    "kebo114.pdf"
+   ]
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "kebo115.pdf",
+   "title": "Body Fluids and Circulation",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "15.1",
+     "title": "BLOOD"
+    },
+    {
+     "section": "15.2",
+     "title": "LYMPH (TISSUE FLUID)"
+    },
+    {
+     "section": "15.3",
+     "title": "Circulatory"
+    },
+    {
+     "section": "15.4",
+     "title": "Double"
+    },
+    {
+     "section": "15.5",
+     "title": "Regulation of"
+    },
+    {
+     "section": "15.6",
+     "title": "Disorders of"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo115.pdf",
+   "pdfFiles": [
+    "kebo115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "kebo116.pdf",
+   "title": "Excretory Products and Their Elimination",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "16.1",
+     "title": "Human"
+    },
+    {
+     "section": "16.2",
+     "title": "Urine Formation"
+    },
+    {
+     "section": "16.3",
+     "title": "Function of the"
+    },
+    {
+     "section": "16.4",
+     "title": "Mechanism of"
+    },
+    {
+     "section": "16.5",
+     "title": "Regulation of"
+    },
+    {
+     "section": "16.6",
+     "title": "Micturition"
+    },
+    {
+     "section": "16.7",
+     "title": "Role of other"
+    },
+    {
+     "section": "16.8",
+     "title": "Disorders of the"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo116.pdf",
+   "pdfFiles": [
+    "kebo116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "kebo117.pdf",
+   "title": "Locomotion and Movement",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "17.1",
+     "title": "TYPES OF MOVEMENT"
+    },
+    {
+     "section": "17.2",
+     "title": "Muscle"
+    },
+    {
+     "section": "17.3",
+     "title": "Skeletal"
+    },
+    {
+     "section": "17.4",
+     "title": "Joints"
+    },
+    {
+     "section": "17.5",
+     "title": "Disorders of"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo117.pdf",
+   "pdfFiles": [
+    "kebo117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "kebo118.pdf",
+   "title": "Neural Control and Coordination",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "18.1",
+     "title": "Neural System"
+    },
+    {
+     "section": "18.2",
+     "title": "Human Neural"
+    },
+    {
+     "section": "18.3",
+     "title": "Neuron as"
+    },
+    {
+     "section": "18.4",
+     "title": "Central Neural"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo118.pdf",
+   "pdfFiles": [
+    "kebo118.pdf"
+   ]
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "kebo119.pdf",
+   "title": "Chemical Coordination and Integration",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "19.1",
+     "title": "ENDOCRINE GLANDS AND HORMONES"
+    },
+    {
+     "section": "19.2",
+     "title": "Human"
+    },
+    {
+     "section": "19.3",
+     "title": "Hormones of"
+    },
+    {
+     "section": "19.4",
+     "title": "Mechanism of"
+    }
+   ],
+   "bookPath": "grade11/biology/kebo119.pdf",
+   "pdfFiles": [
+    "kebo119.pdf"
+   ]
+  }
+ ]
+}

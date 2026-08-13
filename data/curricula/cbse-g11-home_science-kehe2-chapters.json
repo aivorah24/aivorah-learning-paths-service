@@ -1,0 +1,138 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Home Science",
+ "code": "kehe2",
+ "imageSubject": "Home_Science",
+ "chapters": [
+  {
+   "chapter": 8,
+   "pdfFile": "kehe201.pdf",
+   "title": "Unit Iii",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/home_science/kehe201.pdf",
+   "pdfFiles": [
+    "kehe201.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "8.2",
+     "title": "Nutrition, Health and Well-being"
+    },
+    {
+     "section": "8.3",
+     "title": "Nutrition, health and well-being of"
+    },
+    {
+     "section": "8.4",
+     "title": "Health, nutrition and well-being of"
+    }
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "kehe202.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/home_science/kehe202.pdf",
+   "pdfFiles": [
+    "kehe202.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Clothing Functions and the"
+    },
+    {
+     "section": "9.2",
+     "title": "Factors Affecting Selection of"
+    },
+    {
+     "section": "9.3",
+     "title": "Understanding Children"
+    },
+    {
+     "section": "9.4",
+     "title": "Clothing requirements at different"
+    },
+    {
+     "section": "9.5",
+     "title": "Clothes for Children with Special"
+    }
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "kehe203.pdf",
+   "title": "Unit Iv",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/home_science/kehe203.pdf",
+   "pdfFiles": [
+    "kehe203.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "10.2",
+     "title": "Family Income"
+    },
+    {
+     "section": "10.3",
+     "title": "Income Management"
+    },
+    {
+     "section": "10.4",
+     "title": "Budget"
+    },
+    {
+     "section": "10.5",
+     "title": "Control in Money Management"
+    },
+    {
+     "section": "10.6",
+     "title": "Savings"
+    },
+    {
+     "section": "10.7",
+     "title": "Investment"
+    },
+    {
+     "section": "10.8",
+     "title": "Savings and Investment Avenues"
+    },
+    {
+     "section": "10.9",
+     "title": "Credit"
+    }
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "kehe204.pdf",
+   "title": "Wash Cycle",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/home_science/kehe204.pdf",
+   "pdfFiles": [
+    "kehe204.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "11.2",
+     "title": "Mending"
+    },
+    {
+     "section": "11.3",
+     "title": "Laundry"
+    },
+    {
+     "section": "11.5",
+     "title": "Factors Affecting Fabric Care"
+    },
+    {
+     "section": "11.6",
+     "title": "Care Label"
+    }
+   ]
+  }
+ ]
+}

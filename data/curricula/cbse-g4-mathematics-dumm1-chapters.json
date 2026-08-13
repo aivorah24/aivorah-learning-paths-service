@@ -1,0 +1,160 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 4",
+ "subject": "Mathematics",
+ "code": "dumm1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "dumm101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm101.pdf",
+   "pdfFiles": [
+    "dumm101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "dumm102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm102.pdf",
+   "pdfFiles": [
+    "dumm102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "dumm103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm103.pdf",
+   "pdfFiles": [
+    "dumm103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "dumm104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm104.pdf",
+   "pdfFiles": [
+    "dumm104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "dumm105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm105.pdf",
+   "pdfFiles": [
+    "dumm105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "dumm106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm106.pdf",
+   "pdfFiles": [
+    "dumm106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "dumm107.pdf",
+   "title": "Price List",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/dumm107.pdf",
+   "pdfFiles": [
+    "dumm107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "dumm108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm108.pdf",
+   "pdfFiles": [
+    "dumm108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "dumm109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/dumm109.pdf",
+   "pdfFiles": [
+    "dumm109.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "dumm110.pdf",
+   "title": "Spb",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/dumm110.pdf",
+   "pdfFiles": [
+    "dumm110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "dumm111.pdf",
+   "title": "Tap Wow Hen",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/mathematics/dumm111.pdf",
+   "pdfFiles": [
+    "dumm111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "dumm112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm112.pdf",
+   "pdfFiles": [
+    "dumm112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "dumm113.pdf",
+   "title": "Chapter 13",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm113.pdf",
+   "pdfFiles": [
+    "dumm113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "dumm114.pdf",
+   "title": "Chapter 14",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/mathematics/dumm114.pdf",
+   "pdfFiles": [
+    "dumm114.pdf"
+   ]
+  }
+ ]
+}

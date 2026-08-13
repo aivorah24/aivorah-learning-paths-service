@@ -1,0 +1,136 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "Hindi",
+ "code": "ghdv1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "ghdv101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "ghdv102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "ghdv103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "ghdv104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "ghdv105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "ghdv106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "ghdv107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "ghdv108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "ghdv109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "ghdv110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "ghdv111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "ghdv112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "ghdv113.pdf",
+   "title": "Chapter 13",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv113.pdf"
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "ghdv114.pdf",
+   "title": "Chapter 14",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv114.pdf"
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "ghdv115.pdf",
+   "title": "Chapter 15",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv115.pdf"
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "ghdv116.pdf",
+   "title": "Chapter 16",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv116.pdf"
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "ghdv117.pdf",
+   "title": "Chapter 17",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv117.pdf"
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "ghdv118.pdf",
+   "title": "Chapter 18",
+   "needsTitleReview": true,
+   "bookPath": "grade7/hindi/ghdv118.pdf"
+  }
+ ]
+}

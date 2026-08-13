@@ -1,0 +1,105 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 3",
+ "subject": "The World Around Us",
+ "code": "cuev1",
+ "imageSubject": "EVS",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "cuev101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "cuev102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "cuev103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "cuev104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "cuev105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "cuev106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "cuev107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "cuev108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "cuev109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "cuev110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "cuev111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "cuev112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/evs/cuev112.pdf"
+  }
+ ]
+}

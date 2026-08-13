@@ -1,0 +1,157 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 3",
+ "subject": "Mathematics",
+ "code": "cemm1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "cemm101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cemm101.pdf",
+   "pdfFiles": [
+    "cemm101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "cemm102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cemm102.pdf",
+   "pdfFiles": [
+    "cemm102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "cemm103.pdf",
+   "title": "End",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/mathematics/cemm103.pdf",
+   "pdfFiles": [
+    "cemm103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "cemm104.pdf",
+   "title": "Magic Sums",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/mathematics/cemm104.pdf",
+   "pdfFiles": [
+    "cemm104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "cemm105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cemm105.pdf",
+   "pdfFiles": [
+    "cemm105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "cemm106.pdf",
+   "title": "Four Hundred",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/mathematics/cemm106.pdf",
+   "pdfFiles": [
+    "cemm106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "cemm107.pdf",
+   "title": "Fun Activity",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/mathematics/cemm107.pdf",
+   "pdfFiles": [
+    "cemm107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "cemm108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cemm108.pdf",
+   "pdfFiles": [
+    "cemm108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "cemm109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cemm109.pdf",
+   "pdfFiles": [
+    "cemm109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "cemm110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cemm110.pdf",
+   "pdfFiles": [
+    "cemm110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "cemm111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cemm111.pdf",
+   "pdfFiles": [
+    "cemm111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "cemm112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/mathematics/cemm112.pdf",
+   "pdfFiles": [
+    "cemm112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "cemm113.pdf",
+   "title": "Birth Certificate",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/mathematics/cemm113.pdf",
+   "pdfFiles": [
+    "cemm113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "cemm114.pdf",
+   "title": "Atm",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/mathematics/cemm114.pdf",
+   "pdfFiles": [
+    "cemm114.pdf"
+   ]
+  }
+ ]
+}

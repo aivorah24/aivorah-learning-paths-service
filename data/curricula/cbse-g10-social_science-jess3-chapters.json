@@ -1,0 +1,82 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "Social Science",
+ "code": "jess3",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jess302.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "The Idea of Satyagraha"
+    },
+    {
+     "section": "1.2",
+     "title": "The Rowlatt Act"
+    },
+    {
+     "section": "1.3",
+     "title": "Why Non-cooperation"
+    }
+   ],
+   "bookPath": "grade10/social_science/jess302.pdf",
+   "pdfFiles": [
+    "jess302.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jess301.pdf",
+   "title": "Events and Processes Section I",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/social_science/jess301.pdf",
+   "pdfFiles": [
+    "jess301.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "The Aristocracy and the New Middle Class"
+    },
+    {
+     "section": "2.2",
+     "title": "What did Liberal Nationalism Stand for"
+    },
+    {
+     "section": "2.4",
+     "title": "The Revolutionaries"
+    }
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jess304.pdf",
+   "title": "Section Iii Everyday Life, Culture and Politics",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "The Age of Indian Textiles"
+    },
+    {
+     "section": "3.2",
+     "title": "What Happened to Weavers"
+    },
+    {
+     "section": "3.3",
+     "title": "Manchester Comes to India"
+    }
+   ],
+   "bookPath": "grade10/social_science/jess304.pdf",
+   "pdfFiles": [
+    "jess304.pdf"
+   ]
+  }
+ ]
+}

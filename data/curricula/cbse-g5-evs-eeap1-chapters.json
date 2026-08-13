@@ -1,0 +1,248 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 5",
+ "subject": "The World Around Us",
+ "code": "eeap1",
+ "imageSubject": "EVS",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "eeap101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap101.pdf",
+   "pdfFiles": [
+    "eeap101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "eeap102.pdf",
+   "title": "Naag Gumphan",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/evs/eeap102.pdf",
+   "pdfFiles": [
+    "eeap102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "eeap103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap103.pdf",
+   "pdfFiles": [
+    "eeap103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "eeap104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap104.pdf",
+   "pdfFiles": [
+    "eeap104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "eeap105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap105.pdf",
+   "pdfFiles": [
+    "eeap105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "eeap106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap106.pdf",
+   "pdfFiles": [
+    "eeap106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "eeap107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap107.pdf",
+   "pdfFiles": [
+    "eeap107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "eeap108.pdf",
+   "title": "Clinical Pathology Report",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/evs/eeap108.pdf",
+   "pdfFiles": [
+    "eeap108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "eeap109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap109.pdf",
+   "pdfFiles": [
+    "eeap109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "eeap110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap110.pdf",
+   "pdfFiles": [
+    "eeap110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "eeap111.pdf",
+   "title": "Nasa",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/evs/eeap111.pdf",
+   "pdfFiles": [
+    "eeap111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "eeap112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap112.pdf",
+   "pdfFiles": [
+    "eeap112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "eeap113.pdf",
+   "title": "Chapter 13",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap113.pdf",
+   "pdfFiles": [
+    "eeap113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "eeap114.pdf",
+   "title": "Chapter 14",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap114.pdf",
+   "pdfFiles": [
+    "eeap114.pdf"
+   ]
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "eeap115.pdf",
+   "title": "Chapter 15",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap115.pdf",
+   "pdfFiles": [
+    "eeap115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "eeap116.pdf",
+   "title": "Chapter 16",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap116.pdf",
+   "pdfFiles": [
+    "eeap116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "eeap117.pdf",
+   "title": "Chapter 17",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap117.pdf",
+   "pdfFiles": [
+    "eeap117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "eeap118.pdf",
+   "title": "Chapter 18",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap118.pdf",
+   "pdfFiles": [
+    "eeap118.pdf"
+   ]
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "eeap119.pdf",
+   "title": "Chapter 19",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap119.pdf",
+   "pdfFiles": [
+    "eeap119.pdf"
+   ]
+  },
+  {
+   "chapter": 20,
+   "pdfFile": "eeap120.pdf",
+   "title": "Chapter 20",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap120.pdf",
+   "pdfFiles": [
+    "eeap120.pdf"
+   ]
+  },
+  {
+   "chapter": 21,
+   "pdfFile": "eeap121.pdf",
+   "title": "Chapter 21",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap121.pdf",
+   "pdfFiles": [
+    "eeap121.pdf"
+   ]
+  },
+  {
+   "chapter": 22,
+   "pdfFile": "eeap122.pdf",
+   "title": "Chapter 22",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade5/evs/eeap122.pdf",
+   "pdfFiles": [
+    "eeap122.pdf"
+   ]
+  }
+ ]
+}

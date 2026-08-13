@@ -1,0 +1,192 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 9",
+ "subject": "English",
+ "code": "iemr1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "iemr101.pdf",
+   "title": "Introduction to the History of Arts 3 Theatre",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr101.pdf",
+   "pdfFiles": [
+    "iemr101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "iemr102.pdf",
+   "title": "The Stage Is Yours",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr102.pdf",
+   "pdfFiles": [
+    "iemr102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "iemr103.pdf",
+   "title": "Sky Blue",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iemr103.pdf",
+   "pdfFiles": [
+    "iemr103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "iemr104.pdf",
+   "title": "Creativity in L ight and S ound",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr104.pdf",
+   "pdfFiles": [
+    "iemr104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "iemr105.pdf",
+   "title": "Indian",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iemr105.pdf",
+   "pdfFiles": [
+    "iemr105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "iemr106.pdf",
+   "title": "Classical",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iemr106.pdf",
+   "pdfFiles": [
+    "iemr106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "iemr107.pdf",
+   "title": "The S cience of M usic",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr107.pdf",
+   "pdfFiles": [
+    "iemr107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "iemr108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iemr108.pdf",
+   "pdfFiles": [
+    "iemr108.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "iemr109.pdf",
+   "title": "Music Travels Around the World 127 Dance",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr109.pdf",
+   "pdfFiles": [
+    "iemr109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "iemr110.pdf",
+   "title": "Components of Dance",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr110.pdf",
+   "pdfFiles": [
+    "iemr110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "iemr111.pdf",
+   "title": "Dance as Visual Storytelling",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr111.pdf",
+   "pdfFiles": [
+    "iemr111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "iemr112.pdf",
+   "title": "Cultural Connections Through Dance",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr112.pdf",
+   "pdfFiles": [
+    "iemr112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "iemr113.pdf",
+   "title": "Audience",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/english/iemr113.pdf",
+   "pdfFiles": [
+    "iemr113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "iemr114.pdf",
+   "title": "Exploring the Fundamentals of Visual Arts",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr114.pdf",
+   "pdfFiles": [
+    "iemr114.pdf"
+   ]
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "iemr115.pdf",
+   "title": "Mediums and Techniques in Visual Art",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr115.pdf",
+   "pdfFiles": [
+    "iemr115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "iemr116.pdf",
+   "title": "Visual Composition",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/english/iemr116.pdf",
+   "pdfFiles": [
+    "iemr116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "iemr117.pdf",
+   "title": "Chapter 17",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade9/english/iemr117.pdf",
+   "pdfFiles": [
+    "iemr117.pdf"
+   ]
+  }
+ ]
+}

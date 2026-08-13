@@ -1,0 +1,30 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Home Science",
+ "code": "kehe1",
+ "imageSubject": "Home_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kehe101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/home_science/kehe101.pdf",
+   "pdfFiles": [
+    "kehe101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kehe102.pdf",
+   "title": "Unit I",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/home_science/kehe102.pdf",
+   "pdfFiles": [
+    "kehe102.pdf"
+   ]
+  }
+ ]
+}

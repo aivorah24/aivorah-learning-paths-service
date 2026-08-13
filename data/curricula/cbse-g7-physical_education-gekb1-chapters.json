@@ -1,0 +1,65 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "Physical Education and Well Being",
+ "code": "gekb1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "gekb101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/gekb101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "gekb102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/gekb102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "gekb103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/gekb103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "gekb104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/gekb104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "gekb105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/gekb105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "gekb106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/gekb106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "gekb107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade7/physical_education/gekb107.pdf"
+  }
+ ]
+}

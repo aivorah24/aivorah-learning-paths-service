@@ -1,0 +1,113 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 10",
+ "subject": "Health and Physical Education",
+ "code": "jehp1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "jehp101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/physical_education/jehp101.pdf",
+   "pdfFiles": [
+    "jehp101.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "1.50",
+     "title": "Lobby"
+    }
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "jehp102.pdf",
+   "title": "Rala Lvrv",
+   "kind": "Non-fiction",
+   "bookPath": "grade10/physical_education/jehp102.pdf",
+   "pdfFiles": [
+    "jehp102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "jehp103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/physical_education/jehp103.pdf",
+   "pdfFiles": [
+    "jehp103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "jehp104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/physical_education/jehp104.pdf",
+   "pdfFiles": [
+    "jehp104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "jehp105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/physical_education/jehp105.pdf",
+   "pdfFiles": [
+    "jehp105.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "jehp109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/physical_education/jehp109.pdf",
+   "pdfFiles": [
+    "jehp109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "jehp110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/physical_education/jehp110.pdf",
+   "pdfFiles": [
+    "jehp110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "jehp111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/physical_education/jehp111.pdf",
+   "pdfFiles": [
+    "jehp111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "jehp112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade10/physical_education/jehp112.pdf",
+   "pdfFiles": [
+    "jehp112.pdf"
+   ]
+  }
+ ]
+}

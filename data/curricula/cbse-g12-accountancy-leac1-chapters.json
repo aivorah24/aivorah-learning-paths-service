@@ -1,0 +1,174 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Accountancy",
+ "code": "leac1",
+ "imageSubject": "Accountancy",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "leac101.pdf",
+   "title": "Chapter 1",
+   "bookPath": "grade12/accountancy/leac101.pdf",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Nature of Partnership"
+    },
+    {
+     "section": "1.2",
+     "title": "Partnership Deed"
+    },
+    {
+     "section": "1.3",
+     "title": "Special Aspects of Partnership Accounts"
+    },
+    {
+     "section": "1.4",
+     "title": "Maintenance of Capital Accounts of Partners"
+    },
+    {
+     "section": "1.5",
+     "title": "Distribution of Profit among Partners"
+    },
+    {
+     "section": "1.6",
+     "title": "Guarantee of Profit to a Partner"
+    },
+    {
+     "section": "1.7",
+     "title": "Past Adjustments"
+    }
+   ],
+   "pdfFiles": [
+    "leac101.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "leac102.pdf",
+   "title": "Chapter 2",
+   "bookPath": "grade12/accountancy/leac102.pdf",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Modes of Reconstitution of a Partnership"
+    },
+    {
+     "section": "2.2",
+     "title": "Admission of a New Partner"
+    },
+    {
+     "section": "2.3",
+     "title": "New Profit Sharing Ratio"
+    },
+    {
+     "section": "2.4",
+     "title": "Sacrificing Ratio"
+    },
+    {
+     "section": "2.5",
+     "title": "Goodwill"
+    },
+    {
+     "section": "2.6",
+     "title": "Adjustment for Accumulated Profits and Losses"
+    },
+    {
+     "section": "2.7",
+     "title": "Revaluation of Assets and Reassessment of Liabilities"
+    },
+    {
+     "section": "2.8",
+     "title": "Adjustment of Capitals"
+    },
+    {
+     "section": "2.9",
+     "title": "Change in Profit Sharing Ratio among the Existing Partners"
+    }
+   ],
+   "pdfFiles": [
+    "leac102.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "leac103.pdf",
+   "title": "Chapter 3",
+   "bookPath": "grade12/accountancy/leac103.pdf",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Ascertaining the Amount Due to Retiring"
+    },
+    {
+     "section": "3.2",
+     "title": "New Profit Sharing Ratio"
+    },
+    {
+     "section": "3.3",
+     "title": "Gaining Ratio"
+    },
+    {
+     "section": "3.4",
+     "title": "Treatment of Goodwill"
+    },
+    {
+     "section": "3.5",
+     "title": "Adjustment for Revaluation of Assets and Liabilities"
+    },
+    {
+     "section": "3.6",
+     "title": "Adjustment of Accumulated Profits and Losses"
+    },
+    {
+     "section": "3.7",
+     "title": "Disposal of Amount Due to Retiring Partner"
+    },
+    {
+     "section": "3.8",
+     "title": "Adjustment of Partners"
+    },
+    {
+     "section": "3.9",
+     "title": "Death of a Partner"
+    }
+   ],
+   "pdfFiles": [
+    "leac103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "leac104.pdf",
+   "title": "Chapter 4",
+   "bookPath": "grade12/accountancy/leac104.pdf",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Dissolution of Partnership"
+    },
+    {
+     "section": "4.2",
+     "title": "Dissolution of a Firm"
+    },
+    {
+     "section": "4.3",
+     "title": "Settlement of Accounts"
+    },
+    {
+     "section": "4.4",
+     "title": "Accounting Treatment"
+    }
+   ],
+   "pdfFiles": [
+    "leac104.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

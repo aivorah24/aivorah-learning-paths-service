@@ -1,0 +1,45 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Hindi",
+ "code": "khvt1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "khvt101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khvt101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "khvt102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khvt102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "khvt103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khvt103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "khvt104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khvt104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "khvt105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khvt105.pdf"
+  }
+ ]
+}

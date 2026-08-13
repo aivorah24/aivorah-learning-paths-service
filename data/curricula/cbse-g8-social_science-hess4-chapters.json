@@ -1,0 +1,63 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Social Science",
+ "code": "hess4",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hess401.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess401.pdf",
+   "pdfFiles": [
+    "hess401.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hess402.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess402.pdf",
+   "pdfFiles": [
+    "hess402.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hess403.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess403.pdf",
+   "pdfFiles": [
+    "hess403.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hess404.pdf",
+   "title": "Industries",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hess404.pdf",
+   "pdfFiles": [
+    "hess404.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hess405.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess405.pdf",
+   "pdfFiles": [
+    "hess405.pdf"
+   ]
+  }
+ ]
+}

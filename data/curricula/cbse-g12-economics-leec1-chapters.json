@@ -1,0 +1,146 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Economics",
+ "code": "leec1",
+ "imageSubject": "Economics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "leec101.pdf",
+   "title": "Kkkk",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "EMERGENCE OF MACROECONOMICS"
+    },
+    {
+     "section": "1.2",
+     "title": "CONTEXT OF THE PRESENT BOOK OF MACROECONOMICS"
+    }
+   ],
+   "bookPath": "grade12/economics/leec101.pdf",
+   "pdfFiles": [
+    "leec101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "leec102.pdf",
+   "title": "Ome Basic Concepts of Macroeconomics",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.2",
+     "title": "CIRCULAR FLOW OF INCOME AND METHODS"
+    },
+    {
+     "section": "2.3",
+     "title": "SOME MACROECONOMIC IDENTITIES"
+    },
+    {
+     "section": "2.4",
+     "title": "NOMINAL AND REAL GDP"
+    },
+    {
+     "section": "2.5",
+     "title": "GDP AND WELFARE"
+    }
+   ],
+   "bookPath": "grade12/economics/leec102.pdf",
+   "pdfFiles": [
+    "leec102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "leec103.pdf",
+   "title": "Of Money",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "FUNCTIONS"
+    },
+    {
+     "section": "3.2",
+     "title": "DEMAND FOR MONEY AND SUPPLY OF MONEY"
+    },
+    {
+     "section": "3.3",
+     "title": "MONEY CREATION BY BANKING SYSTEM"
+    }
+   ],
+   "bookPath": "grade12/economics/leec103.pdf",
+   "pdfFiles": [
+    "leec103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "leec104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "AGGREGATE DEMAND AND ITS COMPONENTS"
+    },
+    {
+     "section": "4.2",
+     "title": "DETERMINATION OF INCOME IN TWO-SECTOR MODEL"
+    },
+    {
+     "section": "4.4",
+     "title": "SOME MORE CONCEPTS"
+    }
+   ],
+   "bookPath": "grade12/economics/leec104.pdf",
+   "pdfFiles": [
+    "leec104.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "leec105.pdf",
+   "title": "Urplus and Deficit Budget",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "GOVERNMENT BUDGET"
+    },
+    {
+     "section": "5.2",
+     "title": "BALANCED, S"
+    }
+   ],
+   "bookPath": "grade12/economics/leec105.pdf",
+   "pdfFiles": [
+    "leec105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "leec106.pdf",
+   "title": "Example",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "THE BALANCE OF PAYMENTS"
+    },
+    {
+     "section": "6.2",
+     "title": "THE FOREIGN EXCHANGE MARKET"
+    }
+   ],
+   "bookPath": "grade12/economics/leec106.pdf",
+   "pdfFiles": [
+    "leec106.pdf"
+   ]
+  }
+ ]
+}

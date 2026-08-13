@@ -1,0 +1,335 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "Science",
+ "code": "gecu1",
+ "imageSubject": "Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "gecu101.pdf",
+   "title": "The Ever-Evolving World of Science",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Happy Exploring"
+    }
+   ],
+   "bookPath": "grade7/science/gecu101.pdf",
+   "pdfFiles": [
+    "gecu101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "gecu102.pdf",
+   "title": "Holistic Lens",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Nature"
+    },
+    {
+     "section": "2.2",
+     "title": "What Happens When Acidic Substances"
+    },
+    {
+     "section": "2.3",
+     "title": "Neutralisation in Daily Life"
+    }
+   ],
+   "bookPath": "grade7/science/gecu102.pdf",
+   "pdfFiles": [
+    "gecu102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "gecu103.pdf",
+   "title": "Fascinating Facts",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.3",
+     "title": "Circuit Diagrams"
+    },
+    {
+     "section": "3.4",
+     "title": "Electrical Conductors and Insulators"
+    }
+   ],
+   "bookPath": "grade7/science/gecu103.pdf",
+   "pdfFiles": [
+    "gecu103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "gecu104.pdf",
+   "title": "Holistic Lens",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Properties of Materials"
+    },
+    {
+     "section": "4.2",
+     "title": "Effect of Air and Water on Metals"
+    },
+    {
+     "section": "4.3",
+     "title": "Eff ect of Air and Water on Other"
+    },
+    {
+     "section": "4.4",
+     "title": "Substances that Behave Diff erently"
+    },
+    {
+     "section": "4.5",
+     "title": "Are Non-metals Essential in"
+    }
+   ],
+   "bookPath": "grade7/science/gecu104.pdf",
+   "pdfFiles": [
+    "gecu104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "gecu105.pdf",
+   "title": "Science and Society",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.3",
+     "title": "Some Other Processes Involving"
+    },
+    {
+     "section": "5.4",
+     "title": "Can Physical and Chemical Changes"
+    },
+    {
+     "section": "5.5",
+     "title": "Are Changes Permanent"
+    },
+    {
+     "section": "5.6",
+     "title": "Are All Changes Desirable"
+    },
+    {
+     "section": "5.7",
+     "title": "Some Slow Natural Changes"
+    }
+   ],
+   "bookPath": "grade7/science/gecu105.pdf",
+   "pdfFiles": [
+    "gecu105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "gecu106.pdf",
+   "title": "Adolescence: A Stage of Growth and Change",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Growing With Age"
+    },
+    {
+     "section": "6.2",
+     "title": "Changes that Indicate Reproductive"
+    },
+    {
+     "section": "6.3",
+     "title": "Emotional and Behavioural Changes"
+    },
+    {
+     "section": "6.4",
+     "title": "Making Adolescence a Joyful"
+    }
+   ],
+   "bookPath": "grade7/science/gecu106.pdf",
+   "pdfFiles": [
+    "gecu106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "gecu107.pdf",
+   "title": "Ive Eeper",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Conduction of Heat"
+    },
+    {
+     "section": "7.2",
+     "title": "Convection"
+    },
+    {
+     "section": "7.3",
+     "title": "Radiation"
+    },
+    {
+     "section": "7.4",
+     "title": "Water Cycle"
+    }
+   ],
+   "bookPath": "grade7/science/gecu107.pdf",
+   "pdfFiles": [
+    "gecu107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "gecu108.pdf",
+   "title": "Fascinating Facts",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Measurement of Time"
+    },
+    {
+     "section": "8.2",
+     "title": "Slow or Fast"
+    },
+    {
+     "section": "8.3",
+     "title": "Speed"
+    },
+    {
+     "section": "8.4",
+     "title": "Uniform and Non-uniform Linear Motion"
+    }
+   ],
+   "bookPath": "grade7/science/gecu108.pdf",
+   "pdfFiles": [
+    "gecu108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "gecu109.pdf",
+   "title": "Fascinating Facts",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Nutrition in Animals"
+    },
+    {
+     "section": "9.2",
+     "title": "Respiration in Animals"
+    }
+   ],
+   "bookPath": "grade7/science/gecu109.pdf",
+   "pdfFiles": [
+    "gecu109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "gecu110.pdf",
+   "title": "Fascinating Facts",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "How Do Plants Grow"
+    },
+    {
+     "section": "10.2",
+     "title": "How Do Plants Get Food for their"
+    },
+    {
+     "section": "10.3",
+     "title": "Transport in Plants"
+    },
+    {
+     "section": "10.4",
+     "title": "Do Plants Respire"
+    }
+   ],
+   "bookPath": "grade7/science/gecu110.pdf",
+   "pdfFiles": [
+    "gecu110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "gecu111.pdf",
+   "title": "Science and Society",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "Sources of Light"
+    },
+    {
+     "section": "11.2",
+     "title": "Does Light Travel in a Straight Line"
+    },
+    {
+     "section": "11.3",
+     "title": "Light through Transparent"
+    },
+    {
+     "section": "11.4",
+     "title": "Shadow Formation"
+    },
+    {
+     "section": "11.5",
+     "title": "Refl ection of Light"
+    },
+    {
+     "section": "11.6",
+     "title": "Images Formed in a Plane Mirror"
+    },
+    {
+     "section": "11.7",
+     "title": "Pinhole Camera"
+    },
+    {
+     "section": "11.8",
+     "title": "Making Some Useful Items"
+    }
+   ],
+   "bookPath": "grade7/science/gecu111.pdf",
+   "pdfFiles": [
+    "gecu111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "gecu112.pdf",
+   "title": "Ive Eeper",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "Rotation of the Earth"
+    },
+    {
+     "section": "12.2",
+     "title": "Revolution of the Earth"
+    },
+    {
+     "section": "12.3",
+     "title": "Eclipses"
+    }
+   ],
+   "bookPath": "grade7/science/gecu112.pdf",
+   "pdfFiles": [
+    "gecu112.pdf"
+   ]
+  }
+ ]
+}

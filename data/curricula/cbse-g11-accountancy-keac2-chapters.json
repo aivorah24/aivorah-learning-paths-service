@@ -1,0 +1,110 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Accountancy",
+ "code": "keac2",
+ "imageSubject": "Accountancy",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 8,
+   "pdfFile": "keac201.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade11/accountancy/keac201.pdf",
+   "pdfFiles": [
+    "keac201.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Stakeholders and their"
+    },
+    {
+     "section": "8.2",
+     "title": "Distinction between Capital and Revenue"
+    },
+    {
+     "section": "8.3",
+     "title": "Financial Statements"
+    },
+    {
+     "section": "8.4",
+     "title": "Trading and Profit and Loss Account"
+    },
+    {
+     "section": "8.5",
+     "title": "Operating Profit (EBIT)"
+    },
+    {
+     "section": "8.6",
+     "title": "Balance Sheet"
+    },
+    {
+     "section": "8.7",
+     "title": "Opening Entry"
+    }
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "keac202.pdf",
+   "title": "Chapter 9",
+   "bookPath": "grade11/accountancy/keac202.pdf",
+   "pdfFiles": [
+    "keac202.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Need for Adjustments"
+    },
+    {
+     "section": "9.2",
+     "title": "Closing Stock"
+    },
+    {
+     "section": "9.3",
+     "title": "Outstanding Expenses"
+    },
+    {
+     "section": "9.4",
+     "title": "Prepaid Expenses"
+    },
+    {
+     "section": "9.5",
+     "title": "Accrued Income"
+    },
+    {
+     "section": "9.6",
+     "title": "Income Received in Advance"
+    },
+    {
+     "section": "9.7",
+     "title": "Depreciation"
+    },
+    {
+     "section": "9.8",
+     "title": "Bad Debts"
+    },
+    {
+     "section": "9.9",
+     "title": "Provision for Bad and Doubtful Debts"
+    },
+    {
+     "section": "9.10",
+     "title": "Provision for Discount on Debtors"
+    },
+    {
+     "section": "9.11",
+     "title": "Manager"
+    },
+    {
+     "section": "9.12",
+     "title": "Interest on Capital"
+    }
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

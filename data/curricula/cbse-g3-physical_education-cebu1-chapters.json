@@ -1,0 +1,210 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 3",
+ "subject": "Arts",
+ "code": "cebu1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "cebu101.pdf",
+   "title": "Visual Arts",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu101.pdf",
+   "pdfFiles": [
+    "cebu101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "cebu102.pdf",
+   "title": "Plants in Art",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu102.pdf",
+   "pdfFiles": [
+    "cebu102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "cebu103.pdf",
+   "title": "Animals in Art",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu103.pdf",
+   "pdfFiles": [
+    "cebu103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "cebu104.pdf",
+   "title": "People Around Us",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu104.pdf",
+   "pdfFiles": [
+    "cebu104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "cebu105.pdf",
+   "title": "Festivals, Occasions, and Celebrations",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu105.pdf",
+   "pdfFiles": [
+    "cebu105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "cebu106.pdf",
+   "title": "Music",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu106.pdf",
+   "pdfFiles": [
+    "cebu106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "cebu107.pdf",
+   "title": "Feel the Rhythm",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu107.pdf",
+   "pdfFiles": [
+    "cebu107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "cebu108.pdf",
+   "title": "Travel Around",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu108.pdf",
+   "pdfFiles": [
+    "cebu108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "cebu109.pdf",
+   "title": "Musical Instruments",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu109.pdf",
+   "pdfFiles": [
+    "cebu109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "cebu110.pdf",
+   "title": "Celebratory Notes",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu110.pdf",
+   "pdfFiles": [
+    "cebu110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "cebu111.pdf",
+   "title": "Movement and Dance",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu111.pdf",
+   "pdfFiles": [
+    "cebu111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "cebu112.pdf",
+   "title": "Dance for Joy",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu112.pdf",
+   "pdfFiles": [
+    "cebu112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "cebu113.pdf",
+   "title": "Chapter 13",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/physical_education/cebu113.pdf",
+   "pdfFiles": [
+    "cebu113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "cebu114.pdf",
+   "title": "Dance with Nature",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu114.pdf",
+   "pdfFiles": [
+    "cebu114.pdf"
+   ]
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "cebu115.pdf",
+   "title": "Theatre",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu115.pdf",
+   "pdfFiles": [
+    "cebu115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "cebu116.pdf",
+   "title": "Basic",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu116.pdf",
+   "pdfFiles": [
+    "cebu116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "cebu117.pdf",
+   "title": "Basic Advanced",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu117.pdf",
+   "pdfFiles": [
+    "cebu117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "cebu118.pdf",
+   "title": "Look Around",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu118.pdf",
+   "pdfFiles": [
+    "cebu118.pdf"
+   ]
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "cebu119.pdf",
+   "title": "Activities",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu119.pdf",
+   "pdfFiles": [
+    "cebu119.pdf"
+   ]
+  },
+  {
+   "chapter": 20,
+   "pdfFile": "cebu120.pdf",
+   "title": "Integrating All Art Forms",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/cebu120.pdf",
+   "pdfFiles": [
+    "cebu120.pdf"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,193 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Mathematics",
+ "code": "hegp2",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hegp201.pdf",
+   "title": "Fractions in Disguise",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Fractions as Percentages"
+    },
+    {
+     "section": "1.2",
+     "title": "Percentage of Some Quantity"
+    },
+    {
+     "section": "1.3",
+     "title": "Using Percentages"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp201.pdf",
+   "pdfFiles": [
+    "hegp201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hegp202.pdf",
+   "title": "Pythagoras Theorem",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Doubling a Square"
+    },
+    {
+     "section": "2.2",
+     "title": "Halving a Square"
+    },
+    {
+     "section": "2.3",
+     "title": "Hypotenuse of an Isosceles Right Triangle"
+    },
+    {
+     "section": "2.4",
+     "title": "Combining Two Different Squares"
+    },
+    {
+     "section": "2.5",
+     "title": "Right"
+    },
+    {
+     "section": "2.7",
+     "title": "Further Applications of the Baudh"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp202.pdf",
+   "pdfFiles": [
+    "hegp202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hegp203.pdf",
+   "title": "Proportional",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Proportionality"
+    },
+    {
+     "section": "3.2",
+     "title": "Ratios in Maps"
+    },
+    {
+     "section": "3.3",
+     "title": "Ratios with More than"
+    },
+    {
+     "section": "3.4",
+     "title": "Dividing a Whole in a Given Ratio"
+    },
+    {
+     "section": "3.6",
+     "title": "Inverse Proportions"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp203.pdf",
+   "pdfFiles": [
+    "hegp203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hegp204.pdf",
+   "title": "Exploring Some Geometric Themes",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Fractals"
+    },
+    {
+     "section": "4.2",
+     "title": "Visualising Solids"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp204.pdf",
+   "pdfFiles": [
+    "hegp204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hegp205.pdf",
+   "title": "Tales By Dots and Lines",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "The Balancing Act"
+    },
+    {
+     "section": "5.2",
+     "title": "Visualising and Interpreting Data"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp205.pdf",
+   "pdfFiles": [
+    "hegp205.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hegp206.pdf",
+   "title": "Algebra Play",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Algebra Play"
+    },
+    {
+     "section": "6.2",
+     "title": "Thinking about"
+    },
+    {
+     "section": "6.3",
+     "title": "Number Pyramids"
+    },
+    {
+     "section": "6.4",
+     "title": "Fun with Grids"
+    },
+    {
+     "section": "6.5",
+     "title": "The Largest Product"
+    },
+    {
+     "section": "6.6",
+     "title": "Decoding Divisibility Tricks"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp206.pdf",
+   "pdfFiles": [
+    "hegp206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hegp207.pdf",
+   "title": "Area",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Rectangle and Squares"
+    }
+   ],
+   "bookPath": "grade8/mathematics/hegp207.pdf",
+   "pdfFiles": [
+    "hegp207.pdf"
+   ]
+  }
+ ]
+}

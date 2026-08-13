@@ -1,0 +1,258 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Business Studies",
+ "code": "kebs1",
+ "imageSubject": "Business Studies",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kebs101.pdf",
+   "title": "Chapter 1",
+   "bookPath": "grade11/business_studies/kebs101.pdf",
+   "subtopics": [
+    {
+     "section": "1.2",
+     "title": "ConCepT of Business"
+    },
+    {
+     "section": "1.3",
+     "title": "ClassifiCaTion of Business"
+    },
+    {
+     "section": "1.5",
+     "title": "ClassifiCation of objeCtives of"
+    },
+    {
+     "section": "1.6",
+     "title": "Business risk"
+    }
+   ],
+   "pdfFiles": [
+    "kebs101.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kebs102.pdf",
+   "title": "Chapter 2",
+   "bookPath": "grade11/business_studies/kebs102.pdf",
+   "subtopics": [
+    {
+     "section": "2.3",
+     "title": "Joint hindu Family Business"
+    },
+    {
+     "section": "2.4",
+     "title": "PartnershiP"
+    },
+    {
+     "section": "2.5",
+     "title": "Cooperative SoCiety"
+    },
+    {
+     "section": "2.6",
+     "title": "Joint Stock company"
+    },
+    {
+     "section": "2.7",
+     "title": "ChoiCe of form of Business"
+    }
+   ],
+   "pdfFiles": [
+    "kebs102.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kebs103.pdf",
+   "title": "Chapter 3",
+   "bookPath": "grade11/business_studies/kebs103.pdf",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "PrIvate Sector and PublIc"
+    },
+    {
+     "section": "3.3",
+     "title": "Forms oF orGanisinG Public"
+    },
+    {
+     "section": "3.5",
+     "title": "Global enterPrises"
+    },
+    {
+     "section": "3.6",
+     "title": "Joint ventures"
+    },
+    {
+     "section": "3.7",
+     "title": "Public Private PartnershiP (PPP)"
+    }
+   ],
+   "pdfFiles": [
+    "kebs103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kebs104.pdf",
+   "title": "Chapter 4",
+   "bookPath": "grade11/business_studies/kebs104.pdf",
+   "subtopics": [
+    {
+     "section": "4.4",
+     "title": "Banking"
+    },
+    {
+     "section": "4.7",
+     "title": "TransporTaTion"
+    }
+   ],
+   "pdfFiles": [
+    "kebs104.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kebs105.pdf",
+   "title": "Chapter 5",
+   "bookPath": "grade11/business_studies/kebs105.pdf",
+   "subtopics": [
+    {
+     "section": "5.3",
+     "title": "BEnEfits of E-BusinEss"
+    },
+    {
+     "section": "5.4",
+     "title": "Limitations of E-BusinEss"
+    }
+   ],
+   "pdfFiles": [
+    "kebs105.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kebs106.pdf",
+   "title": "Chapter 6",
+   "bookPath": "grade11/business_studies/kebs106.pdf",
+   "subtopics": [
+    {
+     "section": "6.4",
+     "title": "KindS of Social ReSponSibility"
+    },
+    {
+     "section": "6.5",
+     "title": "Social ReSponSibility towaRdS"
+    }
+   ],
+   "pdfFiles": [
+    "kebs106.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kebs107.pdf",
+   "title": "Chapter 7",
+   "bookPath": "grade11/business_studies/kebs107.pdf",
+   "subtopics": [
+    {
+     "section": "7.2",
+     "title": "Formation oF a Company"
+    }
+   ],
+   "pdfFiles": [
+    "kebs107.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kebs108.pdf",
+   "title": "Chapter 8",
+   "bookPath": "grade11/business_studies/kebs108.pdf",
+   "subtopics": [
+    {
+     "section": "8.2",
+     "title": "Meaning, nature and Significance"
+    },
+    {
+     "section": "8.4",
+     "title": "SourceS of finance"
+    }
+   ],
+   "pdfFiles": [
+    "kebs108.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "kebs109.pdf",
+   "title": "Chapter 9",
+   "bookPath": "grade11/business_studies/kebs109.pdf",
+   "subtopics": [
+    {
+     "section": "9.2",
+     "title": "Micro, SMall and MEdiuM"
+    },
+    {
+     "section": "9.7",
+     "title": "MSME and EntrEprEnEurShip"
+    },
+    {
+     "section": "9.9",
+     "title": "Intellectual ProPerty rIghts"
+    }
+   ],
+   "pdfFiles": [
+    "kebs109.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "kebs110.pdf",
+   "title": "Chapter 10",
+   "bookPath": "grade11/business_studies/kebs110.pdf",
+   "subtopics": [
+    {
+     "section": "10.2",
+     "title": "Internal trade"
+    },
+    {
+     "section": "10.3",
+     "title": "Wholesale trade"
+    }
+   ],
+   "pdfFiles": [
+    "kebs110.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "kebs111.pdf",
+   "title": "Chapter 11",
+   "bookPath": "grade11/business_studies/kebs111.pdf",
+   "subtopics": [
+    {
+     "section": "11.2",
+     "title": "Modes of entry Into"
+    }
+   ],
+   "pdfFiles": [
+    "kebs111.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

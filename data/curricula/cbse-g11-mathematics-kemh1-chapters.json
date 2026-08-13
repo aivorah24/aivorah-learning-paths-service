@@ -1,0 +1,373 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Mathematics",
+ "code": "kemh1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kemh101.pdf",
+   "title": "Sets",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.2",
+     "title": "Sets and their Representations"
+    },
+    {
+     "section": "1.3",
+     "title": "The Empty Set"
+    },
+    {
+     "section": "1.4",
+     "title": "Finite and Infinite Sets"
+    },
+    {
+     "section": "1.5",
+     "title": "Equal Sets"
+    },
+    {
+     "section": "1.6",
+     "title": "Subsets"
+    },
+    {
+     "section": "1.7",
+     "title": "Universal Set"
+    },
+    {
+     "section": "1.8",
+     "title": "Venn Diagrams"
+    },
+    {
+     "section": "1.9",
+     "title": "Operations on Sets"
+    },
+    {
+     "section": "1.10",
+     "title": "Complement of a Set"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh101.pdf",
+   "pdfFiles": [
+    "kemh101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kemh102.pdf",
+   "title": "Relations and Functions",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.2",
+     "title": "Cartesian Products of Sets"
+    },
+    {
+     "section": "2.3",
+     "title": "Relations"
+    },
+    {
+     "section": "2.4",
+     "title": "Functions"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh102.pdf",
+   "pdfFiles": [
+    "kemh102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kemh103.pdf",
+   "title": "Trigonometric Functions",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "Angles"
+    },
+    {
+     "section": "3.3",
+     "title": "Trigonometric Functions"
+    },
+    {
+     "section": "3.4",
+     "title": "Trigonometric Functions of Sum and Difference of Two Angles"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh103.pdf",
+   "pdfFiles": [
+    "kemh103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kemh104.pdf",
+   "title": "Complex Numbers and Quadratic Equations",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.2",
+     "title": "Complex Numbers"
+    },
+    {
+     "section": "4.3",
+     "title": "Algebra of Complex Numbers"
+    },
+    {
+     "section": "4.4",
+     "title": "The Modulus and the Conjugate of a Complex Number"
+    },
+    {
+     "section": "4.5",
+     "title": "Argand Plane and Polar Representation"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh104.pdf",
+   "pdfFiles": [
+    "kemh104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kemh105.pdf",
+   "title": "Linear Inequalities",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.2",
+     "title": "Inequalities"
+    },
+    {
+     "section": "5.3",
+     "title": "Algebraic Solutions of Linear Inequalities in One"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh105.pdf",
+   "pdfFiles": [
+    "kemh105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kemh106.pdf",
+   "title": "Permutations and Combinations",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.2",
+     "title": "Fundamental Principle of Counting"
+    },
+    {
+     "section": "6.3",
+     "title": "Permutations"
+    },
+    {
+     "section": "6.4",
+     "title": "Combinations"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh106.pdf",
+   "pdfFiles": [
+    "kemh106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kemh107.pdf",
+   "title": "Binomial Theorem",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.2",
+     "title": "Binomial Theorem for Positive Integral Indices"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh107.pdf",
+   "pdfFiles": [
+    "kemh107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kemh108.pdf",
+   "title": "Sequences and Series",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.2",
+     "title": "Sequences"
+    },
+    {
+     "section": "8.3",
+     "title": "Series"
+    },
+    {
+     "section": "8.4",
+     "title": "Geometric Progression (G"
+    },
+    {
+     "section": "8.5",
+     "title": "Relationship Between A"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh108.pdf",
+   "pdfFiles": [
+    "kemh108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "kemh109.pdf",
+   "title": "Straight Lines",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.2",
+     "title": "Slope of a Line"
+    },
+    {
+     "section": "9.3",
+     "title": "Various Forms of the Equation of a Line"
+    },
+    {
+     "section": "9.4",
+     "title": "Distance of a Point From a Line"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh109.pdf",
+   "pdfFiles": [
+    "kemh109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "kemh110.pdf",
+   "title": "Conic Sections",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.2",
+     "title": "Sections of a Cone"
+    },
+    {
+     "section": "10.3",
+     "title": "Circle"
+    },
+    {
+     "section": "10.4",
+     "title": "Parabola"
+    },
+    {
+     "section": "10.6",
+     "title": "Hyperbola"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh110.pdf",
+   "pdfFiles": [
+    "kemh110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "kemh111.pdf",
+   "title": "Dimensional Geometry",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.2",
+     "title": "Coordinate Axes and Coordinate Planes in Three Dimensional Spa"
+    },
+    {
+     "section": "11.3",
+     "title": "Coordinates of a Point in Space"
+    },
+    {
+     "section": "11.4",
+     "title": "Distance between Two Points"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh111.pdf",
+   "pdfFiles": [
+    "kemh111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "kemh112.pdf",
+   "title": "Limits and Derivatives",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "12.2",
+     "title": "Intuitive Idea of Derivatives"
+    },
+    {
+     "section": "12.3",
+     "title": "Limits"
+    },
+    {
+     "section": "12.4",
+     "title": "Limits of Trigonometric Functions"
+    },
+    {
+     "section": "12.5",
+     "title": "Derivatives"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh112.pdf",
+   "pdfFiles": [
+    "kemh112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "kemh113.pdf",
+   "title": "Statistics",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "13.2",
+     "title": "Measures of Dispersion"
+    },
+    {
+     "section": "13.3",
+     "title": "Range"
+    },
+    {
+     "section": "13.4",
+     "title": "Mean Deviation"
+    },
+    {
+     "section": "13.5",
+     "title": "Variance and Standard Deviation"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh113.pdf",
+   "pdfFiles": [
+    "kemh113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "kemh114.pdf",
+   "title": "Probability",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "14.1",
+     "title": "Event"
+    },
+    {
+     "section": "14.2",
+     "title": "Axiomatic Approach to Probability"
+    }
+   ],
+   "bookPath": "grade11/mathematics/kemh114.pdf",
+   "pdfFiles": [
+    "kemh114.pdf"
+   ]
+  }
+ ]
+}

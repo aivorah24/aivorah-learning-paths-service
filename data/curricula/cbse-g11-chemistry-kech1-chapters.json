@@ -1,0 +1,1002 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Chemistry",
+ "code": "kech1",
+ "imageSubject": "Chemistry",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kech101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Calculate the molar mass of the following"
+    },
+    {
+     "section": "1.2",
+     "title": "Calculate the mass per cent of different elements pres"
+    },
+    {
+     "section": "1.3",
+     "title": "Determine the empirical formula of"
+    },
+    {
+     "section": "1.4",
+     "title": "Uncertainty in meaSUrement"
+    },
+    {
+     "section": "1.5",
+     "title": "Calculate the mass of sodium acetate (CH"
+    },
+    {
+     "section": "1.6",
+     "title": "Dalton"
+    },
+    {
+     "section": "1.7",
+     "title": "How much copper can be obtained from"
+    },
+    {
+     "section": "1.8",
+     "title": "Determine the molecular formula of an oxide of iron, in which"
+    },
+    {
+     "section": "1.9",
+     "title": "Calculate the atomic mass (average) of chlorine using the foll"
+    },
+    {
+     "section": "1.10",
+     "title": "Stoichiometry anD"
+    },
+    {
+     "section": "1.11",
+     "title": "What is the concentration of sugar (C"
+    },
+    {
+     "section": "1.12",
+     "title": "If the density of methanol"
+    },
+    {
+     "section": "1.13",
+     "title": "Pressure is determined as force per unit area of the surface"
+    },
+    {
+     "section": "1.14",
+     "title": "What is the SI unit of mass"
+    },
+    {
+     "section": "1.15",
+     "title": "Match the following prefixes with their multiples"
+    },
+    {
+     "section": "1.16",
+     "title": "What do you mean by significant figures"
+    },
+    {
+     "section": "1.18",
+     "title": "Express the following in the scientific notation"
+    },
+    {
+     "section": "1.19",
+     "title": "How many significant figures are present in the following"
+    },
+    {
+     "section": "1.20",
+     "title": "Round up the following upto three significant figures"
+    },
+    {
+     "section": "1.21",
+     "title": "The following data are obtained when dinitrogen and dioxygen r"
+    },
+    {
+     "section": "1.22",
+     "title": "If the speed of light is"
+    },
+    {
+     "section": "1.23",
+     "title": "In a reaction"
+    },
+    {
+     "section": "1.24",
+     "title": "Dinitrogen and dihydrogen react with"
+    },
+    {
+     "section": "1.25",
+     "title": "How are"
+    },
+    {
+     "section": "1.27",
+     "title": "Convert the following into basic units"
+    },
+    {
+     "section": "1.28",
+     "title": "Which one of the following will have the largest number of ato"
+    },
+    {
+     "section": "1.29",
+     "title": "Calculate the molarity of a"
+    },
+    {
+     "section": "1.30",
+     "title": "What will be the mass of one"
+    },
+    {
+     "section": "1.31",
+     "title": "How many significant figures should be present in the answer o"
+    },
+    {
+     "section": "1.32",
+     "title": "Use the data given in the following table to calculate the mol"
+    },
+    {
+     "section": "1.33",
+     "title": "Calculate the number of atoms in each of the following (i)"
+    },
+    {
+     "section": "1.35",
+     "title": "Calcium carbonate reacts with aqueous HCl to give CaCl"
+    },
+    {
+     "section": "1.36",
+     "title": "Chlorine is prepared in the laboratory by treating man"
+    }
+   ],
+   "bookPath": "grade11/chemistry/kech101.pdf",
+   "pdfFiles": [
+    "kech101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kech102.pdf",
+   "title": "Structure of Atom",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Discovery of sUb-atomic"
+    },
+    {
+     "section": "2.3",
+     "title": "DeveloPments leaDing to tHe"
+    },
+    {
+     "section": "2.4",
+     "title": "Write the complete symbol for the atom with the given atomic n"
+    },
+    {
+     "section": "2.5",
+     "title": "Yellow light emitted from a sodium lamp has a wavelength ("
+    },
+    {
+     "section": "2.6",
+     "title": "QUantUm mecHanical moDel of"
+    },
+    {
+     "section": "2.7",
+     "title": "Calculate the wavelength, frequency and wavenumber of a light"
+    },
+    {
+     "section": "2.8",
+     "title": "What is the number of photons of light with a wavelength of"
+    },
+    {
+     "section": "2.10",
+     "title": "Electromagnetic"
+    },
+    {
+     "section": "2.12",
+     "title": "Electrons are emitted with zero velocity from a metal surface"
+    },
+    {
+     "section": "2.13",
+     "title": "What is t"
+    },
+    {
+     "section": "2.14",
+     "title": "How much energy is required to ionise a H atom if the electro"
+    },
+    {
+     "section": "2.15",
+     "title": "What is the maximum number of emission lines when the excited"
+    },
+    {
+     "section": "2.17",
+     "title": "Calculate the wavenumber for the longest wavelength transition"
+    },
+    {
+     "section": "2.18",
+     "title": "What is the energy in joules, required to shift the electron o"
+    },
+    {
+     "section": "2.19",
+     "title": "The electron energy in hydrogen atom is given by E"
+    },
+    {
+     "section": "2.20",
+     "title": "Calculate the wavelength of an electron moving with a velocity"
+    },
+    {
+     "section": "2.21",
+     "title": "The mass of an electron is"
+    },
+    {
+     "section": "2.22",
+     "title": "Which of the following are isoelectronic species"
+    },
+    {
+     "section": "2.24",
+     "title": "What is the lowest value of n that allows g orbitals to exist"
+    },
+    {
+     "section": "2.25",
+     "title": "An electron is in one of the"
+    },
+    {
+     "section": "2.27",
+     "title": "Give the number of electrons in the species"
+    },
+    {
+     "section": "2.29",
+     "title": "Using s, p"
+    },
+    {
+     "section": "2.30",
+     "title": "Explain, giving reasons, which of the following sets of quantu"
+    },
+    {
+     "section": "2.31",
+     "title": "How many electrons in an atom may have the following quantum n"
+    },
+    {
+     "section": "2.32",
+     "title": "Show that the circumference of the Bohr orbit for the hydrogen"
+    },
+    {
+     "section": "2.33",
+     "title": "What transition in the hydrogen spectrum"
+    },
+    {
+     "section": "2.34",
+     "title": "Calculate the energy required for the process"
+    },
+    {
+     "section": "2.35",
+     "title": "If the diameter of a carbon atom is"
+    },
+    {
+     "section": "2.37",
+     "title": "The diameter of zinc atom is"
+    },
+    {
+     "section": "2.39",
+     "title": "In Milikan"
+    },
+    {
+     "section": "2.40",
+     "title": "In Rutherford"
+    },
+    {
+     "section": "2.41",
+     "title": "Symbols"
+    },
+    {
+     "section": "2.42",
+     "title": "An element with mass number"
+    },
+    {
+     "section": "2.43",
+     "title": "An ion with mass number"
+    },
+    {
+     "section": "2.44",
+     "title": "An ion with mass number"
+    },
+    {
+     "section": "2.45",
+     "title": "Arrange the following type of radiations in increasing order o"
+    },
+    {
+     "section": "2.46",
+     "title": "Nitrogen laser produces a radiation at a wavelength of"
+    },
+    {
+     "section": "2.47",
+     "title": "Neon gas is generally used in the sign boards"
+    },
+    {
+     "section": "2.48",
+     "title": "In astronomical observations, signals observed from the distan"
+    },
+    {
+     "section": "2.49",
+     "title": "Lifetimes of the molecules in the excited states are often mea"
+    },
+    {
+     "section": "2.50",
+     "title": "The longest wavelength doublet absorption transition is observ"
+    },
+    {
+     "section": "2.51",
+     "title": "The work function for caesium atom is"
+    },
+    {
+     "section": "2.52",
+     "title": "Following results are observed when sodium metal is ir"
+    },
+    {
+     "section": "2.53",
+     "title": "The ejection of the photoelectron from the silver meta"
+    },
+    {
+     "section": "2.54",
+     "title": "If the photon of the wavelength"
+    },
+    {
+     "section": "2.55",
+     "title": "Emission transitions in the Paschen series end at orbit n"
+    },
+    {
+     "section": "2.56",
+     "title": "Calculate the wavelength for the emission transition if it sta"
+    },
+    {
+     "section": "2.58",
+     "title": "Similar to electron diffraction, neutron diffraction microscop"
+    },
+    {
+     "section": "2.60",
+     "title": "The velocity associated with a proton moving in a pot"
+    },
+    {
+     "section": "2.61",
+     "title": "If the position of the electron is measured within an accuracy"
+    },
+    {
+     "section": "2.62",
+     "title": "The quantum numbers of six electrons are given below"
+    },
+    {
+     "section": "2.63",
+     "title": "The bromine atom possesses"
+    },
+    {
+     "section": "2.64",
+     "title": "Among the following pairs of orbitals which orbital will exper"
+    },
+    {
+     "section": "2.65",
+     "title": "The unpaired electrons in Al and Si are present in"
+    },
+    {
+     "section": "2.66",
+     "title": "Indicate the number of unpaired electrons in"
+    }
+   ],
+   "bookPath": "grade11/chemistry/kech102.pdf",
+   "pdfFiles": [
+    "kech102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kech103.pdf",
+   "title": "Periodic System",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "WHy do WE nEEd to Classify ElEmEnts"
+    },
+    {
+     "section": "3.2",
+     "title": "GEnEsis of PEriodiC"
+    },
+    {
+     "section": "3.3",
+     "title": "What is the basic difference in approach between the Mendeleev"
+    },
+    {
+     "section": "3.4",
+     "title": "On the basis of quantum numbers, justify that the sixth period"
+    },
+    {
+     "section": "3.5",
+     "title": "ElECtroniC ConfiGUrations"
+    },
+    {
+     "section": "3.6",
+     "title": "ElECtroniC ConfiGUrat"
+    },
+    {
+     "section": "3.7",
+     "title": "PEriodiC trEnds in ProPErtiEs"
+    },
+    {
+     "section": "3.8",
+     "title": "Why do elements in the same group have similar physical and ch"
+    },
+    {
+     "section": "3.9",
+     "title": "What does atomic radius and ionic radius really mean to you"
+    },
+    {
+     "section": "3.10",
+     "title": "How do atomic radius vary in a period and in a group"
+    },
+    {
+     "section": "3.11",
+     "title": "What do you understand by isoelectronic species"
+    },
+    {
+     "section": "3.12",
+     "title": "Consider"
+    },
+    {
+     "section": "3.13",
+     "title": "Explain why cation are smaller and anions larger in radii than"
+    },
+    {
+     "section": "3.16",
+     "title": "Among the second period elements the actual ionization enthalp"
+    },
+    {
+     "section": "3.18",
+     "title": "What are the various factors due to which the ionization entha"
+    },
+    {
+     "section": "3.20",
+     "title": "Which of the following pairs of elements would have a more neg"
+    },
+    {
+     "section": "3.21",
+     "title": "Would you expect the second electron gain enthalpy of O as pos"
+    },
+    {
+     "section": "3.22",
+     "title": "What is the basic difference between the terms electro"
+    },
+    {
+     "section": "3.23",
+     "title": "How would you react to the statement that the electronegativit"
+    },
+    {
+     "section": "3.24",
+     "title": "Describe the theory associated with the radius of an atom as i"
+    },
+    {
+     "section": "3.26",
+     "title": "What are the major differences between metals and non-metals"
+    },
+    {
+     "section": "3.27",
+     "title": "Use the periodic table to answer the following questions"
+    },
+    {
+     "section": "3.28",
+     "title": "The increasing order of reactivity among group"
+    },
+    {
+     "section": "3.29",
+     "title": "Write"
+    },
+    {
+     "section": "3.32",
+     "title": "Predict the formulas of the stable binary compounds that would"
+    },
+    {
+     "section": "3.34",
+     "title": "Which of the following statements related to the modern period"
+    },
+    {
+     "section": "3.35",
+     "title": "Anything"
+    },
+    {
+     "section": "3.39",
+     "title": "Considering"
+    },
+    {
+     "section": "3.40",
+     "title": "Considering"
+    }
+   ],
+   "bookPath": "grade11/chemistry/kech103.pdf",
+   "pdfFiles": [
+    "kech103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kech104.pdf",
+   "title": "Chemical Bonding and Molecular Structure",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Explain"
+    },
+    {
+     "section": "4.2",
+     "title": "Write"
+    },
+    {
+     "section": "4.3",
+     "title": "Write"
+    },
+    {
+     "section": "4.5",
+     "title": "Define"
+    },
+    {
+     "section": "4.6",
+     "title": "HyBRiDiSAtiOn"
+    },
+    {
+     "section": "4.7",
+     "title": "MOLECULAR ORBitAL tHEORy"
+    },
+    {
+     "section": "4.8",
+     "title": "BOnDinG in SOME HOMOnUCLEAR"
+    },
+    {
+     "section": "4.9",
+     "title": "HyDROGEn BOnDinG"
+    },
+    {
+     "section": "4.10",
+     "title": "Define"
+    },
+    {
+     "section": "4.11",
+     "title": "Explain"
+    },
+    {
+     "section": "4.13",
+     "title": "Write"
+    },
+    {
+     "section": "4.15",
+     "title": "Although"
+    },
+    {
+     "section": "4.16",
+     "title": "Write"
+    },
+    {
+     "section": "4.17",
+     "title": "Define"
+    },
+    {
+     "section": "4.18",
+     "title": "Explain"
+    },
+    {
+     "section": "4.19",
+     "title": "Arrange"
+    },
+    {
+     "section": "4.21",
+     "title": "Apart"
+    },
+    {
+     "section": "4.22",
+     "title": "Explain"
+    },
+    {
+     "section": "4.23",
+     "title": "Which"
+    },
+    {
+     "section": "4.25",
+     "title": "Describe"
+    },
+    {
+     "section": "4.29",
+     "title": "Considering"
+    },
+    {
+     "section": "4.30",
+     "title": "Which"
+    },
+    {
+     "section": "4.32",
+     "title": "Distinguish"
+    },
+    {
+     "section": "4.33",
+     "title": "Explain"
+    },
+    {
+     "section": "4.34",
+     "title": "Write"
+    },
+    {
+     "section": "4.36",
+     "title": "Compare"
+    },
+    {
+     "section": "4.37",
+     "title": "Write"
+    },
+    {
+     "section": "4.38",
+     "title": "Describe"
+    },
+    {
+     "section": "4.39",
+     "title": "Define"
+    }
+   ],
+   "bookPath": "grade11/chemistry/kech104.pdf",
+   "pdfFiles": [
+    "kech104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kech105.pdf",
+   "title": "Ctu",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Thermodynamic Terms"
+    },
+    {
+     "section": "5.2",
+     "title": "For the process to occur under adiabatic conditions, the corre"
+    },
+    {
+     "section": "5.3",
+     "title": "The enthalpies of all elements in their standard states are"
+    },
+    {
+     "section": "5.5",
+     "title": "The enthalpy of combustion of methane, graphite and dihydrogen"
+    },
+    {
+     "section": "5.7",
+     "title": "In a process"
+    },
+    {
+     "section": "5.8",
+     "title": "The reaction of cyanamide, NH"
+    },
+    {
+     "section": "5.9",
+     "title": "Calculate the number of kJ of heat necessary to raise"
+    },
+    {
+     "section": "5.10",
+     "title": "Calculate the enthalpy change on freezing of"
+    },
+    {
+     "section": "5.11",
+     "title": "Enthalpy of combustion of carbon to CO"
+    },
+    {
+     "section": "5.12",
+     "title": "Enthalpies of formation of CO(g), CO"
+    },
+    {
+     "section": "5.13",
+     "title": "Given"
+    },
+    {
+     "section": "5.14",
+     "title": "Calculate the standard enthalpy of formation of CH"
+    },
+    {
+     "section": "5.15",
+     "title": "Calculate the enthalpy change for the process"
+    },
+    {
+     "section": "5.16",
+     "title": "For an isolated system"
+    },
+    {
+     "section": "5.17",
+     "title": "For the reaction at"
+    },
+    {
+     "section": "5.18",
+     "title": "For the reaction"
+    },
+    {
+     "section": "5.19",
+     "title": "For the reaction"
+    },
+    {
+     "section": "5.20",
+     "title": "The equilibrium constant for a reaction is"
+    },
+    {
+     "section": "5.21",
+     "title": "Comment on the thermodynamic stability of NO(g), given"
+    },
+    {
+     "section": "5.22",
+     "title": "Calculate the entropy change in surroundings when"
+    }
+   ],
+   "bookPath": "grade11/chemistry/kech105.pdf",
+   "pdfFiles": [
+    "kech105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kech106.pdf",
+   "title": "Equilibrium in Chemical",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "EqUilibriUm in PHYSiCAl"
+    },
+    {
+     "section": "6.2",
+     "title": "EQUILIBRIUM IN CHEMICAL"
+    },
+    {
+     "section": "6.3",
+     "title": "At a certain temperature and total pressure of"
+    },
+    {
+     "section": "6.4",
+     "title": "HOMOGENEOUS EQUILIBRIA"
+    },
+    {
+     "section": "6.5",
+     "title": "HEtErOGEnEOUS EqUilibriA"
+    },
+    {
+     "section": "6.6",
+     "title": "APPliCAtiOnS OF EqUilibriUm"
+    },
+    {
+     "section": "6.7",
+     "title": "Explain why pure liquids and solids can be ignored wh"
+    },
+    {
+     "section": "6.8",
+     "title": "FACtOrS AFFECtinG EqUilibriA"
+    },
+    {
+     "section": "6.9",
+     "title": "IONIC EQUILIBRIUM IN SOLUTION"
+    },
+    {
+     "section": "6.10",
+     "title": "ACiDS, bASES AnD SAltS"
+    },
+    {
+     "section": "6.13",
+     "title": "SOlUbilitY EqUilibriA OF"
+    },
+    {
+     "section": "6.14",
+     "title": "One mole of H"
+    },
+    {
+     "section": "6.16",
+     "title": "What is the equilibrium concentration of each of the substance"
+    },
+    {
+     "section": "6.18",
+     "title": "Ethyl acetate is formed by the reaction between ethano"
+    },
+    {
+     "section": "6.20",
+     "title": "One of the reaction that takes place in producing steel from i"
+    },
+    {
+     "section": "6.21",
+     "title": "Equilibrium constant, K"
+    },
+    {
+     "section": "6.22",
+     "title": "Bromine monochloride, BrCl decomposes into bromine and chlorin"
+    },
+    {
+     "section": "6.24",
+     "title": "Calculate a)"
+    },
+    {
+     "section": "6.25",
+     "title": "Does the number of moles of reaction products increase, decrea"
+    },
+    {
+     "section": "6.26",
+     "title": "Which of the following reactions will get affected by"
+    },
+    {
+     "section": "6.27",
+     "title": "The equilibrium constant for the following reaction is"
+    },
+    {
+     "section": "6.28",
+     "title": "Dihydrogen gas is obtained from natural gas by partial oxidati"
+    },
+    {
+     "section": "6.29",
+     "title": "Describe the effect of"
+    },
+    {
+     "section": "6.31",
+     "title": "Dihydrogen gas used in Haber"
+    },
+    {
+     "section": "6.32",
+     "title": "Predict which of the following reaction will have appreciable"
+    },
+    {
+     "section": "6.33",
+     "title": "The value of K"
+    },
+    {
+     "section": "6.34",
+     "title": "The reaction, CO(g)"
+    },
+    {
+     "section": "6.35",
+     "title": "What is meant by the conjugate acid-base pair"
+    },
+    {
+     "section": "6.36",
+     "title": "Which of the followings are Lewis acids"
+    },
+    {
+     "section": "6.37",
+     "title": "What will be the conjugate bases for the Br"
+    },
+    {
+     "section": "6.38",
+     "title": "Write the conjugate acids for the following Br"
+    },
+    {
+     "section": "6.39",
+     "title": "The species"
+    },
+    {
+     "section": "6.40",
+     "title": "Classify the following species into Lewis acids and Lewis base"
+    },
+    {
+     "section": "6.41",
+     "title": "The concentration of hydrogen ion in a sample of soft drink is"
+    },
+    {
+     "section": "6.42",
+     "title": "The pH of a sample of vinegar"
+    },
+    {
+     "section": "6.43",
+     "title": "The ionization constant of HF, HCOOH and HCN at"
+    },
+    {
+     "section": "6.44",
+     "title": "The ionization constant of phenol is"
+    },
+    {
+     "section": "6.45",
+     "title": "The first ionization constant of H"
+    },
+    {
+     "section": "6.46",
+     "title": "The ionization constant of acetic acid is"
+    },
+    {
+     "section": "6.47",
+     "title": "It has been found that the pH of a"
+    },
+    {
+     "section": "6.48",
+     "title": "Assuming complete dissociation, calculate the pH of the follow"
+    },
+    {
+     "section": "6.49",
+     "title": "Calculate the pH of the following solutions"
+    },
+    {
+     "section": "6.50",
+     "title": "The degree of ionization of a"
+    },
+    {
+     "section": "6.51",
+     "title": "The pH of"
+    },
+    {
+     "section": "6.52",
+     "title": "What is the pH of"
+    },
+    {
+     "section": "6.53",
+     "title": "Calculate the degree of ionization of"
+    },
+    {
+     "section": "6.54",
+     "title": "The ionization constant of dimethylamine is"
+    },
+    {
+     "section": "6.55",
+     "title": "Calculate the hydrogen ion concentration in the following biol"
+    },
+    {
+     "section": "6.56",
+     "title": "The pH of milk, black coffee, tomato juice, lemon juice and eg"
+    },
+    {
+     "section": "6.58",
+     "title": "The solubility of Sr(OH)"
+    },
+    {
+     "section": "6.59",
+     "title": "The ionization constant of propanoic acid is"
+    },
+    {
+     "section": "6.60",
+     "title": "The pH of"
+    },
+    {
+     "section": "6.61",
+     "title": "The ionization constant of nitrous acid is"
+    },
+    {
+     "section": "6.63",
+     "title": "Predict if the solutions of the following salts are neutral, a"
+    },
+    {
+     "section": "6.64",
+     "title": "The ionization constant of chloroacetic acid is"
+    },
+    {
+     "section": "6.65",
+     "title": "Ionic product of water at"
+    },
+    {
+     "section": "6.66",
+     "title": "Calculate the pH of the resultant mixtures"
+    },
+    {
+     "section": "6.67",
+     "title": "Determine the solubilities of silver chromate, barium chromate"
+    },
+    {
+     "section": "6.68",
+     "title": "The solubilit"
+    },
+    {
+     "section": "6.69",
+     "title": "Equal"
+    },
+    {
+     "section": "6.70",
+     "title": "The ionization constant of benzoic acid is"
+    },
+    {
+     "section": "6.71",
+     "title": "What is the maximum concentration of equimolar solutions of fe"
+    },
+    {
+     "section": "6.72",
+     "title": "What is the minimum volume of water required to dissolve"
+    },
+    {
+     "section": "6.73",
+     "title": "The concentration of sulphide ion in"
+    }
+   ],
+   "bookPath": "grade11/chemistry/kech106.pdf",
+   "pdfFiles": [
+    "kech106.pdf"
+   ]
+  }
+ ]
+}

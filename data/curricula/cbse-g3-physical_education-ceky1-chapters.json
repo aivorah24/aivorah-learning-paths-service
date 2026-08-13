@@ -1,0 +1,85 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 3",
+ "subject": "Physical Education and Well Being",
+ "code": "ceky1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "ceky101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/physical_education/ceky101.pdf",
+   "pdfFiles": [
+    "ceky101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "ceky102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/physical_education/ceky102.pdf",
+   "pdfFiles": [
+    "ceky102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "ceky103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/physical_education/ceky103.pdf",
+   "pdfFiles": [
+    "ceky103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "ceky104.pdf",
+   "title": "Finishfinish Centrecentre Startstart",
+   "kind": "Non-fiction",
+   "bookPath": "grade3/physical_education/ceky104.pdf",
+   "pdfFiles": [
+    "ceky104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "ceky105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/physical_education/ceky105.pdf",
+   "pdfFiles": [
+    "ceky105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "ceky106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/physical_education/ceky106.pdf",
+   "pdfFiles": [
+    "ceky106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "ceky107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade3/physical_education/ceky107.pdf",
+   "pdfFiles": [
+    "ceky107.pdf"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,110 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 5",
+ "subject": "English",
+ "code": "eeen1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "eeen101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen101.pdf",
+   "pdfFiles": [
+    "eeen101.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "eeen102.pdf",
+   "title": "Jannigr",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen102.pdf",
+   "pdfFiles": [
+    "eeen102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "eeen103.pdf",
+   "title": "Robert Louis Stevenson",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen103.pdf",
+   "pdfFiles": [
+    "eeen103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "eeen104.pdf",
+   "title": "Galwaykinnel",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen104.pdf",
+   "pdfFiles": [
+    "eeen104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "eeen105.pdf",
+   "title": "Themes",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen105.pdf",
+   "pdfFiles": [
+    "eeen105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "eeen106.pdf",
+   "title": "Gervase Phinn",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen106.pdf",
+   "pdfFiles": [
+    "eeen106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "eeen107.pdf",
+   "title": "Themes",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen107.pdf",
+   "pdfFiles": [
+    "eeen107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "eeen108.pdf",
+   "title": "Enid Blyton",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen108.pdf",
+   "pdfFiles": [
+    "eeen108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "eeen109.pdf",
+   "title": "Lois Lbnski",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen109.pdf",
+   "pdfFiles": [
+    "eeen109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "eeen110.pdf",
+   "title": "Indira Mukherjee",
+   "kind": "Non-fiction",
+   "bookPath": "grade5/english/eeen110.pdf",
+   "pdfFiles": [
+    "eeen110.pdf"
+   ]
+  }
+ ]
+}

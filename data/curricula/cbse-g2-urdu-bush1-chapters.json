@@ -1,0 +1,143 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 2",
+ "subject": "Urdu",
+ "code": "bush1",
+ "imageSubject": "Urdu",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "bush101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "bush102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "bush103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "bush104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "bush105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "bush106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "bush107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "bush108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "bush109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "bush110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "bush111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "bush112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "bush113.pdf",
+   "title": "Chapter 13",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush113.pdf"
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "bush114.pdf",
+   "title": "Chapter 14",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush114.pdf"
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "bush115.pdf",
+   "title": "Chapter 15",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush115.pdf"
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "bush116.pdf",
+   "title": "Chapter 16",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush116.pdf"
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "bush117.pdf",
+   "title": "Chapter 17",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush117.pdf"
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "bush118.pdf",
+   "title": "Chapter 18",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush118.pdf"
+  },
+  {
+   "chapter": 19,
+   "pdfFile": "bush119.pdf",
+   "title": "Chapter 19",
+   "needsTitleReview": true,
+   "bookPath": "grade2/urdu/bush119.pdf"
+  }
+ ]
+}

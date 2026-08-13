@@ -1,0 +1,308 @@
+{
+  "curriculum": "CBSE",
+  "grade": "Grade 2",
+  "subject": "Hindi",
+  "code": "bhsr1",
+  "units": [
+    {
+      "unitNo": 1,
+      "title": "सुनें कहानी!",
+      "topics": [
+        {
+          "name": "सुनें कहानी!",
+          "kind": "Story",
+          "page": null,
+          "match": "सुनें कहानी!"
+        }
+      ]
+    },
+    {
+      "unitNo": 2,
+      "title": "पापा, कयों अचछा लगता है",
+      "topics": [
+        {
+          "name": "पापा, कयों अचछा लगता है",
+          "kind": "Lesson",
+          "page": null,
+          "match": "पापा, कयों अचछा लगता है"
+        }
+      ]
+    },
+    {
+      "unitNo": 3,
+      "title": "माला सबलली ्ो डराती",
+      "topics": [
+        {
+          "name": "माला सबलली ्ो डराती",
+          "kind": "Story",
+          "page": null,
+          "match": "माला सबलली ्ो डराती"
+        }
+      ]
+    },
+    {
+      "unitNo": 4,
+      "title": "द्रशबद का कमाल",
+      "topics": [
+        {
+          "name": "द्रशबद का कमाल",
+          "kind": "Lesson",
+          "page": null,
+          "match": "द्रशबद का कमाल"
+        }
+      ]
+    },
+    {
+      "unitNo": 5,
+      "title": "सुनें कहानी!",
+      "topics": [
+        {
+          "name": "सुनें कहानी!",
+          "kind": "Story",
+          "page": null,
+          "match": "सुनें कहानी!"
+        }
+      ]
+    },
+    {
+      "unitNo": 6,
+      "title": "चींटा",
+      "topics": [
+        {
+          "name": "चींटा",
+          "kind": "Story",
+          "page": null,
+          "match": "चींटा"
+        }
+      ]
+    },
+    {
+      "unitNo": 7,
+      "title": "पचिए, समचझए और चमिाइए",
+      "topics": [
+        {
+          "name": "पचिए, समचझए और चमिाइए",
+          "kind": "Lesson",
+          "page": null,
+          "match": "पचिए, समचझए और चमिाइए"
+        }
+      ]
+    },
+    {
+      "unitNo": 8,
+      "title": "रंग ही रंग",
+      "topics": [
+        {
+          "name": "रंग ही रंग",
+          "kind": "Lesson",
+          "page": null,
+          "match": "रंग ही रंग"
+        }
+      ]
+    },
+    {
+      "unitNo": 9,
+      "title": "दुनिया के रंग-रंगे",
+      "topics": [
+        {
+          "name": "दुनिया के रंग-रंगे",
+          "kind": "Lesson",
+          "page": null,
+          "match": "दुनिया के रंग-रंगे"
+        }
+      ]
+    },
+    {
+      "unitNo": 10,
+      "title": "अगर न होता चाँद",
+      "topics": [
+        {
+          "name": "अगर न होता चाँद",
+          "kind": "Lesson",
+          "page": null,
+          "match": "अगर न होता चाँद"
+        }
+      ]
+    },
+    {
+      "unitNo": 11,
+      "title": "बेचारा जोजो!",
+      "topics": [
+        {
+          "name": "बेचारा जोजो!",
+          "kind": "Story",
+          "page": null,
+          "match": "बेचारा जोजो!"
+        }
+      ]
+    },
+    {
+      "unitNo": 12,
+      "title": "सुनें कहानी",
+      "topics": [
+        {
+          "name": "सुनें कहानी",
+          "kind": "Story",
+          "page": null,
+          "match": "सुनें कहानी"
+        }
+      ]
+    },
+    {
+      "unitNo": 13,
+      "title": "चित्र और बातिीत",
+      "topics": [
+        {
+          "name": "चित्र और बातिीत",
+          "kind": "Lesson",
+          "page": null,
+          "match": "चित्र और बातिीत"
+        }
+      ]
+    },
+    {
+      "unitNo": 14,
+      "title": "Chapter 14",
+      "topics": [
+        {
+          "name": "Chapter 14",
+          "kind": "Story",
+          "page": null,
+          "match": "chapter 14"
+        }
+      ]
+    },
+    {
+      "unitNo": 15,
+      "title": "बािल गरज रहे गड़-गड़-गड़",
+      "topics": [
+        {
+          "name": "बािल गरज रहे गड़-गड़-गड़",
+          "kind": "Poem",
+          "page": null,
+          "match": "बािल गरज रहे गड़-गड़-गड़"
+        }
+      ]
+    },
+    {
+      "unitNo": 16,
+      "title": "मूली",
+      "topics": [
+        {
+          "name": "मूली",
+          "kind": "Story",
+          "page": null,
+          "match": "मूली"
+        }
+      ]
+    },
+    {
+      "unitNo": 17,
+      "title": "बरसात और मेंढक",
+      "topics": [
+        {
+          "name": "बरसात और मेंढक",
+          "kind": "Story",
+          "page": null,
+          "match": "बरसात और मेंढक"
+        }
+      ]
+    },
+    {
+      "unitNo": 18,
+      "title": "शेर और चूहे की दोस्ती",
+      "topics": [
+        {
+          "name": "शेर और चूहे की दोस्ती",
+          "kind": "Story",
+          "page": null,
+          "match": "शेर और चूहे की दोस्ती"
+        }
+      ]
+    },
+    {
+      "unitNo": 19,
+      "title": "दो छोटी हाथ",
+      "topics": [
+        {
+          "name": "दो छोटी हाथ",
+          "kind": "Story",
+          "page": null,
+          "match": "दो छोटी हाथ"
+        }
+      ]
+    },
+    {
+      "unitNo": 20,
+      "title": "पन-छपाई",
+      "topics": [
+        {
+          "name": "पन-छपाई",
+          "kind": "Story",
+          "page": null,
+          "match": "पन-छपाई"
+        }
+      ]
+    },
+    {
+      "unitNo": 21,
+      "title": "हाथी साइडकल चला रहा था",
+      "topics": [
+        {
+          "name": "हाथी साइडकल चला रहा था",
+          "kind": "Story",
+          "page": null,
+          "match": "हाथी साइडकल चला रहा था"
+        }
+      ]
+    },
+    {
+      "unitNo": 22,
+      "title": "चार दिशाएँ",
+      "topics": [
+        {
+          "name": "चार दिशाएँ",
+          "kind": "Lesson",
+          "page": null,
+          "match": "चार दिशाएँ"
+        }
+      ]
+    },
+    {
+      "unitNo": 23,
+      "title": "चंिा मामा",
+      "topics": [
+        {
+          "name": "चंिा मामा",
+          "kind": "Story",
+          "page": null,
+          "match": "चंिा मामा"
+        }
+      ]
+    },
+    {
+      "unitNo": 24,
+      "title": "दमयी कविता",
+      "topics": [
+        {
+          "name": "दमयी कविता",
+          "kind": "Poem",
+          "page": null,
+          "match": "दमयी कविता"
+        }
+      ]
+    },
+    {
+      "unitNo": 25,
+      "title": "बाररश से जुड़े अपने अनुभव बताइए",
+      "topics": [
+        {
+          "name": "बाररश से जुड़े अपने अनुभव बताइए",
+          "kind": "Lesson",
+          "page": null,
+          "match": "बाररश से जुड़े अपने अनुभव बताइए"
+        }
+      ]
+    }
+  ]
+}

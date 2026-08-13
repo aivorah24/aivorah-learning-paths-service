@@ -1,0 +1,129 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 2",
+ "subject": "Mathematics",
+ "code": "bejm1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "bejm101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "bookPath": "grade2/mathematics/bejm101.pdf",
+   "pdfFiles": [
+    "bejm101.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "bejm102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/mathematics/bejm102.pdf",
+   "pdfFiles": [
+    "bejm102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "bejm103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/mathematics/bejm103.pdf",
+   "pdfFiles": [
+    "bejm103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "bejm104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "bookPath": "grade2/mathematics/bejm104.pdf",
+   "pdfFiles": [
+    "bejm104.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "bejm105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/mathematics/bejm105.pdf",
+   "pdfFiles": [
+    "bejm105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "bejm106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "bookPath": "grade2/mathematics/bejm106.pdf",
+   "pdfFiles": [
+    "bejm106.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "bejm107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/mathematics/bejm107.pdf",
+   "pdfFiles": [
+    "bejm107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "bejm108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/mathematics/bejm108.pdf",
+   "pdfFiles": [
+    "bejm108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "bejm109.pdf",
+   "title": "Smtwtfs",
+   "kind": "Non-fiction",
+   "bookPath": "grade2/mathematics/bejm109.pdf",
+   "pdfFiles": [
+    "bejm109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "bejm110.pdf",
+   "title": "Chapter 10",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/mathematics/bejm110.pdf",
+   "pdfFiles": [
+    "bejm110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "bejm111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade2/mathematics/bejm111.pdf",
+   "pdfFiles": [
+    "bejm111.pdf"
+   ]
+  }
+ ]
+}

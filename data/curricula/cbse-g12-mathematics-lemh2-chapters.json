@@ -1,0 +1,189 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Mathematics",
+ "code": "lemh2",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 7,
+   "pdfFile": "lemh201.pdf",
+   "title": "Integrals",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/mathematics/lemh201.pdf",
+   "pdfFiles": [
+    "lemh201.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "7.2",
+     "title": "Integration as an Inverse Process of Differentiation"
+    },
+    {
+     "section": "7.3",
+     "title": "Methods of Integration"
+    },
+    {
+     "section": "7.4",
+     "title": "Integrals of Some Particular Functions"
+    },
+    {
+     "section": "7.5",
+     "title": "Integration by Partial Fractions"
+    },
+    {
+     "section": "7.6",
+     "title": "Integration by Parts"
+    },
+    {
+     "section": "7.7",
+     "title": "Definite Integral"
+    },
+    {
+     "section": "7.8",
+     "title": "Fundamental Theorem of Calculus"
+    },
+    {
+     "section": "7.9",
+     "title": "Evaluation of Definite Integrals by Substitution"
+    },
+    {
+     "section": "7.10",
+     "title": "Some Properties of Definite Integrals"
+    }
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "lemh202.pdf",
+   "title": "Application of Integrals",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/mathematics/lemh202.pdf",
+   "pdfFiles": [
+    "lemh202.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "8.2",
+     "title": "Area under Simple Curves"
+    }
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "lemh203.pdf",
+   "title": "Differential Equations",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/mathematics/lemh203.pdf",
+   "pdfFiles": [
+    "lemh203.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "9.2",
+     "title": "Basic Concepts"
+    }
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "lemh204.pdf",
+   "title": "Vector Algebra",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/mathematics/lemh204.pdf",
+   "pdfFiles": [
+    "lemh204.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "10.2",
+     "title": "Some Basic Concepts"
+    },
+    {
+     "section": "10.4",
+     "title": "Addition of Vectors"
+    },
+    {
+     "section": "10.5",
+     "title": "Multiplication of a Vector by a Scalar"
+    },
+    {
+     "section": "10.6",
+     "title": "Product of Two Vectors"
+    }
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "lemh205.pdf",
+   "title": "Three Dimensional Geometry",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/mathematics/lemh205.pdf",
+   "pdfFiles": [
+    "lemh205.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "11.2",
+     "title": "Direction Cosines and Direction Ratios of a Line"
+    },
+    {
+     "section": "11.3",
+     "title": "Equation of a Line in Space"
+    },
+    {
+     "section": "11.4",
+     "title": "Angle between Two Lines"
+    },
+    {
+     "section": "11.5",
+     "title": "Shortest Distance between Two Lines"
+    }
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "lemh206.pdf",
+   "title": "Linear Programming",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/mathematics/lemh206.pdf",
+   "pdfFiles": [
+    "lemh206.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "12.2",
+     "title": "Linear Programming Problem and its Mathematical Formulation"
+    }
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "lemh207.pdf",
+   "title": "Probability",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/mathematics/lemh207.pdf",
+   "pdfFiles": [
+    "lemh207.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "13.2",
+     "title": "Conditional Probability"
+    },
+    {
+     "section": "13.3",
+     "title": "Multiplication Theorem on Probability"
+    },
+    {
+     "section": "13.4",
+     "title": "Independent Events"
+    },
+    {
+     "section": "13.5",
+     "title": "Bayes' Theorem"
+    }
+   ]
+  }
+ ]
+}

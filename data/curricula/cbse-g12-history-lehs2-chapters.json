@@ -1,0 +1,85 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "History",
+ "code": "lehs2",
+ "imageSubject": "History",
+ "chapters": [
+  {
+   "chapter": 2,
+   "pdfFile": "lehs202.pdf",
+   "title": "Theme Six",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "The Alvars and Nayanars of Tamil Nadu"
+    },
+    {
+     "section": "2.2",
+     "title": "Attitudes towards caste"
+    },
+    {
+     "section": "2.3",
+     "title": "Women devotees"
+    },
+    {
+     "section": "2.4",
+     "title": "Relations with the state"
+    }
+   ],
+   "bookPath": "grade12/history/lehs202.pdf",
+   "pdfFiles": [
+    "lehs202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lehs204.pdf",
+   "title": "Theme Eight",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Looking for sources"
+    },
+    {
+     "section": "1.2",
+     "title": "Peasants and their lands"
+    },
+    {
+     "section": "1.3",
+     "title": "Irrigation and technology"
+    },
+    {
+     "section": "1.4",
+     "title": "An abundance of crops"
+    }
+   ],
+   "bookPath": "grade12/history/lehs204.pdf",
+   "pdfFiles": [
+    "lehs204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lehs201.pdf",
+   "title": "Theme Five",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "The coconut and the paan"
+    },
+    {
+     "section": "5.2",
+     "title": "Ibn Battuta and Indian cities"
+    }
+   ],
+   "bookPath": "grade12/history/lehs201.pdf",
+   "pdfFiles": [
+    "lehs201.pdf"
+   ]
+  }
+ ]
+}

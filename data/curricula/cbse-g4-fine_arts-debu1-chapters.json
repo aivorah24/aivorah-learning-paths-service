@@ -1,0 +1,189 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 4",
+ "subject": "Arts",
+ "code": "debu1",
+ "imageSubject": "Fine_Arts",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "debu101.pdf",
+   "title": "Panchatantra",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu101.pdf",
+   "pdfFiles": [
+    "debu101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "debu102.pdf",
+   "title": "Textures in Nature",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu102.pdf",
+   "pdfFiles": [
+    "debu102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "debu103.pdf",
+   "title": "Aqua World",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu103.pdf",
+   "pdfFiles": [
+    "debu103.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Pays attention to minor details when imitating"
+    },
+    {
+     "section": "3.2",
+     "title": "Involves in the scene as audience and gives innovative"
+    }
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "debu104.pdf",
+   "title": "People in Action",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu104.pdf",
+   "pdfFiles": [
+    "debu104.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Relates one"
+    },
+    {
+     "section": "4.2",
+     "title": "Understands the concept of animals as the core idea o"
+    }
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "debu105.pdf",
+   "title": "Theatre",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu105.pdf",
+   "pdfFiles": [
+    "debu105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "debu106.pdf",
+   "title": "Imagine",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu106.pdf",
+   "pdfFiles": [
+    "debu106.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "debu109.pdf",
+   "title": "Music",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu109.pdf",
+   "pdfFiles": [
+    "debu109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "debu110.pdf",
+   "title": "Making Music",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu110.pdf",
+   "pdfFiles": [
+    "debu110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "debu111.pdf",
+   "title": "Songs and Stories",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu111.pdf",
+   "pdfFiles": [
+    "debu111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "debu112.pdf",
+   "title": "Think, Feel, Create",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu112.pdf",
+   "pdfFiles": [
+    "debu112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "debu113.pdf",
+   "title": "Sounds and Instruments",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu113.pdf",
+   "pdfFiles": [
+    "debu113.pdf"
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "debu114.pdf",
+   "title": "Dance",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu114.pdf",
+   "pdfFiles": [
+    "debu114.pdf"
+   ]
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "debu115.pdf",
+   "title": "My Dance Tells Stories",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu115.pdf",
+   "pdfFiles": [
+    "debu115.pdf"
+   ]
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "debu116.pdf",
+   "title": "Creating My Dance",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu116.pdf",
+   "pdfFiles": [
+    "debu116.pdf"
+   ]
+  },
+  {
+   "chapter": 17,
+   "pdfFile": "debu117.pdf",
+   "title": "Emotion and Expression in Dance",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu117.pdf",
+   "pdfFiles": [
+    "debu117.pdf"
+   ]
+  },
+  {
+   "chapter": 18,
+   "pdfFile": "debu118.pdf",
+   "title": "Dances Around Me",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/fine_arts/debu118.pdf",
+   "pdfFiles": [
+    "debu118.pdf"
+   ]
+  }
+ ]
+}

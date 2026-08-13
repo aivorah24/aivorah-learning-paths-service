@@ -1,0 +1,445 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Physics",
+ "code": "keph2",
+ "imageSubject": "Physics",
+ "chapters": [
+  {
+   "chapter": 8,
+   "pdfFile": "keph201.pdf",
+   "title": "Mechanical Properties of Solids",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/physics/keph201.pdf",
+   "pdfFiles": [
+    "keph201.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "8.2",
+     "title": "Stress and strain"
+    },
+    {
+     "section": "8.3",
+     "title": "Hooke"
+    },
+    {
+     "section": "8.4",
+     "title": "Stress-strain curve"
+    },
+    {
+     "section": "8.5",
+     "title": "Elastic moduli"
+    },
+    {
+     "section": "8.6",
+     "title": "Applications of elastic"
+    },
+    {
+     "section": "8.7",
+     "title": "Four identical hollow cylindrical columns of mild steel suppor"
+    },
+    {
+     "section": "8.12",
+     "title": "Compute the bulk modulus of water from the following"
+    },
+    {
+     "section": "8.13",
+     "title": "What is the density of water at a depth where pressu"
+    },
+    {
+     "section": "8.14",
+     "title": "Compute the fractional change in volume of a glass slab, when"
+    },
+    {
+     "section": "8.15",
+     "title": "Determine the volume contraction of a solid copper cub"
+    },
+    {
+     "section": "8.16",
+     "title": "How much should the pressure on a litre of water be changed to"
+    }
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "keph202.pdf",
+   "title": "Mechanical Properties of Fluids",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/physics/keph202.pdf",
+   "pdfFiles": [
+    "keph202.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Explain why"
+    },
+    {
+     "section": "9.2",
+     "title": "PRESSURE"
+    },
+    {
+     "section": "9.3",
+     "title": "Streamline flow"
+    },
+    {
+     "section": "9.4",
+     "title": "Bernoulli"
+    },
+    {
+     "section": "9.5",
+     "title": "Viscosity"
+    },
+    {
+     "section": "9.6",
+     "title": "Surface tension"
+    },
+    {
+     "section": "9.10",
+     "title": "In the previous problem, if"
+    },
+    {
+     "section": "9.11",
+     "title": "Can Bernoulli"
+    },
+    {
+     "section": "9.12",
+     "title": "Does it matter if one uses gauge instead of absolute pressures"
+    },
+    {
+     "section": "9.13",
+     "title": "Glycerine flows steadily through a horizontal tube of length"
+    },
+    {
+     "section": "9.14",
+     "title": "In a test experiment on a model aeroplane in a wind tunnel, th"
+    },
+    {
+     "section": "9.15",
+     "title": "Figures"
+    },
+    {
+     "section": "9.16",
+     "title": "The cylindrical tube of a spray pump has a cross-sect"
+    },
+    {
+     "section": "9.18",
+     "title": "Figure"
+    },
+    {
+     "section": "9.19",
+     "title": "What is the pressure inside the drop of mercury of radius"
+    },
+    {
+     "section": "9.20",
+     "title": "What is the excess pressure inside a bubble of soap solution o"
+    }
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "keph203.pdf",
+   "title": "Thermal Properties of Matter",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/physics/keph203.pdf",
+   "pdfFiles": [
+    "keph203.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "The triple points of neon and carbon dioxide are"
+    },
+    {
+     "section": "10.2",
+     "title": "TEMPERATURE AND HEAT"
+    },
+    {
+     "section": "10.3",
+     "title": "Measurement of"
+    },
+    {
+     "section": "10.4",
+     "title": "Ideal-gas equation and"
+    },
+    {
+     "section": "10.5",
+     "title": "Thermal expansion"
+    },
+    {
+     "section": "10.6",
+     "title": "Specific heat capacity"
+    },
+    {
+     "section": "10.7",
+     "title": "Calorimetry"
+    },
+    {
+     "section": "10.8",
+     "title": "Change of state"
+    },
+    {
+     "section": "10.9",
+     "title": "Heat transfer"
+    },
+    {
+     "section": "10.10",
+     "title": "Newton"
+    },
+    {
+     "section": "10.11",
+     "title": "The coefficient of volume expansion of glycerine is"
+    },
+    {
+     "section": "10.14",
+     "title": "In an experiment on the specific heat of a metal, a"
+    },
+    {
+     "section": "10.15",
+     "title": "Given below are observations on molar specific heats at room t"
+    },
+    {
+     "section": "10.19",
+     "title": "Explain why"
+    }
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "keph204.pdf",
+   "title": "Thermodynamics",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/physics/keph204.pdf",
+   "pdfFiles": [
+    "keph204.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "11.2",
+     "title": "Thermal equilibrium"
+    },
+    {
+     "section": "11.3",
+     "title": "Zeroth law of"
+    },
+    {
+     "section": "11.4",
+     "title": "Heat, internal energy and"
+    },
+    {
+     "section": "11.5",
+     "title": "First law of"
+    },
+    {
+     "section": "11.6",
+     "title": "Specific heat capacity"
+    },
+    {
+     "section": "11.7",
+     "title": "Thermodynamic state"
+    },
+    {
+     "section": "11.8",
+     "title": "Thermodynamic processes"
+    },
+    {
+     "section": "11.9",
+     "title": "Second law of"
+    },
+    {
+     "section": "11.10",
+     "title": "Reversible and irreversible"
+    },
+    {
+     "section": "11.11",
+     "title": "Carnot engine"
+    }
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "keph205.pdf",
+   "title": "Kinetic Theory",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/physics/keph205.pdf",
+   "pdfFiles": [
+    "keph205.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "Estimate the fraction of molecular volume to the actual volume"
+    },
+    {
+     "section": "12.2",
+     "title": "MOLECULAR NATURE OF MATTER"
+    },
+    {
+     "section": "12.3",
+     "title": "Behaviour of gases"
+    },
+    {
+     "section": "12.4",
+     "title": "Kinetic theory of an ideal gas"
+    },
+    {
+     "section": "12.5",
+     "title": "Law of equipartition of energy"
+    },
+    {
+     "section": "12.6",
+     "title": "Specific heat capacity"
+    },
+    {
+     "section": "12.7",
+     "title": "Mean free path"
+    },
+    {
+     "section": "12.8",
+     "title": "Three vessels of equal capacity have gases at the same tempera"
+    },
+    {
+     "section": "12.9",
+     "title": "At what temperature is the root mean square speed of"
+    },
+    {
+     "section": "12.10",
+     "title": "Estimate the mean free path and collision frequency of"
+    }
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "keph206.pdf",
+   "title": "Oscillations",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/physics/keph206.pdf",
+   "pdfFiles": [
+    "keph206.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "13.1",
+     "title": "Which of the following examples represent periodic motion"
+    },
+    {
+     "section": "13.2",
+     "title": "Periodic and oscillatory"
+    },
+    {
+     "section": "13.3",
+     "title": "Simple harmonic motion"
+    },
+    {
+     "section": "13.4",
+     "title": "Simple harmonic motion"
+    },
+    {
+     "section": "13.5",
+     "title": "Velocity and acceleration"
+    },
+    {
+     "section": "13.6",
+     "title": "Force law for simple"
+    },
+    {
+     "section": "13.7",
+     "title": "Energy in simple harmonic"
+    },
+    {
+     "section": "13.8",
+     "title": "The simple pendulum"
+    },
+    {
+     "section": "13.10",
+     "title": "In Exercise"
+    },
+    {
+     "section": "13.11",
+     "title": "Figures"
+    },
+    {
+     "section": "13.12",
+     "title": "Plot the corresponding reference circle for each of the follow"
+    },
+    {
+     "section": "13.13",
+     "title": "Figure"
+    },
+    {
+     "section": "13.14",
+     "title": "The piston in the cylinder head of a locomotive has a stroke ("
+    },
+    {
+     "section": "13.15",
+     "title": "The acceleration due to gravity on the surface of moon is"
+    },
+    {
+     "section": "13.18",
+     "title": "One end of a U-tube containing mercury is connected to a sucti"
+    }
+   ]
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "keph207.pdf",
+   "title": "Waves",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/physics/keph207.pdf",
+   "pdfFiles": [
+    "keph207.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "14.2",
+     "title": "Transverse and"
+    },
+    {
+     "section": "14.3",
+     "title": "Displacement relation in a"
+    },
+    {
+     "section": "14.4",
+     "title": "The speed of a travelling"
+    },
+    {
+     "section": "14.5",
+     "title": "The principle of"
+    },
+    {
+     "section": "14.6",
+     "title": "Reflection of waves"
+    },
+    {
+     "section": "14.7",
+     "title": "Beats"
+    },
+    {
+     "section": "14.9",
+     "title": "For the wave described in Exercise"
+    },
+    {
+     "section": "14.10",
+     "title": "For the travelling harmonic wave"
+    },
+    {
+     "section": "14.11",
+     "title": "The transverse displacement of a string (clamped at its both e"
+    },
+    {
+     "section": "14.13",
+     "title": "Given below are some functions of x and t to represent the dis"
+    },
+    {
+     "section": "14.18",
+     "title": "Two sitar strings A and B playing the note"
+    },
+    {
+     "section": "14.19",
+     "title": "Explain why (or how)"
+    }
+   ]
+  }
+ ]
+}

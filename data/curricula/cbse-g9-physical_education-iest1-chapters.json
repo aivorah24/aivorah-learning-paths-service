@@ -1,0 +1,100 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 9",
+ "subject": "Physical Education and Well Being",
+ "code": "iest1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "iest101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade9/physical_education/iest101.pdf",
+   "pdfFiles": [
+    "iest101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "iest102.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iest102.pdf",
+   "pdfFiles": [
+    "iest102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "iest103.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iest103.pdf",
+   "pdfFiles": [
+    "iest103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "iest104.pdf",
+   "title": "Deserts and Mountains Grassy Steppes Coniferous Forest",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iest104.pdf",
+   "pdfFiles": [
+    "iest104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "iest105.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iest105.pdf",
+   "pdfFiles": [
+    "iest105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "iest106.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iest106.pdf",
+   "pdfFiles": [
+    "iest106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "iest107.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iest107.pdf",
+   "pdfFiles": [
+    "iest107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "iest108.pdf",
+   "title": "Scarcity Choices",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iest108.pdf",
+   "pdfFiles": [
+    "iest108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "iest109.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iest109.pdf",
+   "pdfFiles": [
+    "iest109.pdf"
+   ]
+  }
+ ]
+}

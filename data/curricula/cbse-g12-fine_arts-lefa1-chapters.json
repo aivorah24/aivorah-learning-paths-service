@@ -1,0 +1,73 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Fine Art",
+ "code": "lefa1",
+ "imageSubject": "Fine_Arts",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lefa101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/fine_arts/lefa101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lefa102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/fine_arts/lefa102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lefa103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/fine_arts/lefa103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lefa104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/fine_arts/lefa104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lefa105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/fine_arts/lefa105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lefa106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/fine_arts/lefa106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lefa107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/fine_arts/lefa107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "lefa108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/fine_arts/lefa108.pdf"
+  }
+ ]
+}

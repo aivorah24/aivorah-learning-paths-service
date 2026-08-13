@@ -1,0 +1,464 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 9",
+ "subject": "Science",
+ "code": "iesc1",
+ "imageSubject": "Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "iesc101.pdf",
+   "title": "Exploration: Entering the World of Secondary Science",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "bookPath": "grade9/science/iesc101.pdf",
+   "pdfFiles": [
+    "iesc101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "iesc102.pdf",
+   "title": "Dna",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "How to Study Cells"
+    },
+    {
+     "section": "2.2",
+     "title": "Structure of a Cell"
+    },
+    {
+     "section": "2.3",
+     "title": "The Cell Interior"
+    },
+    {
+     "section": "2.4",
+     "title": "How do Normal Cells Grow and Divide"
+    },
+    {
+     "section": "2.5",
+     "title": "Cell Theory"
+    }
+   ],
+   "bookPath": "grade9/science/iesc102.pdf",
+   "pdfFiles": [
+    "iesc102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "iesc103.pdf",
+   "title": "Wbc",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Why are Plant and Animal Tissues Different"
+    },
+    {
+     "section": "3.2",
+     "title": "Tissues for Growth in Plants"
+    },
+    {
+     "section": "3.3",
+     "title": "Animal Tissues"
+    },
+    {
+     "section": "3.4",
+     "title": "The Musculoskeletal System"
+    },
+    {
+     "section": "3.5",
+     "title": "Types of Joints"
+    },
+    {
+     "section": "3.6",
+     "title": "Skeletal System"
+    }
+   ],
+   "bookPath": "grade9/science/iesc103.pdf",
+   "pdfFiles": [
+    "iesc103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "iesc104.pdf",
+   "title": "Oba",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "Motion in a Straight Line"
+    },
+    {
+     "section": "4.2",
+     "title": "Graphical Representation of Motion"
+    },
+    {
+     "section": "4.3",
+     "title": "Kinematic Equations for Motion in a Straight"
+    },
+    {
+     "section": "4.4",
+     "title": "Motion in a Plane"
+    }
+   ],
+   "bookPath": "grade9/science/iesc104.pdf",
+   "pdfFiles": [
+    "iesc104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "iesc105.pdf",
+   "title": "Exploring Mixtures and their Separation",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "How Can We Classify Mixtures"
+    },
+    {
+     "section": "5.2",
+     "title": "Solutions"
+    },
+    {
+     "section": "5.3",
+     "title": "Methods of Separation of Homogeneous Mixtures"
+    },
+    {
+     "section": "5.4",
+     "title": "How Can We Separate the Components of"
+    },
+    {
+     "section": "5.5",
+     "title": "Tyndall Effect"
+    }
+   ],
+   "bookPath": "grade9/science/iesc105.pdf",
+   "pdfFiles": [
+    "iesc105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "iesc106.pdf",
+   "title": "How Forces Affect Motion",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "The Concept of Force"
+    },
+    {
+     "section": "6.2",
+     "title": "Balanced and Unbalanced Forces"
+    },
+    {
+     "section": "6.3",
+     "title": "The Force of Friction"
+    },
+    {
+     "section": "6.4",
+     "title": "Newton"
+    },
+    {
+     "section": "6.5",
+     "title": "Newton"
+    },
+    {
+     "section": "6.6",
+     "title": "Newton"
+    },
+    {
+     "section": "6.7",
+     "title": "Forces Acting on a System of Objects"
+    }
+   ],
+   "bookPath": "grade9/science/iesc106.pdf",
+   "pdfFiles": [
+    "iesc106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "iesc107.pdf",
+   "title": "Fff F",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "Work Done by a Constant Force"
+    },
+    {
+     "section": "7.2",
+     "title": "The Work-Energy Theorem"
+    },
+    {
+     "section": "7.3",
+     "title": "Forms of Energy"
+    },
+    {
+     "section": "7.4",
+     "title": "Mechanical Energy"
+    },
+    {
+     "section": "7.5",
+     "title": "Power"
+    },
+    {
+     "section": "7.6",
+     "title": "Simple Machines"
+    }
+   ],
+   "bookPath": "grade9/science/iesc107.pdf",
+   "pdfFiles": [
+    "iesc107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "iesc108.pdf",
+   "title": "Klmn",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Rediscovering the Roots of Atomic Theory"
+    },
+    {
+     "section": "8.3",
+     "title": "What Components Contribute to the"
+    },
+    {
+     "section": "8.4",
+     "title": "Symbols of Elements"
+    },
+    {
+     "section": "8.5",
+     "title": "Atomic Number"
+    },
+    {
+     "section": "8.6",
+     "title": "Mass Number"
+    },
+    {
+     "section": "8.7",
+     "title": "How Are Electrons Distributed in Different"
+    },
+    {
+     "section": "8.8",
+     "title": "Combining Capacity of an Atom"
+    }
+   ],
+   "bookPath": "grade9/science/iesc108.pdf",
+   "pdfFiles": [
+    "iesc108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "iesc109.pdf",
+   "title": "Atomic Foundations of Matter",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "Law of Conservation of Mass"
+    },
+    {
+     "section": "9.2",
+     "title": "Law of Constant Proportions"
+    },
+    {
+     "section": "9.3",
+     "title": "Dalton"
+    },
+    {
+     "section": "9.4",
+     "title": "How Atoms Combine"
+    },
+    {
+     "section": "9.5",
+     "title": "Writing Chemical Formulae"
+    },
+    {
+     "section": "9.6",
+     "title": "Properties of the Ionic and the Covalent"
+    },
+    {
+     "section": "9.7",
+     "title": "Molecular Mass of Covalent Compounds"
+    },
+    {
+     "section": "9.8",
+     "title": "Formula Unit Mass of Ionic Compounds"
+    }
+   ],
+   "bookPath": "grade9/science/iesc109.pdf",
+   "pdfFiles": [
+    "iesc109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "iesc110.pdf",
+   "title": "Crcrcr",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "Production of Sound"
+    },
+    {
+     "section": "10.2",
+     "title": "Propagation of Sound"
+    },
+    {
+     "section": "10.3",
+     "title": "Sound Waves"
+    },
+    {
+     "section": "10.4",
+     "title": "Energy of Sound Waves"
+    },
+    {
+     "section": "10.5",
+     "title": "Graphical Representation of a Sound Wave"
+    },
+    {
+     "section": "10.6",
+     "title": "Characteristics of a Sound Wave"
+    },
+    {
+     "section": "10.7",
+     "title": "Reflection of Sound"
+    },
+    {
+     "section": "10.8",
+     "title": "Ultrasonic and Infrasonic Waves, and their"
+    }
+   ],
+   "bookPath": "grade9/science/iesc110.pdf",
+   "pdfFiles": [
+    "iesc110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "iesc111.pdf",
+   "title": "Abcd",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "11.1",
+     "title": "Asexual Reproduction"
+    },
+    {
+     "section": "11.2",
+     "title": "Sexual Reproduction"
+    },
+    {
+     "section": "11.3",
+     "title": "Sexual Reproduction in Animals"
+    },
+    {
+     "section": "11.4",
+     "title": "Variations in Reproduction in Animals"
+    },
+    {
+     "section": "11.5",
+     "title": "Reproduction in Human Beings"
+    }
+   ],
+   "bookPath": "grade9/science/iesc111.pdf",
+   "pdfFiles": [
+    "iesc111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "iesc112.pdf",
+   "title": "Patterns in Life: Diversity and Classification",
+   "kind": "Non-fiction",
+   "needsTitleReview": false,
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "India as a Biodiversity Hotspot"
+    },
+    {
+     "section": "12.2",
+     "title": "How has the Biodiversity Evolved"
+    },
+    {
+     "section": "12.3",
+     "title": "How to Classify Organisms"
+    },
+    {
+     "section": "12.4",
+     "title": "The Need for Classification"
+    },
+    {
+     "section": "12.5",
+     "title": "Biological Classification Systems Over Time"
+    },
+    {
+     "section": "12.6",
+     "title": "Five Kingdom Classification"
+    },
+    {
+     "section": "12.8",
+     "title": "Scientific Naming"
+    },
+    {
+     "section": "12.9",
+     "title": "Fossils as Evidence"
+    },
+    {
+     "section": "12.10",
+     "title": "Biodiversity Under Threat"
+    }
+   ],
+   "bookPath": "grade9/science/iesc112.pdf",
+   "pdfFiles": [
+    "iesc112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "iesc113.pdf",
+   "title": "Europe Greenland North",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "13.1",
+     "title": "Uneven Heating of the Earth"
+    },
+    {
+     "section": "13.2",
+     "title": "Uneven Heating Causes Wind and Ocean"
+    },
+    {
+     "section": "13.3",
+     "title": "Biogeochemical Cycles"
+    },
+    {
+     "section": "13.4",
+     "title": "Human Impact on Earth"
+    }
+   ],
+   "bookPath": "grade9/science/iesc113.pdf",
+   "pdfFiles": [
+    "iesc113.pdf"
+   ]
+  }
+ ]
+}

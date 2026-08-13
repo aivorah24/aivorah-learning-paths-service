@@ -1,0 +1,89 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 7",
+ "subject": "Social Science",
+ "code": "gees2",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "gees201.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees201.pdf",
+   "pdfFiles": [
+    "gees201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "gees202.pdf",
+   "title": "Indian Indian Oceanocean",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees202.pdf",
+   "pdfFiles": [
+    "gees202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "gees203.pdf",
+   "title": "Arabian Sea Bay of",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees203.pdf",
+   "pdfFiles": [
+    "gees203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "gees204.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees204.pdf",
+   "pdfFiles": [
+    "gees204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "gees205.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees205.pdf",
+   "pdfFiles": [
+    "gees205.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "gees206.pdf",
+   "title": "People People",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees206.pdf",
+   "pdfFiles": [
+    "gees206.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "gees207.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees207.pdf",
+   "pdfFiles": [
+    "gees207.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "gees208.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade7/social_science/gees208.pdf",
+   "pdfFiles": [
+    "gees208.pdf"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Social Science",
+ "code": "hess2",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hess201.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess201.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hess202.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess202.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hess203.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess203.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hess204.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess204.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hess205.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess205.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hess206.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade8/social_science/hess206.pdf"
+  }
+ ]
+}

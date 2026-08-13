@@ -1,0 +1,93 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "History",
+ "code": "lehs1",
+ "imageSubject": "History",
+ "chapters": [
+  {
+   "chapter": 3,
+   "pdfFile": "lehs101.pdf",
+   "title": "Theme One",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/history/lehs101.pdf",
+   "pdfFiles": [
+    "lehs101.pdf"
+   ],
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Laying out drains"
+    },
+    {
+     "section": "3.2",
+     "title": "Domestic architecture"
+    },
+    {
+     "section": "3.3",
+     "title": "The Citadel"
+    }
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lehs102.pdf",
+   "title": "Themes in Indian History",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Popular perceptions of kings"
+    },
+    {
+     "section": "5.2",
+     "title": "Strategies for increasing production"
+    },
+    {
+     "section": "5.3",
+     "title": "Differences in rural society"
+    },
+    {
+     "section": "5.4",
+     "title": "Land grants and new rural elites"
+    }
+   ],
+   "bookPath": "grade12/history/lehs102.pdf",
+   "pdfFiles": [
+    "lehs102.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lehs103.pdf",
+   "title": "Theme Two",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Finding out about families"
+    },
+    {
+     "section": "2.2",
+     "title": "The ideal of patriliny"
+    },
+    {
+     "section": "2.3",
+     "title": "Rules of marriage"
+    },
+    {
+     "section": "2.4",
+     "title": "The gotra of women"
+    },
+    {
+     "section": "2.5",
+     "title": "Were mothers important"
+    }
+   ],
+   "bookPath": "grade12/history/lehs103.pdf",
+   "pdfFiles": [
+    "lehs103.pdf"
+   ]
+  }
+ ]
+}

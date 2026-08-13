@@ -1,0 +1,177 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Economics",
+ "code": "leec2",
+ "imageSubject": "Economics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "leec201.pdf",
+   "title": "Example",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.2",
+     "title": "CENTRAL PROBLEMS OF AN ECONOMY"
+    },
+    {
+     "section": "1.3",
+     "title": "ORGANISATION OF ECONOMIC ACTIVITIES"
+    },
+    {
+     "section": "1.4",
+     "title": "POSITIVE AND NORMATIVE ECONOMICS"
+    },
+    {
+     "section": "1.5",
+     "title": "MICROECONOMICS AND MACROECONOMICS"
+    },
+    {
+     "section": "1.6",
+     "title": "PLAN OF THE BOOK"
+    }
+   ],
+   "bookPath": "grade12/economics/leec201.pdf",
+   "pdfFiles": [
+    "leec201.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "leec202.pdf",
+   "title": "Example",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "UTILITY"
+    },
+    {
+     "section": "2.2",
+     "title": "THE CONSUMER"
+    },
+    {
+     "section": "2.3",
+     "title": "OPTIMAL CHOICE OF THE CONSUMER"
+    },
+    {
+     "section": "2.4",
+     "title": "DEMAND"
+    },
+    {
+     "section": "2.5",
+     "title": "MARKET DEMAND"
+    },
+    {
+     "section": "2.6",
+     "title": "ELASTICITY OF DEMAND"
+    }
+   ],
+   "bookPath": "grade12/economics/leec202.pdf",
+   "pdfFiles": [
+    "leec202.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "leec203.pdf",
+   "title": "The Law of Variable Proportions",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "PRODUCTION FUNCTION"
+    },
+    {
+     "section": "3.2",
+     "title": "THE SHORT RUN AND THE LONG RUN"
+    },
+    {
+     "section": "3.3",
+     "title": "TOTAL PRODUCT, AVERAGE PRODUCT AND MARGINAL PRODUCT"
+    },
+    {
+     "section": "3.4",
+     "title": "THE LAW OF DIMINISHING MARGINAL PRODUCT AND"
+    },
+    {
+     "section": "3.5",
+     "title": "SHAPES OF TOTAL PRODUCT, MARGINAL PRODUCT"
+    },
+    {
+     "section": "3.6",
+     "title": "RETURNS TO SCALE"
+    },
+    {
+     "section": "3.7",
+     "title": "COSTS"
+    }
+   ],
+   "bookPath": "grade12/economics/leec203.pdf",
+   "pdfFiles": [
+    "leec203.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "leec204.pdf",
+   "title": "Smc",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "PERFECT COMPETITION"
+    },
+    {
+     "section": "4.2",
+     "title": "REVENUE"
+    },
+    {
+     "section": "4.3",
+     "title": "PROFIT MAXIMISATION"
+    },
+    {
+     "section": "4.4",
+     "title": "SUPPLY CURVE OF A FIRM"
+    },
+    {
+     "section": "4.5",
+     "title": "DETERMINANTS"
+    },
+    {
+     "section": "4.6",
+     "title": "MARKET SUPPLY CURVE"
+    },
+    {
+     "section": "4.7",
+     "title": "PRICE"
+    }
+   ],
+   "bookPath": "grade12/economics/leec204.pdf",
+   "pdfFiles": [
+    "leec204.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "leec205.pdf",
+   "title": "Example",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "EQUILIBRIUM, EXCESS DEMAND, EXCESS SUPPLY"
+    },
+    {
+     "section": "5.2",
+     "title": "Consider the example of a market for wheat such that the deman"
+    }
+   ],
+   "bookPath": "grade12/economics/leec205.pdf",
+   "pdfFiles": [
+    "leec205.pdf"
+   ]
+  }
+ ]
+}

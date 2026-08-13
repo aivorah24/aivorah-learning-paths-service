@@ -1,0 +1,248 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Political Science",
+ "code": "keps1",
+ "imageSubject": "Political_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "keps101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "WHAT IS POLITICS"
+    },
+    {
+     "section": "1.2",
+     "title": "WHAT DO WE STUDY IN POLITICAL THEORY"
+    },
+    {
+     "section": "1.3",
+     "title": "PUTTING POLITICAL THEORY TO PRACTICE"
+    },
+    {
+     "section": "1.4",
+     "title": "WHY SHOULD WE STUDY POLITICAL THEORY"
+    }
+   ],
+   "bookPath": "grade11/political_science/keps101.pdf",
+   "pdfFiles": [
+    "keps101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "keps102.pdf",
+   "title": "Swaraj",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "THE IDEAL OF FREEDOM"
+    },
+    {
+     "section": "2.2",
+     "title": "WHAT IS FREEDOM"
+    },
+    {
+     "section": "2.3",
+     "title": "WHY DO WE NEED CONSTRAINTS"
+    },
+    {
+     "section": "2.4",
+     "title": "HARM PRINCIPLE"
+    },
+    {
+     "section": "2.5",
+     "title": "NEGATIVE AND POSITIVE"
+    }
+   ],
+   "bookPath": "grade11/political_science/keps102.pdf",
+   "pdfFiles": [
+    "keps102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "keps103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "WHY DOES EQUALITY MATTER"
+    },
+    {
+     "section": "3.2",
+     "title": "WHAT IS E"
+    },
+    {
+     "section": "3.3",
+     "title": "THREE DIMENSIONS OF EQUALITY"
+    },
+    {
+     "section": "3.4",
+     "title": "HOW CAN WE PROMOTE EQUALITY"
+    }
+   ],
+   "bookPath": "grade11/political_science/keps103.pdf",
+   "pdfFiles": [
+    "keps103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "keps104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "WHAT IS JUSTICE"
+    },
+    {
+     "section": "4.2",
+     "title": "JUST DISTRIBUTION"
+    },
+    {
+     "section": "4.3",
+     "title": "JOHN RAWLS"
+    },
+    {
+     "section": "4.4",
+     "title": "PURSUING SOCIAL JUSTICE"
+    }
+   ],
+   "bookPath": "grade11/political_science/keps104.pdf",
+   "pdfFiles": [
+    "keps104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "keps105.pdf",
+   "title": "Kant On Human Dignity",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "WHAT ARE RIGHTS"
+    },
+    {
+     "section": "5.2",
+     "title": "WHERE DO"
+    },
+    {
+     "section": "5.3",
+     "title": "LEGAL RIGHTS AND THE STA TE"
+    },
+    {
+     "section": "5.4",
+     "title": "KINDS OF RIGHTS"
+    },
+    {
+     "section": "5.5",
+     "title": "RIGHTS AND RESPONSIBILITIES"
+    }
+   ],
+   "bookPath": "grade11/political_science/keps105.pdf",
+   "pdfFiles": [
+    "keps105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "keps106.pdf",
+   "title": "Martin Luther King",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.2",
+     "title": "FULL AND EQUAL MEMBERSHIP"
+    },
+    {
+     "section": "6.3",
+     "title": "EQUAL RIGHTS"
+    },
+    {
+     "section": "6.4",
+     "title": "CITIZEN AND NATION"
+    },
+    {
+     "section": "6.5",
+     "title": "UNIVERSAL CITIZENSHIP"
+    }
+   ],
+   "bookPath": "grade11/political_science/keps106.pdf",
+   "pdfFiles": [
+    "keps106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "keps107.pdf",
+   "title": "Demand for National Self-Determination in Basque",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "INTRODUCING NATIONALISM"
+    },
+    {
+     "section": "7.2",
+     "title": "NATIONS AND NATIONALISM"
+    },
+    {
+     "section": "7.3",
+     "title": "NATIONAL SELF-DETERMINATION"
+    },
+    {
+     "section": "7.4",
+     "title": "NATIONALISM AND PLURALISM"
+    }
+   ],
+   "bookPath": "grade11/political_science/keps107.pdf",
+   "pdfFiles": [
+    "keps107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "keps108.pdf",
+   "title": "Secularism",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "WHAT IS SECULARISM"
+    },
+    {
+     "section": "8.2",
+     "title": "SECULAR STA TE"
+    },
+    {
+     "section": "8.3",
+     "title": "THE WESTERN MODEL OF SECULARISM"
+    },
+    {
+     "section": "8.4",
+     "title": "THE INDIAN"
+    },
+    {
+     "section": "8.5",
+     "title": "CRITICISMS OF I"
+    }
+   ],
+   "bookPath": "grade11/political_science/keps108.pdf",
+   "pdfFiles": [
+    "keps108.pdf"
+   ]
+  }
+ ]
+}

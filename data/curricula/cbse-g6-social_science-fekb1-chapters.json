@@ -1,0 +1,57 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 6",
+ "subject": "Social Science",
+ "code": "fekb1",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "fekb101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade6/social_science/fekb101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "fekb102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade6/social_science/fekb102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "fekb103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade6/social_science/fekb103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "fekb104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade6/social_science/fekb104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "fekb105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade6/social_science/fekb105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "fekb106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade6/social_science/fekb106.pdf"
+  }
+ ]
+}

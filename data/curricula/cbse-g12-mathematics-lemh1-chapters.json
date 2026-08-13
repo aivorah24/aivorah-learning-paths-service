@@ -1,0 +1,165 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Mathematics",
+ "code": "lemh1",
+ "imageSubject": "Mathematics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lemh101.pdf",
+   "title": "Relations and Functions",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.3",
+     "title": "Types of Functions"
+    },
+    {
+     "section": "1.4",
+     "title": "Composition of Functions and Invertible Function"
+    }
+   ],
+   "bookPath": "grade12/mathematics/lemh101.pdf",
+   "pdfFiles": [
+    "lemh101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lemh102.pdf",
+   "title": "Inverse Trigonometric Functions",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.2",
+     "title": "Basic Concepts"
+    },
+    {
+     "section": "2.3",
+     "title": "Properties of Inverse Trigonometric Functions"
+    }
+   ],
+   "bookPath": "grade12/mathematics/lemh102.pdf",
+   "pdfFiles": [
+    "lemh102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lemh103.pdf",
+   "title": "Matrices",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "Matrix"
+    },
+    {
+     "section": "3.3",
+     "title": "Types of Matrices"
+    },
+    {
+     "section": "3.4",
+     "title": "Operations on Matrices"
+    },
+    {
+     "section": "3.6",
+     "title": "Symmetric and Skew Symmetric Matrices"
+    },
+    {
+     "section": "3.7",
+     "title": "Invertible Matrices"
+    }
+   ],
+   "bookPath": "grade12/mathematics/lemh103.pdf",
+   "pdfFiles": [
+    "lemh103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lemh104.pdf",
+   "title": "Determinants",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.2",
+     "title": "Determinant"
+    },
+    {
+     "section": "4.3",
+     "title": "Area of a Triangle"
+    },
+    {
+     "section": "4.4",
+     "title": "Minors and Cofactors"
+    },
+    {
+     "section": "4.5",
+     "title": "Adjoint and Inverse of a Matrix"
+    },
+    {
+     "section": "4.6",
+     "title": "Applications of Determinants and Matrices"
+    }
+   ],
+   "bookPath": "grade12/mathematics/lemh104.pdf",
+   "pdfFiles": [
+    "lemh104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lemh105.pdf",
+   "title": "Continuity and Differentiability",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.2",
+     "title": "Continuity"
+    },
+    {
+     "section": "5.4",
+     "title": "Exponential and Logarithmic Functions"
+    },
+    {
+     "section": "5.6",
+     "title": "Derivatives of Functions in Parametric Forms"
+    },
+    {
+     "section": "5.7",
+     "title": "Second Order Derivative"
+    }
+   ],
+   "bookPath": "grade12/mathematics/lemh105.pdf",
+   "pdfFiles": [
+    "lemh105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lemh106.pdf",
+   "title": "Application of Derivatives",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.2",
+     "title": "Rate of Change of Quantities"
+    },
+    {
+     "section": "6.3",
+     "title": "Increasing and Decreasing Functions"
+    },
+    {
+     "section": "6.4",
+     "title": "Maxima and Minima"
+    }
+   ],
+   "bookPath": "grade12/mathematics/lemh106.pdf",
+   "pdfFiles": [
+    "lemh106.pdf"
+   ]
+  }
+ ]
+}

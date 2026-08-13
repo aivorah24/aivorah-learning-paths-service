@@ -1,0 +1,91 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Geography",
+ "code": "legy1",
+ "imageSubject": "Geography",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "legy101.pdf",
+   "title": "Nature of Human Geography",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy101.pdf",
+   "pdfFiles": [
+    "legy101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "legy102.pdf",
+   "title": "Patterns of Population Distribution in the World",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy102.pdf",
+   "pdfFiles": [
+    "legy102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "legy103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/geography/legy103.pdf",
+   "pdfFiles": [
+    "legy103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "legy104.pdf",
+   "title": "Hunting and Gathering",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy104.pdf",
+   "pdfFiles": [
+    "legy104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "legy105.pdf",
+   "title": "Manuf Manuf Manufmanuf",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy105.pdf",
+   "pdfFiles": [
+    "legy105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "legy106.pdf",
+   "title": "Types of Tertiary Activities",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy106.pdf",
+   "pdfFiles": [
+    "legy106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "legy107.pdf",
+   "title": "Transportranspor Transportranspor Transpor",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy107.pdf",
+   "pdfFiles": [
+    "legy107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "legy108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy108.pdf",
+   "pdfFiles": [
+    "legy108.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

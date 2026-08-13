@@ -1,0 +1,73 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "History",
+ "code": "kehs1",
+ "imageSubject": "History",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kehs101.pdf",
+   "title": "Early Societies",
+   "bookPath": "grade11/history/kehs101.pdf",
+   "pdfFiles": [
+    "kehs101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kehs102.pdf",
+   "title": "Empires",
+   "bookPath": "grade11/history/kehs102.pdf",
+   "pdfFiles": [
+    "kehs102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kehs103.pdf",
+   "title": "Changing Traditions",
+   "bookPath": "grade11/history/kehs103.pdf",
+   "pdfFiles": [
+    "kehs103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kehs104.pdf",
+   "title": "The Three Orders",
+   "bookPath": "grade11/history/kehs104.pdf",
+   "pdfFiles": [
+    "kehs104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kehs105.pdf",
+   "title": "Theme",
+   "bookPath": "grade11/history/kehs105.pdf",
+   "pdfFiles": [
+    "kehs105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kehs106.pdf",
+   "title": "Towards Modernisation",
+   "bookPath": "grade11/history/kehs106.pdf",
+   "pdfFiles": [
+    "kehs106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kehs107.pdf",
+   "title": "Theme",
+   "bookPath": "grade11/history/kehs107.pdf",
+   "pdfFiles": [
+    "kehs107.pdf"
+   ]
+  }
+ ]
+}

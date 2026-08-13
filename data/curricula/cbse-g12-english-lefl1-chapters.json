@@ -1,0 +1,129 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "English",
+ "code": "lefl1",
+ "imageSubject": "English",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "lefl101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl101.pdf",
+   "pdfFiles": [
+    "lefl101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "lefl102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl102.pdf",
+   "pdfFiles": [
+    "lefl102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "lefl103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl103.pdf",
+   "pdfFiles": [
+    "lefl103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "lefl104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl104.pdf",
+   "pdfFiles": [
+    "lefl104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "lefl105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl105.pdf",
+   "pdfFiles": [
+    "lefl105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "lefl106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl106.pdf",
+   "pdfFiles": [
+    "lefl106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "lefl107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl107.pdf",
+   "pdfFiles": [
+    "lefl107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "lefl108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl108.pdf",
+   "pdfFiles": [
+    "lefl108.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "lefl111.pdf",
+   "title": "Poetry",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/english/lefl111.pdf",
+   "pdfFiles": [
+    "lefl111.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "lefl112.pdf",
+   "title": "Chapter 12",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl112.pdf",
+   "pdfFiles": [
+    "lefl112.pdf"
+   ]
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "lefl113.pdf",
+   "title": "Chapter 13",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade12/english/lefl113.pdf",
+   "pdfFiles": [
+    "lefl113.pdf"
+   ]
+  }
+ ]
+}

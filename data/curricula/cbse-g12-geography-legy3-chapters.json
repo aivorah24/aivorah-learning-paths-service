@@ -1,0 +1,49 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 12",
+ "subject": "Geography",
+ "code": "legy3",
+ "imageSubject": "Geography",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "legy301.pdf",
+   "title": "Pppp",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy301.pdf",
+   "pdfFiles": [
+    "legy301.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "legy302.pdf",
+   "title": "Pppp",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy302.pdf",
+   "pdfFiles": [
+    "legy302.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "legy303.pdf",
+   "title": "Pppp",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy303.pdf",
+   "pdfFiles": [
+    "legy303.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "legy304.pdf",
+   "title": "Pppp",
+   "kind": "Non-fiction",
+   "bookPath": "grade12/geography/legy304.pdf",
+   "pdfFiles": [
+    "legy304.pdf"
+   ]
+  }
+ ]
+}

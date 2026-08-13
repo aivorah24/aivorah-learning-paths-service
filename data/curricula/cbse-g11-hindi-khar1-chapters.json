@@ -1,0 +1,122 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Hindi",
+ "code": "khar1",
+ "imageSubject": "Hindi",
+ "seeded": true,
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "khar101.pdf",
+   "title": "Chapter 1",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar101.pdf"
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "khar102.pdf",
+   "title": "Chapter 2",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar102.pdf"
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "khar103.pdf",
+   "title": "Chapter 3",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar103.pdf"
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "khar104.pdf",
+   "title": "Chapter 4",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar104.pdf"
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "khar105.pdf",
+   "title": "Chapter 5",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar105.pdf"
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "khar106.pdf",
+   "title": "Chapter 6",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar106.pdf"
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "khar107.pdf",
+   "title": "Chapter 7",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar107.pdf"
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "khar108.pdf",
+   "title": "Chapter 8",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar108.pdf"
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "khar109.pdf",
+   "title": "Chapter 9",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar109.pdf"
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "khar110.pdf",
+   "title": "Chapter 10",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar110.pdf"
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "khar111.pdf",
+   "title": "Chapter 11",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar111.pdf"
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "khar112.pdf",
+   "title": "Chapter 12",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar112.pdf"
+  },
+  {
+   "chapter": 13,
+   "pdfFile": "khar113.pdf",
+   "title": "Chapter 13",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar113.pdf"
+  },
+  {
+   "chapter": 14,
+   "pdfFile": "khar114.pdf",
+   "title": "Chapter 14",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar114.pdf"
+  },
+  {
+   "chapter": 15,
+   "pdfFile": "khar115.pdf",
+   "title": "Chapter 15",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar115.pdf"
+  },
+  {
+   "chapter": 16,
+   "pdfFile": "khar116.pdf",
+   "title": "Chapter 16",
+   "needsTitleReview": true,
+   "bookPath": "grade11/hindi/khar116.pdf"
+  }
+ ]
+}

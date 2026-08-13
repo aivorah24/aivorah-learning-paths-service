@@ -1,0 +1,70 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 9",
+ "subject": "Physical Education and Well Being",
+ "code": "iehp1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "iehp101.pdf",
+   "title": "Let Us Think",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iehp101.pdf",
+   "pdfFiles": [
+    "iehp101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "iehp102.pdf",
+   "title": "Joint",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iehp102.pdf",
+   "pdfFiles": [
+    "iehp102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "iehp103.pdf",
+   "title": "Trivia",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iehp103.pdf",
+   "pdfFiles": [
+    "iehp103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "iehp104.pdf",
+   "title": "Let Us Reflect",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iehp104.pdf",
+   "pdfFiles": [
+    "iehp104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "iehp105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade9/physical_education/iehp105.pdf",
+   "pdfFiles": [
+    "iehp105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "iehp106.pdf",
+   "title": "Let Us Reflect",
+   "kind": "Non-fiction",
+   "bookPath": "grade9/physical_education/iehp106.pdf",
+   "pdfFiles": [
+    "iehp106.pdf"
+   ]
+  }
+ ]
+}

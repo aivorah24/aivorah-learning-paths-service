@@ -1,0 +1,42 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 4",
+ "subject": "Physical Education and Well Being",
+ "code": "deky1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "deky101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/physical_education/deky101.pdf",
+   "pdfFiles": [
+    "deky101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "deky102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade4/physical_education/deky102.pdf",
+   "pdfFiles": [
+    "deky102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "deky103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "bookPath": "grade4/physical_education/deky103.pdf",
+   "pdfFiles": [
+    "deky103.pdf"
+   ],
+   "needsTitleReview": true
+  }
+ ]
+}

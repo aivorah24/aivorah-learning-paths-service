@@ -1,0 +1,79 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 8",
+ "subject": "Social Science",
+ "code": "hees1",
+ "imageSubject": "Social_Science",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "hees101.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees101.pdf",
+   "pdfFiles": [
+    "hees101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "hees102.pdf",
+   "title": "Legend",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees102.pdf",
+   "pdfFiles": [
+    "hees102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "hees103.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees103.pdf",
+   "pdfFiles": [
+    "hees103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "hees104.pdf",
+   "title": "Let Us Explore",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees104.pdf",
+   "pdfFiles": [
+    "hees104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "hees105.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees105.pdf",
+   "pdfFiles": [
+    "hees105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "hees106.pdf",
+   "title": "Union List State",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees106.pdf",
+   "pdfFiles": [
+    "hees106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "hees107.pdf",
+   "title": "Think About It",
+   "kind": "Non-fiction",
+   "bookPath": "grade8/social_science/hees107.pdf",
+   "pdfFiles": [
+    "hees107.pdf"
+   ]
+  }
+ ]
+}

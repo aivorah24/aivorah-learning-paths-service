@@ -1,0 +1,129 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Health and Physical Education",
+ "code": "kehp1",
+ "imageSubject": "Physical_Education",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kehp101.pdf",
+   "title": "Chapter 1",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/physical_education/kehp101.pdf",
+   "pdfFiles": [
+    "kehp101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kehp102.pdf",
+   "title": "Chapter 2",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/physical_education/kehp102.pdf",
+   "pdfFiles": [
+    "kehp102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kehp103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/physical_education/kehp103.pdf",
+   "pdfFiles": [
+    "kehp103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kehp104.pdf",
+   "title": "Chapter 4",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/physical_education/kehp104.pdf",
+   "pdfFiles": [
+    "kehp104.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kehp105.pdf",
+   "title": "Chapter 5",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/physical_education/kehp105.pdf",
+   "pdfFiles": [
+    "kehp105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kehp106.pdf",
+   "title": "Chapter 6",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/physical_education/kehp106.pdf",
+   "pdfFiles": [
+    "kehp106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kehp107.pdf",
+   "title": "Chapter 7",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/physical_education/kehp107.pdf",
+   "pdfFiles": [
+    "kehp107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kehp108.pdf",
+   "title": "Chapter 8",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/physical_education/kehp108.pdf",
+   "pdfFiles": [
+    "kehp108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "kehp109.pdf",
+   "title": "Chapter 9",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/physical_education/kehp109.pdf",
+   "pdfFiles": [
+    "kehp109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "kehp110.pdf",
+   "title": "Iiiiiiiv",
+   "kind": "Non-fiction",
+   "bookPath": "grade11/physical_education/kehp110.pdf",
+   "pdfFiles": [
+    "kehp110.pdf"
+   ]
+  },
+  {
+   "chapter": 11,
+   "pdfFile": "kehp111.pdf",
+   "title": "Chapter 11",
+   "kind": "Non-fiction",
+   "needsTitleReview": true,
+   "bookPath": "grade11/physical_education/kehp111.pdf",
+   "pdfFiles": [
+    "kehp111.pdf"
+   ]
+  }
+ ]
+}

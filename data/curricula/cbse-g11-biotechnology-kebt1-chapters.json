@@ -1,0 +1,394 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Biotechnology",
+ "code": "kebt1",
+ "imageSubject": "Biotechnology",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "kebt101.pdf",
+   "title": "Biotechnology",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.1",
+     "title": "Historical"
+    },
+    {
+     "section": "1.2",
+     "title": "Applications"
+    },
+    {
+     "section": "1.3",
+     "title": "Biotechnology in"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt101.pdf",
+   "pdfFiles": [
+    "kebt101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "kebt102.pdf",
+   "title": "Atp Adp",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.1",
+     "title": "Plasma"
+    },
+    {
+     "section": "2.2",
+     "title": "Cell Wall"
+    },
+    {
+     "section": "2.3",
+     "title": "Endomembrane"
+    },
+    {
+     "section": "2.4",
+     "title": "Mitochondria"
+    },
+    {
+     "section": "2.5",
+     "title": "Plastids"
+    },
+    {
+     "section": "2.6",
+     "title": "Ribosomes"
+    },
+    {
+     "section": "2.7",
+     "title": "Microbodies"
+    },
+    {
+     "section": "2.8",
+     "title": "Cytoskeleton"
+    },
+    {
+     "section": "2.9",
+     "title": "Cilia and Flagella"
+    },
+    {
+     "section": "2.10",
+     "title": "Centrosome and"
+    },
+    {
+     "section": "2.11",
+     "title": "Nucleus"
+    },
+    {
+     "section": "2.12",
+     "title": "Chromosome"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt102.pdf",
+   "pdfFiles": [
+    "kebt102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "kebt103.pdf",
+   "title": "Cho Ohc",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.1",
+     "title": "Carbohydrates"
+    },
+    {
+     "section": "3.2",
+     "title": "Fatty Acids and"
+    },
+    {
+     "section": "3.3",
+     "title": "Amino Acids"
+    },
+    {
+     "section": "3.4",
+     "title": "Protein Structure"
+    },
+    {
+     "section": "3.5",
+     "title": "Nucleic Acids"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt103.pdf",
+   "pdfFiles": [
+    "kebt103.pdf"
+   ]
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "kebt104.pdf",
+   "title": "Esi",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.1",
+     "title": "EnzymEs"
+    },
+    {
+     "section": "4.2",
+     "title": "BriEf introduCtion to BioEnErgEtiCs"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt104.pdf",
+   "pdfFiles": [
+    "kebt104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "kebt105.pdf",
+   "title": "Dna Rna",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.1",
+     "title": "Cell Signaling"
+    },
+    {
+     "section": "5.2",
+     "title": "Metabolic Pathways"
+    },
+    {
+     "section": "5.3",
+     "title": "Cell Cycle"
+    },
+    {
+     "section": "5.4",
+     "title": "Programmed Cell"
+    },
+    {
+     "section": "5.5",
+     "title": "Cell Differentiation"
+    },
+    {
+     "section": "5.6",
+     "title": "Cell Migration"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt105.pdf",
+   "pdfFiles": [
+    "kebt105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "kebt106.pdf",
+   "title": "Rlrl",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.1",
+     "title": "Introduction to"
+    },
+    {
+     "section": "6.2",
+     "title": "Linkage and"
+    },
+    {
+     "section": "6.3",
+     "title": "Recombination"
+    },
+    {
+     "section": "6.4",
+     "title": "Sex-linked"
+    },
+    {
+     "section": "6.5",
+     "title": "Extrachromosomal"
+    },
+    {
+     "section": "6.6",
+     "title": "Polyploidy"
+    },
+    {
+     "section": "6.7",
+     "title": "Reverse Genetics"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt106.pdf",
+   "pdfFiles": [
+    "kebt106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "kebt107.pdf",
+   "title": "Basic Processes",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.1",
+     "title": "DNA as the Genetic"
+    },
+    {
+     "section": "7.2",
+     "title": "Prokaryotic and"
+    },
+    {
+     "section": "7.3",
+     "title": "DNA Replication"
+    },
+    {
+     "section": "7.4",
+     "title": "Gene Expression"
+    },
+    {
+     "section": "7.5",
+     "title": "Genetic Code"
+    },
+    {
+     "section": "7.6",
+     "title": "Translation"
+    },
+    {
+     "section": "7.7",
+     "title": "Gene Mutation"
+    },
+    {
+     "section": "7.8",
+     "title": "DNA Repair"
+    },
+    {
+     "section": "7.9",
+     "title": "Regulation of Gene"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt107.pdf",
+   "pdfFiles": [
+    "kebt107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "kebt108.pdf",
+   "title": "Biotechnology",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.1",
+     "title": "Chromosomal"
+    },
+    {
+     "section": "8.2",
+     "title": "Monogenic Disorders"
+    },
+    {
+     "section": "8.3",
+     "title": "Polygenic Disorders"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt108.pdf",
+   "pdfFiles": [
+    "kebt108.pdf"
+   ]
+  },
+  {
+   "chapter": 9,
+   "pdfFile": "kebt109.pdf",
+   "title": "Biotechnology",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "9.1",
+     "title": "The Utility of Basic"
+    },
+    {
+     "section": "9.3",
+     "title": "Biological"
+    },
+    {
+     "section": "9.4",
+     "title": "Genome Informatics"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt109.pdf",
+   "pdfFiles": [
+    "kebt109.pdf"
+   ]
+  },
+  {
+   "chapter": 10,
+   "pdfFile": "kebt110.pdf",
+   "title": "Protein Informatics and Cheminformatics",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "10.1",
+     "title": "Protein informatics"
+    },
+    {
+     "section": "10.2",
+     "title": "Cheminformatics"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt110.pdf",
+   "pdfFiles": [
+    "kebt110.pdf"
+   ]
+  },
+  {
+   "chapter": 12,
+   "pdfFile": "kebt112.pdf",
+   "title": "Biotechnology",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "12.1",
+     "title": "Microscopy"
+    },
+    {
+     "section": "12.2",
+     "title": "Centrifugation"
+    },
+    {
+     "section": "12.3",
+     "title": "Electrophoresis"
+    },
+    {
+     "section": "12.4",
+     "title": "Enzyme-linked"
+    },
+    {
+     "section": "12.5",
+     "title": "Chromatography"
+    },
+    {
+     "section": "12.6",
+     "title": "Spectroscopy"
+    },
+    {
+     "section": "12.7",
+     "title": "Mass Spectrometry"
+    },
+    {
+     "section": "12.8",
+     "title": "Fluorescence in situ"
+    },
+    {
+     "section": "12.9",
+     "title": "DNA Sequencing"
+    },
+    {
+     "section": "12.10",
+     "title": "DNA Microarray"
+    },
+    {
+     "section": "12.11",
+     "title": "Flow Cytometry"
+    }
+   ],
+   "bookPath": "grade11/biotechnology/kebt112.pdf",
+   "pdfFiles": [
+    "kebt112.pdf"
+   ]
+  }
+ ],
+ "misfiledUnder": "english"
+}

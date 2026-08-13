@@ -1,0 +1,286 @@
+{
+ "curriculum": "CBSE",
+ "grade": "Grade 11",
+ "subject": "Economics",
+ "code": "keec1",
+ "imageSubject": "Economics",
+ "chapters": [
+  {
+   "chapter": 1,
+   "pdfFile": "keec101.pdf",
+   "title": "Development Policies and Experience",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "1.2",
+     "title": "LOW LEVEL OF ECONOMIC"
+    },
+    {
+     "section": "1.3",
+     "title": "AGRICULTURAL SECTOR"
+    },
+    {
+     "section": "1.4",
+     "title": "INDUSTRIAL SECTOR"
+    },
+    {
+     "section": "1.5",
+     "title": "FOREIGN TRADE"
+    },
+    {
+     "section": "1.6",
+     "title": "DEMOGRAPHIC CONDITION"
+    },
+    {
+     "section": "1.7",
+     "title": "OCCUPATIONAL STRUCTURE"
+    },
+    {
+     "section": "1.8",
+     "title": "INFRASTRUCTURE"
+    },
+    {
+     "section": "1.9",
+     "title": "CONCLUSION"
+    }
+   ],
+   "bookPath": "grade11/economics/keec101.pdf",
+   "pdfFiles": [
+    "keec101.pdf"
+   ]
+  },
+  {
+   "chapter": 2,
+   "pdfFile": "keec102.pdf",
+   "title": "Indian Economy",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "2.2",
+     "title": "THE GOALS OF FIVE YEAR PLANS"
+    },
+    {
+     "section": "2.3",
+     "title": "AGRICULTURE"
+    },
+    {
+     "section": "2.4",
+     "title": "INDUSTRY AND TRADE"
+    },
+    {
+     "section": "2.5",
+     "title": "TRADE POLICY"
+    },
+    {
+     "section": "2.6",
+     "title": "CONCLUSION"
+    }
+   ],
+   "bookPath": "grade11/economics/keec102.pdf",
+   "pdfFiles": [
+    "keec102.pdf"
+   ]
+  },
+  {
+   "chapter": 3,
+   "pdfFile": "keec103.pdf",
+   "title": "Chapter 3",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "3.2",
+     "title": "BACKGROUND"
+    },
+    {
+     "section": "3.3",
+     "title": "LIBERALISATION"
+    },
+    {
+     "section": "3.5",
+     "title": "GLOBALISATION"
+    },
+    {
+     "section": "3.7",
+     "title": "CONCLUSION"
+    }
+   ],
+   "bookPath": "grade11/economics/keec103.pdf",
+   "pdfFiles": [
+    "keec103.pdf"
+   ],
+   "needsTitleReview": true
+  },
+  {
+   "chapter": 4,
+   "pdfFile": "keec104.pdf",
+   "title": "Current Challenges Facing the Indian Economy",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "4.2",
+     "title": "WHAT IS HUMAN CAPITAL"
+    },
+    {
+     "section": "4.3",
+     "title": "SOURCES OF HUMAN CAPITAL"
+    },
+    {
+     "section": "4.4",
+     "title": "HUMAN CAPITAL AND HUMAN"
+    },
+    {
+     "section": "4.5",
+     "title": "STATE OF HUMAN CAPITAL"
+    },
+    {
+     "section": "4.6",
+     "title": "EDUCATION SECTOR IN INDIA"
+    },
+    {
+     "section": "4.7",
+     "title": "FUTURE PROSPECTS"
+    },
+    {
+     "section": "4.8",
+     "title": "CONCLUSION"
+    }
+   ],
+   "bookPath": "grade11/economics/keec104.pdf",
+   "pdfFiles": [
+    "keec104.pdf"
+   ]
+  },
+  {
+   "chapter": 5,
+   "pdfFile": "keec105.pdf",
+   "title": "Rural Development",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "5.2",
+     "title": "WHAT IS R"
+    },
+    {
+     "section": "5.3",
+     "title": "CREDIT A"
+    },
+    {
+     "section": "5.4",
+     "title": "AGRICULTURAL MARKET SYSTEM"
+    },
+    {
+     "section": "5.5",
+     "title": "DIVERSIFI"
+    },
+    {
+     "section": "5.6",
+     "title": "SUSTAINABLE DEVELOPMENT AND"
+    },
+    {
+     "section": "5.7",
+     "title": "CONCLUSION"
+    }
+   ],
+   "bookPath": "grade11/economics/keec105.pdf",
+   "pdfFiles": [
+    "keec105.pdf"
+   ]
+  },
+  {
+   "chapter": 6,
+   "pdfFile": "keec106.pdf",
+   "title": "Informalisation and Other Issues",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "6.2",
+     "title": "WORKERS AND EMPLOYMENT"
+    },
+    {
+     "section": "6.3",
+     "title": "PARTICIPATION"
+    },
+    {
+     "section": "6.4",
+     "title": "SELF-EMPLOYED AND HIRED"
+    },
+    {
+     "section": "6.5",
+     "title": "EMPLOYMENT IN"
+    },
+    {
+     "section": "6.6",
+     "title": "GROWTH AND CHANGING STRUCTURE"
+    },
+    {
+     "section": "6.7",
+     "title": "INFORMALISATION OF INDIAN"
+    },
+    {
+     "section": "6.8",
+     "title": "UNEMPLOYMENT"
+    },
+    {
+     "section": "6.9",
+     "title": "GOVERNMENT AND"
+    },
+    {
+     "section": "6.10",
+     "title": "CONCLUSION"
+    }
+   ],
+   "bookPath": "grade11/economics/keec106.pdf",
+   "pdfFiles": [
+    "keec106.pdf"
+   ]
+  },
+  {
+   "chapter": 7,
+   "pdfFile": "keec107.pdf",
+   "title": "Environment and Sustainable Development",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "7.2",
+     "title": "ENVIRONMENT"
+    },
+    {
+     "section": "7.3",
+     "title": "STATE OF INDIA"
+    },
+    {
+     "section": "7.4",
+     "title": "SUSTAINABLE DEVELOPMENT"
+    },
+    {
+     "section": "7.5",
+     "title": "STRATEGIES FOR SUSTAINABLE"
+    }
+   ],
+   "bookPath": "grade11/economics/keec107.pdf",
+   "pdfFiles": [
+    "keec107.pdf"
+   ]
+  },
+  {
+   "chapter": 8,
+   "pdfFile": "keec108.pdf",
+   "title": "Development",
+   "kind": "Non-fiction",
+   "subtopics": [
+    {
+     "section": "8.2",
+     "title": "DEVELOPMENTAL PATH"
+    },
+    {
+     "section": "8.6",
+     "title": "DEVELOPMENT STRATEGIES"
+    }
+   ],
+   "bookPath": "grade11/economics/keec108.pdf",
+   "pdfFiles": [
+    "keec108.pdf"
+   ]
+  }
+ ]
+}
