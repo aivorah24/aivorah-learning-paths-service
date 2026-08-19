@@ -14,6 +14,7 @@ const router  = express.Router();
 const Groq    = require('groq-sdk');
 const { logEvent } = require('../services/analytics');
 const supabase = require('../services/supabase');
+const { normalizeQuizQuestion } = require('../services/quizNormalize');
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -160,39 +161,7 @@ Return ONLY valid JSON — no markdown, no extra text:
     const parsed = JSON.parse(json);
 
     // Normalise: handle both MCQ and fill_blank + shuffle options to fix position bias
-    const LETTER_MAP = { A: 0, B: 1, C: 2, D: 3 };
-    const questions = (parsed.questions || []).map(q => {
-      if (q.type === 'fill_blank') {
-        return {
-          type:        'fill_blank',
-          question:    q.question,
-          options:     [],
-          correct:     String(q.correct || '').trim(),
-          hint:        q.hint || '',
-          explanation: q.explanation || '',
-        };
-      }
-      const rawOptions = (q.options || []).map(opt => String(opt).replace(/^[A-D]\.\s*/i, '').trim());
-      const correctIdx = typeof q.correct === 'string'
-        ? (LETTER_MAP[String(q.correct).toUpperCase()] ?? 0)
-        : (typeof q.correct === 'number' ? q.correct : 0);
-
-      // Shuffle options so correct answer isn't always in the same position
-      const indexed = rawOptions.map((opt, i) => ({ opt, wasCorrect: i === correctIdx }));
-      for (let i = indexed.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [indexed[i], indexed[j]] = [indexed[j], indexed[i]];
-      }
-
-      return {
-        type:        'mcq',
-        question:    q.question,
-        options:     indexed.map(x => x.opt),
-        correct:     indexed.findIndex(x => x.wasCorrect),
-        hint:        q.hint || '',
-        explanation: q.explanation || '',
-      };
-    });
+    const questions = (parsed.questions || []).map(normalizeQuizQuestion);
 
     logEvent('ibpyp_quiz_generated', {
       userEmail, role,

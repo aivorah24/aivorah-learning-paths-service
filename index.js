@@ -12,6 +12,12 @@ app.use('/ibpyp', require('./routes/ibpyp'));
 app.use('/teacher/syllabus', require('./routes/syllabus'));
 
 const PORT = process.env.PORT || 3014;
-app.listen(PORT, () => {
-  console.log(`Aivorah Learning Paths service running on http://localhost:${PORT}`);
-});
+// Only start listening when run directly (`node index.js`) — not when
+// required by tests, so Supertest can exercise `app` in-memory.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Aivorah Learning Paths service running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
