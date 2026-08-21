@@ -148,7 +148,7 @@ Return ONLY valid JSON — no markdown, no extra text:
 }`;
 
     const completion = await groq.chat.completions.create({
-      model:       'llama-3.1-8b-instant',
+      model:       'openai/gpt-oss-20b',
       messages:    [{ role: 'user', content: prompt }],
       temperature: 0.4,
       max_tokens:  1800,
@@ -223,7 +223,7 @@ Write a short, kind explanation (2-3 sentences) that:
 Keep it warm, simple, and age-appropriate for ${grade} (ages ${ageRange}).`;
 
     const completion = await groq.chat.completions.create({
-      model:       'llama-3.1-8b-instant',
+      model:       'openai/gpt-oss-20b',
       messages:    [{ role: 'user', content: prompt }],
       temperature: 0.5,
       max_tokens:  220,
