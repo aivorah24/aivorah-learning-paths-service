@@ -1,0 +1,46 @@
+/**
+ * routes/curriculum.js
+ * Read-only, Qdrant-backed subject/syllabus listing for the student Learning
+ * Path screen. The old monolith's own /curriculum/subjects route hasn't been
+ * migrated here for every curriculum yet — this currently only needs to
+ * carry curricula that route hasn't been reached for (IB DP first); every
+ * other curriculum's frontend call is untouched and keeps hitting the
+ * monolith exactly as before.
+ */
+const express = require('express');
+const router = express.Router();
+const { listSubjects, listSyllabus } = require('../services/qdrant');
+
+// ── GET /curriculum/subjects ────────────────────────────────────────────
+router.get('/subjects', async (req, res) => {
+  const { curriculum, grade } = req.query;
+  if (!curriculum || !grade) {
+    return res.status(400).json({ error: 'curriculum and grade are required.' });
+  }
+  try {
+    const subjects = await listSubjects(curriculum, grade);
+    res.json({ grade, curriculum, subjects });
+  } catch (err) {
+    console.error('[curriculum/subjects] error:', err.message);
+    // A Qdrant hiccup must read as "nothing ingested yet", not a broken
+    // screen — same contract the rest of the Learning Path flow keeps.
+    res.json({ grade, curriculum, subjects: [] });
+  }
+});
+
+// ── GET /curriculum/syllabus ─────────────────────────────────────────────
+router.get('/syllabus', async (req, res) => {
+  const { curriculum, grade, subject } = req.query;
+  if (!curriculum || !grade || !subject) {
+    return res.status(400).json({ error: 'curriculum, grade and subject are required.' });
+  }
+  try {
+    const units = await listSyllabus(curriculum, grade, subject);
+    res.json({ units });
+  } catch (err) {
+    console.error('[curriculum/syllabus] error:', err.message);
+    res.json({ units: [] });
+  }
+});
+
+module.exports = router;

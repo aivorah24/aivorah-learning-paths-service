@@ -1,0 +1,84 @@
+// Unit tests for routes/curriculum.js — GET /subjects, GET /syllabus.
+// The Qdrant client is mocked; these tests only verify the route's contract
+// (grouping/shape, and the "never break the screen" fallback), not Qdrant itself.
+
+const mockListSubjects = jest.fn();
+const mockListSyllabus = jest.fn();
+jest.mock('../../services/qdrant', () => ({
+  listSubjects: (...args) => mockListSubjects(...args),
+  listSyllabus: (...args) => mockListSyllabus(...args),
+}));
+
+const express = require('express');
+const request = require('supertest');
+const curriculumRoute = require('../../routes/curriculum');
+
+const app = express();
+app.use(express.json());
+app.use('/curriculum', curriculumRoute);
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
+describe('GET /curriculum/subjects', () => {
+  test('missing curriculum or grade -> 400', async () => {
+    const res = await request(app).get('/curriculum/subjects').query({ grade: 'Grade 11' });
+    expect(res.status).toBe(400);
+  });
+
+  test('nothing ingested yet -> empty subjects list, not an error', async () => {
+    mockListSubjects.mockResolvedValueOnce([]);
+
+    const res = await request(app).get('/curriculum/subjects').query({ curriculum: 'IB DP', grade: 'Grade 11' });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ grade: 'Grade 11', curriculum: 'IB DP', subjects: [] });
+  });
+
+  test('subjects found -> passed through as-is', async () => {
+    mockListSubjects.mockResolvedValueOnce([{ subject: 'Mathematics', topicCount: 2, topics: [] }]);
+
+    const res = await request(app).get('/curriculum/subjects').query({ curriculum: 'IB DP', grade: 'Grade 11' });
+
+    expect(res.body.subjects).toEqual([{ subject: 'Mathematics', topicCount: 2, topics: [] }]);
+  });
+
+  test('Qdrant throws -> degrades to empty list instead of a 500', async () => {
+    mockListSubjects.mockRejectedValueOnce(new Error('Qdrant unreachable'));
+
+    const res = await request(app).get('/curriculum/subjects').query({ curriculum: 'IB DP', grade: 'Grade 11' });
+
+    expect(res.status).toBe(200);
+    expect(res.body.subjects).toEqual([]);
+  });
+});
+
+describe('GET /curriculum/syllabus', () => {
+  test('missing subject -> 400', async () => {
+    const res = await request(app).get('/curriculum/syllabus').query({ curriculum: 'IB DP', grade: 'Grade 11' });
+    expect(res.status).toBe(400);
+  });
+
+  test('no topics ingested -> empty units, not an error', async () => {
+    mockListSyllabus.mockResolvedValueOnce([]);
+
+    const res = await request(app)
+      .get('/curriculum/syllabus')
+      .query({ curriculum: 'IB DP', grade: 'Grade 11', subject: 'Mathematics' });
+
+    expect(res.status).toBe(200);
+    expect(res.body.units).toEqual([]);
+  });
+
+  test('Qdrant throws -> degrades to empty units instead of a 500', async () => {
+    mockListSyllabus.mockRejectedValueOnce(new Error('Qdrant unreachable'));
+
+    const res = await request(app)
+      .get('/curriculum/syllabus')
+      .query({ curriculum: 'IB DP', grade: 'Grade 11', subject: 'Mathematics' });
+
+    expect(res.status).toBe(200);
+    expect(res.body.units).toEqual([]);
+  });
+});

@@ -10,6 +10,7 @@ app.get('/health', (_req, res) => res.json({ status: 'ok', service: 'aivorah-lea
 
 app.use('/ibpyp', require('./routes/ibpyp'));
 app.use('/teacher/syllabus', require('./routes/syllabus'));
+app.use('/curriculum', require('./routes/curriculum'));
 
 const PORT = process.env.PORT || 3014;
 // Only start listening when run directly (`node index.js`) — not when
