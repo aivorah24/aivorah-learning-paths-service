@@ -21,7 +21,7 @@ router.get('/subjects', async (req, res) => {
     const subjects = await listSubjects(curriculum, grade);
     res.json({ grade, curriculum, subjects });
   } catch (err) {
-    console.error('[curriculum/subjects] error:', err.message);
+    console.error('[curriculum/subjects] error:', err.message, err.cause || '');
     // A Qdrant hiccup must read as "nothing ingested yet", not a broken
     // screen — same contract the rest of the Learning Path flow keeps.
     res.json({ grade, curriculum, subjects: [] });
