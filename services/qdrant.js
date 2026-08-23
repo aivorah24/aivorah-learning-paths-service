@@ -55,23 +55,31 @@ async function listSubjects(curriculum, grade) {
   for (const p of points) {
     const subject = p.payload.subject;
     if (!subject) continue;
-    if (!bySubject.has(subject)) bySubject.set(subject, new Map());
-    const topics = bySubject.get(subject);
+    if (!bySubject.has(subject)) bySubject.set(subject, { topics: new Map(), units: new Map() });
+    const entry = bySubject.get(subject);
     const topicName = p.payload.topic;
-    if (topicName && !topics.has(topicName)) {
-      topics.set(topicName, {
+    const unitTitle = typeof p.payload.chapter === 'number' ? `Chapter ${p.payload.chapter}` : (p.payload.textbook || '');
+    if (topicName && !entry.topics.has(topicName)) {
+      entry.topics.set(topicName, {
         topic: topicName,
-        unit: typeof p.payload.chapter === 'number' ? `Chapter ${p.payload.chapter}` : (p.payload.textbook || ''),
+        unit: unitTitle,
         description: p.payload.text || p.payload.content || '',
         grade: qGrade,
       });
     }
+    // Real unit/chapter title (not the generic "Chapter N" label) — this is
+    // what consumers like the student Dashboard's chapter list need; keyed
+    // by chapter number so it stays deduped and in syllabus order.
+    if (p.payload.textbook && typeof p.payload.chapter === 'number' && !entry.units.has(p.payload.chapter)) {
+      entry.units.set(p.payload.chapter, p.payload.textbook);
+    }
   }
 
-  return [...bySubject.entries()].map(([subject, topics]) => ({
+  return [...bySubject.entries()].map(([subject, entry]) => ({
     subject,
-    topicCount: topics.size,
-    topics: [...topics.values()],
+    topicCount: entry.topics.size,
+    topics: [...entry.topics.values()],
+    units: [...entry.units.entries()].sort((a, b) => a[0] - b[0]).map(([, title]) => title),
   }));
 }
 
