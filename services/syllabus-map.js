@@ -60,4 +60,29 @@ function chaptersFor(grade, subject) {
   return _byGradeSubject.get(`${Number(grade)}|${String(subject || '').toLowerCase()}`) || [];
 }
 
-module.exports = { chaptersFor };
+/**
+ * Distinct subjects for a grade, read straight from the same book-derived
+ * chapter data chaptersFor() uses — feeds the Learning Path "Subjects" grid
+ * for CBSE without depending on Qdrant, since Qdrant coverage for CBSE
+ * (esp. primary grades) is not guaranteed the way IB DP/MYP's is.
+ */
+function subjectsFor(grade) {
+  load();
+  const g = parseInt(String(grade).replace(/\D/g, ''), 10);
+  const bySubject = new Map();
+  for (const [key, chapters] of _byGradeSubject.entries()) {
+    const [keyGrade] = key.split('|');
+    if (Number(keyGrade) !== g) continue;
+    const subject = chapters[0]?.subject;
+    if (!subject) continue;
+    bySubject.set(subject, chapters.length);
+  }
+  return [...bySubject.entries()].map(([subject, chapterCount]) => ({
+    subject,
+    topicCount: chapterCount,
+    topics: [],
+    units: [],
+  }));
+}
+
+module.exports = { chaptersFor, subjectsFor };

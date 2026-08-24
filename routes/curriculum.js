@@ -10,12 +10,20 @@
 const express = require('express');
 const router = express.Router();
 const { listSubjects, listSyllabus } = require('../services/qdrant');
+const { subjectsFor } = require('../services/syllabus-map');
 
 // ── GET /curriculum/subjects ────────────────────────────────────────────
 router.get('/subjects', async (req, res) => {
   const { curriculum, grade } = req.query;
   if (!curriculum || !grade) {
     return res.status(400).json({ error: 'curriculum and grade are required.' });
+  }
+  // CBSE subjects come from the same book-derived chapter data the syllabus
+  // endpoint already uses, not Qdrant — that data is proven complete for
+  // every CBSE grade, whereas Qdrant coverage for CBSE (esp. primary grades)
+  // is not guaranteed. Every other curriculum keeps its existing Qdrant path.
+  if (/^cbse$/i.test(String(curriculum).trim())) {
+    return res.json({ grade, curriculum, subjects: subjectsFor(grade) });
   }
   try {
     const subjects = await listSubjects(curriculum, grade);
