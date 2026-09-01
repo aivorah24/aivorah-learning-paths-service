@@ -4,9 +4,11 @@
 
 const mockListSubjects = jest.fn();
 const mockListSyllabus = jest.fn();
+const mockTopicCount = jest.fn();
 jest.mock('../../services/qdrant', () => ({
   listSubjects: (...args) => mockListSubjects(...args),
   listSyllabus: (...args) => mockListSyllabus(...args),
+  topicCount: (...args) => mockTopicCount(...args),
 }));
 
 const express = require('express');
@@ -80,5 +82,31 @@ describe('GET /curriculum/syllabus', () => {
 
     expect(res.status).toBe(200);
     expect(res.body.units).toEqual([]);
+  });
+});
+
+describe('GET /curriculum/topic-count', () => {
+  test('missing curriculum or grade -> 400', async () => {
+    const res = await request(app).get('/curriculum/topic-count').query({ grade: 'Grade 3' });
+    expect(res.status).toBe(400);
+  });
+
+  test('returns totalTopics from the service layer', async () => {
+    mockTopicCount.mockResolvedValueOnce(42);
+
+    const res = await request(app).get('/curriculum/topic-count').query({ curriculum: 'IB PYP', grade: 'Grade 3' });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ totalTopics: 42 });
+    expect(mockTopicCount).toHaveBeenCalledWith('IB PYP', 'Grade 3');
+  });
+
+  test('service layer already degrades Qdrant errors to 0, not a 500', async () => {
+    mockTopicCount.mockResolvedValueOnce(0);
+
+    const res = await request(app).get('/curriculum/topic-count').query({ curriculum: 'CBSE', grade: 'Grade 11' });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ totalTopics: 0 });
   });
 });
