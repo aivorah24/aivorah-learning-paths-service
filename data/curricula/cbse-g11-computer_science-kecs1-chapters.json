@@ -9,16 +9,12 @@
   {
    "chapter": 1,
    "pdfFile": "kecs101.pdf",
-   "title": "Cpu",
+   "title": "A Computer Is an Electronic Device That Can Be Programmed to Accept Data (Input), Process It and Generate Result (Output). a Computer Along with",
    "bookPath": "grade11/computer_science/kecs101.pdf",
    "subtopics": [
     {
      "section": "1.1",
      "title": "IntroductIon to computer SyStem"
-    },
-    {
-     "section": "1.7",
-     "title": "Software"
     }
    ],
    "pdfFiles": [
@@ -93,33 +89,12 @@
   {
    "chapter": 5,
    "pdfFile": "kecs105.pdf",
-   "title": "Chapter 5",
-   "needsTitleReview": true,
+   "title": "We Have Written Algorithms for Different Problems in",
    "bookPath": "grade11/computer_science/kecs105.pdf",
    "subtopics": [
     {
      "section": "5.1",
      "title": "IntroductIon to Python"
-    },
-    {
-     "section": "5.2",
-     "title": "Python Keywords"
-    },
-    {
-     "section": "5.3",
-     "title": "IdentIfIers"
-    },
-    {
-     "section": "5.4",
-     "title": "VarIables"
-    },
-    {
-     "section": "5.7",
-     "title": "Data types"
-    },
-    {
-     "section": "5.11",
-     "title": "InPut and outPut"
     }
    ],
    "pdfFiles": [

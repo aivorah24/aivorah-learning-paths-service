@@ -14,6 +14,29 @@ const { QdrantClient } = require('@qdrant/js-client-rest');
 // same as ai-coach-service's resolveCollection() convention.
 const IB_COLLECTION = 'ai_mentor_content';
 
+// NCERT content itself (chapter titles, chunk text, images) lives in a
+// SEPARATE collection — confirmed via live queries during the Bug #6/#8
+// investigation (aivorah-frontend/BUGS_AND_FIXES.md). listSubjects/
+// listSyllabus above intentionally never touch this collection for CBSE —
+// syllabus-map.js's book-derived chapter data is the source of truth there
+// (see routes/curriculum.js's own comment). This collection is only for
+// resolveTopicContent() below: fetching real lesson content by topic name
+// for topics that have no syllabus_topics DB row (see Bug #8).
+const NCERT_COLLECTION = 'aivorah_curriculum_chunks_v1';
+
+// The rest of the app calls this curriculum "CBSE" (users.curriculum,
+// syllabus-map.js's book data, every frontend route param) — Qdrant's own
+// NCERT_COLLECTION tags the exact same content "NCERT" instead. `/current`
+// already mapped this for the pending-check; `/topic-by-name/resources`
+// (Bug #8) did not, so it silently matched zero points for any topic
+// reached the normal way (frontend always sends "CBSE") — confirmed live,
+// this was the actual cause of "Content coming soon" surviving three
+// earlier fix attempts to Bug #11's chain. Every NCERT_COLLECTION query
+// must go through this first.
+function toQdrantCurriculum(curriculum) {
+  return /^cbse$/i.test(String(curriculum).trim()) ? 'NCERT' : curriculum;
+}
+
 const client = new QdrantClient({
   url: process.env.QDRANT_URL,
   apiKey: process.env.QDRANT_API_KEY,
@@ -185,4 +208,216 @@ async function listSyllabus(curriculum, grade, subject) {
     .map((u) => ({ unitNo: u.unitNo, title: u.title, topics: [...u.topics.values()], pending: u.topics.size === 0 }));
 }
 
-module.exports = { listSubjects, listSyllabus, topicCount, IB_COLLECTION };
+// Extracts the PDF filename (lowercased, e.g. "iebe105.pdf") a Qdrant point
+// was sourced from, out of whichever field it happens to carry it in — the
+// payload shape is inconsistent between ingestion batches: some points have
+// `source` ("ncert_books/grade9/english/iemr101.pdf"), others only
+// `source_reference` ("NCERT English Grade 9 | iebe105.pdf | Page 22").
+// Neither reliably carries a numeric `chapter` field — an earlier version of
+// this function assumed one did and always returned an empty set.
+const PDF_FILENAME_RE = /([a-z0-9]+\.pdf)/i;
+function pdfFileFromPayload(payload) {
+  const m = String(payload.source || payload.source_reference || '').match(PDF_FILENAME_RE);
+  return m ? m[1].toLowerCase() : null;
+}
+
+// Same junk-chunk filter the legacy CBSE reader uses (image-caption chunks
+// used as a "topic" name, and raw PDF-code placeholders like "iemr101" —
+// see Bug #6, BUGS_AND_FIXES.md) — a real browsable topic list must not
+// include either.
+function looksLikeRealTopicName(topic) {
+  const t = String(topic || '').trim();
+  if (!t) return false;
+  if (/^\[?IMAGE\]?/i.test(t) || /^this image/i.test(t)) return false;
+  if (/^[a-z]+\d{2,4}$/i.test(t)) return false; // raw PDF code, e.g. "iemr101"
+  return true;
+}
+
+/**
+ * Real topic names, grouped by source PDF file, for one NCERT
+ * curriculum+grade+subject — lets a chapter marked not-pending (Bug #11)
+ * actually show what it has, instead of an empty "0 topics" list. `chapter.
+ * topics` (syllabus_topics DB rows) stays empty for virtually all NCERT
+ * content — these are real Qdrant topics instead, in the same
+ * `{id, name, kind, page}` shape listSyllabus() already uses elsewhere, so
+ * the frontend needs no special-casing. Each id is Qdrant-name-addressable
+ * (`qdrant:...`) — matches what Bug #8's byName lesson-resolution path
+ * already expects, so tapping one of these topics reaches real content.
+ */
+async function topicsByPdfFile(curriculum, grade, subject) {
+  const byFile = new Map();
+  if (!curriculum || !grade || !subject) return byFile;
+  const qCurriculum = toQdrantCurriculum(curriculum);
+  const qGrade = Number(String(grade).match(/(\d+)/)?.[1]) || grade;
+  const points = await scrollAll(NCERT_COLLECTION, {
+    must: [
+      { key: 'curriculum', match: { value: qCurriculum } },
+      { key: 'grade', match: { value: qGrade } },
+      { key: 'subject', match: { value: subject } },
+    ],
+  });
+  for (const p of points) {
+    const pdfFile = pdfFileFromPayload(p.payload);
+    const topicName = p.payload.topic;
+    if (!pdfFile || !looksLikeRealTopicName(topicName)) continue;
+    if (!byFile.has(pdfFile)) byFile.set(pdfFile, new Map());
+    const topics = byFile.get(pdfFile);
+    if (!topics.has(topicName)) {
+      topics.set(topicName, {
+        id: `qdrant:${curriculum}:${qGrade}:${subject}:${topicName}`,
+        name: topicName, kind: 'qdrant', page: '',
+      });
+    }
+  }
+  const result = new Map();
+  for (const [pdfFile, topics] of byFile) result.set(pdfFile, [...topics.values()]);
+  return result;
+}
+
+/**
+ * Real lesson content for one NCERT topic, resolved directly from Qdrant by
+ * name (curriculum+grade+subject+topic) — no syllabus_topics DB row needed.
+ * Built for Bug #8: topics that only exist in Qdrant (e.g. "Ability Beyond
+ * Disability", Grade 9 English) had no way to reach the current Learn/AI
+ * Tutor/Ask Aivorah/Practice flow, which only worked for topics with a real
+ * DB id — this lets it work for any real topic instead.
+ *
+ * Filters out the same junk chunks the CBSE reader already excludes
+ * (image-caption-as-text chunks) — this is prose content, not a caption.
+ *
+ * Returns null if nothing matches (caller treats that as "not found", same
+ * as an unresolved topicId — never fabricates content).
+ */
+async function resolveTopicContent(curriculum, grade, subject, topic) {
+  if (!curriculum || !grade || !subject || !topic) return null;
+  const qCurriculum = toQdrantCurriculum(curriculum);
+  const qGrade = Number(String(grade).match(/(\d+)/)?.[1]) || grade;
+  const points = await scrollAll(NCERT_COLLECTION, {
+    must: [
+      { key: 'curriculum', match: { value: qCurriculum } },
+      { key: 'grade', match: { value: qGrade } },
+      { key: 'subject', match: { value: subject } },
+      { key: 'topic', match: { value: topic } },
+    ],
+  });
+  if (!points.length) return null;
+
+  const textChunks = points
+    .filter(p => p.payload.content_type !== 'image' && typeof p.payload.text === 'string' && p.payload.text.trim())
+    .sort((a, b) => (a.payload.chunk_index ?? 0) - (b.payload.chunk_index ?? 0))
+    .map(p => p.payload.text.trim());
+  const imageChunks = points.filter(p => p.payload.content_type === 'image' && p.payload.image_url);
+
+  if (!textChunks.length && !imageChunks.length) return null;
+
+  return {
+    intro: textChunks[0] || '',
+    body: textChunks.slice(1),
+    sourceReference: points[0].payload.source_reference || null,
+    // The real textbook PDF filename this content was extracted from — lets
+    // the "View in Book" pane render for byName-resolved topics the same way
+    // it already does for DB-backed ones (BookPane.tsx only shows when
+    // topic.pdfFile is set — see the Bug #11 sixth finding, BUGS_AND_FIXES.md).
+    // No page number is available in this payload shape (unlike the DB
+    // path), so the frontend opens the book at page 1 — the same fallback
+    // useDbTopic.ts already applies whenever pdfPage is missing.
+    pdfFile: pdfFileFromPayload(points[0].payload),
+    images: imageChunks.map(p => ({ url: p.payload.image_url, description: p.payload.text || '' })),
+  };
+}
+
+/**
+ * Grounding source for the AI enrichment pilot (see aivorah-learning-paths-
+ * service's topic_ai_enrichment table / services/curriculum/enrichment.js).
+ *
+ * Investigated (not assumed) why resolveTopicContent() so often returns a
+ * single ~200-char chunk for a topic: the ingestion pipeline chunked each
+ * NCERT PDF into many fine-grained MICRO-topics (often 20-100+ per chapter),
+ * each with its own distinct `topic` payload value and a `source_id` like
+ * "ncert_g11_accountancy_keac1_487990fc_0012" (book code + page-group hash +
+ * chunk_index). A topic genuinely having exactly one matching point is real
+ * NCERT granularity, not a retrieval bug — "Relevance of Information" really
+ * is that short in the source book.
+ *
+ * There is no chapter/unit field to group by. The closest real signal is:
+ * same source PDF (source_reference/source) + nearby chunk_index. This
+ * function returns the topic's own matching point(s) as `primary` (the only
+ * thing the AI is allowed to claim as this topic's content) plus a small
+ * window of neighboring same-PDF chunks as `context` (background only, to
+ * help the model phrase a coherent explanation — never a source of new
+ * facts/claims for THIS topic, so the prompt must say so explicitly).
+ */
+async function resolveTopicWithContext(curriculum, grade, subject, topic, { contextWindow = 2 } = {}) {
+  if (!curriculum || !grade || !subject || !topic) return null;
+  const qCurriculum = toQdrantCurriculum(curriculum);
+  const qGrade = Number(String(grade).match(/(\d+)/)?.[1]) || grade;
+
+  const subjectPoints = await scrollAll(NCERT_COLLECTION, {
+    must: [
+      { key: 'curriculum', match: { value: qCurriculum } },
+      { key: 'grade', match: { value: qGrade } },
+      { key: 'subject', match: { value: subject } },
+    ],
+  });
+  if (!subjectPoints.length) return null;
+
+  const primaryPoints = subjectPoints.filter(
+    (p) => p.payload.topic === topic && p.payload.content_type !== 'image' && typeof p.payload.text === 'string' && p.payload.text.trim()
+  );
+  if (!primaryPoints.length) return null;
+
+  // Neighbors = same source PDF, nearby chunk_index, excluding the primary
+  // topic's own points and any other distinct topic's points that happen to
+  // share an index (keeps context free of a DIFFERENT topic's full content).
+  const primaryPdf = pdfFileFromPayload(primaryPoints[0].payload);
+  const primaryIndexes = new Set(primaryPoints.map((p) => p.payload.chunk_index));
+  const contextPoints = subjectPoints
+    .filter((p) => {
+      if (p.payload.topic === topic) return false;
+      if (p.payload.content_type === 'image') return false;
+      if (typeof p.payload.text !== 'string' || !p.payload.text.trim()) return false;
+      if (pdfFileFromPayload(p.payload) !== primaryPdf) return false;
+      const idx = p.payload.chunk_index;
+      if (typeof idx !== 'number') return false;
+      return [...primaryIndexes].some((pi) => Math.abs(idx - pi) <= contextWindow);
+    })
+    .sort((a, b) => (a.payload.chunk_index ?? 0) - (b.payload.chunk_index ?? 0))
+    .slice(0, 6);
+
+  const imageChunks = subjectPoints.filter(
+    (p) => p.payload.topic === topic && p.payload.content_type === 'image' && p.payload.image_url
+  );
+
+  return {
+    primary: primaryPoints.map((p) => ({ id: p.id, text: p.payload.text.trim(), chunkIndex: p.payload.chunk_index })),
+    context: contextPoints.map((p) => ({ id: p.id, text: p.payload.text.trim(), topic: p.payload.topic })),
+    sourceReference: primaryPoints[0].payload.source_reference || primaryPoints[0].payload.source || null,
+    pdfFile: primaryPdf,
+    images: imageChunks.map((p) => ({ url: p.payload.image_url, description: p.payload.text || '' })),
+  };
+}
+
+async function saveSchoolQuiz(quizId, vector, payload) {
+  const QUIZ_COLLECTION = 'school_quizzes';
+  try {
+    const { collections } = await client.getCollections();
+    if (!collections.some(c => c.name === QUIZ_COLLECTION)) {
+      await client.createCollection(QUIZ_COLLECTION, { vectors: { size: 384, distance: 'Cosine' } });
+      for (const f of ['subject', 'grade', 'curriculum', 'school_id', 'status', 'school', 'teacher_name']) {
+        await client.createPayloadIndex(QUIZ_COLLECTION, { field_name: f, field_schema: 'keyword' });
+      }
+    }
+  } catch (e) {
+    console.warn('[qdrant] ensure collection failed:', e.message);
+  }
+
+  await client.upsert(QUIZ_COLLECTION, {
+    points: [{
+      id: quizId,
+      vector,
+      payload
+    }],
+    wait: true,
+  });
+}
+module.exports = { saveSchoolQuiz,  listSubjects, listSyllabus, resolveTopicContent, resolveTopicWithContext, topicsByPdfFile, topicCount, toQdrantCurriculum, IB_COLLECTION, NCERT_COLLECTION };

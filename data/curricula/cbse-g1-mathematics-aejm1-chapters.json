@@ -8,9 +8,8 @@
   {
    "chapter": 1,
    "pdfFile": "aejm101.pdf",
-   "title": "Chapter 1",
+   "title": "Finding the Furry Cat!",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm101.pdf"
   },
   {
@@ -24,17 +23,15 @@
   {
    "chapter": 3,
    "pdfFile": "aejm103.pdf",
-   "title": "Chapter 3",
+   "title": "Mango Treat",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm103.pdf"
   },
   {
    "chapter": 4,
    "pdfFile": "aejm104.pdf",
-   "title": "Chapter 4",
+   "title": "Dotty Bug and Her Designs Making 10",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm104.pdf"
   },
   {
@@ -48,17 +45,15 @@
   {
    "chapter": 6,
    "pdfFile": "aejm106.pdf",
-   "title": "Chapter 6",
+   "title": "Vegetable Farm",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm106.pdf"
   },
   {
    "chapter": 7,
    "pdfFile": "aejm107.pdf",
-   "title": "Chapter 7",
+   "title": "Lina’S Family",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm107.pdf"
   },
   {
@@ -88,25 +83,22 @@
   {
    "chapter": 11,
    "pdfFile": "aejm111.pdf",
-   "title": "Chapter 11",
+   "title": "A Visit to an Amusement Park",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm111.pdf"
   },
   {
    "chapter": 12,
    "pdfFile": "aejm112.pdf",
-   "title": "Chapter 12",
+   "title": "How Much Can",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm112.pdf"
   },
   {
    "chapter": 13,
    "pdfFile": "aejm113.pdf",
-   "title": "Chapter 13",
+   "title": "So Many Toys",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm113.pdf"
   }
  ]

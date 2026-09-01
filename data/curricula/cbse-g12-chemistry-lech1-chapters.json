@@ -164,221 +164,39 @@
   {
    "chapter": 2,
    "pdfFile": "lech102.pdf",
-   "title": "Chapter 2",
+   "title": "Electricity From Energy Released During Spontaneous Chemical Reactions and the Use of Electrical Energy to Bring About Non-Spontaneous Chemical",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "2.1",
      "title": "ElectrochemicalElectrochemical"
-    },
-    {
-     "section": "2.2",
-     "title": "Galvanic Cells"
-    },
-    {
-     "section": "2.3",
-     "title": "Consult the table of standard electrode potentials and"
-    },
-    {
-     "section": "2.4",
-     "title": "ConductanceConductance"
-    },
-    {
-     "section": "2.5",
-     "title": "Calculate the emf of the cell in which the following reaction"
-    },
-    {
-     "section": "2.6",
-     "title": "The cell in which the following reaction occurs"
-    },
-    {
-     "section": "2.7",
-     "title": "Why does the conductivity of a solution decrease with dilution"
-    },
-    {
-     "section": "2.8",
-     "title": "Suggest a way to determine the"
-    },
-    {
-     "section": "2.9",
-     "title": "The molar conductivity of"
-    },
-    {
-     "section": "2.10",
-     "title": "If a current of"
-    },
-    {
-     "section": "2.11",
-     "title": "Suggest a list of metals that are extracted electrolytically"
-    },
-    {
-     "section": "2.12",
-     "title": "Consider the reaction"
-    },
-    {
-     "section": "2.13",
-     "title": "Write the chemistry of recharging the lead storage battery, hi"
-    },
-    {
-     "section": "2.14",
-     "title": "Suggest two materials other than hydrogen that can be used as"
-    },
-    {
-     "section": "2.15",
-     "title": "Explain how rusting of iron is envisaged as setting u"
-    },
-    {
-     "section": "2.16",
-     "title": "Three electrolytic cells A,B,C containing solutions of ZnSO"
-    },
-    {
-     "section": "2.17",
-     "title": "Using the standard electrode potentials given in Table"
-    },
-    {
-     "section": "2.18",
-     "title": "Predict the products of electrolysis in each of the f"
     }
    ],
    "bookPath": "grade12/chemistry/lech102.pdf",
    "pdfFiles": [
     "lech102.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,
    "pdfFile": "lech103.pdf",
-   "title": "Chapter 3",
+   "title": "Substances with Well Defined Properties Are Converted By Chemical Reactions Into Other Substances with Different Properties. for Any Chemical Reaction, Chemists",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "3.1",
      "title": "Rate of aRate of a"
-    },
-    {
-     "section": "3.2",
-     "title": "In a reaction"
-    },
-    {
-     "section": "3.3",
-     "title": "For a reaction, A"
-    },
-    {
-     "section": "3.4",
-     "title": "The conversion of molecules X to Y follows second ord"
-    },
-    {
-     "section": "3.5",
-     "title": "Collision"
-    },
-    {
-     "section": "3.6",
-     "title": "Time required to decompose SO"
-    },
-    {
-     "section": "3.7",
-     "title": "What will be the effect of temperature on rate constant"
-    },
-    {
-     "section": "3.8",
-     "title": "The rate of the chemical reaction doubles for an increase of"
-    },
-    {
-     "section": "3.9",
-     "title": "The activation energy for the reaction"
-    },
-    {
-     "section": "3.10",
-     "title": "In a reaction between A and B, the initial rate of"
-    },
-    {
-     "section": "3.11",
-     "title": "The following results have been obtained during the kinetic st"
-    },
-    {
-     "section": "3.12",
-     "title": "The reaction between A and B is first order with res"
-    },
-    {
-     "section": "3.13",
-     "title": "Calculate the half-life of a first order reaction from"
-    },
-    {
-     "section": "3.14",
-     "title": "The half-life for radioactive decay of"
-    },
-    {
-     "section": "3.15",
-     "title": "The experimental data for decomposition of N"
-    },
-    {
-     "section": "3.16",
-     "title": "The rate constant for a first order reaction is"
-    },
-    {
-     "section": "3.17",
-     "title": "During nuclear explosion, one of the products is"
-    },
-    {
-     "section": "3.18",
-     "title": "For a first order reaction, show that time required f"
-    },
-    {
-     "section": "3.20",
-     "title": "For the decomposition of azoisopropane to hexane and n"
-    },
-    {
-     "section": "3.21",
-     "title": "The following data were obtained during the first orde"
-    },
-    {
-     "section": "3.22",
-     "title": "The rate constant for the decomposition of N"
-    },
-    {
-     "section": "3.23",
-     "title": "The rate constant for the decomposition of hydrocarbons"
-    },
-    {
-     "section": "3.24",
-     "title": "Consider a certain reaction A"
-    },
-    {
-     "section": "3.25",
-     "title": "Sucrose decomposes in acid solution into glucose and f"
-    },
-    {
-     "section": "3.26",
-     "title": "The decomposition of hydrocarbon follows the equation"
-    },
-    {
-     "section": "3.27",
-     "title": "The rate constant for the first order decomposition of"
-    },
-    {
-     "section": "3.28",
-     "title": "The decomposition of A into product has value of k as"
-    },
-    {
-     "section": "3.29",
-     "title": "The time required for"
-    },
-    {
-     "section": "3.30",
-     "title": "The rate of a reaction quadruples when the temperature"
     }
    ],
    "bookPath": "grade12/chemistry/lech103.pdf",
    "pdfFiles": [
     "lech103.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 4,
    "pdfFile": "lech104.pdf",
-   "title": "Vii",
+   "title": "The D-Block of the Periodic Table Contains the Elements of the Groups 3-12 in Which the D Orbitals Are",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -388,150 +206,6 @@
     {
      "section": "4.2",
      "title": "ElectronicElectronic"
-    },
-    {
-     "section": "4.3",
-     "title": "GeneralGeneral"
-    },
-    {
-     "section": "4.4",
-     "title": "The E"
-    },
-    {
-     "section": "4.5",
-     "title": "How would you account for the irregular variation of"
-    },
-    {
-     "section": "4.6",
-     "title": "Why is the highest oxidation state of a metal exhibit"
-    },
-    {
-     "section": "4.7",
-     "title": "Which is a stronger reducing agent Cr"
-    },
-    {
-     "section": "4.8",
-     "title": "Calculate the"
-    },
-    {
-     "section": "4.9",
-     "title": "Explain why Cu"
-    },
-    {
-     "section": "4.10",
-     "title": "Actinoid contraction is greater from element to element"
-    },
-    {
-     "section": "4.11",
-     "title": "Explain giving reasons"
-    },
-    {
-     "section": "4.12",
-     "title": "What are interstitial compounds"
-    },
-    {
-     "section": "4.13",
-     "title": "How is the variability in oxidation states of transiti"
-    },
-    {
-     "section": "4.14",
-     "title": "Describe the preparation of potassium dichromate from i"
-    },
-    {
-     "section": "4.15",
-     "title": "Describe the oxidising action of potassium dichromate a"
-    },
-    {
-     "section": "4.16",
-     "title": "Describe the preparation of potassium permanganate"
-    },
-    {
-     "section": "4.17",
-     "title": "For M"
-    },
-    {
-     "section": "4.18",
-     "title": "Predict which of the following will be coloured in aq"
-    },
-    {
-     "section": "4.19",
-     "title": "Compare the stability of"
-    },
-    {
-     "section": "4.20",
-     "title": "Compare the chemistry of actinoids with that of the l"
-    },
-    {
-     "section": "4.21",
-     "title": "How would you account for the following"
-    },
-    {
-     "section": "4.22",
-     "title": "What is meant by"
-    },
-    {
-     "section": "4.23",
-     "title": "Which metal in the first series of transition metals"
-    },
-    {
-     "section": "4.24",
-     "title": "Calculate the number of unpaired electrons in the foll"
-    },
-    {
-     "section": "4.25",
-     "title": "Give examples and suggest reasons for the following features o"
-    },
-    {
-     "section": "4.26",
-     "title": "Indicate the steps in the preparation of"
-    },
-    {
-     "section": "4.27",
-     "title": "What are alloys"
-    },
-    {
-     "section": "4.28",
-     "title": "What are inner transition elements"
-    },
-    {
-     "section": "4.29",
-     "title": "The chemistry of the actinoid elements is not so smoo"
-    },
-    {
-     "section": "4.30",
-     "title": "Which is the last element in the series of the actin"
-    },
-    {
-     "section": "4.31",
-     "title": "Use Hund"
-    },
-    {
-     "section": "4.32",
-     "title": "Name the members of the lanthanoid series which exhibi"
-    },
-    {
-     "section": "4.33",
-     "title": "Compare the chemistry of the actinoids with that of l"
-    },
-    {
-     "section": "4.34",
-     "title": "Write the electronic configurations of the elements wit"
-    },
-    {
-     "section": "4.35",
-     "title": "Compare the general characteristics of the first series"
-    },
-    {
-     "section": "4.36",
-     "title": "Write down the number of"
-    },
-    {
-     "section": "4.37",
-     "title": "Comment on the statement that elements of the first t"
-    },
-    {
-     "section": "4.38",
-     "title": "What can be inferred from the magnetic moment values of the fo"
     }
    ],
    "bookPath": "grade12/chemistry/lech104.pdf",
@@ -542,96 +216,12 @@
   {
    "chapter": 5,
    "pdfFile": "lech105.pdf",
-   "title": "Nch",
+   "title": "In the Previous Unit We Learnt That the Transition Metals Form a Large Number of Complex Compounds in Which",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "5.1",
      "title": "Werner"
-    },
-    {
-     "section": "5.2",
-     "title": "Definitions ofDefinitions of"
-    },
-    {
-     "section": "5.3",
-     "title": "NomenclatureNomenclature"
-    },
-    {
-     "section": "5.4",
-     "title": "Isomerism inIsomerism in"
-    },
-    {
-     "section": "5.5",
-     "title": "Bonding inBonding in"
-    },
-    {
-     "section": "5.6",
-     "title": "Bonding in"
-    },
-    {
-     "section": "5.7",
-     "title": "ImportanceImportance"
-    },
-    {
-     "section": "5.8",
-     "title": "Explain"
-    },
-    {
-     "section": "5.9",
-     "title": "Predict the number of unpaired electrons in the square planar"
-    },
-    {
-     "section": "5.10",
-     "title": "The hexaquo manganese(II) ion contains five unpaired electrons"
-    },
-    {
-     "section": "5.12",
-     "title": "Write all the geometrical isomers of"
-    },
-    {
-     "section": "5.13",
-     "title": "Aqueous copper sulphate solution (blue in colour) gives"
-    },
-    {
-     "section": "5.14",
-     "title": "What is the coordination entity formed when excess of"
-    },
-    {
-     "section": "5.15",
-     "title": "Discuss the nature of bonding in the following coordin"
-    },
-    {
-     "section": "5.16",
-     "title": "Draw figure to show the splitting of d orbitals in a"
-    },
-    {
-     "section": "5.17",
-     "title": "What is spectrochemical series"
-    },
-    {
-     "section": "5.18",
-     "title": "What is crystal field splitting energy"
-    },
-    {
-     "section": "5.23",
-     "title": "Give the oxidation state, d orbital occupation and coo"
-    },
-    {
-     "section": "5.24",
-     "title": "Write down the IUPAC name for each of the following complexes"
-    },
-    {
-     "section": "5.25",
-     "title": "Explain the violet colour of the complex"
-    },
-    {
-     "section": "5.26",
-     "title": "What is meant by the chelate effect"
-    },
-    {
-     "section": "5.27",
-     "title": "Discuss briefly giving an example in each case the ro"
     }
    ],
    "bookPath": "grade12/chemistry/lech105.pdf",

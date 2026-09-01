@@ -138,13 +138,12 @@
   {
    "chapter": 18,
    "pdfFile": "hekr118.pdf",
-   "title": "Chapter 18",
+   "title": "Arts of the People, with the People, for the People",
    "kind": "Non-fiction",
    "bookPath": "grade8/fine_arts/hekr118.pdf",
    "pdfFiles": [
     "hekr118.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 19,

@@ -8,20 +8,18 @@
   {
    "chapter": 1,
    "pdfFile": "jess401.pdf",
-   "title": "Chapter 1",
+   "title": "Power-Sharing",
    "kind": "Non-fiction",
    "bookPath": "grade10/social_science/jess401.pdf",
    "pdfFiles": [
     "jess401.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
    "pdfFile": "jess402.pdf",
-   "title": "Chapter 2",
+   "title": "Federalism",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade10/social_science/jess402.pdf",
    "pdfFiles": [
     "jess402.pdf"
@@ -30,9 +28,8 @@
   {
    "chapter": 3,
    "pdfFile": "jess403.pdf",
-   "title": "Chapter 3",
+   "title": "Gender, Religion and Caste",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade10/social_science/jess403.pdf",
    "pdfFiles": [
     "jess403.pdf"
@@ -41,7 +38,7 @@
   {
    "chapter": 4,
    "pdfFile": "jess404.pdf",
-   "title": "Dna",
+   "title": "Democratic Politics",
    "kind": "Non-fiction",
    "bookPath": "grade10/social_science/jess404.pdf",
    "pdfFiles": [
@@ -51,9 +48,8 @@
   {
    "chapter": 5,
    "pdfFile": "jess405.pdf",
-   "title": "Chapter 5",
+   "title": "Outcomes of Democracy",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade10/social_science/jess405.pdf",
    "pdfFiles": [
     "jess405.pdf"

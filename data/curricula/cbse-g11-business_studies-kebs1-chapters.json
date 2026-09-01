@@ -9,7 +9,7 @@
   {
    "chapter": 1,
    "pdfFile": "kebs101.pdf",
-   "title": "Chapter 1",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs101.pdf",
    "subtopics": [
     {
@@ -31,13 +31,12 @@
    ],
    "pdfFiles": [
     "kebs101.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
    "pdfFile": "kebs102.pdf",
-   "title": "Chapter 2",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs102.pdf",
    "subtopics": [
     {
@@ -63,45 +62,27 @@
    ],
    "pdfFiles": [
     "kebs102.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,
    "pdfFile": "kebs103.pdf",
-   "title": "Chapter 3",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs103.pdf",
    "subtopics": [
     {
      "section": "3.2",
      "title": "PrIvate Sector and PublIc"
-    },
-    {
-     "section": "3.3",
-     "title": "Forms oF orGanisinG Public"
-    },
-    {
-     "section": "3.5",
-     "title": "Global enterPrises"
-    },
-    {
-     "section": "3.6",
-     "title": "Joint ventures"
-    },
-    {
-     "section": "3.7",
-     "title": "Public Private PartnershiP (PPP)"
     }
    ],
    "pdfFiles": [
     "kebs103.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 4,
    "pdfFile": "kebs104.pdf",
-   "title": "Chapter 4",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs104.pdf",
    "subtopics": [
     {
@@ -115,13 +96,12 @@
    ],
    "pdfFiles": [
     "kebs104.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 5,
    "pdfFile": "kebs105.pdf",
-   "title": "Chapter 5",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs105.pdf",
    "subtopics": [
     {
@@ -135,13 +115,12 @@
    ],
    "pdfFiles": [
     "kebs105.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 6,
    "pdfFile": "kebs106.pdf",
-   "title": "Chapter 6",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs106.pdf",
    "subtopics": [
     {
@@ -155,13 +134,12 @@
    ],
    "pdfFiles": [
     "kebs106.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 7,
    "pdfFile": "kebs107.pdf",
-   "title": "Chapter 7",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs107.pdf",
    "subtopics": [
     {
@@ -171,33 +149,27 @@
    ],
    "pdfFiles": [
     "kebs107.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 8,
    "pdfFile": "kebs108.pdf",
-   "title": "Chapter 8",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs108.pdf",
    "subtopics": [
     {
      "section": "8.2",
      "title": "Meaning, nature and Significance"
-    },
-    {
-     "section": "8.4",
-     "title": "SourceS of finance"
     }
    ],
    "pdfFiles": [
     "kebs108.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 9,
    "pdfFile": "kebs109.pdf",
-   "title": "Chapter 9",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs109.pdf",
    "subtopics": [
     {
@@ -215,33 +187,27 @@
    ],
    "pdfFiles": [
     "kebs109.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 10,
    "pdfFile": "kebs110.pdf",
-   "title": "Chapter 10",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs110.pdf",
    "subtopics": [
     {
      "section": "10.2",
      "title": "Internal trade"
-    },
-    {
-     "section": "10.3",
-     "title": "Wholesale trade"
     }
    ],
    "pdfFiles": [
     "kebs110.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 11,
    "pdfFile": "kebs111.pdf",
-   "title": "Chapter 11",
+   "title": "Learning Objectives",
    "bookPath": "grade11/business_studies/kebs111.pdf",
    "subtopics": [
     {
@@ -251,8 +217,7 @@
    ],
    "pdfFiles": [
     "kebs111.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }

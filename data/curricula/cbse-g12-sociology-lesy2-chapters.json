@@ -84,33 +84,12 @@
   {
    "chapter": 5,
    "pdfFile": "lesy205.pdf",
-   "title": "Chapter 5",
+   "title": "Change and Development in Industrial Society",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "subtopics": [
     {
      "section": "5.1",
      "title": "Images of IndustrIal socIety"
-    },
-    {
-     "section": "5.2",
-     "title": "IndustrIalIsatIon In IndIa"
-    },
-    {
-     "section": "5.3",
-     "title": "How People FInd Jobs"
-    },
-    {
-     "section": "5.4",
-     "title": "How Is work carrIed out"
-    },
-    {
-     "section": "5.5",
-     "title": "Working conditions"
-    },
-    {
-     "section": "5.6",
-     "title": "Home-based work"
     }
    ],
    "bookPath": "grade12/sociology/lesy205.pdf",

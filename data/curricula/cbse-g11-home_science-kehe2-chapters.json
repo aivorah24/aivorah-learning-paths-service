@@ -32,9 +32,8 @@
   {
    "chapter": 9,
    "pdfFile": "kehe202.pdf",
-   "title": "Chapter 2",
+   "title": "Our Apparel Learning Objectives",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/home_science/kehe202.pdf",
    "pdfFiles": [
     "kehe202.pdf"
@@ -43,22 +42,6 @@
     {
      "section": "9.1",
      "title": "Clothing Functions and the"
-    },
-    {
-     "section": "9.2",
-     "title": "Factors Affecting Selection of"
-    },
-    {
-     "section": "9.3",
-     "title": "Understanding Children"
-    },
-    {
-     "section": "9.4",
-     "title": "Clothing requirements at different"
-    },
-    {
-     "section": "9.5",
-     "title": "Clothes for Children with Special"
     }
    ]
   },

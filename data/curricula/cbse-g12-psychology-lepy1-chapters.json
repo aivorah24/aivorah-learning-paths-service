@@ -32,7 +32,7 @@
   {
    "chapter": 2,
    "pdfFile": "lepy102.pdf",
-   "title": "Chapter 2",
+   "title": "Self and Personalityself and Personality Self and Personalityself and Personality Self and Personality",
    "bookPath": "grade12/psychology/lepy102.pdf",
    "subtopics": [
     {
@@ -50,13 +50,12 @@
    ],
    "pdfFiles": [
     "lepy102.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,
    "pdfFile": "lepy103.pdf",
-   "title": "Chapter 3",
+   "title": "Meeting Life Challengesmeeting Life Challenges Meeting Life Challengesmeeting Life Challenges Meeting Life Challenges",
    "bookPath": "grade12/psychology/lepy103.pdf",
    "subtopics": [
     {
@@ -82,8 +81,7 @@
    ],
    "pdfFiles": [
     "lepy103.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 4,

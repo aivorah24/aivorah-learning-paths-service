@@ -160,9 +160,8 @@
   {
    "chapter": 4,
    "pdfFile": "iekv104.pdf",
-   "title": "Chapter 4",
+   "title": "Mushroom Cultivation Mushrooms Grow From Spores, Not Seeds and Develop Through a Network Called Mycelium (Which Acts As",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade9/physical_education/iekv104.pdf",
    "pdfFiles": [
     "iekv104.pdf"
@@ -323,9 +322,8 @@
   {
    "chapter": 8,
    "pdfFile": "iekv108.pdf",
-   "title": "Chapter 8",
+   "title": "Sheet Metal Work Sheet Metal Work Involves Shaping Thin Metal Sheets (Such As Steel, Aluminum and Copper) Into Useful Products",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade9/physical_education/iekv108.pdf",
    "pdfFiles": [
     "iekv108.pdf"
@@ -478,13 +476,12 @@
   {
    "chapter": 12,
    "pdfFile": "iekv112.pdf",
-   "title": "Chapter 12",
+   "title": "Hospitality Work in Hospitality Includes Welcoming, Guiding and Taking Care of Visitors, So That They Feel Comfortable,",
    "kind": "Non-fiction",
    "bookPath": "grade9/physical_education/iekv112.pdf",
    "pdfFiles": [
     "iekv112.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }

@@ -17,8 +17,24 @@ jest.mock('../../services/syllabus-map', () => ({
 }));
 
 const mockResolveAllResources = jest.fn();
+const mockResolveResourcesByTopicName = jest.fn();
 jest.mock('../../services/curriculum/resourceResolver', () => ({
   resolveAllResources: (...args) => mockResolveAllResources(...args),
+  resolveResourcesByTopicName: (...args) => mockResolveResourcesByTopicName(...args),
+}));
+
+const mockTopicsByPdfFile = jest.fn();
+jest.mock('../../services/qdrant', () => ({
+  topicsByPdfFile: (...args) => mockTopicsByPdfFile(...args),
+}));
+
+// AI enrichment pilot (see routes/syllabus.js's topic-by-name/resources
+// handler) is mocked to return null (= "no enrichment available") by
+// default, so these pre-existing tests never make a real Groq/Supabase call
+// and their exact response-body assertions stay unaffected.
+const mockGetOrGenerateEnrichment = jest.fn();
+jest.mock('../../services/curriculum/enrichment', () => ({
+  getOrGenerateEnrichment: (...args) => mockGetOrGenerateEnrichment(...args),
 }));
 
 const express = require('express');
@@ -33,6 +49,7 @@ app.use('/teacher/syllabus', syllabusRoute);
 beforeEach(() => {
   jest.clearAllMocks();
   mockChaptersFor.mockReturnValue([]); // no book-chapter map by default, so `live` chapters pass through as-is
+  mockTopicsByPdfFile.mockResolvedValue(new Map()); // no Qdrant content by default
 });
 
 describe('GET /teacher/syllabus/current', () => {
@@ -201,6 +218,87 @@ describe('GET /teacher/syllabus/current', () => {
       title: 'A Locally-Added Chapter', pending: false, unmapped: true,
     }));
   });
+
+  // Bug #11 (BUGS_AND_FIXES.md): pending used to be computed only from
+  // syllabus_topics (empty for NCERT), so a chapter with real content already
+  // in Qdrant still showed "Coming Soon". Cross-check against Qdrant fixes
+  // it — matched by PDF filename (Qdrant points have no reliable numeric
+  // chapter field; an earlier version of this fix assumed one existed and
+  // always returned an empty set).
+  describe('pending reflects real Qdrant content (Bug #11)', () => {
+    test('a chapter with no live DB topics but real Qdrant content (matched by pdfFile) is NOT pending, and topics are populated', async () => {
+      supabase._chain.order.mockResolvedValueOnce({ data: [], error: null });
+      mockChaptersFor.mockReturnValue([
+        { chapter: 1, title: 'Real Numbers', pdfFile: 'iemh101.pdf', bookPath: '/book/1', subtopics: [] },
+      ]);
+      mockTopicsByPdfFile.mockResolvedValueOnce(new Map([
+        ['iemh101.pdf', [{ id: 'qdrant:NCERT:9:Mathematics:Irrational Numbers', name: 'Irrational Numbers', kind: 'qdrant', page: '' }]],
+      ]));
+
+      const res = await request(app).get('/teacher/syllabus/current').query({ grade: 'Grade 9', subject: 'Mathematics', curriculum: 'CBSE' });
+
+      expect(res.body.units[0]).toEqual(expect.objectContaining({ unitNo: 1, pending: false }));
+      expect(res.body.units[0].topics).toEqual([
+        { id: 'qdrant:NCERT:9:Mathematics:Irrational Numbers', name: 'Irrational Numbers', kind: 'qdrant', page: '' },
+      ]);
+      // The route passes curriculum through unmodified now — CBSE->NCERT
+      // mapping moved down into services/qdrant.js's toQdrantCurriculum(),
+      // applied inside topicsByPdfFile() itself (see qdrant-
+      // resolveTopicContent.unit.test.js), so every NCERT_COLLECTION query
+      // is protected at the source rather than each route remembering to map.
+      expect(mockTopicsByPdfFile).toHaveBeenCalledWith('CBSE', 'Grade 9', 'Mathematics');
+    });
+
+    test('real DB topics (teacher-uploaded) take priority over Qdrant topics when both exist', async () => {
+      supabase._chain.order
+        .mockResolvedValueOnce({ data: [{ id: 'c1', unit_no: 1, title: 'Real Numbers' }], error: null })
+        .mockResolvedValueOnce({ data: [{ id: 't1', chapter_id: 'c1', topic_order: 1, name: 'DB Topic', kind: 'lesson', page: 'p.1' }], error: null });
+      mockChaptersFor.mockReturnValue([
+        { chapter: 1, title: 'Real Numbers', pdfFile: 'iemh101.pdf', bookPath: '/book/1', subtopics: [] },
+      ]);
+      mockTopicsByPdfFile.mockResolvedValueOnce(new Map([
+        ['iemh101.pdf', [{ id: 'qdrant:x', name: 'Qdrant Topic', kind: 'qdrant', page: '' }]],
+      ]));
+
+      const res = await request(app).get('/teacher/syllabus/current').query({ grade: 'Grade 9', subject: 'Mathematics', curriculum: 'CBSE' });
+
+      expect(res.body.units[0].topics.map(t => t.name)).toEqual(['DB Topic']);
+    });
+
+    test('a chapter with no live DB topics AND no Qdrant content is genuinely pending, with an empty topics list', async () => {
+      supabase._chain.order.mockResolvedValueOnce({ data: [], error: null });
+      mockChaptersFor.mockReturnValue([
+        { chapter: 2, title: 'Polynomials', pdfFile: 'iemh102.pdf', bookPath: '/book/2', subtopics: [] },
+      ]);
+      mockTopicsByPdfFile.mockResolvedValueOnce(new Map([['iemh101.pdf', [{ id: 'x', name: 'x', kind: 'qdrant', page: '' }]]])); // a different chapter's file has content, not this one
+
+      const res = await request(app).get('/teacher/syllabus/current').query({ grade: 'Grade 9', subject: 'Mathematics', curriculum: 'CBSE' });
+
+      expect(res.body.units[0]).toEqual(expect.objectContaining({ unitNo: 2, pending: true, topics: [] }));
+    });
+
+    test('a non-CBSE curriculum is passed through to Qdrant unchanged', async () => {
+      supabase._chain.order.mockResolvedValueOnce({ data: [], error: null });
+      mockChaptersFor.mockReturnValue([]);
+
+      await request(app).get('/teacher/syllabus/current').query({ grade: 'Grade 9', subject: 'Mathematics', curriculum: 'IB DP' });
+
+      expect(mockTopicsByPdfFile).toHaveBeenCalledWith('IB DP', 'Grade 9', 'Mathematics');
+    });
+
+    test('a Qdrant hiccup falls back to the old DB-only pending logic, no 500', async () => {
+      supabase._chain.order.mockResolvedValueOnce({ data: [], error: null });
+      mockChaptersFor.mockReturnValue([
+        { chapter: 1, title: 'Real Numbers', pdfFile: 'iemh101.pdf', bookPath: '/book/1', subtopics: [] },
+      ]);
+      mockTopicsByPdfFile.mockRejectedValueOnce(new Error('Qdrant down'));
+
+      const res = await request(app).get('/teacher/syllabus/current').query({ grade: 'Grade 9', subject: 'Mathematics', curriculum: 'CBSE' });
+
+      expect(res.status).toBe(200);
+      expect(res.body.units[0]).toEqual(expect.objectContaining({ unitNo: 1, pending: true }));
+    });
+  });
 });
 
 describe('GET /teacher/syllabus/topic/:topicId/resources', () => {
@@ -222,5 +320,128 @@ describe('GET /teacher/syllabus/topic/:topicId/resources', () => {
     expect(res.status).toBe(500);
     expect(res.body.error).toBe('Could not resolve topic resources.');
     expect(res.body.error).not.toContain('postgres://');
+  });
+});
+
+describe('GET /teacher/syllabus/topic-by-name/resources (Bug #8)', () => {
+  test('missing any required query param -> 400', async () => {
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({ curriculum: 'NCERT', grade: 'Grade 9' });
+    expect(res.status).toBe(400);
+    expect(mockResolveResourcesByTopicName).not.toHaveBeenCalled();
+  });
+
+  test('success -> returns resolved resources, resolved by name not id', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValueOnce([{ resourceType: 'AI_EXPLANATION', status: 'READY' }]);
+
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({
+      curriculum: 'NCERT', grade: 'Grade 9', subject: 'English', topic: 'Ability Beyond Disability',
+    });
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ ok: true, resources: [{ resourceType: 'AI_EXPLANATION', status: 'READY' }] });
+    expect(mockResolveResourcesByTopicName).toHaveBeenCalledWith({
+      curriculum: 'NCERT', grade: 'Grade 9', subject: 'English', topic: 'Ability Beyond Disability',
+    });
+  });
+
+  // Regression: the real frontend always sends curriculum="CBSE" (see
+  // SubjectSyllabusScreen.tsx) — this route must pass it through unmodified;
+  // the CBSE->NCERT translation happens one layer down, inside
+  // services/qdrant.js's toQdrantCurriculum(), not at this route (see
+  // qdrant-resolveTopicContent.unit.test.js for that mapping's coverage).
+  test('a real curriculum="CBSE" query (what the frontend actually sends) is passed through as-is to the resolver', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValueOnce([{ resourceType: 'AI_EXPLANATION', status: 'READY' }]);
+
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({
+      curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'Transaction in Accounting',
+    });
+
+    expect(res.status).toBe(200);
+    expect(mockResolveResourcesByTopicName).toHaveBeenCalledWith({
+      curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'Transaction in Accounting',
+    });
+  });
+
+  test('a resolver failure -> 500 with a generic error, no internals leaked', async () => {
+    mockResolveResourcesByTopicName.mockRejectedValueOnce(new Error('Qdrant connection refused at 10.0.0.5'));
+
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({
+      curriculum: 'NCERT', grade: 'Grade 9', subject: 'English', topic: 'X',
+    });
+
+    expect(res.status).toBe(500);
+    expect(res.body.error).toBe('Could not resolve topic resources.');
+    expect(res.body.error).not.toContain('10.0.0.5');
+  });
+
+  // AI enrichment pilot merge behavior (Learn tab left-side structured
+  // content) — see routes/syllabus.js and services/curriculum/enrichment.js.
+  describe('AI enrichment merge onto AI_EXPLANATION', () => {
+    test('enrichment blocks/whatYoullLearn/contentType are merged onto the AI_EXPLANATION payload, existing fields preserved', async () => {
+      mockResolveResourcesByTopicName.mockResolvedValueOnce([
+        { resourceType: 'AI_EXPLANATION', status: 'READY', payload: { intro: 'raw intro text', body: [], pdfFile: 'keac101.pdf' } },
+        { resourceType: 'IMAGES', status: 'COMING_SOON' },
+      ]);
+      mockGetOrGenerateEnrichment.mockResolvedValueOnce({
+        whatYoullLearn: ['What relevant information means'],
+        blocks: [{ type: 'explanation', text: 'Simplified explanation.' }],
+        contentType: 'theory',
+      });
+
+      const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({
+        curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'Relevance of Information',
+      });
+
+      const explanation = res.body.resources.find((r) => r.resourceType === 'AI_EXPLANATION');
+      expect(explanation.payload.intro).toBe('raw intro text'); // backward-compat field untouched
+      expect(explanation.payload.pdfFile).toBe('keac101.pdf');
+      expect(explanation.payload.blocks).toEqual([{ type: 'explanation', text: 'Simplified explanation.' }]);
+      expect(explanation.payload.whatYoullLearn).toEqual(['What relevant information means']);
+      expect(explanation.payload.contentType).toBe('theory');
+    });
+
+    // Regression: existing DB-backed/Grade-6 topics and any topic where
+    // enrichment isn't available yet must render exactly as before this
+    // pilot — no blocks field, no crash, no empty-section artifacts.
+    test('no enrichment available -> AI_EXPLANATION payload is completely unchanged from the resolver', async () => {
+      mockResolveResourcesByTopicName.mockResolvedValueOnce([
+        { resourceType: 'AI_EXPLANATION', status: 'READY', payload: { intro: 'raw intro text', body: [] } },
+      ]);
+      mockGetOrGenerateEnrichment.mockResolvedValueOnce(null);
+
+      const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({
+        curriculum: 'CBSE', grade: 'Grade 9', subject: 'English', topic: 'Ability Beyond Disability',
+      });
+
+      const explanation = res.body.resources.find((r) => r.resourceType === 'AI_EXPLANATION');
+      expect(explanation.payload).toEqual({ intro: 'raw intro text', body: [] });
+    });
+
+    test('an enrichment failure (throws) never breaks the response — same as a resolver-level degrade', async () => {
+      mockResolveResourcesByTopicName.mockResolvedValueOnce([
+        { resourceType: 'AI_EXPLANATION', status: 'READY', payload: { intro: 'raw intro text', body: [] } },
+      ]);
+      mockGetOrGenerateEnrichment.mockRejectedValueOnce(new Error('Groq quota exceeded'));
+
+      const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({
+        curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'Relevance of Information',
+      });
+
+      expect(res.status).toBe(200);
+      const explanation = res.body.resources.find((r) => r.resourceType === 'AI_EXPLANATION');
+      expect(explanation.payload).toEqual({ intro: 'raw intro text', body: [] });
+    });
+
+    test('a NOT-READY AI_EXPLANATION (e.g. COMING_SOON) never triggers an enrichment call', async () => {
+      mockResolveResourcesByTopicName.mockResolvedValueOnce([
+        { resourceType: 'AI_EXPLANATION', status: 'COMING_SOON', payload: null },
+      ]);
+
+      await request(app).get('/teacher/syllabus/topic-by-name/resources').query({
+        curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'Nonexistent',
+      });
+
+      expect(mockGetOrGenerateEnrichment).not.toHaveBeenCalled();
+    });
   });
 });

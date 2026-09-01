@@ -19,6 +19,49 @@ const CUR_DIR = path.resolve(__dirname, '..', 'data', 'curricula');
 
 let _byGradeSubject = null;
 
+// extract-ncert-structure.cjs's page-1 heading regex only checks for Latin
+// uppercase letters — it has no concept of whether the result is an actual
+// word. Most textbook PDFs extract cleanly, but a handful (seen so far only
+// in Hindi-subject PDFs, which use Devanagari script through a non-standard
+// embedded font encoding) produce short Latin-looking mojibake that still
+// satisfies that regex and gets accepted as a "real" title, silently
+// overwriting the safe "Chapter N" + needsTitleReview placeholder — e.g.
+// "Fff F", "Klmn", "Hco", "Crcrcr" (Grade 9 Hindi, chapters 7-10). None of
+// those are real words: they're either missing a vowel entirely or too short
+// to be a plausible title. Treat anything failing this check the same as a
+// missing title — fall back to "Chapter N" and flag it for review, rather
+// than shipping mojibake to students.
+function looksLikeRealTitle(title) {
+  const t = String(title || '').trim();
+  if (t.length < 4) return false;
+  if (!/[aeiouAEIOU]/.test(t)) return false;
+
+  const words = t.split(/\s+/).filter(Boolean);
+  for (const w of words) {
+    const letters = w.replace(/[^a-zA-Z]/g, '');
+    // A single "word" this long with no spaces is virtually never a real
+    // title fragment — real extraction bugs run words together instead of
+    // inserting a space, e.g. "Onstructionofanindexnumber" (Grade 11
+    // Economics ch7) or "Mawlynnongmawlynnong" (Grade 4 Maths ch7).
+    if (letters.length >= 18) return false;
+    // The same letter 3+ times in a row — real words don't do this either,
+    // e.g. "Iiiiiiiv" (Grade 11 Health & PE ch10), "Viii" (Grade 6 Maths ch4).
+    if (/(.)\1{2,}/i.test(letters)) return false;
+    // 5+ consecutive consonants inside one word — real English words don't
+    // do this; garbled extraction does, e.g. "Asatisfytb" (…sfytb…), the
+    // Grade 9 English ch7 gibberish title.
+    if (/[^aeiouAEIOU\s]{5,}/.test(letters)) return false;
+    // A word made of two identical (case-insensitive) halves back-to-back —
+    // the exact shape of "Ntroductionntroduction" and
+    // "Mawlynnongmawlynnong": extraction duplicated a fragment onto itself.
+    if (letters.length >= 8 && letters.length % 2 === 0) {
+      const half = letters.length / 2;
+      if (letters.slice(0, half).toLowerCase() === letters.slice(half).toLowerCase()) return false;
+    }
+  }
+  return true;
+}
+
 function load() {
   if (_byGradeSubject) return;
   _byGradeSubject = new Map();
@@ -35,16 +78,18 @@ function load() {
     for (const ch of doc.chapters || []) {
       const code = String(ch.pdfFile || '').replace(/\.pdf$/i, '');
       if (!code) continue;
+      const hasRealTitle = ch.title && !/^Chapter \d+$/i.test(ch.title) && looksLikeRealTitle(ch.title);
       const rec = {
         grade, subject,
         chapter: ch.chapter,
-        title: ch.title && !/^Chapter \d+$/i.test(ch.title) ? ch.title : `Chapter ${ch.chapter}`,
+        title: hasRealTitle ? ch.title : `Chapter ${ch.chapter}`,
         subtopics: Array.isArray(ch.subtopics) ? ch.subtopics : [],
         pdfFile: ch.pdfFile,
         bookPath: ch.bookPath || null,
-        // A title still reading "Chapter 7" means extraction could not read that
-        // PDF — surfaced so validation can flag it rather than ship a placeholder.
-        placeholder: !ch.title || /^Chapter \d+$/i.test(ch.title),
+        // A title still reading "Chapter N" means extraction could not read that
+        // PDF (or produced unusable mojibake) — surfaced so validation can flag
+        // it rather than ship a placeholder or garbled text.
+        placeholder: !hasRealTitle,
       };
       const key = `${grade}|${subject.toLowerCase()}`;
       if (!_byGradeSubject.has(key)) _byGradeSubject.set(key, []);

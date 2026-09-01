@@ -8,9 +8,8 @@
   {
    "chapter": 1,
    "pdfFile": "kest101.pdf",
-   "title": "Chapter 1",
+   "title": "Told This Subject Is Mainly Around What Alfred Marshall (One of the Founders of Modern Economics) Called",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/economics/kest101.pdf",
    "pdfFiles": [
     "kest101.pdf"
@@ -39,13 +38,12 @@
   {
    "chapter": 4,
    "pdfFile": "kest104.pdf",
-   "title": "Chapter 4",
+   "title": "Presentation of Data",
    "kind": "Non-fiction",
    "bookPath": "grade11/economics/kest104.pdf",
    "pdfFiles": [
     "kest104.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 5,
@@ -70,7 +68,7 @@
   {
    "chapter": 7,
    "pdfFile": "kest107.pdf",
-   "title": "Onstructionofanindexnumber",
+   "title": "Index Numbers",
    "kind": "Non-fiction",
    "bookPath": "grade11/economics/kest107.pdf",
    "pdfFiles": [

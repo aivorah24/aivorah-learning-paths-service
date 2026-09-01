@@ -8,13 +8,12 @@
   {
    "chapter": 1,
    "pdfFile": "eeen101.pdf",
-   "title": "Chapter 1",
+   "title": "Contents",
    "kind": "Non-fiction",
    "bookPath": "grade5/english/eeen101.pdf",
    "pdfFiles": [
     "eeen101.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,

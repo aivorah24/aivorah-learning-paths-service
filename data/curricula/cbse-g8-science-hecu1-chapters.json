@@ -143,39 +143,18 @@
   {
    "chapter": 6,
    "pdfFile": "hecu106.pdf",
-   "title": "Chapter 6",
+   "title": "Curiosity  Textbook of Science for Grade 8 Pressure, Winds, Storms, and Cyclones",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "6.1",
      "title": "Pressure"
-    },
-    {
-     "section": "6.2",
-     "title": "Pressure Exerted by Air"
-    },
-    {
-     "section": "6.3",
-     "title": "Formation of Wind"
-    },
-    {
-     "section": "6.4",
-     "title": "High-Speed Winds Result in Lowering"
-    },
-    {
-     "section": "6.5",
-     "title": "Storms, Thunderstorms, and Lightning"
-    },
-    {
-     "section": "6.6",
-     "title": "Cyclone"
     }
    ],
    "bookPath": "grade8/science/hecu106.pdf",
    "pdfFiles": [
     "hecu106.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 7,

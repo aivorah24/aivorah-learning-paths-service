@@ -18,9 +18,8 @@
   {
    "chapter": 2,
    "pdfFile": "deev102.pdf",
-   "title": "Chapter 2",
+   "title": "On Our Way Back Home",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deev102.pdf",
    "pdfFiles": [
     "deev102.pdf"
@@ -29,20 +28,18 @@
   {
    "chapter": 3,
    "pdfFile": "deev103.pdf",
-   "title": "Chapter 3",
+   "title": "Unit 2 Life Around Us About the Unit",
    "kind": "Non-fiction",
    "bookPath": "grade4/evs/deev103.pdf",
    "pdfFiles": [
     "deev103.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 4,
    "pdfFile": "deev104.pdf",
-   "title": "Chapter 4",
+   "title": "A Journey Through a Forest",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deev104.pdf",
    "pdfFiles": [
     "deev104.pdf"
@@ -61,9 +58,8 @@
   {
    "chapter": 6,
    "pdfFile": "deev106.pdf",
-   "title": "Chapter 6",
+   "title": "All of Us Feel Happy At Different Times and for Different Reasons. When Do You Feel Happy? Write",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deev106.pdf",
    "pdfFiles": [
     "deev106.pdf"
@@ -72,9 +68,8 @@
   {
    "chapter": 7,
    "pdfFile": "deev107.pdf",
-   "title": "Chapter 7",
+   "title": "Unit 4 About the Unit This Unit Familiarises Students with",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deev107.pdf",
    "pdfFiles": [
     "deev107.pdf"
@@ -94,9 +89,8 @@
   {
    "chapter": 9,
    "pdfFile": "deev109.pdf",
-   "title": "Chapter 9",
+   "title": "Unit 5 About the Unit This Unit Familiarises Students with",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deev109.pdf",
    "pdfFiles": [
     "deev109.pdf"
@@ -105,9 +99,8 @@
   {
    "chapter": 10,
    "pdfFile": "deev110.pdf",
-   "title": "Chapter 10",
+   "title": "Have You Ever Looked Up At the Sky? It Appears Different At Various Times of the Day. the Colour of the Sky Changes in the Morning, Afternoon and At",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deev110.pdf",
    "pdfFiles": [
     "deev110.pdf"

@@ -8,9 +8,8 @@
   {
    "chapter": 1,
    "pdfFile": "geky101.pdf",
-   "title": "Chapter 1",
+   "title": "Foundational Basis of Physical Education and",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade7/physical_education/geky101.pdf",
    "pdfFiles": [
     "geky101.pdf"
@@ -29,9 +28,8 @@
   {
    "chapter": 3,
    "pdfFile": "geky103.pdf",
-   "title": "Chapter 3",
+   "title": "Unit 3 Fundamental Skills of Sports",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade7/physical_education/geky103.pdf",
    "pdfFiles": [
     "geky103.pdf"
@@ -40,9 +38,8 @@
   {
    "chapter": 4,
    "pdfFile": "geky104.pdf",
-   "title": "Chapter 4",
+   "title": "Fundamental Skills of Sports Football",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade7/physical_education/geky104.pdf",
    "pdfFiles": [
     "geky104.pdf"

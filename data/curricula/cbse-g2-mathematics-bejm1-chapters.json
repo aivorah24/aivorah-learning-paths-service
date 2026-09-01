@@ -8,20 +8,18 @@
   {
    "chapter": 1,
    "pdfFile": "bejm101.pdf",
-   "title": "Chapter 1",
+   "title": "Look At the Above Picture. Count and Write the Number",
    "kind": "Non-fiction",
    "bookPath": "grade2/mathematics/bejm101.pdf",
    "pdfFiles": [
     "bejm101.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
    "pdfFile": "bejm102.pdf",
-   "title": "Chapter 2",
+   "title": "Shapes Around Us",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade2/mathematics/bejm102.pdf",
    "pdfFiles": [
     "bejm102.pdf"
@@ -63,13 +61,12 @@
   {
    "chapter": 6,
    "pdfFile": "bejm106.pdf",
-   "title": "Chapter 6",
+   "title": "T Ot O",
    "kind": "Non-fiction",
    "bookPath": "grade2/mathematics/bejm106.pdf",
    "pdfFiles": [
     "bejm106.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 7,
@@ -85,9 +82,8 @@
   {
    "chapter": 8,
    "pdfFile": "bejm108.pdf",
-   "title": "Chapter 8",
+   "title": "How Did You Do It Ramya? Can You",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade2/mathematics/bejm108.pdf",
    "pdfFiles": [
     "bejm108.pdf"
@@ -96,7 +92,7 @@
   {
    "chapter": 9,
    "pdfFile": "bejm109.pdf",
-   "title": "Smtwtfs",
+   "title": "Summer Comes with the Shining Sun and a Long Day",
    "kind": "Non-fiction",
    "bookPath": "grade2/mathematics/bejm109.pdf",
    "pdfFiles": [
@@ -117,9 +113,8 @@
   {
    "chapter": 11,
    "pdfFile": "bejm111.pdf",
-   "title": "Chapter 11",
+   "title": "Favourite Colours Let Us Do",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade2/mathematics/bejm111.pdf",
    "pdfFiles": [
     "bejm111.pdf"

@@ -38,6 +38,30 @@ router.get('/current', async (req, res) => {
     topics: (byChapter[c.id] || []).map(t => ({ id: t.id, name: t.name, kind: t.kind, page: t.page })),
   }));
 
+  // Real topic content already ingested into Qdrant, grouped by source PDF
+  // file — see Bug #11 (BUGS_AND_FIXES.md): `pending` used to be computed
+  // only from syllabus_topics (this Supabase table), which is empty for
+  // NCERT content, so every NCERT chapter showed "Coming Soon" regardless of
+  // whether real lesson content already existed in Qdrant. Also fixes the
+  // follow-up: once correctly marked not-pending, a chapter still showed
+  // "0 topics" because `chapter.topics` (that same empty DB table) has
+  // nothing — these real Qdrant topics fill that in instead. Qdrant tags
+  // NCERT content as curriculum "NCERT", not "CBSE" (the value this route
+  // actually receives — same curriculum, different label between systems,
+  // same class of mismatch already seen elsewhere this session) — map it
+  // before querying. Grouped by PDF filename (not chapter number) — Qdrant
+  // points have no reliable numeric chapter field, but every point's source
+  // PDF filename is present and is the same `pdfFile` identifier
+  // syllabus-map.js's chapter records already carry.
+  let qdrantTopicsByPdfFile = new Map();
+  try {
+    const { topicsByPdfFile } = require('../services/qdrant');
+    qdrantTopicsByPdfFile = await topicsByPdfFile(curriculum, grade, subject);
+  } catch (e) {
+    console.error('[syllabus/current] Qdrant content check unavailable:', e.message);
+    // Degrade to the old (DB-only) pending logic below — never breaks the screen.
+  }
+
   // Return the book's FULL chapter list, not only the chapters that happen to
   // have generated lessons. Previously a chapter with no content simply did not
   // appear, so Class 11 Maths jumped Sets -> Trigonometric Functions and the
@@ -83,13 +107,20 @@ router.get('/current', async (req, res) => {
         // name whenever the database row is only a "Chapter N" placeholder.
         const liveTitle = existing && String(existing.title || '').trim();
         const useLive = liveTitle && !/^chapter\s*\d+$/i.test(liveTitle);
+        const pdfFileKey = String(ch.pdfFile || '').toLowerCase();
+        const qdrantTopics = qdrantTopicsByPdfFile.get(pdfFileKey) || [];
+        const dbTopics = existing ? existing.topics : [];
         units.push({
           unitNo: ch.chapter,
           title: useLive ? liveTitle : ch.title,
           bookPath: ch.bookPath || null,
+          pdfFile: ch.pdfFile || null,
           subtopics: (ch.subtopics || []).map(s => s.title),
-          topics: existing ? existing.topics : [],
-          pending: !existing || existing.topics.length === 0,
+          // Real DB-linked topics (teacher-uploaded) take priority when they
+          // exist; otherwise show the real Qdrant topics for this chapter —
+          // never leave a not-pending chapter showing 0 topics.
+          topics: dbTopics.length ? dbTopics : qdrantTopics,
+          pending: dbTopics.length === 0 && qdrantTopics.length === 0,
         });
       }
       // Anything live but not matched above still belongs to the student — on an
@@ -104,8 +135,10 @@ router.get('/current', async (req, res) => {
         if (placeholder) {
           const host = units.find(x => x.unitNo === u.unitNo);
           if (host) {
+            // u.topics is real and non-empty here (guarded above), so the
+            // merged host always has real topics — never re-pend it.
             host.topics = [...(host.topics || []), ...u.topics];
-            host.pending = host.topics.length === 0;
+            host.pending = false;
             continue;
           }
         }
@@ -131,6 +164,55 @@ router.get('/topic/:topicId/resources', async (req, res) => {
     res.json({ ok: true, topicId: req.params.topicId, resources });
   } catch (err) {
     console.error('[syllabus/topic/resources] error:', err.message);
+    res.status(500).json({ error: 'Could not resolve topic resources.' });
+  }
+});
+
+// ── GET /teacher/syllabus/topic-by-name/resources ─────────────────────────
+// Same shape as /topic/:topicId/resources, but for a topic that has no
+// syllabus_topics DB row — resolved by name straight from Qdrant. See
+// Bug #8 (BUGS_AND_FIXES.md): the Dashboard's "Continue Learning" card used
+// to fall back to the deprecated VideoLesson screen for any topic without a
+// curated syllabusRegistry.ts entry (which currently only covers Grade 6) —
+// this lets a real topic like "Ability Beyond Disability" (Grade 9 English,
+// Qdrant-only) reach the current Learn/AI Tutor/Ask Aivorah/Practice flow.
+router.get('/topic-by-name/resources', async (req, res) => {
+  try {
+    const { curriculum, grade, subject, topic } = req.query;
+    if (!curriculum || !grade || !subject || !topic) {
+      return res.status(400).json({ error: 'curriculum, grade, subject and topic are required.' });
+    }
+    const { resolveResourcesByTopicName } = require('../services/curriculum/resourceResolver');
+    const resources = await resolveResourcesByTopicName({ curriculum, grade, subject, topic });
+
+    // AI enrichment pilot (Learn tab left-side structured content). Kept
+    // OUTSIDE resolveResourcesByTopicName() on purpose — that function's own
+    // unit tests mock services/qdrant.js only and must keep passing
+    // unmodified; this is an additive merge onto the AI_EXPLANATION payload,
+    // wrapped so any failure (LLM down, Groq quota, bad JSON, Supabase
+    // hiccup) leaves the existing raw intro/body pass-through exactly as it
+    // was before this pilot — the Learn tab never breaks or goes blank.
+    const explanation = resources.find((r) => r.resourceType === 'AI_EXPLANATION');
+    if (explanation && explanation.status === 'READY') {
+      try {
+        const { getOrGenerateEnrichment } = require('../services/curriculum/enrichment');
+        const enriched = await getOrGenerateEnrichment({ curriculum, grade, subject, topic });
+        if (enriched) {
+          explanation.payload = {
+            ...explanation.payload,
+            whatYoullLearn: enriched.whatYoullLearn,
+            blocks: enriched.blocks,
+            contentType: enriched.contentType,
+          };
+        }
+      } catch (enrichErr) {
+        console.error('[syllabus/topic-by-name/resources] enrichment error:', enrichErr.message);
+      }
+    }
+
+    res.json({ ok: true, resources });
+  } catch (err) {
+    console.error('[syllabus/topic-by-name/resources] error:', err.message);
     res.status(500).json({ error: 'Could not resolve topic resources.' });
   }
 });

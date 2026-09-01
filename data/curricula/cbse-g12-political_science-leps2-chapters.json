@@ -9,18 +9,16 @@
   {
    "chapter": 2,
    "pdfFile": "leps202.pdf",
-   "title": "Chapter 2",
+   "title": "Credit: Shankar",
    "bookPath": "grade12/political_science/leps202.pdf",
    "pdfFiles": [
     "leps202.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,
    "pdfFile": "leps203.pdf",
-   "title": "Chapter 3",
-   "needsTitleReview": true,
+   "title": "India Responded to the Challenges of Nation-Building and Establishing",
    "bookPath": "grade12/political_science/leps203.pdf",
    "pdfFiles": [
     "leps203.pdf"
@@ -58,12 +56,11 @@
   {
    "chapter": 7,
    "pdfFile": "leps207.pdf",
-   "title": "Chapter 7",
+   "title": "Process of ‘Nation-Building’ in the First Decade After Independence. But Nation-Building Is Not Something That Can Be Accomplished",
    "bookPath": "grade12/political_science/leps207.pdf",
    "pdfFiles": [
     "leps207.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 8,

@@ -8,9 +8,8 @@
   {
    "chapter": 1,
    "pdfFile": "deky101.pdf",
-   "title": "Chapter 1",
+   "title": "Unit 1 Basic Motor Movements Welcome to the",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/physical_education/deky101.pdf",
    "pdfFiles": [
     "deky101.pdf"
@@ -19,9 +18,8 @@
   {
    "chapter": 2,
    "pdfFile": "deky102.pdf",
-   "title": "Chapter 2",
+   "title": "Unit 2 Our Games",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/physical_education/deky102.pdf",
    "pdfFiles": [
     "deky102.pdf"
@@ -30,13 +28,12 @@
   {
    "chapter": 3,
    "pdfFile": "deky103.pdf",
-   "title": "Chapter 3",
+   "title": "Unit 3 Yoga Yoga Is an Ancient Indian Science",
    "kind": "Non-fiction",
    "bookPath": "grade4/physical_education/deky103.pdf",
    "pdfFiles": [
     "deky103.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }

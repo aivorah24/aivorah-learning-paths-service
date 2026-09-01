@@ -8,20 +8,18 @@
   {
    "chapter": 1,
    "pdfFile": "ceev101.pdf",
-   "title": "Chapter 1",
+   "title": "Unit 1 Our Families and Communities About the Unit",
    "kind": "Non-fiction",
    "bookPath": "grade3/evs/ceev101.pdf",
    "pdfFiles": [
     "ceev101.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
    "pdfFile": "ceev102.pdf",
-   "title": "Chapter 2",
+   "title": "Going to the Mela",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev102.pdf",
    "pdfFiles": [
     "ceev102.pdf"
@@ -41,9 +39,8 @@
   {
    "chapter": 4,
    "pdfFile": "ceev104.pdf",
-   "title": "Chapter 4",
+   "title": "Living Together Unit 2 Life Around Us",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev104.pdf",
    "pdfFiles": [
     "ceev104.pdf"
@@ -74,9 +71,8 @@
   {
    "chapter": 7,
    "pdfFile": "ceev107.pdf",
-   "title": "Chapter 7",
+   "title": "Living Together Unit 3 Gifts of Nature",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev107.pdf",
    "pdfFiles": [
     "ceev107.pdf"
@@ -96,20 +92,18 @@
   {
    "chapter": 9,
    "pdfFile": "ceev109.pdf",
-   "title": "Chapter 9",
+   "title": "Staying Healthy and Happy",
    "kind": "Non-fiction",
    "bookPath": "grade3/evs/ceev109.pdf",
    "pdfFiles": [
     "ceev109.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 10,
    "pdfFile": "ceev110.pdf",
-   "title": "Chapter 10",
+   "title": "Unit 4 Things Around Us About the Unit",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev110.pdf",
    "pdfFiles": [
     "ceev110.pdf"
@@ -129,9 +123,8 @@
   {
    "chapter": 12,
    "pdfFile": "ceev112.pdf",
-   "title": "Chapter 12",
+   "title": "Taking Charge of Waste",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev112.pdf",
    "pdfFiles": [
     "ceev112.pdf"

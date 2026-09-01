@@ -8,17 +8,15 @@
   {
    "chapter": 1,
    "pdfFile": "lehh101.pdf",
-   "title": "Chapter 1",
+   "title": "इकाई I कार्य, आजीविका तथा जीविका कार्य, आजीविका तथा जीविका",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade12/home_science/lehh101.pdf"
   },
   {
    "chapter": 2,
    "pdfFile": "lehh102.pdf",
-   "title": "Chapter 2",
+   "title": "इकाई I कार्य, आजीविका तथा जीविका पोषण, खाद्य विज्ान और प्रौद्योविकी",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade12/home_science/lehh102.pdf"
   },
   {
@@ -48,9 +46,8 @@
   {
    "chapter": 6,
    "pdfFile": "lehh106.pdf",
-   "title": "Chapter 6",
+   "title": "इकाई I कार्य, आजीविका तथा जीविका मानव ववकास अौर पररवार अध्‍य‍यन",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade12/home_science/lehh106.pdf"
   },
   {
