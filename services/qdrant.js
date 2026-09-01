@@ -36,6 +36,69 @@ async function scrollAll(collection, filter) {
   return points;
 }
 
+// NCERT/CBSE content lives in a SEPARATE Qdrant collection from every other
+// curriculum (IB PYP, Cambridge, ...) — private to topicCount() below, not
+// shared with listSubjects/listSyllabus (which never touch Qdrant for CBSE;
+// syllabus-map.js's book data is their source of truth instead).
+const TOPIC_COUNT_NCERT_COLLECTION = 'aivorah_curriculum_chunks_v1';
+
+// 30-min in-memory cache for topic counts, mirroring the cache the
+// monolith's own fetchTotalTopicsFromQdrant() used (ai-mentor/server/
+// routes/student.js) before this endpoint replaced it — avoids repeated
+// Qdrant pagination on every parent/children list load.
+const _topicCountCache = new Map(); // key -> { count, expiresAt }
+const TOPIC_CACHE_TTL_MS = 30 * 60 * 1000;
+
+/**
+ * Total distinct (subject, topic) pairs ingested for one curriculum+grade.
+ * Feeds aivorah-students-service's GET /parent/:email/children (totalTopics
+ * per child) so that service never has to own Qdrant directly — this is the
+ * curriculum/content domain's job. Collection-resolution rules ported from
+ * the monolith's resolveCollection()/normalizeCurriculum() (ai-mentor/
+ * server/services/qdrant.js + utils/curriculum.js) since those aren't
+ * shared modules.
+ */
+async function topicCount(curriculum, grade) {
+  const cacheKey = `${curriculum}|${grade}`;
+  const cached = _topicCountCache.get(cacheKey);
+  if (cached && cached.expiresAt > Date.now()) return cached.count;
+
+  try {
+    const isNcert = /^(ncert|cbse)$/i.test(String(curriculum).trim());
+    let collection, qCurriculum, qGrade;
+    if (isNcert) {
+      // NCERT collection stores grade as an integer (6, 7, ...), not "Grade N".
+      collection = TOPIC_COUNT_NCERT_COLLECTION;
+      qCurriculum = 'NCERT';
+      const m = String(grade || '').match(/(\d+)/);
+      qGrade = m ? parseInt(m[1], 10) : grade;
+    } else {
+      collection = IB_COLLECTION;
+      // ai_mentor_content stores IB PYP with an underscore; every other
+      // curriculum (IB MYP, IB DP, Cambridge, ...) is stored as typed.
+      qCurriculum = /^ib\s*pyp$/i.test(String(curriculum).trim()) ? 'IB_PYP' : curriculum;
+      qGrade = normaliseGrade(grade);
+    }
+    const points = await scrollAll(collection, {
+      must: [
+        { key: 'curriculum', match: { value: qCurriculum } },
+        { key: 'grade', match: { value: qGrade } },
+      ],
+    });
+    const seen = new Set();
+    for (const p of points) {
+      if (p.payload.subject && p.payload.topic) seen.add(`${p.payload.subject}|${p.payload.topic}`);
+    }
+    const count = seen.size;
+    _topicCountCache.set(cacheKey, { count, expiresAt: Date.now() + TOPIC_CACHE_TTL_MS });
+    return count;
+  } catch {
+    // A Qdrant hiccup reads as "0 topics", not a broken caller — same
+    // graceful-fallback contract the monolith's version had.
+    return 0;
+  }
+}
+
 /**
  * Distinct subjects (+ their topics) for one curriculum+grade — feeds the
  * Learning Path "Subjects" grid. An empty result means nothing has been
@@ -122,4 +185,4 @@ async function listSyllabus(curriculum, grade, subject) {
     .map((u) => ({ unitNo: u.unitNo, title: u.title, topics: [...u.topics.values()], pending: u.topics.size === 0 }));
 }
 
-module.exports = { listSubjects, listSyllabus, IB_COLLECTION };
+module.exports = { listSubjects, listSyllabus, topicCount, IB_COLLECTION };

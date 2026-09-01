@@ -9,7 +9,7 @@
  */
 const express = require('express');
 const router = express.Router();
-const { listSubjects, listSyllabus } = require('../services/qdrant');
+const { listSubjects, listSyllabus, topicCount } = require('../services/qdrant');
 const { subjectsFor } = require('../services/syllabus-map');
 
 // ── GET /curriculum/subjects ────────────────────────────────────────────
@@ -49,6 +49,21 @@ router.get('/syllabus', async (req, res) => {
     console.error('[curriculum/syllabus] error:', err.message);
     res.json({ units: [] });
   }
+});
+
+// ── GET /curriculum/topic-count ──────────────────────────────────────────
+// Total distinct topics ingested for one curriculum+grade — used by
+// aivorah-students-service's GET /parent/:email/children (per-child
+// totalTopics) so that service never has to own Qdrant directly. Ported
+// from the monolith's fetchTotalTopicsFromQdrant() (ai-mentor/server/
+// routes/student.js), which this endpoint replaces for that caller.
+router.get('/topic-count', async (req, res) => {
+  const { curriculum, grade } = req.query;
+  if (!curriculum || !grade) {
+    return res.status(400).json({ error: 'curriculum and grade are required.' });
+  }
+  const totalTopics = await topicCount(curriculum, grade);
+  res.json({ totalTopics });
 });
 
 module.exports = router;
