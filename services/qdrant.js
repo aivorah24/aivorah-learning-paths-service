@@ -145,7 +145,12 @@ async function listSubjects(curriculum, grade) {
     const entry = bySubject.get(subject);
     const topicName = p.payload.topic;
     const unitTitle = typeof p.payload.chapter === 'number' ? `Chapter ${p.payload.chapter}` : (p.payload.textbook || '');
-    if (topicName && !entry.topics.has(topicName)) {
+    // Same junk-chunk filter topicsByPdfFile() already applies below (Bug #6) —
+    // without it, raw PDF-code placeholders like "bemr101"/"iemr101" that
+    // ended up in a Qdrant point's `topic` payload were surfaced straight to
+    // the teacher as a topic-suggestion chip (B01: internal codes shown to
+    // teacher instead of a human-readable topic name).
+    if (topicName && looksLikeRealTopicName(topicName) && !entry.topics.has(topicName)) {
       entry.topics.set(topicName, {
         topic: topicName,
         unit: unitTitle,
@@ -193,7 +198,8 @@ async function listSyllabus(curriculum, grade, subject) {
     if (!byUnit.has(unitNo)) byUnit.set(unitNo, { unitNo, title, topics: new Map() });
     const unit = byUnit.get(unitNo);
     const topicName = p.payload.topic;
-    if (topicName && !unit.topics.has(topicName)) {
+    // Same junk-chunk filter as listSubjects() above — see B01/Bug #6.
+    if (topicName && looksLikeRealTopicName(topicName) && !unit.topics.has(topicName)) {
       unit.topics.set(topicName, {
         id: `qdrant:${curriculum}:${qGrade}:${subject}:${unitNo}:${topicName}`,
         name: topicName,
