@@ -66,4 +66,5 @@ router.get('/topic-count', async (req, res) => {
   res.json({ totalTopics });
 });
 
+router.post('/school-quizzes', async (req, res) => { const { quizId, vector, payload } = req.body; if (!quizId || !vector || !payload) return res.status(400).json({ error: 'Missing payload' }); const { saveSchoolQuiz } = require('../services/qdrant'); try { await saveSchoolQuiz(quizId, vector, payload); res.json({ success: true }); } catch (err) { res.status(500).json({ error: err.message }); } });
 module.exports = router;

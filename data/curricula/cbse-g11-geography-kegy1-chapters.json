@@ -8,24 +8,22 @@
   {
    "chapter": 1,
    "pdfFile": "kegy101.pdf",
-   "title": "Chapter 1",
+   "title": "Unit",
    "kind": "Non-fiction",
    "bookPath": "grade11/geography/kegy101.pdf",
    "pdfFiles": [
     "kegy101.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
    "pdfFile": "kegy102.pdf",
-   "title": "Chapter 2",
+   "title": "Physiography",
    "kind": "Non-fiction",
    "bookPath": "grade11/geography/kegy102.pdf",
    "pdfFiles": [
     "kegy102.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,

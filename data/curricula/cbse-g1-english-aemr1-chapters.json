@@ -19,20 +19,18 @@
   {
    "chapter": 2,
    "pdfFile": "aemr103.pdf",
-   "title": "Chapter 2",
+   "title": "Let Us Speak Unit 2 Life Around Us",
    "kind": "Non-fiction",
    "bookPath": "grade1/english/aemr103.pdf",
    "pdfFiles": [
     "aemr103.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,
    "pdfFile": "aemr106.pdf",
-   "title": "Chapter 6",
+   "title": "Let Us Speak Unit 3 Food",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/english/aemr106.pdf",
    "pdfFiles": [
     "aemr106.pdf"

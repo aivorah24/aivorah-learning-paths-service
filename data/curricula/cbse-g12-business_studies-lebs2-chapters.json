@@ -9,12 +9,11 @@
   {
    "chapter": 1,
    "pdfFile": "lebs201.pdf",
-   "title": "Chapter 1",
+   "title": "Learning Objectives",
    "bookPath": "grade12/business_studies/lebs201.pdf",
    "pdfFiles": [
     "lebs201.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,

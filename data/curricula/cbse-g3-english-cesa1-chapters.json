@@ -40,9 +40,8 @@
   {
    "chapter": 4,
    "pdfFile": "cesa104.pdf",
-   "title": "Chapter 4",
+   "title": "Unit",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/english/cesa104.pdf",
    "pdfFiles": [
     "cesa104.pdf"
@@ -72,9 +71,8 @@
   {
    "chapter": 7,
    "pdfFile": "cesa107.pdf",
-   "title": "Chapter 7",
+   "title": "Good Food Picture Readingpicture Reading Unit",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/english/cesa107.pdf",
    "pdfFiles": [
     "cesa107.pdf"
@@ -83,13 +81,12 @@
   {
    "chapter": 8,
    "pdfFile": "cesa108.pdf",
-   "title": "Chapter 8",
+   "title": "Let Us Read Let Us Read",
    "kind": "Non-fiction",
    "bookPath": "grade3/english/cesa108.pdf",
    "pdfFiles": [
     "cesa108.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 9,
@@ -105,9 +102,8 @@
   {
    "chapter": 10,
    "pdfFile": "cesa110.pdf",
-   "title": "Chapter 10",
+   "title": "Picture Readingpicture Reading the Sky Unit",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/english/cesa110.pdf",
    "pdfFiles": [
     "cesa110.pdf"

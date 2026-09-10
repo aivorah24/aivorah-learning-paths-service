@@ -8,17 +8,12 @@
   {
    "chapter": 1,
    "pdfFile": "iemh101.pdf",
-   "title": "Chapter 1",
+   "title": "Orienting Yourself: the Use of Coordinates",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "subtopics": [
     {
      "section": "1.2",
      "title": "Settling In"
-    },
-    {
-     "section": "1.4",
-     "title": "Distance Between Two Points in the"
     }
    ],
    "bookPath": "grade9/mathematics/iemh101.pdf",
@@ -29,9 +24,8 @@
   {
    "chapter": 2,
    "pdfFile": "iemh102.pdf",
-   "title": "Chapter 2",
+   "title": "Linear Polynomials",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "subtopics": [
     {
      "section": "2.2",
@@ -58,9 +52,8 @@
   {
    "chapter": 3,
    "pdfFile": "iemh103.pdf",
-   "title": "Chapter 3",
+   "title": "The World of Numbers",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "subtopics": [
     {
      "section": "3.2",
@@ -95,33 +88,12 @@
   {
    "chapter": 4,
    "pdfFile": "iemh104.pdf",
-   "title": "Chapter 4",
+   "title": "Exploring Algebraic Identities",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "subtopics": [
     {
      "section": "4.2",
      "title": "Visualising Identities"
-    },
-    {
-     "section": "4.3",
-     "title": "Factorisation of Algebraic Expressions Using"
-    },
-    {
-     "section": "4.5",
-     "title": "Factorisation Using Algebra Tiles"
-    },
-    {
-     "section": "4.6",
-     "title": "Factorisation Without Using Algebra Tiles"
-    },
-    {
-     "section": "4.7",
-     "title": "Finding New Identities"
-    },
-    {
-     "section": "4.8",
-     "title": "Simplifying Rational Expressions"
     }
    ],
    "bookPath": "grade9/mathematics/iemh104.pdf",
@@ -132,41 +104,12 @@
   {
    "chapter": 5,
    "pdfFile": "iemh105.pdf",
-   "title": "Chapter 5",
+   "title": "I’M Up and Down, and Round and Round",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "subtopics": [
     {
      "section": "5.1",
      "title": "Definitions"
-    },
-    {
-     "section": "5.2",
-     "title": "Symmetries of a Circle"
-    },
-    {
-     "section": "5.3",
-     "title": "How Many Circles"
-    },
-    {
-     "section": "5.4",
-     "title": "Chords and the Angles They Subtend"
-    },
-    {
-     "section": "5.5",
-     "title": "Midpoints and Perpendicular Bisectors of Chords"
-    },
-    {
-     "section": "5.6",
-     "title": "Distance of Chords from the Centre"
-    },
-    {
-     "section": "5.7",
-     "title": "Angles Subtended by an Arc"
-    },
-    {
-     "section": "5.8",
-     "title": "Concyclicity of Points"
     }
    ],
    "bookPath": "grade9/mathematics/iemh105.pdf",
@@ -253,33 +196,12 @@
   {
    "chapter": 8,
    "pdfFile": "iemh108.pdf",
-   "title": "Chapter 8",
+   "title": "Predicting What Comes Next: Exploring Sequences and Progressions",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "subtopics": [
     {
      "section": "8.1",
      "title": "Introduction to Sequences"
-    },
-    {
-     "section": "8.2",
-     "title": "Explicit Rule for a Sequence"
-    },
-    {
-     "section": "8.3",
-     "title": "Recursive Rule for a Sequence"
-    },
-    {
-     "section": "8.4",
-     "title": "Arithmetic Progressions"
-    },
-    {
-     "section": "8.5",
-     "title": "Sum of the First n Natural Numbers"
-    },
-    {
-     "section": "8.6",
-     "title": "Geometric Progressions"
     }
    ],
    "bookPath": "grade9/mathematics/iemh108.pdf",

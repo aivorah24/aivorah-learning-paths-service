@@ -17,20 +17,12 @@
   {
    "chapter": 2,
    "pdfFile": "fecu102.pdf",
-   "title": "Abc",
+   "title": "Diversity in the Living World",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "2.1",
      "title": "Diversity in Plants and Animals Around Us"
-    },
-    {
-     "section": "2.2",
-     "title": "How to Group Plants and Animals"
-    },
-    {
-     "section": "2.3",
-     "title": "Plants"
     }
    ],
    "bookPath": "grade6/science/fecu102.pdf",
@@ -77,28 +69,12 @@
   {
    "chapter": 4,
    "pdfFile": "fecu104.pdf",
-   "title": "Acb",
+   "title": "Reshma Lives in a Coastal Town of Kerala and Is Very Fond of Writing Short Stories. Her Grandmother",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "4.1",
      "title": "Magnetic and Non-magnetic Materials"
-    },
-    {
-     "section": "4.2",
-     "title": "Poles of Magnet"
-    },
-    {
-     "section": "4.3",
-     "title": "Finding Directions"
-    },
-    {
-     "section": "4.4",
-     "title": "Attraction and Repulsion between Magnets"
-    },
-    {
-     "section": "4.5",
-     "title": "Fun with Magnets"
     }
    ],
    "bookPath": "grade6/science/fecu104.pdf",

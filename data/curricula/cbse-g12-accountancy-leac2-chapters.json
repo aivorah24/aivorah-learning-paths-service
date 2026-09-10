@@ -9,7 +9,7 @@
   {
    "chapter": 1,
    "pdfFile": "leac201.pdf",
-   "title": "Chapter 1",
+   "title": "Learning Objectives",
    "bookPath": "grade12/accountancy/leac201.pdf",
    "subtopics": [
     {
@@ -19,32 +19,11 @@
     {
      "section": "1.2",
      "title": "Kinds of Companies"
-    },
-    {
-     "section": "1.3",
-     "title": "Share Capital of a Company"
-    },
-    {
-     "section": "1.4",
-     "title": "Nature and Classes of Shares"
-    },
-    {
-     "section": "1.5",
-     "title": "Issue of Shares"
-    },
-    {
-     "section": "1.6",
-     "title": "Accounting Treatment"
-    },
-    {
-     "section": "1.7",
-     "title": "Forfeiture of Shares"
     }
    ],
    "pdfFiles": [
     "leac201.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
@@ -116,7 +95,7 @@
   {
    "chapter": 3,
    "pdfFile": "leac203.pdf",
-   "title": "Chapter 3",
+   "title": "Learning Objectives",
    "bookPath": "grade12/accountancy/leac203.pdf",
    "subtopics": [
     {
@@ -126,33 +105,16 @@
     {
      "section": "3.2",
      "title": "Nature of Financial Statements"
-    },
-    {
-     "section": "3.3",
-     "title": "Objectives of Financial Statements"
-    },
-    {
-     "section": "3.4",
-     "title": "Types of Financial Statements"
-    },
-    {
-     "section": "3.5",
-     "title": "Uses and Importance of Financial Statements"
-    },
-    {
-     "section": "3.6",
-     "title": "Limitations of Financial Statements"
     }
    ],
    "pdfFiles": [
     "leac203.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 4,
    "pdfFile": "leac204.pdf",
-   "title": "Chapter 4",
+   "title": "Learning Objectives",
    "bookPath": "grade12/accountancy/leac204.pdf",
    "subtopics": [
     {
@@ -162,37 +124,16 @@
     {
      "section": "4.2",
      "title": "Significance of Analysis of Financial Statements"
-    },
-    {
-     "section": "4.3",
-     "title": "Objectives of Analysis of Financial Statements"
-    },
-    {
-     "section": "4.4",
-     "title": "Tools of Analysis of Financial Statements"
-    },
-    {
-     "section": "4.5",
-     "title": "Comparative Statements"
-    },
-    {
-     "section": "4.6",
-     "title": "Common Size Statement"
-    },
-    {
-     "section": "4.7",
-     "title": "Limitations of Financial Analysis"
     }
    ],
    "pdfFiles": [
     "leac204.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 5,
    "pdfFile": "leac205.pdf",
-   "title": "Chapter 5",
+   "title": "Learning Objectives",
    "bookPath": "grade12/accountancy/leac205.pdf",
    "subtopics": [
     {
@@ -206,41 +147,16 @@
     {
      "section": "5.3",
      "title": "Advantages of Ratio Analysis"
-    },
-    {
-     "section": "5.4",
-     "title": "Limitations of Ratio Analysis"
-    },
-    {
-     "section": "5.5",
-     "title": "Types of Ratios"
-    },
-    {
-     "section": "5.6",
-     "title": "Liquidity Ratios"
-    },
-    {
-     "section": "5.7",
-     "title": "Solvency Ratios"
-    },
-    {
-     "section": "5.8",
-     "title": "Activity (or Turnover) Ratio"
-    },
-    {
-     "section": "5.9",
-     "title": "Profitability Ratios"
     }
    ],
    "pdfFiles": [
     "leac205.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 6,
    "pdfFile": "leac206.pdf",
-   "title": "Chapter 6",
+   "title": "Learning Objectives",
    "bookPath": "grade12/accountancy/leac206.pdf",
    "subtopics": [
     {
@@ -250,36 +166,11 @@
     {
      "section": "6.2",
      "title": "Benefits of Cash Flow Statement"
-    },
-    {
-     "section": "6.3",
-     "title": "Cash and Cash Equivalents"
-    },
-    {
-     "section": "6.4",
-     "title": "Cash Flows"
-    },
-    {
-     "section": "6.5",
-     "title": "Classification of Activities for the Preparation of Cas"
-    },
-    {
-     "section": "6.6",
-     "title": "Ascertaining Cash Flow from Operating Activities"
-    },
-    {
-     "section": "6.7",
-     "title": "Ascertainment of Cash Flow from Investing and Financing Activi"
-    },
-    {
-     "section": "6.8",
-     "title": "Preparation of Cash Flow Statement"
     }
    ],
    "pdfFiles": [
     "leac206.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }

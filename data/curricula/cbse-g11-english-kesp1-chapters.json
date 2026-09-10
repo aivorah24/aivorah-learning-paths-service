@@ -8,41 +8,36 @@
   {
    "chapter": 1,
    "pdfFile": "kesp101.pdf",
-   "title": "Chapter 1",
+   "title": "The Summer of the Beautiful White Horse William Saroyan",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/english/kesp101.pdf"
   },
   {
    "chapter": 2,
    "pdfFile": "kesp102.pdf",
-   "title": "Chapter 2",
+   "title": "The Address Marga Minco",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/english/kesp102.pdf"
   },
   {
    "chapter": 3,
    "pdfFile": "kesp103.pdf",
-   "title": "Chapter 3",
+   "title": "Mother’S Day J.B. Priestley",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/english/kesp103.pdf"
   },
   {
    "chapter": 4,
    "pdfFile": "kesp104.pdf",
-   "title": "Chapter 4",
+   "title": "Birth a.J. Cronin",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/english/kesp104.pdf"
   },
   {
    "chapter": 5,
    "pdfFile": "kesp105.pdf",
-   "title": "Chapter 5",
+   "title": "The Tale of Melon City Vikram Seth",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/english/kesp105.pdf"
   }
  ]

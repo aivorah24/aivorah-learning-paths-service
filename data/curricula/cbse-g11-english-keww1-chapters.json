@@ -8,35 +8,32 @@
   {
    "chapter": 1,
    "pdfFile": "keww101.pdf",
-   "title": "Chapter 1",
+   "title": "Short Stories",
    "kind": "Non-fiction",
    "bookPath": "grade11/english/keww101.pdf",
    "pdfFiles": [
     "keww101.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
    "pdfFile": "keww102.pdf",
-   "title": "Chapter 2",
+   "title": "10woven Words a Pair of Mustachios Mulk Raj Anand",
    "kind": "Non-fiction",
    "bookPath": "grade11/english/keww102.pdf",
    "pdfFiles": [
     "keww102.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,
    "pdfFile": "keww103.pdf",
-   "title": "Chapter 3",
+   "title": "The Rocking-Horse Winner19 the Rocking-Horse Winner D.H. Lawrence",
    "kind": "Non-fiction",
    "bookPath": "grade11/english/keww103.pdf",
    "pdfFiles": [
     "keww103.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 4,
@@ -61,35 +58,32 @@
   {
    "chapter": 6,
    "pdfFile": "keww106.pdf",
-   "title": "Chapter 6",
+   "title": "62woven Words the Third and Final Continent Jhumpa Lahiri",
    "kind": "Non-fiction",
    "bookPath": "grade11/english/keww106.pdf",
    "pdfFiles": [
     "keww106.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 7,
    "pdfFile": "keww107.pdf",
-   "title": "Chapter 7",
+   "title": "Glory At Twilight85 Glory At Twilight Bhabani Bhattacharya",
    "kind": "Non-fiction",
    "bookPath": "grade11/english/keww107.pdf",
    "pdfFiles": [
     "keww107.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 8,
    "pdfFile": "keww108.pdf",
-   "title": "Chapter 8",
+   "title": "The Luncheon99 the Luncheon William Somerset Maugham",
    "kind": "Non-fiction",
    "bookPath": "grade11/english/keww108.pdf",
    "pdfFiles": [
     "keww108.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 11,

@@ -8,23 +8,18 @@
   {
    "chapter": 1,
    "pdfFile": "jesc101.pdf",
-   "title": "Chapter 1",
+   "title": "Al Equaal Equa Al Equaal Equa Al Equa",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "1.1",
      "title": "CHEMIC"
-    },
-    {
-     "section": "1.2",
-     "title": "TYPES OF CHEMIC"
     }
    ],
    "bookPath": "grade10/science/jesc101.pdf",
    "pdfFiles": [
     "jesc101.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
@@ -53,73 +48,39 @@
   {
    "chapter": 3,
    "pdfFile": "jesc103.pdf",
-   "title": "Chapter 3",
+   "title": "Al Propertiesal Properties Al Propertiesal Properties Al Properties",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "3.1",
      "title": "PHYSIC"
-    },
-    {
-     "section": "3.2",
-     "title": "CHEMIC"
-    },
-    {
-     "section": "3.3",
-     "title": "HOW DO MET"
-    },
-    {
-     "section": "3.4",
-     "title": "OCCURRENCE OF METOCCURRENCE OF MET"
-    },
-    {
-     "section": "3.5",
-     "title": "CORROSION"
     }
    ],
    "bookPath": "grade10/science/jesc103.pdf",
    "pdfFiles": [
     "jesc103.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 4,
    "pdfFile": "jesc104.pdf",
-   "title": "Chapter 4",
+   "title": "Science",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "4.1",
      "title": "BONDING IN CARBON"
-    },
-    {
-     "section": "4.2",
-     "title": "VERSATILE NATURE OF CARBON"
-    },
-    {
-     "section": "4.3",
-     "title": "CHEMICAL PROPERTIES OF CARBON COMPOUNDS"
-    },
-    {
-     "section": "4.4",
-     "title": "SOME IMPORTANT CARBON COMPOUNDS"
-    },
-    {
-     "section": "4.5",
-     "title": "SOAPS AND DETERGENTS"
     }
    ],
    "bookPath": "grade10/science/jesc104.pdf",
    "pdfFiles": [
     "jesc104.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 5,
    "pdfFile": "jesc105.pdf",
-   "title": "Chapter 5",
+   "title": "Life Processes",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -134,58 +95,39 @@
    "bookPath": "grade10/science/jesc105.pdf",
    "pdfFiles": [
     "jesc105.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 6,
    "pdfFile": "jesc106.pdf",
-   "title": "Chapter 6",
+   "title": "Science",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "6.1",
      "title": "ANIMALS"
-    },
-    {
-     "section": "6.2",
-     "title": "COORDINA"
-    },
-    {
-     "section": "6.3",
-     "title": "HORMONES IN ANIMALS"
     }
    ],
    "bookPath": "grade10/science/jesc106.pdf",
    "pdfFiles": [
     "jesc106.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 7,
    "pdfFile": "jesc107.pdf",
-   "title": "Chapter 7",
+   "title": "Anisms Creaanisms Crea Anisms Creaanisms Crea Anisms Crea",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "7.1",
      "title": "DO ORG"
-    },
-    {
-     "section": "7.2",
-     "title": "MODES OF REPRODUCTION USED BY SINGLE"
-    },
-    {
-     "section": "7.3",
-     "title": "SEXUAL REPRODUCTION"
     }
    ],
    "bookPath": "grade10/science/jesc107.pdf",
    "pdfFiles": [
     "jesc107.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 8,
@@ -206,7 +148,7 @@
   {
    "chapter": 9,
    "pdfFile": "jesc109.pdf",
-   "title": "Chapter 9",
+   "title": "Al Mirrorsal Mirrors Al Mirrorsal Mirrors Al Mirrors",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -216,22 +158,17 @@
     {
      "section": "9.2",
      "title": "SPHERIC"
-    },
-    {
-     "section": "9.3",
-     "title": "REFRACTION OF LIGHT"
     }
    ],
    "bookPath": "grade10/science/jesc109.pdf",
    "pdfFiles": [
     "jesc109.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 10,
    "pdfFile": "jesc110.pdf",
-   "title": "Chapter 10",
+   "title": "The Human Eye and the Colourful World",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -241,92 +178,49 @@
     {
      "section": "10.2",
      "title": "DEFECTS OF VISION AND THEIR CORRECTION"
-    },
-    {
-     "section": "10.3",
-     "title": "REFRACTION OF LIGHT THROUGH A PRISM"
-    },
-    {
-     "section": "10.4",
-     "title": "DISPERSION OF WHITE LIGHT BY A GL"
-    },
-    {
-     "section": "10.5",
-     "title": "ATMOSPHERIC REFRACTION"
-    },
-    {
-     "section": "10.6",
-     "title": "SCATTERING OF LIGHT"
     }
    ],
    "bookPath": "grade10/science/jesc110.pdf",
    "pdfFiles": [
     "jesc110.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 11,
    "pdfFile": "jesc111.pdf",
-   "title": "Chapter 11",
+   "title": "Questions",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "11.1",
      "title": "ELECTRIC CURRENT AND CIRCUIT"
-    },
-    {
-     "section": "11.2",
-     "title": "ELECTRIC POTENTIAL AND POTENTIAL DIFFERENCE"
-    },
-    {
-     "section": "11.3",
-     "title": "CIRCUIT DIAGRAM"
-    },
-    {
-     "section": "11.6",
-     "title": "RESIST"
-    },
-    {
-     "section": "11.8",
-     "title": "ELECTRIC POWER"
     }
    ],
    "bookPath": "grade10/science/jesc111.pdf",
    "pdfFiles": [
     "jesc111.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 12,
    "pdfFile": "jesc112.pdf",
-   "title": "Chapter 12",
+   "title": "Question",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "12.1",
      "title": "MAGNETIC FIELD AND FIELD LINES"
-    },
-    {
-     "section": "12.3",
-     "title": "FORCE ON A CURRENTFORCE ON A CURRENT"
-    },
-    {
-     "section": "12.4",
-     "title": "DOMESTIC ELECTRIC CIRCUITS"
     }
    ],
    "bookPath": "grade10/science/jesc112.pdf",
    "pdfFiles": [
     "jesc112.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 13,
    "pdfFile": "jesc113.pdf",
-   "title": "Chapter 13",
+   "title": "Science",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -337,8 +231,7 @@
    "bookPath": "grade10/science/jesc113.pdf",
    "pdfFiles": [
     "jesc113.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }

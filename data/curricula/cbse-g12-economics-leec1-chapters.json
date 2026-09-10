@@ -80,27 +80,18 @@
   {
    "chapter": 4,
    "pdfFile": "leec104.pdf",
-   "title": "Chapter 4",
+   "title": "Determination of Income Anddetermination of Income and Determination of Income Anddetermination of Income and Determination of Income and",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "4.1",
      "title": "AGGREGATE DEMAND AND ITS COMPONENTS"
-    },
-    {
-     "section": "4.2",
-     "title": "DETERMINATION OF INCOME IN TWO-SECTOR MODEL"
-    },
-    {
-     "section": "4.4",
-     "title": "SOME MORE CONCEPTS"
     }
    ],
    "bookPath": "grade12/economics/leec104.pdf",
    "pdfFiles": [
     "leec104.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 5,

@@ -48,13 +48,12 @@
   {
    "chapter": 5,
    "pdfFile": "lehe205.pdf",
-   "title": "Chapter 5",
+   "title": "Learning Objectives",
    "kind": "Non-fiction",
    "bookPath": "grade12/home_science/lehe205.pdf",
    "pdfFiles": [
     "lehe205.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 6,
@@ -69,9 +68,8 @@
   {
    "chapter": 7,
    "pdfFile": "lehe207.pdf",
-   "title": "Chapter 7",
+   "title": "Learning Objectives",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade12/home_science/lehe207.pdf",
    "pdfFiles": [
     "lehe207.pdf"

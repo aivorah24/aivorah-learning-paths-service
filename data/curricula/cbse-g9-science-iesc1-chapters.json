@@ -19,28 +19,12 @@
   {
    "chapter": 2,
    "pdfFile": "iesc102.pdf",
-   "title": "Dna",
+   "title": "It Is Widely Accepted Amongst the Scientific Community That Life Originated in Water. Some Researchers Believe That Life May Have Originated in Small Water Pools with Changing Environmental",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "2.1",
      "title": "How to Study Cells"
-    },
-    {
-     "section": "2.2",
-     "title": "Structure of a Cell"
-    },
-    {
-     "section": "2.3",
-     "title": "The Cell Interior"
-    },
-    {
-     "section": "2.4",
-     "title": "How do Normal Cells Grow and Divide"
-    },
-    {
-     "section": "2.5",
-     "title": "Cell Theory"
     }
    ],
    "bookPath": "grade9/science/iesc102.pdf",
@@ -51,7 +35,7 @@
   {
    "chapter": 3,
    "pdfFile": "iesc103.pdf",
-   "title": "Wbc",
+   "title": "Tissues in Action",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -61,22 +45,6 @@
     {
      "section": "3.2",
      "title": "Tissues for Growth in Plants"
-    },
-    {
-     "section": "3.3",
-     "title": "Animal Tissues"
-    },
-    {
-     "section": "3.4",
-     "title": "The Musculoskeletal System"
-    },
-    {
-     "section": "3.5",
-     "title": "Types of Joints"
-    },
-    {
-     "section": "3.6",
-     "title": "Skeletal System"
     }
    ],
    "bookPath": "grade9/science/iesc103.pdf",
@@ -87,24 +55,12 @@
   {
    "chapter": 4,
    "pdfFile": "iesc104.pdf",
-   "title": "Oba",
+   "title": "Describing Motion Around Us",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "4.1",
      "title": "Motion in a Straight Line"
-    },
-    {
-     "section": "4.2",
-     "title": "Graphical Representation of Motion"
-    },
-    {
-     "section": "4.3",
-     "title": "Kinematic Equations for Motion in a Straight"
-    },
-    {
-     "section": "4.4",
-     "title": "Motion in a Plane"
     }
    ],
    "bookPath": "grade9/science/iesc104.pdf",
@@ -225,36 +181,12 @@
   {
    "chapter": 8,
    "pdfFile": "iesc108.pdf",
-   "title": "Klmn",
+   "title": "Journey Inside the Atom",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "8.1",
      "title": "Rediscovering the Roots of Atomic Theory"
-    },
-    {
-     "section": "8.3",
-     "title": "What Components Contribute to the"
-    },
-    {
-     "section": "8.4",
-     "title": "Symbols of Elements"
-    },
-    {
-     "section": "8.5",
-     "title": "Atomic Number"
-    },
-    {
-     "section": "8.6",
-     "title": "Mass Number"
-    },
-    {
-     "section": "8.7",
-     "title": "How Are Electrons Distributed in Different"
-    },
-    {
-     "section": "8.8",
-     "title": "Combining Capacity of an Atom"
     }
    ],
    "bookPath": "grade9/science/iesc108.pdf",
@@ -310,40 +242,12 @@
   {
    "chapter": 10,
    "pdfFile": "iesc110.pdf",
-   "title": "Crcrcr",
+   "title": "Sound Waves: Characteristics and Applications",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "10.1",
      "title": "Production of Sound"
-    },
-    {
-     "section": "10.2",
-     "title": "Propagation of Sound"
-    },
-    {
-     "section": "10.3",
-     "title": "Sound Waves"
-    },
-    {
-     "section": "10.4",
-     "title": "Energy of Sound Waves"
-    },
-    {
-     "section": "10.5",
-     "title": "Graphical Representation of a Sound Wave"
-    },
-    {
-     "section": "10.6",
-     "title": "Characteristics of a Sound Wave"
-    },
-    {
-     "section": "10.7",
-     "title": "Reflection of Sound"
-    },
-    {
-     "section": "10.8",
-     "title": "Ultrasonic and Infrasonic Waves, and their"
     }
    ],
    "bookPath": "grade9/science/iesc110.pdf",

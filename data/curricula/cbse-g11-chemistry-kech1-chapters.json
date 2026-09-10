@@ -8,9 +8,8 @@
   {
    "chapter": 1,
    "pdfFile": "kech101.pdf",
-   "title": "Chapter 1",
+   "title": "Unit 1",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "subtopics": [
     {
      "section": "1.1",
@@ -641,88 +640,12 @@
   {
    "chapter": 5,
    "pdfFile": "kech105.pdf",
-   "title": "Ctu",
+   "title": "Thermodynamics It Is the Only Physical Theory of Universal Content Concerning Which I Am Convinced That, Within the Framework of the",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "5.1",
      "title": "Thermodynamic Terms"
-    },
-    {
-     "section": "5.2",
-     "title": "For the process to occur under adiabatic conditions, the corre"
-    },
-    {
-     "section": "5.3",
-     "title": "The enthalpies of all elements in their standard states are"
-    },
-    {
-     "section": "5.5",
-     "title": "The enthalpy of combustion of methane, graphite and dihydrogen"
-    },
-    {
-     "section": "5.7",
-     "title": "In a process"
-    },
-    {
-     "section": "5.8",
-     "title": "The reaction of cyanamide, NH"
-    },
-    {
-     "section": "5.9",
-     "title": "Calculate the number of kJ of heat necessary to raise"
-    },
-    {
-     "section": "5.10",
-     "title": "Calculate the enthalpy change on freezing of"
-    },
-    {
-     "section": "5.11",
-     "title": "Enthalpy of combustion of carbon to CO"
-    },
-    {
-     "section": "5.12",
-     "title": "Enthalpies of formation of CO(g), CO"
-    },
-    {
-     "section": "5.13",
-     "title": "Given"
-    },
-    {
-     "section": "5.14",
-     "title": "Calculate the standard enthalpy of formation of CH"
-    },
-    {
-     "section": "5.15",
-     "title": "Calculate the enthalpy change for the process"
-    },
-    {
-     "section": "5.16",
-     "title": "For an isolated system"
-    },
-    {
-     "section": "5.17",
-     "title": "For the reaction at"
-    },
-    {
-     "section": "5.18",
-     "title": "For the reaction"
-    },
-    {
-     "section": "5.19",
-     "title": "For the reaction"
-    },
-    {
-     "section": "5.20",
-     "title": "The equilibrium constant for a reaction is"
-    },
-    {
-     "section": "5.21",
-     "title": "Comment on the thermodynamic stability of NO(g), given"
-    },
-    {
-     "section": "5.22",
-     "title": "Calculate the entropy change in surroundings when"
     }
    ],
    "bookPath": "grade11/chemistry/kech105.pdf",

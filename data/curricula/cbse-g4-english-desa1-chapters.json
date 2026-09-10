@@ -8,9 +8,8 @@
   {
    "chapter": 1,
    "pdfFile": "desa101.pdf",
-   "title": "Chapter 1",
+   "title": "Together We Can Together We Stand, Strong and Tall,",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/english/desa101.pdf",
    "pdfFiles": [
     "desa101.pdf"
@@ -29,9 +28,8 @@
   {
    "chapter": 3,
    "pdfFile": "desa103.pdf",
-   "title": "Chapter 3",
+   "title": "Be Smart, Be Safe",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/english/desa103.pdf",
    "pdfFiles": [
     "desa103.pdf"
@@ -40,9 +38,8 @@
   {
    "chapter": 4,
    "pdfFile": "desa104.pdf",
-   "title": "Chapter 4",
+   "title": "One Thing At a Time Let Us Recite Work While You Work,",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/english/desa104.pdf",
    "pdfFiles": [
     "desa104.pdf"
@@ -51,9 +48,8 @@
   {
    "chapter": 5,
    "pdfFile": "desa105.pdf",
-   "title": "Chapter 5",
+   "title": "Let Us Read",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/english/desa105.pdf",
    "pdfFiles": [
     "desa105.pdf"
@@ -62,9 +58,8 @@
   {
    "chapter": 6,
    "pdfFile": "desa106.pdf",
-   "title": "Chapter 6",
+   "title": "Let Us Read",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/english/desa106.pdf",
    "pdfFiles": [
     "desa106.pdf"
@@ -73,9 +68,8 @@
   {
    "chapter": 7,
    "pdfFile": "desa107.pdf",
-   "title": "Chapter 7",
+   "title": "Fit Body, Fit Mind, F It Nation",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/english/desa107.pdf",
    "pdfFiles": [
     "desa107.pdf"
@@ -84,18 +78,17 @@
   {
    "chapter": 8,
    "pdfFile": "desa108.pdf",
-   "title": "Chapter 8",
+   "title": "Let Us Read",
    "kind": "Non-fiction",
    "bookPath": "grade4/english/desa108.pdf",
    "pdfFiles": [
     "desa108.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 9,
    "pdfFile": "desa109.pdf",
-   "title": "Iii",
+   "title": "Hekko ‘Hek’ Means to Challenge",
    "kind": "Non-fiction",
    "bookPath": "grade4/english/desa109.pdf",
    "pdfFiles": [
@@ -105,9 +98,8 @@
   {
    "chapter": 10,
    "pdfFile": "desa110.pdf",
-   "title": "Chapter 10",
+   "title": "Let Us Recite How Do You Like to Go Up in a Swing,",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/english/desa110.pdf",
    "pdfFiles": [
     "desa110.pdf"
@@ -116,7 +108,7 @@
   {
    "chapter": 11,
    "pdfFile": "desa111.pdf",
-   "title": "And",
+   "title": "Let Us Read Once Upon a Time, in a Small Village At",
    "kind": "Non-fiction",
    "bookPath": "grade4/english/desa111.pdf",
    "pdfFiles": [
@@ -126,9 +118,8 @@
   {
    "chapter": 12,
    "pdfFile": "desa112.pdf",
-   "title": "Chapter 12",
+   "title": "Let Us Read",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/english/desa112.pdf",
    "pdfFiles": [
     "desa112.pdf"

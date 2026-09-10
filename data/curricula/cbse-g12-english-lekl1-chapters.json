@@ -8,13 +8,12 @@
   {
    "chapter": 1,
    "pdfFile": "lekl101.pdf",
-   "title": "Chapter 1",
+   "title": "I Si S I Si S I S",
    "kind": "Non-fiction",
    "bookPath": "grade12/english/lekl101.pdf",
    "pdfFiles": [
     "lekl101.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
@@ -59,9 +58,8 @@
   {
    "chapter": 11,
    "pdfFile": "lekl111.pdf",
-   "title": "Chapter 11",
+   "title": "90/Kaleidoscope Poetry",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade12/english/lekl111.pdf",
    "pdfFiles": [
     "lekl111.pdf"
@@ -70,13 +68,12 @@
   {
    "chapter": 12,
    "pdfFile": "lekl112.pdf",
-   "title": "Chapter 12",
+   "title": "Notes",
    "kind": "Non-fiction",
    "bookPath": "grade12/english/lekl112.pdf",
    "pdfFiles": [
     "lekl112.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 13,
@@ -113,9 +110,8 @@
   {
    "chapter": 16,
    "pdfFile": "lekl116.pdf",
-   "title": "Chapter 16",
+   "title": "The Wild Swans At Coolethe Wild Swans At Coole the Wild Swans At Coolethe Wild Swans At Coole the Wild Swans At Coole",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade12/english/lekl116.pdf",
    "pdfFiles": [
     "lekl116.pdf"
@@ -124,9 +120,8 @@
   {
    "chapter": 17,
    "pdfFile": "lekl117.pdf",
-   "title": "Chapter 17",
+   "title": "Time and Time Againtime and Time Again Time and Time Againtime and Time Again Time and Time Again",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade12/english/lekl117.pdf",
    "pdfFiles": [
     "lekl117.pdf"

@@ -8,68 +8,62 @@
   {
    "chapter": 1,
    "pdfFile": "hess301.pdf",
-   "title": "Chapter 1",
+   "title": "Social and Political Life",
    "kind": "Non-fiction",
    "bookPath": "grade8/social_science/hess301.pdf",
    "pdfFiles": [
     "hess301.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
    "pdfFile": "hess302.pdf",
-   "title": "Chapter 2",
+   "title": "Social and Political Life",
    "kind": "Non-fiction",
    "bookPath": "grade8/social_science/hess302.pdf",
    "pdfFiles": [
     "hess302.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,
    "pdfFile": "hess303.pdf",
-   "title": "Chapter 3",
+   "title": "Social and Political Life",
    "kind": "Non-fiction",
    "bookPath": "grade8/social_science/hess303.pdf",
    "pdfFiles": [
     "hess303.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 4,
    "pdfFile": "hess304.pdf",
-   "title": "Chapter 4",
+   "title": "Social and Political Life",
    "kind": "Non-fiction",
    "bookPath": "grade8/social_science/hess304.pdf",
    "pdfFiles": [
     "hess304.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 5,
    "pdfFile": "hess305.pdf",
-   "title": "Chapter 5",
+   "title": "Social and Political Life",
    "kind": "Non-fiction",
    "bookPath": "grade8/social_science/hess305.pdf",
    "pdfFiles": [
     "hess305.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 6,
    "pdfFile": "hess306.pdf",
-   "title": "Chapter 6",
+   "title": "Social and Political Life",
    "kind": "Non-fiction",
    "bookPath": "grade8/social_science/hess306.pdf",
    "pdfFiles": [
     "hess306.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 7,
@@ -84,13 +78,12 @@
   {
    "chapter": 8,
    "pdfFile": "hess308.pdf",
-   "title": "Chapter 8",
+   "title": "Social and Political Life",
    "kind": "Non-fiction",
    "bookPath": "grade8/social_science/hess308.pdf",
    "pdfFiles": [
     "hess308.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }

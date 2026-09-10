@@ -36,12 +36,11 @@
   {
    "chapter": 4,
    "pdfFile": "lebs104.pdf",
-   "title": "Chapter 4",
+   "title": "Learning Objectives",
    "bookPath": "grade12/business_studies/lebs104.pdf",
    "pdfFiles": [
     "lebs104.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 5,

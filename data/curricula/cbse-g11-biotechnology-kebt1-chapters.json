@@ -124,16 +124,12 @@
   {
    "chapter": 4,
    "pdfFile": "kebt104.pdf",
-   "title": "Esi",
+   "title": "Enzymes and Bioenergetics 4.1. Enzymes:",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "4.1",
      "title": "EnzymEs"
-    },
-    {
-     "section": "4.2",
-     "title": "BriEf introduCtion to BioEnErgEtiCs"
     }
    ],
    "bookPath": "grade11/biotechnology/kebt104.pdf",
@@ -180,7 +176,7 @@
   {
    "chapter": 6,
    "pdfFile": "kebt106.pdf",
-   "title": "Rlrl",
+   "title": "Genetic Principles and Molecular Processes",
    "kind": "Non-fiction",
    "subtopics": [
     {

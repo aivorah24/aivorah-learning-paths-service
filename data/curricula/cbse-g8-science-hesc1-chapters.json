@@ -60,43 +60,18 @@
   {
    "chapter": 2,
    "pdfFile": "hesc102.pdf",
-   "title": "Chapter 2",
+   "title": "Microorganisms : Friend and Foe Microorganisms : Friend and Foe Y",
    "kind": "Non-fiction",
    "subtopics": [
     {
      "section": "2.1",
      "title": "Microorganisms"
-    },
-    {
-     "section": "2.2",
-     "title": "Where do Microorganisms"
-    },
-    {
-     "section": "2.3",
-     "title": "Microorganisms and Us"
-    },
-    {
-     "section": "2.4",
-     "title": "Harmful Microorganisms"
-    },
-    {
-     "section": "2.5",
-     "title": "Food Preservation"
-    },
-    {
-     "section": "2.6",
-     "title": "Nitrogen Fixation"
-    },
-    {
-     "section": "2.7",
-     "title": "Nitrogen cycle"
     }
    ],
    "bookPath": "grade8/science/hesc102.pdf",
    "pdfFiles": [
     "hesc102.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,

@@ -44,7 +44,7 @@
   {
    "chapter": 2,
    "pdfFile": "fegp102.pdf",
-   "title": "Oby",
+   "title": "Lines and Angles",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -54,34 +54,6 @@
     {
      "section": "2.2",
      "title": "Line Segment"
-    },
-    {
-     "section": "2.5",
-     "title": "Angle"
-    },
-    {
-     "section": "2.6",
-     "title": "Comparing Angles"
-    },
-    {
-     "section": "2.7",
-     "title": "Making Rotating Arms"
-    },
-    {
-     "section": "2.8",
-     "title": "Special Types of Angles"
-    },
-    {
-     "section": "2.9",
-     "title": "Measuring Angles"
-    },
-    {
-     "section": "2.10",
-     "title": "Drawing Angles"
-    },
-    {
-     "section": "2.11",
-     "title": "Types of Angles and their Measures"
     }
    ],
    "bookPath": "grade6/mathematics/fegp102.pdf",
