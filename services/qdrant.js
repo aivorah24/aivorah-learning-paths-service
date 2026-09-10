@@ -308,10 +308,17 @@ async function resolveTopicContent(curriculum, grade, subject, topic) {
   });
   if (!points.length) return null;
 
+  // S04: the bulk NCERT chunker (ingest-all-ncert.js / ocr-ingest.cjs) stores
+  // chunk text under `content`, not `text` — a different payload shape than
+  // the richer micro-topic pipeline this resolver was originally written
+  // against. Accept either so real content ingested either way resolves.
+  const chunkText = (p) => (typeof p.payload.text === 'string' && p.payload.text.trim())
+    || (typeof p.payload.content === 'string' && p.payload.content.trim())
+    || '';
   const textChunks = points
-    .filter(p => p.payload.content_type !== 'image' && typeof p.payload.text === 'string' && p.payload.text.trim())
+    .filter(p => p.payload.content_type !== 'image' && chunkText(p))
     .sort((a, b) => (a.payload.chunk_index ?? 0) - (b.payload.chunk_index ?? 0))
-    .map(p => p.payload.text.trim());
+    .map(chunkText);
   const imageChunks = points.filter(p => p.payload.content_type === 'image' && p.payload.image_url);
 
   if (!textChunks.length && !imageChunks.length) return null;

@@ -159,6 +159,27 @@ describe('GET /teacher/syllabus/current', () => {
     expect(res.body.units[0].title).toBe('Reading Comprehension');
   });
 
+  // S04: a single real primer (Grade 2 Hindi, cbse-g2-hindi-bhsr1) has 25
+  // genuinely distinct chapters, several of which legitimately share a
+  // recurring section-type label ("आनंदमयी कविता" = "Joyful Poem", used for 6
+  // different actual poems). These have DIFFERENT chapter numbers (not the
+  // multi-volume-restart-numbering case above, which always collides on
+  // number too) — the title-based dedupe was incorrectly treating "same
+  // label" as "same content" and silently dropping 14 of 25 real chapters.
+  test('distinct chapters within ONE book that legitimately share a recurring section title are NOT collapsed', async () => {
+    supabase._chain.order.mockResolvedValueOnce({ data: [], error: null });
+    mockChaptersFor.mockReturnValue([
+      { chapter: 2, title: 'आनंदमयी कविता', bookPath: '/g2/hindi/bhsr102.pdf', subtopics: [] },
+      { chapter: 4, title: 'आनंदमयी कविता', bookPath: '/g2/hindi/bhsr104.pdf', subtopics: [] },
+      { chapter: 9, title: 'आनंदमयी कविता', bookPath: '/g2/hindi/bhsr109.pdf', subtopics: [] },
+    ]);
+
+    const res = await request(app).get('/teacher/syllabus/current').query({ grade: 'Grade 2', subject: 'Hindi' });
+
+    expect(res.body.units).toHaveLength(3);
+    expect(res.body.units.map((u) => u.unitNo).sort()).toEqual([2, 4, 9]);
+  });
+
   test('a leftover DB row whose title is still "Chapter N" gets folded into the matching mapped chapter, not shown as a duplicate', async () => {
     // Live DB has a real mapped chapter (unit 1, title "Sets") AND a legacy leftover
     // row at the same unit number whose title was never migrated past "Chapter 1".

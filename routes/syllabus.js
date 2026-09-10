@@ -86,16 +86,18 @@ router.get('/current', async (req, res) => {
       const usedTitles = new Set();
       const seen = new Set();
       units = [];
-      const seenTitles = new Set();
       for (const ch of full) {
-        if (seen.has(ch.chapter)) continue;         // multi-volume books repeat numbers
-        // …and repeat TITLES too: two volumes of the same subject can each open
-        // with the same section name, which rendered as two identical accordions.
-        const tkey = String(ch.title || '').trim().toLowerCase();
-        if (tkey && !/^chapter\s*\d+$/i.test(tkey)) {
-          if (seenTitles.has(tkey)) continue;
-          seenTitles.add(tkey);
-        }
+        // Multi-volume books repeat chapter NUMBERS across volumes — that's
+        // the real "two identical accordions" case, and it always collides
+        // on `chapter` too (see the 'two multi-volume book chapters sharing
+        // the same real title' test below), so number alone already catches
+        // it. A separate title-only dedupe used to ALSO skip any chapter
+        // whose title simply repeated — but a single real primer can
+        // legitimately reuse a generic section label across many genuinely
+        // different chapters (S04: Grade 2 Hindi's "आनंदमयी कविता"/"Joyful
+        // Poem" labels 6 different real poems) — that dropped 14 of 25 real
+        // chapters. Number-based dedupe is the correct, sufficient signal.
+        if (seen.has(ch.chapter)) continue;
         seen.add(ch.chapter);
         const byTitleHit = byTitle.get(String(ch.title || '').toLowerCase());
         const existing = byTitleHit || byNo.get(ch.chapter);

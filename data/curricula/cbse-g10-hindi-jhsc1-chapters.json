@@ -19,11 +19,12 @@
   {
    "chapter": 2,
    "pdfFile": "jhsc102.pdf",
-   "title": "Coo",
+   "title": "Chapter 2",
    "bookPath": "grade10/hindi/jhsc102.pdf",
    "pdfFiles": [
     "jhsc102.pdf"
-   ]
+   ],
+   "needsTitleReview": true
   },
   {
    "chapter": 3,
@@ -38,18 +39,16 @@
   {
    "chapter": 4,
    "pdfFile": "jhsc104.pdf",
-   "title": "Chapter 4",
+   "title": "कार्बन एवं उसके यौगिक",
    "bookPath": "grade10/hindi/jhsc104.pdf",
    "pdfFiles": [
     "jhsc104.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 5,
    "pdfFile": "jhsc105.pdf",
-   "title": "Chapter 5",
-   "needsTitleReview": true,
+   "title": "जैव प्रक्रम",
    "bookPath": "grade10/hindi/jhsc105.pdf",
    "pdfFiles": [
     "jhsc105.pdf"
@@ -58,8 +57,7 @@
   {
    "chapter": 6,
    "pdfFile": "jhsc106.pdf",
-   "title": "Chapter 6",
-   "needsTitleReview": true,
+   "title": "नियंत्रण एवं समन्वय",
    "bookPath": "grade10/hindi/jhsc106.pdf",
    "pdfFiles": [
     "jhsc106.pdf"
@@ -78,8 +76,7 @@
   {
    "chapter": 8,
    "pdfFile": "jhsc108.pdf",
-   "title": "Chapter 8",
-   "needsTitleReview": true,
+   "title": "आनुवंशिकता",
    "bookPath": "grade10/hindi/jhsc108.pdf",
    "pdfFiles": [
     "jhsc108.pdf"
@@ -88,8 +85,7 @@
   {
    "chapter": 9,
    "pdfFile": "jhsc109.pdf",
-   "title": "Chapter 9",
-   "needsTitleReview": true,
+   "title": "प्रकाश – परावर्तन रथा अपवर्तन",
    "bookPath": "grade10/hindi/jhsc109.pdf",
    "pdfFiles": [
     "jhsc109.pdf"
@@ -128,11 +124,12 @@
   {
    "chapter": 13,
    "pdfFile": "jhsc113.pdf",
-   "title": "Ooo",
+   "title": "Chapter 13",
    "bookPath": "grade10/hindi/jhsc113.pdf",
    "pdfFiles": [
     "jhsc113.pdf"
-   ]
+   ],
+   "needsTitleReview": true
   }
  ]
 }

@@ -31,9 +31,21 @@ let _byGradeSubject = null;
 // to be a plausible title. Treat anything failing this check the same as a
 // missing title — fall back to "Chapter N" and flag it for review, rather
 // than shipping mojibake to students.
+// S04: a genuinely real Devanagari (Hindi/Sanskrit) title has zero Latin
+// vowels by definition, so the check below rejected every one of them —
+// e.g. "चित्र और बातचीत" (Grade 2 Hindi ch1) was being silently reverted to
+// "Chapter N" at serve time even though the data file held the real title.
+// Devanagari script has no case/vowel-run concept equivalent to Latin
+// mojibake patterns, so a title that's mostly real Devanagari characters is
+// validated on script-ratio alone instead of running the Latin-only checks.
 function looksLikeRealTitle(title) {
   const t = String(title || '').trim();
   if (t.length < 4) return false;
+
+  const nonSpace = t.replace(/\s+/g, '');
+  const devanagari = (nonSpace.match(/[ऀ-ॿ]/g) || []).length;
+  if (devanagari > 0) return devanagari / nonSpace.length > 0.5;
+
   if (!/[aeiouAEIOU]/.test(t)) return false;
 
   const words = t.split(/\s+/).filter(Boolean);

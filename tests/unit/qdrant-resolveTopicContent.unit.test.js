@@ -40,6 +40,25 @@ describe('resolveTopicContent', () => {
     expect(result.sourceReference).toBe('NCERT English Grade 9 | iebe105.pdf');
   });
 
+  // S04: ingest-all-ncert.js / ocr-ingest.cjs (the bulk NCERT chunker used to
+  // remediate the Hindi mojibake bug) store chunk text under `content`, not
+  // `text` — a pre-existing field-name mismatch with the richer micro-topic
+  // pipeline this resolver was originally written against. Real content was
+  // sitting in Qdrant, correctly tagged, but resolveTopicContent returned
+  // null (COMING_SOON) for every chapter ingested via the bulk chunker,
+  // regardless of subject/language — not Hindi-specific.
+  test('real text is found under `content` too, not only `text` (bulk-chunker payload shape)', async () => {
+    mockScroll.mockResolvedValueOnce({
+      points: [
+        { payload: { content_type: 'explanation', chunk_index: 0, content: 'चित्र और बातचीत — असली पाठ।', source: 'ncert_books/grade2/hindi/bhsr101.pdf' } },
+      ],
+      next_page_offset: null,
+    });
+    const result = await resolveTopicContent('NCERT', 2, 'Hindi', 'चित्र और बातचीत');
+    expect(result).not.toBeNull();
+    expect(result.intro).toBe('चित्र और बातचीत — असली पाठ।');
+  });
+
   test('image-caption chunks are excluded from text content, included as images', async () => {
     mockScroll.mockResolvedValueOnce({
       points: [

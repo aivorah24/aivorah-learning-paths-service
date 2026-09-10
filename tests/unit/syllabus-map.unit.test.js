@@ -129,6 +129,49 @@ describe('chaptersFor', () => {
     }
   });
 
+  // S04: real Devanagari (Hindi) titles recovered from actual NCERT PDFs must
+  // survive this validator. The Latin-only check (`/[aeiouAEIOU]/`) has no
+  // concept of a Devanagari vowel, so a completely real, correctly-extracted
+  // Hindi title like "चित्र और बातचीत" (Grade 2 Hindi ch1, "Picture and
+  // Conversation") was being silently discarded back to "Chapter N" at serve
+  // time — even though the underlying data file held the real title.
+  test('real Devanagari titles are accepted, not reverted to "Chapter N" (S04)', () => {
+    const HINDI_G2_DOC = {
+      curriculum: 'CBSE', grade: 'Grade 2', subject: 'Hindi', code: 'bhsr1',
+      chapters: [
+        { chapter: 1, pdfFile: 'bhsr101.pdf', title: 'चित्र और बातचीत', bookPath: 'g2/hindi/bhsr101.pdf' },
+        { chapter: 8, pdfFile: 'bhsr108.pdf', title: 'इकाई 2: रंग ही रंग', bookPath: 'g2/hindi/bhsr108.pdf' },
+      ],
+    };
+    const { fs, syllabusMap } = freshSyllabusMap();
+    fs.readdirSync = jest.fn().mockReturnValue(['cbse-g2-hindi-bhsr1-chapters.json']);
+    fs.readFileSync = jest.fn().mockReturnValue(JSON.stringify(HINDI_G2_DOC));
+
+    const chapters = syllabusMap.chaptersFor(2, 'Hindi');
+    const ch1 = chapters.find(c => c.chapter === 1);
+    const ch8 = chapters.find(c => c.chapter === 8);
+    expect(ch1.title).toBe('चित्र और बातचीत');
+    expect(ch1.placeholder).toBe(false);
+    expect(ch8.title).toBe('इकाई 2: रंग ही रंग');
+    expect(ch8.placeholder).toBe(false);
+  });
+
+  // Mojibake must still be rejected for Devanagari-tagged chapters too — this
+  // guard must not become "anything non-Latin passes unconditionally."
+  test('mojibake titles on a Devanagari chapter are still rejected (S04, no regression)', () => {
+    const BAD_DOC = {
+      curriculum: 'CBSE', grade: 'Grade 9', subject: 'Hindi', code: 'ihsc1',
+      chapters: [{ chapter: 7, pdfFile: 'ihsc107.pdf', title: 'Fff F', bookPath: 'g9/hindi/ihsc107.pdf' }],
+    };
+    const { fs, syllabusMap } = freshSyllabusMap();
+    fs.readdirSync = jest.fn().mockReturnValue(['cbse-g9-hindi-ihsc1-chapters.json']);
+    fs.readFileSync = jest.fn().mockReturnValue(JSON.stringify(BAD_DOC));
+
+    const rec = syllabusMap.chaptersFor(9, 'Hindi')[0];
+    expect(rec.title).toBe('Chapter 7');
+    expect(rec.placeholder).toBe(true);
+  });
+
   // Long, multi-word, or hyphenated real titles must not be caught by the
   // "one giant run-together word" or consonant-run checks.
   test('long real multi-word titles are NOT treated as mojibake', () => {
