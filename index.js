@@ -11,6 +11,10 @@ app.get('/health', (_req, res) => res.json({ status: 'ok', service: 'aivorah-lea
 app.use('/ibpyp', require('./routes/ibpyp'));
 app.use('/teacher/syllabus', require('./routes/syllabus'));
 app.use('/curriculum', require('./routes/curriculum'));
+app.use('/teacher-curriculum', require('./routes/teacherCurriculum'));
+app.use('/student/learning-paths', require('./routes/studentLearningPath'));
+
+require('./services/jobHandlers');
 
 const PORT = process.env.PORT || 3014;
 // Only start listening when run directly (`node index.js`) — not when
@@ -19,6 +23,10 @@ if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Aivorah Learning Paths service running on http://localhost:${PORT}`);
   });
+  const { runWorkerOnce } = require('./services/jobQueue');
+  setInterval(() => {
+    runWorkerOnce(5).catch(err => console.error('[jobQueue] drain tick failed:', err.message));
+  }, 4000);
 }
 
 module.exports = app;

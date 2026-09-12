@@ -1,0 +1,65 @@
+const express = require('express');
+const router = express.Router();
+
+const { requireStudentAuth } = require('../middleware/auth');
+const { getLearningPathByCurriculumId, listPublishedLearningPathsForTeachers } = require('../services/curriculumUpload/learningPathRepository');
+const { getCurriculaByIds } = require('../services/curriculumUpload/curriculumRepository');
+const { isStudentOfTeacher, listTeacherIdsForStudent } = require('../services/curriculumUpload/studentAccess');
+
+router.get('/', requireStudentAuth, async (req, res) => {
+  try {
+    const teacherIds = await listTeacherIdsForStudent(req.auth.studentId);
+    const paths = await listPublishedLearningPathsForTeachers(teacherIds);
+    const curricula = await getCurriculaByIds([...new Set(paths.map((p) => p.curriculum_id))]);
+    const titleByCurriculumId = new Map(curricula.map((c) => [c.id, c.file_name]));
+
+    return res.json({
+      learningPaths: paths.map((p) => ({
+        id: p.id,
+        curriculumId: p.curriculum_id,
+        title: titleByCurriculumId.get(p.curriculum_id) || 'Learning Path',
+        publishedAt: p.published_at,
+      })),
+    });
+  } catch (err) {
+    console.error('[student/learning-paths] list failed:', err.message);
+    return res.status(500).json({ error: 'Failed to load learning paths' });
+  }
+});
+
+router.get('/:curriculumId', requireStudentAuth, async (req, res) => {
+  let learningPath;
+  try {
+    learningPath = await getLearningPathByCurriculumId(req.params.curriculumId);
+  } catch (err) {
+    console.error('[student/learning-paths] fetch failed:', err.message);
+    return res.status(500).json({ error: 'Failed to load the learning path' });
+  }
+
+  // A draft must be indistinguishable from "doesn't exist" to a student.
+  if (!learningPath || learningPath.status !== 'published') {
+    return res.status(404).json({ error: 'No published learning path found' });
+  }
+
+  let authorized;
+  try {
+    authorized = await isStudentOfTeacher(learningPath.teacher_id, req.auth.studentId);
+  } catch (err) {
+    console.error('[student/learning-paths] authorization check failed:', err.message);
+    return res.status(500).json({ error: 'Failed to verify access' });
+  }
+  if (!authorized) {
+    return res.status(403).json({ error: 'Not authorized for this learning path' });
+  }
+
+  return res.json({
+    learningPath: {
+      id: learningPath.id,
+      curriculumId: learningPath.curriculum_id,
+      publishedAt: learningPath.published_at,
+      content: learningPath.published_content,
+    },
+  });
+});
+
+module.exports = router;
