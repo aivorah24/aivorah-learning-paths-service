@@ -14,34 +14,43 @@ const FALLBACK_MODEL = 'openai/gpt-oss-20b';
 
 class LearningPathGenerationError extends Error {}
 
+const MAX_SOURCE_CONTEXT_CHARS = 1500;
+
 function collectTopicRefs(normalized) {
   const refs = [];
   normalized.units.forEach((unit) => {
     unit.topics.forEach((topic) => {
       if (!topic.title) return;
+      const sourceContext = (topic.content || []).join(' ').trim().slice(0, MAX_SOURCE_CONTEXT_CHARS);
       refs.push({
         unitOrder: unit.order,
         topicOrder: topic.order,
         unitTitle: unit.title,
         topicTitle: topic.title,
         subtopics: topic.subtopics.map((s) => s.title).filter(Boolean),
+        sourceContext,
       });
     });
   });
   return refs;
 }
 
-function buildPrompt(topicRefs, previousErrors) {
+function buildPrompt(topicRefs, metadata, previousErrors) {
+  const metadataNote = metadata && (metadata.grade || metadata.subject || metadata.curriculum)
+    ? `CURRICULUM CONTEXT: ${[metadata.curriculum, metadata.subject, metadata.grade ? `Grade ${metadata.grade}` : null].filter(Boolean).join(', ')}\n\n`
+    : '';
+
   const topicList = topicRefs
     .map((t) => {
       const subtopicNote = t.subtopics.length ? ` (subtopics: ${t.subtopics.join(', ')})` : '';
-      return `- unitOrder=${t.unitOrder}, topicOrder=${t.topicOrder}: "${t.unitTitle || ''}" > "${t.topicTitle}"${subtopicNote}`;
+      const contextNote = t.sourceContext ? `\n  Source text: "${t.sourceContext}"` : '';
+      return `- unitOrder=${t.unitOrder}, topicOrder=${t.topicOrder}: "${t.unitTitle || ''}" > "${t.topicTitle}"${subtopicNote}${contextNote}`;
     })
     .join('\n');
 
-  const base = `You are writing learning-path content for an EXISTING curriculum outline. You must NOT invent new topics, units or subtopics — only add learning objectives and a lesson breakdown for the topics listed below, using their exact unitOrder/topicOrder pairs.
+  const base = `You are writing learning-path content for an EXISTING curriculum outline. You must NOT invent new topics, units or subtopics — only add learning objectives and a lesson breakdown for the topics listed below, using their exact unitOrder/topicOrder pairs. Ground every objective and lesson in that topic's own "Source text" — never fall back to generic subject knowledge when source text is given.
 
-TOPICS:
+${metadataNote}TOPICS:
 ${topicList}
 
 Respond with ONLY a JSON object of this exact shape:
@@ -107,6 +116,7 @@ function mergeGeneratedContent(normalized, generatedTopics) {
   const byKey = new Map(generatedTopics.map((t) => [`${t.unitOrder}:${t.topicOrder}`, t]));
   return {
     version: 1,
+    metadata: normalized.metadata || {},
     units: normalized.units.map((unit) => ({
       title: unit.title,
       order: unit.order,
@@ -150,10 +160,10 @@ async function generateLearningPathDraft(normalized) {
     return mergeGeneratedContent(normalized, []);
   }
 
-  const first = await attemptGeneration(buildPrompt(topicRefs), topicRefs);
+  const first = await attemptGeneration(buildPrompt(topicRefs, normalized.metadata), topicRefs);
   if (first.ok) return mergeGeneratedContent(normalized, first.topics);
 
-  const second = await attemptGeneration(buildPrompt(topicRefs, first.errors), topicRefs);
+  const second = await attemptGeneration(buildPrompt(topicRefs, normalized.metadata, first.errors), topicRefs);
   if (second.ok) return mergeGeneratedContent(normalized, second.topics);
 
   throw new LearningPathGenerationError(`AI generation failed after retry: ${second.errors.join('; ')}`);

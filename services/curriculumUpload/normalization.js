@@ -1,7 +1,12 @@
 class CurriculumNormalizationError extends Error {}
 
 const CHAPTER_KEYWORD_RE = /^(?:chapter|unit)\s+([0-9]+|[ivxlcdm]+)\s*[:.\-]?\s*(.*)$/i;
+const TOPIC_KEYWORD_RE = /^topic\s+([0-9]+|[ivxlcdm]+)\s*[:.\-]?\s*(.*)$/i;
 const NUMBERED_RE = /^(\d+(?:\.\d+)*)\s*[:.\-]?\s+(.+)$/;
+const METADATA_LINE_RE = /^(grade|subject|curriculum)\s*:\s*(.+)$/i;
+
+const SUBTOPICS_LABEL_RE = /^sub-?topics?$/i;
+const SECTION_LABEL_RES = [SUBTOPICS_LABEL_RE, /^suggested learning objectives$/i];
 
 function normalizeCurriculumStructure(extracted) {
   if (!extracted || typeof extracted !== 'object') {
@@ -18,25 +23,51 @@ function normalizeCurriculumStructure(extracted) {
   }
 }
 
+function extractMetadata(lines) {
+  const metadata = {};
+  for (const line of lines) {
+    const match = METADATA_LINE_RE.exec(line);
+    if (!match) continue;
+    const key = match[1].toLowerCase();
+    if (!metadata[key]) metadata[key] = match[2].trim();
+  }
+  return metadata;
+}
+
 function normalizeTextStructure(text) {
   if (typeof text !== 'string') {
     throw new CurriculumNormalizationError('extracted_structure.text must be a string');
   }
 
   const lines = text.split(/\r?\n/).map((l) => l.trim()).filter((l) => l.length > 0);
+  const metadata = extractMetadata(lines);
   const units = [];
   const preambleLines = [];
   let currentUnit = null;
   let currentTopic = null;
+  let collectingSubtopics = false;
 
   lines.forEach((line, lineIndex) => {
     const chapterMatch = CHAPTER_KEYWORD_RE.exec(line);
-    const numberedMatch = !chapterMatch ? NUMBERED_RE.exec(line) : null;
+    const topicMatch = !chapterMatch ? TOPIC_KEYWORD_RE.exec(line) : null;
+    const numberedMatch = !chapterMatch && !topicMatch ? NUMBERED_RE.exec(line) : null;
 
     if (chapterMatch) {
       currentUnit = newUnit(chapterMatch[2].trim() || line, units.length, lineIndex);
       units.push(currentUnit);
       currentTopic = null;
+      collectingSubtopics = false;
+      return;
+    }
+
+    if (topicMatch) {
+      if (!currentUnit) {
+        currentUnit = newUnit(null, units.length, lineIndex);
+        units.push(currentUnit);
+      }
+      currentTopic = newTopic(topicMatch[2].trim() || line, currentUnit.topics.length, lineIndex);
+      currentUnit.topics.push(currentTopic);
+      collectingSubtopics = false;
       return;
     }
 
@@ -48,6 +79,7 @@ function normalizeTextStructure(text) {
         currentUnit = newUnit(title, units.length, lineIndex);
         units.push(currentUnit);
         currentTopic = null;
+        collectingSubtopics = false;
         return;
       }
       if (!currentUnit) {
@@ -57,6 +89,7 @@ function normalizeTextStructure(text) {
       if (depth === 2) {
         currentTopic = newTopic(title, currentUnit.topics.length, lineIndex);
         currentUnit.topics.push(currentTopic);
+        collectingSubtopics = false;
         return;
       }
       if (!currentTopic) {
@@ -64,6 +97,26 @@ function normalizeTextStructure(text) {
         currentUnit.topics.push(currentTopic);
       }
       currentTopic.subtopics.push({ title, order: currentTopic.subtopics.length, sourceRef: { lineIndex } });
+      collectingSubtopics = false;
+      return;
+    }
+
+    // A bare "Subtopics" label switches into list-collection mode: every
+    // following plain line becomes a subtopic of the current topic until the
+    // next heading or another known section label (e.g. "Suggested Learning
+    // Objectives") ends it — this is how curricula that list subtopics as an
+    // unlabelled bullet list (no numbering) actually look in extracted text.
+    if (SUBTOPICS_LABEL_RE.test(line)) {
+      if (currentTopic) collectingSubtopics = true;
+      return;
+    }
+    if (SECTION_LABEL_RES.some((re) => re.test(line))) {
+      collectingSubtopics = false;
+      // fall through — the label itself still becomes context content below
+    }
+
+    if (collectingSubtopics && currentTopic) {
+      currentTopic.subtopics.push({ title: line, order: currentTopic.subtopics.length, sourceRef: { lineIndex } });
       return;
     }
 
@@ -76,10 +129,11 @@ function normalizeTextStructure(text) {
     return {
       unstructured: true,
       preambleText: '',
+      metadata,
       units: [newUnit(null, 0, 0, preambleLines)],
     };
   }
-  return { unstructured: false, preambleText: preambleLines.join('\n'), units };
+  return { unstructured: false, preambleText: preambleLines.join('\n'), metadata, units };
 }
 
 function newUnit(title, order, lineIndex, content = []) {
@@ -102,7 +156,7 @@ function normalizeXlsxStructure(sheets) {
     });
   });
 
-  return { unstructured: units.length === 0, preambleText: '', units };
+  return { unstructured: units.length === 0, preambleText: '', metadata: {}, units };
 }
 
 function extractUnitsFromSheet(sheet) {

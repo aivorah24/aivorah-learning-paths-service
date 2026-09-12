@@ -68,6 +68,177 @@ describe('normalizeCurriculumStructure — text sources (pdf/docx)', () => {
   });
 });
 
+describe('normalizeCurriculumStructure — "Topic N: Title" keyword headings (regression for the empty-topics bug)', () => {
+  test('"Topic N: Title" becomes a real topic under the current unit', () => {
+    const text = 'Unit 1: Number Systems\nTopic 1: Knowing Our Numbers\nTopic 2: Whole Numbers';
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text });
+    expect(normalized.units[0].topics.map((t) => t.title)).toEqual(['Knowing Our Numbers', 'Whole Numbers']);
+  });
+
+  test('"Topic N - Title" (dash separator) is also recognized', () => {
+    const text = 'Unit 1: Algebra\nTopic 1 - Variables\nTopic 2 - Expressions';
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text });
+    expect(normalized.units[0].topics.map((t) => t.title)).toEqual(['Variables', 'Expressions']);
+  });
+
+  test('bare numeric topic headings ("1.1 Title") still work alongside keyword headings', () => {
+    const text = 'Unit 1: Numbers\n1.1 Whole Numbers\nTopic 2: Fractions';
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text });
+    expect(normalized.units[0].topics.map((t) => t.title)).toEqual(['Whole Numbers', 'Fractions']);
+  });
+
+  test('a "Subtopics" label followed by plain lines becomes subtopics[], not flattened content', () => {
+    const text = [
+      'Unit 1: Number Systems',
+      'Topic 1: Knowing Our Numbers',
+      'Subtopics',
+      'Reading and writing large numbers',
+      'Place value and face value',
+      'Suggested Learning Objectives',
+      'Explain the main concepts.',
+    ].join('\n');
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text });
+    const topic = normalized.units[0].topics[0];
+    expect(topic.subtopics.map((s) => s.title)).toEqual(['Reading and writing large numbers', 'Place value and face value']);
+    expect(topic.content).toEqual(['Suggested Learning Objectives', 'Explain the main concepts.']);
+  });
+
+  test('subtopic collection stops at the next Topic heading', () => {
+    const text = [
+      'Unit 1: Numbers',
+      'Topic 1: A',
+      'Subtopics',
+      'A1',
+      'A2',
+      'Topic 2: B',
+      'Subtopics',
+      'B1',
+    ].join('\n');
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text });
+    expect(normalized.units[0].topics[0].subtopics.map((s) => s.title)).toEqual(['A1', 'A2']);
+    expect(normalized.units[0].topics[1].subtopics.map((s) => s.title)).toEqual(['B1']);
+  });
+
+  test('documents without any Subtopics section still produce topics with an empty subtopics array', () => {
+    const text = 'Unit 1: Numbers\nTopic 1: Whole Numbers\nSome descriptive text.';
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text });
+    expect(normalized.units[0].topics[0].subtopics).toEqual([]);
+    expect(normalized.units[0].topics[0].content).toEqual(['Some descriptive text.']);
+  });
+
+  test('a "Subtopics" label with no current topic is ignored rather than crashing', () => {
+    const text = 'Subtopics\nOrphan line\nUnit 1: Numbers';
+    expect(() => normalizeCurriculumStructure({ format: 'docx', text })).not.toThrow();
+  });
+});
+
+describe('normalizeCurriculumStructure — Grade/Subject/Curriculum metadata', () => {
+  test('parses Grade:, Subject: and Curriculum: lines deterministically', () => {
+    const text = 'Grade: 6\nSubject: Mathematics\nCurriculum: NCERT\nUnit 1: Numbers';
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text });
+    expect(normalized.metadata).toEqual({ grade: '6', subject: 'Mathematics', curriculum: 'NCERT' });
+  });
+
+  test('missing/optional metadata does not throw and yields an empty object', () => {
+    const text = 'Unit 1: Numbers\nTopic 1: Whole Numbers';
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text });
+    expect(normalized.metadata).toEqual({});
+  });
+
+  test('only the first occurrence of a metadata key is kept', () => {
+    const text = 'Grade: 6\nGrade: 7\nUnit 1: Numbers';
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text });
+    expect(normalized.metadata.grade).toBe('6');
+  });
+});
+
+describe('normalizeCurriculumStructure — real Grade 6 Mathematics test document (regression)', () => {
+  const REAL_DOCX_TEXT = [
+    'Grade 6 Mathematics Curriculum',
+    'Teacher Curriculum -> Learning Path Test Document',
+    'Grade: 6',
+    'Subject: Mathematics',
+    'Purpose: Test curriculum upload, extraction, normalization, AI learning-path generation, teacher review/edit, and publishing.',
+    'Unit 1: Number Systems',
+    'This unit develops foundational mathematical understanding through concepts, examples, practice, and application.',
+    'Topic 1: Knowing Our Numbers',
+    'Students will understand the key ideas in this topic and apply them to age-appropriate mathematical problems.',
+    'Subtopics',
+    'Reading and writing large numbers',
+    'Place value and face value',
+    'Comparing and ordering numbers',
+    'Suggested Learning Objectives',
+    'Explain the main concepts of 1: Knowing Our Numbers. Apply the concepts to solve appropriate mathematical problems.',
+    'Topic 2: Whole Numbers',
+    'Students will understand the key ideas in this topic and apply them to age-appropriate mathematical problems.',
+    'Subtopics',
+    'Number line',
+    'Successor and predecessor',
+    'Properties of whole numbers',
+    'Suggested Learning Objectives',
+    'Explain the main concepts of 2: Whole Numbers. Apply the concepts to solve appropriate mathematical problems.',
+    'Unit 2: Fractions and Decimals',
+    'This unit develops foundational mathematical understanding through concepts, examples, practice, and application.',
+    'Topic 1: Understanding Fractions',
+    'Students will understand the key ideas in this topic and apply them to age-appropriate mathematical problems.',
+    'Subtopics',
+    'Types of fractions',
+    'Equivalent fractions',
+    'Comparing fractions',
+    'Suggested Learning Objectives',
+    'Explain the main concepts of 1: Understanding Fractions. Apply the concepts to solve appropriate mathematical problems.',
+    'Topic 2: Decimals',
+    'Students will understand the key ideas in this topic and apply them to age-appropriate mathematical problems.',
+    'Subtopics',
+    'Reading decimal numbers',
+    'Comparing decimals',
+    'Fractions and decimals',
+    'Suggested Learning Objectives',
+    'Explain the main concepts of 2: Decimals. Apply the concepts to solve appropriate mathematical problems.',
+    'Unit 3: Geometry',
+    'This unit develops foundational mathematical understanding through concepts, examples, practice, and application.',
+    'Topic 1: Basic Geometrical Ideas',
+    'Students will understand the key ideas in this topic and apply them to age-appropriate mathematical problems.',
+    'Subtopics',
+    'Points, lines and line segments',
+    'Rays and angles',
+    'Parallel and intersecting lines',
+    'Suggested Learning Objectives',
+    'Explain the main concepts of 1: Basic Geometrical Ideas. Apply the concepts to solve appropriate mathematical problems.',
+    'Topic 2: Understanding Shapes',
+    'Students will understand the key ideas in this topic and apply them to age-appropriate mathematical problems.',
+    'Subtopics',
+    'Triangles and quadrilaterals',
+    'Properties of common shapes',
+    'Symmetry',
+    'Suggested Learning Objectives',
+    'Explain the main concepts of 2: Understanding Shapes. Apply the concepts to solve appropriate mathematical problems.',
+    'Assessment Guidance',
+    'Assess understanding using short-answer questions, worked examples, problem-solving activities, and application-based exercises.',
+  ].join('\n');
+
+  test('produces exactly 3 units, 6 topics, 18 subtopics, and Grade 6 / Mathematics metadata — never silently loses topics into unit.content again', () => {
+    const normalized = normalizeCurriculumStructure({ format: 'docx', text: REAL_DOCX_TEXT });
+
+    expect(normalized.units).toHaveLength(3);
+    expect(normalized.units.map((u) => u.title)).toEqual(['Number Systems', 'Fractions and Decimals', 'Geometry']);
+
+    const totalTopics = normalized.units.reduce((sum, u) => sum + u.topics.length, 0);
+    expect(totalTopics).toBe(6);
+
+    const totalSubtopics = normalized.units.reduce(
+      (sum, u) => sum + u.topics.reduce((s, t) => s + t.subtopics.length, 0), 0
+    );
+    expect(totalSubtopics).toBe(18);
+
+    expect(normalized.metadata).toEqual({ grade: '6', subject: 'Mathematics' });
+
+    // Each topic must retain its own descriptive text as source-grounding context.
+    const knowingOurNumbers = normalized.units[0].topics[0];
+    expect(knowingOurNumbers.content.join(' ')).toContain('Explain the main concepts of 1: Knowing Our Numbers');
+  });
+});
+
 describe('normalizeCurriculumStructure — xlsx sources', () => {
   test('builds a hierarchy from a sheet with recognizable chapter/topic/subtopic columns', () => {
     const sheets = [{

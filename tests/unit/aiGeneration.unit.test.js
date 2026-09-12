@@ -18,29 +18,35 @@ function completionWith(content) {
 const normalized = {
   sourceFormat: 'pdf',
   unstructured: false,
+  metadata: { grade: '6', subject: 'Mathematics' },
   units: [
     {
       title: 'Numbers',
       order: 0,
       topics: [
-        { title: 'Whole Numbers', order: 0, subtopics: [{ title: 'Addition', order: 0 }] },
-        { title: 'Fractions', order: 1, subtopics: [] },
+        { title: 'Whole Numbers', order: 0, subtopics: [{ title: 'Addition', order: 0 }], content: ['Covers place value and number lines.'] },
+        { title: 'Fractions', order: 1, subtopics: [], content: [] },
       ],
     },
   ],
 };
 
 describe('collectTopicRefs', () => {
-  test('flattens titled topics with their unit/topic order and subtopic titles', () => {
+  test('flattens titled topics with their unit/topic order, subtopic titles and source context', () => {
     expect(collectTopicRefs(normalized)).toEqual([
-      { unitOrder: 0, topicOrder: 0, unitTitle: 'Numbers', topicTitle: 'Whole Numbers', subtopics: ['Addition'] },
-      { unitOrder: 0, topicOrder: 1, unitTitle: 'Numbers', topicTitle: 'Fractions', subtopics: [] },
+      { unitOrder: 0, topicOrder: 0, unitTitle: 'Numbers', topicTitle: 'Whole Numbers', subtopics: ['Addition'], sourceContext: 'Covers place value and number lines.' },
+      { unitOrder: 0, topicOrder: 1, unitTitle: 'Numbers', topicTitle: 'Fractions', subtopics: [], sourceContext: '' },
     ]);
   });
 
   test('skips untitled topics', () => {
     const withUntitled = { units: [{ order: 0, title: 'U', topics: [{ order: 0, title: null, subtopics: [] }] }] };
     expect(collectTopicRefs(withUntitled)).toEqual([]);
+  });
+
+  test('caps very long source context so the prompt stays bounded', () => {
+    const long = { units: [{ order: 0, title: 'U', topics: [{ order: 0, title: 'T', subtopics: [], content: ['x'.repeat(5000)] }] }] };
+    expect(collectTopicRefs(long)[0].sourceContext.length).toBe(1500);
   });
 });
 
@@ -84,6 +90,34 @@ describe('mergeGeneratedContent', () => {
     expect(merged.units[0].topics[0].objectives).toEqual(['Add numbers']);
     expect(merged.units[0].topics[1].objectives).toEqual([]);
     expect(merged.units[0].topics[0].subtopics).toEqual([{ title: 'Addition', order: 0 }]);
+  });
+
+  test('carries the normalized metadata through onto the merged content', () => {
+    const merged = mergeGeneratedContent(normalized, []);
+    expect(merged.metadata).toEqual({ grade: '6', subject: 'Mathematics' });
+  });
+
+  test('defaults metadata to an empty object when the normalized structure has none', () => {
+    const merged = mergeGeneratedContent({ units: [] }, []);
+    expect(merged.metadata).toEqual({});
+  });
+});
+
+describe('generateLearningPathDraft grounding', () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  test('sends each topic\'s source text and curriculum metadata to Groq', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({
+      topics: [{ unitOrder: 0, topicOrder: 0, objectives: [], lessons: [] }],
+    }));
+
+    await generateLearningPathDraft(normalized);
+
+    const sentPrompt = mockCreate.mock.calls[0][0].messages[0].content;
+    expect(sentPrompt).toContain('Covers place value and number lines.');
+    expect(sentPrompt).toContain('Grade 6');
+    expect(sentPrompt).toContain('Mathematics');
+    expect(sentPrompt).toMatch(/ground/i);
   });
 });
 
