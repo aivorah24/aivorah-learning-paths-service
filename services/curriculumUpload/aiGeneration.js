@@ -1,9 +1,19 @@
 const Groq = require('groq-sdk');
+const { retrieveGroundingContext } = require('./groundedContent');
 
 let _groq = null;
 function getGroqClient() {
   if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
   return _groq;
+}
+
+// Lazy — enrichment.js constructs its own Groq/Supabase clients at module
+// load, which crashes under jest.requireActual in tests that only need this
+// file's error classes. Requiring it on first real use avoids that entirely.
+let _enrichment = null;
+function getEnrichment() {
+  if (!_enrichment) _enrichment = require('../curriculum/enrichment');
+  return _enrichment;
 }
 
 // Same models already proven for structured JSON generation in this service
@@ -33,6 +43,73 @@ function collectTopicRefs(normalized) {
     });
   });
   return refs;
+}
+
+// Reuses the same enrichment.js block types the student Learn tab already
+// renders (worked_example, example, process, comparison, explanation) —
+// LearningBlocks.tsx never needs to change for teacher-generated content to
+// display there. A topic with no example-shaped block still gets one real
+// lesson from its explanation/overview rather than an empty lessons array.
+function deriveObjectivesAndLessons(whatYoullLearn, blocks) {
+  const objectives = Array.isArray(whatYoullLearn) ? whatYoullLearn : [];
+  const lessons = [];
+
+  for (const block of blocks) {
+    if (block.type === 'worked_example') {
+      lessons.push({
+        title: block.concept || 'Worked Example',
+        summary: `${block.problem} ${block.steps.map((s) => s.action).join(' ')} Final answer: ${block.finalAnswer}`,
+      });
+    } else if (block.type === 'example') {
+      lessons.push({ title: 'Example', summary: block.text });
+    } else if (block.type === 'process') {
+      lessons.push({ title: block.title || 'Process', summary: block.steps.join(' -> ') });
+    } else if (block.type === 'comparison') {
+      lessons.push({ title: block.title || 'Comparison', summary: block.items.map((i) => `${i.name}: ${i.description}`).join('; ') });
+    }
+  }
+
+  if (lessons.length === 0) {
+    const prose = blocks.find((b) => b.type === 'explanation' || b.type === 'overview');
+    if (prose) lessons.push({ title: 'Explanation', summary: prose.text });
+  }
+
+  return { objectives, lessons };
+}
+
+async function groundTopic(topicRef, metadata) {
+  const retrieved = await retrieveGroundingContext({
+    curriculum: metadata?.curriculum,
+    grade: metadata?.grade,
+    subject: metadata?.subject,
+    topic: topicRef.topicTitle,
+    subtopics: topicRef.subtopics,
+  });
+  if (!retrieved) return null;
+
+  const { generateStructuredContent, classifyContentType } = getEnrichment();
+  const contentType = classifyContentType(metadata?.subject);
+  const generated = await generateStructuredContent({
+    curriculum: metadata?.curriculum || 'CBSE',
+    grade: metadata?.grade,
+    subject: metadata?.subject,
+    topic: topicRef.topicTitle,
+    chapterPdf: null,
+    primaryText: retrieved.context,
+    contextText: '',
+    contentType,
+  });
+  if (!generated.ok) return null;
+
+  const { objectives, lessons } = deriveObjectivesAndLessons(generated.whatYoullLearn, generated.blocks);
+  return {
+    unitOrder: topicRef.unitOrder,
+    topicOrder: topicRef.topicOrder,
+    objectives,
+    lessons,
+    content: { whatYoullLearn: generated.whatYoullLearn, blocks: generated.blocks, contentType },
+    groundingSource: 'ncert_vector',
+  };
 }
 
 function buildPrompt(topicRefs, metadata, previousErrors) {
@@ -103,7 +180,7 @@ function validateGeneratedTopics(parsed, topicRefs) {
           .filter((l) => l && typeof l.title === 'string' && l.title.trim())
           .map((l) => ({ title: l.title.trim(), summary: typeof l.summary === 'string' ? l.summary.trim() : '' }))
       : [];
-    topics.push({ unitOrder: entry.unitOrder, topicOrder: entry.topicOrder, objectives, lessons });
+    topics.push({ unitOrder: entry.unitOrder, topicOrder: entry.topicOrder, objectives, lessons, groundingSource: 'upload_text_only' });
   });
 
   if (topics.length === 0) {
@@ -128,6 +205,8 @@ function mergeGeneratedContent(normalized, generatedTopics) {
           subtopics: topic.subtopics.map((s) => ({ title: s.title, order: s.order })),
           objectives: generated?.objectives || [],
           lessons: generated?.lessons || [],
+          content: generated?.content || null,
+          groundingSource: generated?.groundingSource || 'none',
         };
       }),
     })),
@@ -160,12 +239,25 @@ async function generateLearningPathDraft(normalized) {
     return mergeGeneratedContent(normalized, []);
   }
 
-  const first = await attemptGeneration(buildPrompt(topicRefs, normalized.metadata), topicRefs);
-  if (first.ok) return mergeGeneratedContent(normalized, first.topics);
+  // Prefer real NCERT/vector grounding per topic. Topics where retrieval is
+  // genuinely insufficient fall through to the upload-text-grounded batch
+  // path below — never silently upgraded to invented "generic knowledge".
+  const groundedResults = await Promise.all(topicRefs.map((ref) => groundTopic(ref, normalized.metadata)));
+  const grounded = groundedResults.filter(Boolean);
+  const groundedKeys = new Set(grounded.map((g) => `${g.unitOrder}:${g.topicOrder}`));
+  const ungroundedRefs = topicRefs.filter((ref) => !groundedKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
-  const second = await attemptGeneration(buildPrompt(topicRefs, normalized.metadata, first.errors), topicRefs);
-  if (second.ok) return mergeGeneratedContent(normalized, second.topics);
+  if (ungroundedRefs.length === 0) {
+    return mergeGeneratedContent(normalized, grounded);
+  }
 
+  const first = await attemptGeneration(buildPrompt(ungroundedRefs, normalized.metadata), ungroundedRefs);
+  if (first.ok) return mergeGeneratedContent(normalized, [...grounded, ...first.topics]);
+
+  const second = await attemptGeneration(buildPrompt(ungroundedRefs, normalized.metadata, first.errors), ungroundedRefs);
+  if (second.ok) return mergeGeneratedContent(normalized, [...grounded, ...second.topics]);
+
+  if (grounded.length > 0) return mergeGeneratedContent(normalized, grounded);
   throw new LearningPathGenerationError(`AI generation failed after retry: ${second.errors.join('; ')}`);
 }
 
@@ -174,5 +266,6 @@ module.exports = {
   collectTopicRefs,
   validateGeneratedTopics,
   mergeGeneratedContent,
+  deriveObjectivesAndLessons,
   LearningPathGenerationError,
 };

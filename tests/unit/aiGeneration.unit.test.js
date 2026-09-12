@@ -3,11 +3,23 @@ jest.mock('groq-sdk', () => jest.fn().mockImplementation(() => ({
   chat: { completions: { create: mockCreate } },
 })));
 
+const mockRetrieveGroundingContext = jest.fn();
+jest.mock('../../services/curriculumUpload/groundedContent', () => ({
+  retrieveGroundingContext: (...args) => mockRetrieveGroundingContext(...args),
+}));
+
+const mockGenerateStructuredContent = jest.fn();
+jest.mock('../../services/curriculum/enrichment', () => ({
+  generateStructuredContent: (...args) => mockGenerateStructuredContent(...args),
+  classifyContentType: (subject) => (String(subject).toLowerCase() === 'mathematics' ? 'mathematics' : 'theory'),
+}));
+
 const {
   generateLearningPathDraft,
   collectTopicRefs,
   validateGeneratedTopics,
   mergeGeneratedContent,
+  deriveObjectivesAndLessons,
   LearningPathGenerationError,
 } = require('../../services/curriculumUpload/aiGeneration');
 
@@ -50,6 +62,27 @@ describe('collectTopicRefs', () => {
   });
 });
 
+describe('deriveObjectivesAndLessons', () => {
+  test('maps a worked_example block into a lesson with the real worked steps and final answer', () => {
+    const { lessons } = deriveObjectivesAndLessons(['Add whole numbers'], [
+      { type: 'worked_example', concept: 'Addition', problem: '245 + 378 = ?', steps: [{ step: 1, action: 'Add ones: 5+8=13, write 3 carry 1', why: 'ones place first' }], finalAnswer: '623' },
+    ]);
+    expect(lessons[0].title).toBe('Addition');
+    expect(lessons[0].summary).toContain('245 + 378 = ?');
+    expect(lessons[0].summary).toContain('Add ones: 5+8=13');
+    expect(lessons[0].summary).toContain('623');
+  });
+
+  test('falls back to the explanation block when no example-shaped block exists', () => {
+    const { lessons } = deriveObjectivesAndLessons([], [{ type: 'explanation', text: 'Whole numbers start from 0.' }]);
+    expect(lessons).toEqual([{ title: 'Explanation', summary: 'Whole numbers start from 0.' }]);
+  });
+
+  test('produces no lessons when blocks are empty', () => {
+    expect(deriveObjectivesAndLessons(['x'], []).lessons).toEqual([]);
+  });
+});
+
 describe('validateGeneratedTopics', () => {
   const refs = [{ unitOrder: 0, topicOrder: 0 }, { unitOrder: 0, topicOrder: 1 }];
 
@@ -58,7 +91,7 @@ describe('validateGeneratedTopics', () => {
       topics: [{ unitOrder: 0, topicOrder: 0, objectives: ['Add two numbers'], lessons: [{ title: 'Intro', summary: 'x' }] }],
     }, refs);
     expect(result.valid).toBe(true);
-    expect(result.topics).toEqual([{ unitOrder: 0, topicOrder: 0, objectives: ['Add two numbers'], lessons: [{ title: 'Intro', summary: 'x' }] }]);
+    expect(result.topics).toEqual([{ unitOrder: 0, topicOrder: 0, objectives: ['Add two numbers'], lessons: [{ title: 'Intro', summary: 'x' }], groundingSource: 'upload_text_only' }]);
   });
 
   test('drops an entry referencing an unknown unitOrder/topicOrder rather than merging it', () => {
@@ -101,14 +134,106 @@ describe('mergeGeneratedContent', () => {
     const merged = mergeGeneratedContent({ units: [] }, []);
     expect(merged.metadata).toEqual({});
   });
+
+  test('carries content and groundingSource through, defaulting to none when absent', () => {
+    const merged = mergeGeneratedContent(normalized, [
+      { unitOrder: 0, topicOrder: 0, objectives: [], lessons: [], content: { whatYoullLearn: ['x'], blocks: [] }, groundingSource: 'ncert_vector' },
+    ]);
+    expect(merged.units[0].topics[0].groundingSource).toBe('ncert_vector');
+    expect(merged.units[0].topics[0].content).toEqual({ whatYoullLearn: ['x'], blocks: [] });
+    expect(merged.units[0].topics[1].groundingSource).toBe('none');
+    expect(merged.units[0].topics[1].content).toBeNull();
+  });
 });
 
-describe('generateLearningPathDraft grounding', () => {
+describe('generateLearningPathDraft — NCERT/vector grounding', () => {
   beforeEach(() => jest.clearAllMocks());
+
+  test('uses real retrieved content for a topic with a genuine vector match, skipping the batch Groq call for it', async () => {
+    mockRetrieveGroundingContext.mockImplementation(async ({ topic }) =>
+      topic === 'Whole Numbers' ? { context: 'Real NCERT text about whole numbers and the number line.', meta: { selected: 2 } } : null
+    );
+    mockGenerateStructuredContent.mockResolvedValueOnce({
+      ok: true,
+      whatYoullLearn: ['Place whole numbers on a number line'],
+      blocks: [{ type: 'worked_example', concept: 'Number line', problem: 'Plot 7 on a number line', steps: [{ step: 1, action: 'Mark 0 to 10', why: 'establishes scale' }], finalAnswer: '7 marked between 6 and 8' }],
+    });
+    mockCreate.mockResolvedValueOnce(completionWith({ topics: [{ unitOrder: 0, topicOrder: 1, objectives: [], lessons: [] }] }));
+
+    const draft = await generateLearningPathDraft(normalized);
+
+    expect(mockGenerateStructuredContent).toHaveBeenCalledWith(expect.objectContaining({
+      primaryText: 'Real NCERT text about whole numbers and the number line.',
+      topic: 'Whole Numbers',
+      grade: '6',
+      subject: 'Mathematics',
+    }));
+    const wholeNumbers = draft.units[0].topics[0];
+    expect(wholeNumbers.groundingSource).toBe('ncert_vector');
+    expect(wholeNumbers.lessons[0].summary).toContain('Plot 7 on a number line');
+    expect(wholeNumbers.objectives).toEqual(['Place whole numbers on a number line']);
+
+    // Only the ungrounded topic (Fractions) went through the batch Groq prompt.
+    const sentPrompt = mockCreate.mock.calls[0][0].messages[0].content;
+    expect(sentPrompt).not.toContain('Whole Numbers');
+    expect(sentPrompt).toContain('Fractions');
+  });
+
+  test('falls back to upload-text grounding when retrieval finds nothing — never invents NCERT content', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockCreate.mockResolvedValueOnce(completionWith({
+      topics: [
+        { unitOrder: 0, topicOrder: 0, objectives: ['x'], lessons: [] },
+        { unitOrder: 0, topicOrder: 1, objectives: [], lessons: [] },
+      ],
+    }));
+
+    const draft = await generateLearningPathDraft(normalized);
+
+    expect(mockGenerateStructuredContent).not.toHaveBeenCalled();
+    expect(draft.units[0].topics[0].groundingSource).toBe('upload_text_only');
+  });
+
+  test('does not cross-contaminate: a retrieval hit for one topic is never applied to another', async () => {
+    mockRetrieveGroundingContext.mockImplementation(async ({ topic }) =>
+      topic === 'Fractions' ? { context: 'Real NCERT fractions text.', meta: { selected: 1 } } : null
+    );
+    mockGenerateStructuredContent.mockResolvedValueOnce({ ok: true, whatYoullLearn: [], blocks: [{ type: 'explanation', text: 'Fractions explained.' }] });
+    mockCreate.mockResolvedValueOnce(completionWith({ topics: [{ unitOrder: 0, topicOrder: 0, objectives: [], lessons: [] }] }));
+
+    const draft = await generateLearningPathDraft(normalized);
+
+    expect(draft.units[0].topics[0].groundingSource).toBe('upload_text_only'); // Whole Numbers
+    expect(draft.units[0].topics[1].groundingSource).toBe('ncert_vector'); // Fractions
+    expect(draft.units[0].topics[1].lessons[0].summary).toBe('Fractions explained.');
+  });
+
+  test('a grounded generation failure for one topic still falls back to the batch path for it', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValue({ ok: false, reason: 'schema_validation_failed' });
+    mockCreate.mockResolvedValueOnce(completionWith({
+      topics: [
+        { unitOrder: 0, topicOrder: 0, objectives: ['fallback'], lessons: [] },
+        { unitOrder: 0, topicOrder: 1, objectives: [], lessons: [] },
+      ],
+    }));
+
+    const draft = await generateLearningPathDraft(normalized);
+
+    expect(draft.units[0].topics[0].groundingSource).toBe('upload_text_only');
+    expect(draft.units[0].topics[0].objectives).toEqual(['fallback']);
+  });
+});
+
+describe('generateLearningPathDraft', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+  });
 
   test('sends each topic\'s source text and curriculum metadata to Groq', async () => {
     mockCreate.mockResolvedValueOnce(completionWith({
-      topics: [{ unitOrder: 0, topicOrder: 0, objectives: [], lessons: [] }],
+      topics: [{ unitOrder: 0, topicOrder: 0, objectives: [], lessons: [] }, { unitOrder: 0, topicOrder: 1, objectives: [], lessons: [] }],
     }));
 
     await generateLearningPathDraft(normalized);
@@ -119,14 +244,10 @@ describe('generateLearningPathDraft grounding', () => {
     expect(sentPrompt).toContain('Mathematics');
     expect(sentPrompt).toMatch(/ground/i);
   });
-});
-
-describe('generateLearningPathDraft', () => {
-  beforeEach(() => jest.clearAllMocks());
 
   test('returns a valid draft on the first successful Groq response', async () => {
     mockCreate.mockResolvedValueOnce(completionWith({
-      topics: [{ unitOrder: 0, topicOrder: 0, objectives: ['Add numbers'], lessons: [] }],
+      topics: [{ unitOrder: 0, topicOrder: 0, objectives: ['Add numbers'], lessons: [] }, { unitOrder: 0, topicOrder: 1, objectives: [], lessons: [] }],
     }));
 
     const draft = await generateLearningPathDraft(normalized);
