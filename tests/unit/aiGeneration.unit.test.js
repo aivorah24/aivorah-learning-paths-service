@@ -20,6 +20,7 @@ const {
   validateGeneratedTopics,
   mergeGeneratedContent,
   deriveObjectivesAndLessons,
+  generateWorkedExample,
   LearningPathGenerationError,
 } = require('../../services/curriculumUpload/aiGeneration');
 
@@ -146,6 +147,49 @@ describe('mergeGeneratedContent', () => {
   });
 });
 
+describe('generateWorkedExample', () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  const topicRef = { topicTitle: 'Adding Fractions', unitOrder: 0, topicOrder: 0 };
+  const metadata = { grade: '6', subject: 'Mathematics' };
+
+  test('grounds the prompt in the retrieved source text and the topic title', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({
+      type: 'worked_example',
+      problem: '1/4 + 1/2 = ?',
+      concept: 'Adding unlike fractions',
+      steps: [{ step: 1, action: 'Convert to a common denominator: 1/4 + 2/4', why: 'fractions need the same denominator to add' }],
+      finalAnswer: '3/4',
+    }));
+
+    const block = await generateWorkedExample(topicRef, metadata, "Brahmagupta's method involves finding a common denominator.");
+
+    expect(block.type).toBe('worked_example');
+    expect(block.finalAnswer).toBe('3/4');
+    const sentPrompt = mockCreate.mock.calls[0][0].messages[0].content;
+    expect(sentPrompt).toContain('Adding Fractions');
+    expect(sentPrompt).toContain("Brahmagupta's method");
+  });
+
+  test('returns null when the model response fails block validation', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({ type: 'worked_example', problem: 'x' })); // missing steps/finalAnswer
+    const block = await generateWorkedExample(topicRef, metadata, 'source text');
+    expect(block).toBeNull();
+  });
+
+  test('returns null on invalid JSON rather than throwing', async () => {
+    mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: 'not json' } }] });
+    const block = await generateWorkedExample(topicRef, metadata, 'source text');
+    expect(block).toBeNull();
+  });
+
+  test('returns null when the Groq call itself fails, never throwing', async () => {
+    mockCreate.mockRejectedValue(new Error('rate limited'));
+    const block = await generateWorkedExample(topicRef, metadata, 'source text');
+    expect(block).toBeNull();
+  });
+});
+
 describe('generateLearningPathDraft — NCERT/vector grounding', () => {
   beforeEach(() => jest.clearAllMocks());
 
@@ -199,7 +243,14 @@ describe('generateLearningPathDraft — NCERT/vector grounding', () => {
       topic === 'Fractions' ? { context: 'Real NCERT fractions text.', meta: { selected: 1 } } : null
     );
     mockGenerateStructuredContent.mockResolvedValueOnce({ ok: true, whatYoullLearn: [], blocks: [{ type: 'explanation', text: 'Fractions explained.' }] });
-    mockCreate.mockResolvedValueOnce(completionWith({ topics: [{ unitOrder: 0, topicOrder: 0, objectives: [], lessons: [] }] }));
+    // Fractions' blocks have no worked_example and the subject is Mathematics, so the
+    // extra targeted worked-example call fires too — route mockCreate by prompt content
+    // instead of call order since it now fires concurrently with the batch call.
+    mockCreate.mockImplementation(async (opts) => {
+      const prompt = opts.messages[0].content;
+      if (prompt.includes('worked mathematical example')) return completionWith({ topics: [] }); // invalid worked_example shape -> skipped
+      return completionWith({ topics: [{ unitOrder: 0, topicOrder: 0, objectives: [], lessons: [] }] });
+    });
 
     const draft = await generateLearningPathDraft(normalized);
 

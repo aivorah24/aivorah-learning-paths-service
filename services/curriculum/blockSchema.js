@@ -44,6 +44,12 @@ const BLOCK_VALIDATORS = {
 
 const VALID_TYPES = Object.keys(BLOCK_VALIDATORS);
 
+function validateBlock(block) {
+  if (!block || typeof block !== 'object' || !isNonEmptyString(block.type)) return false;
+  const validator = BLOCK_VALIDATORS[block.type];
+  return Boolean(validator && validator(block));
+}
+
 /**
  * Validates one AI-generated enrichment payload before it's ever persisted
  * or served. Never throws — returns { valid, errors, blocks } where `blocks`
@@ -88,4 +94,4 @@ function validateEnrichment(payload) {
   };
 }
 
-module.exports = { validateEnrichment, VALID_TYPES };
+module.exports = { validateEnrichment, validateBlock, VALID_TYPES };

@@ -1,5 +1,6 @@
 const Groq = require('groq-sdk');
 const { retrieveGroundingContext } = require('./groundedContent');
+const { validateBlock } = require('../curriculum/blockSchema');
 
 let _groq = null;
 function getGroqClient() {
@@ -77,6 +78,45 @@ function deriveObjectivesAndLessons(whatYoullLearn, blocks) {
   return { objectives, lessons };
 }
 
+// generateStructuredContent (services/curriculum/enrichment.js) is shared
+// with the student Learn tab and deliberately omits a worked_example block
+// rather than fabricate one when the source has no worked problem in it —
+// true for every currently-ingested NCERT chunk (chapter-summary/keyword
+// text only, confirmed via direct Qdrant query). Teacher-curriculum math
+// topics still need a real example, so this makes ONE additional targeted
+// Groq call — reusing the same client/model-fallback path, not a new
+// pipeline — asking specifically for a worked_example grounded in the
+// retrieved context's named method/key-terms. Numbers are necessarily
+// invented (the source has none), but arithmetic correctness is required.
+// Failure here never fails the topic — it just means no worked example.
+async function generateWorkedExample(topicRef, metadata, retrievedContext) {
+  const prompt = `You are creating ONE worked mathematical example for a student learning "${topicRef.topicTitle}"${metadata?.grade ? ` (Grade ${metadata.grade})` : ''}.
+
+SOURCE MATERIAL (use its named method/technique — do not use a different method):
+"${retrievedContext}"
+
+Write one concrete numeric problem that applies the method described above, and solve it step by step with fully correct arithmetic (double-check every calculation before answering).
+
+Respond with ONLY a JSON object of this exact shape:
+{"type":"worked_example","problem":"...","concept":"...","steps":[{"step":1,"action":"...","equation":"...","why":"..."}],"finalAnswer":"...","check":"..."}`;
+
+  let completion;
+  try {
+    completion = await callGroq(prompt);
+  } catch (err) {
+    return null;
+  }
+
+  let block;
+  try {
+    block = JSON.parse(completion.choices?.[0]?.message?.content || '');
+  } catch (err) {
+    return null;
+  }
+
+  return validateBlock(block) ? block : null;
+}
+
 async function groundTopic(topicRef, metadata) {
   const retrieved = await retrieveGroundingContext({
     curriculum: metadata?.curriculum,
@@ -100,6 +140,11 @@ async function groundTopic(topicRef, metadata) {
     contentType,
   });
   if (!generated.ok) return null;
+
+  if (contentType === 'mathematics' && !generated.blocks.some((b) => b.type === 'worked_example')) {
+    const workedExample = await generateWorkedExample(topicRef, metadata, retrieved.context);
+    if (workedExample) generated.blocks = [...generated.blocks, workedExample];
+  }
 
   const { objectives, lessons } = deriveObjectivesAndLessons(generated.whatYoullLearn, generated.blocks);
   return {
@@ -267,5 +312,6 @@ module.exports = {
   validateGeneratedTopics,
   mergeGeneratedContent,
   deriveObjectivesAndLessons,
+  generateWorkedExample,
   LearningPathGenerationError,
 };

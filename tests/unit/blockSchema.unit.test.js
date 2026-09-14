@@ -1,4 +1,4 @@
-const { validateEnrichment } = require('../../services/curriculum/blockSchema');
+const { validateEnrichment, validateBlock } = require('../../services/curriculum/blockSchema');
 
 describe('validateEnrichment', () => {
   test('a real, well-formed theory payload is valid', () => {
@@ -83,5 +83,31 @@ describe('validateEnrichment', () => {
     expect(validateEnrichment(null).valid).toBe(false);
     expect(validateEnrichment('a string').valid).toBe(false);
     expect(validateEnrichment(undefined).valid).toBe(false);
+  });
+});
+
+describe('validateBlock', () => {
+  test('accepts a well-formed worked_example block', () => {
+    expect(validateBlock({
+      type: 'worked_example',
+      problem: '1/4 + 1/2 = ?',
+      concept: 'Adding unlike fractions',
+      steps: [{ step: 1, action: 'Convert to a common denominator', why: 'fractions need the same denominator to add' }],
+      finalAnswer: '3/4',
+    })).toBe(true);
+  });
+
+  test('rejects a worked_example missing its steps', () => {
+    expect(validateBlock({ type: 'worked_example', problem: 'x', finalAnswer: '3' })).toBe(false);
+  });
+
+  test('rejects an unknown block type', () => {
+    expect(validateBlock({ type: 'not_a_real_type', text: 'x' })).toBe(false);
+  });
+
+  test('rejects null, non-object and typeless input without throwing', () => {
+    expect(validateBlock(null)).toBe(false);
+    expect(validateBlock('x')).toBe(false);
+    expect(validateBlock({})).toBe(false);
   });
 });
