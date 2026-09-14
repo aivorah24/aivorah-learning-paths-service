@@ -23,7 +23,14 @@ async function retrieveGroundingContext({ curriculum, grade, subject, topic, sub
     const res = await fetch(`${AI_COACH_SERVICE_URL}/curriculum-context`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question, curriculum: curriculum || 'CBSE', grade, subject, topic }),
+      // Default to NCERT, not CBSE, when the uploaded document has no explicit
+      // "Curriculum:" line — the only content ingested into Qdrant so far is
+      // NCERT-tagged (confirmed: aivorah-ai-coach-service/services/rag.js hardcodes
+      // curriculum: 'NCERT' for its own NCERT-image lookups). "CBSE" filters
+      // against a curriculum tag with little/no matching Qdrant content, which
+      // silently degraded real topics (e.g. "Whole Numbers") below the grounding
+      // score threshold even though a strong NCERT match existed.
+      body: JSON.stringify({ question, curriculum: curriculum || 'NCERT', grade, subject, topic }),
     });
     if (!res.ok) return null;
     const data = await res.json();

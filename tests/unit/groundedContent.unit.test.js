@@ -45,6 +45,16 @@ describe('retrieveGroundingContext', () => {
     expect(result).not.toBeNull();
   });
 
+  test('defaults missing curriculum to NCERT, not CBSE — the only curriculum actually ingested into Qdrant', async () => {
+    global.fetch = jest.fn().mockResolvedValue(jsonResponse({
+      context: 'real ncert text', meta: { selected: 1 }, sources: [{ topic: 'Whole Numbers', score: 0.57 }],
+    }));
+    const result = await retrieveGroundingContext({ grade: '6', subject: 'Mathematics', topic: 'Whole Numbers' });
+    expect(result).not.toBeNull();
+    const [, options] = global.fetch.mock.calls[0];
+    expect(JSON.parse(options.body).curriculum).toBe('NCERT');
+  });
+
   test('returns null without calling fetch when grade or subject is missing', async () => {
     global.fetch = jest.fn();
     const result = await retrieveGroundingContext({ curriculum: 'CBSE', topic: 'Whole Numbers' });
