@@ -27,16 +27,34 @@ async function resolveVerifiedUser(req, res, requiredRole) {
   // users.id is the canonical identity every service resolves by email — not
   // the Firebase uid — so downstream tables (teacher_curricula, teacher_student)
   // key off it.
+  const emailLc = decoded.email.toLowerCase();
   const { data: user, error } = await supabase
     .from('users')
     .select('id, role')
-    .eq('email', decoded.email)
+    .eq('email', emailLc)
     .maybeSingle();
   if (error) {
     res.status(500).json({ error: error.message });
     return null;
   }
-  if (!user || user.role !== requiredRole) {
+  
+  let hasRole = user && user.role === requiredRole;
+  
+  // Dual-role check: if the user exists but their primary role is not the required one,
+  // check if they have the required role in their user_preferences.
+  if (user && !hasRole) {
+    const { data: pref } = await supabase
+      .from('user_preferences')
+      .select('data')
+      .eq('user_email', emailLc)
+      .maybeSingle();
+      
+    if (pref && pref.data && Array.isArray(pref.data.roles) && pref.data.roles.includes(requiredRole)) {
+      hasRole = true;
+    }
+  }
+
+  if (!hasRole) {
     res.status(403).json({ error: `No ${requiredRole} account found for this identity` });
     return null;
   }

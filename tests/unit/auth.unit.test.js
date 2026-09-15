@@ -66,7 +66,9 @@ describe('requireAuth', () => {
     firebaseAdmin.auth = jest.fn(() => ({
       verifyIdToken: jest.fn().mockResolvedValue({ uid: 'uid123', email: 'student@school.com' }),
     }));
-    supabase._chain.maybeSingle.mockResolvedValueOnce({ data: { id: 'u1', role: 'student' }, error: null });
+    supabase._chain.maybeSingle
+      .mockResolvedValueOnce({ data: { id: 'u1', role: 'student' }, error: null })
+      .mockResolvedValueOnce({ data: null, error: null });
     const req = { headers: { authorization: 'Bearer good' } };
     const res = mockRes();
     const next = jest.fn();
@@ -108,7 +110,9 @@ describe('requireStudentAuth', () => {
     firebaseAdmin.auth = jest.fn(() => ({
       verifyIdToken: jest.fn().mockResolvedValue({ uid: 'uid123', email: 'teacher@school.com' }),
     }));
-    supabase._chain.maybeSingle.mockResolvedValueOnce({ data: { id: 'u1', role: 'teacher' }, error: null });
+    supabase._chain.maybeSingle
+      .mockResolvedValueOnce({ data: { id: 'u1', role: 'teacher' }, error: null })
+      .mockResolvedValueOnce({ data: null, error: null });
     const req = { headers: { authorization: 'Bearer good' } };
     const res = mockRes();
     const next = jest.fn();
