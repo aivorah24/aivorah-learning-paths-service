@@ -152,15 +152,48 @@ async function groundTopic(topicRef, metadata) {
     topicOrder: topicRef.topicOrder,
     objectives,
     lessons,
+    // A grounded topic has real retrieved content by construction, so it's
+    // always "ready" — needs_teacher_input only ever applies to the
+    // upload-text-only fallback path below, which has no vector grounding
+    // to fall back on.
+    status: 'ready',
+    teacherHint: null,
     content: { whatYoullLearn: generated.whatYoullLearn, blocks: generated.blocks, contentType },
     groundingSource: 'ncert_vector',
   };
 }
 
+// Grade-band calibration for the batch (ungrounded-fallback) prompt path —
+// the grounded path already gets its calibration for free via enrichment.js's
+// own contentType-driven generation, but this path writes objectives/lessons
+// straight from a template, so vocabulary/pacing has to be steered explicitly.
+function gradeCalibrationNote(grade) {
+  const g = Number(String(grade || '').match(/(\d+)/)?.[1]);
+  if (!g) return '';
+  if (g <= 2) {
+    return 'GRADE CALIBRATION: Early years. Use basic phonics-level vocabulary, sentences under 12 words, and concrete physical analogies (counting objects, animals, toys). Keep each lesson bite-sized.';
+  }
+  if (g <= 5) {
+    return 'GRADE CALIBRATION: Elementary. Use accessible vocabulary with inline explanations of any new term, sequential numbered steps, and visual anchors a child can picture.';
+  }
+  if (g <= 8) {
+    return 'GRADE CALIBRATION: Middle school. Use domain-specific terminology with structured definitions, multi-step reasoning, and real-world context.';
+  }
+  return 'GRADE CALIBRATION: High school. Use advanced technical/academic prose, abstract models, and formal multi-step problem-solving where relevant.';
+}
+
+// Anti-hallucination gap-resolution protocol: a topic whose only source is a
+// bare title/vague bullet must not be padded out with invented curriculum
+// material — it should be flagged for the teacher instead. Applies to this
+// batch path specifically because it has no vector-retrieved grounding to
+// fall back on; the grounded path (groundTopic) never reaches here at all.
+const GAP_RESOLUTION_NOTE = `GAP RESOLUTION: For each topic, if its "Source text" (or subtopics) gives enough detail to write real objectives and lessons, set "status":"ready" and "teacherHint":null. If the topic has only a bare title or a vague bullet with no usable detail, do NOT invent curriculum material to fill the gap — set "status":"needs_teacher_input", write minimal/generic objectives and an empty lessons array, and set "teacherHint" to a specific, actionable prompt telling the teacher what to add (e.g. "The uploaded document lists 'Quadrilaterals' with no subtopics — specify whether this covers area formulas, angle sums, or proofs.").`;
+
 function buildPrompt(topicRefs, metadata, previousErrors) {
   const metadataNote = metadata && (metadata.grade || metadata.subject || metadata.curriculum)
     ? `CURRICULUM CONTEXT: ${[metadata.curriculum, metadata.subject, metadata.grade ? `Grade ${metadata.grade}` : null].filter(Boolean).join(', ')}\n\n`
     : '';
+  const calibrationNote = gradeCalibrationNote(metadata?.grade);
 
   const topicList = topicRefs
     .map((t) => {
@@ -172,11 +205,13 @@ function buildPrompt(topicRefs, metadata, previousErrors) {
 
   const base = `You are writing learning-path content for an EXISTING curriculum outline. You must NOT invent new topics, units or subtopics — only add learning objectives and a lesson breakdown for the topics listed below, using their exact unitOrder/topicOrder pairs. Ground every objective and lesson in that topic's own "Source text" — never fall back to generic subject knowledge when source text is given.
 
+${calibrationNote ? `${calibrationNote}\n\n` : ''}${GAP_RESOLUTION_NOTE}
+
 ${metadataNote}TOPICS:
 ${topicList}
 
 Respond with ONLY a JSON object of this exact shape:
-{"topics": [{"unitOrder": number, "topicOrder": number, "objectives": string[], "lessons": [{"title": string, "summary": string}]}]}
+{"topics": [{"unitOrder": number, "topicOrder": number, "status": "ready" | "needs_teacher_input", "teacherHint": string | null, "objectives": string[], "lessons": [{"title": string, "summary": string}]}]}
 
 Every unitOrder/topicOrder pair in your response MUST exactly match one from the list above. Do not add topics that are not listed.`;
 
@@ -225,7 +260,14 @@ function validateGeneratedTopics(parsed, topicRefs) {
           .filter((l) => l && typeof l.title === 'string' && l.title.trim())
           .map((l) => ({ title: l.title.trim(), summary: typeof l.summary === 'string' ? l.summary.trim() : '' }))
       : [];
-    topics.push({ unitOrder: entry.unitOrder, topicOrder: entry.topicOrder, objectives, lessons, groundingSource: 'upload_text_only' });
+    // Model omitting status/teacherHint (older prompt behavior, or a lenient
+    // model) defaults to "ready"/null rather than failing validation — the
+    // gap-resolution protocol is a quality signal, not a required field.
+    const status = entry.status === 'needs_teacher_input' ? 'needs_teacher_input' : 'ready';
+    const teacherHint = status === 'needs_teacher_input' && typeof entry.teacherHint === 'string' && entry.teacherHint.trim()
+      ? entry.teacherHint.trim()
+      : null;
+    topics.push({ unitOrder: entry.unitOrder, topicOrder: entry.topicOrder, objectives, lessons, status, teacherHint, groundingSource: 'upload_text_only' });
   });
 
   if (topics.length === 0) {
@@ -250,6 +292,8 @@ function mergeGeneratedContent(normalized, generatedTopics) {
           subtopics: topic.subtopics.map((s) => ({ title: s.title, order: s.order })),
           objectives: generated?.objectives || [],
           lessons: generated?.lessons || [],
+          status: generated?.status || 'ready',
+          teacherHint: generated?.teacherHint ?? null,
           content: generated?.content || null,
           groundingSource: generated?.groundingSource || 'none',
         };
