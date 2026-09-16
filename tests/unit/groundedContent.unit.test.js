@@ -68,9 +68,21 @@ describe('retrieveGroundingContext', () => {
     expect(result).toBeNull();
   });
 
-  test('returns null on a network failure rather than throwing', async () => {
+  test('retries once after a cold-start network failure, then returns null if it keeps failing', async () => {
     global.fetch = jest.fn().mockRejectedValue(new Error('network down'));
     const result = await retrieveGroundingContext({ curriculum: 'CBSE', grade: '6', subject: 'Mathematics', topic: 'Whole Numbers' });
     expect(result).toBeNull();
-  });
+    expect(global.fetch).toHaveBeenCalledTimes(2);
+  }, 8000);
+
+  test('recovers on retry if the first attempt fails but the second succeeds — the actual cold-start case', async () => {
+    global.fetch = jest.fn()
+      .mockRejectedValueOnce(new Error('network down'))
+      .mockResolvedValueOnce(jsonResponse({
+        context: 'real ncert text', meta: { selected: 1 }, sources: [{ topic: 'Whole Numbers', score: 0.57 }],
+      }));
+    const result = await retrieveGroundingContext({ curriculum: 'CBSE', grade: '6', subject: 'Mathematics', topic: 'Whole Numbers' });
+    expect(result).not.toBeNull();
+    expect(global.fetch).toHaveBeenCalledTimes(2);
+  }, 8000);
 });
