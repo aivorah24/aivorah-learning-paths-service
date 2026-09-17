@@ -74,6 +74,22 @@ describe('deriveObjectivesAndLessons', () => {
     expect(lessons[0].summary).toContain('623');
   });
 
+  test('numbers multi-step worked examples with real line breaks instead of a run-on sentence', () => {
+    const { lessons } = deriveObjectivesAndLessons([], [
+      {
+        type: 'worked_example', concept: 'Fractions', problem: 'Compare 5/8 and 3/5',
+        steps: [
+          { step: 1, action: 'Divide 5 by 8', equation: '5 ÷ 8 = 0.625', why: 'convert to decimal' },
+          { step: 2, action: 'Divide 3 by 5', equation: '3 ÷ 5 = 0.6', why: 'convert to decimal' },
+        ],
+        finalAnswer: '5/8 is greater',
+      },
+    ]);
+    expect(lessons[0].summary).toBe(
+      'Compare 5/8 and 3/5\n1. Divide 5 by 8 (5 ÷ 8 = 0.625)\n2. Divide 3 by 5 (3 ÷ 5 = 0.6)\nFinal answer: 5/8 is greater'
+    );
+  });
+
   test('falls back to the explanation block when no example-shaped block exists', () => {
     const { lessons } = deriveObjectivesAndLessons([], [{ type: 'explanation', text: 'Whole numbers start from 0.' }]);
     expect(lessons).toEqual([{ title: 'Explanation', summary: 'Whole numbers start from 0.' }]);

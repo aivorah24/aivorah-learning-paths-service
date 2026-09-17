@@ -59,7 +59,9 @@ function deriveObjectivesAndLessons(whatYoullLearn, blocks) {
     if (block.type === 'worked_example') {
       lessons.push({
         title: block.concept || 'Worked Example',
-        summary: `${block.problem} ${block.steps.map((s) => s.action).join(' ')} Final answer: ${block.finalAnswer}`,
+        summary: `${block.problem}\n${block.steps
+          .map((s, idx) => `${idx + 1}. ${s.action}${s.equation ? ` (${s.equation})` : ''}`)
+          .join('\n')}\nFinal answer: ${block.finalAnswer}`,
       });
     } else if (block.type === 'example') {
       lessons.push({ title: 'Example', summary: block.text });
