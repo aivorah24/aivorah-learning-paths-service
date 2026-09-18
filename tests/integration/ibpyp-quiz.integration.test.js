@@ -87,11 +87,29 @@ describe('POST /ibpyp/quiz', () => {
     expect(supabase._chain.maybeSingle).not.toHaveBeenCalled();
   });
 
-  test('an unparseable LLM response -> 500', async () => {
-    mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: 'not json at all' } }] });
+  // A single bad generation (e.g. truncated mid-array — see the RCA comment
+  // above generateAndParseQuiz in the route) retries once with a fresh
+  // completion before giving up, so one unlucky response doesn't surface as
+  // a user-facing failure.
+  test('one unparseable LLM response followed by a good one -> retries and succeeds', async () => {
+    mockCreate
+      .mockResolvedValueOnce({ choices: [{ message: { content: 'not json at all' }, finish_reason: 'length' }] })
+      .mockResolvedValueOnce(groqResponse({
+        questions: [{ type: 'mcq', question: 'Q1', options: ['A', 'B', 'C', 'D'], correct: 0 }],
+      }));
+
     const res = await request(app).post('/ibpyp/quiz').send({ topic: 'Fractions' });
+
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+    expect(res.status).toBe(200);
+  });
+
+  test('two consecutive unparseable LLM responses -> 500', async () => {
+    mockCreate.mockResolvedValue({ choices: [{ message: { content: 'not json at all' }, finish_reason: 'length' }] });
+    const res = await request(app).post('/ibpyp/quiz').send({ topic: 'Fractions' });
+    expect(mockCreate).toHaveBeenCalledTimes(2);
     expect(res.status).toBe(500);
-    expect(res.body.error).toBe('Failed to parse quiz response');
+    expect(res.body.error).toBe('Quiz generation failed');
   });
 
   test('fill_blank questions come out with an empty options array and a trimmed string answer', async () => {
