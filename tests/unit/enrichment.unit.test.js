@@ -20,7 +20,7 @@ jest.mock('../../services/qdrant', () => ({
   resolveTopicWithContext: (...args) => mockResolveTopicWithContext(...args),
 }));
 
-const { getOrGenerateEnrichment, classifyContentType } = require('../../services/curriculum/enrichment');
+const { getOrGenerateEnrichment, classifyContentType, buildPrompt } = require('../../services/curriculum/enrichment');
 
 function groqReturns(jsonObj) {
   mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: JSON.stringify(jsonObj) } }] });
@@ -147,5 +147,49 @@ describe('getOrGenerateEnrichment', () => {
       }),
       { onConflict: 'curriculum,grade,subject,topic' }
     );
+  });
+});
+
+describe('buildPrompt grade calibration wiring', () => {
+  test('a young grade injects the Foundational calibration note into the GROUNDED prompt', () => {
+    const prompt = buildPrompt({ curriculum: 'NCERT', grade: '2', subject: 'Mathematics', topic: 'Counting', primaryText: 'x', contextText: '', contentType: 'mathematics' });
+    expect(prompt).toMatch(/GRADE CALIBRATION \(Foundational/);
+  });
+
+  test('a higher grade injects the Secondary calibration note', () => {
+    const prompt = buildPrompt({ curriculum: 'NCERT', grade: '10', subject: 'Physics', topic: 'Motion', primaryText: 'x', contextText: '', contentType: 'physics' });
+    expect(prompt).toMatch(/GRADE CALIBRATION \(Secondary/);
+  });
+
+  test('no grade omits the calibration note without breaking the prompt', () => {
+    const prompt = buildPrompt({ curriculum: 'NCERT', subject: 'Physics', topic: 'Motion', primaryText: 'x', contextText: '', contentType: 'physics' });
+    expect(prompt).not.toMatch(/GRADE CALIBRATION/);
+  });
+
+  test('theory content type mentions timeline/cause_and_effect/case_study for History-shaped content', () => {
+    const prompt = buildPrompt({ curriculum: 'NCERT', grade: '8', subject: 'History', topic: 'The Revolt of 1857', primaryText: 'x', contextText: '', contentType: 'theory' });
+    expect(prompt).toMatch(/timeline/);
+    expect(prompt).toMatch(/cause_and_effect/);
+    expect(prompt).toMatch(/case_study/);
+  });
+});
+
+describe('buildPrompt dual-concept and Indian place-value instructions', () => {
+  test('always includes the dual/composite concept instruction, regardless of topic title', () => {
+    const prompt = buildPrompt({ curriculum: 'NCERT', grade: '6', subject: 'Mathematics', topic: 'Place Value and Face Value', primaryText: 'x', contextText: '', contentType: 'mathematics' });
+    expect(prompt).toMatch(/DUAL\/COMPOSITE CONCEPTS/);
+    expect(prompt).toMatch(/every named concept/i);
+  });
+
+  test('always includes the Indian Place Value System instruction', () => {
+    const prompt = buildPrompt({ curriculum: 'NCERT', grade: '6', subject: 'Mathematics', topic: 'Place Value and Face Value', primaryText: 'x', contextText: '', contentType: 'mathematics' });
+    expect(prompt).toMatch(/INDIAN PLACE VALUE SYSTEM/);
+    expect(prompt).toMatch(/9,63,001/);
+  });
+
+  test('mathematics guidance offers a table block as the no-image fallback', () => {
+    const prompt = buildPrompt({ curriculum: 'NCERT', grade: '6', subject: 'Mathematics', topic: 'Place Value and Face Value', primaryText: 'x', contextText: '', contentType: 'mathematics' });
+    expect(prompt).toMatch(/"table"/);
+    expect(prompt).toMatch(/Place Value Chart/);
   });
 });

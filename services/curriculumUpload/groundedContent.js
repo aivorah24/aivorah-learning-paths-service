@@ -66,7 +66,11 @@ async function retrieveGroundingContext({ curriculum, grade, subject, topic, sub
       const topScore = Math.max(0, ...(data.sources || []).map((s) => s.score || 0));
       if (topScore < MIN_TOPIC_MATCH_SCORE) return null;
 
-      return data;
+      // data.images comes straight from rag.js's buildImages() (real Qdrant
+      // image chunks: url/caption/subject/grade/topic) — passed through
+      // as-is so callers can attach a grounded "image" block rather than
+      // this service re-deriving image data itself.
+      return { ...data, images: Array.isArray(data.images) ? data.images : [] };
     } catch (err) {
       const willRetry = attempt === 1;
       console.error(

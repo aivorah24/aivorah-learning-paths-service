@@ -15,6 +15,7 @@
 const Groq = require('groq-sdk');
 const supabase = require('../supabase');
 const { validateEnrichment } = require('./blockSchema');
+const { gradeCalibrationNote } = require('./gradeCalibration');
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -62,14 +63,20 @@ const BLOCK_SHAPES = `{"type":"overview","text":"..."}
 {"type":"activity","text":"..."}
 {"type":"tip","text":"..."}
 {"type":"common_mistake","text":"..."}
+{"type":"timeline","title":"...","events":[{"date":"...","description":"..."}]}
+{"type":"cause_and_effect","title":"...","items":[{"cause":"...","effect":"..."}]}
+{"type":"case_study","title":"...","text":"..."}
+{"type":"table","caption":"...","headers":["...","..."],"rows":[["...","..."],["...","..."]]}
 Use these EXACT field names for whichever types you use — do not rename "text" to "content", do not flatten {term, definition} items into a plain string array, do not omit "type".`;
 
 const CONTENT_TYPE_GUIDANCE = {
   theory: `Use these block types as appropriate: overview, explanation, key_terms, key_points, example, activity, tip.
+If the SOURCE TEXT is History/Civics/Geography content, also use these when the source actually supports them: "timeline" for a sequence of dated events, "cause_and_effect" for causal relationships the source describes, "case_study" for a specific real example/scenario the source discusses in depth.
 Do not force every block type — only include a block if the source material actually supports it.`,
-  mathematics: `Use these block types as appropriate: overview, explanation, key_terms, formula, worked_example, key_points, activity, common_mistake.
+  mathematics: `Use these block types as appropriate: overview, explanation, key_terms, formula, worked_example, key_points, activity, common_mistake, table.
 If the source contains a worked problem/example sum, you MUST produce a "worked_example" block — never just state the final answer. "steps" needs one entry per real step, and "why" must explain the reasoning, not just restate the arithmetic.
-Write equations/expressions as LaTeX-compatible strings (e.g. "x^2 + 3x - 4 = 0", "\\\\frac{a}{b}") — never flatten them into ambiguous plain text.`,
+Write equations/expressions as LaTeX-compatible strings (e.g. "x^2 + 3x - 4 = 0", "\\\\frac{a}{b}") — never flatten them into ambiguous plain text. Numerical formulas, expansions, and coordinate/value breakdowns should be expressed as clean Markdown tables ("table" block), callouts, or LaTeX ($inline$ / $$display$$), not requested or described as raster images.
+If no grounded image is available for a place-value/quantitative topic, produce a "table" block representing the relevant structure (e.g. a Place Value Chart: headers for Periods/Places such as ["Period","Digit"] or ["TTh","Th","H","T","O"], rows with example values) instead of describing an image you cannot generate.`,
   physics: `Use these block types as appropriate: overview, explanation, key_terms, formula, worked_example, key_points, tip.
 "formula" blocks should include the variables and their units where the source states them. Numerical worked examples follow the same worked_example shape as mathematics, and the final answer must include units.`,
   chemistry: `Use these block types as appropriate: overview, explanation, key_terms, chemical_equation, key_points, example, tip.
@@ -91,13 +98,16 @@ Rules — follow all of them:
 5. "whatYoullLearn" is a short list (2-4 items) of what the student will understand after this topic, grounded in the source.
 6. Every block must have a "type" field from the allowed list below, plus that type's required fields.
 7. If there genuinely isn't enough source material to support a block type (e.g. no worked example present), do not fabricate one just to fill a slot — omit it.
-8. Never produce an empty blocks array — if the source is thin, still produce at least an "explanation" block grounded in exactly what's there.`;
+8. Never produce an empty blocks array — if the source is thin, still produce at least an "explanation" block grounded in exactly what's there.
+9. DUAL/COMPOSITE CONCEPTS: if the topic title names more than one distinct concept (e.g. "Place Value and Face Value", "Successor and Predecessor"), you MUST explicitly define, contrast, and give a worked example for EVERY named concept — never substitute or over-index on an adjacent idea (e.g. comma placement, large-number reading) instead of covering all the concepts actually named in the title. Address each named concept by name.
+10. INDIAN PLACE VALUE SYSTEM: whenever this content involves comma placement, periods, or reading/writing large numbers, use the Indian Place Value System (commas after the first 3 digits from the right, then every 2 digits — e.g. 9,63,001; periods: Ones, Thousands, Lakhs, Crores) as the primary and correct convention, since NCERT uses this system. Only mention the International system (commas every 3 digits, e.g. 963,001) as a labeled contrast if pedagogically relevant — never present both as equally valid without clearly labeling which one is NCERT-standard.`;
 
 function buildPrompt({ curriculum, grade, subject, chapterPdf, topic, primaryText, contextText, contentType }) {
   const guidance = CONTENT_TYPE_GUIDANCE[contentType] || CONTENT_TYPE_GUIDANCE.theory;
+  const calibrationNote = gradeCalibrationNote(grade);
   return `${COMMON_RULES}
 
-EXACT FIELD SHAPES (use these field names precisely):
+${calibrationNote ? `${calibrationNote}\n\n` : ''}EXACT FIELD SHAPES (use these field names precisely):
 ${BLOCK_SHAPES}
 
 ALLOWED BLOCK TYPES FOR THIS SUBJECT:

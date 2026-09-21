@@ -1,6 +1,8 @@
 const Groq = require('groq-sdk');
 const { retrieveGroundingContext } = require('./groundedContent');
 const { validateBlock } = require('../curriculum/blockSchema');
+const { gradeCalibrationNote } = require('../curriculum/gradeCalibration');
+const { verifyWorkedExample } = require('./mathValidator');
 
 let _groq = null;
 function getGroqClient() {
@@ -60,7 +62,11 @@ function deriveObjectivesAndLessons(whatYoullLearn, blocks) {
       lessons.push({
         title: block.concept || 'Worked Example',
         summary: `${block.problem}\n${block.steps
-          .map((s, idx) => `${idx + 1}. ${s.action}${s.equation ? ` (${s.equation})` : ''}`)
+          .map((s, idx) => {
+            const explanation = s.explanation || s.action || '';
+            const calculation = s.calculation || s.equation || '';
+            return `${idx + 1}. ${explanation}${calculation ? ` (${calculation})` : ''}`;
+          })
           .join('\n')}\nFinal answer: ${block.finalAnswer}`,
       });
     } else if (block.type === 'example') {
@@ -85,38 +91,80 @@ function deriveObjectivesAndLessons(whatYoullLearn, blocks) {
 // rather than fabricate one when the source has no worked problem in it —
 // true for every currently-ingested NCERT chunk (chapter-summary/keyword
 // text only, confirmed via direct Qdrant query). Teacher-curriculum math
-// topics still need a real example, so this makes ONE additional targeted
-// Groq call — reusing the same client/model-fallback path, not a new
-// pipeline — asking specifically for a worked_example grounded in the
-// retrieved context's named method/key-terms. Numbers are necessarily
-// invented (the source has none), but arithmetic correctness is required.
+// topics still need an example, so this makes ONE additional targeted Groq
+// call — reusing the same client/model-fallback path, not a new pipeline —
+// asking specifically for a worked_example grounded in the retrieved
+// context's named method/key-terms.
+//
+// The numeric problem itself is necessarily invented (the source has no
+// worked problem to draw one from) — arithmetic correctness is verified,
+// but the NUMBERS are not NCERT-sourced. Per the anti-hallucination rule
+// applied everywhere else in this file (see GAP_RESOLUTION_NOTE below:
+// "do NOT invent curriculum material ... to fill the gap"), this must never
+// be presented to a student as if it came from the textbook. The block is
+// tagged `synthetic: true` so callers/UI can render it as a clearly-labeled
+// AI-generated practice example rather than indistinguishable NCERT content.
 // Failure here never fails the topic — it just means no worked example.
-async function generateWorkedExample(topicRef, metadata, retrievedContext) {
-  const prompt = `You are creating ONE worked mathematical example for a student learning "${topicRef.topicTitle}"${metadata?.grade ? ` (Grade ${metadata.grade})` : ''}.
+function buildWorkedExamplePrompt(topicRef, metadata, retrievedContext, arithmeticErrors) {
+  const base = `You are creating ONE worked mathematical PRACTICE example for a student learning "${topicRef.topicTitle}"${metadata?.grade ? ` (Grade ${metadata.grade})` : ''}.
 
 SOURCE MATERIAL (use its named method/technique — do not use a different method):
 "${retrievedContext}"
 
-Write one concrete numeric problem that applies the method described above, and solve it step by step with fully correct arithmetic (double-check every calculation before answering).
+This problem's numbers are NOT taken from the source material (the source describes the method but contains no worked numeric problem) — you are creating an illustrative AI-generated practice problem that applies the same method. Write one concrete numeric problem that applies the method described above, and solve it step by step with fully correct arithmetic (double-check every calculation before answering).
+
+Each step MUST include a "calculation" field written as a checkable arithmetic equality (e.g. "12 + 8 = 20"), not prose — this is machine-verified after you respond, so it must be exact.
 
 Respond with ONLY a JSON object of this exact shape:
-{"type":"worked_example","problem":"...","concept":"...","steps":[{"step":1,"action":"...","equation":"...","why":"..."}],"finalAnswer":"...","check":"..."}`;
+{"type":"worked_example","problem":"...","concept":"...","steps":[{"step_number":1,"explanation":"...","calculation":"12 + 8 = 20"}],"finalAnswer":"...","check":"..."}`;
 
-  let completion;
-  try {
-    completion = await callGroq(prompt);
-  } catch (err) {
-    return null;
+  if (!arithmeticErrors) return base;
+  return `${base}\n\nYour previous response had incorrect arithmetic in these steps: ${JSON.stringify(arithmeticErrors)}. Recompute carefully and respond again with the corrected JSON object, same shape.`;
+}
+
+// synthetic:true / exampleType:'GROUNDED_SYNTHETIC' are applied here, not
+// requested of the model — a required hallucination-disclosure flag must not
+// depend on the model choosing to include it. `synthetic: true` is kept
+// alongside the new taxonomy field for frontend backward-compat (see
+// adaptTeacherContent.ts / LearningBlocks.tsx, which already read it).
+//
+// Arithmetic is deterministically re-checked (mathValidator.js) rather than
+// trusted from the model — one retry on failure, reusing the same
+// schema-validation retry pattern used elsewhere in this file. A block that
+// still fails verification after the retry is dropped (returns null) rather
+// than ever being tagged GROUNDED_SYNTHETIC/SOURCE_DERIVED with wrong
+// arithmetic — the caller already treats null as "no worked example this
+// round", never a silent bad-content save.
+async function generateWorkedExample(topicRef, metadata, retrievedContext) {
+  let arithmeticErrors = null;
+
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    const prompt = buildWorkedExamplePrompt(topicRef, metadata, retrievedContext, arithmeticErrors);
+
+    let completion;
+    try {
+      completion = await callGroq(prompt);
+    } catch (err) {
+      return null;
+    }
+
+    let block;
+    try {
+      block = JSON.parse(completion.choices?.[0]?.message?.content || '');
+    } catch (err) {
+      return null;
+    }
+
+    if (!validateBlock(block)) return null;
+
+    const verification = verifyWorkedExample(block);
+    if (verification.valid) {
+      return { ...block, synthetic: true, exampleType: 'GROUNDED_SYNTHETIC' };
+    }
+    if (attempt === 2) return null; // still wrong after retry — never save as correct
+    arithmeticErrors = verification.failures;
   }
-
-  let block;
-  try {
-    block = JSON.parse(completion.choices?.[0]?.message?.content || '');
-  } catch (err) {
-    return null;
-  }
-
-  return validateBlock(block) ? block : null;
+  return null;
 }
 
 async function groundTopic(topicRef, metadata) {
@@ -143,6 +191,23 @@ async function groundTopic(topicRef, metadata) {
   });
   if (!generated.ok) return null;
 
+  // Any worked_example enrichment.js already produced came straight from the
+  // retrieved NCERT text (it deliberately omits the block otherwise — see
+  // enrichment.js's COMMON_RULES rule 7) — tag it SOURCE_DERIVED, the
+  // taxonomy's real-example category, distinct from the invented-but-verified
+  // GROUNDED_SYNTHETIC one generateWorkedExample() below produces.
+  generated.blocks = generated.blocks.map((b) =>
+    b.type === 'worked_example' && !b.exampleType ? { ...b, exampleType: 'SOURCE_DERIVED' } : b
+  );
+
+  // Attach the top retrieved image (if any) as a real "image" block — the
+  // url/caption come straight from Qdrant via rag.js's buildImages(), never
+  // invented by the LLM prompt.
+  const topImage = (retrieved.images || [])[0];
+  if (topImage?.url) {
+    generated.blocks = [...generated.blocks, { type: 'image', url: topImage.url, caption: topImage.caption || topicRef.topicTitle, alt_text: topImage.caption || topicRef.topicTitle }];
+  }
+
   if (contentType === 'mathematics' && !generated.blocks.some((b) => b.type === 'worked_example')) {
     const workedExample = await generateWorkedExample(topicRef, metadata, retrieved.context);
     if (workedExample) generated.blocks = [...generated.blocks, workedExample];
@@ -165,24 +230,10 @@ async function groundTopic(topicRef, metadata) {
   };
 }
 
-// Grade-band calibration for the batch (ungrounded-fallback) prompt path —
-// the grounded path already gets its calibration for free via enrichment.js's
-// own contentType-driven generation, but this path writes objectives/lessons
-// straight from a template, so vocabulary/pacing has to be steered explicitly.
-function gradeCalibrationNote(grade) {
-  const g = Number(String(grade || '').match(/(\d+)/)?.[1]);
-  if (!g) return '';
-  if (g <= 2) {
-    return 'GRADE CALIBRATION: Early years. Use basic phonics-level vocabulary, sentences under 12 words, and concrete physical analogies (counting objects, animals, toys). Keep each lesson bite-sized.';
-  }
-  if (g <= 5) {
-    return 'GRADE CALIBRATION: Elementary. Use accessible vocabulary with inline explanations of any new term, sequential numbered steps, and visual anchors a child can picture.';
-  }
-  if (g <= 8) {
-    return 'GRADE CALIBRATION: Middle school. Use domain-specific terminology with structured definitions, multi-step reasoning, and real-world context.';
-  }
-  return 'GRADE CALIBRATION: High school. Use advanced technical/academic prose, abstract models, and formal multi-step problem-solving where relevant.';
-}
+// gradeCalibrationNote now lives in ../curriculum/gradeCalibration.js — shared
+// with enrichment.js's buildPrompt (the GROUNDED path) so both generation
+// paths get the same 4-tier calibration instead of only this batch-fallback
+// path having it.
 
 // Anti-hallucination gap-resolution protocol: a topic whose only source is a
 // bare title/vague bullet must not be padded out with invented curriculum

@@ -224,6 +224,38 @@ describe('generateWorkedExample', () => {
     const block = await generateWorkedExample(topicRef, metadata, 'source text');
     expect(block).toBeNull();
   });
+
+  // Hallucination-disclosure fix: the source has no worked problem to draw
+  // numbers from, so any worked example this function produces must be
+  // tagged synthetic — never presented as if it were NCERT-sourced.
+  test('always tags a successfully generated worked example as synthetic, regardless of what the model returns', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({
+      type: 'worked_example',
+      problem: '1/4 + 1/2 = ?',
+      concept: 'Adding unlike fractions',
+      steps: [{ step: 1, action: 'Convert to a common denominator: 1/4 + 2/4', why: 'fractions need the same denominator to add' }],
+      finalAnswer: '3/4',
+      // A model that ignores the instruction and claims groundedness must
+      // not be able to unset the disclosure flag — it's applied by the
+      // caller, not requested of the model.
+      synthetic: false,
+    }));
+
+    const block = await generateWorkedExample(topicRef, metadata, 'source text');
+
+    expect(block.synthetic).toBe(true);
+  });
+
+  test('prompt tells the model the numbers are not from the source material', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({
+      type: 'worked_example', problem: 'x', steps: [{ step: 1, action: 'a', why: 'b' }], finalAnswer: 'y',
+    }));
+
+    await generateWorkedExample(topicRef, metadata, 'source text');
+
+    const sentPrompt = mockCreate.mock.calls[0][0].messages[0].content;
+    expect(sentPrompt).toMatch(/not taken from the source material/i);
+  });
 });
 
 describe('generateLearningPathDraft — NCERT/vector grounding', () => {
@@ -309,6 +341,233 @@ describe('generateLearningPathDraft — NCERT/vector grounding', () => {
 
     expect(draft.units[0].topics[0].groundingSource).toBe('upload_text_only');
     expect(draft.units[0].topics[0].objectives).toEqual(['fallback']);
+  });
+});
+
+describe('groundTopic — worked-example disclosure', () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  const singleTopicNormalized = {
+    metadata: { grade: '6', subject: 'Mathematics' },
+    units: [{ title: 'Numbers', order: 0, topics: [
+      { title: 'Whole Numbers', order: 0, subtopics: [], content: [] },
+    ] }],
+  };
+
+  test('source already has a worked example: used as-is, no extra Groq call, not marked synthetic', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'Real NCERT text with a worked problem in it.', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({
+      ok: true,
+      whatYoullLearn: ['Add whole numbers'],
+      blocks: [{
+        type: 'worked_example', concept: 'Addition', problem: '245 + 378 = ?',
+        steps: [{ step: 1, action: 'Add ones', why: 'ones place first' }], finalAnswer: '623',
+      }],
+    });
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    expect(mockCreate).not.toHaveBeenCalled(); // no targeted generateWorkedExample call needed
+    const block = draft.units[0].topics[0].content.blocks.find((b) => b.type === 'worked_example');
+    expect(block.synthetic).toBeUndefined();
+    expect(block.finalAnswer).toBe('623');
+  });
+
+  test('source has no worked example: the synthesized one is tagged synthetic, never presented as textbook content', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'NCERT text describing the method only, no worked problem.', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({
+      ok: true,
+      whatYoullLearn: ['Understand place value'],
+      blocks: [{ type: 'explanation', text: 'Place value explanation.' }],
+    });
+    mockCreate.mockResolvedValueOnce(completionWith({
+      type: 'worked_example', problem: '245 + 378 = ?', concept: 'Addition',
+      steps: [{ step: 1, action: 'Add ones', why: 'ones place first' }], finalAnswer: '623',
+    }));
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    const block = draft.units[0].topics[0].content.blocks.find((b) => b.type === 'worked_example');
+    expect(block.synthetic).toBe(true);
+    // still status "ready" and still ncert_vector-grounded overall — only the
+    // one supplementary block is disclosed as synthetic, per the smallest-fix
+    // scope (the rest of the topic's content is genuinely grounded).
+    expect(draft.units[0].topics[0].status).toBe('ready');
+    expect(draft.units[0].topics[0].groundingSource).toBe('ncert_vector');
+  });
+
+  test('source has no worked example and the targeted Groq call also fails: topic still has real grounded content, no fabricated example, no crash', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'NCERT text, method only.', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({
+      ok: true,
+      whatYoullLearn: ['Understand place value'],
+      blocks: [{ type: 'explanation', text: 'Place value explanation.' }],
+    });
+    mockCreate.mockRejectedValue(new Error('rate limited'));
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    const blocks = draft.units[0].topics[0].content.blocks;
+    expect(blocks.some((b) => b.type === 'worked_example')).toBe(false);
+    expect(blocks.some((b) => b.type === 'explanation')).toBe(true);
+  });
+
+  test('insufficient grounding (no retrieval match) falls through to needs_teacher_input, never fabricates', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockCreate.mockResolvedValueOnce(completionWith({
+      topics: [{ unitOrder: 0, topicOrder: 0, status: 'needs_teacher_input', teacherHint: 'Add topic detail.', objectives: [], lessons: [] }],
+    }));
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    expect(mockGenerateStructuredContent).not.toHaveBeenCalled();
+    expect(draft.units[0].topics[0].status).toBe('needs_teacher_input');
+    expect(draft.units[0].topics[0].content).toBeNull();
+  });
+});
+
+describe('groundTopic — SOURCE_DERIVED/GROUNDED_SYNTHETIC taxonomy and image passthrough', () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  const singleTopicNormalized = {
+    metadata: { grade: '6', subject: 'Mathematics' },
+    units: [{ title: 'Numbers', order: 0, topics: [
+      { title: 'Whole Numbers', order: 0, subtopics: [], content: [] },
+    ] }],
+  };
+
+  test('a real source-grounded worked_example is tagged SOURCE_DERIVED', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'Real NCERT text with a worked problem in it.', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({
+      ok: true,
+      whatYoullLearn: ['Add whole numbers'],
+      blocks: [{
+        type: 'worked_example', concept: 'Addition', problem: '245 + 378 = ?',
+        steps: [{ step: 1, action: 'Add ones', why: 'ones place first' }], finalAnswer: '623',
+      }],
+    });
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    const block = draft.units[0].topics[0].content.blocks.find((b) => b.type === 'worked_example');
+    expect(block.exampleType).toBe('SOURCE_DERIVED');
+  });
+
+  test('a synthesized worked_example with correct arithmetic is tagged GROUNDED_SYNTHETIC and synthetic:true', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'NCERT text describing the method only.', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({
+      ok: true,
+      whatYoullLearn: ['Understand place value'],
+      blocks: [{ type: 'explanation', text: 'Place value explanation.' }],
+    });
+    mockCreate.mockResolvedValueOnce(completionWith({
+      type: 'worked_example', problem: '12 + 8 = ?', concept: 'Addition',
+      steps: [{ step_number: 1, explanation: 'Add the numbers', calculation: '12 + 8 = 20' }], finalAnswer: '20',
+    }));
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    const block = draft.units[0].topics[0].content.blocks.find((b) => b.type === 'worked_example');
+    expect(block.exampleType).toBe('GROUNDED_SYNTHETIC');
+    expect(block.synthetic).toBe(true);
+  });
+
+  test('a retrieved image is attached as a real "image" block', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({
+      context: 'text', meta: { selected: 1 },
+      images: [{ url: 'https://cdn/x.png', caption: 'A number line diagram' }],
+    });
+    mockGenerateStructuredContent.mockResolvedValueOnce({
+      ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }],
+    });
+    mockCreate.mockResolvedValueOnce(completionWith({
+      type: 'worked_example', problem: '1 + 1 = ?',
+      steps: [{ step_number: 1, explanation: 'add', calculation: '1 + 1 = 2' }], finalAnswer: '2',
+    }));
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    const imageBlock = draft.units[0].topics[0].content.blocks.find((b) => b.type === 'image');
+    expect(imageBlock).toEqual({ type: 'image', url: 'https://cdn/x.png', caption: 'A number line diagram', alt_text: 'A number line diagram' });
+  });
+
+  test('no retrieved image means no image block is invented', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 }, images: [] });
+    mockGenerateStructuredContent.mockResolvedValueOnce({
+      ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }],
+    });
+    mockCreate.mockResolvedValueOnce(completionWith({
+      type: 'worked_example', problem: '1 + 1 = ?',
+      steps: [{ step_number: 1, explanation: 'add', calculation: '1 + 1 = 2' }], finalAnswer: '2',
+    }));
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    expect(draft.units[0].topics[0].content.blocks.some((b) => b.type === 'image')).toBe(false);
+  });
+});
+
+describe('generateWorkedExample — deterministic arithmetic verification', () => {
+  beforeEach(() => jest.clearAllMocks());
+  const topicRef = { topicTitle: 'Adding Numbers', unitOrder: 0, topicOrder: 0 };
+  const metadata = { grade: '6', subject: 'Mathematics' };
+
+  test('correct arithmetic on the first attempt: one Groq call, tagged GROUNDED_SYNTHETIC', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({
+      type: 'worked_example', problem: '12 + 8 = ?',
+      steps: [{ step_number: 1, explanation: 'Add', calculation: '12 + 8 = 20' }], finalAnswer: '20',
+    }));
+
+    const block = await generateWorkedExample(topicRef, metadata, 'source text');
+
+    expect(mockCreate).toHaveBeenCalledTimes(1);
+    expect(block.exampleType).toBe('GROUNDED_SYNTHETIC');
+    expect(block.synthetic).toBe(true);
+  });
+
+  test('wrong arithmetic on attempt 1, correct on retry: two Groq calls, still returns a verified block', async () => {
+    mockCreate
+      .mockResolvedValueOnce(completionWith({
+        type: 'worked_example', problem: '12 + 8 = ?',
+        steps: [{ step_number: 1, explanation: 'Add', calculation: '12 + 8 = 21' }], finalAnswer: '21',
+      }))
+      .mockResolvedValueOnce(completionWith({
+        type: 'worked_example', problem: '12 + 8 = ?',
+        steps: [{ step_number: 1, explanation: 'Add', calculation: '12 + 8 = 20' }], finalAnswer: '20',
+      }));
+
+    const block = await generateWorkedExample(topicRef, metadata, 'source text');
+
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+    expect(block.finalAnswer).toBe('20');
+    // the retry prompt must mention the specific failure so the model can fix it
+    const retryPrompt = mockCreate.mock.calls[1][0].messages[0].content;
+    expect(retryPrompt).toMatch(/incorrect arithmetic/i);
+  });
+
+  test('wrong arithmetic on both attempts: never returned, never silently accepted', async () => {
+    mockCreate.mockResolvedValue(completionWith({
+      type: 'worked_example', problem: '12 + 8 = ?',
+      steps: [{ step_number: 1, explanation: 'Add', calculation: '12 + 8 = 21' }], finalAnswer: '21',
+    }));
+
+    const block = await generateWorkedExample(topicRef, metadata, 'source text');
+
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+    expect(block).toBeNull();
+  });
+
+  test('legacy {action, why} step shape (no calculation field) is unverifiable, still accepted on first attempt', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({
+      type: 'worked_example', problem: '1/4 + 1/2 = ?',
+      steps: [{ step: 1, action: 'Convert to common denominator', why: 'fractions need the same denominator' }],
+      finalAnswer: '3/4',
+    }));
+
+    const block = await generateWorkedExample(topicRef, metadata, 'source text');
+
+    expect(mockCreate).toHaveBeenCalledTimes(1);
+    expect(block.exampleType).toBe('GROUNDED_SYNTHETIC');
   });
 });
 

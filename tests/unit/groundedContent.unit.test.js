@@ -75,6 +75,23 @@ describe('retrieveGroundingContext', () => {
     expect(global.fetch).toHaveBeenCalledTimes(2);
   }, 8000);
 
+  test('passes through images from the ai-coach-service response (rag.js buildImages() output)', async () => {
+    global.fetch = jest.fn().mockResolvedValue(jsonResponse({
+      context: 'real ncert text', meta: { selected: 1 }, sources: [{ topic: 'Whole Numbers', score: 0.57 }],
+      images: [{ url: 'https://cdn/img.png', caption: 'A number line', subject: 'Mathematics', grade: '6', topic: 'Whole Numbers' }],
+    }));
+    const result = await retrieveGroundingContext({ curriculum: 'CBSE', grade: '6', subject: 'Mathematics', topic: 'Whole Numbers' });
+    expect(result.images).toEqual([{ url: 'https://cdn/img.png', caption: 'A number line', subject: 'Mathematics', grade: '6', topic: 'Whole Numbers' }]);
+  });
+
+  test('defaults images to an empty array when the response has none', async () => {
+    global.fetch = jest.fn().mockResolvedValue(jsonResponse({
+      context: 'real ncert text', meta: { selected: 1 }, sources: [{ topic: 'Whole Numbers', score: 0.57 }],
+    }));
+    const result = await retrieveGroundingContext({ curriculum: 'CBSE', grade: '6', subject: 'Mathematics', topic: 'Whole Numbers' });
+    expect(result.images).toEqual([]);
+  });
+
   test('recovers on retry if the first attempt fails but the second succeeds — the actual cold-start case', async () => {
     global.fetch = jest.fn()
       .mockRejectedValueOnce(new Error('network down'))

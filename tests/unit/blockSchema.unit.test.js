@@ -110,4 +110,77 @@ describe('validateBlock', () => {
     expect(validateBlock('x')).toBe(false);
     expect(validateBlock({})).toBe(false);
   });
+
+  test('accepts the newer worked_example step_number/explanation/calculation shape', () => {
+    expect(validateBlock({
+      type: 'worked_example',
+      problem: '12 + 8 = ?',
+      steps: [{ step_number: 1, explanation: 'Add the numbers', calculation: '12 + 8 = 20' }],
+      finalAnswer: '20',
+    })).toBe(true);
+  });
+
+  test('rejects a worked_example step missing both shapes', () => {
+    expect(validateBlock({
+      type: 'worked_example',
+      problem: 'x',
+      steps: [{ step_number: 1 }],
+      finalAnswer: 'y',
+    })).toBe(false);
+  });
+
+  test('accepts a valid image block', () => {
+    expect(validateBlock({ type: 'image', url: 'https://cdn/x.png', caption: 'A diagram' })).toBe(true);
+  });
+  test('rejects an image block missing url or caption', () => {
+    expect(validateBlock({ type: 'image', url: 'https://cdn/x.png' })).toBe(false);
+    expect(validateBlock({ type: 'image', caption: 'A diagram' })).toBe(false);
+  });
+
+  test('accepts a valid timeline block', () => {
+    expect(validateBlock({
+      type: 'timeline',
+      title: 'Freedom Struggle',
+      events: [{ date: '1857', description: 'Revolt of 1857' }],
+    })).toBe(true);
+  });
+  test('rejects a timeline block with no events', () => {
+    expect(validateBlock({ type: 'timeline', events: [] })).toBe(false);
+  });
+
+  test('accepts a valid cause_and_effect block', () => {
+    expect(validateBlock({
+      type: 'cause_and_effect',
+      items: [{ cause: 'Deforestation', effect: 'Soil erosion' }],
+    })).toBe(true);
+  });
+  test('rejects a cause_and_effect item missing cause or effect', () => {
+    expect(validateBlock({ type: 'cause_and_effect', items: [{ cause: 'Deforestation' }] })).toBe(false);
+  });
+
+  test('accepts a valid case_study block', () => {
+    expect(validateBlock({ type: 'case_study', title: 'The Green Revolution', text: 'Details...' })).toBe(true);
+  });
+  test('rejects a case_study missing text', () => {
+    expect(validateBlock({ type: 'case_study', title: 'x' })).toBe(false);
+  });
+
+  test('accepts a valid table block', () => {
+    expect(validateBlock({
+      type: 'table',
+      caption: 'Place Value Chart',
+      headers: ['Period', 'Digit'],
+      rows: [['Thousands', '9'], ['Units', '3']],
+    })).toBe(true);
+  });
+  test('rejects a table block with no rows', () => {
+    expect(validateBlock({ type: 'table', headers: ['Period', 'Digit'], rows: [] })).toBe(false);
+  });
+  test('rejects a table block whose row length does not match headers', () => {
+    expect(validateBlock({
+      type: 'table',
+      headers: ['Period', 'Digit'],
+      rows: [['Thousands']],
+    })).toBe(false);
+  });
 });

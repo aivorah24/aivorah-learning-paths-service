@@ -24,10 +24,20 @@ const BLOCK_VALIDATORS = {
     b.items.every((i) => isNonEmptyString(i.term) && isNonEmptyString(i.definition)),
   key_points: (b) => isStringArray(b.items) && b.items.length > 0,
   example: (b) => isNonEmptyString(b.text),
+  // Two step shapes are accepted: the legacy {action, why, equation?} shape
+  // (still produced by enrichment.js's generic worked_example prompt, used by
+  // the pre-existing topic_ai_enrichment pipeline — never broken by this
+  // change), and the newer {step_number, explanation, calculation} shape
+  // (services/curriculumUpload/aiGeneration.js + mathValidator.js), which
+  // gives arithmetic verification a real "calculation" expression to check.
+  // A step only needs to satisfy ONE of the two shapes.
   worked_example: (b) =>
     isNonEmptyString(b.problem) &&
     Array.isArray(b.steps) && b.steps.length > 0 &&
-    b.steps.every((s) => isNonEmptyString(s.action) && isNonEmptyString(s.why)) &&
+    b.steps.every((s) =>
+      (isNonEmptyString(s.action) && isNonEmptyString(s.why)) ||
+      (isNonEmptyString(s.explanation) && isNonEmptyString(s.calculation) && typeof s.step_number === 'number')
+    ) &&
     isNonEmptyString(b.finalAnswer),
   formula: (b) => isNonEmptyString(b.name) && isNonEmptyString(b.expression),
   chemical_equation: (b) => isNonEmptyString(b.equation),
@@ -40,6 +50,22 @@ const BLOCK_VALIDATORS = {
   activity: (b) => isNonEmptyString(b.text),
   tip: (b) => isNonEmptyString(b.text),
   common_mistake: (b) => isNonEmptyString(b.text),
+  // Image/visual passthrough — populated from rag.js's buildImages() output
+  // (url/image_path resolved server-side, never invented by the LLM prompt).
+  image: (b) => isNonEmptyString(b.url) && isNonEmptyString(b.caption),
+  visual_representation: (b) => isNonEmptyString(b.url) && isNonEmptyString(b.caption),
+  // History/Civics/Geography structuring (Task 2's CONTENT_TYPE_GUIDANCE
+  // expansion asks for these three for "theory" content when applicable).
+  timeline: (b) => Array.isArray(b.events) && b.events.length > 0 &&
+    b.events.every((e) => isNonEmptyString(e.date) && isNonEmptyString(e.description)),
+  cause_and_effect: (b) => Array.isArray(b.items) && b.items.length > 0 &&
+    b.items.every((i) => isNonEmptyString(i.cause) && isNonEmptyString(i.effect)),
+  case_study: (b) => isNonEmptyString(b.title) && isNonEmptyString(b.text),
+  // Structured tabular data (e.g. a Place Value Chart) for when no grounded
+  // image is available — Markdown-table-style rows/headers, never a raster
+  // image the LLM can't actually produce.
+  table: (b) => isStringArray(b.headers) && Array.isArray(b.rows) && b.rows.length > 0 &&
+    b.rows.every((r) => isStringArray(r) && r.length === b.headers.length),
 };
 
 const VALID_TYPES = Object.keys(BLOCK_VALIDATORS);
