@@ -48,6 +48,16 @@ function normaliseGrade(grade) {
   return m ? `Grade ${m[1]}` : grade;
 }
 
+// IB PYP is the one curriculum whose Qdrant-stored `curriculum` payload value
+// (`IB_PYP`, underscore) doesn't match its display name (`IB PYP`, space) —
+// confirmed by live query comparison against the monolith's own
+// resolveCollection(), which applies this exact same translation before
+// hitting Qdrant. Every other curriculum (Cambridge, IB DP, IB MYP, ...) is
+// stored under its plain display name and needs no translation.
+function normaliseCurriculumForQdrant(curriculum) {
+  return /^ib.?pyp$/i.test(String(curriculum || '').trim()) ? 'IB_PYP' : curriculum;
+}
+
 async function scrollAll(collection, filter) {
   const points = [];
   let offset;
@@ -130,9 +140,10 @@ async function topicCount(curriculum, grade) {
  */
 async function listSubjects(curriculum, grade) {
   const qGrade = normaliseGrade(grade);
+  const qCurriculum = normaliseCurriculumForQdrant(curriculum);
   const points = await scrollAll(IB_COLLECTION, {
     must: [
-      { key: 'curriculum', match: { value: curriculum } },
+      { key: 'curriculum', match: { value: qCurriculum } },
       { key: 'grade', match: { value: qGrade } },
     ],
   });
@@ -183,9 +194,10 @@ async function listSubjects(curriculum, grade) {
  */
 async function listSyllabus(curriculum, grade, subject) {
   const qGrade = normaliseGrade(grade);
+  const qCurriculum = normaliseCurriculumForQdrant(curriculum);
   const points = await scrollAll(IB_COLLECTION, {
     must: [
-      { key: 'curriculum', match: { value: curriculum } },
+      { key: 'curriculum', match: { value: qCurriculum } },
       { key: 'grade', match: { value: qGrade } },
       { key: 'subject', match: { value: subject } },
     ],

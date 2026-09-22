@@ -42,6 +42,36 @@ describe('listSubjects', () => {
     const science = result.find((s) => s.subject === 'Science');
     expect(science.topics).toEqual([]);
   });
+
+  // Confirmed via live query comparison against the monolith: Qdrant stores
+  // IB PYP content under curriculum "IB_PYP" (underscore), not "IB PYP" (the
+  // display name every caller passes in) — querying with the un-translated
+  // name silently returned zero results (0 subjects instead of the real 7).
+  test('"IB PYP" (display name) is translated to "IB_PYP" for the actual Qdrant match', async () => {
+    mockScroll.mockResolvedValueOnce({ points: [], next_page_offset: null });
+    await listSubjects('IB PYP', 'Grade 3');
+    expect(mockScroll).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.objectContaining({
+        filter: expect.objectContaining({
+          must: expect.arrayContaining([{ key: 'curriculum', match: { value: 'IB_PYP' } }]),
+        }),
+      })
+    );
+  });
+
+  test('other curricula (e.g. Cambridge) are queried under their plain display name, unchanged', async () => {
+    mockScroll.mockResolvedValueOnce({ points: [], next_page_offset: null });
+    await listSubjects('Cambridge', 'Grade 3');
+    expect(mockScroll).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.objectContaining({
+        filter: expect.objectContaining({
+          must: expect.arrayContaining([{ key: 'curriculum', match: { value: 'Cambridge' } }]),
+        }),
+      })
+    );
+  });
 });
 
 describe('listSyllabus', () => {
