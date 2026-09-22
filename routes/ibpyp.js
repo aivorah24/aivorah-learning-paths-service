@@ -147,18 +147,34 @@ Return ONLY valid JSON — no markdown, no extra text:
   ]
 }`;
 
-    const completion = await groq.chat.completions.create({
-      model:       'openai/gpt-oss-20b',
-      messages:    [{ role: 'user', content: prompt }],
-      temperature: 0.4,
-      max_tokens:  1800,
-    });
+    // 1800 max_tokens was tight enough that a longer passage/explanation set
+    // could get cut off mid-array — the model's own `finish_reason: 'length'`
+    // confirms this happens, and a truncated response is never valid JSON, so
+    // JSON.parse always threw ("Expected ',' or ']' after array element").
+    // Raised the budget and added one retry (fresh completion, not a repair
+    // of the broken text — a partial JSON string can't be reliably patched)
+    // before giving up, so a single unlucky generation doesn't surface as a
+    // user-facing failure.
+    async function generateAndParseQuiz() {
+      const completion = await groq.chat.completions.create({
+        model:       'openai/gpt-oss-20b',
+        messages:    [{ role: 'user', content: prompt }],
+        temperature: 0.4,
+        max_tokens:  3000,
+      });
+      const raw = completion.choices[0]?.message?.content || '';
+      const json = raw.match(/\{[\s\S]*\}/)?.[0];
+      if (!json) throw new Error(`no JSON in response (finish_reason: ${completion.choices[0]?.finish_reason})`);
+      return JSON.parse(json);
+    }
 
-    const raw  = completion.choices[0]?.message?.content || '';
-    const json = raw.match(/\{[\s\S]*\}/)?.[0];
-    if (!json) return res.status(500).json({ error: 'Failed to parse quiz response' });
-
-    const parsed = JSON.parse(json);
+    let parsed;
+    try {
+      parsed = await generateAndParseQuiz();
+    } catch (firstErr) {
+      console.error('POST /ibpyp/quiz first attempt failed, retrying once:', firstErr.message);
+      parsed = await generateAndParseQuiz();
+    }
 
     // Normalise: handle both MCQ and fill_blank + shuffle options to fix position bias
     const questions = (parsed.questions || []).map(normalizeQuizQuestion);
