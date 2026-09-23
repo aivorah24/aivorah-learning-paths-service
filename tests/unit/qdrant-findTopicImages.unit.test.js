@@ -44,6 +44,18 @@ describe('findTopicImages', () => {
     expect(result).toEqual([]);
   });
 
+  test('a strong keyword match from a DIFFERENT chapter is excluded once the topic chapter is known', async () => {
+    mockScroll.mockResolvedValueOnce({
+      points: [{ payload: { content_type: 'image', image_url: 'https://cdn/number-play.png', source_reference: 'NCERT Maths Grade 6 | fegp1_ch03.pdf | Page 4', text: '[IMAGE] Children with number speech bubbles showing place value and digits.' } }],
+      next_page_offset: null,
+    });
+    const result = await findTopicImages({
+      grade: 6, subject: 'Mathematics', pdfFile: 'fecu105.pdf', // "Knowing Our Numbers" chapter
+      topicTitle: 'Knowing Our Numbers', subtopics: [], keyTerms: ['place value', 'digits'],
+    });
+    expect(result).toEqual([]);
+  });
+
   test('a Qdrant failure returns [] rather than throwing', async () => {
     mockScroll.mockRejectedValueOnce(new Error('timeout'));
     const result = await findTopicImages({ grade: 6, subject: 'Science', topicTitle: 'Food Web' });

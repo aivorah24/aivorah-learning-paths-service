@@ -19,6 +19,11 @@ jest.mock('../../services/qdrant', () => ({
   findTopicImages: (...args) => mockFindTopicImages(...args),
 }));
 
+const mockCheckGradeFit = jest.fn().mockResolvedValue({ quality: { readingGrade: 5, sentenceLength: 10, judgeScores: null, issues: [] }, failed: false });
+jest.mock('../../services/curriculum/gradeFit', () => ({
+  checkGradeFit: (...args) => mockCheckGradeFit(...args),
+}));
+
 const {
   generateLearningPathDraft,
   collectTopicRefs,
@@ -27,6 +32,7 @@ const {
   deriveObjectivesAndLessons,
   generateWorkedExample,
   generateCompanions,
+  matchChapter,
   LearningPathGenerationError,
 } = require('../../services/curriculumUpload/aiGeneration');
 
@@ -384,6 +390,25 @@ describe('generateLearningPathDraft — knowledge tier (model_knowledge)', () =>
     expect(wholeNumbers.content.blocks.some((b) => b.type === 'explanation')).toBe(true);
     expect(draft.units[0].topics[1].groundingSource).toBe('upload_text_only'); // Fractions, unknown:true
   });
+
+  test('a knowledge-tier worked_example is always tagged GROUNDED_SYNTHETIC/synthetic, never SOURCE_DERIVED', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockGenerateStructuredContent.mockImplementation(async ({ topic }) =>
+      topic === 'Whole Numbers'
+        ? {
+            ok: true, whatYoullLearn: ['x'],
+            blocks: [{ type: 'worked_example', concept: 'c', problem: 'p', steps: [{ step: 1, action: 'a', why: 'b' }], finalAnswer: 'x' }],
+          }
+        : { ok: false, unknown: true, reason: 'unknown' }
+    );
+    mockCreate.mockResolvedValue(completionWith({ topics: [{ unitOrder: 0, topicOrder: 1, objectives: [], lessons: [] }] }));
+
+    const draft = await generateLearningPathDraft(normalized);
+
+    const block = draft.units[0].topics[0].content.blocks.find((b) => b.type === 'worked_example');
+    expect(block.exampleType).toBe('GROUNDED_SYNTHETIC');
+    expect(block.synthetic).toBe(true);
+  });
 });
 
 describe('groundTopic — worked-example disclosure', () => {
@@ -689,6 +714,106 @@ describe('generateLearningPathDraft', () => {
   test('throws when the response contains only unknown topic references (empty output after validation)', async () => {
     mockCreate.mockResolvedValue(completionWith({ topics: [{ unitOrder: 9, topicOrder: 9, objectives: [], lessons: [] }] }));
     await expect(generateLearningPathDraft(normalized)).rejects.toThrow(LearningPathGenerationError);
+  });
+});
+
+describe('generateLearningPathDraft — grade-fit wiring', () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  const singleTopicNormalized = {
+    metadata: { grade: '6', subject: 'Mathematics' },
+    units: [{ title: 'Numbers', order: 0, topics: [
+      { title: 'Whole Numbers', order: 0, subtopics: [], content: [] },
+    ] }],
+  };
+  const PASS = { quality: { readingGrade: 5, sentenceLength: 10, judgeScores: { learn: { ageAppropriate: 5 } }, issues: [] }, failed: false };
+  const FAIL = { quality: { readingGrade: 12, sentenceLength: 30, judgeScores: null, issues: ['Learn text too advanced'] }, failed: true };
+
+  test('a passing grade-fit check stores quality with no regeneration', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }] });
+    mockCreate.mockResolvedValueOnce(completionWith({ listenParts: [], questions: [] })); // companions
+    mockCheckGradeFit.mockResolvedValueOnce(PASS);
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    expect(draft.units[0].topics[0].quality).toEqual(PASS.quality);
+    expect(draft.units[0].topics[0].status).toBe('ready');
+    expect(mockGenerateStructuredContent).toHaveBeenCalledTimes(1); // no regen call
+  });
+
+  test('a failing check regenerates once, then passes: content replaced, status stays ready', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 } });
+    mockGenerateStructuredContent
+      .mockResolvedValueOnce({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'original, too advanced' }] })
+      .mockResolvedValueOnce({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'simplified version' }] });
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] })); // companions, both rounds
+    mockCheckGradeFit.mockResolvedValueOnce(FAIL).mockResolvedValueOnce(PASS);
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    expect(mockGenerateStructuredContent).toHaveBeenCalledTimes(2);
+    expect(mockGenerateStructuredContent.mock.calls[1][0].qualityFeedback).toBe('Learn text too advanced');
+    expect(draft.units[0].topics[0].content.blocks[0].text).toBe('simplified version');
+    expect(draft.units[0].topics[0].status).toBe('ready');
+    expect(draft.units[0].topics[0].quality).toEqual(PASS.quality);
+  });
+
+  test('still failing after the one regeneration: needs_teacher_input with a teacherHint, content kept', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'still too advanced' }] });
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+    mockCheckGradeFit.mockResolvedValueOnce(FAIL).mockResolvedValueOnce(FAIL);
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    const topic = draft.units[0].topics[0];
+    expect(topic.status).toBe('needs_teacher_input');
+    expect(topic.teacherHint).toContain('Learn text too advanced');
+    expect(topic.content.blocks[0].text).toBe('still too advanced');
+  });
+
+  test('checkGradeFit throwing is swallowed — topic keeps its original content and status', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }] });
+    mockCreate.mockResolvedValueOnce(completionWith({ listenParts: [], questions: [] }));
+    mockCheckGradeFit.mockRejectedValueOnce(new Error('judge down'));
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    expect(draft.units[0].topics[0].status).toBe('ready');
+    expect(draft.units[0].topics[0].content.blocks[0].text).toBe('x');
+  });
+});
+
+describe('matchChapter — real NCERT registry, keyword overlap not position', () => {
+  const metadata = { grade: '6', subject: 'Mathematics' };
+
+  test('"Understanding Fractions" matches chapter 7 (Fractions), not a positional guess', () => {
+    const match = matchChapter(
+      { unitOrder: 1, topicTitle: 'Understanding Fractions', subtopics: ['Equivalent fractions', 'Comparing fractions'] },
+      metadata
+    );
+    expect(match).not.toBeNull();
+    expect(match.chapter).toBe(7);
+    expect(match.pdfFile).toBe('fegp107.pdf');
+  });
+
+  test('"Symmetry" matches chapter 9', () => {
+    const match = matchChapter(
+      { unitOrder: 0, topicTitle: 'Symmetry', subtopics: ['Line of Symmetry'] },
+      metadata
+    );
+    expect(match).not.toBeNull();
+    expect(match.chapter).toBe(9);
+  });
+
+  test('an old-syllabus topic with no clean match ("Knowing Our Numbers") returns null, never a random chapter', () => {
+    const match = matchChapter(
+      { unitOrder: 0, topicTitle: 'Knowing Our Numbers', subtopics: ['Reading and writing large numbers', 'Comparing and ordering numbers'] },
+      metadata
+    );
+    expect(match).toBeNull();
   });
 });
 

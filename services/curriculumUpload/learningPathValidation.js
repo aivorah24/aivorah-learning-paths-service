@@ -40,6 +40,15 @@ function validateCompanions(content, ui, ti) {
   }
 }
 
+// quality (Phase 3 grade-fit) is optional; when present just check its shape.
+function validateQuality(quality, ui, ti) {
+  if (quality === undefined || quality === null) return;
+  const prefix = `units[${ui}].topics[${ti}].quality`;
+  if (typeof quality !== 'object' || !Array.isArray(quality.issues)) {
+    throw new LearningPathValidationError(`${prefix} must be an object with an issues array`);
+  }
+}
+
 function validateLearningPathContent(content) {
   if (!content || typeof content !== 'object') {
     throw new LearningPathValidationError('content must be an object');
@@ -86,6 +95,7 @@ function validateLearningPathContent(content) {
         throw new LearningPathValidationError(`units[${ui}].topics[${ti}].subtopics must be an array`);
       }
       validateCompanions(topic.content, ui, ti);
+      validateQuality(topic.quality, ui, ti);
 
       const subtopicOrders = new Set();
       topic.subtopics.forEach((sub, si) => {

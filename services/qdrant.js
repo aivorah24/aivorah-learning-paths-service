@@ -464,12 +464,10 @@ async function findTopicImages({ grade, subject, pdfFile, topicTitle, subtopics,
         { key: 'content_type', match: { value: 'image' } },
       ],
     });
-    // Chapter match (via pdfFile) is a scoring BONUS, not a hard filter —
-    // topicOrder-derived chapter numbers aren't always reliable (see
-    // resolveChapterPdf), and a hard filter on a wrong chapter guess was
-    // producing false-positive matches from an unrelated chapter's images.
-    // Keyword overlap against the real topic/subtopics/key terms stays the
-    // real relevance signal either way.
+    // Chapter match (via pdfFile) is now a HARD filter when the chapter is
+    // known — keyword overlap alone let an unrelated chapter's image through
+    // on generic shared words (e.g. "place value", "digits"). Falls back to
+    // keyword-only ranking only when the chapter genuinely can't be resolved.
     const chapterCode = pdfFile ? String(pdfFile).replace(/\.pdf$/i, '') : null;
 
     const targetWords = keywords([topicTitle, ...(subtopics || []), ...(keyTerms || [])].join(' '));
@@ -477,11 +475,11 @@ async function findTopicImages({ grade, subject, pdfFile, topicTitle, subtopics,
 
     const ranked = points
       .filter((p) => p.payload.image_url)
+      .filter((p) => !chapterCode || String(p.payload.source_reference || '').includes(chapterCode))
       .map((p) => {
         const descWords = keywords(p.payload.text || p.payload.topic || '');
         const overlap = [...descWords].filter((w) => targetWords.has(w)).length;
-        const inChapter = chapterCode && String(p.payload.source_reference || '').includes(chapterCode);
-        return { point: p, overlap, score: overlap + (inChapter ? 1 : 0) };
+        return { point: p, overlap, score: overlap };
       })
       // Conservative threshold: require at least 3 shared meaningful words
       // (2 let through unrelated captions sharing only generic vocabulary).

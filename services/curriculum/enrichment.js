@@ -126,7 +126,8 @@ const RECIPE_RULES = `LESSON RECIPE — the blocks array must cover all of these
 - An "activity" block.
 - A "common_mistake" block.
 - A "key_terms" block.
-- A QUICK CHECK: one extra "key_points" block (separate from any other key_points block) with EXACTLY 2 items, each a short question ending in "?", for the student to self-check understanding.`;
+- A QUICK CHECK: one extra "key_points" block (separate from any other key_points block) with EXACTLY 2 items, each a short question ending in "?", for the student to self-check understanding.
+NEVER write meta/instructional text about the content itself — no phrases like "a fraction that appears in a real-life Indian context", "The chapter tells us...", "In the [chapter] chapter, the sub-topic [topic] introduces...". Write the actual explanation/example directly, as if speaking to the student, never describing what you were asked to produce.`;
 
 function checkRecipe(blocks) {
   const list = Array.isArray(blocks) ? blocks : [];
@@ -146,7 +147,13 @@ function checkRecipe(blocks) {
   return missing;
 }
 
-function buildKnowledgePrompt({ curriculum, grade, subject, chapterTitle, topic, contentType }) {
+// Grade-fit regen: appends the reviewer's issues so a re-prompt can fix them.
+function qualityFeedbackNote(input) {
+  return input.qualityFeedback ? `\n\nQUALITY REVIEW FEEDBACK — fix these issues in your response: ${input.qualityFeedback}\n` : '';
+}
+
+function buildKnowledgePrompt(input) {
+  const { curriculum, grade, subject, chapterTitle, topic, contentType } = input;
   const guidance = CONTENT_TYPE_GUIDANCE[contentType] || CONTENT_TYPE_GUIDANCE.theory;
   const calibrationNote = gradeCalibrationNote(grade);
   return `Write from your own knowledge of the ${curriculum} Grade ${grade} ${subject} chapter "${chapterTitle}", topic "${topic}". Stay strictly within that chapter's syllabus — do not bring in content from other chapters or grades.
@@ -163,7 +170,7 @@ ALLOWED BLOCK TYPES FOR THIS SUBJECT:
 ${guidance}
 
 ${RECIPE_RULES}
-
+${qualityFeedbackNote(input)}
 Respond with ONLY the JSON object described above.`;
 }
 
@@ -197,7 +204,7 @@ CONTEXT TEXT (neighboring textbook material, background only, NOT this topic's o
 """
 ${contextText || '(none)'}
 """
-
+${qualityFeedbackNote(input)}
 Respond with ONLY the JSON object described in rule 4.`;
 }
 

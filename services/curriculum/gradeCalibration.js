@@ -18,8 +18,11 @@ function gradeCalibrationNote(grade) {
   if (g <= 5) {
     return 'GRADE CALIBRATION (Preparatory, Grades 3-5): Elementary. Use accessible vocabulary with inline explanations of any new term, sequential numbered steps, and visual anchors a child can picture.';
   }
+  if (g === 6) {
+    return 'GRADE CALIBRATION (Middle, Grade 6): Use domain-specific terminology with structured definitions, multi-step reasoning, and real-world context. Do NOT use exponent/power notation (e.g. "4 x 10^4") — Grade 6 has not learned powers yet; write large numbers in expanded form (e.g. "4 x 10,000"). For large numbers, use the Indian numbering system (lakhs, crores; commas as in 9,63,001), not Western thousands/millions.';
+  }
   if (g <= 8) {
-    return 'GRADE CALIBRATION (Middle, Grades 6-8): Use domain-specific terminology with structured definitions, multi-step reasoning, and real-world context.';
+    return 'GRADE CALIBRATION (Middle, Grades 7-8): Use domain-specific terminology with structured definitions, multi-step reasoning, and real-world context.';
   }
   return 'GRADE CALIBRATION (Secondary/Higher, Grades 9-12): Use advanced technical/academic prose, abstract models, and formal multi-step problem-solving where relevant.';
 }

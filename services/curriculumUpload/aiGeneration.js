@@ -6,6 +6,7 @@ const { verifyWorkedExample, verifyCalculationString } = require('./mathValidato
 const { buildQuizPrompt } = require('../curriculum/quizPrompt');
 const { normalizeQuizQuestion } = require('../quizNormalize');
 const { findTopicImages } = require('../qdrant');
+const { checkGradeFit } = require('../curriculum/gradeFit');
 
 let _groq = null;
 function getGroqClient() {
@@ -176,20 +177,25 @@ async function generateWorkedExample(topicRef, metadata, retrievedContext) {
 // derivation. Keeps groundTopic and the knowledge-tier path from duplicating
 // this logic.
 async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType, groundingSource, groundedContext) {
-  generated.blocks = generated.blocks.map((b) =>
-    b.type === 'worked_example' && !b.exampleType ? { ...b, exampleType: 'SOURCE_DERIVED' } : b
-  );
+  // model_knowledge topics have no real source text — any worked_example the
+  // LLM wrote is authored, never textbook-derived, so it must always be
+  // disclosed as synthetic (never mislabeled SOURCE_DERIVED).
+  generated.blocks = generated.blocks.map((b) => {
+    if (b.type !== 'worked_example') return b;
+    if (groundingSource === 'model_knowledge') return { ...b, exampleType: 'GROUNDED_SYNTHETIC', synthetic: true };
+    return !b.exampleType ? { ...b, exampleType: 'SOURCE_DERIVED' } : b;
+  });
 
   // Textbook images: filtered grade+subject+chapter, ranked by keyword
   // overlap with the topic/subtopics/key terms. Done for every topic,
   // including model_knowledge ones. No match -> no image, the recipe's own
   // structured visual block (table/process/...) stands in instead.
   const keyTerms = (generated.blocks.find((b) => b.type === 'key_terms')?.items || []).map((i) => i.term).filter(Boolean);
-  const pdfFile = resolveChapterPdf(topicRef, metadata);
+  const chapterMatch = matchChapter(topicRef, metadata);
   const images = await findTopicImages({
     grade: metadata?.grade,
     subject: metadata?.subject,
-    pdfFile,
+    pdfFile: chapterMatch?.pdfFile || null,
     topicTitle: topicRef.topicTitle,
     subtopics: topicRef.subtopics,
     keyTerms,
@@ -215,7 +221,12 @@ async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType
     // applies to topics that failed both grounding and knowledge generation.
     status: 'ready',
     teacherHint: null,
-    content: { whatYoullLearn: generated.whatYoullLearn, blocks: generated.blocks, contentType },
+    content: {
+      whatYoullLearn: generated.whatYoullLearn, blocks: generated.blocks, contentType,
+      // Phase 5 maps this into the student BookPane — pdfPage is a fixed
+      // placeholder (1) until per-topic page resolution exists.
+      ...(chapterMatch ? { book: { pdfFile: chapterMatch.pdfFile, bookPath: chapterMatch.bookPath, bookTitle: chapterMatch.book, chapterTitle: chapterMatch.title, pdfPage: 1, confidence: chapterMatch.confidence } } : {}),
+    },
     groundingSource,
   };
 }
@@ -324,7 +335,7 @@ async function generateCompanions(topicRef, metadata, content) {
   return { listenParts, practiceQuiz };
 }
 
-async function groundTopic(topicRef, metadata) {
+async function groundTopic(topicRef, metadata, qualityFeedback) {
   const retrieved = await retrieveGroundingContext({
     curriculum: metadata?.curriculum,
     grade: metadata?.grade,
@@ -345,6 +356,7 @@ async function groundTopic(topicRef, metadata) {
     primaryText: retrieved.context,
     contextText: '',
     contentType,
+    qualityFeedback,
   });
   if (!generated.ok) return null;
 
@@ -356,39 +368,74 @@ async function groundTopic(topicRef, metadata) {
   return finalizeGeneratedTopic(topicRef, metadata, generated, contentType, 'ncert_vector', retrieved);
 }
 
-// Chapter title for the knowledge prompt: prefer the unit title from the
-// upload itself, else look up the NCERT registry (syllabus-map.js) by
-// grade+subject and match by chapter order — same registry used for the
-// authoritative chapter structure elsewhere in this service.
-function resolveChapterTitle(topicRef, metadata) {
-  if (topicRef.unitTitle) return topicRef.unitTitle;
-  try {
-    const { chaptersFor } = require('../syllabus-map');
-    const chapters = chaptersFor(metadata?.grade, metadata?.subject);
-    const match = chapters.find((c) => c.chapter === topicRef.unitOrder + 1) || chapters[topicRef.unitOrder];
-    return match?.title || topicRef.topicTitle;
-  } catch {
-    return topicRef.topicTitle;
-  }
+const CHAPTER_MATCH_STOPWORDS = new Set(['and', 'the', 'of', 'in', 'to', 'a', 'for', 'with', 'on', 'is', 'are', 'an', 'as', 'from', 'this', 'that', 'it', 'our', 'your']);
+function stemWord(w) { return w.length > 4 && w.endsWith('s') ? w.slice(0, -1) : w; }
+function chapterWords(text) {
+  return new Set(String(text || '').toLowerCase().match(/[a-z]{3,}/g)?.filter((w) => !CHAPTER_MATCH_STOPWORDS.has(w)).map(stemWord) || []);
 }
 
-// Chapter pdfFile (e.g. "fecu105.pdf") for the image lookup — same registry
-// match as resolveChapterTitle, just returning the book-code field instead.
-function resolveChapterPdf(topicRef, metadata) {
+// Maps a teacher topic to an NCERT registry chapter by keyword overlap
+// (title words weighted double, subtopic words single), NOT by position —
+// teacher docx units rarely follow the textbook's own chapter order, and a
+// positional guess was attaching the wrong chapter's title/images (e.g.
+// "Understanding Fractions" landing on ch2 "Lines and Angles" instead of
+// ch7 "Fractions"). Returns null below the confidence threshold rather than
+// guessing — e.g. an old-syllabus topic ("Knowing Our Numbers") with no
+// clean match in the current book must stay unmatched, not land on a
+// random chapter that happens to share a generic word like "number".
+function matchChapter(topicRef, metadata) {
+  let chapters;
   try {
-    const { chaptersFor } = require('../syllabus-map');
-    const chapters = chaptersFor(metadata?.grade, metadata?.subject);
-    const match = chapters.find((c) => c.chapter === topicRef.unitOrder + 1) || chapters[topicRef.unitOrder];
-    return match?.pdfFile || null;
+    chapters = require('../syllabus-map').chaptersFor(metadata?.grade, metadata?.subject);
   } catch {
     return null;
   }
+  if (!chapters.length) return null;
+
+  const titleWords = chapterWords([topicRef.topicTitle, topicRef.unitTitle].join(' '));
+  const allWords = chapterWords([topicRef.topicTitle, topicRef.unitTitle, ...(topicRef.subtopics || [])].join(' '));
+  if (allWords.size === 0) return null;
+
+  let best = null;
+  for (const ch of chapters) {
+    const chTitleWords = chapterWords(ch.title);
+    const chSubWords = chapterWords((ch.subtopics || []).map((s) => s.title).join(' '));
+    const titleOverlap = [...titleWords].filter((w) => chTitleWords.has(w)).length;
+    const subOverlap = [...allWords].filter((w) => chSubWords.has(w)).length;
+    const score = titleOverlap * 2 + subOverlap;
+    if (!best || score > best.score) best = { ch, score };
+  }
+
+  const CONFIDENCE_THRESHOLD = 4;
+  if (!best || best.score < CONFIDENCE_THRESHOLD) return null;
+  return {
+    chapter: best.ch.chapter,
+    pdfFile: best.ch.pdfFile,
+    title: best.ch.title,
+    bookPath: best.ch.bookPath,
+    book: best.ch.book,
+    confidence: best.score,
+  };
+}
+
+// Chapter title for the knowledge prompt: prefer the unit title from the
+// upload itself, else the keyword-matched registry chapter.
+function resolveChapterTitle(topicRef, metadata) {
+  if (topicRef.unitTitle) return topicRef.unitTitle;
+  const match = matchChapter(topicRef, metadata);
+  return match?.title || topicRef.topicTitle;
+}
+
+// Chapter pdfFile (e.g. "fecu105.pdf") for the image lookup — same keyword
+// match as resolveChapterTitle (never positional), just the book-code field.
+function resolveChapterPdf(topicRef, metadata) {
+  return matchChapter(topicRef, metadata)?.pdfFile || null;
 }
 
 // Knowledge tier: for a topic Qdrant couldn't ground, ask the model to write
 // from its own knowledge, anchored to the chapter registry. Only an
 // {"unknown":true} answer or a failure falls through to needs_teacher_input.
-async function knowledgeTopic(topicRef, metadata) {
+async function knowledgeTopic(topicRef, metadata, qualityFeedback) {
   const { generateStructuredContent, classifyContentType } = getEnrichment();
   const contentType = classifyContentType(metadata?.subject);
   const chapterTitle = resolveChapterTitle(topicRef, metadata);
@@ -403,6 +450,7 @@ async function knowledgeTopic(topicRef, metadata) {
       chapterTitle,
       topic: topicRef.topicTitle,
       contentType,
+      qualityFeedback,
     });
   } catch {
     return null;
@@ -531,6 +579,7 @@ function mergeGeneratedContent(normalized, generatedTopics) {
           teacherHint: generated?.teacherHint ?? null,
           content: generated?.content || null,
           groundingSource: generated?.groundingSource || 'none',
+          quality: generated?.quality || null,
         };
       }),
     })),
@@ -574,6 +623,47 @@ async function attachCompanions(topics, topicRefs, metadata) {
   }));
 }
 
+// Grade-fit pass: rules + Groq judge per topic (checkGradeFit). On failure,
+// ONE regeneration (content via groundTopic/knowledgeTopic + companions)
+// with issues fed back as qualityFeedback; still-failing topics get
+// needs_teacher_input. Bounded per topic: 1 judge call + (on failure) the
+// regen's own bounded content calls + 1 companions call + 1 re-judge call.
+async function applyGradeFit(topics, topicRefs, metadata) {
+  const refByKey = new Map(topicRefs.map((r) => [`${r.unitOrder}:${r.topicOrder}`, r]));
+  await Promise.all(topics.map(async (t) => {
+    if (!t.content || (t.groundingSource !== 'ncert_vector' && t.groundingSource !== 'model_knowledge')) return;
+    const ref = refByKey.get(`${t.unitOrder}:${t.topicOrder}`);
+    if (!ref) return;
+    const chapterTitle = resolveChapterTitle(ref, metadata);
+    const gradeFitArgs = (content) => ({ topicTitle: ref.topicTitle, chapterTitle, grade: metadata?.grade, subject: metadata?.subject, subtopics: ref.subtopics, content });
+
+    let result = await checkGradeFit(gradeFitArgs(t.content)).catch(() => null);
+    if (!result) return;
+
+    if (result.failed) {
+      const feedback = result.quality.issues.join('; ');
+      const regenTopic = t.groundingSource === 'ncert_vector'
+        ? await groundTopic(ref, metadata, feedback).catch(() => null)
+        : await knowledgeTopic(ref, metadata, feedback).catch(() => null);
+      if (regenTopic?.content) {
+        const companions = await generateCompanions(ref, metadata, regenTopic.content).catch(() => null);
+        if (companions) {
+          regenTopic.content.listenParts = companions.listenParts;
+          regenTopic.content.practiceQuiz = companions.practiceQuiz;
+        }
+        t.content = regenTopic.content;
+        result = await checkGradeFit(gradeFitArgs(t.content)).catch(() => result);
+      }
+    }
+
+    t.quality = result.quality;
+    if (result.failed) {
+      t.status = 'needs_teacher_input';
+      t.teacherHint = `Grade-fit review: ${result.quality.issues.slice(0, 5).join('; ')}`;
+    }
+  }));
+}
+
 async function generateLearningPathDraft(normalized) {
   const topicRefs = collectTopicRefs(normalized);
   if (topicRefs.length === 0) {
@@ -586,6 +676,7 @@ async function generateLearningPathDraft(normalized) {
   const groundedResults = await Promise.all(topicRefs.map((ref) => groundTopic(ref, normalized.metadata)));
   const grounded = groundedResults.filter(Boolean);
   await attachCompanions(grounded, topicRefs, normalized.metadata);
+  await applyGradeFit(grounded, topicRefs, normalized.metadata);
   const groundedKeys = new Set(grounded.map((g) => `${g.unitOrder}:${g.topicOrder}`));
   const ungroundedRefs = topicRefs.filter((ref) => !groundedKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
@@ -598,6 +689,7 @@ async function generateLearningPathDraft(normalized) {
   const knowledgeResults = await Promise.all(ungroundedRefs.map((ref) => knowledgeTopic(ref, normalized.metadata)));
   const knowledge = knowledgeResults.filter(Boolean);
   await attachCompanions(knowledge, topicRefs, normalized.metadata);
+  await applyGradeFit(knowledge, topicRefs, normalized.metadata);
   const knowledgeKeys = new Set(knowledge.map((k) => `${k.unitOrder}:${k.topicOrder}`));
   const remainingRefs = ungroundedRefs.filter((ref) => !knowledgeKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
@@ -624,5 +716,7 @@ module.exports = {
   generateWorkedExample,
   knowledgeTopic,
   generateCompanions,
+  applyGradeFit,
+  matchChapter,
   LearningPathGenerationError,
 };

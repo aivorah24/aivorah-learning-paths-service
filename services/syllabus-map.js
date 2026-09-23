@@ -98,6 +98,7 @@ function load() {
         subtopics: Array.isArray(ch.subtopics) ? ch.subtopics : [],
         pdfFile: ch.pdfFile,
         bookPath: ch.bookPath || null,
+        book: doc.book || null,
         // A title still reading "Chapter N" means extraction could not read that
         // PDF (or produced unusable mojibake) — surfaced so validation can flag
         // it rather than ship a placeholder or garbled text.

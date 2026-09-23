@@ -11,6 +11,12 @@ describe('gradeCalibrationNote', () => {
   test('Middle tier for grades 6-8', () => {
     expect(gradeCalibrationNote('7')).toMatch(/Middle/);
   });
+  test('Grade 6 forbids exponent notation and requires the Indian numbering system', () => {
+    const note = gradeCalibrationNote('6');
+    expect(note).toMatch(/Middle/);
+    expect(note).toMatch(/exponent/i);
+    expect(note).toMatch(/Indian numbering system/i);
+  });
   test('Secondary tier for grades 9-12', () => {
     expect(gradeCalibrationNote('11')).toMatch(/Secondary/);
   });
