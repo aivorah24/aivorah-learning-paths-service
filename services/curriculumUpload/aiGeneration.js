@@ -167,6 +167,43 @@ async function generateWorkedExample(topicRef, metadata, retrievedContext) {
   return null;
 }
 
+// Shared post-processing for any generateStructuredContent result, whichever
+// path produced it (Qdrant-grounded or model-knowledge): worked-example
+// exampleType tagging, math worked-example fill-in, and objectives/lessons
+// derivation. Keeps groundTopic and the knowledge-tier path from duplicating
+// this logic.
+async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType, groundingSource, groundedContext) {
+  generated.blocks = generated.blocks.map((b) =>
+    b.type === 'worked_example' && !b.exampleType ? { ...b, exampleType: 'SOURCE_DERIVED' } : b
+  );
+
+  if (groundedContext?.images?.[0]?.url) {
+    const topImage = groundedContext.images[0];
+    generated.blocks = [...generated.blocks, { type: 'image', url: topImage.url, caption: topImage.caption || topicRef.topicTitle, alt_text: topImage.caption || topicRef.topicTitle }];
+  }
+
+  if (contentType === 'mathematics' && !generated.blocks.some((b) => b.type === 'worked_example')) {
+    const context = groundedContext?.context || topicRef.sourceContext || topicRef.topicTitle;
+    const workedExample = await generateWorkedExample(topicRef, metadata, context);
+    if (workedExample) generated.blocks = [...generated.blocks, workedExample];
+  }
+
+  const { objectives, lessons } = deriveObjectivesAndLessons(generated.whatYoullLearn, generated.blocks);
+  return {
+    unitOrder: topicRef.unitOrder,
+    topicOrder: topicRef.topicOrder,
+    objectives,
+    lessons,
+    // Both grounded and model-knowledge topics have real content by
+    // construction, so they're always "ready" — needs_teacher_input only
+    // applies to topics that failed both grounding and knowledge generation.
+    status: 'ready',
+    teacherHint: null,
+    content: { whatYoullLearn: generated.whatYoullLearn, blocks: generated.blocks, contentType },
+    groundingSource,
+  };
+}
+
 async function groundTopic(topicRef, metadata) {
   const retrieved = await retrieveGroundingContext({
     curriculum: metadata?.curriculum,
@@ -193,41 +230,53 @@ async function groundTopic(topicRef, metadata) {
 
   // Any worked_example enrichment.js already produced came straight from the
   // retrieved NCERT text (it deliberately omits the block otherwise — see
-  // enrichment.js's COMMON_RULES rule 7) — tag it SOURCE_DERIVED, the
-  // taxonomy's real-example category, distinct from the invented-but-verified
-  // GROUNDED_SYNTHETIC one generateWorkedExample() below produces.
-  generated.blocks = generated.blocks.map((b) =>
-    b.type === 'worked_example' && !b.exampleType ? { ...b, exampleType: 'SOURCE_DERIVED' } : b
-  );
+  // enrichment.js's COMMON_RULES rule 7) — SOURCE_DERIVED tagging happens in
+  // finalizeGeneratedTopic, distinct from the invented-but-verified
+  // GROUNDED_SYNTHETIC one generateWorkedExample() produces.
+  return finalizeGeneratedTopic(topicRef, metadata, generated, contentType, 'ncert_vector', retrieved);
+}
 
-  // Attach the top retrieved image (if any) as a real "image" block — the
-  // url/caption come straight from Qdrant via rag.js's buildImages(), never
-  // invented by the LLM prompt.
-  const topImage = (retrieved.images || [])[0];
-  if (topImage?.url) {
-    generated.blocks = [...generated.blocks, { type: 'image', url: topImage.url, caption: topImage.caption || topicRef.topicTitle, alt_text: topImage.caption || topicRef.topicTitle }];
+// Chapter title for the knowledge prompt: prefer the unit title from the
+// upload itself, else look up the NCERT registry (syllabus-map.js) by
+// grade+subject and match by chapter order — same registry used for the
+// authoritative chapter structure elsewhere in this service.
+function resolveChapterTitle(topicRef, metadata) {
+  if (topicRef.unitTitle) return topicRef.unitTitle;
+  try {
+    const { chaptersFor } = require('../syllabus-map');
+    const chapters = chaptersFor(metadata?.grade, metadata?.subject);
+    const match = chapters.find((c) => c.chapter === topicRef.unitOrder + 1) || chapters[topicRef.unitOrder];
+    return match?.title || topicRef.topicTitle;
+  } catch {
+    return topicRef.topicTitle;
   }
+}
 
-  if (contentType === 'mathematics' && !generated.blocks.some((b) => b.type === 'worked_example')) {
-    const workedExample = await generateWorkedExample(topicRef, metadata, retrieved.context);
-    if (workedExample) generated.blocks = [...generated.blocks, workedExample];
+// Knowledge tier: for a topic Qdrant couldn't ground, ask the model to write
+// from its own knowledge, anchored to the chapter registry. Only an
+// {"unknown":true} answer or a failure falls through to needs_teacher_input.
+async function knowledgeTopic(topicRef, metadata) {
+  const { generateStructuredContent, classifyContentType } = getEnrichment();
+  const contentType = classifyContentType(metadata?.subject);
+  const chapterTitle = resolveChapterTitle(topicRef, metadata);
+
+  let generated;
+  try {
+    generated = await generateStructuredContent({
+      mode: 'knowledge',
+      curriculum: metadata?.curriculum || 'CBSE',
+      grade: metadata?.grade,
+      subject: metadata?.subject,
+      chapterTitle,
+      topic: topicRef.topicTitle,
+      contentType,
+    });
+  } catch {
+    return null;
   }
+  if (!generated?.ok) return null;
 
-  const { objectives, lessons } = deriveObjectivesAndLessons(generated.whatYoullLearn, generated.blocks);
-  return {
-    unitOrder: topicRef.unitOrder,
-    topicOrder: topicRef.topicOrder,
-    objectives,
-    lessons,
-    // A grounded topic has real retrieved content by construction, so it's
-    // always "ready" — needs_teacher_input only ever applies to the
-    // upload-text-only fallback path below, which has no vector grounding
-    // to fall back on.
-    status: 'ready',
-    teacherHint: null,
-    content: { whatYoullLearn: generated.whatYoullLearn, blocks: generated.blocks, contentType },
-    groundingSource: 'ncert_vector',
-  };
+  return finalizeGeneratedTopic(topicRef, metadata, generated, contentType, 'model_knowledge', null);
 }
 
 // gradeCalibrationNote now lives in ../curriculum/gradeCalibration.js — shared
@@ -393,13 +442,24 @@ async function generateLearningPathDraft(normalized) {
     return mergeGeneratedContent(normalized, grounded);
   }
 
-  const first = await attemptGeneration(buildPrompt(ungroundedRefs, normalized.metadata), ungroundedRefs);
-  if (first.ok) return mergeGeneratedContent(normalized, [...grounded, ...first.topics]);
+  // Try the model's own knowledge per topic before falling back to the
+  // objectives-only batch path. Only unknown/failed topics fall through.
+  const knowledgeResults = await Promise.all(ungroundedRefs.map((ref) => knowledgeTopic(ref, normalized.metadata)));
+  const knowledge = knowledgeResults.filter(Boolean);
+  const knowledgeKeys = new Set(knowledge.map((k) => `${k.unitOrder}:${k.topicOrder}`));
+  const remainingRefs = ungroundedRefs.filter((ref) => !knowledgeKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
-  const second = await attemptGeneration(buildPrompt(ungroundedRefs, normalized.metadata, first.errors), ungroundedRefs);
-  if (second.ok) return mergeGeneratedContent(normalized, [...grounded, ...second.topics]);
+  if (remainingRefs.length === 0) {
+    return mergeGeneratedContent(normalized, [...grounded, ...knowledge]);
+  }
 
-  if (grounded.length > 0) return mergeGeneratedContent(normalized, grounded);
+  const first = await attemptGeneration(buildPrompt(remainingRefs, normalized.metadata), remainingRefs);
+  if (first.ok) return mergeGeneratedContent(normalized, [...grounded, ...knowledge, ...first.topics]);
+
+  const second = await attemptGeneration(buildPrompt(remainingRefs, normalized.metadata, first.errors), remainingRefs);
+  if (second.ok) return mergeGeneratedContent(normalized, [...grounded, ...knowledge, ...second.topics]);
+
+  if (grounded.length > 0 || knowledge.length > 0) return mergeGeneratedContent(normalized, [...grounded, ...knowledge]);
   throw new LearningPathGenerationError(`AI generation failed after retry: ${second.errors.join('; ')}`);
 }
 
@@ -410,5 +470,6 @@ module.exports = {
   mergeGeneratedContent,
   deriveObjectivesAndLessons,
   generateWorkedExample,
+  knowledgeTopic,
   LearningPathGenerationError,
 };

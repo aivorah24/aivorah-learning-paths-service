@@ -20,7 +20,7 @@ jest.mock('../../services/qdrant', () => ({
   resolveTopicWithContext: (...args) => mockResolveTopicWithContext(...args),
 }));
 
-const { getOrGenerateEnrichment, classifyContentType, buildPrompt } = require('../../services/curriculum/enrichment');
+const { getOrGenerateEnrichment, classifyContentType, buildPrompt, generateStructuredContent } = require('../../services/curriculum/enrichment');
 
 function groqReturns(jsonObj) {
   mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: JSON.stringify(jsonObj) } }] });
@@ -191,5 +191,63 @@ describe('buildPrompt dual-concept and Indian place-value instructions', () => {
     const prompt = buildPrompt({ curriculum: 'NCERT', grade: '6', subject: 'Mathematics', topic: 'Place Value and Face Value', primaryText: 'x', contextText: '', contentType: 'mathematics' });
     expect(prompt).toMatch(/"table"/);
     expect(prompt).toMatch(/Place Value Chart/);
+  });
+});
+
+describe('generateStructuredContent — knowledge mode', () => {
+  const knowledgeInput = {
+    mode: 'knowledge',
+    curriculum: 'CBSE',
+    grade: '6',
+    subject: 'Science',
+    chapterTitle: 'Food: Where Does It Come From?',
+    topic: 'Sources of Food',
+    contentType: 'biology',
+  };
+
+  beforeEach(() => {
+    global.fetch = jest.fn();
+    process.env.KNOWLEDGE_LLM_API_KEY = 'test-key';
+  });
+  afterEach(() => {
+    delete global.fetch;
+    delete process.env.KNOWLEDGE_LLM_API_KEY;
+  });
+
+  test('uses the knowledge-tier LLM (not Groq) on success', async () => {
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ choices: [{ message: { content: JSON.stringify(VALID_PAYLOAD) } }] }),
+    });
+
+    const result = await generateStructuredContent(knowledgeInput);
+
+    expect(result.ok).toBe(true);
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+
+  test('falls back to Groq when the knowledge-tier LLM errors (e.g. 429)', async () => {
+    global.fetch.mockResolvedValueOnce({ ok: false, status: 429, text: async () => 'rate limited' });
+    groqReturns(VALID_PAYLOAD);
+
+    const result = await generateStructuredContent(knowledgeInput);
+
+    expect(result.ok).toBe(true);
+    expect(global.fetch).toHaveBeenCalledTimes(1);
+    expect(mockCreate).toHaveBeenCalledTimes(1);
+  });
+
+  test('{"unknown":true} short-circuits without a retry', async () => {
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ choices: [{ message: { content: '{"unknown":true}' } }] }),
+    });
+
+    const result = await generateStructuredContent(knowledgeInput);
+
+    expect(result.ok).toBe(false);
+    expect(result.unknown).toBe(true);
+    expect(mockCreate).not.toHaveBeenCalled();
   });
 });

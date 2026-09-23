@@ -291,8 +291,9 @@ describe('generateLearningPathDraft — NCERT/vector grounding', () => {
     expect(sentPrompt).toContain('Fractions');
   });
 
-  test('falls back to upload-text grounding when retrieval finds nothing — never invents NCERT content', async () => {
+  test('falls back to upload-text grounding when retrieval AND model knowledge both find nothing', async () => {
     mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockGenerateStructuredContent.mockResolvedValue({ ok: false, unknown: true, reason: 'unknown' });
     mockCreate.mockResolvedValueOnce(completionWith({
       topics: [
         { unitOrder: 0, topicOrder: 0, objectives: ['x'], lessons: [] },
@@ -302,7 +303,7 @@ describe('generateLearningPathDraft — NCERT/vector grounding', () => {
 
     const draft = await generateLearningPathDraft(normalized);
 
-    expect(mockGenerateStructuredContent).not.toHaveBeenCalled();
+    expect(mockGenerateStructuredContent).toHaveBeenCalledWith(expect.objectContaining({ mode: 'knowledge' }));
     expect(draft.units[0].topics[0].groundingSource).toBe('upload_text_only');
   });
 
@@ -341,6 +342,35 @@ describe('generateLearningPathDraft — NCERT/vector grounding', () => {
 
     expect(draft.units[0].topics[0].groundingSource).toBe('upload_text_only');
     expect(draft.units[0].topics[0].objectives).toEqual(['fallback']);
+  });
+});
+
+describe('generateLearningPathDraft — knowledge tier (model_knowledge)', () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  test('an ungrounded topic gets tagged model_knowledge when the knowledge LLM succeeds', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockGenerateStructuredContent.mockImplementation(async ({ topic }) =>
+      topic === 'Whole Numbers'
+        ? { ok: true, whatYoullLearn: ['Understand whole numbers'], blocks: [{ type: 'explanation', text: 'Whole numbers explained.' }] }
+        : { ok: false, unknown: true, reason: 'unknown' }
+    );
+    // Whole Numbers is Mathematics with no worked_example block, so
+    // finalizeGeneratedTopic also fires the targeted worked-example call —
+    // route mockCreate by prompt content so both calls resolve correctly.
+    mockCreate.mockImplementation(async (opts) => {
+      const prompt = opts.messages[0].content;
+      if (prompt.includes('worked mathematical')) return completionWith({ topics: [] }); // invalid shape -> skipped
+      return completionWith({ topics: [{ unitOrder: 0, topicOrder: 1, objectives: [], lessons: [] }] });
+    });
+
+    const draft = await generateLearningPathDraft(normalized);
+
+    const wholeNumbers = draft.units[0].topics[0];
+    expect(wholeNumbers.groundingSource).toBe('model_knowledge');
+    expect(wholeNumbers.status).toBe('ready');
+    expect(wholeNumbers.content.blocks.some((b) => b.type === 'explanation')).toBe(true);
+    expect(draft.units[0].topics[1].groundingSource).toBe('upload_text_only'); // Fractions, unknown:true
   });
 });
 
@@ -412,15 +442,16 @@ describe('groundTopic — worked-example disclosure', () => {
     expect(blocks.some((b) => b.type === 'explanation')).toBe(true);
   });
 
-  test('insufficient grounding (no retrieval match) falls through to needs_teacher_input, never fabricates', async () => {
+  test('insufficient grounding AND unconfident model knowledge falls through to needs_teacher_input, never fabricates', async () => {
     mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockGenerateStructuredContent.mockResolvedValue({ ok: false, unknown: true, reason: 'unknown' });
     mockCreate.mockResolvedValueOnce(completionWith({
       topics: [{ unitOrder: 0, topicOrder: 0, status: 'needs_teacher_input', teacherHint: 'Add topic detail.', objectives: [], lessons: [] }],
     }));
 
     const draft = await generateLearningPathDraft(singleTopicNormalized);
 
-    expect(mockGenerateStructuredContent).not.toHaveBeenCalled();
+    expect(mockGenerateStructuredContent).toHaveBeenCalledWith(expect.objectContaining({ mode: 'knowledge' }));
     expect(draft.units[0].topics[0].status).toBe('needs_teacher_input');
     expect(draft.units[0].topics[0].content).toBeNull();
   });

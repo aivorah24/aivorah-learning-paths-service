@@ -16,6 +16,7 @@ const Groq = require('groq-sdk');
 const supabase = require('../supabase');
 const { validateEnrichment } = require('./blockSchema');
 const { gradeCalibrationNote } = require('./gradeCalibration');
+const { callLLM } = require('../llm/openaiCompat');
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -27,6 +28,18 @@ const PROMPT_VERSION = 'v1';
 // rate-limit so generation doesn't dead-end when the daily cap is hit.
 const PRIMARY_MODEL = 'openai/gpt-oss-120b';
 const FALLBACK_MODEL = 'openai/gpt-oss-20b';
+
+// Knowledge tier: provider-agnostic, configured via env so it can point at
+// Groq, Gemini, or anything else OpenAI-compatible. Defaults to Groq itself
+// (same key/model as the grounded path) so knowledge mode works out of the box.
+// Read lazily (not at module load) so tests can set env vars per-case.
+function knowledgeLLMConfig() {
+  return {
+    baseUrl: process.env.KNOWLEDGE_LLM_BASE_URL || 'https://api.groq.com/openai/v1',
+    apiKey: process.env.KNOWLEDGE_LLM_API_KEY || process.env.GROQ_API_KEY,
+    model: process.env.KNOWLEDGE_LLM_MODEL || PRIMARY_MODEL,
+  };
+}
 
 // Subject -> content-type classification. Drives which block types the
 // prompt asks for. Deliberately name-based (not hard-coded per-subject
@@ -102,7 +115,28 @@ Rules — follow all of them:
 9. DUAL/COMPOSITE CONCEPTS: if the topic title names more than one distinct concept (e.g. "Place Value and Face Value", "Successor and Predecessor"), you MUST explicitly define, contrast, and give a worked example for EVERY named concept — never substitute or over-index on an adjacent idea (e.g. comma placement, large-number reading) instead of covering all the concepts actually named in the title. Address each named concept by name.
 10. INDIAN PLACE VALUE SYSTEM: whenever this content involves comma placement, periods, or reading/writing large numbers, use the Indian Place Value System (commas after the first 3 digits from the right, then every 2 digits — e.g. 9,63,001; periods: Ones, Thousands, Lakhs, Crores) as the primary and correct convention, since NCERT uses this system. Only mention the International system (commas every 3 digits, e.g. 963,001) as a labeled contrast if pedagogically relevant — never present both as equally valid without clearly labeling which one is NCERT-standard.`;
 
-function buildPrompt({ curriculum, grade, subject, chapterPdf, topic, primaryText, contextText, contentType }) {
+function buildKnowledgePrompt({ curriculum, grade, subject, chapterTitle, topic, contentType }) {
+  const guidance = CONTENT_TYPE_GUIDANCE[contentType] || CONTENT_TYPE_GUIDANCE.theory;
+  const calibrationNote = gradeCalibrationNote(grade);
+  return `Write from your own knowledge of the ${curriculum} Grade ${grade} ${subject} chapter "${chapterTitle}", topic "${topic}". Stay strictly within that chapter's syllabus — do not bring in content from other chapters or grades.
+
+If you are not confident that "${topic}" genuinely belongs to the chapter "${chapterTitle}", respond with ONLY {"unknown":true} and nothing else.
+
+${calibrationNote ? `${calibrationNote}\n\n` : ''}Otherwise produce ONLY valid JSON matching this exact top-level shape (no markdown fences, no commentary):
+{"whatYoullLearn": ["...", "..."], "blocks": [ {"type": "...", ...fields...}, ... ]}
+
+EXACT FIELD SHAPES (use these field names precisely):
+${BLOCK_SHAPES}
+
+ALLOWED BLOCK TYPES FOR THIS SUBJECT:
+${guidance}
+
+Respond with ONLY the JSON object described above.`;
+}
+
+function buildPrompt(input) {
+  if (input.mode === 'knowledge') return buildKnowledgePrompt(input);
+  const { curriculum, grade, subject, chapterPdf, topic, primaryText, contextText, contentType } = input;
   const guidance = CONTENT_TYPE_GUIDANCE[contentType] || CONTENT_TYPE_GUIDANCE.theory;
   const calibrationNote = gradeCalibrationNote(grade);
   return `${COMMON_RULES}
@@ -152,6 +186,9 @@ function tryParseAndValidate(raw) {
   } catch (e) {
     return { ok: false, reason: 'json_parse_error', raw };
   }
+  if (parsed && parsed.unknown === true) {
+    return { ok: false, reason: 'unknown', unknown: true };
+  }
   const result = validateEnrichment(parsed);
   if (!result.valid) {
     return { ok: false, reason: 'schema_validation_failed', errors: result.errors, raw };
@@ -165,11 +202,30 @@ function tryParseAndValidate(raw) {
 // than once: a second bad generation in a row means fall back safely
 // (getOrGenerateEnrichment returns null) rather than spending more LLM calls
 // chasing a topic that may just have too little source material.
+// Knowledge tier's own LLM call — separate from callGroq (the grounded
+// path's client) so it can point at a different provider/model via env.
+// Any failure (rate limit, no key, bad response) propagates so the caller
+// falls back to callGroq, never silently degrading content quality.
+async function callKnowledgeLLM(prompt) {
+  const content = await callLLM(prompt, { json: true, ...knowledgeLLMConfig() });
+  return { choices: [{ message: { content } }] };
+}
+
 async function generateStructuredContent(input) {
   const prompt = buildPrompt(input);
-  const first = await callGroq(prompt);
+
+  let first;
+  if (input.mode === 'knowledge') {
+    try {
+      first = await callKnowledgeLLM(prompt);
+    } catch (e) {
+      first = await callGroq(prompt);
+    }
+  } else {
+    first = await callGroq(prompt);
+  }
   const firstResult = tryParseAndValidate(first.choices[0]?.message?.content || '{}');
-  if (firstResult.ok) return firstResult;
+  if (firstResult.ok || firstResult.unknown) return firstResult;
 
   const retryPrompt = `${prompt}
 
