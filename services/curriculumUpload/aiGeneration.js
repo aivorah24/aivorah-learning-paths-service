@@ -7,6 +7,7 @@ const { buildQuizPrompt } = require('../curriculum/quizPrompt');
 const { normalizeQuizQuestion } = require('../quizNormalize');
 const { findTopicImages } = require('../qdrant');
 const { checkGradeFit } = require('../curriculum/gradeFit');
+const { withLLMRetry } = require('../llm/openaiCompat');
 
 let _groq = null;
 function getGroqClient() {
@@ -32,6 +33,22 @@ const FALLBACK_MODEL = 'openai/gpt-oss-20b';
 class LearningPathGenerationError extends Error {}
 
 const MAX_SOURCE_CONTEXT_CHARS = 1500;
+
+// Bounds per-draft LLM concurrency so a many-topic upload doesn't burst
+// Groq's TPM limit — small concurrency instead of unbounded Promise.all.
+const DRAFT_CONCURRENCY = 2;
+async function mapWithConcurrency(items, limit, fn) {
+  const results = new Array(items.length);
+  let next = 0;
+  async function worker() {
+    while (next < items.length) {
+      const i = next++;
+      results[i] = await fn(items[i], i);
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+  return results;
+}
 
 function collectTopicRefs(normalized) {
   const refs = [];
@@ -438,7 +455,11 @@ function resolveChapterPdf(topicRef, metadata) {
 async function knowledgeTopic(topicRef, metadata, qualityFeedback) {
   const { generateStructuredContent, classifyContentType } = getEnrichment();
   const contentType = classifyContentType(metadata?.subject);
-  const chapterTitle = resolveChapterTitle(topicRef, metadata);
+  const chapterMatch = matchChapter(topicRef, metadata);
+  // Only claim a real chapter match when the registry actually confirms one —
+  // an unmatched topic (e.g. an old-syllabus title) still gets taught from the
+  // unit/topic/subtopics themselves, not bailed on for "not in chapter X".
+  const chapterTitle = chapterMatch?.title || topicRef.unitTitle || topicRef.topicTitle;
 
   let generated;
   try {
@@ -448,7 +469,10 @@ async function knowledgeTopic(topicRef, metadata, qualityFeedback) {
       grade: metadata?.grade,
       subject: metadata?.subject,
       chapterTitle,
+      chapterMatched: !!chapterMatch,
+      unitTitle: topicRef.unitTitle,
       topic: topicRef.topicTitle,
+      subtopics: topicRef.subtopics,
       contentType,
       qualityFeedback,
     });
@@ -510,9 +534,9 @@ async function callGroq(prompt) {
   };
   const groq = getGroqClient();
   try {
-    return await groq.chat.completions.create({ model: PRIMARY_MODEL, ...opts });
+    return await withLLMRetry(() => groq.chat.completions.create({ model: PRIMARY_MODEL, ...opts }));
   } catch (primaryErr) {
-    return await groq.chat.completions.create({ model: FALLBACK_MODEL, ...opts });
+    return await withLLMRetry(() => groq.chat.completions.create({ model: FALLBACK_MODEL, ...opts }));
   }
 }
 
@@ -611,7 +635,7 @@ async function attemptGeneration(prompt, topicRefs) {
 // without these fields (generateCompanions already returns null on failure).
 async function attachCompanions(topics, topicRefs, metadata) {
   const refByKey = new Map(topicRefs.map((r) => [`${r.unitOrder}:${r.topicOrder}`, r]));
-  await Promise.all(topics.map(async (t) => {
+  await mapWithConcurrency(topics, DRAFT_CONCURRENCY, async (t) => {
     if (!t.content) return;
     const ref = refByKey.get(`${t.unitOrder}:${t.topicOrder}`);
     if (!ref) return;
@@ -620,7 +644,7 @@ async function attachCompanions(topics, topicRefs, metadata) {
       t.content.listenParts = companions.listenParts;
       t.content.practiceQuiz = companions.practiceQuiz;
     }
-  }));
+  });
 }
 
 // Grade-fit pass: rules + Groq judge per topic (checkGradeFit). On failure,
@@ -630,7 +654,7 @@ async function attachCompanions(topics, topicRefs, metadata) {
 // regen's own bounded content calls + 1 companions call + 1 re-judge call.
 async function applyGradeFit(topics, topicRefs, metadata) {
   const refByKey = new Map(topicRefs.map((r) => [`${r.unitOrder}:${r.topicOrder}`, r]));
-  await Promise.all(topics.map(async (t) => {
+  await mapWithConcurrency(topics, DRAFT_CONCURRENCY, async (t) => {
     if (!t.content || (t.groundingSource !== 'ncert_vector' && t.groundingSource !== 'model_knowledge')) return;
     const ref = refByKey.get(`${t.unitOrder}:${t.topicOrder}`);
     if (!ref) return;
@@ -661,7 +685,7 @@ async function applyGradeFit(topics, topicRefs, metadata) {
       t.status = 'needs_teacher_input';
       t.teacherHint = `Grade-fit review: ${result.quality.issues.slice(0, 5).join('; ')}`;
     }
-  }));
+  });
 }
 
 async function generateLearningPathDraft(normalized) {
@@ -673,7 +697,7 @@ async function generateLearningPathDraft(normalized) {
   // Prefer real NCERT/vector grounding per topic. Topics where retrieval is
   // genuinely insufficient fall through to the upload-text-grounded batch
   // path below — never silently upgraded to invented "generic knowledge".
-  const groundedResults = await Promise.all(topicRefs.map((ref) => groundTopic(ref, normalized.metadata)));
+  const groundedResults = await mapWithConcurrency(topicRefs, DRAFT_CONCURRENCY, (ref) => groundTopic(ref, normalized.metadata));
   const grounded = groundedResults.filter(Boolean);
   await attachCompanions(grounded, topicRefs, normalized.metadata);
   await applyGradeFit(grounded, topicRefs, normalized.metadata);
@@ -686,7 +710,7 @@ async function generateLearningPathDraft(normalized) {
 
   // Try the model's own knowledge per topic before falling back to the
   // objectives-only batch path. Only unknown/failed topics fall through.
-  const knowledgeResults = await Promise.all(ungroundedRefs.map((ref) => knowledgeTopic(ref, normalized.metadata)));
+  const knowledgeResults = await mapWithConcurrency(ungroundedRefs, DRAFT_CONCURRENCY, (ref) => knowledgeTopic(ref, normalized.metadata));
   const knowledge = knowledgeResults.filter(Boolean);
   await attachCompanions(knowledge, topicRefs, normalized.metadata);
   await applyGradeFit(knowledge, topicRefs, normalized.metadata);

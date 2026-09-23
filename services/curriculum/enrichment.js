@@ -16,7 +16,7 @@ const Groq = require('groq-sdk');
 const supabase = require('../supabase');
 const { validateEnrichment } = require('./blockSchema');
 const { gradeCalibrationNote } = require('./gradeCalibration');
-const { callLLM } = require('../llm/openaiCompat');
+const { callLLM, withLLMRetry } = require('../llm/openaiCompat');
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -153,12 +153,26 @@ function qualityFeedbackNote(input) {
 }
 
 function buildKnowledgePrompt(input) {
-  const { curriculum, grade, subject, chapterTitle, topic, contentType } = input;
+  const { curriculum, grade, subject, chapterTitle, chapterMatched, unitTitle, topic, subtopics, contentType } = input;
   const guidance = CONTENT_TYPE_GUIDANCE[contentType] || CONTENT_TYPE_GUIDANCE.theory;
   const calibrationNote = gradeCalibrationNote(grade);
-  return `Write from your own knowledge of the ${curriculum} Grade ${grade} ${subject} chapter "${chapterTitle}", topic "${topic}". Stay strictly within that chapter's syllabus — do not bring in content from other chapters or grades.
+  const subtopicsLine = Array.isArray(subtopics) && subtopics.length ? `\nSubtopics to cover: ${subtopics.join('; ')}.` : '';
 
-If you are not confident that "${topic}" genuinely belongs to the chapter "${chapterTitle}", respond with ONLY {"unknown":true} and nothing else.
+  // Two anchoring modes: a CONFIRMED registry chapter match keeps the
+  // stricter "stay within this chapter" wording (chapter-anchored); anything
+  // else (no match, or only a raw unit title from the upload) teaches the
+  // topic directly like ChatGPT would — the topic not being in OUR current
+  // textbook is not a reason to refuse, only a genuinely unintelligible/
+  // not-a-real-school-topic title is.
+  const anchor = chapterMatched
+    ? `Write from your own knowledge of the ${curriculum} Grade ${grade} ${subject} chapter "${chapterTitle}", topic "${topic}". Stay strictly within that chapter's syllabus — do not bring in content from other chapters or grades.${subtopicsLine}
+
+If you are not confident that "${topic}" genuinely belongs to the chapter "${chapterTitle}", respond with ONLY {"unknown":true} and nothing else.`
+    : `Teach this topic as appropriate for ${curriculum} Grade ${grade} ${subject}${unitTitle ? `, unit "${unitTitle}"` : ''}, topic "${topic}", from your own general knowledge of the subject at this grade level.${subtopicsLine} This topic may not be in the current textbook edition — that is fine, still teach it.
+
+Only respond with {"unknown":true} (and nothing else) if "${topic}" is not intelligible or not a real school topic at all — never merely because it is absent from a specific textbook.`;
+
+  return `${anchor}
 
 ${calibrationNote ? `${calibrationNote}\n\n` : ''}Otherwise produce ONLY valid JSON matching this exact top-level shape (no markdown fences, no commentary):
 {"whatYoullLearn": ["...", "..."], "blocks": [ {"type": "...", ...fields...}, ... ]}
@@ -215,9 +229,9 @@ async function callGroq(prompt) {
     temperature: 0.3,
   };
   try {
-    return await groq.chat.completions.create({ model: PRIMARY_MODEL, ...opts });
+    return await withLLMRetry(() => groq.chat.completions.create({ model: PRIMARY_MODEL, ...opts }));
   } catch (primaryErr) {
-    return await groq.chat.completions.create({ model: FALLBACK_MODEL, ...opts });
+    return await withLLMRetry(() => groq.chat.completions.create({ model: FALLBACK_MODEL, ...opts }));
   }
 }
 

@@ -322,3 +322,26 @@ describe('generateStructuredContent — recipe regenerate-once', () => {
     expect(mockCreate).toHaveBeenCalledTimes(2);
   });
 });
+
+describe('buildKnowledgePrompt — anchoring without a confirmed chapter match', () => {
+  test('no chapterMatched: anchors on curriculum/grade/subject/unit/topic/subtopics, and only bails on unintelligible topics', () => {
+    const prompt = buildPrompt({
+      mode: 'knowledge', curriculum: 'CBSE', grade: '6', subject: 'Mathematics',
+      chapterTitle: 'Whole Numbers', chapterMatched: false, unitTitle: 'Whole Numbers',
+      topic: 'Whole Numbers', subtopics: ['Number line', 'Successor and predecessor'], contentType: 'mathematics',
+    });
+    expect(prompt).toContain('Teach this topic as appropriate for CBSE Grade 6 Mathematics');
+    expect(prompt).toContain('Number line; Successor and predecessor');
+    expect(prompt).toContain('not intelligible or not a real school topic');
+    expect(prompt).not.toContain('If you are not confident that "Whole Numbers" genuinely belongs to the chapter');
+  });
+
+  test('chapterMatched: keeps the stricter chapter-anchored wording', () => {
+    const prompt = buildPrompt({
+      mode: 'knowledge', curriculum: 'CBSE', grade: '6', subject: 'Mathematics',
+      chapterTitle: 'Fractions', chapterMatched: true, topic: 'Understanding Fractions', contentType: 'mathematics',
+    });
+    expect(prompt).toContain('Stay strictly within that chapter\'s syllabus');
+    expect(prompt).toContain('If you are not confident that "Understanding Fractions" genuinely belongs to the chapter "Fractions"');
+  });
+});

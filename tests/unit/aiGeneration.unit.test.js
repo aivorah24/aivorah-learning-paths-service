@@ -874,3 +874,50 @@ describe('generateCompanions', () => {
     expect(result.practiceQuiz).toHaveLength(1);
   });
 });
+
+describe('knowledgeTopic — no chapter match still generates content', () => {
+  test('an old-syllabus topic with no registry match gets chapterMatched:false and real content, not unknown', async () => {
+    mockGenerateStructuredContent.mockImplementation(async (input) => {
+      expect(input.chapterMatched).toBe(false);
+      expect(input.unitTitle).toBe('Knowing Our Numbers');
+      return { ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'Whole numbers explained.' }] };
+    });
+
+    const { knowledgeTopic } = require('../../services/curriculumUpload/aiGeneration');
+    const result = await knowledgeTopic(
+      { unitOrder: 0, topicOrder: 0, unitTitle: 'Knowing Our Numbers', topicTitle: 'Knowing Our Numbers', subtopics: ['Reading and writing large numbers'] },
+      { grade: '6', subject: 'Mathematics', curriculum: 'CBSE' }
+    );
+
+    expect(result).not.toBeNull();
+    expect(result.groundingSource).toBe('model_knowledge');
+    expect(mockGenerateStructuredContent).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('generateLearningPathDraft — bounded concurrency', () => {
+  test('never runs more than DRAFT_CONCURRENCY (2) knowledge-tier generations at once', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    let inFlight = 0;
+    let maxInFlight = 0;
+    mockGenerateStructuredContent.mockImplementation(async () => {
+      inFlight++;
+      maxInFlight = Math.max(maxInFlight, inFlight);
+      await new Promise((r) => setTimeout(r, 10));
+      inFlight--;
+      return { ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }] };
+    });
+    mockCreate.mockResolvedValue(completionWith({ topics: [] }));
+
+    const manyTopics = {
+      metadata: { grade: '6', subject: 'Science' },
+      units: [{
+        title: 'Unit', order: 0,
+        topics: Array.from({ length: 6 }, (_, i) => ({ title: `Topic ${i}`, order: i, subtopics: [], content: [] })),
+      }],
+    };
+
+    await generateLearningPathDraft(manyTopics);
+    expect(maxInFlight).toBeLessThanOrEqual(2);
+  });
+});
