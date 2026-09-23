@@ -81,4 +81,33 @@ describe('validateLearningPathContent', () => {
     content.units[0].topics[0].subtopics[0].title = '';
     expect(() => validateLearningPathContent(content)).toThrow(/non-empty string/);
   });
+
+  test('accepts well-formed listenParts and practiceQuiz on topic.content', () => {
+    const content = validContent();
+    content.units[0].topics[0].content = {
+      listenParts: [{ heading: 'Intro', text: 'Hello there.', keyIdea: 'Numbers are everywhere', pauseThink: { question: 'What is 2+2?', options: ['3', '4', '5', '6'], correctIndex: 1 } }],
+      practiceQuiz: [{ type: 'mcq', question: 'What is 2+2?', options: ['3', '4', '5', '6'], correct: 1 }],
+    };
+    expect(validateLearningPathContent(content)).toBe(true);
+  });
+
+  test('rejects a listenPart missing text', () => {
+    const content = validContent();
+    content.units[0].topics[0].content = { listenParts: [{ heading: 'Intro' }] };
+    expect(() => validateLearningPathContent(content)).toThrow(/listenParts/);
+  });
+
+  test('rejects a pauseThink missing options', () => {
+    const content = validContent();
+    content.units[0].topics[0].content = {
+      listenParts: [{ heading: 'Intro', text: 'Hi', pauseThink: { question: 'Q?' } }],
+    };
+    expect(() => validateLearningPathContent(content)).toThrow(/pauseThink/);
+  });
+
+  test('rejects a practiceQuiz question missing options', () => {
+    const content = validContent();
+    content.units[0].topics[0].content = { practiceQuiz: [{ question: 'Q?' }] };
+    expect(() => validateLearningPathContent(content)).toThrow(/practiceQuiz/);
+  });
 });

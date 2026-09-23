@@ -2,7 +2,9 @@ const Groq = require('groq-sdk');
 const { retrieveGroundingContext } = require('./groundedContent');
 const { validateBlock } = require('../curriculum/blockSchema');
 const { gradeCalibrationNote } = require('../curriculum/gradeCalibration');
-const { verifyWorkedExample } = require('./mathValidator');
+const { verifyWorkedExample, verifyCalculationString } = require('./mathValidator');
+const { buildQuizPrompt } = require('../curriculum/quizPrompt');
+const { normalizeQuizQuestion } = require('../quizNormalize');
 
 let _groq = null;
 function getGroqClient() {
@@ -202,6 +204,110 @@ async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType
     content: { whatYoullLearn: generated.whatYoullLearn, blocks: generated.blocks, contentType },
     groundingSource,
   };
+}
+
+// Condenses finished Learn blocks into plain text so the companions prompt
+// (and the quiz's passageText grounding) is based ONLY on approved content.
+function blocksToText(blocks) {
+  return (blocks || [])
+    .map((b) => {
+      if (b.type === 'worked_example') {
+        const steps = (b.steps || []).map((s) => `${s.explanation || s.action || ''} ${s.calculation || s.equation || ''}`).join('\n');
+        return `Worked Example: ${b.problem}\n${steps}\nAnswer: ${b.finalAnswer}`;
+      }
+      if (b.type === 'example') return `Example: ${b.text}`;
+      if (b.type === 'process') return `${b.title || 'Process'}: ${(b.steps || []).join(' -> ')}`;
+      if (b.type === 'comparison') return `${b.title || 'Comparison'}: ${(b.items || []).map((i) => `${i.name}: ${i.description}`).join('; ')}`;
+      return b.text || '';
+    })
+    .filter(Boolean)
+    .join('\n\n')
+    .slice(0, MAX_SOURCE_CONTEXT_CHARS * 2);
+}
+
+// listenParts/practiceQuiz prompt — one call, grounded ONLY in the finished
+// Learn content passed in, so audio/practice can't drift from what the
+// teacher approved. practiceQuiz reuses buildQuizPrompt's exact question
+// spec (shared with routes/ibpyp.js) so the shape matches what the student
+// Quiz screen already consumes.
+function buildCompanionsPrompt(topicRef, metadata, content, isMath) {
+  const blocksText = blocksToText(content.blocks);
+  const objectives = (content.whatYoullLearn || []).join('; ');
+  const calibrationNote = gradeCalibrationNote(metadata?.grade);
+
+  const listenInstructions = isMath
+    ? 'For "listenParts": act as a patient AI Tutor. Walk through EACH worked example in the Learn content below step by step, explaining the reasoning out loud like a tutor sitting beside the student (one listenPart per worked example, plus a short intro part).'
+    : 'For "listenParts": write a spoken, conversational explanation of the Learn content below, as if narrating it aloud to the student. Break it into natural sections, short sentences.';
+
+  const mathCalcRule = isMath
+    ? '\nAdditionally, for each fill_blank question, include a "calculation" field like the worked example steps (e.g. "12 + 8 = 20") showing the arithmetic that produces the correct answer — this is machine-verified.'
+    : '';
+
+  const quizSpec = buildQuizPrompt({
+    topic: topicRef.topicTitle,
+    grade: metadata?.grade,
+    subject: metadata?.subject,
+    curriculum: metadata?.curriculum,
+    passageText: blocksText,
+  });
+
+  return `You are creating an audio script and a practice quiz for a Learn lesson the student has ALREADY been shown below. Base BOTH parts ONLY on this content — do not introduce facts not in it.
+
+${calibrationNote ? `${calibrationNote}\n\n` : ''}LEARN CONTENT:
+Objectives: ${objectives || '(none)'}
+${blocksText}
+
+${listenInstructions}
+Each listenPart needs: "heading", "text" (spoken-aloud script), "keyIdea" (one sentence), and "pauseThink": {"question": string, "options": string[4], "correctIndex": number}.
+
+For "practiceQuiz" (JSON key "questions"), follow this exact question specification:
+${quizSpec}${mathCalcRule}
+
+Respond with ONLY ONE JSON object of this exact shape:
+{"listenParts": [{"heading":"...","text":"...","keyIdea":"...","pauseThink":{"question":"...","options":["...","...","...","..."],"correctIndex":0}}], "questions": [...same shape as specified above...]}`;
+}
+
+function isValidPracticeQuestion(q, isMath) {
+  if (!isMath || q.type !== 'fill_blank' || !q.calculation) return true;
+  const { checked, valid } = verifyCalculationString(q.calculation);
+  return !checked || valid;
+}
+
+async function generateCompanions(topicRef, metadata, content) {
+  const isMath = content?.contentType === 'mathematics';
+  const prompt = buildCompanionsPrompt(topicRef, metadata, content, isMath);
+
+  let completion;
+  try {
+    completion = await callGroq(prompt);
+  } catch {
+    return null;
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(completion.choices?.[0]?.message?.content || '');
+  } catch {
+    return null;
+  }
+
+  const listenParts = (Array.isArray(parsed.listenParts) ? parsed.listenParts : [])
+    .filter((p) => p && typeof p.heading === 'string' && typeof p.text === 'string')
+    .map((p) => ({
+      heading: p.heading,
+      text: p.text,
+      keyIdea: typeof p.keyIdea === 'string' ? p.keyIdea : '',
+      ...(p.pauseThink && typeof p.pauseThink.question === 'string' && Array.isArray(p.pauseThink.options)
+        ? { pauseThink: { question: p.pauseThink.question, options: p.pauseThink.options.map(String), correctIndex: Number(p.pauseThink.correctIndex) || 0 } }
+        : {}),
+    }));
+
+  const practiceQuiz = (Array.isArray(parsed.questions) ? parsed.questions : [])
+    .filter((q) => isValidPracticeQuestion(q, isMath))
+    .map(normalizeQuizQuestion);
+
+  if (listenParts.length === 0 && practiceQuiz.length === 0) return null;
+  return { listenParts, practiceQuiz };
 }
 
 async function groundTopic(topicRef, metadata) {
@@ -424,6 +530,23 @@ async function attemptGeneration(prompt, topicRefs) {
   return result.valid ? { ok: true, topics: result.topics } : { ok: false, errors: result.errors };
 }
 
+// Attaches listenParts/practiceQuiz to each topic's content in place. A
+// companion failure never fails the topic — the topic just keeps content
+// without these fields (generateCompanions already returns null on failure).
+async function attachCompanions(topics, topicRefs, metadata) {
+  const refByKey = new Map(topicRefs.map((r) => [`${r.unitOrder}:${r.topicOrder}`, r]));
+  await Promise.all(topics.map(async (t) => {
+    if (!t.content) return;
+    const ref = refByKey.get(`${t.unitOrder}:${t.topicOrder}`);
+    if (!ref) return;
+    const companions = await generateCompanions(ref, metadata, t.content).catch(() => null);
+    if (companions) {
+      t.content.listenParts = companions.listenParts;
+      t.content.practiceQuiz = companions.practiceQuiz;
+    }
+  }));
+}
+
 async function generateLearningPathDraft(normalized) {
   const topicRefs = collectTopicRefs(normalized);
   if (topicRefs.length === 0) {
@@ -435,6 +558,7 @@ async function generateLearningPathDraft(normalized) {
   // path below — never silently upgraded to invented "generic knowledge".
   const groundedResults = await Promise.all(topicRefs.map((ref) => groundTopic(ref, normalized.metadata)));
   const grounded = groundedResults.filter(Boolean);
+  await attachCompanions(grounded, topicRefs, normalized.metadata);
   const groundedKeys = new Set(grounded.map((g) => `${g.unitOrder}:${g.topicOrder}`));
   const ungroundedRefs = topicRefs.filter((ref) => !groundedKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
@@ -446,6 +570,7 @@ async function generateLearningPathDraft(normalized) {
   // objectives-only batch path. Only unknown/failed topics fall through.
   const knowledgeResults = await Promise.all(ungroundedRefs.map((ref) => knowledgeTopic(ref, normalized.metadata)));
   const knowledge = knowledgeResults.filter(Boolean);
+  await attachCompanions(knowledge, topicRefs, normalized.metadata);
   const knowledgeKeys = new Set(knowledge.map((k) => `${k.unitOrder}:${k.topicOrder}`));
   const remainingRefs = ungroundedRefs.filter((ref) => !knowledgeKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
@@ -471,5 +596,6 @@ module.exports = {
   deriveObjectivesAndLessons,
   generateWorkedExample,
   knowledgeTopic,
+  generateCompanions,
   LearningPathGenerationError,
 };

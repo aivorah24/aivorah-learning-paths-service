@@ -21,6 +21,7 @@ const {
   mergeGeneratedContent,
   deriveObjectivesAndLessons,
   generateWorkedExample,
+  generateCompanions,
   LearningPathGenerationError,
 } = require('../../services/curriculumUpload/aiGeneration');
 
@@ -270,7 +271,13 @@ describe('generateLearningPathDraft — NCERT/vector grounding', () => {
       whatYoullLearn: ['Place whole numbers on a number line'],
       blocks: [{ type: 'worked_example', concept: 'Number line', problem: 'Plot 7 on a number line', steps: [{ step: 1, action: 'Mark 0 to 10', why: 'establishes scale' }], finalAnswer: '7 marked between 6 and 8' }],
     });
-    mockCreate.mockResolvedValueOnce(completionWith({ topics: [{ unitOrder: 0, topicOrder: 1, objectives: [], lessons: [] }] }));
+    // Whole Numbers (grounded) also gets a generateCompanions call — route
+    // mockCreate by prompt content so it doesn't consume the batch's once-value.
+    mockCreate.mockImplementation(async (opts) => {
+      const prompt = opts.messages[0].content;
+      if (prompt.includes('audio script')) return completionWith({ listenParts: [], questions: [] });
+      return completionWith({ topics: [{ unitOrder: 0, topicOrder: 1, objectives: [], lessons: [] }] });
+    });
 
     const draft = await generateLearningPathDraft(normalized);
 
@@ -286,9 +293,9 @@ describe('generateLearningPathDraft — NCERT/vector grounding', () => {
     expect(wholeNumbers.objectives).toEqual(['Place whole numbers on a number line']);
 
     // Only the ungrounded topic (Fractions) went through the batch Groq prompt.
-    const sentPrompt = mockCreate.mock.calls[0][0].messages[0].content;
-    expect(sentPrompt).not.toContain('Whole Numbers');
-    expect(sentPrompt).toContain('Fractions');
+    const batchCall = mockCreate.mock.calls.find((c) => !c[0].messages[0].content.includes('audio script'));
+    expect(batchCall[0].messages[0].content).not.toContain('Whole Numbers');
+    expect(batchCall[0].messages[0].content).toContain('Fractions');
   });
 
   test('falls back to upload-text grounding when retrieval AND model knowledge both find nothing', async () => {
@@ -397,7 +404,8 @@ describe('groundTopic — worked-example disclosure', () => {
 
     const draft = await generateLearningPathDraft(singleTopicNormalized);
 
-    expect(mockCreate).not.toHaveBeenCalled(); // no targeted generateWorkedExample call needed
+    // Only the generateCompanions call fires — no targeted generateWorkedExample call needed.
+    expect(mockCreate).toHaveBeenCalledTimes(1);
     const block = draft.units[0].topics[0].content.blocks.find((b) => b.type === 'worked_example');
     expect(block.synthetic).toBeUndefined();
     expect(block.finalAnswer).toBe('623');
@@ -678,5 +686,63 @@ describe('generateLearningPathDraft', () => {
   test('throws when the response contains only unknown topic references (empty output after validation)', async () => {
     mockCreate.mockResolvedValue(completionWith({ topics: [{ unitOrder: 9, topicOrder: 9, objectives: [], lessons: [] }] }));
     await expect(generateLearningPathDraft(normalized)).rejects.toThrow(LearningPathGenerationError);
+  });
+});
+
+describe('generateCompanions', () => {
+  beforeEach(() => jest.clearAllMocks());
+  const topicRef = { unitOrder: 0, topicOrder: 0, unitTitle: 'Numbers', topicTitle: 'Whole Numbers', subtopics: [] };
+  const metadata = { grade: '6', subject: 'Mathematics', curriculum: 'CBSE' };
+  const content = { whatYoullLearn: ['Add two numbers'], blocks: [{ type: 'explanation', text: 'Adding numbers together.' }], contentType: 'mathematics' };
+
+  test('returns listenParts and practiceQuiz matching the frontend shape', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({
+      listenParts: [{ heading: 'Intro', text: 'Let us add numbers.', keyIdea: 'Addition combines numbers', pauseThink: { question: 'What is 2+2?', options: ['3', '4', '5', '6'], correctIndex: 1 } }],
+      questions: [{ type: 'mcq', question: 'What is 2+2?', options: ['3', '4', '5', '6'], correct: 1, hint: 'Count on', explanation: 'Two plus two is four.' }],
+    }));
+
+    const result = await generateCompanions(topicRef, metadata, content);
+
+    expect(result.listenParts[0]).toMatchObject({ heading: 'Intro', text: 'Let us add numbers.', keyIdea: 'Addition combines numbers' });
+    expect(result.listenParts[0].pauseThink).toEqual({ question: 'What is 2+2?', options: ['3', '4', '5', '6'], correctIndex: 1 });
+    expect(result.practiceQuiz[0]).toMatchObject({ type: 'mcq', question: 'What is 2+2?' });
+  });
+
+  test('a Groq failure returns null rather than throwing', async () => {
+    mockCreate.mockRejectedValue(new Error('rate limited'));
+    const result = await generateCompanions(topicRef, metadata, content);
+    expect(result).toBeNull();
+  });
+
+  test('invalid JSON returns null rather than throwing', async () => {
+    mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: 'not json' } }] });
+    const result = await generateCompanions(topicRef, metadata, content);
+    expect(result).toBeNull();
+  });
+
+  test('drops a math fill_blank question whose calculation fails arithmetic verification', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({
+      listenParts: [],
+      questions: [
+        { type: 'fill_blank', question: '2 cats have ___ legs.', correct: '8', calculation: '2 * 4 = 8', hint: 'h', explanation: 'e' },
+        { type: 'fill_blank', question: '3 cats have ___ legs.', correct: '20', calculation: '3 * 4 = 20', hint: 'h', explanation: 'e' },
+      ],
+    }));
+
+    const result = await generateCompanions(topicRef, metadata, content);
+
+    expect(result.practiceQuiz).toHaveLength(1);
+    expect(result.practiceQuiz[0].correct).toBe('8');
+  });
+
+  test('for a non-math topic, the "calculation" field is never used to drop a question', async () => {
+    mockCreate.mockResolvedValueOnce(completionWith({
+      listenParts: [],
+      questions: [{ type: 'fill_blank', question: 'Sky is ___.', correct: 'blue', hint: 'h', explanation: 'e' }],
+    }));
+
+    const result = await generateCompanions(topicRef, { ...metadata, subject: 'English' }, { ...content, contentType: 'theory' });
+
+    expect(result.practiceQuiz).toHaveLength(1);
   });
 });

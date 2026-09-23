@@ -4,6 +4,42 @@ function isNonEmptyString(v) {
   return typeof v === 'string' && v.trim().length > 0;
 }
 
+// listenParts/practiceQuiz are optional (Phase 2 companions) — when present
+// they must match the shape LessonScreen/ListenTab and the Quiz screen
+// consume, so a teacher's PUT edit can't silently corrupt them.
+function validateCompanions(content, ui, ti) {
+  if (!content || typeof content !== 'object') return;
+  const prefix = `units[${ui}].topics[${ti}].content`;
+
+  if (content.listenParts !== undefined) {
+    if (!Array.isArray(content.listenParts)) {
+      throw new LearningPathValidationError(`${prefix}.listenParts must be an array`);
+    }
+    content.listenParts.forEach((p, pi) => {
+      if (!p || !isNonEmptyString(p.heading) || !isNonEmptyString(p.text)) {
+        throw new LearningPathValidationError(`${prefix}.listenParts[${pi}] must have non-empty heading and text`);
+      }
+      if (p.pauseThink !== undefined) {
+        const pt = p.pauseThink;
+        if (!pt || !isNonEmptyString(pt.question) || !Array.isArray(pt.options) || !pt.options.every(isNonEmptyString) || typeof pt.correctIndex !== 'number') {
+          throw new LearningPathValidationError(`${prefix}.listenParts[${pi}].pauseThink must be {question, options[], correctIndex}`);
+        }
+      }
+    });
+  }
+
+  if (content.practiceQuiz !== undefined) {
+    if (!Array.isArray(content.practiceQuiz)) {
+      throw new LearningPathValidationError(`${prefix}.practiceQuiz must be an array`);
+    }
+    content.practiceQuiz.forEach((q, qi) => {
+      if (!q || !isNonEmptyString(q.question) || !Array.isArray(q.options) || (q.correct !== undefined && typeof q.correct !== 'number' && typeof q.correct !== 'string')) {
+        throw new LearningPathValidationError(`${prefix}.practiceQuiz[${qi}] must have {question, options[], correct}`);
+      }
+    });
+  }
+}
+
 function validateLearningPathContent(content) {
   if (!content || typeof content !== 'object') {
     throw new LearningPathValidationError('content must be an object');
@@ -49,6 +85,7 @@ function validateLearningPathContent(content) {
       if (!Array.isArray(topic.subtopics)) {
         throw new LearningPathValidationError(`units[${ui}].topics[${ti}].subtopics must be an array`);
       }
+      validateCompanions(topic.content, ui, ti);
 
       const subtopicOrders = new Set();
       topic.subtopics.forEach((sub, si) => {
