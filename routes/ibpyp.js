@@ -11,13 +11,11 @@
  */
 const express = require('express');
 const router  = express.Router();
-const Groq    = require('groq-sdk');
 const { logEvent } = require('../services/analytics');
 const supabase = require('../services/supabase');
 const { normalizeQuizQuestion } = require('../services/quizNormalize');
 const { buildQuizPrompt } = require('../services/curriculum/quizPrompt');
-
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const { callWithFallback } = require('../services/llm/fallback');
 
 // Grade → student age range (SUBJECT_CONTEXT moved into quizPrompt.js, shared with generateCompanions)
 const GRADE_AGE = { 'Grade 3': '8-9', 'Grade 4': '9-10', 'Grade 5': '10-11' };
@@ -75,15 +73,9 @@ router.post('/quiz', async (req, res) => {
     // before giving up, so a single unlucky generation doesn't surface as a
     // user-facing failure.
     async function generateAndParseQuiz() {
-      const completion = await groq.chat.completions.create({
-        model:       'openai/gpt-oss-20b',
-        messages:    [{ role: 'user', content: prompt }],
-        temperature: 0.4,
-        max_tokens:  3000,
-      });
-      const raw = completion.choices[0]?.message?.content || '';
+      const raw = await callWithFallback(prompt, { json: true, temperature: 0.4 });
       const json = raw.match(/\{[\s\S]*\}/)?.[0];
-      if (!json) throw new Error(`no JSON in response (finish_reason: ${completion.choices[0]?.finish_reason})`);
+      if (!json) throw new Error('no JSON in response');
       return JSON.parse(json);
     }
 
@@ -157,14 +149,9 @@ Write a short, kind explanation (2-3 sentences) that:
 
 Keep it warm, simple, and age-appropriate for ${grade} (ages ${ageRange}).`;
 
-    const completion = await groq.chat.completions.create({
-      model:       'openai/gpt-oss-20b',
-      messages:    [{ role: 'user', content: prompt }],
-      temperature: 0.5,
-      max_tokens:  220,
-    });
+    const explanation = await callWithFallback(prompt, { temperature: 0.5 });
 
-    res.json({ explanation: completion.choices[0]?.message?.content?.trim() || '' });
+    res.json({ explanation: explanation?.trim() || '' });
   } catch (err) {
     console.error('POST /ibpyp/explain-wrong error:', err.message);
     res.status(500).json({ error: err.message });

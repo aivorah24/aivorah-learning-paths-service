@@ -12,34 +12,16 @@
 // codebase (aivorah-learning-paths-service/routes/ibpyp.js,
 // aivorah-assignments-service/routes/assignments.js) — there is no shared
 // LLM-provider abstraction in this stack to plug into instead.
-const Groq = require('groq-sdk');
 const supabase = require('../supabase');
 const { validateEnrichment } = require('./blockSchema');
 const { gradeCalibrationNote } = require('./gradeCalibration');
-const { callLLM, withLLMRetry } = require('../llm/openaiCompat');
-
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const { callWithFallback } = require('../llm/fallback');
 
 const SCHEMA_VERSION = 1;
 const PROMPT_VERSION = 'v1';
-// Same models already proven working elsewhere in this stack (see
-// aivorah-assignments-service/routes/assignments.js's quiz generation) —
-// primary 120b model, falling back to the 8B-class 20b model on failure/
-// rate-limit so generation doesn't dead-end when the daily cap is hit.
+// Kept only as the persisted "model" label — the actual model used per call
+// is whichever LLM_CHAIN entry succeeded (see services/llm/fallback.js).
 const PRIMARY_MODEL = 'openai/gpt-oss-120b';
-const FALLBACK_MODEL = 'openai/gpt-oss-20b';
-
-// Knowledge tier: provider-agnostic, configured via env so it can point at
-// Groq, Gemini, or anything else OpenAI-compatible. Defaults to Groq itself
-// (same key/model as the grounded path) so knowledge mode works out of the box.
-// Read lazily (not at module load) so tests can set env vars per-case.
-function knowledgeLLMConfig() {
-  return {
-    baseUrl: process.env.KNOWLEDGE_LLM_BASE_URL || 'https://api.groq.com/openai/v1',
-    apiKey: process.env.KNOWLEDGE_LLM_API_KEY || process.env.GROQ_API_KEY,
-    model: process.env.KNOWLEDGE_LLM_MODEL || PRIMARY_MODEL,
-  };
-}
 
 // Subject -> content-type classification. Drives which block types the
 // prompt asks for. Deliberately name-based (not hard-coded per-subject
@@ -222,17 +204,11 @@ ${qualityFeedbackNote(input)}
 Respond with ONLY the JSON object described in rule 4.`;
 }
 
+// Thin wrapper kept for callers/tests that import callGroq by name — the
+// actual provider fallback chain lives in services/llm/fallback.js.
 async function callGroq(prompt) {
-  const opts = {
-    messages: [{ role: 'user', content: prompt }],
-    response_format: { type: 'json_object' },
-    temperature: 0.3,
-  };
-  try {
-    return await withLLMRetry(() => groq.chat.completions.create({ model: PRIMARY_MODEL, ...opts }));
-  } catch (primaryErr) {
-    return await withLLMRetry(() => groq.chat.completions.create({ model: FALLBACK_MODEL, ...opts }));
-  }
+  const content = await callWithFallback(prompt, { json: true, temperature: 0.3 });
+  return { choices: [{ message: { content } }] };
 }
 
 function tryParseAndValidate(raw) {
@@ -258,28 +234,10 @@ function tryParseAndValidate(raw) {
 // than once: a second bad generation in a row means fall back safely
 // (getOrGenerateEnrichment returns null) rather than spending more LLM calls
 // chasing a topic that may just have too little source material.
-// Knowledge tier's own LLM call — separate from callGroq (the grounded
-// path's client) so it can point at a different provider/model via env.
-// Any failure (rate limit, no key, bad response) propagates so the caller
-// falls back to callGroq, never silently degrading content quality.
-async function callKnowledgeLLM(prompt) {
-  const content = await callLLM(prompt, { json: true, ...knowledgeLLMConfig() });
-  return { choices: [{ message: { content } }] };
-}
-
 async function generateStructuredContent(input) {
   const prompt = buildPrompt(input);
 
-  let first;
-  if (input.mode === 'knowledge') {
-    try {
-      first = await callKnowledgeLLM(prompt);
-    } catch (e) {
-      first = await callGroq(prompt);
-    }
-  } else {
-    first = await callGroq(prompt);
-  }
+  const first = await callGroq(prompt);
   const firstResult = tryParseAndValidate(first.choices[0]?.message?.content || '{}');
   if (firstResult.ok) {
     const missing = checkRecipe(firstResult.blocks);
@@ -303,12 +261,12 @@ Fix this and respond again with ONLY the corrected JSON object, using the EXACT 
 // Regenerates ONCE when the recipe is incomplete, passing back exactly what
 // was missing. On any failure (or still incomplete), the caller keeps the
 // original result rather than losing content over a partial recipe.
-async function regenerateForRecipe(prompt, missing, mode) {
+async function regenerateForRecipe(prompt, missing) {
   const retryPrompt = `${prompt}
 
 Your previous response was missing: ${missing.join('; ')}. Respond again with the FULL corrected JSON object (same shape), this time covering every part of the LESSON RECIPE above, including what was missing.`;
   try {
-    const completion = mode === 'knowledge' ? await callKnowledgeLLM(retryPrompt).catch(() => callGroq(retryPrompt)) : await callGroq(retryPrompt);
+    const completion = await callGroq(retryPrompt);
     const result = tryParseAndValidate(completion.choices[0]?.message?.content || '{}');
     return result.ok || result.unknown ? result : null;
   } catch {

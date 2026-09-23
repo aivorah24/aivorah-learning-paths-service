@@ -1,8 +1,15 @@
-// Unit tests for services/curriculum/gradeFit.js — Groq judge mocked.
+// Unit tests for services/curriculum/gradeFit.js — LLM judge mocked via fetch
+// (judgeTopic now runs through services/llm/fallback.js's callWithFallback).
+process.env.GROQ_API_KEY = 'test-groq-key';
+const { resetFallbackState } = require('../../services/llm/fallback');
+
 const mockCreate = jest.fn();
-jest.mock('groq-sdk', () => jest.fn().mockImplementation(() => ({
-  chat: { completions: { create: (...args) => mockCreate(...args) } },
-})));
+global.fetch = jest.fn(async (url, req) => {
+  const body = JSON.parse(req.body);
+  const result = await mockCreate({ model: body.model, messages: body.messages });
+  const content = result?.choices?.[0]?.message?.content;
+  return { ok: true, json: async () => ({ choices: [{ message: { content } }] }) };
+});
 
 const mockCheckRecipe = jest.fn(() => []);
 jest.mock('../../services/curriculum/enrichment', () => ({ checkRecipe: (...args) => mockCheckRecipe(...args) }));
@@ -23,6 +30,7 @@ const SIMPLE_CONTENT = {
 beforeEach(() => {
   mockCreate.mockReset();
   mockCheckRecipe.mockReset().mockReturnValue([]);
+  resetFallbackState();
 });
 
 describe('readabilityStats', () => {

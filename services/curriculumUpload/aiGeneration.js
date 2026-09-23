@@ -1,4 +1,3 @@
-const Groq = require('groq-sdk');
 const { retrieveGroundingContext } = require('./groundedContent');
 const { validateBlock } = require('../curriculum/blockSchema');
 const { gradeCalibrationNote } = require('../curriculum/gradeCalibration');
@@ -7,13 +6,8 @@ const { buildQuizPrompt } = require('../curriculum/quizPrompt');
 const { normalizeQuizQuestion } = require('../quizNormalize');
 const { findTopicImages } = require('../qdrant');
 const { checkGradeFit } = require('../curriculum/gradeFit');
-const { withLLMRetry } = require('../llm/openaiCompat');
-
-let _groq = null;
-function getGroqClient() {
-  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-  return _groq;
-}
+const { callWithFallback } = require('../llm/fallback');
+const { buildCacheKey, getCachedTopic, persistCachedTopic, dedupeGeneration } = require('./topicCache');
 
 // Lazy — enrichment.js constructs its own Groq/Supabase clients at module
 // load, which crashes under jest.requireActual in tests that only need this
@@ -23,12 +17,6 @@ function getEnrichment() {
   if (!_enrichment) _enrichment = require('../curriculum/enrichment');
   return _enrichment;
 }
-
-// Same models already proven for structured JSON generation in this service
-// (services/curriculum/enrichment.js) — primary 120b, falling back to the
-// 20b model on failure/rate-limit.
-const PRIMARY_MODEL = 'openai/gpt-oss-120b';
-const FALLBACK_MODEL = 'openai/gpt-oss-20b';
 
 class LearningPathGenerationError extends Error {}
 
@@ -526,18 +514,11 @@ Every unitOrder/topicOrder pair in your response MUST exactly match one from the
   return `${base}\n\nYour previous response was invalid: ${previousErrors.join('; ')}. Respond again with ONLY the corrected JSON object.`;
 }
 
+// Thin wrapper kept for callers/tests that import callGroq by name — the
+// actual provider fallback chain lives in services/llm/fallback.js.
 async function callGroq(prompt) {
-  const opts = {
-    messages: [{ role: 'user', content: prompt }],
-    response_format: { type: 'json_object' },
-    temperature: 0.3,
-  };
-  const groq = getGroqClient();
-  try {
-    return await withLLMRetry(() => groq.chat.completions.create({ model: PRIMARY_MODEL, ...opts }));
-  } catch (primaryErr) {
-    return await withLLMRetry(() => groq.chat.completions.create({ model: FALLBACK_MODEL, ...opts }));
-  }
+  const content = await callWithFallback(prompt, { json: true, temperature: 0.3 });
+  return { choices: [{ message: { content } }] };
 }
 
 function validateGeneratedTopics(parsed, topicRefs) {
@@ -688,47 +669,99 @@ async function applyGradeFit(topics, topicRefs, metadata) {
   });
 }
 
+// Cache key per unitOrder:topicOrder — unit title is deliberately excluded
+// (see topicCache.buildCacheKey) so the same topic under a different unit
+// name still hits the shared cache.
+function keyFor(refsByPos, pos) {
+  return refsByPos.get(pos);
+}
+
 async function generateLearningPathDraft(normalized) {
   const topicRefs = collectTopicRefs(normalized);
   if (topicRefs.length === 0) {
     return mergeGeneratedContent(normalized, []);
   }
 
+  const cacheKeys = new Map(topicRefs.map((ref) => [`${ref.unitOrder}:${ref.topicOrder}`, buildCacheKey(normalized.metadata, ref)]));
+
+  // Shared cache pass: any topic another teacher already generated (same
+  // curriculum/grade/subject/topic/subtopics/pipeline version) is served
+  // straight from cache — no LLM call at all for it.
+  const cacheHits = await mapWithConcurrency(topicRefs, DRAFT_CONCURRENCY, async (ref) => {
+    const cached = await getCachedTopic(keyFor(cacheKeys, `${ref.unitOrder}:${ref.topicOrder}`)).catch(() => null);
+    if (!cached) return null;
+    return { unitOrder: ref.unitOrder, topicOrder: ref.topicOrder, ...cached, fromCache: true };
+  });
+  const cached = cacheHits.filter(Boolean);
+  const cachedKeys = new Set(cached.map((c) => `${c.unitOrder}:${c.topicOrder}`));
+  const uncachedRefs = topicRefs.filter((ref) => !cachedKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
+
+  if (uncachedRefs.length === 0) {
+    return mergeGeneratedContent(normalized, cached);
+  }
+
   // Prefer real NCERT/vector grounding per topic. Topics where retrieval is
   // genuinely insufficient fall through to the upload-text-grounded batch
   // path below — never silently upgraded to invented "generic knowledge".
-  const groundedResults = await mapWithConcurrency(topicRefs, DRAFT_CONCURRENCY, (ref) => groundTopic(ref, normalized.metadata));
+  // dedupeGeneration collapses identical topics generating concurrently
+  // (this draft or another in-flight upload in the same process).
+  const groundedResults = await mapWithConcurrency(uncachedRefs, DRAFT_CONCURRENCY, (ref) =>
+    dedupeGeneration(`ground:${keyFor(cacheKeys, `${ref.unitOrder}:${ref.topicOrder}`)}`, () => groundTopic(ref, normalized.metadata))
+  );
   const grounded = groundedResults.filter(Boolean);
-  await attachCompanions(grounded, topicRefs, normalized.metadata);
-  await applyGradeFit(grounded, topicRefs, normalized.metadata);
+  await attachCompanions(grounded, uncachedRefs, normalized.metadata);
+  await applyGradeFit(grounded, uncachedRefs, normalized.metadata);
+  await cacheReadyTopics(grounded, uncachedRefs, cacheKeys, normalized.metadata);
   const groundedKeys = new Set(grounded.map((g) => `${g.unitOrder}:${g.topicOrder}`));
-  const ungroundedRefs = topicRefs.filter((ref) => !groundedKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
+  const ungroundedRefs = uncachedRefs.filter((ref) => !groundedKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
   if (ungroundedRefs.length === 0) {
-    return mergeGeneratedContent(normalized, grounded);
+    return mergeGeneratedContent(normalized, [...cached, ...grounded]);
   }
 
   // Try the model's own knowledge per topic before falling back to the
   // objectives-only batch path. Only unknown/failed topics fall through.
-  const knowledgeResults = await mapWithConcurrency(ungroundedRefs, DRAFT_CONCURRENCY, (ref) => knowledgeTopic(ref, normalized.metadata));
+  const knowledgeResults = await mapWithConcurrency(ungroundedRefs, DRAFT_CONCURRENCY, (ref) =>
+    dedupeGeneration(`knowledge:${keyFor(cacheKeys, `${ref.unitOrder}:${ref.topicOrder}`)}`, () => knowledgeTopic(ref, normalized.metadata))
+  );
   const knowledge = knowledgeResults.filter(Boolean);
-  await attachCompanions(knowledge, topicRefs, normalized.metadata);
-  await applyGradeFit(knowledge, topicRefs, normalized.metadata);
+  await attachCompanions(knowledge, ungroundedRefs, normalized.metadata);
+  await applyGradeFit(knowledge, ungroundedRefs, normalized.metadata);
+  await cacheReadyTopics(knowledge, ungroundedRefs, cacheKeys, normalized.metadata);
   const knowledgeKeys = new Set(knowledge.map((k) => `${k.unitOrder}:${k.topicOrder}`));
   const remainingRefs = ungroundedRefs.filter((ref) => !knowledgeKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
   if (remainingRefs.length === 0) {
-    return mergeGeneratedContent(normalized, [...grounded, ...knowledge]);
+    return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge]);
   }
 
   const first = await attemptGeneration(buildPrompt(remainingRefs, normalized.metadata), remainingRefs);
-  if (first.ok) return mergeGeneratedContent(normalized, [...grounded, ...knowledge, ...first.topics]);
+  if (first.ok) return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge, ...first.topics]);
 
   const second = await attemptGeneration(buildPrompt(remainingRefs, normalized.metadata, first.errors), remainingRefs);
-  if (second.ok) return mergeGeneratedContent(normalized, [...grounded, ...knowledge, ...second.topics]);
+  if (second.ok) return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge, ...second.topics]);
 
-  if (grounded.length > 0 || knowledge.length > 0) return mergeGeneratedContent(normalized, [...grounded, ...knowledge]);
+  if (cached.length > 0 || grounded.length > 0 || knowledge.length > 0) return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge]);
   throw new LearningPathGenerationError(`AI generation failed after retry: ${second.errors.join('; ')}`);
+}
+
+// Write-back: only topics that finished 'ready' (post companions+gradeFit)
+// are cacheable — a needs_teacher_input/failed topic must regenerate for
+// every teacher, it was never real content. Errors are swallowed inside
+// persistCachedTopic itself so a cache outage never fails generation.
+async function cacheReadyTopics(topics, refs, cacheKeys, metadata) {
+  const refByKey = new Map(refs.map((r) => [`${r.unitOrder}:${r.topicOrder}`, r]));
+  await Promise.all(
+    topics.map((t) => {
+      const posKey = `${t.unitOrder}:${t.topicOrder}`;
+      const ref = refByKey.get(posKey);
+      if (!ref) return null;
+      const { unitOrder, topicOrder, fromCache, ...payload } = t;
+      return persistCachedTopic(cacheKeys.get(posKey), {
+        curriculum: metadata?.curriculum, grade: metadata?.grade, subject: metadata?.subject, topic: ref.topicTitle, payload,
+      });
+    })
+  );
 }
 
 module.exports = {

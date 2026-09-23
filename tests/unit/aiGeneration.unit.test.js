@@ -1,7 +1,22 @@
+// callGroq now runs through services/llm/fallback.js's callWithFallback
+// (native fetch) instead of groq-sdk. This shim keeps every existing
+// mockCreate.mockResolvedValueOnce(completionWith(...))-style test body
+// working unchanged: fetch is mocked to forward each request into
+// mockCreate and translate its return value/rejection back into a
+// fetch Response (or a rejected fetch call, for a provider-level failure).
+process.env.LLM_CHAIN = 'groq:openai/gpt-oss-120b,groq:openai/gpt-oss-20b';
+process.env.GROQ_API_KEY = 'test-groq-key';
+const { resetFallbackState } = require('../../services/llm/fallback');
+
 const mockCreate = jest.fn();
-jest.mock('groq-sdk', () => jest.fn().mockImplementation(() => ({
-  chat: { completions: { create: mockCreate } },
-})));
+global.fetch = jest.fn(async (url, req) => {
+  const body = JSON.parse(req.body);
+  const result = await mockCreate({ model: body.model, messages: body.messages, response_format: body.response_format, temperature: body.temperature });
+  const content = result?.choices?.[0]?.message?.content;
+  return { ok: true, json: async () => ({ choices: [{ message: { content } }] }) };
+});
+
+beforeEach(() => resetFallbackState());
 
 const mockRetrieveGroundingContext = jest.fn();
 jest.mock('../../services/curriculumUpload/groundedContent', () => ({
@@ -22,6 +37,19 @@ jest.mock('../../services/qdrant', () => ({
 const mockCheckGradeFit = jest.fn().mockResolvedValue({ quality: { readingGrade: 5, sentenceLength: 10, judgeScores: null, issues: [] }, failed: false });
 jest.mock('../../services/curriculum/gradeFit', () => ({
   checkGradeFit: (...args) => mockCheckGradeFit(...args),
+}));
+
+// Shared topic cache: default to always-miss/no-op so existing generation
+// tests are unaffected — tests/unit/topicCache.unit.test.js and the
+// "shared topic cache" describe block below cover its own behaviour.
+const mockGetCachedTopic = jest.fn().mockResolvedValue(null);
+const mockPersistCachedTopic = jest.fn().mockResolvedValue(undefined);
+const mockDedupeGeneration = jest.fn((key, fn) => fn());
+jest.mock('../../services/curriculumUpload/topicCache', () => ({
+  buildCacheKey: (metadata, ref) => `${metadata?.curriculum}|${metadata?.grade}|${metadata?.subject}|${ref.topicTitle}`,
+  getCachedTopic: (...args) => mockGetCachedTopic(...args),
+  persistCachedTopic: (...args) => mockPersistCachedTopic(...args),
+  dedupeGeneration: (...args) => mockDedupeGeneration(...args),
 }));
 
 const {
@@ -638,6 +666,89 @@ describe('generateWorkedExample — deterministic arithmetic verification', () =
   });
 });
 
+describe('generateLearningPathDraft — shared topic cache', () => {
+  beforeEach(() => jest.clearAllMocks());
+  // mockResolvedValue (not …Once) is used below for concurrency tests —
+  // reset it so later describe blocks get their own fresh default behaviour.
+  afterEach(() => {
+    mockGenerateStructuredContent.mockReset();
+    mockRetrieveGroundingContext.mockReset();
+    mockCreate.mockReset();
+  });
+
+  const cacheTopicNormalized = {
+    metadata: { curriculum: 'CBSE', grade: '6', subject: 'Mathematics' },
+    units: [{ title: 'Numbers', order: 0, topics: [
+      { title: 'Whole Numbers', order: 0, subtopics: [], content: [] },
+    ] }],
+  };
+  const CACHED_PAYLOAD = {
+    status: 'ready', groundingSource: 'ncert_vector', objectives: ['x'], lessons: [],
+    content: { blocks: [{ type: 'explanation', text: 'cached' }] },
+  };
+
+  test('cache miss: generates normally and writes the ready result back', async () => {
+    mockGetCachedTopic.mockResolvedValueOnce(null);
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'Real NCERT text.', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'y' }] });
+
+    const draft = await generateLearningPathDraft(cacheTopicNormalized);
+
+    expect(draft.units[0].topics[0].content.blocks[0].text).toBe('y');
+    expect(mockPersistCachedTopic).toHaveBeenCalledWith(expect.any(String), expect.objectContaining({
+      topic: 'Whole Numbers',
+      payload: expect.objectContaining({ status: 'ready' }),
+    }));
+  });
+
+  test('cache hit: no LLM calls at all for that topic', async () => {
+    mockGetCachedTopic.mockResolvedValueOnce(CACHED_PAYLOAD);
+
+    const draft = await generateLearningPathDraft(cacheTopicNormalized);
+
+    expect(draft.units[0].topics[0].content.blocks[0].text).toBe('cached');
+    expect(mockRetrieveGroundingContext).not.toHaveBeenCalled();
+    expect(mockGenerateStructuredContent).not.toHaveBeenCalled();
+    expect(mockCreate).not.toHaveBeenCalled();
+    expect(mockPersistCachedTopic).not.toHaveBeenCalled();
+  });
+
+  test('needs_teacher_input is never written to the cache', async () => {
+    mockGetCachedTopic.mockResolvedValue(null);
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockGenerateStructuredContent.mockResolvedValue({ ok: false, unknown: true, reason: 'unknown' });
+    mockCreate.mockResolvedValue(completionWith({ topics: [{ unitOrder: 0, topicOrder: 0, status: 'needs_teacher_input', teacherHint: 'x', objectives: [], lessons: [] }] }));
+
+    await generateLearningPathDraft(cacheTopicNormalized);
+
+    expect(mockPersistCachedTopic).not.toHaveBeenCalled();
+  });
+
+  test('a cache read error still falls through to generation, never breaks the draft', async () => {
+    mockGetCachedTopic.mockRejectedValueOnce(new Error('supabase down'));
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'Real NCERT text.', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'y' }] });
+
+    const draft = await generateLearningPathDraft(cacheTopicNormalized);
+
+    expect(draft.units[0].topics[0].content.blocks[0].text).toBe('y');
+  });
+
+  test('concurrent identical topics are deduped through dedupeGeneration', async () => {
+    mockGetCachedTopic.mockResolvedValue(null);
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'Real NCERT text.', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'y' }] });
+
+    await Promise.all([generateLearningPathDraft(cacheTopicNormalized), generateLearningPathDraft(cacheTopicNormalized)]);
+
+    // dedupeGeneration was invoked once per draft's topic — the real
+    // production implementation (tested separately) collapses these into
+    // one in-flight generation when the same key is already running.
+    expect(mockDedupeGeneration).toHaveBeenCalledTimes(2);
+    expect(mockDedupeGeneration.mock.calls[0][0]).toBe(mockDedupeGeneration.mock.calls[1][0]);
+  });
+});
+
 describe('generateLearningPathDraft', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -696,8 +807,10 @@ describe('generateLearningPathDraft', () => {
   test('throws LearningPathGenerationError when Groq fails on both attempts (timeout/provider error)', async () => {
     mockCreate.mockRejectedValue(new Error('rate limited'));
     await expect(generateLearningPathDraft(normalized)).rejects.toThrow(LearningPathGenerationError);
-    // 2 attempts x (primary + fallback each retried inside callGroq) = 4 calls
-    expect(mockCreate).toHaveBeenCalledTimes(4);
+    // 1st attempt: both chain entries fail and go on cooldown (2 calls). 2nd
+    // attempt: both entries are still cooling down, so callGroq throws
+    // immediately without calling fetch again.
+    expect(mockCreate).toHaveBeenCalledTimes(2);
   });
 
   test('falls back to the secondary model when the primary model call fails', async () => {

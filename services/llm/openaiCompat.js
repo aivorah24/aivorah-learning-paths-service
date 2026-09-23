@@ -47,14 +47,14 @@ async function withLLMRetry(fn, { maxRetries = 3 } = {}) {
   throw lastErr;
 }
 
-async function callLLM(prompt, { json = false, baseUrl, apiKey, model } = {}) {
+async function callLLM(prompt, { json = false, baseUrl, apiKey, model, temperature = 0.3 } = {}) {
   if (!apiKey) throw new Error('No API key configured for knowledge-tier LLM');
   if (!baseUrl) throw new Error('No base URL configured for knowledge-tier LLM');
 
   const body = {
     model,
     messages: [{ role: 'user', content: prompt }],
-    temperature: 0.3,
+    temperature,
   };
   if (json) body.response_format = { type: 'json_object' };
 

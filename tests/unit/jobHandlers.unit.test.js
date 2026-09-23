@@ -1,3 +1,8 @@
+// aiGeneration.js's real module (loaded below via requireActual, only for
+// LearningPathGenerationError) now pulls in topicCache.js -> services/supabase,
+// which throws at require-time with no SUPABASE_URL configured.
+jest.mock('../../services/supabase', () => ({ from: jest.fn(() => ({ select: jest.fn().mockReturnThis(), eq: jest.fn().mockReturnThis(), maybeSingle: jest.fn(), upsert: jest.fn() })) }));
+
 const mockRegisterHandler = jest.fn();
 jest.mock('../../services/jobQueue', () => ({ registerHandler: mockRegisterHandler }));
 

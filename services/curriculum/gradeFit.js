@@ -1,6 +1,7 @@
-// Grade-fit check: rule-based readability (no LLM) + a Groq quality judge
-// (1 call/topic). Both feed into aiGeneration.js's bounded regen-once pass.
-const Groq = require('groq-sdk');
+// Grade-fit check: rule-based readability (no LLM) + a quality judge
+// (1 call/topic, via the shared LLM_CHAIN fallback). Both feed into
+// aiGeneration.js's bounded regen-once pass.
+const { callWithFallback } = require('../llm/fallback');
 
 // Lazy — enrichment.js constructs Groq/Supabase clients at module load,
 // which breaks jest.requireActual in tests that don't set those env vars.
@@ -9,13 +10,6 @@ function checkRecipe(blocks) {
   if (!_checkRecipe) _checkRecipe = require('./enrichment').checkRecipe;
   return _checkRecipe(blocks);
 }
-
-let _groq = null;
-function getGroqClient() {
-  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-  return _groq;
-}
-const JUDGE_MODEL = 'openai/gpt-oss-120b';
 
 // Vowel-group heuristic, drops a silent trailing "e".
 function countSyllables(word) {
@@ -107,14 +101,8 @@ Respond with ONLY this JSON shape:
 }
 
 async function judgeTopic(input) {
-  const groq = getGroqClient();
-  const completion = await groq.chat.completions.create({
-    model: JUDGE_MODEL,
-    messages: [{ role: 'user', content: buildJudgePrompt(input) }],
-    response_format: { type: 'json_object' },
-    temperature: 0.2,
-  });
-  const parsed = JSON.parse(completion.choices?.[0]?.message?.content || '{}');
+  const content = await callWithFallback(buildJudgePrompt(input), { json: true, temperature: 0.2 });
+  const parsed = JSON.parse(content || '{}');
   const scores = {};
   let minScore = 5;
   ['learn', 'audio', 'practice'].forEach((s) => {

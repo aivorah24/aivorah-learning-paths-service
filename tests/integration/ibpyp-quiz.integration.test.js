@@ -14,11 +14,24 @@ jest.mock('../../services/analytics', () => ({
   logEvent: jest.fn().mockResolvedValue(null),
 }));
 
+// routes/ibpyp.js now calls the shared LLM_CHAIN fallback (native fetch)
+// instead of groq-sdk directly. This shim forwards each fetch call into
+// mockCreate so every existing mockCreate.mockResolvedValueOnce(...) test
+// body below keeps working unchanged.
+// Single-entry chain — matches this route's pre-fallback-chain behaviour of
+// one provider call per attempt, so a mockRejectedValueOnce/mockCreate
+// leftover from an earlier test can't leak into a later test's 2nd/3rd
+// chain-entry attempt.
+process.env.LLM_CHAIN = 'groq:openai/gpt-oss-20b';
+process.env.GROQ_API_KEY = 'test-groq-key';
+const { resetFallbackState } = require('../../services/llm/fallback');
+
 const mockCreate = jest.fn();
-jest.mock('groq-sdk', () => {
-  return jest.fn().mockImplementation(() => ({
-    chat: { completions: { create: (...args) => mockCreate(...args) } },
-  }));
+global.fetch = jest.fn(async (url, req) => {
+  const body = JSON.parse(req.body);
+  const result = await mockCreate({ model: body.model, messages: body.messages });
+  const content = result?.choices?.[0]?.message?.content;
+  return { ok: true, json: async () => ({ choices: [{ message: { content } }] }) };
 });
 
 const express = require('express');
@@ -37,6 +50,7 @@ function groqResponse(json) {
 
 beforeEach(() => {
   jest.clearAllMocks();
+  resetFallbackState();
 });
 
 describe('POST /ibpyp/quiz', () => {

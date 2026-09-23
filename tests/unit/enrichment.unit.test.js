@@ -2,10 +2,7 @@
 // get-or-generate orchestration. Groq, Supabase, and Qdrant are all mocked;
 // no real network call happens in this suite.
 
-const mockCreate = jest.fn();
-jest.mock('groq-sdk', () => jest.fn().mockImplementation(() => ({
-  chat: { completions: { create: (...args) => mockCreate(...args) } },
-})));
+process.env.GROQ_API_KEY = 'test-groq-key';
 
 const mockChain = {
   select: jest.fn().mockReturnThis(),
@@ -20,11 +17,18 @@ jest.mock('../../services/qdrant', () => ({
   resolveTopicWithContext: (...args) => mockResolveTopicWithContext(...args),
 }));
 
+const { resetFallbackState } = require('../../services/llm/fallback');
 const { getOrGenerateEnrichment, classifyContentType, buildPrompt, generateStructuredContent, checkRecipe } = require('../../services/curriculum/enrichment');
 
-function groqReturns(jsonObj) {
-  mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: JSON.stringify(jsonObj) } }] });
+function fetchOk(content) {
+  global.fetch.mockResolvedValueOnce({ ok: true, json: async () => ({ choices: [{ message: { content: JSON.stringify(content) } }] }) });
 }
+function fetchErr(status, body) {
+  global.fetch.mockResolvedValueOnce({ ok: false, status, text: async () => body, headers: new Map() });
+}
+// Kept as the name used throughout this file — now drives the fetch mock
+// that callWithFallback (services/llm/fallback.js) calls under the hood.
+const groqReturns = fetchOk;
 
 // Satisfies the full lesson recipe (checkRecipe) so these tests exercise
 // exactly one LLM call, not the recipe regenerate-once path.
@@ -52,8 +56,13 @@ const RETRIEVAL_RESULT = {
 
 beforeEach(() => {
   jest.clearAllMocks();
+  resetFallbackState();
+  global.fetch = jest.fn();
   mockChain.maybeSingle.mockResolvedValue({ data: null, error: null });
   mockChain.upsert.mockResolvedValue({ data: null, error: null });
+});
+afterEach(() => {
+  delete global.fetch;
 });
 
 describe('classifyContentType', () => {
@@ -79,7 +88,7 @@ describe('getOrGenerateEnrichment', () => {
     expect(result.blocks).toHaveLength(VALID_PAYLOAD.blocks.length);
     expect(result.whatYoullLearn).toEqual(VALID_PAYLOAD.whatYoullLearn);
     expect(result.cached).toBe(false);
-    expect(mockCreate).toHaveBeenCalledTimes(1);
+    expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 
   test('2. generated JSON is schema-validated — a malformed worked_example never reaches persistence', async () => {
@@ -112,13 +121,13 @@ describe('getOrGenerateEnrichment', () => {
 
     await getOrGenerateEnrichment({ curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'Relevance of Information' });
 
-    expect(mockCreate).not.toHaveBeenCalled();
+    expect(global.fetch).not.toHaveBeenCalled();
     expect(mockResolveTopicWithContext).not.toHaveBeenCalled();
   });
 
   test('5. invalid/unparseable AI output is handled safely — returns null, does not throw, does not persist', async () => {
     mockResolveTopicWithContext.mockResolvedValueOnce(RETRIEVAL_RESULT);
-    mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: 'not valid json {{{' } }] });
+    global.fetch.mockResolvedValueOnce({ ok: true, json: async () => ({ choices: [{ message: { content: 'not valid json {{{' } }] }) });
 
     await expect(
       getOrGenerateEnrichment({ curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'X' })
@@ -132,12 +141,12 @@ describe('getOrGenerateEnrichment', () => {
     const result = await getOrGenerateEnrichment({ curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'Nonexistent' });
 
     expect(result).toBeNull();
-    expect(mockCreate).not.toHaveBeenCalled();
+    expect(global.fetch).not.toHaveBeenCalled();
   });
 
   test('a Groq outage degrades to null, never throws, never breaks the caller', async () => {
     mockResolveTopicWithContext.mockResolvedValueOnce(RETRIEVAL_RESULT);
-    mockCreate.mockRejectedValueOnce(new Error('Groq is down'));
+    global.fetch.mockRejectedValue(new Error('Groq is down'));
 
     await expect(
       getOrGenerateEnrichment({ curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'X' })
@@ -216,50 +225,33 @@ describe('generateStructuredContent — knowledge mode', () => {
     contentType: 'biology',
   };
 
-  beforeEach(() => {
-    global.fetch = jest.fn();
-    process.env.KNOWLEDGE_LLM_API_KEY = 'test-key';
-  });
-  afterEach(() => {
-    delete global.fetch;
-    delete process.env.KNOWLEDGE_LLM_API_KEY;
-  });
-
-  test('uses the knowledge-tier LLM (not Groq) on success', async () => {
-    global.fetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ choices: [{ message: { content: JSON.stringify(VALID_PAYLOAD) } }] }),
-    });
-
-    const result = await generateStructuredContent(knowledgeInput);
-
-    expect(result.ok).toBe(true);
-    expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(mockCreate).not.toHaveBeenCalled();
-  });
-
-  test('falls back to Groq when the knowledge-tier LLM errors (e.g. 429)', async () => {
-    global.fetch.mockResolvedValueOnce({ ok: false, status: 429, text: async () => 'rate limited' });
+  test('generates content via the shared LLM_CHAIN on success', async () => {
     groqReturns(VALID_PAYLOAD);
 
     const result = await generateStructuredContent(knowledgeInput);
 
     expect(result.ok).toBe(true);
     expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(mockCreate).toHaveBeenCalledTimes(1);
+  });
+
+  test('a rate-limited first attempt retries once and still succeeds', async () => {
+    fetchErr(429, 'rate limited');
+    groqReturns(VALID_PAYLOAD);
+
+    const result = await generateStructuredContent(knowledgeInput);
+
+    expect(result.ok).toBe(true);
+    expect(global.fetch).toHaveBeenCalledTimes(2);
   });
 
   test('{"unknown":true} short-circuits without a retry', async () => {
-    global.fetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ choices: [{ message: { content: '{"unknown":true}' } }] }),
-    });
+    groqReturns({ unknown: true });
 
     const result = await generateStructuredContent(knowledgeInput);
 
     expect(result.ok).toBe(false);
     expect(result.unknown).toBe(true);
-    expect(mockCreate).not.toHaveBeenCalled();
+    expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -307,7 +299,7 @@ describe('generateStructuredContent — recipe regenerate-once', () => {
 
     expect(result.ok).toBe(true);
     expect(result.blocks).toHaveLength(VALID_PAYLOAD.blocks.length);
-    expect(mockCreate).toHaveBeenCalledTimes(2);
+    expect(global.fetch).toHaveBeenCalledTimes(2);
   });
 
   test('a still-incomplete regeneration falls back to the first valid result rather than failing', async () => {
@@ -319,7 +311,7 @@ describe('generateStructuredContent — recipe regenerate-once', () => {
 
     expect(result.ok).toBe(true);
     expect(result.blocks).toHaveLength(1);
-    expect(mockCreate).toHaveBeenCalledTimes(2);
+    expect(global.fetch).toHaveBeenCalledTimes(2);
   });
 });
 
