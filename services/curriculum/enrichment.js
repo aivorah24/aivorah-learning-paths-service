@@ -115,6 +115,37 @@ Rules — follow all of them:
 9. DUAL/COMPOSITE CONCEPTS: if the topic title names more than one distinct concept (e.g. "Place Value and Face Value", "Successor and Predecessor"), you MUST explicitly define, contrast, and give a worked example for EVERY named concept — never substitute or over-index on an adjacent idea (e.g. comma placement, large-number reading) instead of covering all the concepts actually named in the title. Address each named concept by name.
 10. INDIAN PLACE VALUE SYSTEM: whenever this content involves comma placement, periods, or reading/writing large numbers, use the Indian Place Value System (commas after the first 3 digits from the right, then every 2 digits — e.g. 9,63,001; periods: Ones, Thousands, Lakhs, Crores) as the primary and correct convention, since NCERT uses this system. Only mention the International system (commas every 3 digits, e.g. 963,001) as a labeled contrast if pedagogically relevant — never present both as equally valid without clearly labeling which one is NCERT-standard.`;
 
+// Fixed Grade-6-style lesson recipe, applied to both generation paths.
+// checkRecipe() verifies it programmatically so a missing part triggers one
+// regeneration rather than silently shipping a thin lesson.
+const RECIPE_RULES = `LESSON RECIPE — the blocks array must cover all of these:
+- An "overview" block whose text is a hook QUESTION (ends with "?") that pulls the student in.
+- One or more short "explanation" blocks (keep each chunk short, not one wall of text).
+- At least one "example" block grounded in a real-life INDIAN context (Indian names, places, currency, everyday scenes).
+- At least one visual block: "image", "table", "process", "comparison", "timeline", or "cause_and_effect".
+- An "activity" block.
+- A "common_mistake" block.
+- A "key_terms" block.
+- A QUICK CHECK: one extra "key_points" block (separate from any other key_points block) with EXACTLY 2 items, each a short question ending in "?", for the student to self-check understanding.`;
+
+function checkRecipe(blocks) {
+  const list = Array.isArray(blocks) ? blocks : [];
+  const missing = [];
+  const overview = list.find((b) => b.type === 'overview');
+  if (!overview || !/\?\s*$/.test(String(overview.text || '').trim())) missing.push('hook question (overview block ending in "?")');
+  if (!list.some((b) => b.type === 'explanation')) missing.push('explanation block(s)');
+  if (!list.some((b) => b.type === 'example')) missing.push('a real-life Indian example block');
+  if (!list.some((b) => ['image', 'table', 'process', 'comparison', 'timeline', 'cause_and_effect'].includes(b.type))) missing.push('a visual block (image/table/process/comparison/timeline/cause_and_effect)');
+  if (!list.some((b) => b.type === 'activity')) missing.push('an activity block');
+  if (!list.some((b) => b.type === 'common_mistake')) missing.push('a common_mistake block');
+  if (!list.some((b) => b.type === 'key_terms')) missing.push('a key_terms block');
+  const hasQuickCheck = list.some(
+    (b) => b.type === 'key_points' && Array.isArray(b.items) && b.items.filter((i) => /\?\s*$/.test(String(i || '').trim())).length >= 2
+  );
+  if (!hasQuickCheck) missing.push('a 2-question quick check (key_points block with 2 question items)');
+  return missing;
+}
+
 function buildKnowledgePrompt({ curriculum, grade, subject, chapterTitle, topic, contentType }) {
   const guidance = CONTENT_TYPE_GUIDANCE[contentType] || CONTENT_TYPE_GUIDANCE.theory;
   const calibrationNote = gradeCalibrationNote(grade);
@@ -131,6 +162,8 @@ ${BLOCK_SHAPES}
 ALLOWED BLOCK TYPES FOR THIS SUBJECT:
 ${guidance}
 
+${RECIPE_RULES}
+
 Respond with ONLY the JSON object described above.`;
 }
 
@@ -146,6 +179,8 @@ ${BLOCK_SHAPES}
 
 ALLOWED BLOCK TYPES FOR THIS SUBJECT:
 ${guidance}
+
+${RECIPE_RULES}
 
 CURRICULUM: ${curriculum}
 GRADE: ${grade}
@@ -225,14 +260,39 @@ async function generateStructuredContent(input) {
     first = await callGroq(prompt);
   }
   const firstResult = tryParseAndValidate(first.choices[0]?.message?.content || '{}');
-  if (firstResult.ok || firstResult.unknown) return firstResult;
+  if (firstResult.ok) {
+    const missing = checkRecipe(firstResult.blocks);
+    if (missing.length === 0) return firstResult;
+    return await regenerateForRecipe(prompt, missing, input.mode) || firstResult;
+  }
+  if (firstResult.unknown) return firstResult;
 
   const retryPrompt = `${prompt}
 
 Your previous response was invalid: ${firstResult.reason}${firstResult.errors ? ' — ' + firstResult.errors.join('; ') : ''}.
 Fix this and respond again with ONLY the corrected JSON object, using the EXACT field shapes given above.`;
   const second = await callGroq(retryPrompt);
-  return tryParseAndValidate(second.choices[0]?.message?.content || '{}');
+  const secondResult = tryParseAndValidate(second.choices[0]?.message?.content || '{}');
+  if (!secondResult.ok) return secondResult;
+  const missing = checkRecipe(secondResult.blocks);
+  if (missing.length === 0) return secondResult;
+  return await regenerateForRecipe(prompt, missing, input.mode) || secondResult;
+}
+
+// Regenerates ONCE when the recipe is incomplete, passing back exactly what
+// was missing. On any failure (or still incomplete), the caller keeps the
+// original result rather than losing content over a partial recipe.
+async function regenerateForRecipe(prompt, missing, mode) {
+  const retryPrompt = `${prompt}
+
+Your previous response was missing: ${missing.join('; ')}. Respond again with the FULL corrected JSON object (same shape), this time covering every part of the LESSON RECIPE above, including what was missing.`;
+  try {
+    const completion = mode === 'knowledge' ? await callKnowledgeLLM(retryPrompt).catch(() => callGroq(retryPrompt)) : await callGroq(retryPrompt);
+    const result = tryParseAndValidate(completion.choices[0]?.message?.content || '{}');
+    return result.ok || result.unknown ? result : null;
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -334,4 +394,4 @@ async function getOrGenerateEnrichment({ curriculum, grade, subject, topic }) {
   }
 }
 
-module.exports = { getOrGenerateEnrichment, getCachedEnrichment, classifyContentType, generateStructuredContent, buildPrompt };
+module.exports = { getOrGenerateEnrichment, getCachedEnrichment, classifyContentType, generateStructuredContent, buildPrompt, checkRecipe };

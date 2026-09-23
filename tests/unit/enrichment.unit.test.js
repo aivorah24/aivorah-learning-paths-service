@@ -20,15 +20,26 @@ jest.mock('../../services/qdrant', () => ({
   resolveTopicWithContext: (...args) => mockResolveTopicWithContext(...args),
 }));
 
-const { getOrGenerateEnrichment, classifyContentType, buildPrompt, generateStructuredContent } = require('../../services/curriculum/enrichment');
+const { getOrGenerateEnrichment, classifyContentType, buildPrompt, generateStructuredContent, checkRecipe } = require('../../services/curriculum/enrichment');
 
 function groqReturns(jsonObj) {
   mockCreate.mockResolvedValueOnce({ choices: [{ message: { content: JSON.stringify(jsonObj) } }] });
 }
 
+// Satisfies the full lesson recipe (checkRecipe) so these tests exercise
+// exactly one LLM call, not the recipe regenerate-once path.
 const VALID_PAYLOAD = {
   whatYoullLearn: ['What relevant information means for decision-making'],
-  blocks: [{ type: 'explanation', text: 'Information is relevant if it can change a decision.' }],
+  blocks: [
+    { type: 'overview', text: 'Why does relevant information matter for a decision?' },
+    { type: 'explanation', text: 'Information is relevant if it can change a decision.' },
+    { type: 'example', text: 'Priya in Mumbai checks her bank balance before buying a train ticket.' },
+    { type: 'table', caption: 'x', headers: ['A', 'B'], rows: [['1', '2']] },
+    { type: 'activity', text: 'List two decisions you made today using information.' },
+    { type: 'common_mistake', text: 'Confusing relevant with reliable information.' },
+    { type: 'key_terms', items: [{ term: 'Relevance', definition: 'Capable of changing a decision.' }] },
+    { type: 'key_points', items: ['What makes information relevant?', 'Why must it be timely?'] },
+  ],
 };
 
 const RETRIEVAL_RESULT = {
@@ -65,7 +76,7 @@ describe('getOrGenerateEnrichment', () => {
     const result = await getOrGenerateEnrichment({ curriculum: 'CBSE', grade: 'Grade 11', subject: 'Accountancy', topic: 'Relevance of Information' });
 
     expect(result).not.toBeNull();
-    expect(result.blocks).toHaveLength(1);
+    expect(result.blocks).toHaveLength(VALID_PAYLOAD.blocks.length);
     expect(result.whatYoullLearn).toEqual(VALID_PAYLOAD.whatYoullLearn);
     expect(result.cached).toBe(false);
     expect(mockCreate).toHaveBeenCalledTimes(1);
@@ -249,5 +260,65 @@ describe('generateStructuredContent — knowledge mode', () => {
     expect(result.ok).toBe(false);
     expect(result.unknown).toBe(true);
     expect(mockCreate).not.toHaveBeenCalled();
+  });
+});
+
+describe('checkRecipe', () => {
+  test('a full recipe reports nothing missing', () => {
+    expect(checkRecipe(VALID_PAYLOAD.blocks)).toEqual([]);
+  });
+
+  test('flags every missing recipe part', () => {
+    const missing = checkRecipe([{ type: 'explanation', text: 'x' }]);
+    expect(missing).toEqual(expect.arrayContaining([
+      expect.stringContaining('hook question'),
+      expect.stringContaining('Indian example'),
+      expect.stringContaining('visual block'),
+      expect.stringContaining('activity'),
+      expect.stringContaining('common_mistake'),
+      expect.stringContaining('key_terms'),
+      expect.stringContaining('quick check'),
+    ]));
+  });
+
+  test('an overview block that is not a question is still flagged', () => {
+    const missing = checkRecipe([{ type: 'overview', text: 'This is a statement.' }]);
+    expect(missing).toContain('hook question (overview block ending in "?")');
+  });
+
+  test('a key_points block with fewer than 2 questions does not count as the quick check', () => {
+    const missing = checkRecipe([{ type: 'key_points', items: ['Only one question?', 'Not a question.'] }]);
+    expect(missing.some((m) => m.includes('quick check'))).toBe(true);
+  });
+});
+
+describe('generateStructuredContent — recipe regenerate-once', () => {
+  const groundedInput = {
+    curriculum: 'CBSE', grade: '6', subject: 'Science', chapterPdf: 'x.pdf',
+    topic: 'Food', primaryText: 'source', contextText: '', contentType: 'biology',
+  };
+
+  test('an incomplete recipe triggers exactly one regeneration, keeping the completed result', async () => {
+    const incomplete = { whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }] };
+    groqReturns(incomplete);
+    groqReturns(VALID_PAYLOAD);
+
+    const result = await generateStructuredContent(groundedInput);
+
+    expect(result.ok).toBe(true);
+    expect(result.blocks).toHaveLength(VALID_PAYLOAD.blocks.length);
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+  });
+
+  test('a still-incomplete regeneration falls back to the first valid result rather than failing', async () => {
+    const incomplete = { whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }] };
+    groqReturns(incomplete);
+    groqReturns(incomplete);
+
+    const result = await generateStructuredContent(groundedInput);
+
+    expect(result.ok).toBe(true);
+    expect(result.blocks).toHaveLength(1);
+    expect(mockCreate).toHaveBeenCalledTimes(2);
   });
 });

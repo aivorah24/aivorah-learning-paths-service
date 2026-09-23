@@ -5,6 +5,7 @@ const { gradeCalibrationNote } = require('../curriculum/gradeCalibration');
 const { verifyWorkedExample, verifyCalculationString } = require('./mathValidator');
 const { buildQuizPrompt } = require('../curriculum/quizPrompt');
 const { normalizeQuizQuestion } = require('../quizNormalize');
+const { findTopicImages } = require('../qdrant');
 
 let _groq = null;
 function getGroqClient() {
@@ -179,9 +180,22 @@ async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType
     b.type === 'worked_example' && !b.exampleType ? { ...b, exampleType: 'SOURCE_DERIVED' } : b
   );
 
-  if (groundedContext?.images?.[0]?.url) {
-    const topImage = groundedContext.images[0];
-    generated.blocks = [...generated.blocks, { type: 'image', url: topImage.url, caption: topImage.caption || topicRef.topicTitle, alt_text: topImage.caption || topicRef.topicTitle }];
+  // Textbook images: filtered grade+subject+chapter, ranked by keyword
+  // overlap with the topic/subtopics/key terms. Done for every topic,
+  // including model_knowledge ones. No match -> no image, the recipe's own
+  // structured visual block (table/process/...) stands in instead.
+  const keyTerms = (generated.blocks.find((b) => b.type === 'key_terms')?.items || []).map((i) => i.term).filter(Boolean);
+  const pdfFile = resolveChapterPdf(topicRef, metadata);
+  const images = await findTopicImages({
+    grade: metadata?.grade,
+    subject: metadata?.subject,
+    pdfFile,
+    topicTitle: topicRef.topicTitle,
+    subtopics: topicRef.subtopics,
+    keyTerms,
+  }).catch(() => []);
+  if (images.length) {
+    generated.blocks = [...generated.blocks, ...images.map((img) => ({ type: 'image', url: img.url, caption: img.caption, alt_text: img.caption }))];
   }
 
   if (contentType === 'mathematics' && !generated.blocks.some((b) => b.type === 'worked_example')) {
@@ -355,6 +369,19 @@ function resolveChapterTitle(topicRef, metadata) {
     return match?.title || topicRef.topicTitle;
   } catch {
     return topicRef.topicTitle;
+  }
+}
+
+// Chapter pdfFile (e.g. "fecu105.pdf") for the image lookup — same registry
+// match as resolveChapterTitle, just returning the book-code field instead.
+function resolveChapterPdf(topicRef, metadata) {
+  try {
+    const { chaptersFor } = require('../syllabus-map');
+    const chapters = chaptersFor(metadata?.grade, metadata?.subject);
+    const match = chapters.find((c) => c.chapter === topicRef.unitOrder + 1) || chapters[topicRef.unitOrder];
+    return match?.pdfFile || null;
+  } catch {
+    return null;
   }
 }
 

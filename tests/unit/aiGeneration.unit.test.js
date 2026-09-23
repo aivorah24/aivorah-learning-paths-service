@@ -14,6 +14,11 @@ jest.mock('../../services/curriculum/enrichment', () => ({
   classifyContentType: (subject) => (String(subject).toLowerCase() === 'mathematics' ? 'mathematics' : 'theory'),
 }));
 
+const mockFindTopicImages = jest.fn().mockResolvedValue([]);
+jest.mock('../../services/qdrant', () => ({
+  findTopicImages: (...args) => mockFindTopicImages(...args),
+}));
+
 const {
   generateLearningPathDraft,
   collectTopicRefs,
@@ -512,10 +517,8 @@ describe('groundTopic — SOURCE_DERIVED/GROUNDED_SYNTHETIC taxonomy and image p
   });
 
   test('a retrieved image is attached as a real "image" block', async () => {
-    mockRetrieveGroundingContext.mockResolvedValue({
-      context: 'text', meta: { selected: 1 },
-      images: [{ url: 'https://cdn/x.png', caption: 'A number line diagram' }],
-    });
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 } });
+    mockFindTopicImages.mockResolvedValueOnce([{ url: 'https://cdn/x.png', caption: 'A number line diagram' }]);
     mockGenerateStructuredContent.mockResolvedValueOnce({
       ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }],
     });

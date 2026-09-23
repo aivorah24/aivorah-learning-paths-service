@@ -422,6 +422,82 @@ async function resolveTopicWithContext(curriculum, grade, subject, topic, { cont
   };
 }
 
+// Includes vision-caption filler words ("illustrates the concept of...")
+// which would otherwise inflate overlap scores across unrelated images.
+const STOPWORDS = new Set([
+  'the', 'and', 'for', 'with', 'that', 'this', 'from', 'are', 'was', 'were', 'has', 'have', 'its', 'into',
+  'depicts', 'shows', 'image', 'showing', 'a', 'an', 'of', 'in', 'is', 'to', 'on', 'as', 'illustrates', 'illustrating',
+  'concept', 'concepts', 'different', 'various', 'specifically', 'focusing', 'process', 'processes', 'representing',
+  'used', 'using', 'related', 'type', 'types', 'example', 'examples', 'diagram', 'figure', 'labeled', 'label',
+]);
+function keywords(text) {
+  return new Set(String(text || '').toLowerCase().match(/[a-z]{3,}/g)?.filter((w) => !STOPWORDS.has(w)) || []);
+}
+
+// Caption = the description's first sentence, stripped of vision-model
+// boilerplate ("[IMAGE]", "This image depicts/shows...").
+function captionFromDescription(text) {
+  const firstSentence = String(text || '').split(/(?<=[.!?])\s+/)[0] || '';
+  return firstSentence
+    .replace(/^\[IMAGE\]\s*/i, '')
+    .replace(/^this image (depicts|shows|illustrates)\s*(the concept of)?\s*/i, '')
+    .replace(/\*\*/g, '')
+    .trim();
+}
+
+/**
+ * Textbook image lookup for Grade 6 lesson visuals (Phase 2b). Filters the
+ * NCERT image chunks by grade/subject/chapter (via the chapter's pdfFile —
+ * source_reference embeds that same filename), then ranks by how many
+ * keywords the vision description shares with the topic title/subtopics/
+ * key terms. Conservative on purpose: an irrelevant image is worse than
+ * none, so callers get an empty array unless there's a real overlap.
+ */
+async function findTopicImages({ grade, subject, pdfFile, topicTitle, subtopics, keyTerms, limit = 2 }) {
+  if (!grade || !subject) return [];
+  const qGrade = Number(String(grade).match(/(\d+)/)?.[1]) || grade;
+  try {
+    const points = await scrollAll(NCERT_COLLECTION, {
+      must: [
+        { key: 'grade', match: { value: qGrade } },
+        { key: 'subject', match: { value: subject } },
+        { key: 'content_type', match: { value: 'image' } },
+      ],
+    });
+    // Chapter match (via pdfFile) is a scoring BONUS, not a hard filter —
+    // topicOrder-derived chapter numbers aren't always reliable (see
+    // resolveChapterPdf), and a hard filter on a wrong chapter guess was
+    // producing false-positive matches from an unrelated chapter's images.
+    // Keyword overlap against the real topic/subtopics/key terms stays the
+    // real relevance signal either way.
+    const chapterCode = pdfFile ? String(pdfFile).replace(/\.pdf$/i, '') : null;
+
+    const targetWords = keywords([topicTitle, ...(subtopics || []), ...(keyTerms || [])].join(' '));
+    if (targetWords.size === 0) return [];
+
+    const ranked = points
+      .filter((p) => p.payload.image_url)
+      .map((p) => {
+        const descWords = keywords(p.payload.text || p.payload.topic || '');
+        const overlap = [...descWords].filter((w) => targetWords.has(w)).length;
+        const inChapter = chapterCode && String(p.payload.source_reference || '').includes(chapterCode);
+        return { point: p, overlap, score: overlap + (inChapter ? 1 : 0) };
+      })
+      // Conservative threshold: require at least 3 shared meaningful words
+      // (2 let through unrelated captions sharing only generic vocabulary).
+      .filter((r) => r.overlap >= 3)
+      .sort((a, b) => b.score - a.score);
+
+    return ranked.slice(0, limit).map((r) => ({
+      url: r.point.payload.image_url,
+      caption: captionFromDescription(r.point.payload.text || r.point.payload.topic || '') || topicTitle,
+    }));
+  } catch (e) {
+    console.error('[qdrant] findTopicImages failed:', e.message);
+    return [];
+  }
+}
+
 async function saveSchoolQuiz(quizId, vector, payload) {
   const QUIZ_COLLECTION = 'school_quizzes';
   try {
@@ -445,4 +521,4 @@ async function saveSchoolQuiz(quizId, vector, payload) {
     wait: true,
   });
 }
-module.exports = { saveSchoolQuiz,  listSubjects, listSyllabus, resolveTopicContent, resolveTopicWithContext, topicsByPdfFile, topicCount, toQdrantCurriculum, IB_COLLECTION, NCERT_COLLECTION };
+module.exports = { saveSchoolQuiz,  listSubjects, listSyllabus, resolveTopicContent, resolveTopicWithContext, topicsByPdfFile, topicCount, toQdrantCurriculum, findTopicImages, IB_COLLECTION, NCERT_COLLECTION };
