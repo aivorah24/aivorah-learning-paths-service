@@ -18,6 +18,8 @@ jest.mock('../../services/curriculumUpload/extraction', () => {
   return { ...actual, extractCurriculumContent: (...args) => mockExtractCurriculumContent(...args) };
 });
 
+jest.mock('../../services/curriculumUpload/progress', () => ({ writeJobProgress: jest.fn(), getProgress: jest.fn() }));
+
 const supabase = require('../../services/supabase');
 const jobQueue = require('../../services/jobQueue');
 require('../../services/jobHandlers');
@@ -37,14 +39,20 @@ function markStatusChain() {
   return chain;
 }
 
+function insertChain() {
+  return { insert: jest.fn(() => Promise.resolve({ error: null })) };
+}
+
 const curriculum = { id: 'c1', file_url: 'https://cdn/x.pdf', mime_type: 'application/pdf' };
 
 describe('curriculum_extract job end-to-end', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  test('a successful extraction marks both the job and the curriculum done/processed', async () => {
+  test('a successful extraction chains a generate job and moves the curriculum to generating', async () => {
+    const enqueue = insertChain();
     supabase.from
       .mockReturnValueOnce(claimUpdateChain({ data: [{ id: 'job1', type: 'curriculum_extract', payload: { curriculumId: 'c1' } }] }))
+      .mockReturnValueOnce(enqueue)
       .mockReturnValueOnce(markStatusChain());
 
     mockGetCurriculumById.mockResolvedValueOnce(curriculum);
@@ -56,6 +64,11 @@ describe('curriculum_extract job end-to-end', () => {
 
     expect(ok).toBe(true);
     expect(mockUpdateCurriculumStatus).toHaveBeenCalledWith('c1', 'processed', expect.objectContaining({ error: null }));
+    expect(enqueue.insert).toHaveBeenCalledWith(expect.objectContaining({
+      type: 'curriculum_generate',
+      payload: expect.objectContaining({ curriculumId: 'c1', progress: expect.objectContaining({ stage: 'queued' }) }),
+    }));
+    expect(mockUpdateCurriculumStatus).toHaveBeenLastCalledWith('c1', 'generating');
   });
 
   test('a failing extraction marks the job failed but the curriculum stays reprocessable', async () => {

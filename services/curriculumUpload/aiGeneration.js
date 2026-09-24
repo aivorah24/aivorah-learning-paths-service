@@ -686,13 +686,15 @@ function keyFor(refsByPos, pos) {
   return refsByPos.get(pos);
 }
 
-async function generateLearningPathDraft(normalized) {
+async function generateLearningPathDraft(normalized, onTopicDone) {
   const topicRefs = collectTopicRefs(normalized);
   if (topicRefs.length === 0) {
     return mergeGeneratedContent(normalized, []);
   }
 
   const cacheKeys = new Map(topicRefs.map((ref) => [`${ref.unitOrder}:${ref.topicOrder}`, buildCacheKey(normalized.metadata, ref)]));
+  let doneCount = 0;
+  const tick = (n = 1) => { for (let i = 0; i < n; i++) { doneCount++; if (onTopicDone) Promise.resolve(onTopicDone(doneCount, topicRefs.length)).catch(() => {}); } };
 
   // Shared cache pass: any topic another teacher already generated (same
   // curriculum/grade/subject/topic/subtopics/pipeline version) is served
@@ -700,6 +702,7 @@ async function generateLearningPathDraft(normalized) {
   const cacheHits = await mapWithConcurrency(topicRefs, DRAFT_CONCURRENCY, async (ref) => {
     const cached = await getCachedTopic(keyFor(cacheKeys, `${ref.unitOrder}:${ref.topicOrder}`)).catch(() => null);
     if (!cached) return null;
+    tick();
     return { unitOrder: ref.unitOrder, topicOrder: ref.topicOrder, ...cached, fromCache: true };
   });
   const cached = cacheHits.filter(Boolean);
@@ -722,6 +725,7 @@ async function generateLearningPathDraft(normalized) {
   await attachCompanions(grounded, uncachedRefs, normalized.metadata);
   await applyGradeFit(grounded, uncachedRefs, normalized.metadata);
   await cacheReadyTopics(grounded, uncachedRefs, cacheKeys, normalized.metadata);
+  tick(grounded.length);
   const groundedKeys = new Set(grounded.map((g) => `${g.unitOrder}:${g.topicOrder}`));
   const ungroundedRefs = uncachedRefs.filter((ref) => !groundedKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
@@ -738,6 +742,7 @@ async function generateLearningPathDraft(normalized) {
   await attachCompanions(knowledge, ungroundedRefs, normalized.metadata);
   await applyGradeFit(knowledge, ungroundedRefs, normalized.metadata);
   await cacheReadyTopics(knowledge, ungroundedRefs, cacheKeys, normalized.metadata);
+  tick(knowledge.length);
   const knowledgeKeys = new Set(knowledge.map((k) => `${k.unitOrder}:${k.topicOrder}`));
   const remainingRefs = ungroundedRefs.filter((ref) => !knowledgeKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
@@ -746,9 +751,11 @@ async function generateLearningPathDraft(normalized) {
   }
 
   const first = await attemptGeneration(buildPrompt(remainingRefs, normalized.metadata), remainingRefs);
+  if (first.ok) tick(first.topics.length);
   if (first.ok) return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge, ...first.topics]);
 
   const second = await attemptGeneration(buildPrompt(remainingRefs, normalized.metadata, first.errors), remainingRefs);
+  if (second.ok) tick(second.topics.length);
   if (second.ok) return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge, ...second.topics]);
 
   if (cached.length > 0 || grounded.length > 0 || knowledge.length > 0) return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge]);

@@ -23,6 +23,8 @@ jest.mock('../../services/curriculumUpload/downloadCurriculumFile', () => ({
   downloadCurriculumFile: (...args) => mockDownloadCurriculumFile(...args),
 }));
 
+jest.mock('../../services/curriculumUpload/progress', () => ({ writeJobProgress: jest.fn(), getProgress: jest.fn() }));
+
 const supabase = require('../../services/supabase');
 const jobQueue = require('../../services/jobQueue');
 require('../../services/jobHandlers');
