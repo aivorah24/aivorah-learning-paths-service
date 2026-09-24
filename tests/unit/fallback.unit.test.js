@@ -88,3 +88,65 @@ test('an entry with no API key configured is skipped silently', async () => {
   expect(result).toBe('from-groq');
   expect(global.fetch).toHaveBeenCalledTimes(1);
 });
+
+describe('short-429 handling and per-task routing', () => {
+  const shortRateLimit = () => errResponse(429, 'Rate limit reached. Please try again in 2s.');
+
+  test('short 429 falls over to a free entry immediately, without sleeping', async () => {
+    jest.useFakeTimers();
+    try {
+      global.fetch.mockResolvedValueOnce(shortRateLimit());
+      global.fetch.mockResolvedValueOnce(okResponse('from-b'));
+      // Resolves without advancing timers => no sleep happened.
+      await expect(callWithFallback('prompt')).resolves.toBe('from-b');
+      expect(global.fetch).toHaveBeenCalledTimes(2);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  test('sleeps only when every entry is cooling down, then retries', async () => {
+    jest.useFakeTimers();
+    try {
+      global.fetch.mockResolvedValueOnce(shortRateLimit());
+      global.fetch.mockResolvedValueOnce(shortRateLimit());
+      global.fetch.mockResolvedValueOnce(okResponse('after-wait'));
+      const pending = callWithFallback('prompt');
+      await jest.advanceTimersByTimeAsync(2500);
+      await expect(pending).resolves.toBe('after-wait');
+      expect(global.fetch).toHaveBeenCalledTimes(3);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  test('per-task chain env selects the model for that task, falling back to LLM_CHAIN', async () => {
+    process.env.LLM_CHAIN_COMPANIONS = 'groq:qwen-x';
+    process.env.LLM_CHAIN_JUDGE = 'groq:judge-x';
+    global.fetch.mockResolvedValue(okResponse('ok'));
+    const lastBody = () => JSON.parse(global.fetch.mock.calls[global.fetch.mock.calls.length - 1][1].body);
+
+    await callWithFallback('p', { task: 'companions' });
+    expect(lastBody().model).toBe('qwen-x');
+    await callWithFallback('p', { task: 'judge' });
+    expect(lastBody().model).toBe('judge-x');
+    await callWithFallback('p', { task: 'content' }); // no LLM_CHAIN_CONTENT -> LLM_CHAIN
+    expect(lastBody().model).toBe('model-a');
+    expect(lastBody().max_tokens).toBeGreaterThan(0);
+  });
+
+  test('default routing: worked example and judge start on qwen with its output cap; companions avoid it', async () => {
+    delete process.env.LLM_CHAIN;
+    global.fetch.mockResolvedValue(okResponse('ok'));
+    const lastBody = () => JSON.parse(global.fetch.mock.calls[global.fetch.mock.calls.length - 1][1].body);
+
+    await callWithFallback('p', { task: 'workedExample' });
+    expect(lastBody().model).toBe('qwen/qwen3.8-27b');
+    expect(lastBody().max_tokens).toBe(900);
+    await callWithFallback('p', { task: 'companions' });
+    expect(lastBody().model).toBe('openai/gpt-oss-20b');
+    expect(lastBody().max_tokens).toBe(4000);
+    await callWithFallback('p', { task: 'content' });
+    expect(lastBody().model).toBe('openai/gpt-oss-120b');
+  });
+});

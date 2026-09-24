@@ -1,10 +1,17 @@
 const crypto = require('crypto');
 const supabase = require('./supabase');
+const { updateCurriculumStatus } = require('./curriculumUpload/curriculumRepository');
 
 const DRIVER = (process.env.QUEUE_DRIVER || 'db').toLowerCase();
 const TOPIC = process.env.KAFKA_TOPIC || 'uploads';
 
 const handlers = new Map();
+
+// Local dev and the live service share one upload_jobs table; JOB_WORKER_POOL
+// (e.g. local-<name> in a local .env) keeps each worker to its own jobs.
+// Jobs without a pool (pre-existing rows) belong to 'default'.
+const workerPool = () => process.env.JOB_WORKER_POOL || 'default';
+const jobPool = (payload) => payload?.pool || 'default';
 
 function registerHandler(type, fn) { handlers.set(type, fn); }
 
@@ -39,7 +46,7 @@ async function getProducer() {
 
 async function publishJob(type, payload = {}) {
   const id = crypto.randomUUID();
-  const { error } = await supabase.from('upload_jobs').insert({ id, type, payload, status: 'pending' });
+  const { error } = await supabase.from('upload_jobs').insert({ id, type, payload: { ...payload, pool: workerPool() }, status: 'pending' });
   if (error) throw new Error(`[jobQueue] enqueue failed (${error.message})`);
   if (DRIVER === 'kafka') {
     const producer = await getProducer();
@@ -82,18 +89,49 @@ async function runWorkerOnce(limit = 5) {
   const knownTypes = [...handlers.keys()];
   let query = supabase
     .from('upload_jobs')
-    .select('id')
+    .select('id, payload')
     .eq('status', 'pending')
     .order('created_at', { ascending: true })
-    .limit(limit);
+    .limit(limit * 4);
   if (knownTypes.length > 0) query = query.in('type', knownTypes);
-  const { data: pending, error } = await query;
+  const { data, error } = await query;
   if (error) throw new Error(`[jobQueue] drain failed (${error.message})`);
+  const pending = (data || []).filter((row) => jobPool(row.payload) === workerPool()).slice(0, limit);
   let processed = 0;
-  for (const row of (pending || [])) {
+  for (const row of pending) {
     if (await processJobById(row.id)) processed++;
   }
-  return { claimed: (pending || []).length, processed };
+  return { claimed: pending.length, processed };
+}
+
+// A worker restart/crash mid-job leaves the row 'processing' forever and the
+// curriculum stuck on 'generating'. Fails both once the lock is stale.
+async function recoverStaleJobs() {
+  const staleMinutes = Number(process.env.JOB_STALE_MINUTES) || 30;
+  const cutoff = new Date(Date.now() - staleMinutes * 60000).toISOString();
+  const knownTypes = [...handlers.keys()];
+  let query = supabase.from('upload_jobs').select('id, payload').eq('status', 'processing').lt('locked_at', cutoff);
+  if (knownTypes.length > 0) query = query.in('type', knownTypes);
+  const { data, error } = await query;
+  if (error) throw new Error(`[jobQueue] stale scan failed (${error.message})`);
+
+  const message = 'interrupted (worker restarted)';
+  let recovered = 0;
+  for (const row of (data || []).filter((r) => jobPool(r.payload) === workerPool())) {
+    await supabase.from('upload_jobs')
+      .update({ status: 'failed', error: message, updated_at: new Date().toISOString() })
+      .eq('id', row.id);
+    if (row.payload?.curriculumId) {
+      await updateCurriculumStatus(row.payload.curriculumId, 'failed', { error: message }).catch(() => {});
+    }
+    recovered++;
+  }
+  return recovered;
+}
+
+async function workerTick(limit = 5) {
+  await recoverStaleJobs().catch((err) => console.error('[jobQueue] stale recovery failed:', err.message));
+  return runWorkerOnce(limit);
 }
 
 async function startConsumer() {
@@ -118,4 +156,4 @@ async function getJob(id) {
   return data || null;
 }
 
-module.exports = { DRIVER, publishJob, registerHandler, runWorkerOnce, processJobById, startConsumer, getJob };
+module.exports = { DRIVER, publishJob, registerHandler, runWorkerOnce, recoverStaleJobs, workerTick, processJobById, startConsumer, getJob };

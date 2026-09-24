@@ -95,4 +95,62 @@ describe('jobQueue', () => {
 
     expect(chain.in).toHaveBeenCalledWith('type', expect.arrayContaining(['curriculum_extract_ok']));
   });
+
+  test('publishJob stores the worker pool in the payload', async () => {
+    process.env.JOB_WORKER_POOL = 'local-dev';
+    const chain = insertChain({ error: null });
+    supabase.from.mockReturnValueOnce(chain);
+    await jobQueue.publishJob('curriculum_extract', { curriculumId: 'c1' });
+    delete process.env.JOB_WORKER_POOL;
+    expect(chain.insert).toHaveBeenCalledWith(
+      expect.objectContaining({ payload: { curriculumId: 'c1', pool: 'local-dev' } })
+    );
+  });
+
+  test('runWorkerOnce only claims jobs in its own pool (unpooled rows belong to default)', async () => {
+    const rows = [
+      { id: 'a', payload: { pool: 'local-dev' } },
+      { id: 'b', payload: {} },
+      { id: 'c', payload: { pool: 'default' } },
+    ];
+    const chain = pollChain({ data: rows });
+    // Claim step (update...select() with no args) finds nothing; poll step (select(cols)) returns the chain.
+    chain.update = jest.fn(() => chain);
+    chain.select = jest.fn((cols) => (cols === undefined ? Promise.resolve({ data: [] }) : chain));
+    supabase.from.mockReturnValue(chain);
+
+    const res = await jobQueue.runWorkerOnce(5);
+    supabase.from.mockReset();
+
+    expect(res.claimed).toBe(2);
+    const claimedIds = chain.eq.mock.calls.filter((c) => c[0] === 'id').map((c) => c[1]);
+    expect(claimedIds).toEqual(['b', 'c']);
+  });
+
+  test('recoverStaleJobs fails stale processing jobs and their curriculum rows (own pool only)', async () => {
+    const scan = {};
+    scan.select = jest.fn(() => scan);
+    scan.eq = jest.fn(() => scan);
+    scan.lt = jest.fn(() => scan);
+    scan.in = jest.fn(() => Promise.resolve({ data: [
+      { id: 'j1', payload: { curriculumId: 'cur1', pool: 'default' } },
+      { id: 'j2', payload: { curriculumId: 'cur2', pool: 'local-dev' } },
+    ] }));
+    const jobUpdate = markDoneChain();
+    const curUpdate = {};
+    curUpdate.update = jest.fn(() => curUpdate);
+    curUpdate.eq = jest.fn(() => curUpdate);
+    curUpdate.select = jest.fn(() => curUpdate);
+    curUpdate.single = jest.fn(() => Promise.resolve({ data: {}, error: null }));
+    supabase.from.mockReset();
+    supabase.from.mockReturnValueOnce(scan).mockReturnValueOnce(jobUpdate).mockReturnValueOnce(curUpdate);
+
+    const recovered = await jobQueue.recoverStaleJobs();
+
+    expect(recovered).toBe(1);
+    expect(scan.lt).toHaveBeenCalledWith('locked_at', expect.any(String));
+    expect(jobUpdate.update).toHaveBeenCalledWith(expect.objectContaining({ status: 'failed', error: 'interrupted (worker restarted)' }));
+    expect(curUpdate.update).toHaveBeenCalledWith(expect.objectContaining({ status: 'failed', error: 'interrupted (worker restarted)' }));
+    expect(curUpdate.eq).toHaveBeenCalledWith('id', 'cur1');
+  });
 });

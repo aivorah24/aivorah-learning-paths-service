@@ -152,7 +152,7 @@ async function generateWorkedExample(topicRef, metadata, retrievedContext) {
 
     let completion;
     try {
-      completion = await callGroq(prompt);
+      completion = await callGroq(prompt, 'workedExample');
     } catch (err) {
       return null;
     }
@@ -252,7 +252,7 @@ function blocksToText(blocks) {
     })
     .filter(Boolean)
     .join('\n\n')
-    .slice(0, MAX_SOURCE_CONTEXT_CHARS * 2);
+    .slice(0, Math.round(MAX_SOURCE_CONTEXT_CHARS * 1.5));
 }
 
 // listenParts/practiceQuiz prompt — one call, grounded ONLY in the finished
@@ -260,7 +260,7 @@ function blocksToText(blocks) {
 // teacher approved. practiceQuiz reuses buildQuizPrompt's exact question
 // spec (shared with routes/ibpyp.js) so the shape matches what the student
 // Quiz screen already consumes.
-function buildCompanionsPrompt(topicRef, metadata, content, isMath) {
+function buildCompanionsPrompt(topicRef, metadata, content, isMath, qualityFeedback) {
   const blocksText = blocksToText(content.blocks);
   const objectives = (content.whatYoullLearn || []).join('; ');
   const calibrationNote = gradeCalibrationNote(metadata?.grade);
@@ -291,7 +291,9 @@ ${listenInstructions}
 Each listenPart needs: "heading", "text" (spoken-aloud script), "keyIdea" (one sentence), and "pauseThink": {"question": string, "options": string[4], "correctIndex": number}.
 
 For "practiceQuiz" (JSON key "questions"), follow this exact question specification:
-${quizSpec}${mathCalcRule}
+${quizSpec}${mathCalcRule}${qualityFeedback ? `
+
+QUALITY REVIEW FEEDBACK — fix these issues in your response: ${qualityFeedback}` : ''}
 
 Respond with ONLY ONE JSON object of this exact shape:
 {"listenParts": [{"heading":"...","text":"...","keyIdea":"...","pauseThink":{"question":"...","options":["...","...","...","..."],"correctIndex":0}}], "questions": [...same shape as specified above...]}`;
@@ -303,13 +305,13 @@ function isValidPracticeQuestion(q, isMath) {
   return !checked || valid;
 }
 
-async function generateCompanions(topicRef, metadata, content) {
+async function generateCompanions(topicRef, metadata, content, qualityFeedback) {
   const isMath = content?.contentType === 'mathematics';
-  const prompt = buildCompanionsPrompt(topicRef, metadata, content, isMath);
+  const prompt = buildCompanionsPrompt(topicRef, metadata, content, isMath, qualityFeedback);
 
   let completion;
   try {
-    completion = await callGroq(prompt);
+    completion = await callGroq(prompt, 'companions');
   } catch {
     return null;
   }
@@ -516,8 +518,8 @@ Every unitOrder/topicOrder pair in your response MUST exactly match one from the
 
 // Thin wrapper kept for callers/tests that import callGroq by name — the
 // actual provider fallback chain lives in services/llm/fallback.js.
-async function callGroq(prompt) {
-  const content = await callWithFallback(prompt, { json: true, temperature: 0.3 });
+async function callGroq(prompt, task = 'content') {
+  const content = await callWithFallback(prompt, { json: true, temperature: 0.3, task });
   return { choices: [{ message: { content } }] };
 }
 
@@ -628,11 +630,11 @@ async function attachCompanions(topics, topicRefs, metadata) {
   });
 }
 
-// Grade-fit pass: rules + Groq judge per topic (checkGradeFit). On failure,
-// ONE regeneration (content via groundTopic/knowledgeTopic + companions)
-// with issues fed back as qualityFeedback; still-failing topics get
-// needs_teacher_input. Bounded per topic: 1 judge call + (on failure) the
-// regen's own bounded content calls + 1 companions call + 1 re-judge call.
+// Grade-fit pass: rules + judge per topic (checkGradeFit). A real failure
+// regenerates ONLY the failing part, once: Learn content (which also redoes
+// companions, since they derive from it) or just the companions. Minor-only
+// issues keep the content 'ready' with quality.issues stored for the teacher;
+// a still-failing topic gets needs_teacher_input.
 async function applyGradeFit(topics, topicRefs, metadata) {
   const refByKey = new Map(topicRefs.map((r) => [`${r.unitOrder}:${r.topicOrder}`, r]));
   await mapWithConcurrency(topics, DRAFT_CONCURRENCY, async (t) => {
@@ -641,24 +643,32 @@ async function applyGradeFit(topics, topicRefs, metadata) {
     if (!ref) return;
     const chapterTitle = resolveChapterTitle(ref, metadata);
     const gradeFitArgs = (content) => ({ topicTitle: ref.topicTitle, chapterTitle, grade: metadata?.grade, subject: metadata?.subject, subtopics: ref.subtopics, content });
+    const attachCompanionsTo = (content, companions) => {
+      if (!companions) return;
+      content.listenParts = companions.listenParts;
+      content.practiceQuiz = companions.practiceQuiz;
+    };
 
     let result = await checkGradeFit(gradeFitArgs(t.content)).catch(() => null);
     if (!result) return;
 
     if (result.failed) {
-      const feedback = result.quality.issues.join('; ');
-      const regenTopic = t.groundingSource === 'ncert_vector'
-        ? await groundTopic(ref, metadata, feedback).catch(() => null)
-        : await knowledgeTopic(ref, metadata, feedback).catch(() => null);
-      if (regenTopic?.content) {
-        const companions = await generateCompanions(ref, metadata, regenTopic.content).catch(() => null);
-        if (companions) {
-          regenTopic.content.listenParts = companions.listenParts;
-          regenTopic.content.practiceQuiz = companions.practiceQuiz;
+      const contentIssues = result.contentIssues || [];
+      const companionsIssues = result.companionsIssues || [];
+      const companionsOnly = contentIssues.length === 0 && companionsIssues.length > 0;
+      const feedback = (companionsOnly ? companionsIssues : contentIssues).join('; ') || result.quality.issues.join('; ');
+      if (companionsOnly) {
+        attachCompanionsTo(t.content, await generateCompanions(ref, metadata, t.content, feedback).catch(() => null));
+      } else {
+        const regenTopic = t.groundingSource === 'ncert_vector'
+          ? await groundTopic(ref, metadata, feedback).catch(() => null)
+          : await knowledgeTopic(ref, metadata, feedback).catch(() => null);
+        if (regenTopic?.content) {
+          attachCompanionsTo(regenTopic.content, await generateCompanions(ref, metadata, regenTopic.content).catch(() => null));
+          t.content = regenTopic.content;
         }
-        t.content = regenTopic.content;
-        result = await checkGradeFit(gradeFitArgs(t.content)).catch(() => result);
       }
+      result = await checkGradeFit(gradeFitArgs(t.content)).catch(() => result);
     }
 
     t.quality = result.quality;

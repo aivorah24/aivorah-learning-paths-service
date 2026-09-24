@@ -23,9 +23,10 @@ if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Aivorah Learning Paths service running on http://localhost:${PORT}`);
   });
-  const { runWorkerOnce } = require('./services/jobQueue');
+  const { workerTick, recoverStaleJobs } = require('./services/jobQueue');
+  recoverStaleJobs().catch(err => console.error('[jobQueue] startup recovery failed:', err.message));
   setInterval(() => {
-    runWorkerOnce(5).catch(err => console.error('[jobQueue] drain tick failed:', err.message));
+    workerTick(5).catch(err => console.error('[jobQueue] drain tick failed:', err.message));
   }, 4000);
 }
 
