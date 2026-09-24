@@ -15,6 +15,7 @@ const PROVIDER_REGISTRY = {
 
 const DEFAULT_CHAIN = 'groq:openai/gpt-oss-120b,cerebras:gpt-oss-120b,groq:openai/gpt-oss-20b,groq:qwen/qwen3.8-27b';
 const LONG_COOLDOWN_MS = 15 * 60 * 1000;
+const waitBudgetMs = () => (process.env.LLM_WAIT_BUDGET_MS !== undefined ? Number(process.env.LLM_WAIT_BUDGET_MS) : 180000);
 const DAILY_LIMIT_RE = /tokens per day|requests per day|\btpd\b|\brpd\b/i;
 
 // Per-task model routing — each Groq model has its own TPM/TPD budget, so
@@ -195,14 +196,25 @@ async function callWithFallback(prompt, { json = false, temperature, task, maxTo
   let result = await attemptChain(chain, prompt, opts);
   if (result.ok) return result.content;
 
-  const { wait, minWait } = allCoolingDownShort(chain);
-  if (wait) {
-    await sleep(Math.min(minWait, LONG_COOLDOWN_MS));
+  // Whole chain briefly rate-limited: wait out the shortest cooldown and retry, bounded by LLM_WAIT_BUDGET_MS.
+  const deadline = Date.now() + waitBudgetMs();
+  let lastAttempts = result.attempts;
+  for (;;) {
+    const { wait, minWait } = allCoolingDownShort(chain);
+    if (!wait || Date.now() + minWait > deadline) break;
+    await sleep(minWait + 250);
     result = await attemptChain(chain, prompt, opts);
     if (result.ok) return result.content;
+    if (result.attempts.length) lastAttempts = result.attempts;
   }
 
-  throw new LLMUnavailableError(`All LLM providers exhausted: ${result.attempts.join('; ') || 'no configured provider had a key'}`);
+  const detail = lastAttempts.join('; ') || (wait_state(chain) ? 'all models rate-limited, retry shortly' : 'no configured provider had a key');
+  throw new LLMUnavailableError(`All LLM providers exhausted: ${detail}`);
+}
+
+// True when at least one keyed, non-disabled entry exists (so "no key" would be a wrong diagnosis).
+function wait_state(chain) {
+  return chain.some(({ provider, model }) => !disabledForever.has(`${provider}:${model}`) && resolveProviderConfig(provider));
 }
 
 module.exports = { callWithFallback, LLMUnavailableError, resetFallbackState, parseChain };

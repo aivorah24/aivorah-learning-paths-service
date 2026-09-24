@@ -120,6 +120,33 @@ describe('short-429 handling and per-task routing', () => {
     }
   });
 
+  test('keeps waiting across several rate-limit rounds instead of giving up after one', async () => {
+    jest.useFakeTimers();
+    try {
+      for (let i = 0; i < 6; i++) global.fetch.mockResolvedValueOnce(shortRateLimit());
+      global.fetch.mockResolvedValueOnce(okResponse('eventually'));
+      const pending = callWithFallback('prompt');
+      await jest.advanceTimersByTimeAsync(20000);
+      await expect(pending).resolves.toBe('eventually');
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
+  test('error says rate-limited, not "no key", when keyed models are only cooling', async () => {
+    jest.useFakeTimers();
+    process.env.LLM_WAIT_BUDGET_MS = '0';
+    try {
+      global.fetch.mockResolvedValue(shortRateLimit());
+      const pending = callWithFallback('prompt');
+      const assertion = expect(pending).rejects.toThrow(/short429|rate-limited/);
+      await jest.advanceTimersByTimeAsync(500);
+      await assertion;
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
   test('per-task chain env selects the model for that task, falling back to LLM_CHAIN', async () => {
     process.env.LLM_CHAIN_COMPANIONS = 'groq:qwen-x';
     process.env.LLM_CHAIN_JUDGE = 'groq:judge-x';

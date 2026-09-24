@@ -24,7 +24,7 @@ const MAX_SOURCE_CONTEXT_CHARS = 1500;
 
 // Bounds per-draft LLM concurrency so a many-topic upload doesn't burst
 // Groq's TPM limit — small concurrency instead of unbounded Promise.all.
-const DRAFT_CONCURRENCY = 2;
+const DRAFT_CONCURRENCY = Number(process.env.DRAFT_CONCURRENCY) || 2;
 async function mapWithConcurrency(items, limit, fn) {
   const results = new Array(items.length);
   let next = 0;
