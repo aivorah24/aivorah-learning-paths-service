@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "fekr101.pdf",
-   "title": "Visual Arts",
+   "title": "Objects and Still Life",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr101.pdf",
    "pdfFiles": [
@@ -18,7 +18,7 @@
   {
    "chapter": 2,
    "pdfFile": "fekr102.pdf",
-   "title": "Pdn",
+   "title": "Changing the Typical Picture",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr102.pdf",
    "pdfFiles": [
@@ -28,7 +28,7 @@
   {
    "chapter": 3,
    "pdfFile": "fekr103.pdf",
-   "title": "Yhu",
+   "title": "Portraying People",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr103.pdf",
    "pdfFiles": [
@@ -38,7 +38,7 @@
   {
    "chapter": 4,
    "pdfFile": "fekr104.pdf",
-   "title": "Do You Know",
+   "title": "Paper Crafts",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr104.pdf",
    "pdfFiles": [
@@ -48,9 +48,8 @@
   {
    "chapter": 5,
    "pdfFile": "fekr105.pdf",
-   "title": "Chapter 5",
+   "title": "Seals to Prints",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade6/physical_education/fekr105.pdf",
    "pdfFiles": [
     "fekr105.pdf"
@@ -59,7 +58,7 @@
   {
    "chapter": 6,
    "pdfFile": "fekr106.pdf",
-   "title": "Music",
+   "title": "Music and your Emotions",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr106.pdf",
    "pdfFiles": [
@@ -69,7 +68,7 @@
   {
    "chapter": 7,
    "pdfFile": "fekr107.pdf",
-   "title": "Zlwk",
+   "title": "Musical Instruments",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr107.pdf",
    "pdfFiles": [
@@ -79,7 +78,7 @@
   {
    "chapter": 8,
    "pdfFile": "fekr108.pdf",
-   "title": "Do You Know",
+   "title": "Taal or Talam and Raga or Ragam in Indian Music",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr108.pdf",
    "pdfFiles": [
@@ -89,7 +88,7 @@
   {
    "chapter": 9,
    "pdfFile": "fekr109.pdf",
-   "title": "Do You Know",
+   "title": "Melodies of Diversity",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr109.pdf",
    "pdfFiles": [
@@ -99,7 +98,7 @@
   {
    "chapter": 10,
    "pdfFile": "fekr110.pdf",
-   "title": "Qrwwxvzdu",
+   "title": "Songwriting",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr110.pdf",
    "pdfFiles": [
@@ -109,7 +108,7 @@
   {
    "chapter": 11,
    "pdfFile": "fekr111.pdf",
-   "title": "Dqg",
+   "title": "Music and Society",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr111.pdf",
    "pdfFiles": [
@@ -119,7 +118,7 @@
   {
    "chapter": 12,
    "pdfFile": "fekr112.pdf",
-   "title": "Dance",
+   "title": "My Body in Motion",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr112.pdf",
    "pdfFiles": [
@@ -129,9 +128,8 @@
   {
    "chapter": 13,
    "pdfFile": "fekr113.pdf",
-   "title": "Chapter 13",
+   "title": "Breaking Barriers with Dance",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade6/physical_education/fekr113.pdf",
    "pdfFiles": [
     "fekr113.pdf"
@@ -140,9 +138,8 @@
   {
    "chapter": 14,
    "pdfFile": "fekr114.pdf",
-   "title": "Chapter 14",
+   "title": "Harmony in Motion",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade6/physical_education/fekr114.pdf",
    "pdfFiles": [
     "fekr114.pdf"
@@ -151,7 +148,7 @@
   {
    "chapter": 15,
    "pdfFile": "fekr115.pdf",
-   "title": "Wlf",
+   "title": "Dances of Our Land",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr115.pdf",
    "pdfFiles": [
@@ -161,7 +158,7 @@
   {
    "chapter": 16,
    "pdfFile": "fekr116.pdf",
-   "title": "Theatre",
+   "title": "Emotions Unveiled!",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr116.pdf",
    "pdfFiles": [
@@ -171,7 +168,7 @@
   {
    "chapter": 17,
    "pdfFile": "fekr117.pdf",
-   "title": "\u001a\u0014\u0003࢐ࡒ࢛ࢍ࠺ࡢ&ࡻ࡝ࡥ࢔ࡒ'\u0003࢔ȇ࢛ࡒ/\u0014\u0003࢔ࡴ࠺ࡈࡥࡻࡢࡈࡒ7\u0003ࡒ࡝࠺࢛6 in the Realm of Design, Makeup Weaves a Tale,",
+   "title": "Let’s Design",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr117.pdf",
    "pdfFiles": [
@@ -181,9 +178,8 @@
   {
    "chapter": 18,
    "pdfFile": "fekr118.pdf",
-   "title": "Chapter 18",
+   "title": "In the Company of Theatre",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade6/physical_education/fekr118.pdf",
    "pdfFiles": [
     "fekr118.pdf"
@@ -192,9 +188,8 @@
   {
    "chapter": 19,
    "pdfFile": "fekr119.pdf",
-   "title": "Chapter 19",
+   "title": "Stories of Shadows and Strings — Puppetry",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade6/physical_education/fekr119.pdf",
    "pdfFiles": [
     "fekr119.pdf"
@@ -203,9 +198,8 @@
   {
    "chapter": 20,
    "pdfFile": "fekr120.pdf",
-   "title": "Chapter 20",
+   "title": "The Grand Finale",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade6/physical_education/fekr120.pdf",
    "pdfFiles": [
     "fekr120.pdf"
@@ -214,7 +208,7 @@
   {
    "chapter": 21,
    "pdfFile": "fekr121.pdf",
-   "title": "Do You Know",
+   "title": "Integration of All Art Forms",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr121.pdf",
    "pdfFiles": [
@@ -224,7 +218,7 @@
   {
    "chapter": 22,
    "pdfFile": "fekr122.pdf",
-   "title": "Assessment Assessments in Art Education Play a Crucial Role in Understanding",
+   "title": "Assessment",
    "kind": "Non-fiction",
    "bookPath": "grade6/physical_education/fekr122.pdf",
    "pdfFiles": [

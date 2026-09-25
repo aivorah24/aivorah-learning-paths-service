@@ -1,0 +1,514 @@
+[
+ {
+  "file": "cbse-g10-hindi-jhsc1-chapters.json",
+  "chapter": 8,
+  "action": "mismatch-kept",
+  "current": "आनुवंशिकता",
+  "canonical": "आनुवांशिकता",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g10-hindi-jhsc1-chapters.json",
+  "chapter": 9,
+  "action": "mismatch-kept",
+  "current": "प्रकाश – परावर्तन रथा अपवर्तन",
+  "canonical": "प्रकाश - परावर्तन तथा अपवर्तन",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g10-social_science-jess4-chapters.json",
+  "chapter": 1,
+  "action": "mismatch-kept",
+  "current": "Power-Sharing",
+  "canonical": "Power-sharing",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g10-social_science-jess4-chapters.json",
+  "chapter": 4,
+  "action": "mismatch-kept",
+  "current": "Democratic Politics",
+  "canonical": "Political Parties",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g11-physics-keph1-chapters.json",
+  "chapter": 4,
+  "action": "mismatch-kept",
+  "current": "Laws of Motion",
+  "canonical": "Laws or Motion",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g11-physics-keph1-chapters.json",
+  "chapter": 6,
+  "action": "mismatch-kept",
+  "current": "Systems of Particles and Rotational Motion",
+  "canonical": "System of Particles and Rotational Motion",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g12-business_studies-lebs2-chapters.json",
+  "chapter": 1,
+  "action": "mismatch-kept",
+  "current": "Learning Objectives",
+  "canonical": "Nature and Significance of Management",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g12-business_studies-lebs2-chapters.json",
+  "chapter": 2,
+  "action": "mismatch-kept",
+  "current": "Business Studies",
+  "canonical": "Principles of Management",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g12-english-levt1-chapters.json",
+  "chapter": 1,
+  "action": "mismatch-kept",
+  "current": "The Third Level Jack Finney Before You Read",
+  "canonical": "The Third Level Jack Finney",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g12-english-levt1-chapters.json",
+  "chapter": 2,
+  "action": "mismatch-kept",
+  "current": "The Tiger King Kalki I",
+  "canonical": "The Tiger King Kalki",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g12-english-levt1-chapters.json",
+  "chapter": 3,
+  "action": "mismatch-kept",
+  "current": "Journey to the End of the Earth Tishani Doshi Before You Read",
+  "canonical": "Journey to the end of the Earth Tishani Doshi",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g12-english-levt1-chapters.json",
+  "chapter": 4,
+  "action": "mismatch-kept",
+  "current": "The Enemy Pearl S. Buck Before You Read",
+  "canonical": "The Enemy Pearl S. Buck",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g12-english-levt1-chapters.json",
+  "chapter": 5,
+  "action": "mismatch-kept",
+  "current": "On the Face of It Susan Hill Before You Read",
+  "canonical": "On the face of It Susan Hill",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g12-english-levt1-chapters.json",
+  "chapter": 6,
+  "action": "mismatch-kept",
+  "current": "Memories of Childhood Zitkala-Sa and Bama Before You Read",
+  "canonical": "Memories of Childhood",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g12-fine_arts-lefa1-chapters.json",
+  "chapter": 6,
+  "action": "mismatch-kept",
+  "current": "Company Painting a",
+  "canonical": "The Bengal School and Cultural Nationalism",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g4-mathematics-demm1-chapters.json",
+  "chapter": 1,
+  "action": "mismatch-kept",
+  "current": ": Shapes Around Us",
+  "canonical": "Shapes Around Us",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g4-mathematics-demm1-chapters.json",
+  "chapter": 2,
+  "action": "mismatch-kept",
+  "current": "Start",
+  "canonical": "Hide and Seek",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g4-mathematics-demm1-chapters.json",
+  "chapter": 3,
+  "action": "mismatch-kept",
+  "current": "Two Ways",
+  "canonical": "Pattern Around Us",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g4-mathematics-demm1-chapters.json",
+  "chapter": 4,
+  "action": "mismatch-kept",
+  "current": "Comparing Numbers",
+  "canonical": "Thousands Around Us",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g4-mathematics-demm1-chapters.json",
+  "chapter": 5,
+  "action": "mismatch-kept",
+  "current": "Parts and Wholes",
+  "canonical": "Sharing and Measuring",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g4-mathematics-demm1-chapters.json",
+  "chapter": 6,
+  "action": "mismatch-kept",
+  "current": ": Measuring Length",
+  "canonical": "Measuring Length",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g4-mathematics-demm1-chapters.json",
+  "chapter": 12,
+  "action": "mismatch-kept",
+  "current": ": Ticking Clocks and Turning Calendar",
+  "canonical": "Ticking Clocks and Turning Calendar",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g4-mathematics-demm1-chapters.json",
+  "chapter": 13,
+  "action": "mismatch-kept",
+  "current": ": The Transport Museum",
+  "canonical": "The Transport Museum",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g6-physical_education-fekb1-chapters.json",
+  "chapter": 1,
+  "action": "mismatch-kept",
+  "current": "Part 1 01_kitchen_garden.Indd 19/14/2024 2:06:12 Pm",
+  "canonical": "April 2010). Reprint 2026",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g6-social_science-fekb1-chapters.json",
+  "chapter": 1,
+  "action": "mismatch-kept",
+  "current": "Part 1 01_kitchen_garden.Indd 19/14/2024 2:06:12 Pm",
+  "canonical": "April 2010). Reprint 2026",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 2,
+  "action": "mismatch-kept",
+  "current": "Holistic Lens",
+  "canonical": "Exploring Substances: Acidic, Basic, and Neutral",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 3,
+  "action": "mismatch-kept",
+  "current": "Fascinating Facts",
+  "canonical": "Electricity: Circuits and their Components",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 4,
+  "action": "mismatch-kept",
+  "current": "Holistic Lens",
+  "canonical": "The World of Metals and Non-metals",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 5,
+  "action": "mismatch-kept",
+  "current": "Science and Society",
+  "canonical": "Changes Around Us: Physical.and Chemical",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 7,
+  "action": "mismatch-kept",
+  "current": "Ive Eeper",
+  "canonical": "Heat Transferin Nature",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 8,
+  "action": "mismatch-kept",
+  "current": "Fascinating Facts",
+  "canonical": "Measurement of Time and Motion",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 9,
+  "action": "mismatch-kept",
+  "current": "Fascinating Facts",
+  "canonical": "Life Processes in Animals",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 10,
+  "action": "mismatch-kept",
+  "current": "Fascinating Facts",
+  "canonical": "Life Processes in Plants",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 11,
+  "action": "mismatch-kept",
+  "current": "Science and Society",
+  "canonical": "Light: Shadows and Reflections",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g7-science-gecu1-chapters.json",
+  "chapter": 12,
+  "action": "mismatch-kept",
+  "current": "Ive Eeper",
+  "canonical": "Earth, Moon, and the Sun ill",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 1,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "Natural Resources and Their Use",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 2,
+  "action": "mismatch-kept",
+  "current": "Legend",
+  "canonical": "Reshaping India’s Political Map",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 3,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "The Rise of the Marathas",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 4,
+  "action": "mismatch-kept",
+  "current": "Let Us Explore",
+  "canonical": "The Colonial Era in India",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 5,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "Universal Franchise and India’s Electoral System",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 6,
+  "action": "mismatch-kept",
+  "current": "Union List State",
+  "canonical": "The Parliamentary System: Legislature and Executive",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 7,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "Factors of Production",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 1,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "World Geography: Some Glimpses",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 2,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "India’s Long Road to Independence",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 4,
+  "action": "mismatch-kept",
+  "current": "Courts in India",
+  "canonical": "The Role of the Judiciary in Our Society",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 5,
+  "action": "mismatch-kept",
+  "current": "Equality",
+  "canonical": "Citizenship: Rights and Duties",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 6,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "Dynamics of Population",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 7,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "India’s Urban Landscape",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 8,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "Cultural Currents: 13\" to 17\" Centuries",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-english-iemr1-chapters.json",
+  "chapter": 1,
+  "action": "mismatch-kept",
+  "current": "Introduction to the History of Arts 3 Theatre",
+  "canonical": "Introduction to the History of Arts",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-english-iemr1-chapters.json",
+  "chapter": 3,
+  "action": "mismatch-kept",
+  "current": "Sky Blue",
+  "canonical": "Symbols and Metaphors on Stage",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-english-iemr1-chapters.json",
+  "chapter": 4,
+  "action": "mismatch-kept",
+  "current": "Creativity in L ight and S ound",
+  "canonical": "Creativity in Light and Sound",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-english-iemr1-chapters.json",
+  "chapter": 5,
+  "action": "mismatch-kept",
+  "current": "Indian",
+  "canonical": "From Vision to Performance: Direction and Acting",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-english-iemr1-chapters.json",
+  "chapter": 6,
+  "action": "mismatch-kept",
+  "current": "Classical",
+  "canonical": "Music and Us",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-english-iemr1-chapters.json",
+  "chapter": 7,
+  "action": "mismatch-kept",
+  "current": "The S cience of M usic",
+  "canonical": "The Science of Music",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-english-iemr1-chapters.json",
+  "chapter": 13,
+  "action": "mismatch-kept",
+  "current": "Audience",
+  "canonical": "Dance Choreography",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-physical_education-iest1-chapters.json",
+  "chapter": 2,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "Shaping of the Earth’s Surface",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-physical_education-iest1-chapters.json",
+  "chapter": 3,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "Atmosphere and Climate",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-physical_education-iest1-chapters.json",
+  "chapter": 4,
+  "action": "mismatch-kept",
+  "current": "Deserts and Mountains Grassy Steppes Coniferous Forest",
+  "canonical": "Early Humans and Beginning of Civilisation",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-physical_education-iest1-chapters.json",
+  "chapter": 5,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "State and Society up to 1000 CE",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-physical_education-iest1-chapters.json",
+  "chapter": 6,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "Democracy",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-physical_education-iest1-chapters.json",
+  "chapter": 7,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "Elections",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-physical_education-iest1-chapters.json",
+  "chapter": 8,
+  "action": "mismatch-kept",
+  "current": "Scarcity Choices",
+  "canonical": "Building Blocks in Economics: The Problem of Choice",
+  "via": "ocr"
+ },
+ {
+  "file": "cbse-g9-physical_education-iest1-chapters.json",
+  "chapter": 9,
+  "action": "mismatch-kept",
+  "current": "Think About It",
+  "canonical": "The Price Puzzle: What Drives the Market",
+  "via": "ocr"
+ }
+]

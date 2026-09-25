@@ -18,7 +18,7 @@
   {
    "chapter": 2,
    "pdfFile": "eeap102.pdf",
-   "title": "Naag Gumphan",
+   "title": "A Snake Charmer’s Story",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap102.pdf",
    "pdfFiles": [
@@ -28,7 +28,7 @@
   {
    "chapter": 3,
    "pdfFile": "eeap103.pdf",
-   "title": "2222 2222 22looking Around",
+   "title": "From Tasting to Digesting",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap103.pdf",
    "pdfFiles": [
@@ -38,7 +38,7 @@
   {
    "chapter": 4,
    "pdfFile": "eeap104.pdf",
-   "title": "Mangoes Round the Year 3535 3535",
+   "title": "Mangoes Round the Year",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap104.pdf",
    "pdfFiles": [
@@ -48,7 +48,7 @@
   {
    "chapter": 5,
    "pdfFile": "eeap105.pdf",
-   "title": "4242 4242 42looking Around",
+   "title": "Seeds and Seeds",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap105.pdf",
    "pdfFiles": [
@@ -58,9 +58,8 @@
   {
    "chapter": 6,
    "pdfFile": "eeap106.pdf",
-   "title": "Chapter 6",
+   "title": "Every Drop Counts",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade5/evs/eeap106.pdf",
    "pdfFiles": [
     "eeap106.pdf"
@@ -69,7 +68,7 @@
   {
    "chapter": 7,
    "pdfFile": "eeap107.pdf",
-   "title": "6060 6060 60looking Around",
+   "title": "Experiments with Water",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap107.pdf",
    "pdfFiles": [
@@ -79,7 +78,7 @@
   {
    "chapter": 8,
    "pdfFile": "eeap108.pdf",
-   "title": "Clinical Pathology Report",
+   "title": "A Treat for Mosquitoes",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap108.pdf",
    "pdfFiles": [
@@ -89,7 +88,7 @@
   {
    "chapter": 9,
    "pdfFile": "eeap109.pdf",
-   "title": "7676 7676 76looking Around",
+   "title": "Up You Go!",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap109.pdf",
    "pdfFiles": [
@@ -99,7 +98,7 @@
   {
    "chapter": 10,
    "pdfFile": "eeap110.pdf",
-   "title": "Reached Golconda",
+   "title": "Walls Tell Stories",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap110.pdf",
    "pdfFiles": [
@@ -109,7 +108,7 @@
   {
    "chapter": 11,
    "pdfFile": "eeap111.pdf",
-   "title": "Nasa",
+   "title": "Sunita in Space",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap111.pdf",
    "pdfFiles": [
@@ -119,7 +118,7 @@
   {
    "chapter": 12,
    "pdfFile": "eeap112.pdf",
-   "title": "110110 110110 110looking Around",
+   "title": "What if it Finishes ?",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap112.pdf",
    "pdfFiles": [
@@ -129,7 +128,7 @@
   {
    "chapter": 13,
    "pdfFile": "eeap113.pdf",
-   "title": "120120 120120 120looking Around",
+   "title": "A Shelter so High!",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap113.pdf",
    "pdfFiles": [
@@ -139,9 +138,8 @@
   {
    "chapter": 14,
    "pdfFile": "eeap114.pdf",
-   "title": "Chapter 14",
+   "title": "When the Earth Shook!",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade5/evs/eeap114.pdf",
    "pdfFiles": [
     "eeap114.pdf"
@@ -150,9 +148,8 @@
   {
    "chapter": 15,
    "pdfFile": "eeap115.pdf",
-   "title": "Chapter 15",
+   "title": "Blow Hot, Blow Cold",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade5/evs/eeap115.pdf",
    "pdfFiles": [
     "eeap115.pdf"
@@ -161,9 +158,8 @@
   {
    "chapter": 16,
    "pdfFile": "eeap116.pdf",
-   "title": "Chapter 16",
+   "title": "Who will do this Work?",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade5/evs/eeap116.pdf",
    "pdfFiles": [
     "eeap116.pdf"
@@ -172,7 +168,7 @@
   {
    "chapter": 17,
    "pdfFile": "eeap117.pdf",
-   "title": "154looking Around",
+   "title": "Across the Wall",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap117.pdf",
    "pdfFiles": [
@@ -182,9 +178,8 @@
   {
    "chapter": 18,
    "pdfFile": "eeap118.pdf",
-   "title": "Chapter 18",
+   "title": "No Place for Us?",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade5/evs/eeap118.pdf",
    "pdfFiles": [
     "eeap118.pdf"
@@ -193,7 +188,7 @@
   {
    "chapter": 19,
    "pdfFile": "eeap119.pdf",
-   "title": "174174 174174 174looking Around",
+   "title": "A Seed tells a Farmer’s Story",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap119.pdf",
    "pdfFiles": [
@@ -203,7 +198,7 @@
   {
    "chapter": 20,
    "pdfFile": "eeap120.pdf",
-   "title": "182182 182182 182looking Around",
+   "title": "Whose Forests?",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap120.pdf",
    "pdfFiles": [
@@ -213,7 +208,7 @@
   {
    "chapter": 21,
    "pdfFile": "eeap121.pdf",
-   "title": "192192 192192 192looking Around",
+   "title": "Like Father, Like Daughter",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap121.pdf",
    "pdfFiles": [
@@ -223,7 +218,7 @@
   {
    "chapter": 22,
    "pdfFile": "eeap122.pdf",
-   "title": "200200 200200 200looking Around",
+   "title": "On the Move Again",
    "kind": "Non-fiction",
    "bookPath": "grade5/evs/eeap122.pdf",
    "pdfFiles": [

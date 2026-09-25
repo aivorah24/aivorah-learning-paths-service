@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "keks101.pdf",
-   "title": "Language Is One of the Most Beautiful and Intriguing",
+   "title": "Language and Literature of India",
    "kind": "Non-fiction",
    "bookPath": "grade11/science/keks101.pdf",
    "pdfFiles": [
@@ -18,9 +18,8 @@
   {
    "chapter": 2,
    "pdfFile": "keks102.pdf",
-   "title": "Chapter 2",
+   "title": "Indian Philosophical Systems",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/science/keks102.pdf",
    "pdfFiles": [
     "keks102.pdf"
@@ -49,9 +48,8 @@
   {
    "chapter": 5,
    "pdfFile": "keks105.pdf",
-   "title": "Chapter 5",
+   "title": "Astronomy in India",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/science/keks105.pdf",
    "pdfFiles": [
     "keks105.pdf"
@@ -60,7 +58,7 @@
   {
    "chapter": 6,
    "pdfFile": "keks106.pdf",
-   "title": "Little Is Known to Us At Present Regarding the Achievements of the Early Indian Mathematicians and Our Indebtedness",
+   "title": "Mathematics in India",
    "kind": "Non-fiction",
    "bookPath": "grade11/science/keks106.pdf",
    "pdfFiles": [
@@ -70,7 +68,7 @@
   {
    "chapter": 7,
    "pdfFile": "keks107.pdf",
-   "title": "Ayush",
+   "title": "Introducing Ayurveda: the Science of",
    "kind": "Non-fiction",
    "bookPath": "grade11/science/keks107.pdf",
    "pdfFiles": [
@@ -80,7 +78,7 @@
   {
    "chapter": 8,
    "pdfFile": "keks108.pdf",
-   "title": "In India",
+   "title": "Chemistry and Metallurgy in India",
    "kind": "Non-fiction",
    "bookPath": "grade11/science/keks108.pdf",
    "pdfFiles": [
@@ -90,9 +88,8 @@
   {
    "chapter": 9,
    "pdfFile": "keks109.pdf",
-   "title": "Chapter 9",
+   "title": "Yoga",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade11/science/keks109.pdf",
    "pdfFiles": [
     "keks109.pdf"

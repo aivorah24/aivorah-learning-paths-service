@@ -8,22 +8,21 @@
   {
    "chapter": 1,
    "pdfFile": "bemr101.pdf",
-   "title": "Chapter 1",
+   "title": "Fun with Friends My Bicycle",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade2/english/bemr101.pdf"
   },
   {
    "chapter": 2,
    "pdfFile": "bemr102.pdf",
-   "title": "Mridang Note to the Teacher",
+   "title": "Welcome to My World It is Fun",
    "kind": "Non-fiction",
    "bookPath": "grade2/english/bemr102.pdf"
   },
   {
    "chapter": 3,
    "pdfFile": "bemr103.pdf",
-   "title": "It’S Fun to Be This, It’S Fun to Be That, to Leap Like a Lamb,",
+   "title": "Going Places Come Back Soon",
    "kind": "Non-fiction",
    "bookPath": "grade2/english/bemr103.pdf"
   },
@@ -37,7 +36,7 @@
   {
    "chapter": 5,
    "pdfFile": "bemr105.pdf",
-   "title": "Take a Bus or Take a Train, Take a Boat",
+   "title": "Chapter 5",
    "kind": "Non-fiction",
    "bookPath": "grade2/english/bemr105.pdf"
   },

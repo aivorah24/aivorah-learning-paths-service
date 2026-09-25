@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "hecu101.pdf",
-   "title": "Mar Apr",
+   "title": "Exploring the Investigative World of Science",
    "kind": "Non-fiction",
    "bookPath": "grade8/science/hecu101.pdf",
    "pdfFiles": [
@@ -18,7 +18,7 @@
   {
    "chapter": 2,
    "pdfFile": "hecu102.pdf",
-   "title": "Or Some",
+   "title": "The Invisible Living World: Beyond Our Naked Eye",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -50,7 +50,7 @@
   {
    "chapter": 3,
    "pdfFile": "hecu103.pdf",
-   "title": "Fit India Movement",
+   "title": "Health: The Ultimate Treasure",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -82,7 +82,7 @@
   {
    "chapter": 4,
    "pdfFile": "hecu104.pdf",
-   "title": "Aabb",
+   "title": "Electricity: Magnetic and Heating Effects",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -143,7 +143,7 @@
   {
    "chapter": 6,
    "pdfFile": "hecu106.pdf",
-   "title": "Curiosity  Textbook of Science for Grade 8 Pressure, Winds, Storms, and Cyclones",
+   "title": "Pressure, Winds, Storms, and Cyclones",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -221,7 +221,7 @@
   {
    "chapter": 9,
    "pdfFile": "hecu109.pdf",
-   "title": "The Amazing World of Solutes, Solvents, and Solutions",
+   "title": "Chapter 9",
    "kind": "Non-fiction",
    "needsTitleReview": false,
    "subtopics": [
@@ -283,7 +283,7 @@
   {
    "chapter": 11,
    "pdfFile": "hecu111.pdf",
-   "title": "Sunrays",
+   "title": "Keeping Time with the Skies",
    "kind": "Non-fiction",
    "subtopics": [
     {
