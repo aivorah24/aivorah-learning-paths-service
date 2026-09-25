@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "ceev101.pdf",
-   "title": "Unit 1 Our Families and Communities About the Unit",
+   "title": "Family and Friends",
    "kind": "Non-fiction",
    "bookPath": "grade3/evs/ceev101.pdf",
    "pdfFiles": [
@@ -28,9 +28,8 @@
   {
    "chapter": 3,
    "pdfFile": "ceev103.pdf",
-   "title": "Chapter 3",
+   "title": "Celebrating Festivals",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev103.pdf",
    "pdfFiles": [
     "ceev103.pdf"
@@ -39,7 +38,7 @@
   {
    "chapter": 4,
    "pdfFile": "ceev104.pdf",
-   "title": "Living Together Unit 2 Life Around Us",
+   "title": "Getting to Know Plants",
    "kind": "Non-fiction",
    "bookPath": "grade3/evs/ceev104.pdf",
    "pdfFiles": [
@@ -49,9 +48,8 @@
   {
    "chapter": 5,
    "pdfFile": "ceev105.pdf",
-   "title": "Chapter 5",
+   "title": "Plants and Animals Live Together",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev105.pdf",
    "pdfFiles": [
     "ceev105.pdf"
@@ -60,9 +58,8 @@
   {
    "chapter": 6,
    "pdfFile": "ceev106.pdf",
-   "title": "Chapter 6",
+   "title": "Living in Harmony",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev106.pdf",
    "pdfFiles": [
     "ceev106.pdf"
@@ -71,7 +68,7 @@
   {
    "chapter": 7,
    "pdfFile": "ceev107.pdf",
-   "title": "Living Together Unit 3 Gifts of Nature",
+   "title": "Water— A Precious Gift",
    "kind": "Non-fiction",
    "bookPath": "grade3/evs/ceev107.pdf",
    "pdfFiles": [
@@ -81,9 +78,8 @@
   {
    "chapter": 8,
    "pdfFile": "ceev108.pdf",
-   "title": "Chapter 8",
+   "title": "Food We Eat",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev108.pdf",
    "pdfFiles": [
     "ceev108.pdf"
@@ -102,7 +98,7 @@
   {
    "chapter": 10,
    "pdfFile": "ceev110.pdf",
-   "title": "Unit 4 Things Around Us About the Unit",
+   "title": "This World of Things",
    "kind": "Non-fiction",
    "bookPath": "grade3/evs/ceev110.pdf",
    "pdfFiles": [
@@ -112,9 +108,8 @@
   {
    "chapter": 11,
    "pdfFile": "ceev111.pdf",
-   "title": "Chapter 11",
+   "title": "Making Things",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/evs/ceev111.pdf",
    "pdfFiles": [
     "ceev111.pdf"

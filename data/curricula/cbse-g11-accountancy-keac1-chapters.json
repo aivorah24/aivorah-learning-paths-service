@@ -9,7 +9,7 @@
   {
    "chapter": 1,
    "pdfFile": "keac101.pdf",
-   "title": "Learning Objectives",
+   "title": "Introduction to Accounting",
    "bookPath": "grade11/accountancy/keac101.pdf",
    "subtopics": [
     {
@@ -24,7 +24,7 @@
   {
    "chapter": 2,
    "pdfFile": "keac102.pdf",
-   "title": "25 Theory Base of Accounting Learning Objectives",
+   "title": "Theory Base of Accounting",
    "bookPath": "grade11/accountancy/keac102.pdf",
    "subtopics": [
     {
@@ -39,7 +39,7 @@
   {
    "chapter": 3,
    "pdfFile": "keac103.pdf",
-   "title": "Learning Objectives",
+   "title": "Recording of Transactions - I",
    "bookPath": "grade11/accountancy/keac103.pdf",
    "subtopics": [
     {
@@ -54,7 +54,7 @@
   {
    "chapter": 4,
    "pdfFile": "keac104.pdf",
-   "title": "Learning Objectives",
+   "title": "Recording of Transactions - II",
    "bookPath": "grade11/accountancy/keac104.pdf",
    "subtopics": [
     {
@@ -69,7 +69,7 @@
   {
    "chapter": 5,
    "pdfFile": "keac105.pdf",
-   "title": "Learning Objectives",
+   "title": "Bank Reconciliation Statement",
    "bookPath": "grade11/accountancy/keac105.pdf",
    "subtopics": [
     {
@@ -84,7 +84,7 @@
   {
    "chapter": 6,
    "pdfFile": "keac106.pdf",
-   "title": "Learning Objectives",
+   "title": "Trial Balance and Rectification of Errors",
    "bookPath": "grade11/accountancy/keac106.pdf",
    "subtopics": [
     {
@@ -103,7 +103,7 @@
   {
    "chapter": 7,
    "pdfFile": "keac107.pdf",
-   "title": "Learning Objectives",
+   "title": "Depreciation, Provisions and Reserves",
    "bookPath": "grade11/accountancy/keac107.pdf",
    "subtopics": [
     {

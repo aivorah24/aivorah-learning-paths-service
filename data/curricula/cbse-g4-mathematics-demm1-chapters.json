@@ -70,7 +70,7 @@
   {
    "chapter": 7,
    "pdfFile": "demm107.pdf",
-   "title": "Mawlynnongmawlynnong",
+   "title": "The Cleanest Village",
    "kind": "Non-fiction",
    "bookPath": "grade4/mathematics/demm107.pdf",
    "pdfFiles": [
@@ -80,7 +80,7 @@
   {
    "chapter": 8,
    "pdfFile": "demm108.pdf",
-   "title": "In Grade 3, We Learnt About Measuring Weight and Capacity. Do You Remember the 1 Kilogram Salt Packet and 1 Litre",
+   "title": "Weigh it, Pour it",
    "kind": "Non-fiction",
    "bookPath": "grade4/mathematics/demm108.pdf",
    "pdfFiles": [
@@ -90,18 +90,17 @@
   {
    "chapter": 9,
    "pdfFile": "demm109.pdf",
-   "title": "Chapter 9",
+   "title": "Equal Groups",
    "kind": "Non-fiction",
    "bookPath": "grade4/mathematics/demm109.pdf",
    "pdfFiles": [
     "demm109.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 10,
    "pdfFile": "demm110.pdf",
-   "title": "Tho",
+   "title": "Elephants,Tigers, and Leopards",
    "kind": "Non-fiction",
    "bookPath": "grade4/mathematics/demm110.pdf",
    "pdfFiles": [
@@ -111,7 +110,7 @@
   {
    "chapter": 11,
    "pdfFile": "demm111.pdf",
-   "title": "Cat",
+   "title": "Fun with Symmetry",
    "kind": "Non-fiction",
    "bookPath": "grade4/mathematics/demm111.pdf",
    "pdfFiles": [
@@ -143,13 +142,12 @@
   {
    "chapter": 14,
    "pdfFile": "demm114.pdf",
-   "title": "Chapter 14",
+   "title": "Data Handling",
    "kind": "Non-fiction",
    "bookPath": "grade4/mathematics/demm114.pdf",
    "pdfFiles": [
     "demm114.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }

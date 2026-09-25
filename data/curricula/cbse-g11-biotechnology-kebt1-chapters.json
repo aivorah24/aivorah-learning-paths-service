@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "kebt101.pdf",
-   "title": "Biotechnology",
+   "title": "Introduction",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -32,7 +32,7 @@
   {
    "chapter": 2,
    "pdfFile": "kebt102.pdf",
-   "title": "Atp Adp",
+   "title": "Cellular Organelles",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -92,7 +92,7 @@
   {
    "chapter": 3,
    "pdfFile": "kebt103.pdf",
-   "title": "Cho Ohc",
+   "title": "Biomolecules",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -124,7 +124,7 @@
   {
    "chapter": 4,
    "pdfFile": "kebt104.pdf",
-   "title": "Enzymes and Bioenergetics 4.1. Enzymes:",
+   "title": "Enzymes and Bioenergetics",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -140,7 +140,7 @@
   {
    "chapter": 5,
    "pdfFile": "kebt105.pdf",
-   "title": "Dna Rna",
+   "title": "Cellular Processes",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -176,7 +176,7 @@
   {
    "chapter": 6,
    "pdfFile": "kebt106.pdf",
-   "title": "Genetic Principles and Molecular Processes",
+   "title": "Basic Principles of Inheritance",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -264,7 +264,7 @@
   {
    "chapter": 8,
    "pdfFile": "kebt108.pdf",
-   "title": "Biotechnology",
+   "title": "Genetic Disorder",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -288,7 +288,7 @@
   {
    "chapter": 9,
    "pdfFile": "kebt109.pdf",
-   "title": "Biotechnology",
+   "title": "Introduction to Bioinformatics",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -332,7 +332,7 @@
   {
    "chapter": 12,
    "pdfFile": "kebt112.pdf",
-   "title": "Biotechnology",
+   "title": "Tools and Techniques",
    "kind": "Non-fiction",
    "subtopics": [
     {

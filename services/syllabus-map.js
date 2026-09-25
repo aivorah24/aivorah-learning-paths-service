@@ -143,4 +143,4 @@ function subjectsFor(grade) {
   }));
 }
 
-module.exports = { chaptersFor, subjectsFor };
+module.exports = { chaptersFor, subjectsFor, looksLikeRealTitle };

@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "jemh101.pdf",
-   "title": "Real N",
+   "title": "Real Numbers",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -56,7 +56,7 @@
   {
    "chapter": 3,
    "pdfFile": "jemh103.pdf",
-   "title": "Pair of Linear Equations",
+   "title": "Pair of Linear Equations in Two Variables",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -184,7 +184,7 @@
   {
    "chapter": 8,
    "pdfFile": "jemh108.pdf",
-   "title": "Trigonometry",
+   "title": "Introduction to Trigonometry",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -212,7 +212,7 @@
   {
    "chapter": 9,
    "pdfFile": "jemh109.pdf",
-   "title": "Some Applications of",
+   "title": "Some Applications of Trigonometry",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -276,7 +276,7 @@
   {
    "chapter": 12,
    "pdfFile": "jemh112.pdf",
-   "title": "Surface Areas and",
+   "title": "Surface Areas and Volumes",
    "kind": "Non-fiction",
    "subtopics": [
     {

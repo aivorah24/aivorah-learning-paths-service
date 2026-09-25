@@ -8,9 +8,8 @@
   {
    "chapter": 1,
    "pdfFile": "deap101.pdf",
-   "title": "Chapter 1",
+   "title": "Going to School",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deap101.pdf",
    "pdfFiles": [
     "deap101.pdf"
@@ -19,9 +18,8 @@
   {
    "chapter": 2,
    "pdfFile": "deap102.pdf",
-   "title": "Chapter 2",
+   "title": "Ear to Ear",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deap102.pdf",
    "pdfFiles": [
     "deap102.pdf"
@@ -30,7 +28,7 @@
   {
    "chapter": 3,
    "pdfFile": "deap103.pdf",
-   "title": "Nandu Wakes Upnandu Wakes Up Nandu Wakes Upnandu Wakes Up Nandu Wakes Up",
+   "title": "A Day with Nandu",
    "kind": "Non-fiction",
    "bookPath": "grade4/evs/deap103.pdf",
    "pdfFiles": [
@@ -40,9 +38,8 @@
   {
    "chapter": 4,
    "pdfFile": "deap104.pdf",
-   "title": "Chapter 4",
+   "title": "The Story of Amrita",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deap104.pdf",
    "pdfFiles": [
     "deap104.pdf"
@@ -51,9 +48,8 @@
   {
    "chapter": 5,
    "pdfFile": "deap105.pdf",
-   "title": "Chapter 5",
+   "title": "Anita and the Honeybees",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deap105.pdf",
    "pdfFiles": [
     "deap105.pdf"
@@ -62,7 +58,7 @@
   {
    "chapter": 6,
    "pdfFile": "deap106.pdf",
-   "title": "Omana’S Journey",
+   "title": "Omana’s Journey",
    "kind": "Non-fiction",
    "bookPath": "grade4/evs/deap106.pdf",
    "pdfFiles": [
@@ -72,7 +68,7 @@
   {
    "chapter": 7,
    "pdfFile": "deap107.pdf",
-   "title": "17 May It Is Morning Now. Last Night I Went to Sleep Early. It Was Too Dark to See",
+   "title": "From the Window",
    "kind": "Non-fiction",
    "bookPath": "grade4/evs/deap107.pdf",
    "pdfFiles": [
@@ -82,7 +78,7 @@
   {
    "chapter": 8,
    "pdfFile": "deap108.pdf",
-   "title": "17 May Night After Our Long Train Journey We Reached Kottayam in",
+   "title": "Reaching Grandmother’s House",
    "kind": "Non-fiction",
    "bookPath": "grade4/evs/deap108.pdf",
    "pdfFiles": [
@@ -92,9 +88,8 @@
   {
    "chapter": 9,
    "pdfFile": "deap109.pdf",
-   "title": "Chapter 9",
+   "title": "Changing Families",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade4/evs/deap109.pdf",
    "pdfFiles": [
     "deap109.pdf"

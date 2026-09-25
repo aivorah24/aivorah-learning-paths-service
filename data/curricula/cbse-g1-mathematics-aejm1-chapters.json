@@ -8,22 +8,21 @@
   {
    "chapter": 1,
    "pdfFile": "aejm101.pdf",
-   "title": "Finding the Furry Cat!",
+   "title": "Finding the Furry Cat! (Pre-number Concepts)",
    "kind": "Non-fiction",
    "bookPath": "grade1/mathematics/aejm101.pdf"
   },
   {
    "chapter": 2,
    "pdfFile": "aejm102.pdf",
-   "title": "Chapter 2",
+   "title": "What is Long? What is Round? (Shapes)",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm102.pdf"
   },
   {
    "chapter": 3,
    "pdfFile": "aejm103.pdf",
-   "title": "Mango Treat",
+   "title": "Mango Treat (Numbers 1 to 9)",
    "kind": "Non-fiction",
    "bookPath": "grade1/mathematics/aejm103.pdf"
   },
@@ -37,22 +36,21 @@
   {
    "chapter": 5,
    "pdfFile": "aejm105.pdf",
-   "title": "Chapter 5",
+   "title": "How Many? (Addition and Subtraction of Single Digit Numbers)",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm105.pdf"
   },
   {
    "chapter": 6,
    "pdfFile": "aejm106.pdf",
-   "title": "Vegetable Farm",
+   "title": "Vegetable Farm (Addition and Subtraction up to 20)",
    "kind": "Non-fiction",
    "bookPath": "grade1/mathematics/aejm106.pdf"
   },
   {
    "chapter": 7,
    "pdfFile": "aejm107.pdf",
-   "title": "Lina’S Family",
+   "title": "Lina’s Family (Measurement)",
    "kind": "Non-fiction",
    "bookPath": "grade1/mathematics/aejm107.pdf"
   },
@@ -67,37 +65,35 @@
   {
    "chapter": 9,
    "pdfFile": "aejm109.pdf",
-   "title": "Chapter 9",
+   "title": "Utsav (Patterns)",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm109.pdf"
   },
   {
    "chapter": 10,
    "pdfFile": "aejm110.pdf",
-   "title": "Chapter 10",
+   "title": "How do I Spend my Day? (Time)",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade1/mathematics/aejm110.pdf"
   },
   {
    "chapter": 11,
    "pdfFile": "aejm111.pdf",
-   "title": "A Visit to an Amusement Park",
+   "title": "How Many Times? (Multiplication)",
    "kind": "Non-fiction",
    "bookPath": "grade1/mathematics/aejm111.pdf"
   },
   {
    "chapter": 12,
    "pdfFile": "aejm112.pdf",
-   "title": "How Much Can",
+   "title": "How Much Can We Spend? (Money)",
    "kind": "Non-fiction",
    "bookPath": "grade1/mathematics/aejm112.pdf"
   },
   {
    "chapter": 13,
    "pdfFile": "aejm113.pdf",
-   "title": "So Many Toys",
+   "title": "So Many Toys (Data Handling)",
    "kind": "Non-fiction",
    "bookPath": "grade1/mathematics/aejm113.pdf"
   }

@@ -9,7 +9,7 @@
   {
    "chapter": 1,
    "pdfFile": "jefp101.pdf",
-   "title": "Read and Find Out",
+   "title": "A Triumph of Surgery",
    "bookPath": "grade10/english/jefp101.pdf",
    "pdfFiles": [
     "jefp101.pdf"
@@ -18,7 +18,7 @@
   {
    "chapter": 2,
    "pdfFile": "jefp102.pdf",
-   "title": "Read and Find Out",
+   "title": "The Thief’s Story",
    "bookPath": "grade10/english/jefp102.pdf",
    "pdfFiles": [
     "jefp102.pdf"
@@ -27,7 +27,7 @@
   {
    "chapter": 3,
    "pdfFile": "jefp103.pdf",
-   "title": "Read and Find Out",
+   "title": "The Midnight Visitor",
    "bookPath": "grade10/english/jefp103.pdf",
    "pdfFiles": [
     "jefp103.pdf"
@@ -36,7 +36,7 @@
   {
    "chapter": 4,
    "pdfFile": "jefp104.pdf",
-   "title": "Read and Find Out",
+   "title": "A Question of Trust",
    "bookPath": "grade10/english/jefp104.pdf",
    "pdfFiles": [
     "jefp104.pdf"
@@ -45,7 +45,7 @@
   {
    "chapter": 5,
    "pdfFile": "jefp105.pdf",
-   "title": "Read and Find Out",
+   "title": "Footprints without Feet",
    "bookPath": "grade10/english/jefp105.pdf",
    "pdfFiles": [
     "jefp105.pdf"
@@ -54,7 +54,7 @@
   {
    "chapter": 6,
    "pdfFile": "jefp106.pdf",
-   "title": "Read and Find Out",
+   "title": "The Making of a Scientist",
    "bookPath": "grade10/english/jefp106.pdf",
    "pdfFiles": [
     "jefp106.pdf"
@@ -63,7 +63,7 @@
   {
    "chapter": 7,
    "pdfFile": "jefp107.pdf",
-   "title": "Read and Find Out",
+   "title": "The Necklace",
    "bookPath": "grade10/english/jefp107.pdf",
    "pdfFiles": [
     "jefp107.pdf"
@@ -72,7 +72,7 @@
   {
    "chapter": 8,
    "pdfFile": "jefp108.pdf",
-   "title": "Read and Find Out",
+   "title": "Bholi",
    "bookPath": "grade10/english/jefp108.pdf",
    "pdfFiles": [
     "jefp108.pdf"
@@ -81,12 +81,11 @@
   {
    "chapter": 9,
    "pdfFile": "jefp109.pdf",
-   "title": "Chapter 9",
+   "title": "The Book That Saved the Earth",
    "bookPath": "grade10/english/jefp109.pdf",
    "pdfFiles": [
     "jefp109.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }
