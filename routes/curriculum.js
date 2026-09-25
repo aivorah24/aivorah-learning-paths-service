@@ -22,7 +22,7 @@ router.get('/subjects', async (req, res) => {
   // endpoint already uses, not Qdrant — that data is proven complete for
   // every CBSE grade, whereas Qdrant coverage for CBSE (esp. primary grades)
   // is not guaranteed. Every other curriculum keeps its existing Qdrant path.
-  if (/^cbse$/i.test(String(curriculum).trim())) {
+  if (/^(cbse|ncert)$/i.test(String(curriculum).trim())) {
     return res.json({ grade, curriculum, subjects: subjectsFor(grade) });
   }
   try {
