@@ -46,10 +46,12 @@ function ocrText(code, file, lang) {
 }
 
 const GENERIC = /^(science|questions?|exercises?|summary|activity|activities|contents|introduction|notes?|answers?|index|glossary)$/i;
-const REPEATED = /(.{4,}).*\1.*\1/i;
+// Doubled OCR text ("Ntroductionntroduction"); punctuated repeats in real titles don't match.
+const REPEATED = /(.{10,}?)\s?\1/i;
 const SCRIPT = /[ऀ-ॿ؀-ۿ]/;
 const SCRIPT_SUBJECTS = new Set(['Hindi', 'Urdu']);
-const JUNK = /[\[\]|•]|^\d+\s|^\d+\s*[–-]\s*\d+|\s\d{2,3}\s+[A-Z]|[A-Za-z]\d{2,3}(\s|$)|\b\d{4}\s*[–-]\s*\d{1,3}$|\b(contents|glossary|suggested readings?)\b/i;
+const JUNK = /[\[\]|•»]|^\d+\s|^\d+\s*[–-]\s*\d+|\s\d{2,3}\s+[A-Z]|[A-Za-z]\d{2,3}(\s|$)|\b\d{4}\s*[–-]\s*\d{1,3}$/;
+const JUNK_WORDS = /\b(contents|glossary|suggested readings?)\b/i;
 
 // Second letter of the NCERT code is the medium: h = Hindi, u = Urdu.
 const languageOf = (code, subject) => ((code || '')[1] === 'h' ? 'Hindi' : (code || '')[1] === 'u' ? 'Urdu' : subject);
@@ -75,7 +77,7 @@ function stripPage(t) {
 const hardJunk = (t, subject) => {
   const s = String(t || '').trim();
   if (!s || s.length > 75) return true;
-  if (JUNK.test(s) || REPEATED.test(s) || GENERIC.test(s) || ARTIFACTS.test(s) || FRONT_MATTER.test(s)) return true;
+  if (JUNK.test(s) || JUNK_WORDS.test(s) || REPEATED.test(s) || GENERIC.test(s) || ARTIFACTS.test(s) || FRONT_MATTER.test(s)) return true;
   if (s.toLowerCase().split(/\s+/).every((w) => FUNCTION_WORDS.has(w))) return true;
   if (SCRIPT_SUBJECTS.has(subject) && /[A-Za-z]{2,}/.test(s)) return true;
   return stripPage(s) !== s;
@@ -160,4 +162,6 @@ async function main() {
   console.log(JSON.stringify({ replaced: n('replace'), mismatchKept: n('mismatch-kept'), unresolved: report.unresolved.length, applied: APPLY }));
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (require.main === module) main().catch((e) => { console.error(e); process.exit(1); });
+
+module.exports = { hardJunk, stripPage, validTitle };
