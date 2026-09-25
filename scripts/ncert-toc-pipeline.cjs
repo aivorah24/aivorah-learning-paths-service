@@ -52,12 +52,37 @@ const SCRIPT_SUBJECTS = new Set(['Hindi', 'Urdu']);
 const JUNK = /[\[\]|•]|^\d+\s|^\d+\s*[–-]\s*\d+|\s\d{2,3}\s+[A-Z]|[A-Za-z]\d{2,3}(\s|$)|\b\d{4}\s*[–-]\s*\d{1,3}$|\b(contents|glossary|suggested readings?)\b/i;
 
 // Second letter of the NCERT code is the medium: h = Hindi, u = Urdu.
-const languageOf = (code, subject) => (code[1] === 'h' ? 'Hindi' : code[1] === 'u' ? 'Urdu' : subject);
+const languageOf = (code, subject) => ((code || '')[1] === 'h' ? 'Hindi' : (code || '')[1] === 'u' ? 'Urdu' : subject);
 
-const stripPage = (t) => String(t || '').replace(/(?<=[A-Za-z?)!])\s*\d{2,3}$/, '').trim();
+const ARTIFACTS = /^(mar apr|or some|aabb|abc|abr|bc\/e|do you|note to the teachers?|notes? for the teachers?)$/i;
+const FRONT_MATTER = /^(आमुख|प्रस्तावना|भूमिका|foreword|preface|contents|glossary|acknowledg\w*)(\s|$)/i;
+const FUNCTION_WORDS = new Set(['or', 'and', 'some', 'do', 'you', 'the', 'a', 'an', 'of', 'to', 'in', 'is', 'it', 'we', 'our', 'my', 'how', 'what', 'why', 'i',
+  'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']);
+
+// Page numbers left on a title: "Maps1", "Education  1", "13 —22", "v 1-16", "iii", OCR "l7".
+function stripPage(t) {
+  return String(t || '')
+    .replace(/\s+[ivxlc]{1,4}\s+\d{1,3}\s*[-–—]\s*\d{1,3}$/i, '')
+    .replace(/\s+\d{1,3}\s*[-–—]\s*\d{1,3}$/, '')
+    .replace(/\s{2,}\d{1,3}$/, '')
+    .replace(/(?<=[A-Za-z?)!ऀ-ॿ])\d{1,3}$/, '')
+    .replace(/(?<=[A-Za-z?)!\dऀ-ॿ])\s+[0-9lI]{1,3}$/, (m) => (/\d{2,}$/.test(m) || /^\s+[lI]\d/.test(m) ? '' : m))
+    .replace(/(?<=[ऀ-ॿ])\s+[ivxl]{1,4}$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+const hardJunk = (t, subject) => {
+  const s = String(t || '').trim();
+  if (!s || s.length > 75) return true;
+  if (JUNK.test(s) || REPEATED.test(s) || GENERIC.test(s) || ARTIFACTS.test(s) || FRONT_MATTER.test(s)) return true;
+  if (s.toLowerCase().split(/\s+/).every((w) => FUNCTION_WORDS.has(w))) return true;
+  if (SCRIPT_SUBJECTS.has(subject) && /[A-Za-z]{2,}/.test(s)) return true;
+  return stripPage(s) !== s;
+};
 
 const validTitle = (t, subject) => {
-  if (!t || anomalies(t, undefined).length > 0 || REPEATED.test(t) || JUNK.test(t)) return false;
+  if (!t || anomalies(t, undefined).length > 0 || hardJunk(t, subject)) return false;
   if (SCRIPT_SUBJECTS.has(subject)) return SCRIPT.test(t);
   return looksLikeRealTitle(t);
 };
@@ -95,11 +120,11 @@ async function main() {
     const raw = fs.readFileSync(file, 'utf8');
     const j = JSON.parse(raw);
     const grade = parseInt(String(j.grade).replace(/\D/g, ''), 10);
-    if (!(grade >= 1 && grade <= 12) || !j.code) continue;
+    if (!(grade >= 1 && grade <= 12)) continue;
     if (GRADES && !GRADES.includes(grade)) continue;
     if (CODES && !CODES.includes(j.code)) continue;
     const lang = languageOf(j.code, j.subject);
-    const { toc, via } = await resolveToc(j.code, lang, j.chapters);
+    const { toc, via } = j.code ? await resolveToc(j.code, lang, j.chapters) : { toc: {}, via: "no-code" };
     const mapKey = `${j.grade}|${j.subject}|${j.code}`;
     report.map[mapKey] = Object.fromEntries(j.chapters.filter((c) => validTitle(toc[c.chapter], lang)).map((c) => [c.chapter, toc[c.chapter]]));
     let changed = false;
@@ -116,6 +141,12 @@ async function main() {
         changed = true;
       } else if (canon && canon !== cur) {
         report.decisions.push({ file: f, chapter: c.chapter, action: 'mismatch-kept', current: c.title, canonical: canon, via });
+      } else if (!canon && hardJunk(cur, lang) && !/^chapter\s*\d+$/i.test(cur)) {
+        // Unresolvable junk becomes the neutral placeholder the UI already renders cleanly.
+        report.decisions.push({ file: f, chapter: c.chapter, action: 'reset-to-placeholder', from: c.title, to: `Chapter ${c.chapter}`, via });
+        c.title = `Chapter ${c.chapter}`;
+        changed = true;
+        report.unresolved.push({ file: f, grade, subject: j.subject, chapter: c.chapter, title: c.title, via });
       } else if (!canon && bad) {
         report.unresolved.push({ file: f, grade, subject: j.subject, chapter: c.chapter, title: c.title, via });
       }

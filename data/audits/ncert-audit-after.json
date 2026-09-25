@@ -4,6 +4,16 @@
       "source": "json:cbse-g1-mathematics-aejm1-chapters.json",
       "grade": 1,
       "subject": "Mathematics",
+      "chapter_number": 4,
+      "title": "Chapter 4",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g1-mathematics-aejm1-chapters.json",
+      "grade": 1,
+      "subject": "Mathematics",
       "chapter_number": 8,
       "title": "Chapter 8",
       "hits": [
@@ -44,6 +54,16 @@
       "source": "json:cbse-g10-hindi-jhks1-chapters.json",
       "grade": 10,
       "subject": "Hindi",
+      "chapter_number": 3,
+      "title": "Chapter 3",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g10-hindi-jhks1-chapters.json",
+      "grade": 10,
+      "subject": "Hindi",
       "chapter_number": 4,
       "title": "Chapter 4",
       "hits": [
@@ -75,9 +95,9 @@
       "grade": 10,
       "subject": "Hindi",
       "chapter_number": 7,
-      "title": "Lo ;a Izdk'K Dk Tue Lu~~ 1947 Esa Banksj (Eè;Izns'K) Esa Gqvka Esosqfudy Bathfu;Fjax Dh I<+Kbz Djosq ,D",
+      "title": "Chapter 7",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -115,9 +135,9 @@
       "grade": 10,
       "subject": "Hindi",
       "chapter_number": 11,
-      "title": "; Rhanz Fej Dk Tue Lu~ 1977 Esa V;Ksè;K (MùKj Izns'K) Esa Gqvka Mugksaus Y[Kumq Fo'Ofo|Ky;] Y[Kumq",
+      "title": "Chapter 11",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -144,6 +164,16 @@
       "source": "json:cbse-g10-hindi-jhsp1-chapters.json",
       "grade": 10,
       "subject": "Hindi",
+      "chapter_number": 2,
+      "title": "Chapter 2",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g10-hindi-jhsp1-chapters.json",
+      "grade": 10,
+      "subject": "Hindi",
       "chapter_number": 3,
       "title": "Chapter 3",
       "hits": [
@@ -156,6 +186,16 @@
       "subject": "Hindi",
       "chapter_number": 4,
       "title": "Chapter 4",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g10-hindi-jhsp1-chapters.json",
+      "grade": 10,
+      "subject": "Hindi",
+      "chapter_number": 5,
+      "title": "Chapter 5",
       "hits": [
         "placeholder"
       ]
@@ -254,10 +294,50 @@
       "source": "json:cbse-g10-social_science-jess2-chapters.json",
       "grade": 10,
       "subject": "Social Science",
-      "chapter_number": 4,
-      "title": "Notes for the Teachernotes for the Teacher Notes for the Teachernotes for the Teacher Notes for the Teacher",
+      "chapter_number": 2,
+      "title": "Chapter 2",
       "hits": [
-        "too-long"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g10-social_science-jess2-chapters.json",
+      "grade": 10,
+      "subject": "Social Science",
+      "chapter_number": 3,
+      "title": "Chapter 3",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g10-social_science-jess2-chapters.json",
+      "grade": 10,
+      "subject": "Social Science",
+      "chapter_number": 4,
+      "title": "Chapter 4",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g10-social_science-jess2-chapters.json",
+      "grade": 10,
+      "subject": "Social Science",
+      "chapter_number": 5,
+      "title": "Chapter 5",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g11-biotechnology-kebt1-chapters.json",
+      "grade": 11,
+      "subject": "Biotechnology",
+      "chapter_number": 1,
+      "title": "Chapter 1",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -265,9 +345,9 @@
       "grade": 11,
       "subject": "Computer Science",
       "chapter_number": 1,
-      "title": "A Computer Is an Electronic Device That Can Be Programmed to Accept Data (Input), Process It and Generate Result (Output). a Computer Along with",
+      "title": "Chapter 1",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -276,6 +356,16 @@
       "subject": "Computer Science",
       "chapter_number": 6,
       "title": "Chapter 6",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g11-economics-kest1-chapters.json",
+      "grade": 11,
+      "subject": "Economics",
+      "chapter_number": 1,
+      "title": "Chapter 1",
       "hits": [
         "placeholder"
       ]
@@ -464,8 +554,48 @@
       "source": "json:cbse-g11-hindi-khar1-chapters.json",
       "grade": 11,
       "subject": "Hindi",
+      "chapter_number": 2,
+      "title": "Chapter 2",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g11-hindi-khar1-chapters.json",
+      "grade": 11,
+      "subject": "Hindi",
+      "chapter_number": 7,
+      "title": "Chapter 7",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g11-hindi-khar1-chapters.json",
+      "grade": 11,
+      "subject": "Hindi",
+      "chapter_number": 10,
+      "title": "Chapter 10",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g11-hindi-khar1-chapters.json",
+      "grade": 11,
+      "subject": "Hindi",
       "chapter_number": 12,
       "title": "Chapter 12",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g11-hindi-khar1-chapters.json",
+      "grade": 11,
+      "subject": "Hindi",
+      "chapter_number": 14,
+      "title": "Chapter 14",
       "hits": [
         "placeholder"
       ]
@@ -561,13 +691,63 @@
       ]
     },
     {
+      "source": "json:cbse-g12-computer_science-lecs1-chapters.json",
+      "grade": 12,
+      "subject": "Computer Science",
+      "chapter_number": 3,
+      "title": "Chapter 3",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-computer_science-lecs1-chapters.json",
+      "grade": 12,
+      "subject": "Computer Science",
+      "chapter_number": 5,
+      "title": "Chapter 5",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-computer_science-lecs1-chapters.json",
+      "grade": 12,
+      "subject": "Computer Science",
+      "chapter_number": 10,
+      "title": "Chapter 10",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-economics-leec1-chapters.json",
+      "grade": 12,
+      "subject": "Economics",
+      "chapter_number": 1,
+      "title": "Chapter 1",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-economics-leec2-chapters.json",
+      "grade": 12,
+      "subject": "Economics",
+      "chapter_number": 1,
+      "title": "Chapter 1",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
       "source": "json:cbse-g12-english-lefl1-chapters.json",
       "grade": 12,
       "subject": "English",
       "chapter_number": 12,
-      "title": "Keeping Quiet About the Poet Pablo Neruda (1904-1973) Is the Pen Name of Neftali Ricardo",
+      "title": "Chapter 12",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -575,9 +755,19 @@
       "grade": 12,
       "subject": "English",
       "chapter_number": 13,
-      "title": "A Thing of Beauty About the Poet John Keats (1795-1821) Was a British Romantic Poet. Although",
+      "title": "Chapter 13",
       "hits": [
-        "too-long"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-english-lekl1-chapters.json",
+      "grade": 12,
+      "subject": "English",
+      "chapter_number": 12,
+      "title": "Chapter 12",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -605,9 +795,9 @@
       "grade": 12,
       "subject": "English",
       "chapter_number": 16,
-      "title": "The Wild Swans At Coolethe Wild Swans At Coole the Wild Swans At Coolethe Wild Swans At Coole the Wild Swans At Coole",
+      "title": "Chapter 16",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -615,9 +805,9 @@
       "grade": 12,
       "subject": "English",
       "chapter_number": 17,
-      "title": "Time and Time Againtime and Time Again Time and Time Againtime and Time Again Time and Time Again",
+      "title": "Chapter 17",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -626,6 +816,36 @@
       "subject": "English",
       "chapter_number": 18,
       "title": "Chapter 18",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-hindi-lhan1-chapters.json",
+      "grade": 12,
+      "subject": "Hindi",
+      "chapter_number": 1,
+      "title": "Chapter 1",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-hindi-lhan1-chapters.json",
+      "grade": 12,
+      "subject": "Hindi",
+      "chapter_number": 2,
+      "title": "Chapter 2",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-hindi-lhar1-chapters.json",
+      "grade": 12,
+      "subject": "Hindi",
+      "chapter_number": 1,
+      "title": "Chapter 1",
       "hits": [
         "placeholder"
       ]
@@ -714,6 +934,26 @@
       "source": "json:cbse-g12-hindi-lhar1-chapters.json",
       "grade": 12,
       "subject": "Hindi",
+      "chapter_number": 10,
+      "title": "Chapter 10",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-hindi-lhar1-chapters.json",
+      "grade": 12,
+      "subject": "Hindi",
+      "chapter_number": 11,
+      "title": "Chapter 11",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-hindi-lhar1-chapters.json",
+      "grade": 12,
+      "subject": "Hindi",
       "chapter_number": 12,
       "title": "Chapter 12",
       "hits": [
@@ -785,9 +1025,19 @@
       "grade": 12,
       "subject": "Home Science",
       "chapter_number": 7,
-      "title": "Learning Objectives After Completing This Section the Learner Will Be Able to: Zzexplain Why Services, Institutions and Programmes Are Needed for",
+      "title": "Chapter 7",
       "hits": [
-        "too-long"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-home_science-lehh1-chapters.json",
+      "grade": 12,
+      "subject": "Home Science",
+      "chapter_number": 1,
+      "title": "Chapter 1",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -841,11 +1091,41 @@
       ]
     },
     {
+      "source": "json:cbse-g12-physics-leph1-chapters.json",
+      "grade": 12,
+      "subject": "Physics",
+      "chapter_number": 2,
+      "title": "Chapter 2",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
       "source": "json:cbse-g12-political_science-leps2-chapters.json",
       "grade": 12,
       "subject": "Political Science",
       "chapter_number": 8,
       "title": "Chapter 8",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g12-psychology-lepy1-chapters.json",
+      "grade": 12,
+      "subject": "Psychology",
+      "chapter_number": 1,
+      "title": "Chapter 1",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g2-english-bemr1-chapters.json",
+      "grade": 2,
+      "subject": "English",
+      "chapter_number": 5,
+      "title": "Chapter 5",
       "hits": [
         "placeholder"
       ]
@@ -1195,9 +1475,9 @@
       "grade": 3,
       "subject": "Mathematics",
       "chapter_number": 3,
-      "title": "End",
+      "title": "Chapter 3",
       "hits": [
-        "too-short"
+        "placeholder"
       ]
     },
     {
@@ -1311,6 +1591,26 @@
       ]
     },
     {
+      "source": "json:cbse-g3-physical_education-cebu1-chapters.json",
+      "grade": 3,
+      "subject": "Arts",
+      "chapter_number": 19,
+      "title": "Chapter 19",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g4-evs-deap1-chapters.json",
+      "grade": 4,
+      "subject": "The World Around Us",
+      "chapter_number": 10,
+      "title": "Chapter 10",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
       "source": "json:cbse-g4-evs-deap1-chapters.json",
       "grade": 4,
       "subject": "The World Around Us",
@@ -1345,9 +1645,19 @@
       "grade": 4,
       "subject": "The World Around Us",
       "chapter_number": 15,
-      "title": "Day At Night!Day At Night! Day At Night!Day At Night! Day At Night!",
+      "title": "Chapter 15",
       "hits": [
-        "too-long"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g4-evs-deap1-chapters.json",
+      "grade": 4,
+      "subject": "The World Around Us",
+      "chapter_number": 16,
+      "title": "Chapter 16",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -1375,9 +1685,9 @@
       "grade": 4,
       "subject": "The World Around Us",
       "chapter_number": 19,
-      "title": "Abdul in the Gardenabdul in the Garden Abdul in the Gardenabdul in the Garden Abdul in the Garden",
+      "title": "Chapter 19",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -1395,9 +1705,19 @@
       "grade": 4,
       "subject": "The World Around Us",
       "chapter_number": 21,
-      "title": "Trring...! the Doorbell Rang. When Manpreet Opened the Door She Saw Divya and Swastik There. She Called Out Excitedly, “Gurnoor! Look Who Has Come.” Gurnoor Came",
+      "title": "Chapter 21",
       "hits": [
-        "too-long"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g4-evs-deap1-chapters.json",
+      "grade": 4,
+      "subject": "The World Around Us",
+      "chapter_number": 22,
+      "title": "Chapter 22",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -1405,9 +1725,9 @@
       "grade": 4,
       "subject": "The World Around Us",
       "chapter_number": 23,
-      "title": "Vani and Prasad Live in a Village Called Mukhtapur. Their Home Is Always Filled with Bundles of Bright-Coloured Threads. Their Mother and Father and Everyone Else in",
+      "title": "Chapter 23",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -1435,9 +1755,9 @@
       "grade": 4,
       "subject": "The World Around Us",
       "chapter_number": 26,
-      "title": "Have You Ever Seen Her Photograph Anywhere? She Is Lieutenant Commander Wahida Prism, Doctor in the Indian",
+      "title": "Chapter 26",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -1445,9 +1765,9 @@
       "grade": 4,
       "subject": "The World Around Us",
       "chapter_number": 27,
-      "title": "Chuskit’S Dreamchuskit’S Dream Chuskit’S Dreamchuskit’S Dream Chuskit’S Dream",
+      "title": "Chapter 27",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -1465,9 +1785,19 @@
       "grade": 4,
       "subject": "Mathematics",
       "chapter_number": 2,
-      "title": ".ب دیجیے:یجایجل کا جویج ذہیجریجر مندیجویج اھیےیج کو دریجصویج _یج_یج_یج_یج_یج؟ _یجہے ہیںیج رن سا کھیل کھیلیج کوبچے یج.a _یج_یج_یج_یج_یج_یج_یج_یج_یج_یج_ ؟یجہا ہےیج ریکھیجن دیج کوپر سےیجویجا یج.B",
+      "title": "Chapter 2",
       "hits": [
-        "too-long"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g4-mathematics-dumm1-chapters.json",
+      "grade": 4,
+      "subject": "Mathematics",
+      "chapter_number": 3,
+      "title": "Chapter 3",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -1504,6 +1834,16 @@
       "source": "json:cbse-g4-mathematics-dumm1-chapters.json",
       "grade": 4,
       "subject": "Mathematics",
+      "chapter_number": 7,
+      "title": "Chapter 7",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g4-mathematics-dumm1-chapters.json",
+      "grade": 4,
+      "subject": "Mathematics",
       "chapter_number": 8,
       "title": "Chapter 8",
       "hits": [
@@ -1525,9 +1865,19 @@
       "grade": 4,
       "subject": "Mathematics",
       "chapter_number": 10,
-      "title": "Spb",
+      "title": "Chapter 10",
       "hits": [
-        "too-short"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g4-mathematics-dumm1-chapters.json",
+      "grade": 4,
+      "subject": "Mathematics",
+      "chapter_number": 11,
+      "title": "Chapter 11",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -1544,8 +1894,28 @@
       "source": "json:cbse-g4-mathematics-dumm1-chapters.json",
       "grade": 4,
       "subject": "Mathematics",
+      "chapter_number": 13,
+      "title": "Chapter 13",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g4-mathematics-dumm1-chapters.json",
+      "grade": 4,
+      "subject": "Mathematics",
       "chapter_number": 14,
       "title": "Chapter 14",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g5-english-eeen1-chapters.json",
+      "grade": 5,
+      "subject": "English",
+      "chapter_number": 1,
+      "title": "Chapter 1",
       "hits": [
         "placeholder"
       ]
@@ -1555,9 +1925,9 @@
       "grade": 5,
       "subject": "The World Around Us",
       "chapter_number": 9,
-      "title": "Unit 5 About the Unit By the End of the Preparatory",
+      "title": "Chapter 9",
       "hits": [
-        "header-token"
+        "placeholder"
       ]
     },
     {
@@ -1565,9 +1935,19 @@
       "grade": 6,
       "subject": "Science",
       "chapter_number": 4,
-      "title": "Reshma Lives in a Coastal Town of Kerala and Is Very Fond of Writing Short Stories. Her Grandmother",
+      "title": "Chapter 4",
       "hits": [
-        "too-long"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-fine_arts-gekr1-chapters.json",
+      "grade": 7,
+      "subject": "Arts",
+      "chapter_number": 7,
+      "title": "Chapter 7",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -1575,9 +1955,29 @@
       "grade": 7,
       "subject": "Arts",
       "chapter_number": 11,
-      "title": "Note to the Teachers",
+      "title": "Chapter 11",
       "hits": [
-        "front-matter"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-fine_arts-gekr1-chapters.json",
+      "grade": 7,
+      "subject": "Arts",
+      "chapter_number": 16,
+      "title": "Chapter 16",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-fine_arts-gekr1-chapters.json",
+      "grade": 7,
+      "subject": "Arts",
+      "chapter_number": 17,
+      "title": "Chapter 17",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -1586,6 +1986,16 @@
       "subject": "Hindi",
       "chapter_number": 1,
       "title": "Chapter 1",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 2,
+      "title": "Chapter 2",
       "hits": [
         "placeholder"
       ]
@@ -1634,6 +2044,16 @@
       "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
       "grade": 7,
       "subject": "Hindi",
+      "chapter_number": 7,
+      "title": "Chapter 7",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
       "chapter_number": 8,
       "title": "Chapter 8",
       "hits": [
@@ -1664,6 +2084,56 @@
       "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
       "grade": 7,
       "subject": "Hindi",
+      "chapter_number": 11,
+      "title": "Chapter 11",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 12,
+      "title": "Chapter 12",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 13,
+      "title": "Chapter 13",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 14,
+      "title": "Chapter 14",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 15,
+      "title": "Chapter 15",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
       "chapter_number": 16,
       "title": "Chapter 16",
       "hits": [
@@ -1674,10 +2144,90 @@
       "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
       "grade": 7,
       "subject": "Hindi",
-      "chapter_number": 18,
-      "title": "Ge Gksaxs Dke;Kc ,D Fnu Ge Gksaxs Dke;Kc ,D Fnu Gks Gks Eu Esa Gs Fo'Okl] Iwjk Gs Fo'Okl",
+      "chapter_number": 17,
+      "title": "Chapter 17",
       "hits": [
-        "too-long"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghdv1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 18,
+      "title": "Chapter 18",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 1,
+      "title": "Chapter 1",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 2,
+      "title": "Chapter 2",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 3,
+      "title": "Chapter 3",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 4,
+      "title": "Chapter 4",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 5,
+      "title": "Chapter 5",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 6,
+      "title": "Chapter 6",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 7,
+      "title": "Chapter 7",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -1694,8 +2244,58 @@
       "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
       "grade": 7,
       "subject": "Hindi",
+      "chapter_number": 9,
+      "title": "Chapter 9",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
       "chapter_number": 10,
       "title": "Chapter 10",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 11,
+      "title": "Chapter 11",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 12,
+      "title": "Chapter 12",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 13,
+      "title": "Chapter 13",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g7-hindi-ghvs1-chapters.json",
+      "grade": 7,
+      "subject": "Hindi",
+      "chapter_number": 14,
+      "title": "Chapter 14",
       "hits": [
         "placeholder"
       ]
@@ -1741,6 +2341,26 @@
       ]
     },
     {
+      "source": "json:cbse-g8-fine_arts-hekr1-chapters.json",
+      "grade": 8,
+      "subject": "Arts",
+      "chapter_number": 18,
+      "title": "Chapter 18",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhbk1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 1,
+      "title": "Chapter 1",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
       "source": "json:cbse-g8-hindi-hhbk1-chapters.json",
       "grade": 8,
       "subject": "Hindi",
@@ -1774,6 +2394,16 @@
       "source": "json:cbse-g8-hindi-hhbk1-chapters.json",
       "grade": 8,
       "subject": "Hindi",
+      "chapter_number": 5,
+      "title": "Chapter 5",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhbk1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
       "chapter_number": 6,
       "title": "Chapter 6",
       "hits": [
@@ -1786,6 +2416,16 @@
       "subject": "Hindi",
       "chapter_number": 7,
       "title": "Chapter 7",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhbk1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 8,
+      "title": "Chapter 8",
       "hits": [
         "placeholder"
       ]
@@ -1844,8 +2484,38 @@
       "source": "json:cbse-g8-hindi-hhdv1-chapters.json",
       "grade": 8,
       "subject": "Hindi",
+      "chapter_number": 5,
+      "title": "Chapter 5",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhdv1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
       "chapter_number": 6,
       "title": "Chapter 6",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhdv1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 7,
+      "title": "Chapter 7",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhdv1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 8,
+      "title": "Chapter 8",
       "hits": [
         "placeholder"
       ]
@@ -1894,8 +2564,48 @@
       "source": "json:cbse-g8-hindi-hhdv1-chapters.json",
       "grade": 8,
       "subject": "Hindi",
+      "chapter_number": 13,
+      "title": "Chapter 13",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhdv1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
       "chapter_number": 14,
       "title": "Chapter 14",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhdv1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 15,
+      "title": "Chapter 15",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhdv1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 16,
+      "title": "Chapter 16",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhdv1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 17,
+      "title": "Chapter 17",
       "hits": [
         "placeholder"
       ]
@@ -1945,9 +2655,19 @@
       "grade": 8,
       "subject": "Hindi",
       "chapter_number": 3,
-      "title": "16olar Hkkx 3",
+      "title": "Chapter 3",
       "hits": [
-        "ocr-digits"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhvs1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 4,
+      "title": "Chapter 4",
+      "hits": [
+        "placeholder"
       ]
     },
     {
@@ -1955,9 +2675,9 @@
       "grade": 8,
       "subject": "Hindi",
       "chapter_number": 5,
-      "title": "Ck/K,¡ Vkrh Gsa] Vk,¡] F?Kjsa Izy; Dh ?Kksj ?Kvk,¡ Ik¡Oksa Osq Uhps Vaxkjs]",
+      "title": "Chapter 5",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -1985,9 +2705,9 @@
       "grade": 8,
       "subject": "Hindi",
       "chapter_number": 8,
-      "title": "42olar Hkkx 3",
+      "title": "Chapter 8",
       "hits": [
-        "ocr-digits"
+        "placeholder"
       ]
     },
     {
@@ -2021,13 +2741,43 @@
       ]
     },
     {
+      "source": "json:cbse-g8-hindi-hhvs1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 12,
+      "title": "Chapter 12",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-hindi-hhvs1-chapters.json",
+      "grade": 8,
+      "subject": "Hindi",
+      "chapter_number": 13,
+      "title": "Chapter 13",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g8-physical_education-hekb1-chapters.json",
+      "grade": 8,
+      "subject": "Physical Education and Well Being",
+      "chapter_number": 4,
+      "title": "Chapter 4",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
       "source": "json:cbse-g8-physical_education-hekb1-chapters.json",
       "grade": 8,
       "subject": "Physical Education and Well Being",
       "chapter_number": 6,
-      "title": "School Kitchen Garden Project 1: Advertisements Persuade People to Take Specific Actions Related to",
+      "title": "Chapter 6",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -2035,9 +2785,9 @@
       "grade": 8,
       "subject": "Physical Education and Well Being",
       "chapter_number": 2,
-      "title": "This Unit Explores the Link Between Physical Activity and Personal Development, Focusing On Improving Fitness, Building Mental Toughness, Fostering Teamwork, and",
+      "title": "Chapter 2",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -2061,6 +2811,16 @@
       ]
     },
     {
+      "source": "json:cbse-g8-science-hecu1-chapters.json",
+      "grade": 8,
+      "subject": "Science",
+      "chapter_number": 9,
+      "title": "Chapter 9",
+      "hits": [
+        "placeholder"
+      ]
+    },
+    {
       "source": "json:cbse-g8-social_science-hess4-chapters.json",
       "grade": 8,
       "subject": "Social Science",
@@ -2075,9 +2835,9 @@
       "grade": 8,
       "subject": "Social Science",
       "chapter_number": 3,
-      "title": "Agriculture Gurpreet, Madho and Tina Were Walking Through the Village Where They Saw a Farmer Tilling Land. the",
+      "title": "Chapter 3",
       "hits": [
-        "too-long"
+        "placeholder"
       ]
     },
     {
@@ -2085,9 +2845,19 @@
       "grade": 8,
       "subject": "Social Science",
       "chapter_number": 5,
-      "title": "People Are a Nation’S Greatest Resource. Nature’S Bounty Becomes Significant Only When People Find It Useful. It Is People with Their Demands and Abilities That Turn",
+      "title": "Chapter 5",
       "hits": [
-        "too-long"
+        "placeholder"
+      ]
+    },
+    {
+      "source": "json:cbse-g9-mathematics-iemh1-chapters.json",
+      "grade": 9,
+      "subject": "Mathematics",
+      "chapter_number": 5,
+      "title": "Chapter 5",
+      "hits": [
+        "placeholder"
       ]
     }
   ],

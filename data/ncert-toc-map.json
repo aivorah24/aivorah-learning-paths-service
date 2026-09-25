@@ -75,7 +75,7 @@
   "14": "Probability"
  },
  "Grade 10|Health and Physical Education|jehp1": {
-  "1": "Physical Education: Relation with other Subjects  1",
+  "1": "Physical Education: Relation with other Subjects",
   "2": "Effects of Physical Activities on Human Body",
   "3": "Growth and Development during Adolescence",
   "4": "Individual Games and Sports I",
@@ -165,7 +165,6 @@
   "19": "Chemical Coordination and Integration"
  },
  "Grade 11|Biotechnology|kebt1": {
-  "1": "Introduction",
   "2": "Cellular Organelles",
   "3": "Biomolecules",
   "4": "Enzymes and Bioenergetics",
@@ -213,7 +212,6 @@
   "8": "Comparative Development Experiences of"
  },
  "Grade 11|Economics|kest1": {
-  "1": "Introduction",
   "2": "Collection of Data",
   "3": "Organisation of Data",
   "4": "Presentation of Data",
@@ -260,7 +258,7 @@
   "6": "Natural Hazards and Disasters"
  },
  "Grade 11|Geography|kegy3": {
-  "1": "Introduction to Maps1",
+  "1": "Introduction to Maps",
   "2": "Map Scale",
   "3": "Latitude, Longitude and Time",
   "4": "Map Projections"
@@ -269,19 +267,16 @@
  "Grade 11|Hindi|khan1": {},
  "Grade 11|Hindi|khar1": {
   "1": "गद्य खंड",
-  "2": "आमुख iti",
-  "3": "पाठयपुस्तकों में पाठ्य सामग्री का पुनर्सयोजन Vv",
-  "4": "यह पुस्तक vii",
+  "3": "पाठयपुस्तकों में पाठ्य सामग्री का पुनर्सयोजन",
+  "4": "यह पुस्तक",
   "5": "प्रेमचंद नमक का दारोगा 3",
-  "6": "कृष्णा सोबती मियाँ नसीरुद्दीन 20",
-  "8": "बालमुकुंद गुप्त विदाई-संभाषण 44",
-  "9": "शेखर जोशी गलता लोहा 54",
-  "10": "AL भंडारी रजनी 68",
-  "11": "कृश्नचंदर जामुन का पेड 89",
+  "6": "कृष्णा सोबती मियाँ नसीरुद्दीन",
+  "8": "बालमुकुंद गुप्त विदाई-संभाषण",
+  "9": "शेखर जोशी गलता लोहा",
+  "11": "कृश्नचंदर जामुन का पेड",
   "13": "काव्य खंड",
-  "14": "कबीर हम तौ एक एक oh wai",
   "15": "मीरा मेरे तो गिरधर गोपाल, दूसरो न कोई 3",
-  "16": "भवानी प्रसाद मिश्र घर की याद l7"
+  "16": "भवानी प्रसाद मिश्र घर की याद"
  },
  "Grade 11|Hindi|khvt1": {},
  "Grade 11|History|kehs1": {
@@ -316,7 +311,7 @@
   "14": "Probability"
  },
  "Grade 11|Health and Physical Education|kehp1": {
-  "1": "Physical Education  1",
+  "1": "Physical Education",
   "2": "Understanding Health",
   "4": "Individual Games",
   "5": "Team Games",
@@ -352,7 +347,7 @@
   "5": "Rights",
   "6": "Citizenship",
   "7": "Nationalism",
-  "8": "Secularism v 1-16"
+  "8": "Secularism"
  },
  "Grade 11|Psychology|kepy1": {
   "3": "Human Development",
@@ -444,7 +439,6 @@
  },
  "Grade 12|Computer Science|lecs1": {},
  "Grade 12|Economics|leec1": {
-  "1": "Introduction",
   "2": "National Income Accounting",
   "3": "Money and Banking",
   "4": "Determination of Income and Employment",
@@ -452,7 +446,6 @@
   "6": "Open Economy Macroeconomics"
  },
  "Grade 12|Economics|leec2": {
-  "1": "Introduction",
   "2": "Theoryof Consumer Behaviour",
   "3": "Productionand Costs",
   "4": "The Theoryofthe Firmunder Perfect Competition",
@@ -514,14 +507,12 @@
   "9": "Geographical Perspective on Selected Issues and Problems"
  },
  "Grade 12|Geography|legy3": {
-  "1": "Data — Its Source and Compilation 1-12",
-  "2": "Data Processing 13 —22",
-  "3": "Graphical Representation of Data 23- 45"
+  "1": "Data — Its Source and Compilation",
+  "2": "Data Processing",
+  "3": "Graphical Representation of Data"
  },
  "Grade 12|Hindi|lhan1": {
-  "1": "आमुख iii",
-  "2": "पाठयपुस्तकों में Usa सामग्री का पुनर्सयोजन v",
-  "3": "यह पुस्तक ix"
+  "3": "यह पुस्तक"
  },
  "Grade 12|Hindi|lhar1": {},
  "Grade 12|Hindi|lhvt1": {},
@@ -782,7 +773,7 @@
   "9": "Up You Go!",
   "10": "Walls Tell Stories",
   "11": "Sunita in Space",
-  "12": "What if it Finishes  ?",
+  "12": "What if it Finishes ?",
   "13": "A Shelter so High!",
   "14": "When the Earth Shook!",
   "15": "Blow Hot, Blow Cold",
@@ -837,6 +828,7 @@
   "4": "Sports and Wellness Change of Heart",
   "5": "Culture and Tradition Hamara Bharat—Incredible India!"
  },
+ "Grade 6|Mathematics|undefined": {},
  "Grade 6|Physical Education and Well Being|fekb1": {
   "1": "April 2010). Reprint 2026"
  },
@@ -864,6 +856,7 @@
   "21": "Integration of All Art Forms",
   "22": "Assessment"
  },
+ "Grade 6|Science|undefined": {},
  "Grade 6|Science|fecu1": {
   "1": "The Wonderful World of Science",
   "2": "Diversity in the Living World",
@@ -878,6 +871,7 @@
   "11": "Nature’s Treasures",
   "12": "Beyond Earth"
  },
+ "Grade 6|Social Science|undefined": {},
  "Grade 6|Social Science|fees1": {
   "1": "Locating Places on the Earth",
   "2": "Oceans and Continents",
@@ -1027,7 +1021,7 @@
  },
  "Grade 8|Mathematics|hegp2": {
   "1": "Fractions in Disguise",
-  "3": "Proportional Reasoning-2 55",
+  "3": "Proportional Reasoning-2",
   "4": "Exploring Some Geometric Themes",
   "5": "Tales by Dots and Lines",
   "6": "Algebra Play"
@@ -1067,7 +1061,7 @@
   "12": "How Nature Works in Harmony"
  },
  "Grade 8|Science|hesc1": {
-  "1": "Crop Production and Management1",
+  "1": "Crop Production and Management",
   "2": "Microorganisms : Friend and Foe",
   "3": "Coal and Petroleum",
   "4": "Combustion and Flame",

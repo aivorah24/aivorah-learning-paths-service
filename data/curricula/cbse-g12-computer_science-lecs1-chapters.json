@@ -47,7 +47,7 @@
   {
    "chapter": 3,
    "pdfFile": "lecs103.pdf",
-   "title": "»Stack »Operations On Stack »Implementation of Stack",
+   "title": "Chapter 3",
    "bookPath": "grade12/computer_science/lecs103.pdf",
    "subtopics": [
     {
@@ -77,7 +77,7 @@
   {
    "chapter": 5,
    "pdfFile": "lecs105.pdf",
-   "title": "»Bubble Sort »Selection Sort »Insertion Sort",
+   "title": "Chapter 5",
    "bookPath": "grade12/computer_science/lecs105.pdf",
    "subtopics": [
     {
@@ -160,7 +160,7 @@
   {
    "chapter": 10,
    "pdfFile": "lecs110.pdf",
-   "title": "Networks »Evolution of Networking »Types of Networks",
+   "title": "Chapter 10",
    "bookPath": "grade12/computer_science/lecs110.pdf",
    "subtopics": [
     {
