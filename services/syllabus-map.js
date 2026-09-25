@@ -133,14 +133,15 @@ function subjectsFor(grade) {
     if (Number(keyGrade) !== g) continue;
     const subject = chapters[0]?.subject;
     if (!subject) continue;
-    bySubject.set(subject, chapters.length);
+    bySubject.set(subject, chapters);
   }
-  return [...bySubject.entries()].map(([subject, chapterCount]) => ({
-    subject,
-    topicCount: chapterCount,
-    topics: [],
-    units: [],
-  }));
+  return [...bySubject.entries()].map(([subject, chapters]) => {
+    const seen = new Set();
+    const list = chapters
+      .filter((c) => !seen.has(c.chapter) && seen.add(c.chapter))
+      .map((c) => ({ unitNo: c.chapter, title: c.title }));
+    return { subject, topicCount: chapters.length, topics: [], units: [], chapters: list };
+  });
 }
 
 module.exports = { chaptersFor, subjectsFor, looksLikeRealTitle };
