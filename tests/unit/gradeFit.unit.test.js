@@ -82,7 +82,7 @@ describe('checkGradeFit', () => {
     expect(result.quality.issues).toEqual([]);
   });
 
-  it('fails when the judge scores a section below 4', async () => {
+  it('fails when the judge scores a section below 3', async () => {
     judgeReturns({ learn: { ...GOOD_SCORES, factuallySound: 2 }, audio: GOOD_SCORES, practice: GOOD_SCORES, issues: ['Learn block overstates a fact'] });
     const result = await checkGradeFit({ topicTitle: 'The Sun', chapterTitle: 'Our Star', grade: 6, subject: 'Science', content: SIMPLE_CONTENT });
     expect(result.failed).toBe(true);
@@ -95,6 +95,27 @@ describe('checkGradeFit', () => {
     const result = await checkGradeFit({ topicTitle: 'The Sun', chapterTitle: 'Our Star', grade: 6, subject: 'Science', content: SIMPLE_CONTENT });
     expect(result.failed).toBe(true);
     expect(result.quality.issues.some((i) => i.includes('an activity block'))).toBe(true);
+  });
+
+  it('a judge score of 3 (all >=3) is a minor issue: not failed, issues kept for the teacher', async () => {
+    judgeReturns({ learn: { ...GOOD_SCORES, clearExamples: 3 }, audio: GOOD_SCORES, practice: GOOD_SCORES, issues: ['Examples could be clearer'] });
+    const result = await checkGradeFit({ topicTitle: 'The Sun', chapterTitle: 'Our Star', grade: 6, subject: 'Science', content: SIMPLE_CONTENT });
+    expect(result.failed).toBe(false);
+    expect(result.minorOnly).toBe(true);
+    expect(result.quality.issues).toContain('Examples could be clearer');
+  });
+
+  it('routes issues: audio-only low score -> companionsIssues, recipe gap -> contentIssues', async () => {
+    judgeReturns({ learn: GOOD_SCORES, audio: { ...GOOD_SCORES, ageAppropriate: 2 }, practice: GOOD_SCORES, issues: ['Audio too advanced'] });
+    const audioFail = await checkGradeFit({ topicTitle: 'The Sun', chapterTitle: 'Our Star', grade: 6, subject: 'Science', content: SIMPLE_CONTENT });
+    expect(audioFail.failed).toBe(true);
+    expect(audioFail.contentIssues).toEqual([]);
+    expect(audioFail.companionsIssues).toContain('Audio too advanced');
+
+    mockCheckRecipe.mockReturnValue(['an activity block']);
+    judgeReturns({ learn: GOOD_SCORES, audio: GOOD_SCORES, practice: GOOD_SCORES, issues: [] });
+    const recipeFail = await checkGradeFit({ topicTitle: 'The Sun', chapterTitle: 'Our Star', grade: 6, subject: 'Science', content: SIMPLE_CONTENT });
+    expect(recipeFail.contentIssues.some((i) => i.includes('an activity block'))).toBe(true);
   });
 
   it('judge error leaves quality.judge null but does not fail the topic', async () => {

@@ -207,7 +207,7 @@ Respond with ONLY the JSON object described in rule 4.`;
 // Thin wrapper kept for callers/tests that import callGroq by name — the
 // actual provider fallback chain lives in services/llm/fallback.js.
 async function callGroq(prompt) {
-  const content = await callWithFallback(prompt, { json: true, temperature: 0.3 });
+  const content = await callWithFallback(prompt, { json: true, temperature: 0.3, task: 'content' });
   return { choices: [{ message: { content } }] };
 }
 

@@ -47,7 +47,7 @@ async function withLLMRetry(fn, { maxRetries = 3 } = {}) {
   throw lastErr;
 }
 
-async function callLLM(prompt, { json = false, baseUrl, apiKey, model, temperature = 0.3 } = {}) {
+async function callLLM(prompt, { json = false, baseUrl, apiKey, model, temperature = 0.3, maxTokens, maxRetries } = {}) {
   if (!apiKey) throw new Error('No API key configured for knowledge-tier LLM');
   if (!baseUrl) throw new Error('No base URL configured for knowledge-tier LLM');
 
@@ -57,6 +57,7 @@ async function callLLM(prompt, { json = false, baseUrl, apiKey, model, temperatu
     temperature,
   };
   if (json) body.response_format = { type: 'json_object' };
+  if (maxTokens) body.max_tokens = maxTokens;
 
   return withLLMRetry(async () => {
     const res = await fetch(`${baseUrl.replace(/\/$/, '')}/chat/completions`, {
@@ -79,7 +80,7 @@ async function callLLM(prompt, { json = false, baseUrl, apiKey, model, temperatu
     const content = data.choices?.[0]?.message?.content;
     if (!content) throw new Error('Knowledge-tier LLM response had no content');
     return content;
-  });
+  }, maxRetries == null ? undefined : { maxRetries });
 }
 
 module.exports = { callLLM, withLLMRetry, parseRetryAfterMs };
