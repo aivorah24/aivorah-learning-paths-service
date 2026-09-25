@@ -16,6 +16,7 @@ const TITLES = {
   hekr1: 'Kriti', hehd1: 'Honeydew', hesc1: 'Science', hemh1: 'Mathematics',
   hhvs1: 'वसंत', hhdv1: 'दूर्वा', hhbk1: 'भारत की खोज',
 };
+const ORDER = ['hhvs1', 'hhdv1', 'hhbk1']; // Hindi: main reader first
 const stem = (code) => String(code).replace(/\d+$/, '');
 
 async function main() {
@@ -39,7 +40,7 @@ async function main() {
     const coveredSiblingSameSeries = siblings.some((x) => x.withLessons > 0 && stem(x.code) === stem(b.code));
     const anyCovered = siblings.some((x) => x.withLessons > 0) || b.withLessons > 0;
     const superseded = SWITCH_GRADES.has(b.grade) && b.withLessons === 0 && anyCovered && !coveredSiblingSameSeries;
-    catalog[b.code] = { ...(TITLES[b.code] ? { title: TITLES[b.code] } : {}), grade: b.grade, subject: b.subject, chapters: b.chapters.length, withLessons: b.withLessons, hidden: superseded };
+    catalog[b.code] = { ...(TITLES[b.code] ? { title: TITLES[b.code] } : {}), ...(ORDER.includes(b.code) ? { rank: ORDER.indexOf(b.code) + 1 } : {}), grade: b.grade, subject: b.subject, chapters: b.chapters.length, withLessons: b.withLessons, hidden: superseded };
   }
   return catalog;
 }

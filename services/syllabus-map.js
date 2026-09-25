@@ -161,8 +161,9 @@ function subjectsFor(grade) {
     const seen = new Set();
     const list = chapters
       .filter((c) => !seen.has(c.chapter) && seen.add(c.chapter))
-      .map((c) => ({ unitNo: c.chapter, title: c.title }));
-    return { subject, topicCount: chapters.length, topics: [], units: [], chapters: list };
+      .map((c) => ({ unitNo: c.chapter, title: c.title, book: c.book }));
+    const books = [...new Set(chapters.map((c) => c.book).filter(Boolean))];
+    return { subject, topicCount: chapters.length, topics: [], units: [], chapters: list, books };
   });
 }
 

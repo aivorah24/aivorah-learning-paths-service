@@ -56,7 +56,7 @@ const JUNK_WORDS = /\b(contents|glossary|suggested readings?)\b/i;
 // Second letter of the NCERT code is the medium: h = Hindi, u = Urdu.
 const languageOf = (code, subject) => ((code || '')[1] === 'h' ? 'Hindi' : (code || '')[1] === 'u' ? 'Urdu' : subject);
 
-const ARTIFACTS = /^(mar apr|or some|aabb|abc|abr|bc\/e|do you|note to the teachers?|notes? for the teachers?)$/i;
+const ARTIFACTS = /^(mar apr|or some|aabb|abc|abr|bc\/e|do you|note to the teachers?|notes? for the teachers?|think about it|let us explore|let['’]s explore|legend|think and reflect|let us discuss)$/i;
 const FRONT_MATTER = /^(आमुख|प्रस्तावना|भूमिका|foreword|preface|contents|glossary|acknowledg\w*)(\s|$)/i;
 const FUNCTION_WORDS = new Set(['or', 'and', 'some', 'do', 'you', 'the', 'a', 'an', 'of', 'to', 'in', 'is', 'it', 'we', 'our', 'my', 'how', 'what', 'why', 'i',
   'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']);

@@ -879,6 +879,7 @@
  },
  "hhbk1": {
   "title": "भारत की खोज",
+  "rank": 3,
   "grade": 8,
   "subject": "Hindi",
   "chapters": 9,
@@ -887,6 +888,7 @@
  },
  "hhdv1": {
   "title": "दूर्वा",
+  "rank": 2,
   "grade": 8,
   "subject": "Hindi",
   "chapters": 19,
@@ -895,6 +897,7 @@
  },
  "hhvs1": {
   "title": "वसंत",
+  "rank": 1,
   "grade": 8,
   "subject": "Hindi",
   "chapters": 13,
