@@ -1,0 +1,44 @@
+[
+ {
+  "file": "cbse-g8-science-hesc1-chapters.json",
+  "chapter": 5,
+  "title": "Conservation of Plants and Animals",
+  "evidence": "Printed contents: CONSERVA  TION OF PLANTS AND ANIMALS (typesetting gap)",
+  "was": "Conserva Tion of Plants and Animals"
+ },
+ {
+  "file": "cbse-g8-science-hesc1-chapters.json",
+  "chapter": 8,
+  "title": "Force and Pressure",
+  "evidence": "Printed contents: F / ORCE AND PRESSURE (drop-cap line break)",
+  "was": "F Orce and Pressure"
+ },
+ {
+  "file": "cbse-g8-science-hesc1-chapters.json",
+  "chapter": 10,
+  "title": "Sound",
+  "evidence": "Printed contents: SOUND123 (page header intrudes after it)",
+  "was": "Sound Sound"
+ },
+ {
+  "file": "cbse-g8-science-hesc1-chapters.json",
+  "chapter": 13,
+  "title": "Light",
+  "evidence": "Printed contents: LIGHT16x (page number glued)",
+  "was": "Light Light"
+ },
+ {
+  "file": "cbse-g8-mathematics-hegp1-chapters.json",
+  "chapter": 7,
+  "title": "Proportional Reasoning-1",
+  "evidence": "Printed contents: Chapter 7 Proportional Reasoning-1 159",
+  "was": "Proportional"
+ },
+ {
+  "file": "cbse-g8-english-hepr1-chapters.json",
+  "chapter": 1,
+  "title": "Wit and Wisdom",
+  "evidence": "Printed contents: Unit 1: Wit and Wisdom (JSON chapters are the 5 units)",
+  "was": "Wit and Wisdom The Wit that Won Hearts 1 A Concrete Example"
+ }
+]

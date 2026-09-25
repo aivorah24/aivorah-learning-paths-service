@@ -9,9 +9,11 @@
   "1": "Finding the Furry Cat! (Pre-number Concepts)",
   "2": "What is Long? What is Round? (Shapes)",
   "3": "Mango Treat (Numbers 1 to 9)",
+  "4": "Making 10 (Numbers 10 to 20)",
   "5": "How Many? (Addition and Subtraction of Single Digit Numbers)",
   "6": "Vegetable Farm (Addition and Subtraction up to 20)",
   "7": "Lina’s Family (Measurement)",
+  "8": "Fun with Numbers (Numbers 21 to 99)",
   "9": "Utsav (Patterns)",
   "10": "How do I Spend my Day? (Time)",
   "11": "How Many Times? (Multiplication)",
@@ -205,6 +207,7 @@
  "Grade 11|Computer Science|kecs1": {},
  "Grade 11|Economics|keec1": {
   "1": "Indian Economy on the Eve of Independence",
+  "3": "Liberalisation, Privatisation and Globalisation: an Appraisal",
   "4": "Human Capital Formation in India",
   "5": "Rural Development",
   "6": "Employment: Growth, Informalisation and Other Issues",
@@ -497,6 +500,7 @@
   "8": "International Trade"
  },
  "Grade 12|Geography|legy2": {
+  "1": "Population : Distribution, Density, Growth and Composition",
   "2": "Human Settlements",
   "3": "Land Resources and Agriculture",
   "4": "Water Resources",
@@ -679,6 +683,7 @@
   "4": "One Thing at a Time",
   "5": "The Old Stag",
   "6": "Braille",
+  "7": "Fit Body, Fit Mind, Fit Nation",
   "8": "The Lagori Champions",
   "9": "Hekko",
   "10": "The Swing",
@@ -1006,6 +1011,7 @@
   "11": "Pan Indian Dance Forms",
   "16": "Still Life in Colour",
   "17": "People in Places",
+  "18": "Arts of the People, With the People, For the People",
   "19": "Campaign for Art Awareness"
  },
  "Grade 8|Hindi|hhbk1": {},
@@ -1056,6 +1062,7 @@
   "6": "Pressure, Winds, Storms, and Cyclones",
   "7": "Particulate Nature of Matter",
   "8": "Nature of Matter: Elements, Compounds, and Mixtures",
+  "9": "The Amazing World of Solutes, Solvents, and Solutions",
   "10": "Light: Mirrors and Lenses",
   "11": "Keeping Time with the Skies",
   "12": "How Nature Works in Harmony"
