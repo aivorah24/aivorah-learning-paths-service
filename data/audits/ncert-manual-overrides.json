@@ -1,0 +1,149 @@
+[
+ {
+  "file": "cbse-g8-science-hesc1-chapters.json",
+  "chapter": 5,
+  "title": "Conservation of Plants and Animals",
+  "evidence": "Printed contents: CONSERVA  TION OF PLANTS AND ANIMALS (typesetting gap)",
+  "was": "Conserva Tion of Plants and Animals"
+ },
+ {
+  "file": "cbse-g8-science-hesc1-chapters.json",
+  "chapter": 8,
+  "title": "Force and Pressure",
+  "evidence": "Printed contents: F / ORCE AND PRESSURE (drop-cap line break)",
+  "was": "F Orce and Pressure"
+ },
+ {
+  "file": "cbse-g8-science-hesc1-chapters.json",
+  "chapter": 10,
+  "title": "Sound",
+  "evidence": "Printed contents: SOUND123 (page header intrudes after it)",
+  "was": "Sound Sound"
+ },
+ {
+  "file": "cbse-g8-science-hesc1-chapters.json",
+  "chapter": 13,
+  "title": "Light",
+  "evidence": "Printed contents: LIGHT16x (page number glued)",
+  "was": "Light Light"
+ },
+ {
+  "file": "cbse-g8-mathematics-hegp1-chapters.json",
+  "chapter": 7,
+  "title": "Proportional Reasoning-1",
+  "evidence": "Printed contents: Chapter 7 Proportional Reasoning-1 159",
+  "was": "Proportional"
+ },
+ {
+  "file": "cbse-g8-english-hepr1-chapters.json",
+  "chapter": 1,
+  "title": "Wit and Wisdom",
+  "evidence": "Printed contents: Unit 1: Wit and Wisdom (JSON chapters are the 5 units)",
+  "was": "Wit and Wisdom The Wit that Won Hearts 1 A Concrete Example"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 1,
+  "title": "Natural Resources and Their Use",
+  "was": "Think About It",
+  "evidence": "Printed contents page (hees1ps.pdf): Chapter 1 Natural Resources and Their Use"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 2,
+  "title": "Reshaping India’s Political Map",
+  "was": "Legend",
+  "evidence": "Printed contents page (hees1ps.pdf): Chapter 2 Reshaping India’s Political Map"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 3,
+  "title": "The Rise of the Marathas",
+  "was": "Think About It",
+  "evidence": "Printed contents page (hees1ps.pdf): Chapter 3 The Rise of the Marathas"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 4,
+  "title": "The Colonial Era in India",
+  "was": "Let Us Explore",
+  "evidence": "Printed contents page (hees1ps.pdf): Chapter 4 The Colonial Era in India"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 5,
+  "title": "Universal Franchise and India’s Electoral System",
+  "was": "Think About It",
+  "evidence": "Printed contents page (hees1ps.pdf): Chapter 5 Universal Franchise and India’s Electoral System"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 6,
+  "title": "The Parliamentary System: Legislature and Executive",
+  "was": "Union List State",
+  "evidence": "Printed contents page (hees1ps.pdf): Chapter 6 The Parliamentary System: Legislature and Executive"
+ },
+ {
+  "file": "cbse-g8-social_science-hees1-chapters.json",
+  "chapter": 7,
+  "title": "Factors of Production",
+  "was": "Think About It",
+  "evidence": "Printed contents page (hees1ps.pdf): Chapter 7 Factors of Production"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 1,
+  "title": "World Geography: Some Glimpses",
+  "was": "Think About It",
+  "evidence": "Printed contents page (hees2ps.pdf): Chapter 1 World Geography: Some Glimpses"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 2,
+  "title": "India’s Long Road to Independence",
+  "was": "Think About It",
+  "evidence": "Printed contents page (hees2ps.pdf): Chapter 2 India’s Long Road to Independence"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 3,
+  "title": "A Journey Through Indian Architecture",
+  "was": "A Journey Through Indian Architecture",
+  "evidence": "Printed contents page (hees2ps.pdf): Chapter 3 A Journey Through Indian Architecture"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 4,
+  "title": "The Role of the Judiciary in Our Society",
+  "was": "Courts in India",
+  "evidence": "Printed contents page (hees2ps.pdf): Chapter 4 The Role of the Judiciary in Our Society"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 5,
+  "title": "Citizenship: Rights and Duties",
+  "was": "Equality",
+  "evidence": "Printed contents page (hees2ps.pdf): Chapter 5 Citizenship: Rights and Duties"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 6,
+  "title": "Dynamics of Population",
+  "was": "Think About It",
+  "evidence": "Printed contents page (hees2ps.pdf): Chapter 6 Dynamics of Population"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 7,
+  "title": "India’s Urban Landscape",
+  "was": "Think About It",
+  "evidence": "Printed contents page (hees2ps.pdf): Chapter 7 India’s Urban Landscape"
+ },
+ {
+  "file": "cbse-g8-social_science-hees2-chapters.json",
+  "chapter": 8,
+  "title": "Cultural Currents: 13th to 17th Centuries",
+  "was": "Think About It",
+  "evidence": "Printed contents page (hees2ps.pdf): Chapter 8 Cultural Currents: 13th to 17th Centuries"
+ }
+]

@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "cesa101.pdf",
-   "title": "Yellow Blue Orange Black Red Green Purple Yellow Red",
+   "title": "Colours",
    "kind": "Non-fiction",
    "bookPath": "grade3/english/cesa101.pdf",
    "pdfFiles": [
@@ -18,9 +18,8 @@
   {
    "chapter": 2,
    "pdfFile": "cesa102.pdf",
-   "title": "Chapter 2",
+   "title": "Badal and Moti",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/english/cesa102.pdf",
    "pdfFiles": [
     "cesa102.pdf"
@@ -29,9 +28,8 @@
   {
    "chapter": 3,
    "pdfFile": "cesa103.pdf",
-   "title": "Chapter 3",
+   "title": "Best Friends",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/english/cesa103.pdf",
    "pdfFiles": [
     "cesa103.pdf"
@@ -40,7 +38,7 @@
   {
    "chapter": 4,
    "pdfFile": "cesa104.pdf",
-   "title": "Unit",
+   "title": "Out in the Garden",
    "kind": "Non-fiction",
    "bookPath": "grade3/english/cesa104.pdf",
    "pdfFiles": [
@@ -50,9 +48,8 @@
   {
    "chapter": 5,
    "pdfFile": "cesa105.pdf",
-   "title": "Chapter 5",
+   "title": "Talking Toys",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/english/cesa105.pdf",
    "pdfFiles": [
     "cesa105.pdf"
@@ -61,7 +58,7 @@
   {
    "chapter": 6,
    "pdfFile": "cesa106.pdf",
-   "title": "Self Assessment",
+   "title": "Paper Boats",
    "kind": "Non-fiction",
    "bookPath": "grade3/english/cesa106.pdf",
    "pdfFiles": [
@@ -71,7 +68,7 @@
   {
    "chapter": 7,
    "pdfFile": "cesa107.pdf",
-   "title": "Good Food Picture Readingpicture Reading Unit",
+   "title": "The Big Laddoo",
    "kind": "Non-fiction",
    "bookPath": "grade3/english/cesa107.pdf",
    "pdfFiles": [
@@ -81,7 +78,7 @@
   {
    "chapter": 8,
    "pdfFile": "cesa108.pdf",
-   "title": "Let Us Read Let Us Read",
+   "title": "Thank God",
    "kind": "Non-fiction",
    "bookPath": "grade3/english/cesa108.pdf",
    "pdfFiles": [
@@ -91,9 +88,8 @@
   {
    "chapter": 9,
    "pdfFile": "cesa109.pdf",
-   "title": "Chapter 9",
+   "title": "Madhu’s Wish",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/english/cesa109.pdf",
    "pdfFiles": [
     "cesa109.pdf"
@@ -102,7 +98,7 @@
   {
    "chapter": 10,
    "pdfFile": "cesa110.pdf",
-   "title": "Picture Readingpicture Reading the Sky Unit",
+   "title": "Night",
    "kind": "Non-fiction",
    "bookPath": "grade3/english/cesa110.pdf",
    "pdfFiles": [
@@ -112,9 +108,8 @@
   {
    "chapter": 11,
    "pdfFile": "cesa111.pdf",
-   "title": "Chapter 11",
+   "title": "Chanda Mama Counts",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade3/english/cesa111.pdf",
    "pdfFiles": [
     "cesa111.pdf"
@@ -123,7 +118,7 @@
   {
    "chapter": 12,
    "pdfFile": "cesa112.pdf",
-   "title": "Self Assessment",
+   "title": "Chandrayaan",
    "kind": "Non-fiction",
    "bookPath": "grade3/english/cesa112.pdf",
    "pdfFiles": [

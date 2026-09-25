@@ -114,6 +114,7 @@ router.get('/current', async (req, res) => {
         const dbTopics = existing ? existing.topics : [];
         units.push({
           unitNo: ch.chapter,
+          book: ch.book || null,
           title: useLive ? liveTitle : ch.title,
           bookPath: ch.bookPath || null,
           pdfFile: ch.pdfFile || null,

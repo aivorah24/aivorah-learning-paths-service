@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "hemh101.pdf",
-   "title": "Try These",
+   "title": "Rational Numbers",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -24,7 +24,7 @@
   {
    "chapter": 2,
    "pdfFile": "hemh102.pdf",
-   "title": "Chapter 2",
+   "title": "Linear Equations in One Variable",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -39,13 +39,12 @@
    "bookPath": "grade8/mathematics/hemh102.pdf",
    "pdfFiles": [
     "hemh102.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,
    "pdfFile": "hemh103.pdf",
-   "title": "Try These",
+   "title": "Understanding Quadrilaterals",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -69,7 +68,7 @@
   {
    "chapter": 4,
    "pdfFile": "hemh104.pdf",
-   "title": "Think, Discuss and Write",
+   "title": "Data Handling",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -93,7 +92,7 @@
   {
    "chapter": 5,
    "pdfFile": "hemh105.pdf",
-   "title": "Try These",
+   "title": "Squares and Square Roots",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -125,7 +124,7 @@
   {
    "chapter": 6,
    "pdfFile": "hemh106.pdf",
-   "title": "Try These",
+   "title": "Cubes and Cube Roots",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -145,7 +144,7 @@
   {
    "chapter": 7,
    "pdfFile": "hemh107.pdf",
-   "title": "Try These",
+   "title": "Comparing Quantities",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -181,7 +180,7 @@
   {
    "chapter": 8,
    "pdfFile": "hemh108.pdf",
-   "title": "Try These",
+   "title": "Algebraic Expressions and Identities",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -213,7 +212,7 @@
   {
    "chapter": 9,
    "pdfFile": "hemh109.pdf",
-   "title": "Try These",
+   "title": "Mensuration",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -245,7 +244,7 @@
   {
    "chapter": 10,
    "pdfFile": "hemh110.pdf",
-   "title": "Try These Try These",
+   "title": "Exponents and Powers",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -269,7 +268,7 @@
   {
    "chapter": 11,
    "pdfFile": "hemh111.pdf",
-   "title": "Chapter 11",
+   "title": "Direct and Inverse Proportions",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -284,13 +283,12 @@
    "bookPath": "grade8/mathematics/hemh111.pdf",
    "pdfFiles": [
     "hemh111.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 12,
    "pdfFile": "hemh112.pdf",
-   "title": "Try These",
+   "title": "Factorisation",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -314,7 +312,7 @@
   {
    "chapter": 13,
    "pdfFile": "hemh113.pdf",
-   "title": "Think, Discuss and Write",
+   "title": "Introduction to Graphs",
    "kind": "Non-fiction",
    "subtopics": [
     {

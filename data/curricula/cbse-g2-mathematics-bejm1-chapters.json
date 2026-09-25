@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "bejm101.pdf",
-   "title": "Look At the Above Picture. Count and Write the Number",
+   "title": "A Day at the Beach",
    "kind": "Non-fiction",
    "bookPath": "grade2/mathematics/bejm101.pdf",
    "pdfFiles": [
@@ -28,9 +28,8 @@
   {
    "chapter": 3,
    "pdfFile": "bejm103.pdf",
-   "title": "Chapter 3",
+   "title": "Fun with Numbers",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade2/mathematics/bejm103.pdf",
    "pdfFiles": [
     "bejm103.pdf"
@@ -39,20 +38,18 @@
   {
    "chapter": 4,
    "pdfFile": "bejm104.pdf",
-   "title": "Chapter 4",
+   "title": "Shadow Story (Togalu)",
    "kind": "Non-fiction",
    "bookPath": "grade2/mathematics/bejm104.pdf",
    "pdfFiles": [
     "bejm104.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 5,
    "pdfFile": "bejm105.pdf",
-   "title": "Chapter 5",
+   "title": "Playing with Lines",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade2/mathematics/bejm105.pdf",
    "pdfFiles": [
     "bejm105.pdf"
@@ -61,7 +58,7 @@
   {
    "chapter": 6,
    "pdfFile": "bejm106.pdf",
-   "title": "T Ot O",
+   "title": "Decoration for Festival",
    "kind": "Non-fiction",
    "bookPath": "grade2/mathematics/bejm106.pdf",
    "pdfFiles": [
@@ -71,9 +68,8 @@
   {
    "chapter": 7,
    "pdfFile": "bejm107.pdf",
-   "title": "Chapter 7",
+   "title": "Rani’s Gift",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade2/mathematics/bejm107.pdf",
    "pdfFiles": [
     "bejm107.pdf"
@@ -82,7 +78,7 @@
   {
    "chapter": 8,
    "pdfFile": "bejm108.pdf",
-   "title": "How Did You Do It Ramya? Can You",
+   "title": "Grouping and Sharing",
    "kind": "Non-fiction",
    "bookPath": "grade2/mathematics/bejm108.pdf",
    "pdfFiles": [
@@ -92,7 +88,7 @@
   {
    "chapter": 9,
    "pdfFile": "bejm109.pdf",
-   "title": "Summer Comes with the Shining Sun and a Long Day",
+   "title": "Which Season is it?",
    "kind": "Non-fiction",
    "bookPath": "grade2/mathematics/bejm109.pdf",
    "pdfFiles": [
@@ -102,9 +98,8 @@
   {
    "chapter": 10,
    "pdfFile": "bejm110.pdf",
-   "title": "Chapter 10",
+   "title": "Fun at the Fair",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade2/mathematics/bejm110.pdf",
    "pdfFiles": [
     "bejm110.pdf"
@@ -113,7 +108,7 @@
   {
    "chapter": 11,
    "pdfFile": "bejm111.pdf",
-   "title": "Favourite Colours Let Us Do",
+   "title": "Data Handling",
    "kind": "Non-fiction",
    "bookPath": "grade2/mathematics/bejm111.pdf",
    "pdfFiles": [

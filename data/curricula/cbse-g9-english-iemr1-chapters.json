@@ -82,20 +82,18 @@
   {
    "chapter": 8,
    "pdfFile": "iemr108.pdf",
-   "title": "Chapter 8",
+   "title": "Rdgaand Tala",
    "kind": "Non-fiction",
    "bookPath": "grade9/english/iemr108.pdf",
    "pdfFiles": [
     "iemr108.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 9,
    "pdfFile": "iemr109.pdf",
-   "title": "Music Travels Around the World 127 Dance",
+   "title": "Music Travels Around the World",
    "kind": "Non-fiction",
-   "needsTitleReview": false,
    "bookPath": "grade9/english/iemr109.pdf",
    "pdfFiles": [
     "iemr109.pdf"
@@ -180,9 +178,8 @@
   {
    "chapter": 17,
    "pdfFile": "iemr117.pdf",
-   "title": "Chapter 17",
+   "title": "Branches of Visual Arts",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade9/english/iemr117.pdf",
    "pdfFiles": [
     "iemr117.pdf"

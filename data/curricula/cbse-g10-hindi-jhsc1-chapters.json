@@ -9,8 +9,7 @@
   {
    "chapter": 1,
    "pdfFile": "jhsc101.pdf",
-   "title": "Chapter 1",
-   "needsTitleReview": true,
+   "title": "रासायनिक अभिक्रियाएँ एवं समीकरण",
    "bookPath": "grade10/hindi/jhsc101.pdf",
    "pdfFiles": [
     "jhsc101.pdf"
@@ -19,22 +18,20 @@
   {
    "chapter": 2,
    "pdfFile": "jhsc102.pdf",
-   "title": "Chapter 2",
+   "title": "अम्ल, क्षारक एवं लवण",
    "bookPath": "grade10/hindi/jhsc102.pdf",
    "pdfFiles": [
     "jhsc102.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 3,
    "pdfFile": "jhsc103.pdf",
-   "title": "Chapter 3",
+   "title": "धातु एवं अधातु",
    "bookPath": "grade10/hindi/jhsc103.pdf",
    "pdfFiles": [
     "jhsc103.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 4,
@@ -66,8 +63,7 @@
   {
    "chapter": 7,
    "pdfFile": "jhsc107.pdf",
-   "title": "Chapter 7",
-   "needsTitleReview": true,
+   "title": "जीव जनन कैसे करते हैं",
    "bookPath": "grade10/hindi/jhsc107.pdf",
    "pdfFiles": [
     "jhsc107.pdf"
@@ -94,8 +90,7 @@
   {
    "chapter": 10,
    "pdfFile": "jhsc110.pdf",
-   "title": "Chapter 10",
-   "needsTitleReview": true,
+   "title": "मानव नेत्र तथा रंग-बिरंगा संसार",
    "bookPath": "grade10/hindi/jhsc110.pdf",
    "pdfFiles": [
     "jhsc110.pdf"
@@ -104,18 +99,16 @@
   {
    "chapter": 11,
    "pdfFile": "jhsc111.pdf",
-   "title": "Chapter 11",
+   "title": "विद्युत",
    "bookPath": "grade10/hindi/jhsc111.pdf",
    "pdfFiles": [
     "jhsc111.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 12,
    "pdfFile": "jhsc112.pdf",
-   "title": "Chapter 12",
-   "needsTitleReview": true,
+   "title": "विद्युत धारा के चुंबकीय प्रभाव",
    "bookPath": "grade10/hindi/jhsc112.pdf",
    "pdfFiles": [
     "jhsc112.pdf"
@@ -124,12 +117,11 @@
   {
    "chapter": 13,
    "pdfFile": "jhsc113.pdf",
-   "title": "Chapter 13",
+   "title": "हमारा पर्यावरण",
    "bookPath": "grade10/hindi/jhsc113.pdf",
    "pdfFiles": [
     "jhsc113.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }

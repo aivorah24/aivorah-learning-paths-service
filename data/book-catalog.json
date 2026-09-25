@@ -1,0 +1,1054 @@
+{
+ "aemr1": {
+  "grade": 1,
+  "subject": "English",
+  "chapters": 4,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "aejm1": {
+  "grade": 1,
+  "subject": "Mathematics",
+  "chapters": 13,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "jeff1": {
+  "grade": 10,
+  "subject": "English",
+  "chapters": 9,
+  "withLessons": 9,
+  "hidden": false
+ },
+ "jefp1": {
+  "grade": 10,
+  "subject": "English",
+  "chapters": 9,
+  "withLessons": 9,
+  "hidden": false
+ },
+ "jewe2": {
+  "grade": 10,
+  "subject": "English",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "jhks1": {
+  "grade": 10,
+  "subject": "Hindi",
+  "chapters": 12,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "jhsc1": {
+  "grade": 10,
+  "subject": "Hindi",
+  "chapters": 13,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "jhsp1": {
+  "grade": 10,
+  "subject": "Hindi",
+  "chapters": 14,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "jemh1": {
+  "grade": 10,
+  "subject": "Science",
+  "chapters": 14,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "jehp1": {
+  "grade": 10,
+  "subject": "Health and Physical Education",
+  "chapters": 9,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "jesc1": {
+  "grade": 10,
+  "subject": "Science",
+  "chapters": 13,
+  "withLessons": 13,
+  "hidden": false
+ },
+ "jess1": {
+  "grade": 10,
+  "subject": "Social Science",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "jess2": {
+  "grade": 10,
+  "subject": "Social Science",
+  "chapters": 5,
+  "withLessons": 5,
+  "hidden": false
+ },
+ "jess3": {
+  "grade": 10,
+  "subject": "Social Science",
+  "chapters": 3,
+  "withLessons": 3,
+  "hidden": false
+ },
+ "jess4": {
+  "grade": 10,
+  "subject": "Social Science",
+  "chapters": 5,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "keac1": {
+  "grade": 11,
+  "subject": "Accountancy",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "keac2": {
+  "grade": 11,
+  "subject": "Accountancy",
+  "chapters": 2,
+  "withLessons": 2,
+  "hidden": false
+ },
+ "kebo1": {
+  "grade": 11,
+  "subject": "Biology",
+  "chapters": 19,
+  "withLessons": 19,
+  "hidden": false
+ },
+ "kebt1": {
+  "grade": 11,
+  "subject": "Biotechnology",
+  "chapters": 11,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kebs1": {
+  "grade": 11,
+  "subject": "Business Studies",
+  "chapters": 11,
+  "withLessons": 11,
+  "hidden": false
+ },
+ "kech1": {
+  "grade": 11,
+  "subject": "Chemistry",
+  "chapters": 6,
+  "withLessons": 6,
+  "hidden": false
+ },
+ "kech2": {
+  "grade": 11,
+  "subject": "Chemistry",
+  "chapters": 3,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kecs1": {
+  "grade": 11,
+  "subject": "Computer Science",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "keec1": {
+  "grade": 11,
+  "subject": "Economics",
+  "chapters": 8,
+  "withLessons": 8,
+  "hidden": false
+ },
+ "kest1": {
+  "grade": 11,
+  "subject": "Economics",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kesp1": {
+  "grade": 11,
+  "subject": "English",
+  "chapters": 5,
+  "withLessons": 5,
+  "hidden": false
+ },
+ "keww1": {
+  "grade": 11,
+  "subject": "English",
+  "chapters": 20,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kefa1": {
+  "grade": 11,
+  "subject": "Fine Art",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kegy1": {
+  "grade": 11,
+  "subject": "Geography",
+  "chapters": 6,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kegy3": {
+  "grade": 11,
+  "subject": "Geography",
+  "chapters": 6,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kham1": {
+  "grade": 11,
+  "subject": "Hindi",
+  "chapters": 16,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "khan1": {
+  "grade": 11,
+  "subject": "Hindi",
+  "chapters": 2,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "khar1": {
+  "grade": 11,
+  "subject": "Hindi",
+  "chapters": 16,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "khvt1": {
+  "grade": 11,
+  "subject": "Hindi",
+  "chapters": 5,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kehs1": {
+  "grade": 11,
+  "subject": "History",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "kehe1": {
+  "grade": 11,
+  "subject": "Home Science",
+  "chapters": 2,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kehe2": {
+  "grade": 11,
+  "subject": "Home Science",
+  "chapters": 4,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kemh1": {
+  "grade": 11,
+  "subject": "Mathematics",
+  "chapters": 14,
+  "withLessons": 14,
+  "hidden": false
+ },
+ "kehp1": {
+  "grade": 11,
+  "subject": "Health and Physical Education",
+  "chapters": 11,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "keph1": {
+  "grade": 11,
+  "subject": "Physics",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "keph2": {
+  "grade": 11,
+  "subject": "Physics",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "keps1": {
+  "grade": 11,
+  "subject": "Political Science",
+  "chapters": 8,
+  "withLessons": 8,
+  "hidden": false
+ },
+ "kepy1": {
+  "grade": 11,
+  "subject": "Psychology",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "keks1": {
+  "grade": 11,
+  "subject": "Science",
+  "chapters": 9,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "keps2": {
+  "grade": 11,
+  "subject": "Science",
+  "chapters": 10,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "kesy1": {
+  "grade": 11,
+  "subject": "Sociology",
+  "chapters": 5,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "leac1": {
+  "grade": 12,
+  "subject": "Accountancy",
+  "chapters": 4,
+  "withLessons": 4,
+  "hidden": false
+ },
+ "leac2": {
+  "grade": 12,
+  "subject": "Accountancy",
+  "chapters": 6,
+  "withLessons": 6,
+  "hidden": false
+ },
+ "lebo1": {
+  "grade": 12,
+  "subject": "Biology",
+  "chapters": 13,
+  "withLessons": 13,
+  "hidden": false
+ },
+ "lebs1": {
+  "grade": 12,
+  "subject": "Business Studies",
+  "chapters": 6,
+  "withLessons": 6,
+  "hidden": false
+ },
+ "lebs2": {
+  "grade": 12,
+  "subject": "Business Studies",
+  "chapters": 3,
+  "withLessons": 3,
+  "hidden": false
+ },
+ "lech1": {
+  "grade": 12,
+  "subject": "Chemistry",
+  "chapters": 5,
+  "withLessons": 5,
+  "hidden": false
+ },
+ "lech2": {
+  "grade": 12,
+  "subject": "Chemistry",
+  "chapters": 5,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lecs1": {
+  "grade": 12,
+  "subject": "Computer Science",
+  "chapters": 13,
+  "withLessons": 13,
+  "hidden": false
+ },
+ "leec1": {
+  "grade": 12,
+  "subject": "Economics",
+  "chapters": 6,
+  "withLessons": 6,
+  "hidden": false
+ },
+ "leec2": {
+  "grade": 12,
+  "subject": "Economics",
+  "chapters": 5,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lefl1": {
+  "grade": 12,
+  "subject": "English",
+  "chapters": 11,
+  "withLessons": 11,
+  "hidden": false
+ },
+ "lekl1": {
+  "grade": 12,
+  "subject": "English",
+  "chapters": 14,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "levt1": {
+  "grade": 12,
+  "subject": "English",
+  "chapters": 6,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lefa1": {
+  "grade": 12,
+  "subject": "Fine Art",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "legy1": {
+  "grade": 12,
+  "subject": "Geography",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "legy2": {
+  "grade": 12,
+  "subject": "Geography",
+  "chapters": 9,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "legy3": {
+  "grade": 12,
+  "subject": "Geography",
+  "chapters": 4,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lhan1": {
+  "grade": 12,
+  "subject": "Hindi",
+  "chapters": 3,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lhar1": {
+  "grade": 12,
+  "subject": "Hindi",
+  "chapters": 15,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lhvt1": {
+  "grade": 12,
+  "subject": "Hindi",
+  "chapters": 3,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lehs1": {
+  "grade": 12,
+  "subject": "History",
+  "chapters": 3,
+  "withLessons": 3,
+  "hidden": false
+ },
+ "lehs2": {
+  "grade": 12,
+  "subject": "History",
+  "chapters": 3,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lehs3": {
+  "grade": 12,
+  "subject": "History",
+  "chapters": 4,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lehe1": {
+  "grade": 12,
+  "subject": "Home Science",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lehe2": {
+  "grade": 12,
+  "subject": "Home Science",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lehh1": {
+  "grade": 12,
+  "subject": "Home Science",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lemh1": {
+  "grade": 12,
+  "subject": "Mathematics",
+  "chapters": 6,
+  "withLessons": 6,
+  "hidden": false
+ },
+ "lemh2": {
+  "grade": 12,
+  "subject": "Mathematics",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "leph1": {
+  "grade": 12,
+  "subject": "Physics",
+  "chapters": 8,
+  "withLessons": 8,
+  "hidden": false
+ },
+ "leph2": {
+  "grade": 12,
+  "subject": "Physics",
+  "chapters": 6,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "leps1": {
+  "grade": 12,
+  "subject": "Political Science",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "leps2": {
+  "grade": 12,
+  "subject": "Political Science",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "lepy1": {
+  "grade": 12,
+  "subject": "Psychology",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lesy1": {
+  "grade": 12,
+  "subject": "Sociology",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "lesy2": {
+  "grade": 12,
+  "subject": "Sociology",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "bemr1": {
+  "grade": 2,
+  "subject": "English",
+  "chapters": 13,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "bhsr1": {
+  "grade": 2,
+  "subject": "Hindi",
+  "chapters": 25,
+  "withLessons": 25,
+  "hidden": false
+ },
+ "bejm1": {
+  "grade": 2,
+  "subject": "Mathematics",
+  "chapters": 11,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "bush1": {
+  "grade": 2,
+  "subject": "Urdu",
+  "chapters": 19,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "cesa1": {
+  "grade": 3,
+  "subject": "English",
+  "chapters": 12,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "ceev1": {
+  "grade": 3,
+  "subject": "The World Around Us",
+  "chapters": 12,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "cuev1": {
+  "grade": 3,
+  "subject": "The World Around Us",
+  "chapters": 12,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "cemm1": {
+  "grade": 3,
+  "subject": "Mathematics",
+  "chapters": 14,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "cumm1": {
+  "grade": 3,
+  "subject": "Mathematics",
+  "chapters": 14,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "cebu1": {
+  "grade": 3,
+  "subject": "Arts",
+  "chapters": 20,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "ceky1": {
+  "grade": 3,
+  "subject": "Physical Education and Well Being",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "desa1": {
+  "grade": 4,
+  "subject": "English",
+  "chapters": 12,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "deap1": {
+  "grade": 4,
+  "subject": "The World Around Us",
+  "chapters": 27,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "deev1": {
+  "grade": 4,
+  "subject": "The World Around Us",
+  "chapters": 10,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "debu1": {
+  "grade": 4,
+  "subject": "Arts",
+  "chapters": 16,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "demm1": {
+  "grade": 4,
+  "subject": "Mathematics",
+  "chapters": 14,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "dumm1": {
+  "grade": 4,
+  "subject": "Mathematics",
+  "chapters": 14,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "deky1": {
+  "grade": 4,
+  "subject": "Physical Education and Well Being",
+  "chapters": 3,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "eeen1": {
+  "grade": 5,
+  "subject": "English",
+  "chapters": 10,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "eesa1": {
+  "grade": 5,
+  "subject": "English",
+  "chapters": 10,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "eeap1": {
+  "grade": 5,
+  "subject": "The World Around Us",
+  "chapters": 22,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "eeev1": {
+  "grade": 5,
+  "subject": "The World Around Us",
+  "chapters": 10,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "eebu1": {
+  "grade": 5,
+  "subject": "Arts",
+  "chapters": 19,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "eeky1": {
+  "grade": 5,
+  "subject": "Physical Education and Well Being",
+  "chapters": 3,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "fepr1": {
+  "grade": 6,
+  "subject": "Social Science",
+  "chapters": 5,
+  "withLessons": 0,
+  "hidden": true
+ },
+ "fekb1": {
+  "grade": 6,
+  "subject": "Social Science",
+  "chapters": 6,
+  "withLessons": 0,
+  "hidden": true
+ },
+ "fekr1": {
+  "grade": 6,
+  "subject": "Physical Education and Well Being",
+  "chapters": 22,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "fecu1": {
+  "grade": 6,
+  "subject": "Science",
+  "chapters": 12,
+  "withLessons": 12,
+  "hidden": false
+ },
+ "fees1": {
+  "grade": 6,
+  "subject": "Social Science",
+  "chapters": 14,
+  "withLessons": 14,
+  "hidden": false
+ },
+ "gepr1": {
+  "grade": 7,
+  "subject": "English",
+  "chapters": 5,
+  "withLessons": 5,
+  "hidden": false
+ },
+ "gekr1": {
+  "grade": 7,
+  "subject": "Arts",
+  "chapters": 18,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "ghdv1": {
+  "grade": 7,
+  "subject": "Hindi",
+  "chapters": 18,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "ghvs1": {
+  "grade": 7,
+  "subject": "Hindi",
+  "chapters": 15,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "gegp1": {
+  "grade": 7,
+  "subject": "Mathematics",
+  "chapters": 8,
+  "withLessons": 8,
+  "hidden": false
+ },
+ "gegp2": {
+  "grade": 7,
+  "subject": "Mathematics",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "gekb1": {
+  "grade": 7,
+  "subject": "Physical Education and Well Being",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "geky1": {
+  "grade": 7,
+  "subject": "Physical Education and Well Being",
+  "chapters": 6,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "gecu1": {
+  "grade": 7,
+  "subject": "Science",
+  "chapters": 12,
+  "withLessons": 12,
+  "hidden": false
+ },
+ "gees1": {
+  "grade": 7,
+  "subject": "Social Science",
+  "chapters": 12,
+  "withLessons": 12,
+  "hidden": false
+ },
+ "gees2": {
+  "grade": 7,
+  "subject": "Social Science",
+  "chapters": 8,
+  "withLessons": 8,
+  "hidden": false
+ },
+ "hehd1": {
+  "title": "Honeydew",
+  "grade": 8,
+  "subject": "English",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": true
+ },
+ "heih1": {
+  "grade": 8,
+  "subject": "English",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": true
+ },
+ "hepr1": {
+  "title": "Poorvi",
+  "grade": 8,
+  "subject": "English",
+  "chapters": 5,
+  "withLessons": 5,
+  "hidden": false
+ },
+ "hekr1": {
+  "title": "Kriti",
+  "grade": 8,
+  "subject": "Arts",
+  "chapters": 16,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "hhbk1": {
+  "title": "भारत की खोज",
+  "rank": 3,
+  "grade": 8,
+  "subject": "Hindi",
+  "chapters": 9,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "hhdv1": {
+  "title": "दूर्वा",
+  "rank": 2,
+  "grade": 8,
+  "subject": "Hindi",
+  "chapters": 19,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "hhvs1": {
+  "title": "वसंत",
+  "rank": 1,
+  "grade": 8,
+  "subject": "Hindi",
+  "chapters": 13,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "hegp1": {
+  "title": "Ganita Prakash, Part 1",
+  "grade": 8,
+  "subject": "Mathematics",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "hegp2": {
+  "title": "Ganita Prakash, Part 2",
+  "grade": 8,
+  "subject": "Mathematics",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "hemh1": {
+  "title": "Mathematics",
+  "grade": 8,
+  "subject": "Mathematics",
+  "chapters": 13,
+  "withLessons": 0,
+  "hidden": true
+ },
+ "hekb1": {
+  "grade": 8,
+  "subject": "Physical Education and Well Being",
+  "chapters": 7,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "heky1": {
+  "grade": 8,
+  "subject": "Physical Education and Well Being",
+  "chapters": 6,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "hecu1": {
+  "title": "Curiosity",
+  "grade": 8,
+  "subject": "Science",
+  "chapters": 13,
+  "withLessons": 13,
+  "hidden": false
+ },
+ "hesc1": {
+  "title": "Science",
+  "grade": 8,
+  "subject": "Science",
+  "chapters": 13,
+  "withLessons": 0,
+  "hidden": true
+ },
+ "hees1": {
+  "title": "Exploring Society: India and Beyond, Part 1",
+  "grade": 8,
+  "subject": "Social Science",
+  "chapters": 7,
+  "withLessons": 7,
+  "hidden": false
+ },
+ "hees2": {
+  "title": "Exploring Society: India and Beyond, Part 2",
+  "grade": 8,
+  "subject": "Social Science",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "hess2": {
+  "grade": 8,
+  "subject": "Social Science",
+  "chapters": 6,
+  "withLessons": 0,
+  "hidden": true
+ },
+ "hess3": {
+  "grade": 8,
+  "subject": "Social Science",
+  "chapters": 8,
+  "withLessons": 0,
+  "hidden": true
+ },
+ "hess4": {
+  "grade": 8,
+  "subject": "Social Science",
+  "chapters": 5,
+  "withLessons": 0,
+  "hidden": true
+ },
+ "iebe1": {
+  "grade": 9,
+  "subject": "English",
+  "chapters": 8,
+  "withLessons": 8,
+  "hidden": false
+ },
+ "iemr1": {
+  "grade": 9,
+  "subject": "English",
+  "chapters": 17,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "ihsc1": {
+  "grade": 9,
+  "subject": "Hindi",
+  "chapters": 13,
+  "withLessons": 13,
+  "hidden": false
+ },
+ "iemh1": {
+  "grade": 9,
+  "subject": "Mathematics",
+  "chapters": 8,
+  "withLessons": 8,
+  "hidden": false
+ },
+ "iehp1": {
+  "grade": 9,
+  "subject": "Physical Education and Well Being",
+  "chapters": 6,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "iekv1": {
+  "grade": 9,
+  "subject": "Physical Education and Well Being",
+  "chapters": 12,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "iest1": {
+  "grade": 9,
+  "subject": "Physical Education and Well Being",
+  "chapters": 9,
+  "withLessons": 0,
+  "hidden": false
+ },
+ "iesc1": {
+  "grade": 9,
+  "subject": "Science",
+  "chapters": 13,
+  "withLessons": 13,
+  "hidden": false
+ }
+}

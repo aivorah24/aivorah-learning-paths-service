@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "kech101.pdf",
-   "title": "Unit 1",
+   "title": "Some Basic Concepts of Chemistry",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -384,7 +384,7 @@
   {
    "chapter": 3,
    "pdfFile": "kech103.pdf",
-   "title": "Periodic System",
+   "title": "Classification of Elements and Periodicity in Properties",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -640,7 +640,7 @@
   {
    "chapter": 5,
    "pdfFile": "kech105.pdf",
-   "title": "Thermodynamics It Is the Only Physical Theory of Universal Content Concerning Which I Am Convinced That, Within the Framework of the",
+   "title": "Thermodynamics",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -656,7 +656,7 @@
   {
    "chapter": 6,
    "pdfFile": "kech106.pdf",
-   "title": "Equilibrium in Chemical",
+   "title": "Equilibrium",
    "kind": "Non-fiction",
    "subtopics": [
     {

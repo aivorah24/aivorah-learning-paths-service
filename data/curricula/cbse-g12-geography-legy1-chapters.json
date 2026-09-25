@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "legy101.pdf",
-   "title": "Nature of Human Geography",
+   "title": "Human Geography Nature and Scope",
    "kind": "Non-fiction",
    "bookPath": "grade12/geography/legy101.pdf",
    "pdfFiles": [
@@ -18,7 +18,7 @@
   {
    "chapter": 2,
    "pdfFile": "legy102.pdf",
-   "title": "Patterns of Population Distribution in the World",
+   "title": "The World Population Distribution, Density and Growth",
    "kind": "Non-fiction",
    "bookPath": "grade12/geography/legy102.pdf",
    "pdfFiles": [
@@ -28,9 +28,8 @@
   {
    "chapter": 3,
    "pdfFile": "legy103.pdf",
-   "title": "Chapter 3",
+   "title": "Human Development",
    "kind": "Non-fiction",
-   "needsTitleReview": true,
    "bookPath": "grade12/geography/legy103.pdf",
    "pdfFiles": [
     "legy103.pdf"
@@ -39,7 +38,7 @@
   {
    "chapter": 4,
    "pdfFile": "legy104.pdf",
-   "title": "Hunting and Gathering",
+   "title": "Primary Activities",
    "kind": "Non-fiction",
    "bookPath": "grade12/geography/legy104.pdf",
    "pdfFiles": [
@@ -49,7 +48,7 @@
   {
    "chapter": 5,
    "pdfFile": "legy105.pdf",
-   "title": "Manuf Manuf Manufmanuf",
+   "title": "Secondary Activities",
    "kind": "Non-fiction",
    "bookPath": "grade12/geography/legy105.pdf",
    "pdfFiles": [
@@ -59,7 +58,7 @@
   {
    "chapter": 6,
    "pdfFile": "legy106.pdf",
-   "title": "Types of Tertiary Activities",
+   "title": "Tertiary and Quaternary Activities",
    "kind": "Non-fiction",
    "bookPath": "grade12/geography/legy106.pdf",
    "pdfFiles": [
@@ -69,7 +68,7 @@
   {
    "chapter": 7,
    "pdfFile": "legy107.pdf",
-   "title": "Transportranspor Transportranspor Transpor",
+   "title": "Transport and Communication",
    "kind": "Non-fiction",
    "bookPath": "grade12/geography/legy107.pdf",
    "pdfFiles": [
@@ -79,7 +78,7 @@
   {
    "chapter": 8,
    "pdfFile": "legy108.pdf",
-   "title": "Hist Hist Hist",
+   "title": "International Trade",
    "kind": "Non-fiction",
    "bookPath": "grade12/geography/legy108.pdf",
    "pdfFiles": [

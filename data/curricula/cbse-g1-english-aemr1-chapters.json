@@ -8,18 +8,17 @@
   {
    "chapter": 1,
    "pdfFile": "aemr101.pdf",
-   "title": "Chapter 1",
+   "title": "My Family and Me Two Little Hands O",
    "kind": "Non-fiction",
    "bookPath": "grade1/english/aemr101.pdf",
    "pdfFiles": [
     "aemr101.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   },
   {
    "chapter": 2,
    "pdfFile": "aemr103.pdf",
-   "title": "Let Us Speak Unit 2 Life Around Us",
+   "title": "Life Around Us Picture Time",
    "kind": "Non-fiction",
    "bookPath": "grade1/english/aemr103.pdf",
    "pdfFiles": [
@@ -29,7 +28,7 @@
   {
    "chapter": 3,
    "pdfFile": "aemr106.pdf",
-   "title": "Let Us Speak Unit 3 Food",
+   "title": "Food Fun with Pictures",
    "kind": "Non-fiction",
    "bookPath": "grade1/english/aemr106.pdf",
    "pdfFiles": [
@@ -39,13 +38,12 @@
   {
    "chapter": 4,
    "pdfFile": "aemr108.pdf",
-   "title": "Chapter 4",
+   "title": "Seasons The Four Seasons",
    "kind": "Non-fiction",
    "bookPath": "grade1/english/aemr108.pdf",
    "pdfFiles": [
     "aemr108.pdf"
-   ],
-   "needsTitleReview": true
+   ]
   }
  ]
 }

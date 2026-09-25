@@ -74,40 +74,62 @@ function looksLikeRealTitle(title) {
   return true;
 }
 
+function readCatalog() {
+  try { return JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'data', 'book-catalog.json'), 'utf8')); } catch { return {}; }
+}
+
 function load() {
   if (_byGradeSubject) return;
   _byGradeSubject = new Map();
+  const catalog = readCatalog();
   let files = [];
   try { files = fs.readdirSync(CUR_DIR).filter(f => f.endsWith('-chapters.json')); } catch { files = []; }
 
+  const docs = [];
   for (const file of files) {
     let doc;
     try { doc = JSON.parse(fs.readFileSync(path.join(CUR_DIR, file), 'utf8')); } catch { continue; }
     const grade = parseInt(String(doc.grade || '').replace(/\D/g, ''), 10);
     const subject = doc.subject || '';
     if (!grade || !subject) continue;
+    const info = catalog[doc.code] || {};
+    if (info.hidden) continue; // superseded edition: no lessons, replaced by a current book for the same subject
+    docs.push({ file, doc, grade, subject, info });
+  }
+  // Books with lessons first, then the catalog's preferred order.
+  docs.sort((a, b) => (b.info.withLessons > 0) - (a.info.withLessons > 0) || (a.info.rank || 9) - (b.info.rank || 9) || a.file.localeCompare(b.file));
+
+  const maxByKey = new Map();
+  for (const { doc, grade, subject, info } of docs) {
+    const key = `${grade}|${subject.toLowerCase()}`;
+    const nums = (doc.chapters || []).map(c => c.chapter).filter(Number.isFinite);
+    const prevMax = maxByKey.get(key) || 0;
+    // A later volume restarts at chapter 1; continue the numbering so its chapters
+    // aren't dropped as duplicates of the first volume's.
+    const offset = prevMax && nums.length && Math.min(...nums) <= prevMax ? prevMax : 0;
 
     for (const ch of doc.chapters || []) {
       const code = String(ch.pdfFile || '').replace(/\.pdf$/i, '');
       if (!code) continue;
       const hasRealTitle = ch.title && !/^Chapter \d+$/i.test(ch.title) && looksLikeRealTitle(ch.title);
+      const chapterNo = ch.chapter + offset;
       const rec = {
         grade, subject,
-        chapter: ch.chapter,
-        title: hasRealTitle ? ch.title : `Chapter ${ch.chapter}`,
+        chapter: chapterNo,
+        title: hasRealTitle ? ch.title : `Chapter ${chapterNo}`,
         subtopics: Array.isArray(ch.subtopics) ? ch.subtopics : [],
         pdfFile: ch.pdfFile,
         bookPath: ch.bookPath || null,
-        book: doc.book || null,
+        book: info.title || doc.book || null,
         // A title still reading "Chapter N" means extraction could not read that
         // PDF (or produced unusable mojibake) — surfaced so validation can flag
         // it rather than ship a placeholder or garbled text.
         placeholder: !hasRealTitle,
       };
-      const key = `${grade}|${subject.toLowerCase()}`;
       if (!_byGradeSubject.has(key)) _byGradeSubject.set(key, []);
       _byGradeSubject.get(key).push(rec);
     }
+    maxByKey.set(key, Math.max(prevMax, ...nums.map(n => n + offset)));
   }
   for (const list of _byGradeSubject.values()) list.sort((a, b) => (a.chapter || 0) - (b.chapter || 0));
 }
@@ -133,14 +155,16 @@ function subjectsFor(grade) {
     if (Number(keyGrade) !== g) continue;
     const subject = chapters[0]?.subject;
     if (!subject) continue;
-    bySubject.set(subject, chapters.length);
+    bySubject.set(subject, chapters);
   }
-  return [...bySubject.entries()].map(([subject, chapterCount]) => ({
-    subject,
-    topicCount: chapterCount,
-    topics: [],
-    units: [],
-  }));
+  return [...bySubject.entries()].map(([subject, chapters]) => {
+    const seen = new Set();
+    const list = chapters
+      .filter((c) => !seen.has(c.chapter) && seen.add(c.chapter))
+      .map((c) => ({ unitNo: c.chapter, title: c.title, book: c.book }));
+    const books = [...new Set(chapters.map((c) => c.book).filter(Boolean))];
+    return { subject, topicCount: chapters.length, topics: [], units: [], chapters: list, books };
+  });
 }
 
-module.exports = { chaptersFor, subjectsFor };
+module.exports = { chaptersFor, subjectsFor, looksLikeRealTitle };

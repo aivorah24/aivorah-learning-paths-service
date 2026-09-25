@@ -8,7 +8,7 @@
   {
    "chapter": 1,
    "pdfFile": "keps101.pdf",
-   "title": "Equality Equality",
+   "title": "Political Theory: An Introduction",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -24,7 +24,7 @@
   {
    "chapter": 2,
    "pdfFile": "keps102.pdf",
-   "title": "Swaraj",
+   "title": "Freedom",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -72,7 +72,7 @@
   {
    "chapter": 4,
    "pdfFile": "keps104.pdf",
-   "title": "Social Justice Overview",
+   "title": "Social Justice",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -88,7 +88,7 @@
   {
    "chapter": 5,
    "pdfFile": "keps105.pdf",
-   "title": "Kant On Human Dignity",
+   "title": "Rights",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -120,7 +120,7 @@
   {
    "chapter": 6,
    "pdfFile": "keps106.pdf",
-   "title": "Martin Luther King",
+   "title": "Citizenship",
    "kind": "Non-fiction",
    "subtopics": [
     {
@@ -148,7 +148,7 @@
   {
    "chapter": 7,
    "pdfFile": "keps107.pdf",
-   "title": "Demand for National Self-Determination in Basque",
+   "title": "Nationalism",
    "kind": "Non-fiction",
    "subtopics": [
     {
