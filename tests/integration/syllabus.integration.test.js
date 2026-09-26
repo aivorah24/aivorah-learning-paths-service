@@ -532,6 +532,21 @@ describe('topic-by-name enrichment time budget', () => {
     expect(res.body.resources[0].payload.pdfPage).toBe(35);
   });
 
+  test('a saved narration script is passed through for the Listen tab', async () => {
+    const listenScript = [{ card: null, heading: 'Introduction', text: 'Hello.' }, { card: 0, heading: 'Action', text: 'First card.' }];
+    mockGetOrGenerateEnrichment.mockResolvedValue({ whatYoullLearn: ['a'], blocks: [{ type: 'table' }], contentType: 'theory', listenScript });
+
+    const res = await get('scripted-topic');
+    expect(res.body.resources[0].payload.listenScript).toEqual(listenScript);
+  });
+
+  test('no narration script leaves the payload without one (Listen keeps its existing behaviour)', async () => {
+    mockGetOrGenerateEnrichment.mockResolvedValue({ whatYoullLearn: ['a'], blocks: [{ type: 'table' }], contentType: 'theory', listenScript: [] });
+
+    const res = await get('unscripted-topic');
+    expect('listenScript' in res.body.resources[0].payload).toBe(false);
+  });
+
   test('no pdfPage in the saved lesson leaves the payload without one (viewer falls back to page 1)', async () => {
     mockGetOrGenerateEnrichment.mockResolvedValue({ whatYoullLearn: ['a'], blocks: [{ type: 'table' }], contentType: 'theory' });
 
