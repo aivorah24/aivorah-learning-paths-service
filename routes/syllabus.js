@@ -201,7 +201,7 @@ async function cachedOnly(args) {
   const { getCachedEnrichment } = require('../services/curriculum/enrichment');
   if (typeof getCachedEnrichment !== 'function') return null;
   const row = await getCachedEnrichment(args);
-  return row ? { whatYoullLearn: row.structured_content?.whatYoullLearn || [], blocks: row.structured_content?.blocks || [], contentType: row.content_type } : null;
+  return row ? { whatYoullLearn: row.structured_content?.whatYoullLearn || [], blocks: row.structured_content?.blocks || [], contentType: row.content_type, pdfPage: row.structured_content?.pdfPage } : null;
 }
 
 function enrichWithinBudget(key, args, generate) {
@@ -262,6 +262,8 @@ router.get('/topic-by-name/resources', async (req, res) => {
             whatYoullLearn: enriched.whatYoullLearn,
             blocks: enriched.blocks,
             contentType: enriched.contentType,
+            // Page the book viewer should open at (the app reads payload.pdfPage; defaults to page 1 when absent).
+            ...(enriched.pdfPage ? { pdfPage: enriched.pdfPage } : {}),
           };
         }
       } catch (enrichErr) {
