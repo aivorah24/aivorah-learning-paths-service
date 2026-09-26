@@ -32,6 +32,7 @@ jest.mock('../../services/qdrant', () => ({
 // handler) is mocked to return null (= "no enrichment available") by
 // default, so these pre-existing tests never make a real Groq/Supabase call
 // and their exact response-body assertions stay unaffected.
+process.env.ENRICH_WAIT_MS = '60';
 const mockGetOrGenerateEnrichment = jest.fn();
 jest.mock('../../services/curriculum/enrichment', () => ({
   getOrGenerateEnrichment: (...args) => mockGetOrGenerateEnrichment(...args),
@@ -464,5 +465,47 @@ describe('GET /teacher/syllabus/topic-by-name/resources (Bug #8)', () => {
 
       expect(mockGetOrGenerateEnrichment).not.toHaveBeenCalled();
     });
+  });
+});
+
+describe('topic-by-name enrichment time budget', () => {
+  const q = (topic) => ({ curriculum: 'NCERT', grade: 'Grade 8', subject: 'Science', topic });
+  const ready = () => [{ resourceType: 'AI_EXPLANATION', status: 'READY', payload: { intro: 'plain text' } }];
+
+  test('a slow AI generation does not hold the response: plain lesson comes back within the budget', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValue(ready());
+    mockGetOrGenerateEnrichment.mockImplementation(() => new Promise((resolve) => setTimeout(() => resolve({ whatYoullLearn: [], blocks: [{ type: 'overview', text: 'x' }], contentType: 'theory' }), 400)));
+
+    const t0 = Date.now();
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query(q('slow-topic'));
+    expect(Date.now() - t0).toBeLessThan(300);
+    expect(res.status).toBe(200);
+    expect(res.body.resources[0].payload).toEqual({ intro: 'plain text' });
+  });
+
+  test('after a failed generation the same topic is not retried straight away', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValue(ready());
+    mockGetOrGenerateEnrichment.mockResolvedValue(null);
+
+    await request(app).get('/teacher/syllabus/topic-by-name/resources').query(q('failing-topic'));
+    await request(app).get('/teacher/syllabus/topic-by-name/resources').query(q('failing-topic'));
+    expect(mockGetOrGenerateEnrichment).toHaveBeenCalledTimes(1);
+  });
+
+  test('a thrown AI error still returns the plain lesson', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValue(ready());
+    mockGetOrGenerateEnrichment.mockRejectedValue(new Error('groq exhausted'));
+
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query(q('throwing-topic'));
+    expect(res.status).toBe(200);
+    expect(res.body.resources[0].payload).toEqual({ intro: 'plain text' });
+  });
+
+  test('a fast generation still returns the rich blocks', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValue(ready());
+    mockGetOrGenerateEnrichment.mockResolvedValue({ whatYoullLearn: ['a'], blocks: [{ type: 'table' }], contentType: 'theory' });
+
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query(q('fast-topic'));
+    expect(res.body.resources[0].payload.blocks).toEqual([{ type: 'table' }]);
   });
 });
