@@ -32,9 +32,12 @@ jest.mock('../../services/qdrant', () => ({
 // handler) is mocked to return null (= "no enrichment available") by
 // default, so these pre-existing tests never make a real Groq/Supabase call
 // and their exact response-body assertions stay unaffected.
+process.env.ENRICH_WAIT_MS = '60';
 const mockGetOrGenerateEnrichment = jest.fn();
+const mockGetCachedEnrichment = jest.fn();
 jest.mock('../../services/curriculum/enrichment', () => ({
   getOrGenerateEnrichment: (...args) => mockGetOrGenerateEnrichment(...args),
+  getCachedEnrichment: (...args) => mockGetCachedEnrichment(...args),
 }));
 
 const express = require('express');
@@ -464,5 +467,76 @@ describe('GET /teacher/syllabus/topic-by-name/resources (Bug #8)', () => {
 
       expect(mockGetOrGenerateEnrichment).not.toHaveBeenCalled();
     });
+  });
+});
+
+describe('topic-by-name enrichment time budget', () => {
+  const q = (topic) => ({ curriculum: 'NCERT', grade: 'Grade 8', subject: 'Science', topic });
+  const ready = () => [{ resourceType: 'AI_EXPLANATION', status: 'READY', payload: { intro: 'plain text' } }];
+  const get = (topic) => request(app).get('/teacher/syllabus/topic-by-name/resources').query(q(topic));
+
+  beforeEach(() => {
+    syllabusRoute.__resetEnrichState();
+    mockGetCachedEnrichment.mockResolvedValue(null);
+    mockResolveResourcesByTopicName.mockImplementation(async () => ready());
+  });
+
+  test('a slow AI generation does not hold the response: plain lesson comes back within the budget', async () => {
+    mockGetOrGenerateEnrichment.mockImplementation(() => new Promise((resolve) => setTimeout(() => resolve({ whatYoullLearn: [], blocks: [{ type: 'overview', text: 'x' }], contentType: 'theory' }), 400)));
+
+    const t0 = Date.now();
+    const res = await get('slow-topic');
+    expect(Date.now() - t0).toBeLessThan(300);
+    expect(res.status).toBe(200);
+    expect(res.body.resources[0].payload).toEqual({ intro: 'plain text' });
+  });
+
+  test('while the first opener is still waiting on the AI, the next student is not made to wait again', async () => {
+    mockGetOrGenerateEnrichment.mockImplementation(() => new Promise((resolve) => setTimeout(() => resolve(null), 600)));
+
+    await get('shared-topic'); // first opener: waits the budget (~60ms) then gets plain text
+    const t0 = Date.now();
+    const res = await get('shared-topic');
+    expect(Date.now() - t0).toBeLessThan(40);
+    expect(res.body.resources[0].payload).toEqual({ intro: 'plain text' });
+    expect(mockGetOrGenerateEnrichment).toHaveBeenCalledTimes(1);
+  });
+
+  test('after a failed generation the same topic is not retried straight away', async () => {
+    mockGetOrGenerateEnrichment.mockResolvedValue(null);
+
+    await get('failing-topic');
+    await get('failing-topic');
+    expect(mockGetOrGenerateEnrichment).toHaveBeenCalledTimes(1);
+  });
+
+  test('a thrown AI error still returns the plain lesson', async () => {
+    mockGetOrGenerateEnrichment.mockRejectedValue(new Error('groq exhausted'));
+
+    const res = await get('throwing-topic');
+    expect(res.status).toBe(200);
+    expect(res.body.resources[0].payload).toEqual({ intro: 'plain text' });
+  });
+
+  test('a fast generation still returns the rich blocks', async () => {
+    mockGetOrGenerateEnrichment.mockResolvedValue({ whatYoullLearn: ['a'], blocks: [{ type: 'table' }], contentType: 'theory' });
+
+    const res = await get('fast-topic');
+    expect(res.body.resources[0].payload.blocks).toEqual([{ type: 'table' }]);
+  });
+
+  test('after 3 failures in a row the AI is skipped for other topics, but already-saved rich lessons still show', async () => {
+    mockGetOrGenerateEnrichment.mockResolvedValue(null);
+    await get('t1'); await get('t2'); await get('t3'); // trips the breaker
+    mockGetOrGenerateEnrichment.mockClear();
+    mockGetCachedEnrichment.mockImplementation(async ({ topic }) => (topic === 'saved-topic'
+      ? { structured_content: { whatYoullLearn: ['w'], blocks: [{ type: 'table' }] }, content_type: 'theory' }
+      : null));
+
+    const saved = await get('saved-topic');
+    const fresh = await get('brand-new-topic');
+    expect(mockGetOrGenerateEnrichment).not.toHaveBeenCalled();
+    expect(saved.body.resources[0].payload.blocks).toEqual([{ type: 'table' }]);
+    expect(fresh.body.resources[0].payload).toEqual({ intro: 'plain text' });
   });
 });

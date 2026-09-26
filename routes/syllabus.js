@@ -179,6 +179,57 @@ router.get('/topic/:topicId/resources', async (req, res) => {
 // curated syllabusRegistry.ts entry (which currently only covers Grade 6) —
 // this lets a real topic like "Ability Beyond Disability" (Grade 9 English,
 // Qdrant-only) reach the current Learn/AI Tutor/Ask Aivorah/Practice flow.
+// The rich lesson is built by a free-tier LLM. When that is rate-limited a call can wait for minutes, which left
+// the Learn tab on a spinner. So: (1) only the first opener of a topic waits, briefly, while one shared generation
+// finishes in the background and caches; (2) after repeated failures the LLM is treated as down for a few minutes
+// and only already-saved rich lessons are served; (3) a failed topic backs off so quota isn't burned.
+const ENRICH_WAIT_MS = Number(process.env.ENRICH_WAIT_MS) || 5000;
+const ENRICH_RETRY_AFTER_MS = 5 * 60 * 1000;
+const LLM_DOWN_MS = 3 * 60 * 1000;
+const LLM_STRIKES_TO_TRIP = 3;
+const enrichInflight = new Map();
+const enrichFailedAt = new Map();
+let llmStrikes = 0;
+let llmDownUntil = 0;
+
+const strike = () => {
+  llmStrikes += 1;
+  if (llmStrikes >= LLM_STRIKES_TO_TRIP) { llmDownUntil = Date.now() + LLM_DOWN_MS; llmStrikes = 0; }
+};
+
+async function cachedOnly(args) {
+  const { getCachedEnrichment } = require('../services/curriculum/enrichment');
+  if (typeof getCachedEnrichment !== 'function') return null;
+  const row = await getCachedEnrichment(args);
+  return row ? { whatYoullLearn: row.structured_content?.whatYoullLearn || [], blocks: row.structured_content?.blocks || [], contentType: row.content_type } : null;
+}
+
+function enrichWithinBudget(key, args, generate) {
+  if (Date.now() < llmDownUntil) return cachedOnly(args).catch(() => null);
+  const failedAt = enrichFailedAt.get(key);
+  if (failedAt && Date.now() - failedAt < ENRICH_RETRY_AFTER_MS) return cachedOnly(args).catch(() => null);
+
+  let entry = enrichInflight.get(key);
+  if (entry && entry.timedOut) return Promise.resolve(null); // still generating for an earlier opener: don't make this student wait too
+  if (!entry) {
+    entry = { timedOut: false };
+    entry.promise = Promise.resolve()
+      .then(generate)
+      .then(
+        (r) => { if (r) { llmStrikes = 0; enrichFailedAt.delete(key); } else { enrichFailedAt.set(key, Date.now()); strike(); } return r; },
+        (e) => { enrichFailedAt.set(key, Date.now()); strike(); throw e; },
+      )
+      .finally(() => enrichInflight.delete(key));
+    enrichInflight.set(key, entry);
+    entry.promise.catch(() => {});
+  }
+  let timer;
+  const timeout = new Promise((resolve) => { timer = setTimeout(() => { entry.timedOut = true; strike(); resolve(null); }, ENRICH_WAIT_MS); });
+  return Promise.race([entry.promise, timeout]).finally(() => clearTimeout(timer));
+}
+
+router.__resetEnrichState = () => { enrichInflight.clear(); enrichFailedAt.clear(); llmStrikes = 0; llmDownUntil = 0; };
+
 router.get('/topic-by-name/resources', async (req, res) => {
   try {
     const { curriculum, grade, subject, topic } = req.query;
@@ -199,7 +250,12 @@ router.get('/topic-by-name/resources', async (req, res) => {
     if (explanation && explanation.status === 'READY') {
       try {
         const { getOrGenerateEnrichment } = require('../services/curriculum/enrichment');
-        const enriched = await getOrGenerateEnrichment({ curriculum, grade, subject, topic });
+        const enrichArgs = { curriculum, grade, subject, topic };
+        const enriched = await enrichWithinBudget(
+          `${curriculum}|${grade}|${subject}|${topic}`,
+          enrichArgs,
+          () => getOrGenerateEnrichment(enrichArgs),
+        );
         if (enriched) {
           explanation.payload = {
             ...explanation.payload,
