@@ -201,7 +201,7 @@ async function cachedOnly(args) {
   const { getCachedEnrichment } = require('../services/curriculum/enrichment');
   if (typeof getCachedEnrichment !== 'function') return null;
   const row = await getCachedEnrichment(args);
-  return row ? { whatYoullLearn: row.structured_content?.whatYoullLearn || [], blocks: row.structured_content?.blocks || [], contentType: row.content_type, pdfPage: row.structured_content?.pdfPage } : null;
+  return row ? { whatYoullLearn: row.structured_content?.whatYoullLearn || [], blocks: row.structured_content?.blocks || [], contentType: row.content_type, pdfPage: row.structured_content?.pdfPage, listenScript: row.structured_content?.listenScript } : null;
 }
 
 function enrichWithinBudget(key, args, generate) {
@@ -264,6 +264,8 @@ router.get('/topic-by-name/resources', async (req, res) => {
             contentType: enriched.contentType,
             // Page the book viewer should open at (the app reads payload.pdfPage; defaults to page 1 when absent).
             ...(enriched.pdfPage ? { pdfPage: enriched.pdfPage } : {}),
+            // Spoken narration for the Listen tab: [{ card, heading, text }] (card = index of the visual card it explains, or null).
+            ...(Array.isArray(enriched.listenScript) && enriched.listenScript.length ? { listenScript: enriched.listenScript } : {}),
           };
         }
       } catch (enrichErr) {

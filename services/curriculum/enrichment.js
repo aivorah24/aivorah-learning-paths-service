@@ -336,6 +336,7 @@ async function getOrGenerateEnrichment({ curriculum, grade, subject, topic }) {
       blocks: cached.structured_content?.blocks || [],
       contentType: cached.content_type,
       pdfPage: cached.structured_content?.pdfPage,
+      listenScript: cached.structured_content?.listenScript,
       cached: true,
     };
   }
