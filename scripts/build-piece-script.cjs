@@ -108,24 +108,79 @@ function verify(script, pages) {
   return { kept, dropped };
 }
 
+
+// Pulls the largest full-colour illustrations from the piece's pages and uploads them to Cloudinary.
+async function bookImages(max) {
+  if (!max) return [];
+  const file = path.join(process.env.NCERT_CHAPTER_CACHE || os.tmpdir(), PDF);
+  const list = spawnSync('pdfimages', ['-list', '-f', String(FROM), '-l', String(TO), file], { encoding: 'utf8', maxBuffer: 1 << 26 }).stdout || '';
+  const perPage = {};
+  for (const ln of list.split('\n').slice(2)) {
+    const c = ln.trim().split(/\s+/);
+    if (c.length < 10) continue;
+    const page = Number(c[0]);
+    (perPage[page] ||= []).push({ type: c[2], w: Number(c[3]), h: Number(c[4]), color: c[5] });
+  }
+  const picks = [];
+  for (const [page, rows] of Object.entries(perPage)) {
+    rows.forEach((r, idx) => {
+      if (r.type === 'image' && /rgb|cmyk/.test(r.color) && r.w >= 600 && r.h >= 350) picks.push({ page: Number(page), idx, area: r.w * r.h });
+    });
+  }
+  picks.sort((a, b) => b.area - a.area);
+  const chosen = picks.slice(0, max).sort((a, b) => a.page - b.page);
+  if (!chosen.length) return [];
+  const cloudinary = require('cloudinary').v2;
+  cloudinary.config({ cloud_name: process.env.CLOUDINARY_CLOUD_NAME, api_key: process.env.CLOUDINARY_API_KEY, api_secret: process.env.CLOUDINARY_API_SECRET });
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'bookimg-'));
+  const out = [];
+  for (const c of chosen) {
+    spawnSync('pdfimages', ['-png', '-f', String(c.page), '-l', String(c.page), file, path.join(tmp, `p${c.page}`)]);
+    const png = path.join(tmp, `p${c.page}-${String(c.idx).padStart(3, '0')}.png`);
+    if (!fs.existsSync(png)) continue;
+    const up = await cloudinary.uploader.upload(png, { public_id: `aivorah/book-images/${PDF.replace('.pdf', '')}-p${c.page}-${c.idx}`, overwrite: true });
+    out.push({ type: 'image', url: up.secure_url.replace('/upload/', '/upload/f_auto,q_auto,w_1000/'), caption: `Illustration from the book, page ${c.page}.` });
+  }
+  return out;
+}
+
 async function main() {
   const pages = pageTexts();
   const chars = Object.values(pages).join('').length;
   console.log(`read pages ${FROM}-${TO}: ${chars} chars`);
-  let prompt = buildPrompt(pages);
-  let script; let report;
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    const { model, text } = await gemini(prompt);
-    let parsed;
-    try { parsed = JSON.parse(text); } catch { prompt += '\n\nYour last answer was not valid JSON. Output ONLY the JSON object.'; continue; }
-    report = verify(parsed, pages);
-    console.log(`${model}: kept ${report.kept} verbatim lines, dropped ${report.dropped.length}`);
-    script = parsed;
-    if (report.dropped.length <= Math.max(2, report.kept * 0.05)) break;
-    prompt += `\n\nThese items were NOT word-for-word in the page text and were removed: ${JSON.stringify(report.dropped.slice(0, 8))}. Redo the whole JSON copying exactly.`;
+  // Long pieces time out or come back cut short in one call, so work a few pages at a time.
+  const CHUNK = Number(arg('--chunk') || 4);
+  const nums = Object.keys(pages).map(Number).sort((x, y) => x - y);
+  const script = { intro: [], scenes: [], outro: [] };
+  let keptChars = 0;
+  for (let i = 0; i < nums.length; i += CHUNK) {
+    const part = Object.fromEntries(nums.slice(i, i + CHUNK).map((n) => [n, pages[n]]));
+    const first = i === 0;
+    const last = i + CHUNK >= nums.length;
+    let prompt = buildPrompt(part);
+    if (!first) prompt += '\n\nThis is a LATER part of the piece: return "intro": [] and do not re-introduce it.';
+    if (!last) prompt += '\n\nThis is NOT the end of the piece: return "outro": [].';
+    let best = null;
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const { model, text } = await gemini(prompt);
+      let parsed;
+      try { parsed = JSON.parse(text); } catch { prompt += '\n\nYour last answer was not valid JSON. Output ONLY the JSON object.'; continue; }
+      const report = verify(parsed, part);
+      console.log(`pages ${nums[i]}-${nums[Math.min(i + CHUNK, nums.length) - 1]} ${model}: kept ${report.kept}, dropped ${report.dropped.length}`);
+      best = parsed;
+      if (report.dropped.length <= Math.max(2, report.kept * 0.05)) break;
+      prompt += `\n\nThese items were NOT word-for-word in the page text and were removed: ${JSON.stringify(report.dropped.slice(0, 8))}. Redo the whole JSON copying exactly.`;
+    }
+    if (!best) throw new Error(`no valid script for pages from ${nums[i]}`);
+    if (first) script.intro = best.intro || [];
+    if (last) script.outro = best.outro || [];
+    script.scenes.push(...(best.scenes || []));
+    keptChars += (best.scenes || []).reduce((acc, sc) => acc + sc.lines.reduce((x, l) => x + norm(l.text).length, 0), 0);
   }
-  if (!script) throw new Error('no valid script');
-  if (report.dropped.length) console.log('dropped:', report.dropped.slice(0, 5));
+  // Share of the pages' text that is read aloud; margins, glossary and exercises are left out, so ~40-70% is normal.
+  const coverage = keptChars / Math.max(1, norm(Object.values(pages).join(' ')).length);
+  console.log(`coverage: ${Math.round(coverage * 100)}% of page text`);
+  if (coverage < Number(arg('--min-coverage') || 0.25)) throw new Error(`coverage too low (${Math.round(coverage * 100)}%): script is missing book text`);
 
   const listenScript = [];
   const mk = (heading, lines) => ({ card: null, heading, text: lines.map((l) => l.text).join(' '), lines });
@@ -145,7 +200,12 @@ async function main() {
   const key = { curriculum: 'CBSE', grade: GRADE, subject: SUBJECT, topic: TOPIC };
   const { data, error } = await supabase.from('topic_ai_enrichment').select('structured_content').match(key).single();
   if (error) throw new Error(`no lesson row for "${TOPIC}" (run enrich-one-topic first): ${error.message}`);
-  const sc = { ...data.structured_content, listenScript, pdfPage: FROM };
+  const images = await bookImages(Number(arg('--images') ?? 2));
+  const oldBlocks = (data.structured_content.blocks || []).filter((b) => !(b.type === 'image' && /\/book-images\//.test(b.url || '')));
+  const at = oldBlocks.findIndex((b) => b.type === 'overview') + 1;
+  const blocks = [...oldBlocks.slice(0, at), ...images, ...oldBlocks.slice(at)];
+  console.log(`textbook pictures added: ${images.length}`);
+  const sc = { ...data.structured_content, blocks, listenScript, pdfPage: FROM };
   const { error: e2 } = await supabase.from('topic_ai_enrichment').update({ structured_content: sc, updated_at: new Date().toISOString() }).match(key);
   if (e2) throw new Error(e2.message);
   console.log('SAVED listenScript to', TOPIC);
