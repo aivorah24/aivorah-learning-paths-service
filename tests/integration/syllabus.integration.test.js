@@ -525,6 +525,20 @@ describe('topic-by-name enrichment time budget', () => {
     expect(res.body.resources[0].payload.blocks).toEqual([{ type: 'table' }]);
   });
 
+  test('a saved lesson with a target book page passes pdfPage through so the viewer opens there', async () => {
+    mockGetOrGenerateEnrichment.mockResolvedValue({ whatYoullLearn: ['a'], blocks: [{ type: 'table' }], contentType: 'theory', pdfPage: 35 });
+
+    const res = await get('paged-topic');
+    expect(res.body.resources[0].payload.pdfPage).toBe(35);
+  });
+
+  test('no pdfPage in the saved lesson leaves the payload without one (viewer falls back to page 1)', async () => {
+    mockGetOrGenerateEnrichment.mockResolvedValue({ whatYoullLearn: ['a'], blocks: [{ type: 'table' }], contentType: 'theory' });
+
+    const res = await get('unpaged-topic');
+    expect('pdfPage' in res.body.resources[0].payload).toBe(false);
+  });
+
   test('after 3 failures in a row the AI is skipped for other topics, but already-saved rich lessons still show', async () => {
     mockGetOrGenerateEnrichment.mockResolvedValue(null);
     await get('t1'); await get('t2'); await get('t3'); // trips the breaker
