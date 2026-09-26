@@ -1,0 +1,124 @@
+{
+  "grade": 8,
+  "subject": "English",
+  "book": "Poorvi",
+  "pieces": [
+    {
+      "pdf": "hepr101.pdf",
+      "pages": "2-16",
+      "type": "story",
+      "unit": "Unit 1, Wit and Wisdom",
+      "title": "The Wit that Won Hearts",
+      "topic": "Witty Characters in Stories: Perspectives",
+      "keywords": "Tenali,Ramakrishna,Krishnadeva,king,wit"
+    },
+    {
+      "pdf": "hepr101.pdf",
+      "pages": "18-18",
+      "type": "poem",
+      "unit": "Unit 1, Wit and Wisdom",
+      "title": "A Concrete Example",
+      "topic": "The Poem's Portrayal of Mrs. Jones in a Positive Light",
+      "keywords": "Jones,garden,stones,neighbour"
+    },
+    {
+      "pdf": "hepr102.pdf",
+      "pages": "23-24",
+      "type": "poem",
+      "unit": "Unit 2, Values and Dispositions",
+      "title": "Somebody's Mother",
+      "topic": "The Importance of Helping Others",
+      "keywords": "woman,boy,crossing,street,snow"
+    },
+    {
+      "pdf": "hepr102.pdf",
+      "pages": "35-52",
+      "type": "essay",
+      "unit": "Unit 2, Values and Dispositions",
+      "title": "Verghese Kurien - I Too Had A Dream",
+      "topic": "Instant vs. Written Communication",
+      "keywords": "letter,grandson,writing,telephone,Kurien"
+    },
+    {
+      "pdf": "hepr103.pdf",
+      "pages": "2-21",
+      "type": "story",
+      "unit": "Unit 3, Mystery and Magic",
+      "title": "The Case of the Fifth Word",
+      "topic": "The Role of Detectives",
+      "keywords": "Encyclopedia,Brown,Idaville,Nolan,clue"
+    },
+    {
+      "pdf": "hepr103.pdf",
+      "pages": "23-26",
+      "type": "poem",
+      "unit": "Unit 3, Mystery and Magic",
+      "title": "The Magic Brush of Dreams",
+      "topic": "Gopi's Magic Brush",
+      "keywords": "Gopi,brush,banyan,pictures"
+    },
+    {
+      "pdf": "hepr103.pdf",
+      "pages": "38-54",
+      "type": "essay",
+      "unit": "Unit 3, Mystery and Magic",
+      "title": "Spectacular Wonders",
+      "topic": "Natural Phenomena",
+      "keywords": "Valley,Flowers,Lonar,root,bridges,wonders"
+    },
+    {
+      "pdf": "hepr104.pdf",
+      "pages": "2-18",
+      "type": "story",
+      "unit": "Unit 4, Environment",
+      "title": "The Cherry Tree",
+      "topic": "Cherry Tree's Toughness",
+      "keywords": "Rakesh,cherry,grandfather,tree,Mussoorie"
+    },
+    {
+      "pdf": "hepr104.pdf",
+      "pages": "20-21",
+      "type": "poem",
+      "unit": "Unit 4, Environment",
+      "title": "Harvest Hymn",
+      "topic": "Hymn Structure",
+      "keywords": "hymn,harvest,Surya,lord,bounty"
+    },
+    {
+      "pdf": "hepr104.pdf",
+      "pages": "32-50",
+      "type": "story",
+      "unit": "Unit 4, Environment",
+      "title": "Waiting for the Rain",
+      "topic": "Waiting for Rain",
+      "keywords": "Velu,rain,farmer,sky,clouds"
+    },
+    {
+      "pdf": "hepr105.pdf",
+      "pages": "2-17",
+      "type": "story",
+      "unit": "Unit 5, Science and Curiosity",
+      "title": "Feathered Friend",
+      "topic": "Claribel's Role in Air Quality Monitoring",
+      "keywords": "Sven,Claribel,canary,station,air"
+    },
+    {
+      "pdf": "hepr105.pdf",
+      "pages": "18-19",
+      "type": "poem",
+      "unit": "Unit 5, Science and Curiosity",
+      "title": "Magnifying Glass",
+      "topic": "Poet's Attitude Towards the Magnifying Glass",
+      "keywords": "glass,spider,lenses,marvellous"
+    },
+    {
+      "pdf": "hepr105.pdf",
+      "pages": "30-48",
+      "type": "essay",
+      "unit": "Unit 5, Science and Curiosity",
+      "title": "Bibha Chowdhuri",
+      "topic": "Bibha Chowdhuri's Pioneering Role",
+      "keywords": "Bibha,Chowdhuri,physicist,cosmic,women"
+    }
+  ]
+}
