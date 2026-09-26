@@ -179,6 +179,32 @@ router.get('/topic/:topicId/resources', async (req, res) => {
 // curated syllabusRegistry.ts entry (which currently only covers Grade 6) —
 // this lets a real topic like "Ability Beyond Disability" (Grade 9 English,
 // Qdrant-only) reach the current Learn/AI Tutor/Ask Aivorah/Practice flow.
+// The rich lesson is built by a free-tier LLM. When that is rate-limited the call can wait for
+// minutes, which left the Learn tab on a spinner. Wait a bounded time, let one generation per topic
+// finish in the background (it caches on success), and back off after a failure so quota isn't burned.
+const ENRICH_WAIT_MS = Number(process.env.ENRICH_WAIT_MS) || 8000;
+const ENRICH_RETRY_AFTER_MS = 5 * 60 * 1000;
+const enrichInflight = new Map();
+const enrichFailedAt = new Map();
+
+function enrichWithinBudget(key, generate) {
+  const failedAt = enrichFailedAt.get(key);
+  if (failedAt && Date.now() - failedAt < ENRICH_RETRY_AFTER_MS) return Promise.resolve(null);
+  let p = enrichInflight.get(key);
+  if (!p) {
+    p = Promise.resolve()
+      .then(generate)
+      .then(
+        (r) => { if (!r) enrichFailedAt.set(key, Date.now()); return r; },
+        (e) => { enrichFailedAt.set(key, Date.now()); throw e; },
+      )
+      .finally(() => enrichInflight.delete(key));
+    enrichInflight.set(key, p);
+    p.catch(() => {});
+  }
+  return Promise.race([p, new Promise((resolve) => setTimeout(() => resolve(null), ENRICH_WAIT_MS))]);
+}
+
 router.get('/topic-by-name/resources', async (req, res) => {
   try {
     const { curriculum, grade, subject, topic } = req.query;
@@ -199,7 +225,10 @@ router.get('/topic-by-name/resources', async (req, res) => {
     if (explanation && explanation.status === 'READY') {
       try {
         const { getOrGenerateEnrichment } = require('../services/curriculum/enrichment');
-        const enriched = await getOrGenerateEnrichment({ curriculum, grade, subject, topic });
+        const enriched = await enrichWithinBudget(
+          `${curriculum}|${grade}|${subject}|${topic}`,
+          () => getOrGenerateEnrichment({ curriculum, grade, subject, topic }),
+        );
         if (enriched) {
           explanation.payload = {
             ...explanation.payload,
