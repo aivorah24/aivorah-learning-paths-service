@@ -201,7 +201,7 @@ async function cachedOnly(args) {
   const { getCachedEnrichment } = require('../services/curriculum/enrichment');
   if (typeof getCachedEnrichment !== 'function') return null;
   const row = await getCachedEnrichment(args);
-  return row ? { whatYoullLearn: row.structured_content?.whatYoullLearn || [], blocks: row.structured_content?.blocks || [], contentType: row.content_type, pdfPage: row.structured_content?.pdfPage, listenScript: row.structured_content?.listenScript } : null;
+  return row ? { whatYoullLearn: row.structured_content?.whatYoullLearn || [], blocks: row.structured_content?.blocks || [], contentType: row.content_type, pdfPage: row.structured_content?.pdfPage, listenScript: row.structured_content?.listenScript, mathTutor: row.structured_content?.mathTutor } : null;
 }
 
 function enrichWithinBudget(key, args, generate) {
@@ -266,10 +266,25 @@ router.get('/topic-by-name/resources', async (req, res) => {
             ...(enriched.pdfPage ? { pdfPage: enriched.pdfPage } : {}),
             // Spoken narration for the Listen tab: [{ card, heading, text }] (card = index of the visual card it explains, or null).
             ...(Array.isArray(enriched.listenScript) && enriched.listenScript.length ? { listenScript: enriched.listenScript } : {}),
+            ...(Array.isArray(enriched.mathTutor?.examples) && enriched.mathTutor.examples.length ? { mathTutor: enriched.mathTutor } : {}),
           };
         }
       } catch (enrichErr) {
         console.error('[syllabus/topic-by-name/resources] enrichment error:', enrichErr.message);
+      }
+    }
+
+    // Maths AI Tutor: a topic without its own tutor gets its unit's best-matching section tutor.
+    if (explanation && explanation.payload && /math/i.test(subject) && !explanation.payload.mathTutor) {
+      try {
+        const { mathTutorForTopic } = require('../services/curriculum/mathTutorSections');
+        const tutor = await mathTutorForTopic(explanation.payload.pdfFile, topic);
+        if (tutor && Array.isArray(tutor.examples) && tutor.examples.length) {
+          const { pdfPage, ...mathTutor } = tutor;
+          explanation.payload = { ...explanation.payload, mathTutor, ...(explanation.payload.pdfPage ? {} : { pdfPage }) };
+        }
+      } catch (tutorErr) {
+        console.error('[syllabus/topic-by-name/resources] math tutor error:', tutorErr.message);
       }
     }
 
