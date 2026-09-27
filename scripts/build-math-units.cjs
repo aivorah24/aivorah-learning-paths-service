@@ -9,6 +9,7 @@ const os = require('os');
 const path = require('path');
 const { spawnSync } = require('child_process');
 const dotenv = require('dotenv');
+const { parseJsonLoose } = require('./lib/jsonRepair.cjs');
 const { arithmeticError, grounded } = require('./build-math-tutor.cjs');
 
 const arg = (n) => { const i = process.argv.indexOf(n); return i > -1 ? process.argv[i + 1] : null; };
@@ -78,6 +79,16 @@ const prompt = (u, pages) => `You are a friendly Maths AI Tutor. The attached PD
 5. Each example: "answer" (short), "why" (one sentence on the idea behind the method), "hint" (helps without giving the answer), "yourTurn": {"question": a similar question - from the book if possible - with ONE definite answer (never just yes/no), "answer": the answer with a one-line working}.
 Use only this book. Output ONLY JSON:
 {"sections":[{"title":"1.1 ...","from":1,"to":5,"keyIdea":"...","intro":"...","examples":[{"title":"...","problem":"...","page":2,"steps":[{"say":"...","show":"..."}],"answer":"...","why":"...","hint":"...","yourTurn":{"question":"...","answer":"..."}}]}]}`;
+
+// Gemini occasionally returns cut-off or malformed JSON for a long unit; ask again (up to 3 tries) before failing.
+async function parseWithRetry(pdfB64, text) {
+  let last;
+  for (let i = 0; i < 3; i += 1) {
+    const r = await gemini(pdfB64, text);
+    try { return { ...r, parsed: parseJsonLoose(r.text) }; } catch (e) { last = e; }
+  }
+  throw last;
+}
 
 async function gemini(pdfB64, text) {
   let lastErr = '';
@@ -172,8 +183,7 @@ async function save(u, result, model) {
     try {
       const b64 = fs.readFileSync(p).toString('base64');
       if (b64.length > 19e6) { console.log(`G${u.grade} ${u.pdf}: skipped (PDF too large for one call)`); continue; }
-      const { model, key, text: out } = await gemini(b64, prompt(u, pages));
-      const parsed = JSON.parse(out);
+      const { model, key, parsed } = await parseWithRetry(b64, prompt(u, pages));
       const result = check(u, parsed, text, pages);
       const exCount = result.sections.reduce((a, s) => a + s.tutor.examples.length, 0);
       const rec = { ...u, model, sections: result.sections, notes: result.notes, saved: false };
