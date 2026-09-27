@@ -45,6 +45,11 @@ jest.mock('../../services/curriculum/mathTutorSections', () => ({
   mathTutorForTopic: (...args) => mockMathTutorForTopic(...args),
 }));
 
+const mockUnitContentForTopic = jest.fn();
+jest.mock('../../services/curriculum/unitContentSections', () => ({
+  unitContentForTopic: (...args) => mockUnitContentForTopic(...args),
+}));
+
 const express = require('express');
 const request = require('supertest');
 const supabase = require('../../services/supabase');
@@ -59,6 +64,7 @@ beforeEach(() => {
   mockChaptersFor.mockReturnValue([]); // no book-chapter map by default, so `live` chapters pass through as-is
   mockTopicsByPdfFile.mockResolvedValue(new Map()); // no Qdrant content by default
   mockMathTutorForTopic.mockResolvedValue(null);
+  mockUnitContentForTopic.mockResolvedValue(null);
 });
 
 describe('GET /teacher/syllabus/current', () => {
@@ -567,6 +573,36 @@ describe('topic-by-name enrichment time budget', () => {
     expect(mockMathTutorForTopic).toHaveBeenCalledWith('hegp101.pdf', 'Square Roots');
     expect(res.body.resources[0].payload.mathTutor).toEqual({ intro: 'We learn square roots.', examples, section: '1.1 Square Numbers' });
     expect(res.body.resources[0].payload.pdfPage).toBe(3);
+  });
+
+  test('a non-Maths topic with pre-built section content gets Learn, Listen and a quiz without waiting on a live LLM', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValue([{ resourceType: 'AI_EXPLANATION', status: 'READY', payload: { intro: 'i', body: [], pdfFile: 'hhbk101.pdf' } }]);
+    mockGetCachedEnrichment.mockResolvedValue(null);
+    const learn = { whatYoullLearn: ['a'], blocks: [{ type: 'overview', text: 'x' }] };
+    const listen = [{ card: null, heading: 'h', text: 't', lines: [{ speaker: 'Narrator', text: 't', page: 1 }] }];
+    const quiz = [{ question: 'q', options: ['a', 'b', 'c', 'd'], correctIndex: 0 }];
+    mockUnitContentForTopic.mockResolvedValue({ section: 'S', pdfPage: 2, lang: 'hi', learn, listen, quiz });
+
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({ curriculum: 'CBSE', grade: 'Grade 8', subject: 'Hindi', topic: 'Fort' });
+    const p = res.body.resources[0].payload;
+    expect(mockGetOrGenerateEnrichment).not.toHaveBeenCalled();
+    expect(p.blocks).toEqual(learn.blocks);
+    expect(p.listenScript).toEqual(listen);
+    expect(p.practiceQuiz).toEqual(quiz);
+    expect(p).toMatchObject({ pdfPage: 2, lang: 'hi', section: 'S' });
+  });
+
+  test('a saved topic lesson keeps priority over section content', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValue([{ resourceType: 'AI_EXPLANATION', status: 'READY', payload: { intro: 'i', body: [], pdfFile: 'hepr101.pdf' } }]);
+    const own = [{ card: null, heading: 'Scene I', text: 'play' }];
+    mockGetCachedEnrichment.mockResolvedValue({ whatYoullLearn: ['mine'], blocks: [{ type: 'table' }], contentType: 'theory', listenScript: own });
+    mockUnitContentForTopic.mockResolvedValue({ section: 'S', pdfPage: 2, lang: 'en', learn: { whatYoullLearn: ['x'], blocks: [{ type: 'overview', text: 'x' }] }, listen: [{ heading: 'other' }], quiz: [] });
+
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({ curriculum: 'CBSE', grade: 'Grade 8', subject: 'English', topic: 'Camel' });
+    const p = res.body.resources[0].payload;
+    expect(p.blocks).toEqual([{ type: 'table' }]);
+    expect(p.listenScript).toEqual(own);
+    expect('practiceQuiz' in p).toBe(false);
   });
 
   test('non-Maths topics never look up a section tutor', async () => {

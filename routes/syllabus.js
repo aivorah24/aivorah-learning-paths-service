@@ -247,15 +247,30 @@ router.get('/topic-by-name/resources', async (req, res) => {
     // hiccup) leaves the existing raw intro/body pass-through exactly as it
     // was before this pilot — the Learn tab never breaks or goes blank.
     const explanation = resources.find((r) => r.resourceType === 'AI_EXPLANATION');
+
+    // Section content built ahead of time (Learn, Listen with visuals, quiz) for non-Maths units. When it exists the
+    // lesson never waits on a live LLM: only an already-saved topic lesson may take priority over it.
+    let unitContent = null;
+    if (explanation?.payload?.pdfFile && !/math/i.test(subject)) {
+      try {
+        const { unitContentForTopic } = require('../services/curriculum/unitContentSections');
+        unitContent = await unitContentForTopic(explanation.payload.pdfFile, topic);
+      } catch (e) {
+        console.error('[syllabus/topic-by-name/resources] unit content error:', e.message);
+      }
+    }
+
     if (explanation && explanation.status === 'READY') {
       try {
-        const { getOrGenerateEnrichment } = require('../services/curriculum/enrichment');
+        const { getOrGenerateEnrichment, getCachedEnrichment } = require('../services/curriculum/enrichment');
         const enrichArgs = { curriculum, grade, subject, topic };
-        const enriched = await enrichWithinBudget(
-          `${curriculum}|${grade}|${subject}|${topic}`,
-          enrichArgs,
-          () => getOrGenerateEnrichment(enrichArgs),
-        );
+        const enriched = unitContent
+          ? await getCachedEnrichment(enrichArgs)
+          : await enrichWithinBudget(
+            `${curriculum}|${grade}|${subject}|${topic}`,
+            enrichArgs,
+            () => getOrGenerateEnrichment(enrichArgs),
+          );
         if (enriched) {
           explanation.payload = {
             ...explanation.payload,
@@ -272,6 +287,20 @@ router.get('/topic-by-name/resources', async (req, res) => {
       } catch (enrichErr) {
         console.error('[syllabus/topic-by-name/resources] enrichment error:', enrichErr.message);
       }
+    }
+
+    if (explanation && explanation.payload && unitContent) {
+      const p = explanation.payload;
+      explanation.payload = {
+        ...p,
+        ...(!(Array.isArray(p.blocks) && p.blocks.length) && unitContent.learn?.blocks?.length
+          ? { whatYoullLearn: unitContent.learn.whatYoullLearn, blocks: unitContent.learn.blocks } : {}),
+        ...(!(Array.isArray(p.listenScript) && p.listenScript.length) && unitContent.listen.length ? { listenScript: unitContent.listen } : {}),
+        ...(unitContent.quiz.length ? { practiceQuiz: unitContent.quiz } : {}),
+        ...(p.pdfPage ? {} : { pdfPage: unitContent.pdfPage }),
+        section: unitContent.section,
+        lang: unitContent.lang,
+      };
     }
 
     // Maths AI Tutor: a topic without its own tutor gets its unit's best-matching section tutor.
