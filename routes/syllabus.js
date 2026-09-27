@@ -153,6 +153,26 @@ router.get('/current', async (req, res) => {
     console.error('[syllabus/current] syllabus map unavailable:', e.message);
   }
 
+  // A unit whose sections have been built from the book shows those real sections as its topics, and a placeholder
+  // "Chapter N" name gives way to the book's first section title.
+  try {
+    const { sectionsByPdf } = require('../services/curriculum/bookSections');
+    const bySection = await sectionsByPdf(subject, units.map((u) => u.pdfFile).filter(Boolean));
+    units = units.map((u) => {
+      const secs = bySection.get(String(u.pdfFile || '').toLowerCase());
+      if (!secs || !secs.length) return u;
+      const placeholder = /^chapter\s*\d+$/i.test(String(u.title || '').trim());
+      return {
+        ...u,
+        ...(placeholder ? { title: secs[0].title } : {}),
+        topics: secs.map((x) => ({ name: x.title, kind: 'section', page: x.page })),
+        pending: false,
+      };
+    });
+  } catch (e) {
+    console.error('[syllabus/current] book sections unavailable:', e.message);
+  }
+
   res.json({ units });
 });
 
@@ -201,7 +221,7 @@ async function cachedOnly(args) {
   const { getCachedEnrichment } = require('../services/curriculum/enrichment');
   if (typeof getCachedEnrichment !== 'function') return null;
   const row = await getCachedEnrichment(args);
-  return row ? { whatYoullLearn: row.structured_content?.whatYoullLearn || [], blocks: row.structured_content?.blocks || [], contentType: row.content_type } : null;
+  return row ? { whatYoullLearn: row.structured_content?.whatYoullLearn || [], blocks: row.structured_content?.blocks || [], contentType: row.content_type, pdfPage: row.structured_content?.pdfPage, listenScript: row.structured_content?.listenScript, mathTutor: row.structured_content?.mathTutor } : null;
 }
 
 function enrichWithinBudget(key, args, generate) {
@@ -246,26 +266,103 @@ router.get('/topic-by-name/resources', async (req, res) => {
     // wrapped so any failure (LLM down, Groq quota, bad JSON, Supabase
     // hiccup) leaves the existing raw intro/body pass-through exactly as it
     // was before this pilot — the Learn tab never breaks or goes blank.
-    const explanation = resources.find((r) => r.resourceType === 'AI_EXPLANATION');
+    let explanation = resources.find((r) => r.resourceType === 'AI_EXPLANATION');
+
+    let bookSection = null;
+    try {
+      const { sectionByTitle } = require('../services/curriculum/bookSections');
+      bookSection = await sectionByTitle(grade, subject, topic);
+    } catch (e) {
+      console.error('[syllabus/topic-by-name/resources] book section error:', e.message);
+    }
+    if (bookSection) {
+      const base = { intro: bookSection.learn?.whatYoullLearn?.[0] || bookSection.section, body: [], pdfFile: bookSection.pdfFile };
+      if (!explanation) {
+        explanation = { resourceType: 'AI_EXPLANATION', status: 'READY', payload: base };
+        resources.push(explanation);
+      } else {
+        explanation.status = 'READY';
+        explanation.payload = { ...base, ...(explanation.payload || {}), pdfFile: bookSection.pdfFile };
+      }
+    }
+
+    // Section content built ahead of time (Learn, Listen with visuals, quiz) for non-Maths units. When it exists the
+    // lesson never waits on a live LLM: only an already-saved topic lesson may take priority over it.
+    let unitContent = bookSection && !/math/i.test(subject) ? bookSection : null;
+    if (!unitContent && explanation?.payload?.pdfFile && !/math/i.test(subject)) {
+      try {
+        const { unitContentForTopic } = require('../services/curriculum/unitContentSections');
+        unitContent = await unitContentForTopic(explanation.payload.pdfFile, topic);
+      } catch (e) {
+        console.error('[syllabus/topic-by-name/resources] unit content error:', e.message);
+      }
+    }
+
     if (explanation && explanation.status === 'READY') {
       try {
-        const { getOrGenerateEnrichment } = require('../services/curriculum/enrichment');
+        const { getOrGenerateEnrichment, getCachedEnrichment } = require('../services/curriculum/enrichment');
         const enrichArgs = { curriculum, grade, subject, topic };
-        const enriched = await enrichWithinBudget(
-          `${curriculum}|${grade}|${subject}|${topic}`,
-          enrichArgs,
-          () => getOrGenerateEnrichment(enrichArgs),
-        );
+        const enriched = unitContent || bookSection
+          ? await getCachedEnrichment(enrichArgs)
+          : await enrichWithinBudget(
+            `${curriculum}|${grade}|${subject}|${topic}`,
+            enrichArgs,
+            () => getOrGenerateEnrichment(enrichArgs),
+          );
         if (enriched) {
           explanation.payload = {
             ...explanation.payload,
             whatYoullLearn: enriched.whatYoullLearn,
             blocks: enriched.blocks,
             contentType: enriched.contentType,
+            // Page the book viewer should open at (the app reads payload.pdfPage; defaults to page 1 when absent).
+            ...(enriched.pdfPage ? { pdfPage: enriched.pdfPage } : {}),
+            // Spoken narration for the Listen tab: [{ card, heading, text }] (card = index of the visual card it explains, or null).
+            ...(Array.isArray(enriched.listenScript) && enriched.listenScript.length ? { listenScript: enriched.listenScript } : {}),
+            ...(Array.isArray(enriched.mathTutor?.examples) && enriched.mathTutor.examples.length ? { mathTutor: enriched.mathTutor } : {}),
           };
         }
       } catch (enrichErr) {
         console.error('[syllabus/topic-by-name/resources] enrichment error:', enrichErr.message);
+      }
+    }
+
+    if (explanation && explanation.payload && unitContent) {
+      const p = explanation.payload;
+      explanation.payload = {
+        ...p,
+        ...(!(Array.isArray(p.blocks) && p.blocks.length) && unitContent.learn?.blocks?.length
+          ? { whatYoullLearn: unitContent.learn.whatYoullLearn, blocks: unitContent.learn.blocks } : {}),
+        ...(!(Array.isArray(p.listenScript) && p.listenScript.length) && unitContent.listen.length ? { listenScript: unitContent.listen } : {}),
+        ...(unitContent.quiz.length ? { practiceQuiz: unitContent.quiz } : {}),
+        ...(p.pdfPage ? {} : { pdfPage: unitContent.pdfPage }),
+        section: unitContent.section,
+        lang: unitContent.lang,
+      };
+    }
+
+    if (explanation && explanation.payload && bookSection && /math/i.test(subject)) {
+      const p = explanation.payload;
+      explanation.payload = {
+        ...p,
+        ...(!(Array.isArray(p.blocks) && p.blocks.length) ? { whatYoullLearn: bookSection.learn.whatYoullLearn, blocks: bookSection.learn.blocks } : {}),
+        mathTutor: p.mathTutor || bookSection.mathTutor,
+        pdfPage: p.pdfPage || bookSection.pdfPage,
+        section: bookSection.section,
+      };
+    }
+
+    // Maths AI Tutor: a topic without its own tutor gets its unit's best-matching section tutor.
+    if (explanation && explanation.payload && /math/i.test(subject) && !explanation.payload.mathTutor) {
+      try {
+        const { mathTutorForTopic } = require('../services/curriculum/mathTutorSections');
+        const tutor = await mathTutorForTopic(explanation.payload.pdfFile, topic);
+        if (tutor && Array.isArray(tutor.examples) && tutor.examples.length) {
+          const { pdfPage, ...mathTutor } = tutor;
+          explanation.payload = { ...explanation.payload, mathTutor, ...(explanation.payload.pdfPage ? {} : { pdfPage }) };
+        }
+      } catch (tutorErr) {
+        console.error('[syllabus/topic-by-name/resources] math tutor error:', tutorErr.message);
       }
     }
 

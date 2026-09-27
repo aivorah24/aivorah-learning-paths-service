@@ -3,3 +3,6 @@ node_modules/
 .env.local
 *.log
 coverage/
+
+# generated content output (scripts/build-math-units.cjs)
+out/
