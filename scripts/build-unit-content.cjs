@@ -108,7 +108,11 @@ Output ONLY JSON: {"sections":[{"title":"...","from":1,"to":4,"learn":{...},"lis
 async function parseWithRetry(pdfB64, text) {
   let last;
   for (let i = 0; i < 3; i += 1) {
-    const r = await gemini(pdfB64, text);
+    // A long unit can overflow the reply; retries ask for a shorter one.
+    const ask = i === 0 ? text : `${text}
+
+IMPORTANT: keep the reply short - at most 3 sections, 3 scenes per section, 5 blocks per lesson, short sentences.`;
+    const r = await gemini(pdfB64, ask);
     try { return { ...r, parsed: parseJsonLoose(r.text) }; } catch (e) { last = e; }
   }
   throw last;
