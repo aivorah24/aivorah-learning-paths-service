@@ -40,6 +40,11 @@ jest.mock('../../services/curriculum/enrichment', () => ({
   getCachedEnrichment: (...args) => mockGetCachedEnrichment(...args),
 }));
 
+const mockMathTutorForTopic = jest.fn();
+jest.mock('../../services/curriculum/mathTutorSections', () => ({
+  mathTutorForTopic: (...args) => mockMathTutorForTopic(...args),
+}));
+
 const express = require('express');
 const request = require('supertest');
 const supabase = require('../../services/supabase');
@@ -53,6 +58,7 @@ beforeEach(() => {
   jest.clearAllMocks();
   mockChaptersFor.mockReturnValue([]); // no book-chapter map by default, so `live` chapters pass through as-is
   mockTopicsByPdfFile.mockResolvedValue(new Map()); // no Qdrant content by default
+  mockMathTutorForTopic.mockResolvedValue(null);
 });
 
 describe('GET /teacher/syllabus/current', () => {
@@ -538,6 +544,36 @@ describe('topic-by-name enrichment time budget', () => {
 
     const res = await get('scripted-topic');
     expect(res.body.resources[0].payload.listenScript).toEqual(listenScript);
+  });
+
+  test('a saved Maths AI Tutor is passed through; an empty one is left out', async () => {
+    const mathTutor = { examples: [{ problem: 'Find 7 squared.', steps: [{ say: 'Multiply 7 by 7.', show: '7 x 7 = 49' }], answer: '49' }] };
+    mockGetOrGenerateEnrichment.mockResolvedValue({ whatYoullLearn: ['a'], blocks: [{ type: 'table' }], contentType: 'theory', mathTutor });
+    let res = await get('tutor-topic');
+    expect(res.body.resources[0].payload.mathTutor).toEqual(mathTutor);
+
+    mockGetOrGenerateEnrichment.mockResolvedValue({ whatYoullLearn: ['a'], blocks: [{ type: 'table' }], contentType: 'theory', mathTutor: { examples: [] } });
+    res = await get('no-tutor-topic');
+    expect('mathTutor' in res.body.resources[0].payload).toBe(false);
+  });
+
+  test('a Maths topic without its own tutor gets its unit section tutor, and the book opens at that section', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValue([{ resourceType: 'AI_EXPLANATION', status: 'READY', payload: { intro: 'i', body: [], pdfFile: 'hegp101.pdf' } }]);
+    mockGetOrGenerateEnrichment.mockResolvedValue(null);
+    const examples = [{ problem: 'Consider √81.', steps: [{ say: 'Take away 1.', show: '81 − 1 = 80' }], answer: '9' }];
+    mockMathTutorForTopic.mockResolvedValue({ intro: 'We learn square roots.', examples, section: '1.1 Square Numbers', pdfPage: 3 });
+
+    const res = await request(app).get('/teacher/syllabus/topic-by-name/resources').query({ curriculum: 'CBSE', grade: 'Grade 8', subject: 'Mathematics', topic: 'Square Roots' });
+    expect(mockMathTutorForTopic).toHaveBeenCalledWith('hegp101.pdf', 'Square Roots');
+    expect(res.body.resources[0].payload.mathTutor).toEqual({ intro: 'We learn square roots.', examples, section: '1.1 Square Numbers' });
+    expect(res.body.resources[0].payload.pdfPage).toBe(3);
+  });
+
+  test('non-Maths topics never look up a section tutor', async () => {
+    mockResolveResourcesByTopicName.mockResolvedValue([{ resourceType: 'AI_EXPLANATION', status: 'READY', payload: { intro: 'i', body: [], pdfFile: 'hepr101.pdf' } }]);
+    mockGetOrGenerateEnrichment.mockResolvedValue(null);
+    await request(app).get('/teacher/syllabus/topic-by-name/resources').query({ curriculum: 'CBSE', grade: 'Grade 8', subject: 'English', topic: 'Camel' });
+    expect(mockMathTutorForTopic).not.toHaveBeenCalled();
   });
 
   test('no narration script leaves the payload without one (Listen keeps its existing behaviour)', async () => {
