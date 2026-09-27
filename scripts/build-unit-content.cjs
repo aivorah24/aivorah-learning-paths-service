@@ -39,6 +39,10 @@ let KEYS = loadKeys();
 const restedUntil = {};
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// Core subjects first so the most-used lessons are ready soonest.
+const PRIORITY = ['english', 'hindi', 'science', 'social science', 'the world around us', 'sanskrit', 'urdu', 'physics', 'chemistry', 'biology', 'history', 'geography', 'political science', 'economics'];
+const rank = (s) => { const i = PRIORITY.indexOf(String(s).toLowerCase()); return i === -1 ? PRIORITY.length : i; };
+
 function units() {
   const cat = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'book-catalog.json'), 'utf8'));
   const books = cat.books || cat;
@@ -54,7 +58,7 @@ function units() {
     }
   }
   return out.filter((u) => GRADES.includes(u.grade))
-    .sort((a, b) => GRADES.indexOf(a.grade) - GRADES.indexOf(b.grade) || a.subject.localeCompare(b.subject) || a.code.localeCompare(b.code) || a.unitNo - b.unitNo);
+    .sort((a, b) => GRADES.indexOf(a.grade) - GRADES.indexOf(b.grade) || rank(a.subject) - rank(b.subject) || a.subject.localeCompare(b.subject) || a.code.localeCompare(b.code) || a.unitNo - b.unitNo);
 }
 
 async function pdfFor(u) {
