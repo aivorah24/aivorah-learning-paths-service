@@ -9,6 +9,7 @@ const os = require('os');
 const path = require('path');
 const { spawnSync } = require('child_process');
 const dotenv = require('dotenv');
+const { parseJsonLoose } = require('./lib/jsonRepair.cjs');
 const { arithmeticError, grounded } = require('./build-math-tutor.cjs');
 
 const arg = (n) => { const i = process.argv.indexOf(n); return i > -1 ? process.argv[i + 1] : null; };
@@ -84,7 +85,7 @@ async function parseWithRetry(pdfB64, text) {
   let last;
   for (let i = 0; i < 3; i += 1) {
     const r = await gemini(pdfB64, text);
-    try { return { ...r, parsed: JSON.parse(r.text) }; } catch (e) { last = e; }
+    try { return { ...r, parsed: parseJsonLoose(r.text) }; } catch (e) { last = e; }
   }
   throw last;
 }
