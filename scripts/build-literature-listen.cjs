@@ -98,6 +98,7 @@ For each section:
    | {"kind":"timeline","title":"...","events":[{"when":"...","what":"..."}]} | {"kind":"venn","title":"...","left":{"label":"...","items":["..."]},"right":{"label":"...","items":["..."]},"both":["..."]}
    (labels at most 12 words, same language, only facts from the scene).
 3. "outro": 2-3 spoken lines in your own words: what to remember and one question to think about.
+Inside any text value never use the straight double-quote character; write quotations with “ ” or single quotes instead.
 Output ONLY JSON: {"sections":[{"title":"<one of the section titles above>","intro":[{"speaker":"Narrator","text":"..."}],"scenes":[{"heading":"...","lines":[...],"visual":{...}}],"outro":[...]}]}`;
 
 const norm = (s) => String(s).toLowerCase().replace(/[‘’“”"'`]/g, '').replace(/[–—-]+/g, ' ').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
@@ -142,7 +143,8 @@ const chunkPrompt = (unit, book, from, to, titles) => `The attached PDF is pages
 COPY EXACTLY the COMPLETE main text on these pages, in reading order - every paragraph, poem line and dialogue line. Leave out only exercises/questions, activity boxes, margin glossary and page headers. If these pages hold only exercises, return {"scenes":[]}.
 Split it into scenes of 3-10 lines with a short "heading" you write, and give each scene the "section" title it belongs to (one of the titles above). Each line: {"speaker": character name for dialogue or "Narrator", "text": at most ~45 words copied exactly, "page": page number in the WHOLE unit (the first attached page is page ${from}), "direction": printed stage direction if any}.
 Each scene gets a "visual" explaining it (same kinds as before: flow, web, compare, cause_effect, timeline, venn; labels at most 12 words, same language).
-Language: ${language(unit.subject)}. Output ONLY JSON: {"scenes":[{"section":"...","heading":"...","lines":[...],"visual":{...}}]}`;
+Language: ${language(unit.subject)}. Inside any text value never use the straight double-quote character; write quotations with “ ” or single quotes instead.
+Output ONLY JSON: {"scenes":[{"section":"...","heading":"...","lines":[...],"visual":{...}}]}`;
 
 // Long units: read the pages in windows so the whole book text comes back, then file each scene under its section.
 async function chunkScenes(unit, book, file, pages, titles, english, hay) {
