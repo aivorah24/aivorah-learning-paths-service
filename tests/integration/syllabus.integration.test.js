@@ -48,6 +48,7 @@ jest.mock('../../services/curriculum/mathTutorSections', () => ({
 const mockUnitContentForTopic = jest.fn();
 jest.mock('../../services/curriculum/unitContentSections', () => ({
   unitContentForTopic: (...args) => mockUnitContentForTopic(...args),
+  learnWithVisuals: (learn) => learn,
 }));
 
 const mockSectionsByPdf = jest.fn();

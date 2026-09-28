@@ -39,4 +39,31 @@ async function unitContentForTopic(pdfFile, topic) {
   return { section: row.section_title, pdfPage: row.page_from, lang: row.lang, learn: row.learn, listen: row.listen || [], quiz: row.quiz || [] };
 }
 
-module.exports = { unitContentForTopic, _score: score, _cache: cache };
+// Learn text with visuals placed between it: the book's own pictures and the section's Listen diagrams, one after
+// the overview and then one after every two text blocks (at most 4), so pictures support the text, not replace it.
+function learnWithVisuals(learn, listen) {
+  const blocks = Array.isArray(learn?.blocks) ? learn.blocks : [];
+  const has = (b) => ['image', 'visual', 'visual_representation'].includes(b.type);
+  const visuals = [];
+  for (const sc of Array.isArray(listen) ? listen : []) {
+    const v = sc && sc.visual;
+    if (!v || !v.kind) continue;
+    if (v.kind === 'image' && v.url) visuals.push({ type: 'image', url: v.url, caption: v.caption || v.title || '' });
+    else if (v.kind !== 'image') visuals.push({ type: 'visual', visual: v });
+  }
+  const pool = [...visuals.filter((v) => v.type === 'image'), ...visuals.filter((v) => v.type === 'visual')]
+    .slice(0, Math.max(0, 4 - blocks.filter(has).length));
+  if (!pool.length) return learn;
+  const out = [];
+  let text = 0;
+  for (const b of blocks) {
+    out.push(b);
+    if (has(b)) continue;
+    text += 1;
+    if (pool.length && (text === 1 || text % 2 === 1)) out.push(pool.shift());
+  }
+  out.push(...pool);
+  return { ...learn, blocks: out };
+}
+
+module.exports = { unitContentForTopic, learnWithVisuals, _score: score, _cache: cache };
