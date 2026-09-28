@@ -93,15 +93,15 @@ function parseMatch(raw, topicRefs, sections) {
 
 const MATCH_VOTES = 3;
 
-// Majority vote on the chapter, then the most-picked section inside it (single answers varied a lot by model).
+// Vote on the chapter, then the most-picked section inside it. A null answer abstains (stricter fallback
+// models answered null for nearly everything); the winning chapter needs more than half of the real picks.
 function voteMatches(runs, topicRefs) {
-  const need = Math.floor(runs.length / 2) + 1;
   const winner = (picks) => {
     const chosen = picks.filter(Boolean);
     const byPdf = new Map();
     for (const s of chosen) byPdf.set(s.pdfFile, (byPdf.get(s.pdfFile) || 0) + 1);
     const [pdf, n] = [...byPdf.entries()].sort((a, b) => b[1] - a[1])[0] || [];
-    if (!pdf || n < need) return null;
+    if (!pdf || n * 2 <= chosen.length) return null;
     const counts = new Map();
     for (const s of chosen.filter((x) => x.pdfFile === pdf)) counts.set(s.id, { s, n: (counts.get(s.id)?.n || 0) + 1 });
     return [...counts.values()].sort((a, b) => b.n - a.n || a.s.page - b.s.page)[0].s;

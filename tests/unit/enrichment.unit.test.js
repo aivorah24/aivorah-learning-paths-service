@@ -194,6 +194,21 @@ describe('buildPrompt grade calibration wiring', () => {
   });
 });
 
+describe('buildPrompt syllabus gaps', () => {
+  const base = { curriculum: 'NCERT', grade: '6', subject: 'Mathematics', topic: 'Whole Numbers', primaryText: 'x', contextText: '', contentType: 'mathematics' };
+
+  test('subtopics missing from the book must still be taught, never attributed to the textbook', () => {
+    const prompt = buildPrompt({ ...base, syllabusGaps: ['Successor and predecessor'] });
+    expect(prompt).toContain('SYLLABUS SUBTOPICS NOT IN THE SOURCE TEXT: "Successor and predecessor"');
+    expect(prompt).toMatch(/teach EACH one correctly/);
+    expect(prompt).toMatch(/never attribute these to the textbook/);
+  });
+
+  test('no gaps -> no gap section', () => {
+    expect(buildPrompt(base)).not.toContain('SYLLABUS SUBTOPICS');
+  });
+});
+
 describe('buildPrompt dual-concept and Indian place-value instructions', () => {
   test('always includes the dual/composite concept instruction, regardless of topic title', () => {
     const prompt = buildPrompt({ curriculum: 'NCERT', grade: '6', subject: 'Mathematics', topic: 'Place Value and Face Value', primaryText: 'x', contextText: '', contentType: 'mathematics' });

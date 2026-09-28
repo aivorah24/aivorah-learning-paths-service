@@ -47,14 +47,22 @@ test('majority vote: agreed chapter wins, most-picked section inside it', async 
   expect(match.subtopics.map((s) => s.section?.id || null)).toEqual(['S1', 'S3']);
 });
 
-test('no majority -> null, unknown ids ignored', async () => {
+test('null answers abstain: one real pick still wins over two nulls', async () => {
   mockCallWithFallback
     .mockResolvedValueOnce(answer('S1', ['S99', 'S2']))
     .mockResolvedValueOnce(answer(null, [null, null]))
     .mockResolvedValueOnce(answer(null, [null, null]));
   const match = (await matchTopicsToBook(refs, meta)).get(0);
-  expect(match.topic).toBeNull();
-  expect(match.subtopics.map((s) => s.section)).toEqual([null, null]);
+  expect(match.topic.id).toBe('S1');
+  expect(match.subtopics.map((s) => s.section?.id || null)).toEqual([null, 'S2']);
+});
+
+test('a tie between chapters -> null', async () => {
+  mockCallWithFallback
+    .mockResolvedValueOnce(answer('S1', [null, null]))
+    .mockResolvedValueOnce(answer('S2', [null, null]))
+    .mockResolvedValueOnce(answer(null, [null, null]));
+  expect((await matchTopicsToBook(refs, meta)).get(0).topic).toBeNull();
 });
 
 test('invalid answers every time -> empty map, never throws', async () => {

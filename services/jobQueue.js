@@ -5,8 +5,10 @@ const DRIVER = (process.env.QUEUE_DRIVER || 'db').toLowerCase();
 const TOPIC = process.env.KAFKA_TOPIC || 'uploads';
 
 const handlers = new Map();
+// Optional prefix so a local run never shares job types with the deployed worker polling the same table.
+const JOB_NAMESPACE = process.env.JOB_NAMESPACE || '';
 
-function registerHandler(type, fn) { handlers.set(type, fn); }
+function registerHandler(type, fn) { handlers.set(`${JOB_NAMESPACE}${type}`, fn); }
 
 let _kafka = null, _producer = null, _producerPromise = null;
 function getKafka() {
@@ -37,8 +39,9 @@ async function getProducer() {
   return _producerPromise;
 }
 
-async function publishJob(type, payload = {}) {
+async function publishJob(baseType, payload = {}) {
   const id = crypto.randomUUID();
+  const type = `${JOB_NAMESPACE}${baseType}`;
   const { error } = await supabase.from('upload_jobs').insert({ id, type, payload, status: 'pending' });
   if (error) throw new Error(`[jobQueue] enqueue failed (${error.message})`);
   if (DRIVER === 'kafka') {

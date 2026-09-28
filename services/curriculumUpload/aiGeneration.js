@@ -362,6 +362,7 @@ async function bookTopic(topicRef, metadata, qualityFeedback) {
     chapterPdf: sections[0].pdfFile,
     primaryText: sections.map(sectionSourceText).join('\n\n'),
     contextText: topicRef.sourceContext ? `Teacher's notes: ${topicRef.sourceContext}` : '',
+    syllabusGaps: (topicRef.bookMatch?.subtopics || []).filter((s) => !s.section).map((s) => s.title),
     contentType,
     qualityFeedback,
   });

@@ -327,6 +327,7 @@ describe('generateLearningPathDraft — matched NCERT book sections', () => {
       chapterPdf: 'fegp103.pdf',
       primaryText: expect.stringContaining('Bigger numbers are to the right.'),
       contextText: "Teacher's notes: Covers place value and number lines.",
+      syllabusGaps: ['Addition'],
     }));
     expect(mockRetrieveGroundingContext).not.toHaveBeenCalledWith(expect.objectContaining({ topic: 'Whole Numbers' }));
     expect(topic.groundingSource).toBe('ncert_book');
