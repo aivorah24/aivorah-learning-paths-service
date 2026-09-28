@@ -4,17 +4,17 @@
 // aivorah-db/supabase/migrations/0005_topic_generation_cache.sql — that
 // migration must be applied before this cache is live; until then every
 // read/write below fails silently and generation just runs every time).
+const crypto = require('crypto');
 const supabase = require('../supabase');
 
 // Bump to invalidate every cached entry (prompt/recipe/schema change).
-const PIPELINE_VERSION = 1;
+const PIPELINE_VERSION = 2;
 
 function normalize(s) {
   return String(s || '').trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
-// Deliberately excludes unitTitle — the same topic under a different unit
-// name is still the same content. Subtopics are order-independent.
+// Excludes unitTitle; subtopics are order-independent. Matched book sections and the teacher's own text are part of the key.
 function buildCacheKey(metadata, ref) {
   const subtopicsKey = (ref.subtopics || []).map(normalize).filter(Boolean).sort().join('|');
   return [
@@ -23,6 +23,8 @@ function buildCacheKey(metadata, ref) {
     normalize(metadata?.subject),
     normalize(ref.topicTitle),
     subtopicsKey,
+    (ref.bookSections || []).map((b) => `${b.pdfFile}#${b.title}`).join('|'),
+    ref.sourceContext ? crypto.createHash('sha1').update(ref.sourceContext).digest('hex').slice(0, 12) : '',
     PIPELINE_VERSION,
   ].join('::');
 }

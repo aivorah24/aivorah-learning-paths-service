@@ -12,6 +12,11 @@ function normalizeCurriculumStructure(extracted) {
   if (!extracted || typeof extracted !== 'object') {
     throw new CurriculumNormalizationError('extracted_structure is missing or not an object');
   }
+  const normalized = normalizeByFormat(extracted);
+  return { ...normalized, metadata: { ...normalized.metadata, ...(extracted.uploadConfig || {}) } };
+}
+
+function normalizeByFormat(extracted) {
   switch (extracted.format) {
     case 'pdf':
     case 'docx':

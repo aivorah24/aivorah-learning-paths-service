@@ -52,6 +52,13 @@ jest.mock('../../services/curriculumUpload/topicCache', () => ({
   dedupeGeneration: (...args) => mockDedupeGeneration(...args),
 }));
 
+jest.mock('../../services/supabase', () => ({}));
+const mockMatchTopicsToBook = jest.fn().mockResolvedValue(new Map());
+jest.mock('../../services/curriculumUpload/bookMatch', () => ({
+  ...jest.requireActual('../../services/curriculumUpload/bookMatch'),
+  matchTopicsToBook: (...args) => mockMatchTopicsToBook(...args),
+}));
+
 const {
   generateLearningPathDraft,
   collectTopicRefs,
@@ -295,6 +302,36 @@ describe('generateWorkedExample', () => {
 
     const sentPrompt = mockCreate.mock.calls[0][0].messages[0].content;
     expect(sentPrompt).toMatch(/not taken from the source material/i);
+  });
+});
+
+describe('generateLearningPathDraft — matched NCERT book sections', () => {
+  beforeEach(() => jest.clearAllMocks());
+  afterEach(() => [mockGenerateStructuredContent, mockRetrieveGroundingContext, mockCreate].forEach((m) => m.mockReset()));
+
+  test('a book-matched topic is written from the book, keeps the book examples and page, and skips vector retrieval', async () => {
+    const section = {
+      id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', bookTitle: 'Ganita Prakash',
+      chapterTitle: 'Number Play', title: '3.3 Patterns of Numbers on the Number Line', page: 5,
+      tutor: { intro: 'Numbers sit on a line.', keyIdea: 'Bigger numbers are to the right.', examples: [{ problem: 'Where is 7?', steps: [{ say: 'Count from 0', show: '0..7' }], answer: 'Right of 6', page: 5 }] },
+    };
+    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { topic: section, subtopics: [{ title: 'Addition', section: null }] }]]));
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['Use a number line'], blocks: [{ type: 'explanation', text: 'Numbers on a line.' }] });
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+
+    const draft = await generateLearningPathDraft(normalized);
+    const topic = draft.units[0].topics[0];
+
+    expect(mockGenerateStructuredContent).toHaveBeenCalledWith(expect.objectContaining({
+      chapterPdf: 'fegp103.pdf',
+      primaryText: expect.stringContaining('Bigger numbers are to the right.'),
+      contextText: "Teacher's notes: Covers place value and number lines.",
+    }));
+    expect(mockRetrieveGroundingContext).not.toHaveBeenCalledWith(expect.objectContaining({ topic: 'Whole Numbers' }));
+    expect(topic.groundingSource).toBe('ncert_book');
+    expect(topic.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, grade: 6, pages: [{ subtopic: 'Addition', pdfFile: null }] });
+    expect(topic.content.blocks).toContainEqual(expect.objectContaining({ type: 'worked_example', problem: 'Where is 7?', exampleType: 'SOURCE_DERIVED' }));
   });
 });
 

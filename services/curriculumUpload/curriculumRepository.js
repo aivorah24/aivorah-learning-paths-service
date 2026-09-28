@@ -1,6 +1,6 @@
 const supabase = require('../supabase');
 
-async function createCurriculum({ teacherId, fileName, mimeType, fileUrl, cloudinaryPublicId }) {
+async function createCurriculum({ teacherId, fileName, mimeType, fileUrl, cloudinaryPublicId, uploadConfig }) {
   const { data, error } = await supabase
     .from('teacher_curricula')
     .insert({
@@ -9,6 +9,7 @@ async function createCurriculum({ teacherId, fileName, mimeType, fileUrl, cloudi
       mime_type: mimeType,
       file_url: fileUrl,
       cloudinary_public_id: cloudinaryPublicId,
+      ...(uploadConfig ? { extracted_structure: { uploadConfig } } : {}),
     })
     .select()
     .single();

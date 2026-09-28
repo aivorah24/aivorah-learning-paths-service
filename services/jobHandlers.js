@@ -16,7 +16,8 @@ async function handleCurriculumExtract({ curriculumId }) {
     if (isExtractionEmpty(extracted)) {
       throw new CurriculumExtractionError('Document contains no extractable content');
     }
-    await updateCurriculumStatus(curriculumId, 'processed', { extracted_structure: extracted, error: null });
+    const uploadConfig = curriculum.extracted_structure?.uploadConfig;
+    await updateCurriculumStatus(curriculumId, 'processed', { extracted_structure: uploadConfig ? { ...extracted, uploadConfig } : extracted, error: null });
     return { status: 'processed' };
   } catch (err) {
     // file_url/cloudinary_public_id are never touched here — the original

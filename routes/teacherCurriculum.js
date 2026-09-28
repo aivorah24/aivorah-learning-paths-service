@@ -25,6 +25,13 @@ const { publishJob } = require('../services/jobQueue');
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: MAX_FILE_BYTES } });
 
+// Grade/subject/curriculum picked on the upload screen; they override any lines inside the document.
+function uploadConfigFrom(body = {}) {
+  const pick = (v) => (typeof v === 'string' && v.trim() ? v.trim().slice(0, 80) : undefined);
+  const config = { grade: pick(body.grade)?.match(/\d+/)?.[0], subject: pick(body.subject), curriculum: pick(body.curriculum) };
+  return Object.values(config).some(Boolean) ? JSON.parse(JSON.stringify(config)) : null;
+}
+
 function handleUpload(req, res, next) {
   upload.single('file')(req, res, (err) => {
     if (!err) return next();
@@ -57,6 +64,7 @@ router.post('/upload', requireAuth, handleUpload, async (req, res) => {
       mimeType: req.file.mimetype,
       fileUrl: url,
       cloudinaryPublicId: publicId,
+      uploadConfig: uploadConfigFrom(req.body),
     });
   } catch (err) {
     console.error('[teacher-curriculum/upload] storage failed:', err.message);
