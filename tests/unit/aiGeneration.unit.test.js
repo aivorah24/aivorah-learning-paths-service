@@ -54,13 +54,16 @@ jest.mock('../../services/curriculumUpload/topicCache', () => ({
 
 jest.mock('../../services/supabase', () => ({}));
 const mockMatchTopicsToBook = jest.fn().mockResolvedValue(new Map());
+const mockLoadBookSections = jest.fn().mockResolvedValue([]);
 jest.mock('../../services/curriculumUpload/bookMatch', () => ({
   ...jest.requireActual('../../services/curriculumUpload/bookMatch'),
   matchTopicsToBook: (...args) => mockMatchTopicsToBook(...args),
+  loadBookSections: (...args) => mockLoadBookSections(...args),
 }));
 
 const {
   generateLearningPathDraft,
+  rebuildTopic,
   collectTopicRefs,
   validateGeneratedTopics,
   mergeGeneratedContent,
@@ -333,6 +336,32 @@ describe('generateLearningPathDraft — matched NCERT book sections', () => {
     expect(topic.groundingSource).toBe('ncert_book');
     expect(topic.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, grade: 6, pages: [{ subtopic: 'Addition', pdfFile: null }] });
     expect(topic.content.blocks).toContainEqual(expect.objectContaining({ type: 'worked_example', problem: 'Where is 7?', exampleType: 'SOURCE_DERIVED' }));
+  });
+});
+
+describe('rebuildTopic — teacher-picked book sections', () => {
+  beforeEach(() => jest.clearAllMocks());
+  afterEach(() => [mockGenerateStructuredContent, mockCreate, mockLoadBookSections].forEach((m) => m.mockReset()));
+
+  test('uses exactly the picked sections; unpicked subtopics become syllabus gaps', async () => {
+    mockLoadBookSections.mockResolvedValue([
+      { id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', chapterTitle: 'Number Play', title: '3.3 Patterns', page: 5, tutor: { intro: 'Line intro', examples: [] } },
+      { id: 'S2', grade: 6, pdfFile: 'fegp105.pdf', chapterTitle: 'Prime Time', title: '5.1 Multiples', page: 1, tutor: { intro: 'Other', examples: [] } },
+    ]);
+    mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'Numbers on a line.' }] });
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+
+    const fields = await rebuildTopic(normalized, 0, 0, [null]);
+    expect(fields.groundingSource).toBe('model_knowledge');
+
+    const picked = await rebuildTopic(normalized, 0, 0, [{ pdfFile: 'fegp103.pdf', title: '3.3 Patterns' }]);
+    expect(mockGenerateStructuredContent).toHaveBeenLastCalledWith(expect.objectContaining({ chapterPdf: 'fegp103.pdf', syllabusGaps: [] }));
+    expect(picked.groundingSource).toBe('ncert_book');
+    expect(picked.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, pages: [expect.objectContaining({ subtopic: 'Addition', section: '3.3 Patterns' })] });
+  });
+
+  test('unknown topic -> error', async () => {
+    await expect(rebuildTopic(normalized, 9, 9, [])).rejects.toThrow(/not found/);
   });
 });
 

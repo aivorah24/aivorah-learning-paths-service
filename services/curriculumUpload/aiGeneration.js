@@ -8,7 +8,7 @@ const { findTopicImages } = require('../qdrant');
 const { checkGradeFit } = require('../curriculum/gradeFit');
 const { callWithFallback } = require('../llm/fallback');
 const { buildCacheKey, getCachedTopic, persistCachedTopic, dedupeGeneration } = require('./topicCache');
-const { matchTopicsToBook, sectionsForTopic, sectionSourceText, sectionWorkedExamples, bookForTopic } = require('./bookMatch');
+const { matchTopicsToBook, loadBookSections, sectionsForTopic, sectionSourceText, sectionWorkedExamples, bookForTopic } = require('./bookMatch');
 
 // Lazy — enrichment.js constructs its own Groq/Supabase clients at module
 // load, which crashes under jest.requireActual in tests that only need this
@@ -804,8 +804,28 @@ async function cacheReadyTopics(topics, refs, cacheKeys, metadata) {
   );
 }
 
+// Regenerates one topic with the book sections the teacher picked per subtopic
+// (chosen[j] = {pdfFile, title} or null = not in the book). Returns the draft topic fields to replace.
+async function rebuildTopic(normalized, unitOrder, topicOrder, chosen) {
+  const ref = collectTopicRefs(normalized).find((r) => r.unitOrder === unitOrder && r.topicOrder === topicOrder);
+  if (!ref) throw new LearningPathGenerationError(`Topic ${unitOrder}:${topicOrder} not found`);
+  const metadata = normalized.metadata;
+  const sections = await loadBookSections(metadata?.grade, metadata?.subject);
+  const find = (c) => (c ? sections.find((s) => s.pdfFile === c.pdfFile && s.title === c.title) || null : null);
+  ref.bookMatch = { topic: null, subtopics: ref.subtopics.map((title, j) => ({ title, section: find(chosen?.[j]) })) };
+  ref.bookSections = sectionsForTopic(ref.bookMatch);
+
+  const topic = (await groundTopic(ref, metadata).catch(() => null)) || (await knowledgeTopic(ref, metadata).catch(() => null));
+  if (!topic) throw new LearningPathGenerationError('Could not rebuild this topic right now — please try again');
+  await attachCompanions([topic], [ref], metadata);
+  await applyGradeFit([topic], [ref], metadata);
+  const { unitOrder: _u, topicOrder: _t, ...fields } = topic;
+  return { ...fields, quality: topic.quality || null };
+}
+
 module.exports = {
   generateLearningPathDraft,
+  rebuildTopic,
   collectTopicRefs,
   validateGeneratedTopics,
   mergeGeneratedContent,

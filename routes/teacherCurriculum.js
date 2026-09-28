@@ -22,6 +22,9 @@ const {
   LearningPathValidationError,
 } = require('../services/curriculumUpload/learningPathValidation');
 const { publishJob } = require('../services/jobQueue');
+const { loadBookSections } = require('../services/curriculumUpload/bookMatch');
+const { normalizeCurriculumStructure } = require('../services/curriculumUpload/normalization');
+const { rebuildTopic } = require('../services/curriculumUpload/aiGeneration');
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: MAX_FILE_BYTES } });
 
@@ -85,6 +88,17 @@ router.post('/upload', requireAuth, handleUpload, async (req, res) => {
   }
 });
 
+// Book sections a teacher can pick from when changing a subtopic's page (same + neighbouring grades).
+router.get('/book-sections', requireAuth, async (req, res) => {
+  try {
+    const sections = await loadBookSections(req.query.grade, req.query.subject);
+    return res.json({ sections: sections.map(({ tutor, learn, id, ...s }) => s) });
+  } catch (err) {
+    console.error('[teacher-curriculum/book-sections] failed:', err.message);
+    return res.status(500).json({ error: 'Failed to load book sections' });
+  }
+});
+
 router.get('/:id', requireAuth, requireOwnedCurriculum('id'), (req, res) => {
   res.json({ curriculum: req.curriculum });
 });
@@ -140,6 +154,31 @@ router.put('/:id/learning-path', requireAuth, requireOwnedCurriculum('id'), asyn
   } catch (err) {
     console.error('[teacher-curriculum/learning-path] update failed:', err.message);
     return res.status(500).json({ error: 'Failed to save learning path edits' });
+  }
+});
+
+router.post('/:id/learning-path/topics/rebuild', requireAuth, requireOwnedCurriculum('id'), async (req, res) => {
+  const { unitOrder, topicOrder, subtopicSections } = req.body || {};
+  if (typeof unitOrder !== 'number' || typeof topicOrder !== 'number' || !Array.isArray(subtopicSections)) {
+    return res.status(400).json({ error: 'unitOrder, topicOrder and subtopicSections are required' });
+  }
+  try {
+    const draft = await getDraftByCurriculumId(req.params.id);
+    if (!draft) return res.status(404).json({ error: 'No draft learning path for this curriculum yet' });
+    const normalized = normalizeCurriculumStructure(req.curriculum.extracted_structure);
+    normalized.metadata = { ...normalized.metadata, ...(draft.content.metadata || {}) };
+    const fields = await rebuildTopic(normalized, unitOrder, topicOrder, subtopicSections);
+    const content = {
+      ...draft.content,
+      units: draft.content.units.map((u) => (u.order !== unitOrder ? u : {
+        ...u, topics: u.topics.map((t) => (t.order !== topicOrder ? t : { ...t, ...fields })),
+      })),
+    };
+    const learningPath = await updateDraftContent(draft.id, content);
+    return res.json({ learningPath });
+  } catch (err) {
+    console.error('[teacher-curriculum/topics/rebuild] failed:', err.message);
+    return res.status(500).json({ error: err.message || 'Failed to rebuild the topic' });
   }
 });
 
