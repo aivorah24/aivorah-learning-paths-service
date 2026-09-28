@@ -102,13 +102,18 @@ Return the unit's SECTIONS as printed (numbered headings, or the main headings /
   | {"kind":"cause_effect","title":"...","pairs":[{"cause":"...","effect":"..."}]} | {"kind":"compare","title":"...","columns":[{"label":"...","points":["..."]}]}
   | {"kind":"web","title":"...","center":"...","nodes":[{"label":"...","note":"..."}]} (labels at most 12 words). The first scene says which book, unit and section this is.
 - "quiz": 5 multiple-choice questions on this section: {"question":"...","options":["...","...","...","..."],"correctIndex":0-3,"explanation":"why, citing the book","page":N}. The correct option must be stated in the book. Test understanding of the section's ideas, facts and vocabulary - never trivia about the textbook, its grade, unit numbers or page numbers.
+Inside any text value never use the straight double-quote character; write quotations with “ ” or single quotes instead.
 Output ONLY JSON: {"sections":[{"title":"...","from":1,"to":4,"learn":{...},"listen":[...],"quiz":[...]}]}`;
 
 // Gemini occasionally returns cut-off or malformed JSON for a long unit; ask again (up to 3 tries) before failing.
 async function parseWithRetry(pdfB64, text) {
   let last;
   for (let i = 0; i < 3; i += 1) {
-    const r = await gemini(pdfB64, text);
+    // A long unit can overflow the reply; retries ask for a shorter one.
+    const ask = i === 0 ? text : `${text}
+
+IMPORTANT: keep the reply short - at most 3 sections, 3 scenes per section, 5 blocks per lesson, short sentences.`;
+    const r = await gemini(pdfB64, ask);
     try { return { ...r, parsed: parseJsonLoose(r.text) }; } catch (e) { last = e; }
   }
   throw last;

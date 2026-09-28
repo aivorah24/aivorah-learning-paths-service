@@ -86,13 +86,13 @@ function buildJudgePrompt({ topicTitle, chapterTitle, grade, subject, subtopics,
 ${subtopicList ? `\nSUBTOPICS THIS TOPIC MUST COVER: ${subtopicList}\nFor any subtopic not actually taught in the Learn content, add an issue "subtopic '<name>' not taught".` : ''}
 
 LEARN CONTENT:
-"""${(learnText || '').slice(0, 4000)}"""
+"""${(learnText || '').slice(0, 3000)}"""
 
 AUDIO SCRIPT:
-"""${(audioText || '(none)').slice(0, 3000)}"""
+"""${(audioText || '(none)').slice(0, 2200)}"""
 
 PRACTICE QUESTIONS:
-"""${(practiceText || '(none)').slice(0, 2000)}"""
+"""${(practiceText || '(none)').slice(0, 1500)}"""
 
 Score Learn, Audio and Practice each on: ageAppropriate, matchesChapter, factuallySound, clearExamples (1-5, 5=best).
 Also check: the content stays within the listed subtopics/chapter scope (flag anything that teaches material beyond scope, e.g. unlisted operations or techniques), and it never contains meta/instructional text about itself (e.g. "this example shows...", "the chapter tells us..."). List concrete issues for anything wrong.
@@ -101,7 +101,7 @@ Respond with ONLY this JSON shape:
 }
 
 async function judgeTopic(input) {
-  const content = await callWithFallback(buildJudgePrompt(input), { json: true, temperature: 0.2 });
+  const content = await callWithFallback(buildJudgePrompt(input), { json: true, temperature: 0.2, task: 'judge' });
   const parsed = JSON.parse(content || '{}');
   const scores = {};
   let minScore = 5;
@@ -119,9 +119,35 @@ async function judgeTopic(input) {
   return { scores, issues, minScore };
 }
 
+const READABILITY_ISSUE_RE = /reading grade|sentences average/i;
+
+// Splits issues by which regeneration target they belong to — Learn content
+// (rules/recipe + judge's "learn" scores) vs companions (audio/practice
+// rule flags + judge's "audio"/"practice" scores) — so a failure only
+// regenerates the part that's actually wrong.
+function classifyIssues(rules, recipeMissing, judge) {
+  const contentIssues = [];
+  const companionsIssues = [];
+  rules.issues.forEach((i) => (/^Audio script/i.test(i) ? companionsIssues : contentIssues).push(i));
+  recipeMissing.forEach((m) => contentIssues.push(`Recipe: missing ${m}`));
+  if (judge) {
+    const learnLow = Object.values(judge.scores.learn).some((v) => v < 4);
+    const companionsLow = Object.values(judge.scores.audio).some((v) => v < 4) || Object.values(judge.scores.practice).some((v) => v < 4);
+    // Judge issues aren't pre-split by section; attribute to whichever side
+    // scored low (content, if both, since content regen also re-runs companions).
+    if (learnLow || (!companionsLow && judge.issues.length)) contentIssues.push(...judge.issues);
+    else if (companionsLow) companionsIssues.push(...judge.issues);
+  }
+  return { contentIssues, companionsIssues };
+}
+
 // One rules pass (free) + one judge call + checkRecipe's missing list folded
 // in as issues. Judge errors are swallowed — quality.judge stays null, the
 // topic is never failed just because the judge call itself failed.
+//
+// `failed` (real failure, worth regenerating) vs `minorOnly` (all judge
+// scores >=3 and the only rule flags are readability — keep content, just
+// surface the issues to the teacher via quality.issues, status stays ready).
 async function checkGradeFit({ topicTitle, chapterTitle, grade, subject, subtopics, content }) {
   const rules = ruleCheck(content, grade);
   const recipeMissing = checkRecipe(content?.blocks);
@@ -140,12 +166,20 @@ async function checkGradeFit({ topicTitle, chapterTitle, grade, subject, subtopi
     judge = null;
   }
 
+  const nonReadabilityRuleIssues = rules.issues.filter((i) => !READABILITY_ISSUE_RE.test(i));
+  const allJudgeScoresAtLeast3 = !judge || Object.values(judge.scores).every((sec) => Object.values(sec).every((v) => v >= 3));
+  const failed = nonReadabilityRuleIssues.length > 0 || recipeMissing.length > 0 || (judge != null && judge.minScore < 3);
+  const minorOnly = !failed && allJudgeScoresAtLeast3 && (rules.issues.length > 0 || (judge != null && judge.minScore < 4));
+
   const issues = [...rules.issues, ...recipeMissing.map((m) => `Recipe: missing ${m}`), ...judgeIssues];
-  const failed = rules.issues.length > 0 || recipeMissing.length > 0 || (judge != null && judge.minScore < 4);
+  const { contentIssues, companionsIssues } = classifyIssues(rules, recipeMissing, judge);
 
   return {
     quality: { readingGrade: rules.readingGrade, sentenceLength: rules.sentenceLength, judgeScores: judge ? judge.scores : null, issues },
     failed,
+    minorOnly,
+    contentIssues,
+    companionsIssues,
   };
 }
 

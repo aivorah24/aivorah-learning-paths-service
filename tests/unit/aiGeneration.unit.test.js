@@ -886,6 +886,37 @@ describe('generateLearningPathDraft — grade-fit wiring', () => {
     expect(topic.content.blocks[0].text).toBe('still too advanced');
   });
 
+  test('companions-only failure regenerates just the companions, not the Learn content', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'learn stays' }] });
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [{ heading: 'h', text: 't' }], questions: [] }));
+    mockCheckGradeFit
+      .mockResolvedValueOnce({ ...FAIL, contentIssues: [], companionsIssues: ['Audio script too advanced'] })
+      .mockResolvedValueOnce(PASS);
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    expect(mockGenerateStructuredContent).toHaveBeenCalledTimes(1);
+    expect(mockCreate).toHaveBeenCalledTimes(3); // worked example + companions + companions-only regen
+    expect(mockCreate.mock.calls[2][0].messages[0].content).toContain('Audio script too advanced');
+    expect(draft.units[0].topics[0].content.blocks[0].text).toBe('learn stays');
+    expect(draft.units[0].topics[0].status).toBe('ready');
+  });
+
+  test('a minor-only result keeps content, status ready, and stores the issues with no regeneration', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 } });
+    mockGenerateStructuredContent.mockResolvedValueOnce({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }] });
+    mockCreate.mockResolvedValueOnce(completionWith({ listenParts: [], questions: [] }));
+    const MINOR = { quality: { readingGrade: 9, sentenceLength: 22, judgeScores: null, issues: ['Learn text sentences average 22 words (over 20)'] }, failed: false, minorOnly: true };
+    mockCheckGradeFit.mockResolvedValueOnce(MINOR);
+
+    const draft = await generateLearningPathDraft(singleTopicNormalized);
+
+    expect(mockGenerateStructuredContent).toHaveBeenCalledTimes(1);
+    expect(draft.units[0].topics[0].status).toBe('ready');
+    expect(draft.units[0].topics[0].quality.issues).toEqual(MINOR.quality.issues);
+  });
+
   test('checkGradeFit throwing is swallowed — topic keeps its original content and status', async () => {
     mockRetrieveGroundingContext.mockResolvedValue({ context: 'text', meta: { selected: 1 } });
     mockGenerateStructuredContent.mockResolvedValueOnce({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'x' }] });

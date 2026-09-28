@@ -21,6 +21,8 @@ const {
   validateLearningPathContent,
   LearningPathValidationError,
 } = require('../services/curriculumUpload/learningPathValidation');
+const { getProgress } = require('../services/curriculumUpload/progress');
+const supabase = require('../services/supabase');
 const { publishJob } = require('../services/jobQueue');
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: MAX_FILE_BYTES } });
@@ -77,8 +79,34 @@ router.post('/upload', requireAuth, handleUpload, async (req, res) => {
   }
 });
 
-router.get('/:id', requireAuth, requireOwnedCurriculum('id'), (req, res) => {
-  res.json({ curriculum: req.curriculum });
+router.get('/', requireAuth, async (req, res) => {
+  const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 5, 1), 20);
+  const { data, error } = await supabase.from('teacher_curricula')
+    .select('id, file_name, status, error, created_at, updated_at')
+    .eq('teacher_id', req.auth.teacherId).order('created_at', { ascending: false }).limit(limit);
+  if (error) return res.status(500).json({ error: 'Failed to list curricula' });
+  const curricula = data || [];
+  if (curricula.length > 0) curricula[0] = { ...curricula[0], progress: await getProgress(curricula[0]) };
+  return res.json({ curricula });
+});
+
+router.get('/:id', requireAuth, requireOwnedCurriculum('id'), async (req, res) => {
+  res.json({ curriculum: req.curriculum, progress: await getProgress(req.curriculum) });
+});
+
+router.post('/:id/retry', requireAuth, requireOwnedCurriculum('id'), async (req, res) => {
+  if (req.curriculum.status !== 'failed') {
+    return res.status(409).json({ error: `Cannot retry from status "${req.curriculum.status}"` });
+  }
+  const regenerate = !!req.curriculum.extracted_structure;
+  try {
+    const { jobId } = await publishJob(regenerate ? 'curriculum_generate' : 'curriculum_extract', { curriculumId: req.params.id });
+    const curriculum = await updateCurriculumStatus(req.params.id, regenerate ? 'generating' : 'processing', { error: null });
+    return res.status(202).json({ curriculum, jobId });
+  } catch (err) {
+    console.error('[teacher-curriculum/retry] job creation failed:', err.message);
+    return res.status(500).json({ error: 'Failed to retry processing' });
+  }
 });
 
 router.post('/:id/generate', requireAuth, requireOwnedCurriculum('id'), async (req, res) => {
