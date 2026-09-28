@@ -332,7 +332,11 @@ router.get('/topic-by-name/resources', async (req, res) => {
       explanation.payload = {
         ...p,
         ...(!(Array.isArray(p.blocks) && p.blocks.length) && unitContent.learn?.blocks?.length
-          ? { whatYoullLearn: unitContent.learn.whatYoullLearn, blocks: unitContent.learn.blocks } : {}),
+          ? (() => {
+            const { learnWithVisuals } = require('../services/curriculum/unitContentSections');
+            const learn = learnWithVisuals(unitContent.learn, unitContent.listen);
+            return { whatYoullLearn: learn.whatYoullLearn, blocks: learn.blocks };
+          })() : {}),
         ...(!(Array.isArray(p.listenScript) && p.listenScript.length) && unitContent.listen.length ? { listenScript: unitContent.listen } : {}),
         ...(unitContent.quiz.length ? { practiceQuiz: unitContent.quiz } : {}),
         ...(p.pdfPage ? {} : { pdfPage: unitContent.pdfPage }),
