@@ -17,6 +17,8 @@ const PROVIDER_REGISTRY = {
 // Gemini sits before the small Groq models: those often return empty JSON on the long prompts used here.
 const DEFAULT_CHAIN = 'groq:openai/gpt-oss-120b,cerebras:gpt-oss-120b,gemini:gemini-flash-lite-latest,gemini:gemini-3-flash-preview,groq:openai/gpt-oss-20b,groq:qwen/qwen3.8-27b';
 const LONG_COOLDOWN_MS = 15 * 60 * 1000;
+// A server overload (503) or dropped connection usually clears quickly: bench that model briefly, not for 15 minutes.
+const SHORT_COOLDOWN_MS = 60 * 1000;
 const DAILY_LIMIT_RE = /tokens per day|requests per day|\btpd\b|\brpd\b/i;
 
 class LLMUnavailableError extends Error {}
@@ -75,7 +77,7 @@ function classifyError(err) {
     }
     return { type: 'short429', delayMs: retryMs || 1000 };
   }
-  if (status >= 500 || status == null) return { type: 'serverOrNetwork' };
+  if (status >= 500 || status == null) return { type: 'serverOrNetwork', cooldownMs: SHORT_COOLDOWN_MS };
   return { type: 'other' };
 }
 

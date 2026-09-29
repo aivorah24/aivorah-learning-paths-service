@@ -130,6 +130,12 @@ function checkRecipe(blocks) {
 }
 
 // Grade-fit regen: appends the reviewer's issues so a re-prompt can fix them.
+// Curricula without their own books here (IB, ...) draw on other curricula's material: never name it.
+function neutralSourceNote(input) {
+  if (!input.neutralSource) return '';
+  return `\nThis lesson is for a ${input.curriculum || ''} class. The source may come from another curriculum's textbook: NEVER mention any textbook, book series, chapter, page or figure number, or another curriculum. Rewrite references like "Fig. 2.3" or "in this chapter" so the lesson stands on its own.\n`;
+}
+
 function qualityFeedbackNote(input) {
   return input.qualityFeedback ? `\n\nQUALITY REVIEW FEEDBACK — fix these issues in your response: ${input.qualityFeedback}\n` : '';
 }
@@ -166,7 +172,7 @@ ALLOWED BLOCK TYPES FOR THIS SUBJECT:
 ${guidance}
 
 ${RECIPE_RULES}
-${qualityFeedbackNote(input)}
+${neutralSourceNote(input)}${qualityFeedbackNote(input)}
 Respond with ONLY the JSON object described above.`;
 }
 
@@ -200,7 +206,7 @@ CONTEXT TEXT (neighboring textbook material, background only, NOT this topic's o
 """
 ${contextText || '(none)'}
 """
-${qualityFeedbackNote(input)}
+${neutralSourceNote(input)}${qualityFeedbackNote(input)}
 Respond with ONLY the JSON object described in rule 4.`;
 }
 

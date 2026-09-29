@@ -10,6 +10,7 @@ const { callWithFallback } = require('../llm/fallback');
 const { buildCacheKey, getCachedTopic, persistCachedTopic, dedupeGeneration } = require('./topicCache');
 const { matchTopicsToBook, loadBookSections, sectionsForTopic, matchUnits } = require('./bookMatch');
 const { assembleBookTopic } = require('./bookContent');
+const { usesNcertBooks } = require('./curriculumKind');
 
 // Lazy — enrichment.js constructs its own Groq/Supabase clients at module
 // load, which crashes under jest.requireActual in tests that only need this
@@ -200,7 +201,7 @@ async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType
   const keyTerms = (generated.blocks.find((b) => b.type === 'key_terms')?.items || []).map((i) => i.term).filter(Boolean);
   const chapterMatch = matchChapter(topicRef, metadata);
   const book = chapterMatch && { pdfFile: chapterMatch.pdfFile, bookPath: chapterMatch.bookPath, bookTitle: chapterMatch.book, chapterTitle: chapterMatch.title, pdfPage: 1, confidence: chapterMatch.confidence };
-  const images = await findTopicImages({
+  const images = !usesNcertBooks(metadata) ? [] : await findTopicImages({
     grade: metadata?.grade,
     subject: metadata?.subject,
     pdfFile: book?.pdfFile || null,
@@ -219,6 +220,7 @@ async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType
   }
 
   const { objectives, lessons } = deriveObjectivesAndLessons(generated.whatYoullLearn, generated.blocks);
+  const mathTutor = contentType === 'mathematics' ? tutorFromBlocks(generated.blocks) : null;
   return {
     unitOrder: topicRef.unitOrder,
     topicOrder: topicRef.topicOrder,
@@ -232,6 +234,7 @@ async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType
     content: {
       whatYoullLearn: generated.whatYoullLearn, blocks: generated.blocks, contentType,
       ...(book ? { book } : {}),
+      ...(mathTutor ? { mathTutor } : {}),
     },
     groundingSource,
   };
@@ -361,7 +364,68 @@ async function bookTopic(topicRef, metadata) {
   };
 }
 
+// The student AI Tutor board plays one step per worked example: built from the lesson's own worked examples.
+function tutorFromBlocks(blocks) {
+  const examples = blocks.filter((b) => b.type === 'worked_example' && b.problem && b.finalAnswer).map((b) => ({
+    title: b.concept || 'Example',
+    problem: b.problem,
+    steps: (b.steps || []).map((s) => ({ say: s.explanation || s.action || '', show: s.calculation || s.equation || '' })).filter((s) => s.say),
+    answer: b.finalAnswer,
+  })).filter((e) => e.steps.length);
+  if (!examples.length) return null;
+  const intro = blocks.find((b) => b.type === 'overview' || b.type === 'explanation')?.text || '';
+  const keyIdea = blocks.find((b) => b.type === 'key_points')?.items?.[0] || '';
+  return { intro, keyIdea: typeof keyIdea === 'string' ? keyIdea : '', examples };
+}
+
+// Reference text of a matched book section for writing a lesson — the content only, never the book's name or pages.
+function sectionReferenceText(section) {
+  if (section.tutor) {
+    const t = section.tutor;
+    const examples = (t.examples || []).map((e) => `Example: ${e.problem}\n${(e.steps || []).map((s) => `- ${s.say}${s.show ? ` (${s.show})` : ''}`).join('\n')}\nAnswer: ${e.answer}`);
+    return [t.intro, t.keyIdea && `Key idea: ${t.keyIdea}`, ...examples].filter(Boolean).join('\n');
+  }
+  return (section.learn?.blocks || []).map((b) => b.text || (Array.isArray(b.items) ? b.items.map((i) => (typeof i === 'string' ? i : `${i.term || i.name || ''}: ${i.definition || i.description || ''}`)).join('; ') : '')).filter(Boolean).join('\n');
+}
+
+const MAX_REFERENCE_CHARS = 7000;
+
+// A topic of a curriculum without its own books here (IB, ...): the lesson is written from whatever reference material
+// matches best — book sections of any curriculum and the vector store — plus the teacher's own notes, in a neutral
+// voice. null when nothing matched (the caller then falls back to AI knowledge, labelled for the teacher).
+async function openTopic(topicRef, metadata, qualityFeedback) {
+  const sources = (topicRef.bookSections || []).map(sectionReferenceText).filter(Boolean);
+  const retrieved = await retrieveGroundingContext({
+    curriculum: metadata?.curriculum,
+    grade: metadata?.grade,
+    subject: metadata?.subject,
+    topic: topicRef.topicTitle,
+    subtopics: topicRef.subtopics,
+  }).catch(() => null);
+  if (retrieved?.context) sources.push(retrieved.context);
+  if (!sources.length) return null;
+
+  const { generateStructuredContent, classifyContentType } = getEnrichment();
+  const contentType = classifyContentType(metadata?.subject);
+  const primaryText = sources.join('\n\n').slice(0, MAX_REFERENCE_CHARS);
+  const generated = await generateStructuredContent({
+    curriculum: metadata?.curriculum,
+    grade: metadata?.grade,
+    subject: metadata?.subject,
+    topic: topicRef.subtopics.length ? `${topicRef.topicTitle} (cover: ${topicRef.subtopics.join('; ')})` : topicRef.topicTitle,
+    chapterPdf: null,
+    primaryText,
+    contextText: topicRef.sourceContext ? `Teacher's notes: ${topicRef.sourceContext}` : '',
+    contentType,
+    qualityFeedback,
+    neutralSource: true,
+  });
+  if (!generated.ok) return null;
+  return finalizeGeneratedTopic(topicRef, metadata, generated, contentType, 'reference_sources', { context: primaryText });
+}
+
 async function groundTopic(topicRef, metadata, qualityFeedback) {
+  if (!usesNcertBooks(metadata)) return openTopic(topicRef, metadata, qualityFeedback);
   const retrieved = await retrieveGroundingContext({
     curriculum: metadata?.curriculum,
     grade: metadata?.grade,
@@ -410,6 +474,7 @@ function chapterWords(text) {
 // clean match in the current book must stay unmatched, not land on a
 // random chapter that happens to share a generic word like "number".
 function matchChapter(topicRef, metadata) {
+  if (!usesNcertBooks(metadata)) return null;
   let chapters;
   try {
     chapters = require('../syllabus-map').chaptersFor(metadata?.grade, metadata?.subject);
@@ -484,6 +549,7 @@ async function knowledgeTopic(topicRef, metadata, qualityFeedback) {
       subtopics: topicRef.subtopics,
       contentType,
       qualityFeedback,
+      neutralSource: !usesNcertBooks(metadata),
     });
   } catch {
     return null;
@@ -657,7 +723,7 @@ async function attachCompanions(topics, topicRefs, metadata) {
 async function applyGradeFit(topics, topicRefs, metadata) {
   const refByKey = new Map(topicRefs.map((r) => [`${r.unitOrder}:${r.topicOrder}`, r]));
   await mapWithConcurrency(topics, DRAFT_CONCURRENCY, async (t) => {
-    if (!t.content || !['ncert_vector', 'model_knowledge'].includes(t.groundingSource)) return;
+    if (!t.content || !['ncert_vector', 'model_knowledge', 'reference_sources'].includes(t.groundingSource)) return;
     const ref = refByKey.get(`${t.unitOrder}:${t.topicOrder}`);
     if (!ref) return;
     const chapterTitle = resolveChapterTitle(ref, metadata);
@@ -714,7 +780,8 @@ async function generateLearningPathDraft(normalized, onTopicDone) {
     ref.bookMatch = bookMatches.get(i) || null;
     ref.bookSections = sectionsForTopic(ref.bookMatch);
   });
-  const fromBook = (await mapWithConcurrency(allRefs.filter((r) => r.bookSections.length), DRAFT_CONCURRENCY, async (ref) => {
+  const bookRefs = usesNcertBooks(normalized.metadata) ? allRefs.filter((r) => r.bookSections.length) : [];
+  const fromBook = (await mapWithConcurrency(bookRefs, DRAFT_CONCURRENCY, async (ref) => {
     const topic = await bookTopic(ref, normalized.metadata).catch((err) => {
       console.error(`[aiGeneration] book topic failed for "${ref.topicTitle}":`, err.message);
       return null;
@@ -830,7 +897,7 @@ async function rebuildTopic(normalized, unitOrder, topicOrder, chosen) {
   ref.bookSections = sectionsForTopic(ref.bookMatch);
 
   let topic;
-  if (ref.bookSections.length) {
+  if (ref.bookSections.length && usesNcertBooks(metadata)) {
     topic = await bookTopic(ref, metadata);
   } else {
     topic = (await groundTopic(ref, metadata).catch(() => null)) || (await knowledgeTopic(ref, metadata).catch(() => null));

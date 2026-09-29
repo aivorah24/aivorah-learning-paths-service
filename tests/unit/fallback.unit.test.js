@@ -107,3 +107,18 @@ test('the default chain tries Gemini before the small Groq models', () => {
   expect(chain.indexOf('gemini:gemini-flash-lite-latest')).toBeGreaterThan(chain.indexOf('groq:openai/gpt-oss-120b'));
   expect(chain.indexOf('gemini:gemini-flash-lite-latest')).toBeLessThan(chain.indexOf('groq:openai/gpt-oss-20b'));
 });
+
+test('a server overload (503) benches that model for about a minute, not 15', async () => {
+  const now = Date.now();
+  const spy = jest.spyOn(Date, 'now').mockReturnValue(now);
+  global.fetch
+    .mockResolvedValueOnce(errResponse(503, '{"error":{"message":"The model is overloaded"}}'))
+    .mockResolvedValueOnce(okResponse('from b'))
+    .mockResolvedValueOnce(okResponse('from b again'))
+    .mockResolvedValueOnce(okResponse('from a'));
+  await expect(callWithFallback('p')).resolves.toBe('from b');
+  await expect(callWithFallback('p')).resolves.toBe('from b again'); // a still benched
+  spy.mockReturnValue(now + 61 * 1000);
+  await expect(callWithFallback('p')).resolves.toBe('from a'); // back after a minute
+  spy.mockRestore();
+});

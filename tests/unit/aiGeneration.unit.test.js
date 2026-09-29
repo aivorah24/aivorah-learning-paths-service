@@ -388,6 +388,72 @@ describe('generateLearningPathDraft — topics matched to book sections', () => 
   });
 });
 
+describe('generateLearningPathDraft — IB and other curricula without their own books here', () => {
+  beforeEach(() => jest.clearAllMocks());
+  afterEach(() => {
+    [mockGenerateStructuredContent, mockRetrieveGroundingContext, mockCreate].forEach((m) => m.mockReset());
+    mockMatchTopicsToBook.mockReset().mockResolvedValue(new Map());
+  });
+
+  const ib = { ...normalized, metadata: { grade: '6', subject: 'Mathematics', curriculum: 'IB MYP' } };
+  const section = {
+    id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', bookTitle: 'Ganita Prakash',
+    chapterTitle: 'Number Play', title: '3.3 Patterns of Numbers on the Number Line', page: 5,
+    tutor: { intro: 'Numbers sit on a line.', keyIdea: 'Bigger numbers are to the right.', examples: [{ title: 'Placing 7', problem: 'Where is 7?', steps: [{ say: 'Count from 0', show: '0..7' }], answer: 'Right of 6' }] },
+  };
+  const lesson = {
+    ok: true, whatYoullLearn: ['Use a number line'],
+    blocks: [
+      { type: 'overview', text: 'Where do numbers live?' },
+      { type: 'worked_example', concept: 'Placing numbers', problem: 'Where is 7?', steps: [{ explanation: 'Count from 0', calculation: '0 + 7 = 7' }], finalAnswer: 'Right of 6' },
+    ],
+  };
+
+  test('a matched book section is used only as reference: no book pane, no book assembly, neutral lesson', async () => {
+    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { subtopics: [{ title: 'Addition', section, sections: [section] }] }]]));
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'IB MYP: integers on a number line.', meta: { selected: 1 }, sources: [{ score: 0.6 }] });
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+
+    const topic = (await generateLearningPathDraft(ib)).units[0].topics[0];
+
+    const call = mockGenerateStructuredContent.mock.calls.find((c) => c[0].topic.startsWith('Whole Numbers'))[0];
+    expect(call).toMatchObject({ curriculum: 'IB MYP', neutralSource: true, contextText: "Teacher's notes: Covers place value and number lines." });
+    expect(call.primaryText).toContain('Bigger numbers are to the right.');
+    expect(call.primaryText).toContain('IB MYP: integers on a number line.');
+    expect(call.primaryText).not.toMatch(/Ganita|Number Play|3\.3|page/);
+    expect(topic.groundingSource).toBe('reference_sources');
+    expect(topic.content.book).toBeUndefined();
+    expect(mockFindTopicImages).not.toHaveBeenCalled();
+  });
+
+  test('Maths gets an AI Tutor board built from the lesson\'s own worked examples', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'IB MYP: whole numbers.', meta: { selected: 1 }, sources: [{ score: 0.6 }] });
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+
+    const topic = (await generateLearningPathDraft(ib)).units[0].topics[0];
+
+    expect(topic.content.mathTutor).toEqual({
+      intro: 'Where do numbers live?', keyIdea: '',
+      examples: [{ title: 'Placing numbers', problem: 'Where is 7?', steps: [{ say: 'Count from 0', show: '0 + 7 = 7' }], answer: 'Right of 6' }],
+    });
+  });
+
+  test('with no reference material at all, the AI writes it from knowledge (still neutral, no NCERT chapter)', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+
+    const topic = (await generateLearningPathDraft(ib)).units[0].topics[0];
+
+    const call = mockGenerateStructuredContent.mock.calls.find((c) => c[0].mode === 'knowledge')[0];
+    expect(call).toMatchObject({ neutralSource: true, chapterMatched: false });
+    expect(topic.groundingSource).toBe('model_knowledge');
+    expect(topic.content.book).toBeUndefined();
+  });
+});
+
 describe('rebuildTopic — teacher-picked book sections', () => {
   beforeEach(() => jest.clearAllMocks());
   afterEach(() => {
