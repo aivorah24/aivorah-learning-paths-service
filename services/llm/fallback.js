@@ -121,7 +121,7 @@ async function callWithFallback(prompt, { json = false, temperature } = {}) {
       return content;
     } catch (err) {
       const c = classifyError(err);
-      console.error(`[llm] fallover ${key} -> ${c.type}`);
+      console.error(`[llm] fallover ${key} -> ${c.type} (${err.status || err.statusCode || '-'}: ${String(err.message || '').slice(0, 160)})`);
       if (c.type === 'auth') disabledForever.add(key);
       else if (c.type === 'long' || c.type === 'serverOrNetwork') cooldowns.set(key, Date.now() + (c.cooldownMs || LONG_COOLDOWN_MS));
       attempts.push(`${key}: ${c.type}`);

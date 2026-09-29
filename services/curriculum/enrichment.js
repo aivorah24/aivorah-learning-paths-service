@@ -134,16 +134,6 @@ function qualityFeedbackNote(input) {
   return input.qualityFeedback ? `\n\nQUALITY REVIEW FEEDBACK — fix these issues in your response: ${input.qualityFeedback}\n` : '';
 }
 
-// Teacher-syllabus subtopics the matched book sections don't teach: still taught, from standard grade-level knowledge.
-function syllabusGapsNote(input) {
-  const gaps = (input.syllabusGaps || []).filter(Boolean);
-  if (!gaps.length) return '';
-  return `
-SYLLABUS SUBTOPICS NOT IN THE SOURCE TEXT: ${gaps.map((g) => `"${g}"`).join(', ')}
-The student's syllabus requires these, so rule 1 is relaxed ONLY for them: teach EACH one correctly and simply, using standard, well-established ${input.curriculum || 'NCERT'} Grade ${input.grade} knowledge — its own short explanation and one small worked example or example. Never contradict the SOURCE TEXT, never attribute these to the textbook, and keep every fact and calculation exactly correct.
-`;
-}
-
 function buildKnowledgePrompt(input) {
   const { curriculum, grade, subject, chapterTitle, chapterMatched, unitTitle, topic, subtopics, contentType } = input;
   const guidance = CONTENT_TYPE_GUIDANCE[contentType] || CONTENT_TYPE_GUIDANCE.theory;
@@ -210,7 +200,7 @@ CONTEXT TEXT (neighboring textbook material, background only, NOT this topic's o
 """
 ${contextText || '(none)'}
 """
-${syllabusGapsNote(input)}${qualityFeedbackNote(input)}
+${qualityFeedbackNote(input)}
 Respond with ONLY the JSON object described in rule 4.`;
 }
 

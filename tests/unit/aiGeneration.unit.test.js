@@ -308,56 +308,109 @@ describe('generateWorkedExample', () => {
   });
 });
 
-describe('generateLearningPathDraft — matched NCERT book sections', () => {
+describe('generateLearningPathDraft — topics matched to book sections', () => {
   beforeEach(() => jest.clearAllMocks());
-  afterEach(() => [mockGenerateStructuredContent, mockRetrieveGroundingContext, mockCreate].forEach((m) => m.mockReset()));
+  afterEach(() => {
+    [mockGenerateStructuredContent, mockRetrieveGroundingContext, mockCreate].forEach((m) => m.mockReset());
+    mockMatchTopicsToBook.mockReset().mockResolvedValue(new Map());
+  });
 
-  test('a book-matched topic is written from the book, keeps the book examples and page, and skips vector retrieval', async () => {
-    const section = {
-      id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', bookTitle: 'Ganita Prakash',
-      chapterTitle: 'Number Play', title: '3.3 Patterns of Numbers on the Number Line', page: 5,
-      tutor: { intro: 'Numbers sit on a line.', keyIdea: 'Bigger numbers are to the right.', examples: [{ problem: 'Where is 7?', steps: [{ say: 'Count from 0', show: '0..7' }], answer: 'Right of 6', page: 5 }] },
-    };
-    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { topic: section, subtopics: [{ title: 'Addition', section: null }] }]]));
+  const section = {
+    id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', bookTitle: 'Ganita Prakash',
+    chapterTitle: 'Number Play', title: '3.3 Patterns of Numbers on the Number Line', page: 5,
+    tutor: {
+      intro: 'Numbers sit on a line.', keyIdea: 'Bigger numbers are to the right.',
+      examples: [{ title: 'Placing 7', problem: 'Where is 7?', steps: [{ say: 'Count from 0', show: '0..7' }], answer: 'Right of 6', why: 'Counting up moves right.', page: 5, yourTurn: { question: 'What comes right after 9?', answer: '10' } }],
+    },
+  };
+  const twoSubtopics = {
+    ...normalized,
+    units: [{ title: 'Numbers', order: 0, topics: [{ title: 'Whole Numbers', order: 0, subtopics: [{ title: 'Number line', order: 0 }, { title: 'Successor', order: 1 }], content: [] }] }],
+  };
+  const gapAnswer = {
+    explanation: 'The successor of a number is one more than it.',
+    example: 'The successor of 57 is 58.',
+    listen: 'Add one to get the successor.',
+    questions: [{ question: 'Successor of 9?', options: ['8', '10', '11', '9'], correctIndex: 1, explanation: '9 + 1 = 10' }],
+  };
+
+  test('Learn, Listen and Practice come straight from the book section; no AI writing, no grade-fit pass', async () => {
+    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { subtopics: [{ title: 'Addition', section, sections: [section] }] }]]));
     mockRetrieveGroundingContext.mockResolvedValue(null);
-    mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['Use a number line'], blocks: [{ type: 'explanation', text: 'Numbers on a line.' }] });
+    mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'Fractions.' }] });
     mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
 
     const draft = await generateLearningPathDraft(normalized);
     const topic = draft.units[0].topics[0];
 
-    expect(mockGenerateStructuredContent).toHaveBeenCalledWith(expect.objectContaining({
-      chapterPdf: 'fegp103.pdf',
-      primaryText: expect.stringContaining('Bigger numbers are to the right.'),
-      contextText: "Teacher's notes: Covers place value and number lines.",
-      syllabusGaps: ['Addition'],
-    }));
-    expect(mockRetrieveGroundingContext).not.toHaveBeenCalledWith(expect.objectContaining({ topic: 'Whole Numbers' }));
-    expect(topic.groundingSource).toBe('ncert_book');
-    expect(topic.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, grade: 6, pages: [{ subtopic: 'Addition', pdfFile: null }] });
-    expect(topic.content.blocks).toContainEqual(expect.objectContaining({ type: 'worked_example', problem: 'Where is 7?', exampleType: 'SOURCE_DERIVED' }));
+    expect(mockGenerateStructuredContent).not.toHaveBeenCalledWith(expect.objectContaining({ topic: 'Whole Numbers' }));
+    expect(mockCheckGradeFit).not.toHaveBeenCalledWith(expect.objectContaining({ topicTitle: 'Whole Numbers' }));
+    expect(topic).toMatchObject({ groundingSource: 'ncert_book', status: 'ready', objectives: ['Bigger numbers are to the right.'] });
+    expect(topic.content.blocks[0].text).toBe('From the book: 3.3 Patterns of Numbers on the Number Line (Grade 6, Ganita Prakash, page 5)');
+    expect(topic.content.blocks).toContainEqual(expect.objectContaining({ type: 'worked_example', problem: 'Where is 7?', finalAnswer: 'Right of 6', exampleType: 'SOURCE_DERIVED', bookPage: 5 }));
+    expect(topic.content.listenParts).toEqual([{ heading: 'Placing 7', text: 'Numbers sit on a line. Where is 7? Count from 0 So the answer is Right of 6.', keyIdea: 'Counting up moves right.' }]);
+    expect(topic.content.practiceQuiz).toEqual([expect.objectContaining({ type: 'fill_blank', question: 'What comes right after 9?', correct: '10' })]);
+    expect(topic.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, pages: [expect.objectContaining({ subtopic: 'Addition', pdfPage: 5 })] });
+    // The unmatched topic still goes through the normal AI pipeline.
+    expect(draft.units[0].topics[1].groundingSource).toBe('model_knowledge');
+  });
+
+  test('a subtopic the book does not teach gets one small, clearly labelled AI part', async () => {
+    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { subtopics: [{ title: 'Number line', section, sections: [section] }, { title: 'Successor', section: null, sections: [] }] }]]));
+    mockCreate.mockResolvedValue(completionWith(gapAnswer));
+
+    const topic = (await generateLearningPathDraft(twoSubtopics)).units[0].topics[0];
+
+    expect(mockCreate).toHaveBeenCalledTimes(1);
+    expect(mockCreate.mock.calls[0][0].messages[0].content).toContain('Subtopic: "Successor"');
+    expect(topic.status).toBe('ready');
+    expect(topic.content.aiWrittenSubtopics).toEqual(['Successor']);
+    expect(topic.content.blocks).toContainEqual({ type: 'explanation', text: 'Not in the book, explained by AI (please check): Successor', aiWritten: true });
+    expect(topic.content.listenParts.at(-1)).toEqual({ heading: 'Successor', text: 'Add one to get the successor.', keyIdea: '' });
+    expect(topic.content.practiceQuiz.at(-1)).toMatchObject({ type: 'mcq', question: 'Successor of 9?', options: expect.arrayContaining(['10']) });
+    const q = topic.content.practiceQuiz.at(-1);
+    expect(q.options[q.correct]).toBe('10');
+  });
+
+  test('if the AI cannot write a missing subtopic, the teacher is asked for it', async () => {
+    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { subtopics: [{ title: 'Number line', section, sections: [section] }, { title: 'Successor', section: null, sections: [] }] }]]));
+    mockCreate.mockResolvedValue(completionWith({ nope: true }));
+
+    const topic = (await generateLearningPathDraft(twoSubtopics)).units[0].topics[0];
+
+    expect(topic.status).toBe('needs_teacher_input');
+    expect(topic.teacherHint).toMatch(/Successor/);
+    expect(topic.content.blocks.some((b) => b.aiWritten)).toBe(false);
   });
 });
 
 describe('rebuildTopic — teacher-picked book sections', () => {
   beforeEach(() => jest.clearAllMocks());
-  afterEach(() => [mockGenerateStructuredContent, mockCreate, mockLoadBookSections].forEach((m) => m.mockReset()));
+  afterEach(() => {
+    [mockGenerateStructuredContent, mockCreate].forEach((m) => m.mockReset());
+    mockLoadBookSections.mockReset().mockResolvedValue([]);
+  });
 
-  test('uses exactly the picked sections; unpicked subtopics become syllabus gaps', async () => {
-    mockLoadBookSections.mockResolvedValue([
-      { id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', chapterTitle: 'Number Play', title: '3.3 Patterns', page: 5, tutor: { intro: 'Line intro', examples: [] } },
-      { id: 'S2', grade: 6, pdfFile: 'fegp105.pdf', chapterTitle: 'Prime Time', title: '5.1 Multiples', page: 1, tutor: { intro: 'Other', examples: [] } },
-    ]);
+  const sections = [
+    { id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', chapterTitle: 'Number Play', title: '3.3 Patterns', page: 5, tutor: { intro: 'Line intro', keyIdea: 'Line idea', examples: [] } },
+    { id: 'S2', grade: 6, pdfFile: 'fegp105.pdf', chapterTitle: 'Prime Time', title: '5.1 Multiples', page: 1, tutor: { intro: 'Other', examples: [] } },
+  ];
+
+  test('a picked section rebuilds from the book with no AI writing', async () => {
+    mockLoadBookSections.mockResolvedValue(sections);
+    const fields = await rebuildTopic(normalized, 0, 0, [{ pdfFile: 'fegp103.pdf', title: '3.3 Patterns' }]);
+    expect(mockGenerateStructuredContent).not.toHaveBeenCalled();
+    expect(fields.groundingSource).toBe('ncert_book');
+    expect(fields.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, pages: [expect.objectContaining({ subtopic: 'Addition', section: '3.3 Patterns' })] });
+    expect(fields.content.blocks[0].text).toMatch(/^From the book: 3.3 Patterns/);
+  });
+
+  test('no pick at all falls back to the AI pipeline', async () => {
+    mockLoadBookSections.mockResolvedValue(sections);
     mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'Numbers on a line.' }] });
     mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
-
     const fields = await rebuildTopic(normalized, 0, 0, [null]);
     expect(fields.groundingSource).toBe('model_knowledge');
-
-    const picked = await rebuildTopic(normalized, 0, 0, [{ pdfFile: 'fegp103.pdf', title: '3.3 Patterns' }]);
-    expect(mockGenerateStructuredContent).toHaveBeenLastCalledWith(expect.objectContaining({ chapterPdf: 'fegp103.pdf', syllabusGaps: [] }));
-    expect(picked.groundingSource).toBe('ncert_book');
-    expect(picked.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, pages: [expect.objectContaining({ subtopic: 'Addition', section: '3.3 Patterns' })] });
   });
 
   test('unknown topic -> error', async () => {
