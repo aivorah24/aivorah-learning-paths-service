@@ -2,6 +2,7 @@ jest.mock('../../services/supabase', () => ({ from: jest.fn() }));
 
 const supabase = require('../../services/supabase');
 const {
+  learningPathTitle,
   createDraftLearningPath,
   getDraftByCurriculumId,
   updateDraftContent,
@@ -91,14 +92,14 @@ describe('getDraftByCurriculumId', () => {
 describe('updateDraftContent', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  test('updates the content of a draft row and scopes to status=draft', async () => {
+  test('updates the working copy whatever the status (a published path stays editable)', async () => {
     const chain = updateChain({ data: { id: 'lp1', content: { units: [] } }, error: null });
     supabase.from.mockReturnValueOnce(chain);
 
     const result = await updateDraftContent('lp1', { units: [] });
 
     expect(chain.update).toHaveBeenCalledWith(expect.objectContaining({ content: { units: [] } }));
-    expect(chain.eq).toHaveBeenCalledWith('status', 'draft');
+    expect(chain.eq).not.toHaveBeenCalledWith('status', 'draft');
     expect(result).toEqual({ id: 'lp1', content: { units: [] } });
   });
 
@@ -131,7 +132,7 @@ describe('getLearningPathByCurriculumId', () => {
 describe('publishLearningPath', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  test('sets status, published_content and published_at, scoped to status=draft', async () => {
+  test('sets status, published_content and published_at — also for a later "Publish updates"', async () => {
     const chain = updateMaybeSingleChain({ data: { id: 'lp1', status: 'published' }, error: null });
     supabase.from.mockReturnValueOnce(chain);
 
@@ -141,11 +142,11 @@ describe('publishLearningPath', () => {
       status: 'published', published_content: { units: [] },
     }));
     expect(chain.update.mock.calls[0][0]).toHaveProperty('published_at');
-    expect(chain.eq).toHaveBeenCalledWith('status', 'draft');
+    expect(chain.eq).not.toHaveBeenCalledWith('status', 'draft');
     expect(result).toEqual({ id: 'lp1', status: 'published' });
   });
 
-  test('returns null when no row matched (already published, race condition)', async () => {
+  test('returns null when no row matched', async () => {
     supabase.from.mockReturnValueOnce(updateMaybeSingleChain({ data: null, error: null }));
     const result = await publishLearningPath('lp1', { units: [] });
     expect(result).toBeNull();
@@ -189,5 +190,18 @@ describe('listPublishedLearningPathsForTeachers', () => {
     chain.order = jest.fn(() => Promise.resolve({ data: null, error: { message: 'db down' } }));
     supabase.from.mockReturnValueOnce(chain);
     await expect(listPublishedLearningPathsForTeachers(['t1'])).rejects.toThrow('db down');
+  });
+});
+
+describe('learningPathTitle', () => {
+  test("the teacher's own title wins", () => {
+    expect(learningPathTitle({ title: ' Term 1 Maths ', grade: '6', subject: 'Mathematics' }, 'x.docx')).toBe('Term 1 Maths');
+  });
+  test('otherwise "Grade 6 Mathematics" from the settings', () => {
+    expect(learningPathTitle({ grade: '6', subject: 'Mathematics' }, 'x.docx')).toBe('Grade 6 Mathematics');
+    expect(learningPathTitle({ grade: 'Grade 7', subject: 'Science' }, 'x.docx')).toBe('Grade 7 Science');
+  });
+  test('last resort: a readable file name', () => {
+    expect(learningPathTitle({}, 'Grade_6_Mathematics_Curriculum_Test.docx')).toBe('Grade 6 Mathematics Curriculum Test');
   });
 });

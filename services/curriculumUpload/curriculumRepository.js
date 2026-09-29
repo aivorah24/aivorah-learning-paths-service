@@ -41,4 +41,9 @@ async function getCurriculaByIds(ids) {
   return data || [];
 }
 
-module.exports = { createCurriculum, updateCurriculumStatus, getCurriculumById, getCurriculaByIds };
+async function deleteCurriculum(id) {
+  const { error } = await supabase.from('teacher_curricula').delete().eq('id', id);
+  if (error) throw new Error(error.message);
+}
+
+module.exports = { createCurriculum, updateCurriculumStatus, getCurriculumById, getCurriculaByIds, deleteCurriculum };

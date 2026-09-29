@@ -119,39 +119,26 @@ describe('POST /teacher-curriculum/:id/learning-path/publish', () => {
     expect(mockPublishLearningPath).not.toHaveBeenCalled();
   });
 
-  test('is idempotent — repeat-publishing an already-published path returns 200 without calling publishLearningPath again', async () => {
+  test('Publish updates: an already-published path publishes its edited working copy again', async () => {
     supabase._chain.maybeSingle.mockResolvedValueOnce(ownedCurriculum());
-    mockGetLearningPathByCurriculumId.mockResolvedValueOnce({ id: 'lp1', status: 'published', published_content: validContent() });
+    const edited = validContent();
+    mockGetLearningPathByCurriculumId.mockResolvedValueOnce({ id: 'lp1', status: 'published', content: edited, published_content: validContent() });
+    mockPublishLearningPath.mockResolvedValueOnce({ id: 'lp1', status: 'published', published_content: edited });
 
     const res = await request(app).post('/teacher-curriculum/c1/learning-path/publish');
 
     expect(res.status).toBe(200);
-    expect(res.body.alreadyPublished).toBe(true);
-    expect(mockPublishLearningPath).not.toHaveBeenCalled();
+    expect(mockPublishLearningPath).toHaveBeenCalledWith('lp1', edited);
   });
 
-  test('handles a publish race safely — no row matched, re-fetches and returns the winner idempotently', async () => {
+  test('404s when the row disappeared before the publish update', async () => {
     supabase._chain.maybeSingle.mockResolvedValueOnce(ownedCurriculum());
-    mockGetLearningPathByCurriculumId
-      .mockResolvedValueOnce({ id: 'lp1', status: 'draft', content: validContent() })
-      .mockResolvedValueOnce({ id: 'lp1', status: 'published', published_content: validContent() });
+    mockGetLearningPathByCurriculumId.mockResolvedValueOnce({ id: 'lp1', status: 'draft', content: validContent() });
     mockPublishLearningPath.mockResolvedValueOnce(null);
 
     const res = await request(app).post('/teacher-curriculum/c1/learning-path/publish');
 
-    expect(res.status).toBe(200);
-    expect(res.body.alreadyPublished).toBe(true);
-    expect(mockGetLearningPathByCurriculumId).toHaveBeenCalledTimes(2);
-  });
-
-  test('rejects publishing a learning path in an unexpected status', async () => {
-    supabase._chain.maybeSingle.mockResolvedValueOnce(ownedCurriculum());
-    mockGetLearningPathByCurriculumId.mockResolvedValueOnce({ id: 'lp1', status: 'archived', content: validContent() });
-
-    const res = await request(app).post('/teacher-curriculum/c1/learning-path/publish');
-
-    expect(res.status).toBe(409);
-    expect(mockPublishLearningPath).not.toHaveBeenCalled();
+    expect(res.status).toBe(404);
   });
 
   test('500s when the publish update itself fails', async () => {
