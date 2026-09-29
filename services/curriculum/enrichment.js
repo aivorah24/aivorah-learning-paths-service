@@ -143,7 +143,7 @@ function mustCoverNote(input) {
   if (!subs.length) return '';
   return `\nTHE TEACHER'S SYLLABUS FOR THIS TOPIC: ${subs.map((s) => `"${s}"`).join(', ')}.
 Teach EVERY one of these, each with its own short explanation and an example. Use the SOURCE TEXT where it covers a subtopic; for a subtopic it does not cover, teach it from standard, well-established Grade ${input.grade} knowledge (rule 1 is relaxed only for these). Ignore any part of the source that is about a different topic.
-Write for a Grade ${input.grade} student: short sentences (mostly under 15 words), everyday words, one idea at a time.\n`;
+Write for a Grade ${input.grade} student: short sentences (mostly under 15 words), everyday words, one idea at a time. Each explanation block is 2-4 such sentences.\n`;
 }
 
 function qualityFeedbackNote(input) {

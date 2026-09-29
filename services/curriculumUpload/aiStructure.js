@@ -104,10 +104,10 @@ function lastCoveredLine(lines, result) {
   return last;
 }
 
-// Real content left after the covered part (not page furniture): at least two lines with a few words each.
+// Real content left after the covered part (a line with a few words, e.g. one last table row).
 function leftover(lines, from) {
   const rest = lines.slice(from + 1).filter((l) => words(l).length >= 3);
-  return rest.length >= 2 ? rest : null;
+  return rest.length >= 1 ? rest : null;
 }
 
 // Units with the same title across parts (a long document) are joined; topics keep document order.
