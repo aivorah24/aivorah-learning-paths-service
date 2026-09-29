@@ -4,6 +4,7 @@ const { downloadCurriculumFile } = require('./curriculumUpload/downloadCurriculu
 const { extractCurriculumContent, isExtractionEmpty, CurriculumExtractionError } = require('./curriculumUpload/extraction');
 const { normalizeCurriculumStructure, validateNormalizedCurriculum } = require('./curriculumUpload/normalization');
 const { writeJobProgress } = require('./curriculumUpload/progress');
+const { structureWithAI } = require('./curriculumUpload/aiStructure');
 const { generateLearningPathDraft } = require('./curriculumUpload/aiGeneration');
 const { createDraftLearningPath } = require('./curriculumUpload/learningPathRepository');
 
@@ -19,7 +20,13 @@ async function handleCurriculumExtract({ curriculumId }, job) {
       throw new CurriculumExtractionError('Document contains no extractable content');
     }
     const uploadConfig = curriculum.extracted_structure?.uploadConfig;
-    await updateCurriculumStatus(curriculumId, 'processed', { extracted_structure: uploadConfig ? { ...extracted, uploadConfig } : extracted, error: null });
+    await writeJobProgress(job, 'analysing');
+    const aiStructure = await structureWithAI(extracted).catch((err) => {
+      console.error('[curriculum_extract] AI structure failed, using rules:', err.message);
+      return null;
+    });
+    const stored = { ...extracted, ...(uploadConfig ? { uploadConfig } : {}), ...(aiStructure ? { aiStructure } : {}) };
+    await updateCurriculumStatus(curriculumId, 'processed', { extracted_structure: stored, error: null });
     // Chain generation server-side so the pipeline no longer needs the browser.
     await publishJob('curriculum_generate', { curriculumId, progress: { stage: 'queued', topicsDone: null, topicsTotal: null, updatedAt: new Date().toISOString() } });
     await updateCurriculumStatus(curriculumId, 'generating');
