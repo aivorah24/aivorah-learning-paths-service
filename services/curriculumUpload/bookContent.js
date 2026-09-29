@@ -118,7 +118,16 @@ async function assembleBookTopic(ref, match, metadata) {
 
   const blocks = [...sections.flatMap(sectionLearn), ...gapLessons.flatMap((g) => g.blocks)];
   const whatYoullLearn = [...new Set(sections.flatMap(sectionWhatYoullLearn))].slice(0, MAX_WHAT_YOULL_LEARN);
+  const tutors = sections.filter((s) => s.tutor);
   return {
+    // Same shape the student AI Tutor board plays (one step per book example).
+    ...(tutors.length ? {
+      mathTutor: {
+        intro: tutors[0].tutor.intro || '',
+        keyIdea: tutors[0].tutor.keyIdea || '',
+        examples: tutors.flatMap((s) => (s.tutor.examples || []).map((e) => ({ ...e, page: e.page || s.page }))),
+      },
+    } : {}),
     whatYoullLearn: whatYoullLearn.length ? whatYoullLearn : [`Understand ${ref.topicTitle}`],
     blocks,
     listenParts: [...sections.flatMap(sectionListen), ...gapLessons.flatMap((g) => g.listen)],

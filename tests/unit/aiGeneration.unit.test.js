@@ -350,6 +350,10 @@ describe('generateLearningPathDraft — topics matched to book sections', () => 
     expect(topic.content.blocks).toContainEqual(expect.objectContaining({ type: 'worked_example', problem: 'Where is 7?', finalAnswer: 'Right of 6', exampleType: 'SOURCE_DERIVED', bookPage: 5 }));
     expect(topic.content.listenParts).toEqual([{ heading: 'Placing 7', text: 'Numbers sit on a line. Where is 7? Count from 0 So the answer is Right of 6.', keyIdea: 'Counting up moves right.' }]);
     expect(topic.content.practiceQuiz).toEqual([expect.objectContaining({ type: 'fill_blank', question: 'What comes right after 9?', correct: '10' })]);
+    expect(topic.content.mathTutor).toEqual({
+      intro: 'Numbers sit on a line.', keyIdea: 'Bigger numbers are to the right.',
+      examples: [expect.objectContaining({ title: 'Placing 7', problem: 'Where is 7?', page: 5, yourTurn: { question: 'What comes right after 9?', answer: '10' } })],
+    });
     expect(topic.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, pages: [expect.objectContaining({ subtopic: 'Addition', pdfPage: 5 })] });
     // The unmatched topic still goes through the normal AI pipeline.
     expect(draft.units[0].topics[1].groundingSource).toBe('model_knowledge');
