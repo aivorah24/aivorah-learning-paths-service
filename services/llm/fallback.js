@@ -9,11 +9,13 @@ const PROVIDER_REGISTRY = {
   cerebras: { baseUrl: 'https://api.cerebras.ai/v1', keyEnv: 'CEREBRAS_API_KEY' },
   openrouter: { baseUrl: 'https://openrouter.ai/api/v1', keyEnv: 'OPENROUTER_API_KEY' },
   nvidia: { baseUrl: 'https://integrate.api.nvidia.com/v1', keyEnv: 'NVIDIA_API_KEY' },
+  gemini: { baseUrl: 'https://generativelanguage.googleapis.com/v1beta/openai', keyEnv: 'GEMINI_API_KEY' },
   // Back-compat: generic OpenAI-compatible endpoint via KNOWLEDGE_LLM_* env.
   custom: { baseUrl: null, keyEnv: 'KNOWLEDGE_LLM_API_KEY' },
 };
 
-const DEFAULT_CHAIN = 'groq:openai/gpt-oss-120b,cerebras:gpt-oss-120b,groq:openai/gpt-oss-20b,groq:qwen/qwen3.8-27b';
+// Gemini sits before the small Groq models: those often return empty JSON on the long prompts used here.
+const DEFAULT_CHAIN = 'groq:openai/gpt-oss-120b,cerebras:gpt-oss-120b,gemini:gemini-flash-lite-latest,gemini:gemini-3-flash-preview,groq:openai/gpt-oss-20b,groq:qwen/qwen3.8-27b';
 const LONG_COOLDOWN_MS = 15 * 60 * 1000;
 const DAILY_LIMIT_RE = /tokens per day|requests per day|\btpd\b|\brpd\b/i;
 

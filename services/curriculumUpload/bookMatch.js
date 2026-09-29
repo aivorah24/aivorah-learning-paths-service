@@ -179,7 +179,12 @@ function bookForTopic(match, sections) {
   return {
     pdfFile: first.pdfFile, bookPath: first.bookPath, bookTitle: first.bookTitle,
     chapterTitle: first.chapterTitle || first.title, pdfPage: first.page, grade: first.grade, confidence: 10,
-    pages: match.subtopics.map((s) => ({ subtopic: s.title, ...(s.section ? pageOf(s.section) : { pdfFile: null }) })),
+    pages: match.subtopics.map((s) => ({
+      subtopic: s.title,
+      ...(s.section ? pageOf(s.section) : { pdfFile: null }),
+      // Every section this subtopic was taught from, so a teacher edit of the picks keeps them all.
+      sections: (s.sections || (s.section ? [s.section] : [])).map((x) => ({ pdfFile: x.pdfFile, title: x.title, page: x.page, grade: x.grade })),
+    })),
   };
 }
 

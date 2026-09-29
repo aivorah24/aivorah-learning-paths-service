@@ -86,6 +86,6 @@ test('bookForTopic opens at the first section and lists a page per subtopic', as
   expect(book).toMatchObject({ pdfFile: 'fegp102.pdf', pdfPage: 3, grade: 6 });
   expect(book.pages).toEqual([
     expect.objectContaining({ subtopic: 'Rays and angles', pdfPage: 3, section: '2.4 Ray' }),
-    { subtopic: 'Successor', pdfFile: null },
+    { subtopic: 'Successor', pdfFile: null, sections: [] },
   ]);
 });

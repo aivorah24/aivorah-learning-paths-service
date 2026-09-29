@@ -85,4 +85,13 @@ describe('withLLMRetry', () => {
     await expect(drive(withLLMRetry(fn, { maxRetries: 2 }))).rejects.toThrow('429 rate limit');
     expect(fn).toHaveBeenCalledTimes(3); // initial + 2 retries
   });
+
+  test('a daily-limit 429 throws at once so the fallback chain can move on', async () => {
+    const err = new Error('429 Rate limit reached for model on tokens per day (TPD): Limit 200000, Used 199999');
+    err.status = 429;
+    const fn = jest.fn(async () => { throw err; });
+
+    await expect(drive(withLLMRetry(fn))).rejects.toThrow('tokens per day');
+    expect(fn).toHaveBeenCalledTimes(1);
+  });
 });

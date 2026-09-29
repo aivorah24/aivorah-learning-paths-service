@@ -88,3 +88,22 @@ test('an entry with no API key configured is skipped silently', async () => {
   expect(result).toBe('from-groq');
   expect(global.fetch).toHaveBeenCalledTimes(1);
 });
+
+test('gemini is a provider: called at its OpenAI-compatible endpoint with GEMINI_API_KEY', async () => {
+  process.env.LLM_CHAIN = 'gemini:gemini-3-flash-preview';
+  process.env.GEMINI_API_KEY = 'gem-key';
+  global.fetch.mockResolvedValueOnce(okResponse('{"ok":true}'));
+
+  await expect(callWithFallback('prompt', { json: true })).resolves.toBe('{"ok":true}');
+  const [url, req] = global.fetch.mock.calls[0];
+  expect(url).toBe('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions');
+  expect(req.headers.Authorization).toBe('Bearer gem-key');
+  expect(JSON.parse(req.body).model).toBe('gemini-3-flash-preview');
+});
+
+test('the default chain tries Gemini before the small Groq models', () => {
+  delete process.env.LLM_CHAIN;
+  const chain = require('../../services/llm/fallback').parseChain().map((e) => `${e.provider}:${e.model}`);
+  expect(chain.indexOf('gemini:gemini-flash-lite-latest')).toBeGreaterThan(chain.indexOf('groq:openai/gpt-oss-120b'));
+  expect(chain.indexOf('gemini:gemini-flash-lite-latest')).toBeLessThan(chain.indexOf('groq:openai/gpt-oss-20b'));
+});
