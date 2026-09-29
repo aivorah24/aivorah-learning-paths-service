@@ -427,6 +427,36 @@ describe('generateLearningPathDraft — IB and other curricula without their own
     expect(mockFindTopicImages).not.toHaveBeenCalled();
   });
 
+  test('searches the vector store once for the topic and once per subtopic; every subtopic must be taught', async () => {
+    const twoSubs = { ...ib, units: [{ title: 'Numbers', order: 0, topics: [{ title: 'Whole Numbers', order: 0, subtopics: [{ title: 'Number line', order: 0 }, { title: 'Successor', order: 1 }], content: [] }] }] };
+    mockRetrieveGroundingContext.mockImplementation(async ({ topic }) => ({ context: `about ${topic}`, meta: { selected: 1 }, sources: [{ score: 0.6 }] }));
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [{ heading: 'h', text: 't' }], questions: [] }));
+
+    await generateLearningPathDraft(twoSubs);
+
+    expect(mockRetrieveGroundingContext.mock.calls.map((c) => c[0].topic)).toEqual(['Whole Numbers', 'Number line (Whole Numbers)', 'Successor (Whole Numbers)']);
+    const call = mockGenerateStructuredContent.mock.calls[0][0];
+    expect(call.mustCover).toEqual(['Number line', 'Successor']);
+    expect(call.primaryText).toContain('about Successor (Whole Numbers)');
+  });
+
+  test('Listen and Practice are retried once when the first attempt fails', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'x', meta: { selected: 1 }, sources: [{ score: 0.6 }] });
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    let companionCalls = 0;
+    mockCreate.mockImplementation(async (opts) => {
+      if (!opts.messages[0].content.includes('audio script')) return completionWith({});
+      companionCalls += 1;
+      return companionCalls === 1 ? completionWith({ nope: true }) : completionWith({ listenParts: [{ heading: 'Intro', text: 'Hello' }], questions: [] });
+    });
+
+    const topic = (await generateLearningPathDraft(ib)).units[0].topics[0];
+
+    expect(companionCalls).toBeGreaterThanOrEqual(2);
+    expect(topic.content.listenParts).toEqual([expect.objectContaining({ heading: 'Intro', text: 'Hello' })]);
+  });
+
   test('Maths gets an AI Tutor board built from the lesson\'s own worked examples', async () => {
     mockRetrieveGroundingContext.mockResolvedValue({ context: 'IB MYP: whole numbers.', meta: { selected: 1 }, sources: [{ score: 0.6 }] });
     mockGenerateStructuredContent.mockResolvedValue(lesson);
@@ -652,8 +682,10 @@ describe('groundTopic — worked-example disclosure', () => {
 
     const draft = await generateLearningPathDraft(singleTopicNormalized);
 
-    // Only the generateCompanions call fires — no targeted generateWorkedExample call needed.
-    expect(mockCreate).toHaveBeenCalledTimes(1);
+    // Only generateCompanions calls fire (one retry when its answer is unusable) — never a generateWorkedExample call.
+    const prompts = mockCreate.mock.calls.map((c) => c[0].messages[0].content);
+    expect(prompts.every((p) => p.includes('audio script'))).toBe(true);
+    expect(prompts.some((p) => p.includes('worked mathematical PRACTICE example'))).toBe(false);
     const block = draft.units[0].topics[0].content.blocks.find((b) => b.type === 'worked_example');
     expect(block.synthetic).toBeUndefined();
     expect(block.finalAnswer).toBe('623');

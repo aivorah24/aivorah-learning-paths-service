@@ -201,6 +201,13 @@ describe('buildPrompt for curricula without their own books here', () => {
     expect(prompt).toContain('This lesson is for a IB MYP class');
     expect(prompt).toMatch(/NEVER mention any textbook, book series, chapter, page or figure number, or another curriculum/);
   });
+  test("the teacher's subtopics must all be taught, at the student's reading level", () => {
+    const prompt = buildPrompt({ ...base, neutralSource: true, mustCover: ['Integers', 'primes'] });
+    expect(prompt).toContain(`THE TEACHER'S SYLLABUS FOR THIS TOPIC: "Integers", "primes"`);
+    expect(prompt).toMatch(/Teach EVERY one of these/);
+    expect(prompt).toMatch(/Ignore any part of the source that is about a different topic/);
+    expect(prompt).toMatch(/short sentences \(mostly under 15 words\)/);
+  });
   test('CBSE prompts are unchanged', () => {
     expect(buildPrompt({ ...base, curriculum: 'CBSE' })).not.toContain('NEVER mention any textbook');
   });

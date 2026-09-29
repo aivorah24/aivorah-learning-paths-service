@@ -136,6 +136,16 @@ function neutralSourceNote(input) {
   return `\nThis lesson is for a ${input.curriculum || ''} class. The source may come from another curriculum's textbook: NEVER mention any textbook, book series, chapter, page or figure number, or another curriculum. Rewrite references like "Fig. 2.3" or "in this chapter" so the lesson stands on its own.\n`;
 }
 
+// Curricula without their own books here: the teacher's syllabus decides what is taught, not whatever the reference
+// material happens to cover.
+function mustCoverNote(input) {
+  const subs = (input.mustCover || []).filter(Boolean);
+  if (!subs.length) return '';
+  return `\nTHE TEACHER'S SYLLABUS FOR THIS TOPIC: ${subs.map((s) => `"${s}"`).join(', ')}.
+Teach EVERY one of these, each with its own short explanation and an example. Use the SOURCE TEXT where it covers a subtopic; for a subtopic it does not cover, teach it from standard, well-established Grade ${input.grade} knowledge (rule 1 is relaxed only for these). Ignore any part of the source that is about a different topic.
+Write for a Grade ${input.grade} student: short sentences (mostly under 15 words), everyday words, one idea at a time.\n`;
+}
+
 function qualityFeedbackNote(input) {
   return input.qualityFeedback ? `\n\nQUALITY REVIEW FEEDBACK — fix these issues in your response: ${input.qualityFeedback}\n` : '';
 }
@@ -172,7 +182,7 @@ ALLOWED BLOCK TYPES FOR THIS SUBJECT:
 ${guidance}
 
 ${RECIPE_RULES}
-${neutralSourceNote(input)}${qualityFeedbackNote(input)}
+${neutralSourceNote(input)}${mustCoverNote(input)}${qualityFeedbackNote(input)}
 Respond with ONLY the JSON object described above.`;
 }
 
@@ -206,7 +216,7 @@ CONTEXT TEXT (neighboring textbook material, background only, NOT this topic's o
 """
 ${contextText || '(none)'}
 """
-${neutralSourceNote(input)}${qualityFeedbackNote(input)}
+${neutralSourceNote(input)}${mustCoverNote(input)}${qualityFeedbackNote(input)}
 Respond with ONLY the JSON object described in rule 4.`;
 }
 

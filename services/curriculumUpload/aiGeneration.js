@@ -389,20 +389,19 @@ function sectionReferenceText(section) {
 }
 
 const MAX_REFERENCE_CHARS = 7000;
+const MAX_SUBTOPIC_SEARCHES = 5;
 
 // A topic of a curriculum without its own books here (IB, ...): the lesson is written from whatever reference material
 // matches best — book sections of any curriculum and the vector store — plus the teacher's own notes, in a neutral
 // voice. null when nothing matched (the caller then falls back to AI knowledge, labelled for the teacher).
 async function openTopic(topicRef, metadata, qualityFeedback) {
   const sources = (topicRef.bookSections || []).map(sectionReferenceText).filter(Boolean);
-  const retrieved = await retrieveGroundingContext({
-    curriculum: metadata?.curriculum,
-    grade: metadata?.grade,
-    subject: metadata?.subject,
-    topic: topicRef.topicTitle,
-    subtopics: topicRef.subtopics,
-  }).catch(() => null);
-  if (retrieved?.context) sources.push(retrieved.context);
+  // One search for the topic and one per subtopic: a single combined query drifted to neighbouring topics.
+  const queries = [{ topic: topicRef.topicTitle, subtopics: [] }, ...topicRef.subtopics.slice(0, MAX_SUBTOPIC_SEARCHES).map((s) => ({ topic: `${s} (${topicRef.topicTitle})`, subtopics: [] }))];
+  const found = await mapWithConcurrency(queries, 2, (q) => retrieveGroundingContext({
+    curriculum: metadata?.curriculum, grade: metadata?.grade, subject: metadata?.subject, ...q,
+  }).catch(() => null));
+  for (const r of found) if (r?.context && !sources.includes(r.context)) sources.push(r.context);
   if (!sources.length) return null;
 
   const { generateStructuredContent, classifyContentType } = getEnrichment();
@@ -419,6 +418,7 @@ async function openTopic(topicRef, metadata, qualityFeedback) {
     contentType,
     qualityFeedback,
     neutralSource: true,
+    mustCover: topicRef.subtopics,
   });
   if (!generated.ok) return null;
   return finalizeGeneratedTopic(topicRef, metadata, generated, contentType, 'reference_sources', { context: primaryText });
@@ -550,6 +550,7 @@ async function knowledgeTopic(topicRef, metadata, qualityFeedback) {
       contentType,
       qualityFeedback,
       neutralSource: !usesNcertBooks(metadata),
+      mustCover: usesNcertBooks(metadata) ? undefined : topicRef.subtopics,
     });
   } catch {
     return null;
@@ -707,7 +708,9 @@ async function attachCompanions(topics, topicRefs, metadata) {
     if (!t.content) return;
     const ref = refByKey.get(`${t.unitOrder}:${t.topicOrder}`);
     if (!ref) return;
-    const companions = await generateCompanions(ref, metadata, t.content).catch(() => null);
+    // One retry: a single failed call used to leave a topic with no Listen and no Practice at all.
+    const companions = (await generateCompanions(ref, metadata, t.content).catch(() => null))
+      || (await generateCompanions(ref, metadata, t.content).catch(() => null));
     if (companions) {
       t.content.listenParts = companions.listenParts;
       t.content.practiceQuiz = companions.practiceQuiz;
