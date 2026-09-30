@@ -70,6 +70,12 @@ function makeFoundIn(sourceText) {
 
 const clean = (s) => String(s ?? '').trim().replace(UNIT_PREFIX_RE, '').trim();
 
+// Some models wrap the answer in a list: [{ metadata, units }] or even a bare list of units.
+function unwrap(parsed) {
+  if (!Array.isArray(parsed)) return parsed;
+  return parsed.find((x) => x && Array.isArray(x.units)) || { units: parsed.filter((x) => x && Array.isArray(x.topics)) };
+}
+
 function verify(parsed, foundIn) {
   const units = [];
   for (const u of Array.isArray(parsed?.units) ? parsed.units : []) {
@@ -138,7 +144,7 @@ async function structureWithAI(extracted) {
     for (let round = 0; round <= MAX_FOLLOW_UPS && text; round += 1) {
       let result;
       try {
-        result = verify(JSON.parse(await callWithFallback(buildPrompt(text, i, parts.length), { json: true, temperature: 0 })), foundIn);
+        result = verify(unwrap(JSON.parse(await callWithFallback(buildPrompt(text, i, parts.length), { json: true, temperature: 0 }))), foundIn);
       } catch (err) {
         console.error(`[aiStructure] part ${i + 1}/${parts.length} failed:`, err.message);
         break;
@@ -175,4 +181,4 @@ async function structureWithAI(extracted) {
   };
 }
 
-module.exports = { structureWithAI, documentText, chunks, makeFoundIn, verify, merge, buildPrompt, lastCoveredLine, leftover };
+module.exports = { structureWithAI, documentText, chunks, makeFoundIn, verify, merge, buildPrompt, lastCoveredLine, leftover, unwrap };

@@ -4,11 +4,14 @@ const XLSX = require('xlsx');
 
 class CurriculumExtractionError extends Error {}
 
-// Text of one PDF page as lines; table rows keep their cells apart with tabs. Once a header row with a "Topic"
-// column is seen, later rows are laid out on that header's columns (a cell that wraps onto a second line joins its
-// row), so a curriculum table survives extraction instead of running every cell together.
+// Text of one PDF page as lines; table rows keep their cells apart with tabs. Once a table header row is seen, later
+// rows are laid out on that header's columns (a cell that wraps onto further lines joins its row), so a curriculum
+// table survives extraction instead of running every cell together.
 const SAME_LINE_PX = 2;
 const CELL_GAP_PX = 2;
+// Column names a curriculum table header is made of ("Chapter / Topic", "Sub-topics", "Learning Outcomes"...).
+const HEADER_CELL_RE = /^(s\.?\s*no\.?|sl\.?\s*no\.?|#|unit|units|chapter|chapters|topic|topics|sub[-\s]?topics?|lesson|lessons|theme|themes|strand|strands|module|content|contents|concepts?|key concepts?|learning (outcomes?|objectives?)|objectives?|outcomes?|skills?|activities|activity|assessment|resources|periods?|weeks?|month|term|duration|hours?)$/i;
+const isHeaderCell = (t) => t.split(/\s*[/&,]\s*|\s+and\s+/i).every((part) => HEADER_CELL_RE.test(part.trim()));
 function pageLines(items) {
   const rows = [];
   for (const it of items) {
@@ -18,12 +21,17 @@ function pageLines(items) {
     let row = rows.find((r) => Math.abs(r.y - y) <= SAME_LINE_PX);
     if (!row) { row = { y, items: [] }; rows.push(row); }
     row.items.push({ x, end: x + (it.width || 0), str: it.str });
+    row.size = Math.max(row.size || 0, Math.abs(it.transform[3]) || it.height || 0);
   }
   rows.sort((a, b) => b.y - a.y);
 
   const out = [];
   let columns = null;
+  let prevRow = null;
   for (const row of rows) {
+    const gap = prevRow ? prevRow.y - row.y : Infinity;
+    const lineHeight = Math.max(row.size || 0, prevRow?.size || 0, 6);
+    prevRow = row;
     const items = row.items.sort((a, b) => a.x - b.x);
     // Split the row into cells wherever a new item does not continue the previous one.
     const cells = [];
@@ -37,10 +45,20 @@ function pageLines(items) {
       }
     }
     const texts = cells.map((c) => c.text.trim());
-    if (texts.some((t) => /^topics?$/i.test(t)) && cells.length > 1) {
+    if (cells.length > 1 && texts.filter(isHeaderCell).length >= 2 && texts.some((t) => /topic|chapter|unit|lesson|theme|strand|module|content/i.test(t))) {
       columns = cells.map((c) => c.x);
       out.push(texts.join('\t'));
       continue;
+    }
+    // A line tight under the previous row with nothing in the first column: that row's cells wrapping onto it.
+    const colOf = (x) => { let col = 0; columns.forEach((cx, i) => { if (x >= cx - 4) col = i; }); return col; };
+    if (columns && out.length && cells[0].x > columns[0] + 4 && gap <= lineHeight * 1.6) {
+      const prev = out[out.length - 1].split('	');
+      if (prev.length === columns.length) {
+        cells.forEach((c) => { const col = colOf(c.x); const t = c.text.trim(); prev[col] = prev[col] ? `${prev[col]} ${t}` : t; });
+        out[out.length - 1] = prev.join('	');
+        continue;
+      }
     }
     if (columns && cells.length > 1 && cells[0].x >= columns[0] - 4) {
       const aligned = columns.map(() => '');
@@ -69,14 +87,20 @@ function pageLines(items) {
   return out.join('\n');
 }
 
+// Newer bundled pdf.js: reads files the default one rejects (e.g. "bad XRef entry" on ReportLab-made PDFs).
+const PDF_FALLBACK_VERSION = 'v2.0.550';
+
 async function extractPdf(buffer) {
+  const options = { pagerender: async (page) => pageLines((await page.getTextContent()).items) };
   let result;
   try {
-    result = await pdfParse(buffer, {
-      pagerender: async (page) => pageLines((await page.getTextContent()).items),
-    });
+    result = await pdfParse(buffer, options);
   } catch (err) {
-    throw new CurriculumExtractionError(`Failed to parse PDF: ${err.message}`);
+    try {
+      result = await pdfParse(buffer, { ...options, version: PDF_FALLBACK_VERSION });
+    } catch {
+      throw new CurriculumExtractionError(`Failed to parse PDF: ${err.message}`);
+    }
   }
   return { format: 'pdf', text: (result.text || '').trim(), pageCount: result.numpages };
 }

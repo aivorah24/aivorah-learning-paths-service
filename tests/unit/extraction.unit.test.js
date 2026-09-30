@@ -31,8 +31,16 @@ describe('extractCurriculumContent', () => {
   });
 
   test('wraps a PDF parser failure in CurriculumExtractionError', async () => {
-    pdfParse.mockRejectedValueOnce(new Error('bad xref table'));
-    await expect(extractCurriculumContent(Buffer.from('x'), PDF_MIME)).rejects.toThrow(CurriculumExtractionError);
+    // Both the default reader and the fallback one fail.
+    pdfParse.mockRejectedValueOnce(new Error('bad xref table')).mockRejectedValueOnce(new Error('still bad'));
+    await expect(extractCurriculumContent(Buffer.from('x'), PDF_MIME)).rejects.toThrow(/Failed to parse PDF: bad xref table/);
+  });
+
+  test('a PDF the default reader rejects is retried with the newer bundled reader', async () => {
+    pdfParse.mockRejectedValueOnce(new Error('bad XRef entry')).mockResolvedValueOnce({ text: 'Unit 1: Resources', numpages: 1 });
+    const result = await extractCurriculumContent(Buffer.from('x'), PDF_MIME);
+    expect(result).toEqual({ format: 'pdf', text: 'Unit 1: Resources', pageCount: 1 });
+    expect(pdfParse).toHaveBeenLastCalledWith(expect.any(Buffer), expect.objectContaining({ version: 'v2.0.550' }));
   });
 
   test('extracts text from a valid DOCX', async () => {
