@@ -23,6 +23,11 @@ jest.mock('../../services/curriculumUpload/studentAccess', () => ({
   listTeacherIdsForStudent: (...args) => mockListTeacherIdsForStudent(...args),
 }));
 
+const mockPublishedEdits = jest.fn();
+jest.mock('../../services/subjectEdits/repository', () => ({
+  publishedEditsForTeachers: (...args) => mockPublishedEdits(...args),
+}));
+
 const mockGetCurriculaByIds = jest.fn();
 jest.mock('../../services/curriculumUpload/curriculumRepository', () => ({
   getCurriculaByIds: (...args) => mockGetCurriculaByIds(...args),
@@ -155,5 +160,23 @@ describe('GET /student/learning-paths/:curriculumId', () => {
 
     const res = await request(app).get('/student/learning-paths/c1');
     expect(res.status).toBe(500);
+  });
+});
+
+describe('GET /student/learning-paths/subject-edits', () => {
+  test("returns the latest published changes from the student's teachers for that subject", async () => {
+    mockListTeacherIdsForStudent.mockResolvedValueOnce(['t1', 't2']);
+    mockPublishedEdits.mockResolvedValueOnce({ teacher_id: 't2', published: { chapters: [], topics: {} }, published_at: '2026-09-30T10:00:00Z' });
+    const res = await request(app).get('/student/learning-paths/subject-edits').query({ curriculum: 'NCERT', grade: 'Grade 6', subject: 'Maths' });
+    expect(res.status).toBe(200);
+    expect(mockPublishedEdits).toHaveBeenCalledWith(['t1', 't2'], { curriculum: 'cbse', grade: '6', subject: 'mathematics' });
+    expect(res.body.edits).toEqual({ chapters: [], topics: {} });
+  });
+
+  test('no teacher changes gives null', async () => {
+    mockListTeacherIdsForStudent.mockResolvedValueOnce([]);
+    mockPublishedEdits.mockResolvedValueOnce(null);
+    const res = await request(app).get('/student/learning-paths/subject-edits').query({ curriculum: 'CBSE', grade: '6', subject: 'Science' });
+    expect(res.body).toEqual({ edits: null, publishedAt: null });
   });
 });

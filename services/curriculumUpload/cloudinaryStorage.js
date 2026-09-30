@@ -19,8 +19,17 @@ async function uploadCurriculumFile(buffer, { fileName, mimeType }) {
   return { url: result.secure_url, publicId: result.public_id };
 }
 
+// A picture a teacher adds to a lesson.
+async function uploadLessonImage(buffer, { mimeType }) {
+  const result = await cloudinary.uploader.upload(`data:${mimeType};base64,${buffer.toString('base64')}`, {
+    folder: 'aivorah/teacher-lesson-images',
+    resource_type: 'image',
+  });
+  return { url: result.secure_url, width: result.width, height: result.height };
+}
+
 async function deleteCurriculumFile(publicId) {
   await cloudinary.uploader.destroy(publicId, { resource_type: 'raw' });
 }
 
-module.exports = { uploadCurriculumFile, deleteCurriculumFile };
+module.exports = { uploadCurriculumFile, deleteCurriculumFile, uploadLessonImage };

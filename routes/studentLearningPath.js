@@ -5,6 +5,8 @@ const { requireStudentAuth } = require('../middleware/auth');
 const { getLearningPathByCurriculumId, listPublishedLearningPathsForTeachers, learningPathTitle } = require('../services/curriculumUpload/learningPathRepository');
 const { getCurriculaByIds } = require('../services/curriculumUpload/curriculumRepository');
 const { isStudentOfTeacher, listTeacherIdsForStudent } = require('../services/curriculumUpload/studentAccess');
+const { scopeOf } = require('../services/subjectEdits/scope');
+const { publishedEditsForTeachers } = require('../services/subjectEdits/repository');
 
 router.get('/', requireStudentAuth, async (req, res) => {
   try {
@@ -30,6 +32,19 @@ router.get('/', requireStudentAuth, async (req, res) => {
   } catch (err) {
     console.error('[student/learning-paths] list failed:', err.message);
     return res.status(500).json({ error: 'Failed to load learning paths' });
+  }
+});
+
+// The student's teacher's published changes to a standard subject path (null when there are none).
+router.get('/subject-edits', requireStudentAuth, async (req, res) => {
+  const scope = scopeOf(req.query);
+  if (!scope) return res.status(400).json({ error: 'curriculum, grade and subject are required' });
+  try {
+    const teacherIds = await listTeacherIdsForStudent(req.auth.studentId);
+    const row = await publishedEditsForTeachers(teacherIds, scope);
+    res.json({ edits: row?.published || null, publishedAt: row?.published_at || null });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
