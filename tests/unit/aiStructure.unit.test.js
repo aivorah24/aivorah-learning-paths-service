@@ -75,3 +75,14 @@ test('coverage: the last line the answer accounts for, and whether real content 
   expect(leftover(lines, last)).toEqual(expect.arrayContaining(['Solids and liquids\tShape; flow\tCompare solids and liquids']));
   expect(leftover(lines, lines.length - 1)).toBeNull();
 });
+
+test('an answer wrapped in a list is read the same (it used to count as "no units" and drop every subtopic)', async () => {
+  const units = [{ title: 'Living Things', topics: [{ title: 'Plants', subtopics: ['Leaves', 'roots'], notes: [] }] }];
+  mockCallWithFallback.mockResolvedValue(`[${answer(units)}]`);
+  const wrapped = await structureWithAI({ format: 'pdf', text: 'Strand 1: Living Things\nPlants\tLeaves; roots' });
+  expect(wrapped.units[0].topics[0].subtopics.map((s) => s.title)).toEqual(['Leaves', 'roots']);
+
+  mockCallWithFallback.mockResolvedValue(JSON.stringify(units));
+  const bare = await structureWithAI({ format: 'pdf', text: 'Strand 1: Living Things\nPlants\tLeaves; roots' });
+  expect(bare.units[0].title).toBe('Living Things');
+});
