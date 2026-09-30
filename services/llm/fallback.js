@@ -9,12 +9,16 @@ const PROVIDER_REGISTRY = {
   cerebras: { baseUrl: 'https://api.cerebras.ai/v1', keyEnv: 'CEREBRAS_API_KEY' },
   openrouter: { baseUrl: 'https://openrouter.ai/api/v1', keyEnv: 'OPENROUTER_API_KEY' },
   nvidia: { baseUrl: 'https://integrate.api.nvidia.com/v1', keyEnv: 'NVIDIA_API_KEY' },
+  gemini: { baseUrl: 'https://generativelanguage.googleapis.com/v1beta/openai', keyEnv: 'GEMINI_API_KEY' },
   // Back-compat: generic OpenAI-compatible endpoint via KNOWLEDGE_LLM_* env.
   custom: { baseUrl: null, keyEnv: 'KNOWLEDGE_LLM_API_KEY' },
 };
 
-const DEFAULT_CHAIN = 'groq:openai/gpt-oss-120b,cerebras:gpt-oss-120b,groq:openai/gpt-oss-20b,groq:qwen/qwen3.8-27b';
+// Gemini sits before the small Groq models: those often return empty JSON on the long prompts used here.
+const DEFAULT_CHAIN = 'groq:openai/gpt-oss-120b,cerebras:gpt-oss-120b,gemini:gemini-flash-lite-latest,gemini:gemini-3-flash-preview,groq:openai/gpt-oss-20b,groq:qwen/qwen3.8-27b';
 const LONG_COOLDOWN_MS = 15 * 60 * 1000;
+// A server overload (503) or dropped connection usually clears quickly: bench that model briefly, not for 15 minutes.
+const SHORT_COOLDOWN_MS = 60 * 1000;
 const DAILY_LIMIT_RE = /tokens per day|requests per day|\btpd\b|\brpd\b/i;
 
 class LLMUnavailableError extends Error {}
@@ -73,7 +77,7 @@ function classifyError(err) {
     }
     return { type: 'short429', delayMs: retryMs || 1000 };
   }
-  if (status >= 500 || status == null) return { type: 'serverOrNetwork' };
+  if (status >= 500 || status == null) return { type: 'serverOrNetwork', cooldownMs: SHORT_COOLDOWN_MS };
   return { type: 'other' };
 }
 
@@ -121,7 +125,7 @@ async function callWithFallback(prompt, { json = false, temperature } = {}) {
       return content;
     } catch (err) {
       const c = classifyError(err);
-      console.error(`[llm] fallover ${key} -> ${c.type}`);
+      console.error(`[llm] fallover ${key} -> ${c.type} (${err.status || err.statusCode || '-'}: ${String(err.message || '').slice(0, 160)})`);
       if (c.type === 'auth') disabledForever.add(key);
       else if (c.type === 'long' || c.type === 'serverOrNetwork') cooldowns.set(key, Date.now() + (c.cooldownMs || LONG_COOLDOWN_MS));
       attempts.push(`${key}: ${c.type}`);

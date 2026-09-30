@@ -4,7 +4,7 @@ jest.mock('cloudinary', () => {
 });
 
 const cloudinary = require('cloudinary').v2;
-const { uploadCurriculumFile, deleteCurriculumFile } = require('../../services/curriculumUpload/cloudinaryStorage');
+const { uploadCurriculumFile, deleteCurriculumFile, uploadLessonImage } = require('../../services/curriculumUpload/cloudinaryStorage');
 
 describe('cloudinaryStorage', () => {
   beforeEach(() => jest.clearAllMocks());
@@ -45,4 +45,11 @@ describe('cloudinaryStorage', () => {
       { resource_type: 'raw' }
     );
   });
+});
+
+test('uploads a lesson picture as an image', async () => {
+  cloudinary.uploader.upload.mockResolvedValueOnce({ secure_url: 'https://res.cloudinary.com/x/image/upload/a.png', width: 40, height: 30 });
+  const out = await uploadLessonImage(Buffer.from('png'), { mimeType: 'image/png' });
+  expect(cloudinary.uploader.upload).toHaveBeenCalledWith(expect.stringMatching(/^data:image\/png;base64,/), expect.objectContaining({ resource_type: 'image', folder: 'aivorah/teacher-lesson-images' }));
+  expect(out).toEqual({ url: 'https://res.cloudinary.com/x/image/upload/a.png', width: 40, height: 30 });
 });

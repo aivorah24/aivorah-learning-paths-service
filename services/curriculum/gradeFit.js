@@ -41,6 +41,9 @@ function readabilityStats(text) {
   };
 }
 
+// More than this many grades above the student's reading level is a real problem, not a style point.
+const FAR_ABOVE_GRADE = 4;
+
 function blocksLearnText(blocks) {
   return (blocks || []).map((b) => b.text || b.explanation || '').filter(Boolean).join(' ');
 }
@@ -57,6 +60,9 @@ function ruleCheck(content, studentGrade) {
   const learnStats = readabilityStats(blocksLearnText(blocks));
   const audioText = listenPartsText(content?.listenParts);
   const issues = [];
+  // Issues that must be fixed before students see the topic; everything else is advice for the teacher.
+  const blocking = [];
+  if (learnStats.grade > grade + FAR_ABOVE_GRADE) blocking.push(`Learn text reading grade ${learnStats.grade} is far above Grade ${grade}`);
   if (learnStats.grade > grade + 2) issues.push(`Learn text reading grade ${learnStats.grade} is too high for Grade ${grade}`);
   if (learnStats.avgSentenceLen > 20) issues.push(`Learn text sentences average ${learnStats.avgSentenceLen} words (over 20)`);
   if (audioText) {
@@ -67,7 +73,9 @@ function ruleCheck(content, studentGrade) {
 
   // Grade 6 has not learned exponents/powers yet.
   if (grade === 6 && /\d\s*\^\s*\d|10\^\{?\d|\d\s*[×x]\s*10\^/.test(blocksLearnText(blocks))) {
-    issues.push('Learn text uses exponent/power notation, not appropriate before Grade 7');
+    const msg = 'Learn text uses exponent/power notation, not appropriate before Grade 7';
+    issues.push(msg);
+    blocking.push(msg);
   }
 
   // Thin content: very short explanation blocks, or a table with only 1 column.
@@ -76,7 +84,7 @@ function ruleCheck(content, studentGrade) {
   const thinTables = blocks.filter((b) => b.type === 'table' && Array.isArray(b.headers) && b.headers.length < 2);
   if (thinTables.length > 0) issues.push('A table block has fewer than 2 columns');
 
-  return { readingGrade: learnStats.grade, sentenceLength: learnStats.avgSentenceLen, issues };
+  return { readingGrade: learnStats.grade, sentenceLength: learnStats.avgSentenceLen, issues, blocking };
 }
 
 function buildJudgePrompt({ topicTitle, chapterTitle, grade, subject, subtopics, learnText, audioText, practiceQuestions }) {
@@ -141,7 +149,9 @@ async function checkGradeFit({ topicTitle, chapterTitle, grade, subject, subtopi
   }
 
   const issues = [...rules.issues, ...recipeMissing.map((m) => `Recipe: missing ${m}`), ...judgeIssues];
-  const failed = rules.issues.length > 0 || recipeMissing.length > 0 || (judge != null && judge.minScore < 4);
+  // Only real problems block the topic (and trigger one regeneration): the judge finding the content wrong, off-topic
+  // or not age-appropriate, or rule breaches that matter. Style points stay in quality.issues as advice.
+  const failed = rules.blocking.length > 0 || (judge != null && judge.minScore < 4);
 
   return {
     quality: { readingGrade: rules.readingGrade, sentenceLength: rules.sentenceLength, judgeScores: judge ? judge.scores : null, issues },

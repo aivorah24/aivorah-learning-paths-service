@@ -8,6 +8,9 @@ const { findTopicImages } = require('../qdrant');
 const { checkGradeFit } = require('../curriculum/gradeFit');
 const { callWithFallback } = require('../llm/fallback');
 const { buildCacheKey, getCachedTopic, persistCachedTopic, dedupeGeneration } = require('./topicCache');
+const { matchTopicsToBook, loadBookSections, sectionsForTopic, matchUnits } = require('./bookMatch');
+const { assembleBookTopic } = require('./bookContent');
+const { usesNcertBooks } = require('./curriculumKind');
 
 // Lazy — enrichment.js constructs its own Groq/Supabase clients at module
 // load, which crashes under jest.requireActual in tests that only need this
@@ -197,10 +200,11 @@ async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType
   // structured visual block (table/process/...) stands in instead.
   const keyTerms = (generated.blocks.find((b) => b.type === 'key_terms')?.items || []).map((i) => i.term).filter(Boolean);
   const chapterMatch = matchChapter(topicRef, metadata);
-  const images = await findTopicImages({
+  const book = chapterMatch && { pdfFile: chapterMatch.pdfFile, bookPath: chapterMatch.bookPath, bookTitle: chapterMatch.book, chapterTitle: chapterMatch.title, pdfPage: 1, confidence: chapterMatch.confidence };
+  const images = !usesNcertBooks(metadata) ? [] : await findTopicImages({
     grade: metadata?.grade,
     subject: metadata?.subject,
-    pdfFile: chapterMatch?.pdfFile || null,
+    pdfFile: book?.pdfFile || null,
     topicTitle: topicRef.topicTitle,
     subtopics: topicRef.subtopics,
     keyTerms,
@@ -216,6 +220,7 @@ async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType
   }
 
   const { objectives, lessons } = deriveObjectivesAndLessons(generated.whatYoullLearn, generated.blocks);
+  const mathTutor = contentType === 'mathematics' ? tutorFromBlocks(generated.blocks) : null;
   return {
     unitOrder: topicRef.unitOrder,
     topicOrder: topicRef.topicOrder,
@@ -228,9 +233,8 @@ async function finalizeGeneratedTopic(topicRef, metadata, generated, contentType
     teacherHint: null,
     content: {
       whatYoullLearn: generated.whatYoullLearn, blocks: generated.blocks, contentType,
-      // Phase 5 maps this into the student BookPane — pdfPage is a fixed
-      // placeholder (1) until per-topic page resolution exists.
-      ...(chapterMatch ? { book: { pdfFile: chapterMatch.pdfFile, bookPath: chapterMatch.bookPath, bookTitle: chapterMatch.book, chapterTitle: chapterMatch.title, pdfPage: 1, confidence: chapterMatch.confidence } } : {}),
+      ...(book ? { book } : {}),
+      ...(mathTutor ? { mathTutor } : {}),
     },
     groundingSource,
   };
@@ -340,7 +344,88 @@ async function generateCompanions(topicRef, metadata, content) {
   return { listenParts, practiceQuiz };
 }
 
+// A topic matched to book sections: Learn/Listen/Practice come straight from the pre-built book content;
+// only subtopics the book does not teach get a small AI part (see bookContent.js).
+async function bookTopic(topicRef, metadata) {
+  const { classifyContentType } = getEnrichment();
+  const { missingSubtopics, ...content } = await assembleBookTopic(topicRef, topicRef.bookMatch, metadata);
+  const { objectives, lessons } = deriveObjectivesAndLessons(content.whatYoullLearn, content.blocks);
+  return {
+    unitOrder: topicRef.unitOrder,
+    topicOrder: topicRef.topicOrder,
+    objectives,
+    lessons,
+    status: missingSubtopics.length ? 'needs_teacher_input' : 'ready',
+    teacherHint: missingSubtopics.length
+      ? `Not in the book and the AI could not write it just now: ${missingSubtopics.join(', ')}. Add it yourself or pick a book page.`
+      : null,
+    content: { ...content, contentType: classifyContentType(metadata?.subject) },
+    groundingSource: 'ncert_book',
+  };
+}
+
+// The student AI Tutor board plays one step per worked example: built from the lesson's own worked examples.
+function tutorFromBlocks(blocks) {
+  const examples = blocks.filter((b) => b.type === 'worked_example' && b.problem && b.finalAnswer).map((b) => ({
+    title: b.concept || 'Example',
+    problem: b.problem,
+    steps: (b.steps || []).map((s) => ({ say: s.explanation || s.action || '', show: s.calculation || s.equation || '' })).filter((s) => s.say),
+    answer: b.finalAnswer,
+  })).filter((e) => e.steps.length);
+  if (!examples.length) return null;
+  const intro = blocks.find((b) => b.type === 'overview' || b.type === 'explanation')?.text || '';
+  const keyIdea = blocks.find((b) => b.type === 'key_points')?.items?.[0] || '';
+  return { intro, keyIdea: typeof keyIdea === 'string' ? keyIdea : '', examples };
+}
+
+// Reference text of a matched book section for writing a lesson — the content only, never the book's name or pages.
+function sectionReferenceText(section) {
+  if (section.tutor) {
+    const t = section.tutor;
+    const examples = (t.examples || []).map((e) => `Example: ${e.problem}\n${(e.steps || []).map((s) => `- ${s.say}${s.show ? ` (${s.show})` : ''}`).join('\n')}\nAnswer: ${e.answer}`);
+    return [t.intro, t.keyIdea && `Key idea: ${t.keyIdea}`, ...examples].filter(Boolean).join('\n');
+  }
+  return (section.learn?.blocks || []).map((b) => b.text || (Array.isArray(b.items) ? b.items.map((i) => (typeof i === 'string' ? i : `${i.term || i.name || ''}: ${i.definition || i.description || ''}`)).join('; ') : '')).filter(Boolean).join('\n');
+}
+
+const MAX_REFERENCE_CHARS = 7000;
+const MAX_SUBTOPIC_SEARCHES = 5;
+
+// A topic of a curriculum without its own books here (IB, ...): the lesson is written from whatever reference material
+// matches best — book sections of any curriculum and the vector store — plus the teacher's own notes, in a neutral
+// voice. null when nothing matched (the caller then falls back to AI knowledge, labelled for the teacher).
+async function openTopic(topicRef, metadata, qualityFeedback) {
+  const sources = (topicRef.bookSections || []).map(sectionReferenceText).filter(Boolean);
+  // One search for the topic and one per subtopic: a single combined query drifted to neighbouring topics.
+  const queries = [{ topic: topicRef.topicTitle, subtopics: [] }, ...topicRef.subtopics.slice(0, MAX_SUBTOPIC_SEARCHES).map((s) => ({ topic: `${s} (${topicRef.topicTitle})`, subtopics: [] }))];
+  const found = await mapWithConcurrency(queries, 2, (q) => retrieveGroundingContext({
+    curriculum: metadata?.curriculum, grade: metadata?.grade, subject: metadata?.subject, ...q,
+  }).catch(() => null));
+  for (const r of found) if (r?.context && !sources.includes(r.context)) sources.push(r.context);
+  if (!sources.length) return null;
+
+  const { generateStructuredContent, classifyContentType } = getEnrichment();
+  const contentType = classifyContentType(metadata?.subject);
+  const primaryText = sources.join('\n\n').slice(0, MAX_REFERENCE_CHARS);
+  const generated = await generateStructuredContent({
+    curriculum: metadata?.curriculum,
+    grade: metadata?.grade,
+    subject: metadata?.subject,
+    topic: topicRef.subtopics.length ? `${topicRef.topicTitle} (cover: ${topicRef.subtopics.join('; ')})` : topicRef.topicTitle,
+    chapterPdf: null,
+    primaryText,
+    contextText: topicRef.sourceContext ? `Teacher's notes: ${topicRef.sourceContext}` : '',
+    contentType,
+    qualityFeedback,
+    neutralSource: true,
+    mustCover: topicRef.subtopics,
+  });
+  if (!generated.ok) return null;
+  return finalizeGeneratedTopic(topicRef, metadata, generated, contentType, 'reference_sources', { context: primaryText });
+}
+
 async function groundTopic(topicRef, metadata, qualityFeedback) {
+  if (!usesNcertBooks(metadata)) return openTopic(topicRef, metadata, qualityFeedback);
   const retrieved = await retrieveGroundingContext({
     curriculum: metadata?.curriculum,
     grade: metadata?.grade,
@@ -389,6 +474,7 @@ function chapterWords(text) {
 // clean match in the current book must stay unmatched, not land on a
 // random chapter that happens to share a generic word like "number".
 function matchChapter(topicRef, metadata) {
+  if (!usesNcertBooks(metadata)) return null;
   let chapters;
   try {
     chapters = require('../syllabus-map').chaptersFor(metadata?.grade, metadata?.subject);
@@ -463,6 +549,8 @@ async function knowledgeTopic(topicRef, metadata, qualityFeedback) {
       subtopics: topicRef.subtopics,
       contentType,
       qualityFeedback,
+      neutralSource: !usesNcertBooks(metadata),
+      mustCover: usesNcertBooks(metadata) ? undefined : topicRef.subtopics,
     });
   } catch {
     return null;
@@ -521,6 +609,8 @@ async function callGroq(prompt) {
   return { choices: [{ message: { content } }] };
 }
 
+const NO_LESSON_HINT = 'No lesson could be written for this topic just now (the AI service was busy). Use "Generate lesson again", or add the lesson yourself in Edit.';
+
 function validateGeneratedTopics(parsed, topicRefs) {
   if (!parsed || !Array.isArray(parsed.topics)) {
     return { valid: false, errors: ['response.topics must be an array'] };
@@ -551,10 +641,12 @@ function validateGeneratedTopics(parsed, topicRefs) {
     // Model omitting status/teacherHint (older prompt behavior, or a lenient
     // model) defaults to "ready"/null rather than failing validation — the
     // gap-resolution protocol is a quality signal, not a required field.
-    const status = entry.status === 'needs_teacher_input' ? 'needs_teacher_input' : 'ready';
-    const teacherHint = status === 'needs_teacher_input' && typeof entry.teacherHint === 'string' && entry.teacherHint.trim()
+    // This last-resort path writes objectives only, never a lesson: the topic always needs the teacher before
+    // students see it (it used to be marked ready and could be published empty).
+    const status = 'needs_teacher_input';
+    const teacherHint = typeof entry.teacherHint === 'string' && entry.teacherHint.trim()
       ? entry.teacherHint.trim()
-      : null;
+      : NO_LESSON_HINT;
     topics.push({ unitOrder: entry.unitOrder, topicOrder: entry.topicOrder, objectives, lessons, status, teacherHint, groundingSource: 'upload_text_only' });
   });
 
@@ -580,8 +672,8 @@ function mergeGeneratedContent(normalized, generatedTopics) {
           subtopics: topic.subtopics.map((s) => ({ title: s.title, order: s.order })),
           objectives: generated?.objectives || [],
           lessons: generated?.lessons || [],
-          status: generated?.status || 'ready',
-          teacherHint: generated?.teacherHint ?? null,
+          status: generated ? (generated.status || 'ready') : 'needs_teacher_input',
+          teacherHint: generated ? (generated.teacherHint ?? null) : NO_LESSON_HINT,
           content: generated?.content || null,
           groundingSource: generated?.groundingSource || 'none',
           quality: generated?.quality || null,
@@ -620,7 +712,9 @@ async function attachCompanions(topics, topicRefs, metadata) {
     if (!t.content) return;
     const ref = refByKey.get(`${t.unitOrder}:${t.topicOrder}`);
     if (!ref) return;
-    const companions = await generateCompanions(ref, metadata, t.content).catch(() => null);
+    // One retry: a single failed call used to leave a topic with no Listen and no Practice at all.
+    const companions = (await generateCompanions(ref, metadata, t.content).catch(() => null))
+      || (await generateCompanions(ref, metadata, t.content).catch(() => null));
     if (companions) {
       t.content.listenParts = companions.listenParts;
       t.content.practiceQuiz = companions.practiceQuiz;
@@ -636,7 +730,7 @@ async function attachCompanions(topics, topicRefs, metadata) {
 async function applyGradeFit(topics, topicRefs, metadata) {
   const refByKey = new Map(topicRefs.map((r) => [`${r.unitOrder}:${r.topicOrder}`, r]));
   await mapWithConcurrency(topics, DRAFT_CONCURRENCY, async (t) => {
-    if (!t.content || (t.groundingSource !== 'ncert_vector' && t.groundingSource !== 'model_knowledge')) return;
+    if (!t.content || !['ncert_vector', 'model_knowledge', 'reference_sources'].includes(t.groundingSource)) return;
     const ref = refByKey.get(`${t.unitOrder}:${t.topicOrder}`);
     if (!ref) return;
     const chapterTitle = resolveChapterTitle(ref, metadata);
@@ -647,7 +741,7 @@ async function applyGradeFit(topics, topicRefs, metadata) {
 
     if (result.failed) {
       const feedback = result.quality.issues.join('; ');
-      const regenTopic = t.groundingSource === 'ncert_vector'
+      const regenTopic = t.groundingSource !== 'model_knowledge'
         ? await groundTopic(ref, metadata, feedback).catch(() => null)
         : await knowledgeTopic(ref, metadata, feedback).catch(() => null);
       if (regenTopic?.content) {
@@ -676,11 +770,35 @@ function keyFor(refsByPos, pos) {
   return refsByPos.get(pos);
 }
 
-async function generateLearningPathDraft(normalized) {
-  const topicRefs = collectTopicRefs(normalized);
+async function generateLearningPathDraft(normalized, onTopicDone) {
+  let topicRefs = collectTopicRefs(normalized);
   if (topicRefs.length === 0) {
     return mergeGeneratedContent(normalized, []);
   }
+
+  const allRefs = topicRefs;
+  let doneCount = 0;
+  const tick = (n = 1) => { for (let i = 0; i < n; i++) { doneCount++; if (onTopicDone) Promise.resolve(onTopicDone(doneCount, allRefs.length)).catch(() => {}); } };
+
+  // Book first: topics matched to real book sections are assembled from pre-built content. Only topics with no
+  // book match at all go through the AI generation pipeline below.
+  const bookMatches = await matchTopicsToBook(allRefs, normalized.metadata).catch(() => new Map());
+  allRefs.forEach((ref, i) => {
+    ref.bookMatch = bookMatches.get(i) || null;
+    ref.bookSections = sectionsForTopic(ref.bookMatch);
+  });
+  const bookRefs = usesNcertBooks(normalized.metadata) ? allRefs.filter((r) => r.bookSections.length) : [];
+  const fromBook = (await mapWithConcurrency(bookRefs, DRAFT_CONCURRENCY, async (ref) => {
+    const topic = await bookTopic(ref, normalized.metadata).catch((err) => {
+      console.error(`[aiGeneration] book topic failed for "${ref.topicTitle}":`, err.message);
+      return null;
+    });
+    if (topic) tick();
+    return topic;
+  })).filter(Boolean);
+  const bookKeys = new Set(fromBook.map((t) => `${t.unitOrder}:${t.topicOrder}`));
+  topicRefs = allRefs.filter((ref) => !bookKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
+  if (topicRefs.length === 0) return mergeGeneratedContent(normalized, fromBook);
 
   const cacheKeys = new Map(topicRefs.map((ref) => [`${ref.unitOrder}:${ref.topicOrder}`, buildCacheKey(normalized.metadata, ref)]));
 
@@ -690,6 +808,7 @@ async function generateLearningPathDraft(normalized) {
   const cacheHits = await mapWithConcurrency(topicRefs, DRAFT_CONCURRENCY, async (ref) => {
     const cached = await getCachedTopic(keyFor(cacheKeys, `${ref.unitOrder}:${ref.topicOrder}`)).catch(() => null);
     if (!cached) return null;
+    tick();
     return { unitOrder: ref.unitOrder, topicOrder: ref.topicOrder, ...cached, fromCache: true };
   });
   const cached = cacheHits.filter(Boolean);
@@ -697,7 +816,7 @@ async function generateLearningPathDraft(normalized) {
   const uncachedRefs = topicRefs.filter((ref) => !cachedKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
   if (uncachedRefs.length === 0) {
-    return mergeGeneratedContent(normalized, cached);
+    return mergeGeneratedContent(normalized, [...fromBook, ...cached]);
   }
 
   // Prefer real NCERT/vector grounding per topic. Topics where retrieval is
@@ -712,11 +831,12 @@ async function generateLearningPathDraft(normalized) {
   await attachCompanions(grounded, uncachedRefs, normalized.metadata);
   await applyGradeFit(grounded, uncachedRefs, normalized.metadata);
   await cacheReadyTopics(grounded, uncachedRefs, cacheKeys, normalized.metadata);
+  tick(grounded.length);
   const groundedKeys = new Set(grounded.map((g) => `${g.unitOrder}:${g.topicOrder}`));
   const ungroundedRefs = uncachedRefs.filter((ref) => !groundedKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
   if (ungroundedRefs.length === 0) {
-    return mergeGeneratedContent(normalized, [...cached, ...grounded]);
+    return mergeGeneratedContent(normalized, [...fromBook, ...cached, ...grounded]);
   }
 
   // Try the model's own knowledge per topic before falling back to the
@@ -728,20 +848,23 @@ async function generateLearningPathDraft(normalized) {
   await attachCompanions(knowledge, ungroundedRefs, normalized.metadata);
   await applyGradeFit(knowledge, ungroundedRefs, normalized.metadata);
   await cacheReadyTopics(knowledge, ungroundedRefs, cacheKeys, normalized.metadata);
+  tick(knowledge.length);
   const knowledgeKeys = new Set(knowledge.map((k) => `${k.unitOrder}:${k.topicOrder}`));
   const remainingRefs = ungroundedRefs.filter((ref) => !knowledgeKeys.has(`${ref.unitOrder}:${ref.topicOrder}`));
 
   if (remainingRefs.length === 0) {
-    return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge]);
+    return mergeGeneratedContent(normalized, [...fromBook, ...cached, ...grounded, ...knowledge]);
   }
 
   const first = await attemptGeneration(buildPrompt(remainingRefs, normalized.metadata), remainingRefs);
-  if (first.ok) return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge, ...first.topics]);
+  if (first.ok) tick(first.topics.length);
+  if (first.ok) return mergeGeneratedContent(normalized, [...fromBook, ...cached, ...grounded, ...knowledge, ...first.topics]);
 
   const second = await attemptGeneration(buildPrompt(remainingRefs, normalized.metadata, first.errors), remainingRefs);
-  if (second.ok) return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge, ...second.topics]);
+  if (second.ok) tick(second.topics.length);
+  if (second.ok) return mergeGeneratedContent(normalized, [...fromBook, ...cached, ...grounded, ...knowledge, ...second.topics]);
 
-  if (cached.length > 0 || grounded.length > 0 || knowledge.length > 0) return mergeGeneratedContent(normalized, [...cached, ...grounded, ...knowledge]);
+  if (fromBook.length > 0 || cached.length > 0 || grounded.length > 0 || knowledge.length > 0) return mergeGeneratedContent(normalized, [...fromBook, ...cached, ...grounded, ...knowledge]);
   throw new LearningPathGenerationError(`AI generation failed after retry: ${second.errors.join('; ')}`);
 }
 
@@ -764,8 +887,40 @@ async function cacheReadyTopics(topics, refs, cacheKeys, metadata) {
   );
 }
 
+// Regenerates one topic with the book sections the teacher picked per subtopic
+// (chosen[j] = {pdfFile, title} or null = not in the book). Returns the draft topic fields to replace.
+async function rebuildTopic(normalized, unitOrder, topicOrder, chosen) {
+  const ref = collectTopicRefs(normalized).find((r) => r.unitOrder === unitOrder && r.topicOrder === topicOrder);
+  if (!ref) throw new LearningPathGenerationError(`Topic ${unitOrder}:${topicOrder} not found`);
+  const metadata = normalized.metadata;
+  const sections = await loadBookSections(metadata?.grade, metadata?.subject);
+  const find = (c) => sections.find((s) => s.pdfFile === c?.pdfFile && s.title === c?.title) || null;
+  ref.bookMatch = {
+    subtopics: matchUnits(ref).map((title, j) => {
+      const picked = [].concat(chosen?.[j] ?? []).map(find).filter(Boolean);
+      return { title, section: picked[0] || null, sections: picked };
+    }),
+  };
+  ref.bookSections = sectionsForTopic(ref.bookMatch);
+
+  let topic;
+  if (ref.bookSections.length && usesNcertBooks(metadata)) {
+    topic = await bookTopic(ref, metadata);
+  } else {
+    topic = (await groundTopic(ref, metadata).catch(() => null)) || (await knowledgeTopic(ref, metadata).catch(() => null));
+    if (topic) {
+      await attachCompanions([topic], [ref], metadata);
+      await applyGradeFit([topic], [ref], metadata);
+    }
+  }
+  if (!topic) throw new LearningPathGenerationError('Could not rebuild this topic right now — please try again');
+  const { unitOrder: _u, topicOrder: _t, ...fields } = topic;
+  return { ...fields, quality: topic.quality || null };
+}
+
 module.exports = {
   generateLearningPathDraft,
+  rebuildTopic,
   collectTopicRefs,
   validateGeneratedTopics,
   mergeGeneratedContent,

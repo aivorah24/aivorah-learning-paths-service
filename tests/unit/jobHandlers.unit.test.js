@@ -4,7 +4,10 @@
 jest.mock('../../services/supabase', () => ({ from: jest.fn(() => ({ select: jest.fn().mockReturnThis(), eq: jest.fn().mockReturnThis(), maybeSingle: jest.fn(), upsert: jest.fn() })) }));
 
 const mockRegisterHandler = jest.fn();
-jest.mock('../../services/jobQueue', () => ({ registerHandler: mockRegisterHandler }));
+const mockPublishJob = jest.fn();
+jest.mock('../../services/jobQueue', () => ({ registerHandler: mockRegisterHandler, publishJob: (...a) => mockPublishJob(...a) }));
+const mockWriteJobProgress = jest.fn();
+jest.mock('../../services/curriculumUpload/progress', () => ({ writeJobProgress: (...a) => mockWriteJobProgress(...a) }));
 
 const mockGetCurriculumById = jest.fn();
 const mockUpdateCurriculumStatus = jest.fn();
@@ -73,6 +76,8 @@ describe('handleCurriculumExtract', () => {
       extracted_structure: { format: 'pdf', text: 'Chapter 1' },
       error: null,
     });
+    expect(mockPublishJob).toHaveBeenCalledWith('curriculum_generate', expect.objectContaining({ curriculumId: 'c1' }));
+    expect(mockUpdateCurriculumStatus).toHaveBeenLastCalledWith('c1', 'generating');
     const [, , extra] = mockUpdateCurriculumStatus.mock.calls[0];
     expect(extra).not.toHaveProperty('file_url');
     expect(extra).not.toHaveProperty('cloudinary_public_id');
@@ -182,5 +187,31 @@ describe('handleCurriculumGenerate', () => {
 
     await expect(handleCurriculumGenerate({ curriculumId: 'c1' })).rejects.toThrow('insert failed');
     expect(mockUpdateCurriculumStatus).toHaveBeenCalledWith('c1', 'failed', { error: 'insert failed' });
+  });
+});
+
+describe('progress writes', () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  test('extract writes the extracting stage', async () => {
+    const job = { id: 'j1', payload: {} };
+    mockGetCurriculumById.mockResolvedValueOnce(curriculum);
+    mockDownloadCurriculumFile.mockResolvedValueOnce(Buffer.from('x'));
+    mockExtractCurriculumContent.mockResolvedValueOnce({ format: 'pdf', text: 'Chapter 1' });
+    mockUpdateCurriculumStatus.mockResolvedValue({});
+    await handleCurriculumExtract({ curriculumId: 'c1' }, job);
+    expect(mockWriteJobProgress).toHaveBeenCalledWith(job, 'extracting');
+  });
+
+  test('generate walks analysing, generating (counts), saving, done', async () => {
+    const job = { id: 'j2', payload: {} };
+    mockGetCurriculumById.mockResolvedValueOnce(processedCurriculum);
+    mockGenerateLearningPathDraft.mockImplementationOnce(async (n, onTopicDone) => { await onTopicDone(1, 2); return { units: [] }; });
+    mockCreateDraftLearningPath.mockResolvedValueOnce({ id: 'lp1' });
+    mockUpdateCurriculumStatus.mockResolvedValue({});
+    await handleCurriculumGenerate({ curriculumId: 'c1' }, job);
+    const stages = mockWriteJobProgress.mock.calls.map((c) => c[1]);
+    expect(stages).toEqual(['analysing', 'generating', 'generating', 'saving', 'done']);
+    expect(mockWriteJobProgress).toHaveBeenCalledWith(job, 'generating', 1, 2);
   });
 });

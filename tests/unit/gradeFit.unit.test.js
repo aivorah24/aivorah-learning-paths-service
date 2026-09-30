@@ -89,12 +89,33 @@ describe('checkGradeFit', () => {
     expect(result.quality.issues).toContain('Learn block overstates a fact');
   });
 
-  it('folds checkRecipe missing items into issues and fails', async () => {
+  it('a missing recipe part is advice for the teacher, not a blocking failure', async () => {
     mockCheckRecipe.mockReturnValue(['an activity block']);
     judgeReturns({ learn: GOOD_SCORES, audio: GOOD_SCORES, practice: GOOD_SCORES, issues: [] });
     const result = await checkGradeFit({ topicTitle: 'The Sun', chapterTitle: 'Our Star', grade: 6, subject: 'Science', content: SIMPLE_CONTENT });
-    expect(result.failed).toBe(true);
+    expect(result.failed).toBe(false);
     expect(result.quality.issues.some((i) => i.includes('an activity block'))).toBe(true);
+  });
+
+  it('style points (a short explanation) are advice; text far above the grade blocks', async () => {
+    mockCheckRecipe.mockReturnValue([]);
+    judgeReturns({ learn: GOOD_SCORES, audio: GOOD_SCORES, practice: GOOD_SCORES, issues: [] });
+    const short = { blocks: [{ type: 'explanation', text: 'The Sun is a star.' }] };
+    const advice = await checkGradeFit({ topicTitle: 'The Sun', chapterTitle: 'Our Star', grade: 6, subject: 'Science', content: short });
+    expect(advice.failed).toBe(false);
+    expect(advice.quality.issues.some((i) => /too short/.test(i))).toBe(true);
+
+    judgeReturns({ learn: GOOD_SCORES, audio: GOOD_SCORES, practice: GOOD_SCORES, issues: [] });
+    const dense = { blocks: [{ type: 'explanation', text: 'Thermonuclear electromagnetic radiation characteristically originates photospherically, simultaneously illuminating interplanetary environments, consequently establishing heliocentric gravitational equilibrium considerations internationally.' }] };
+    const blocked = await checkGradeFit({ topicTitle: 'The Sun', chapterTitle: 'Our Star', grade: 6, subject: 'Science', content: dense });
+    expect(blocked.failed).toBe(true);
+  });
+
+  it('the reviewer finding the content wrong still blocks the topic', async () => {
+    mockCheckRecipe.mockReturnValue([]);
+    judgeReturns({ learn: { ...GOOD_SCORES, factuallySound: 2 }, audio: GOOD_SCORES, practice: GOOD_SCORES, issues: ['Says the Sun is a planet'] });
+    const result = await checkGradeFit({ topicTitle: 'The Sun', chapterTitle: 'Our Star', grade: 6, subject: 'Science', content: SIMPLE_CONTENT });
+    expect(result.failed).toBe(true);
   });
 
   it('judge error leaves quality.judge null but does not fail the topic', async () => {

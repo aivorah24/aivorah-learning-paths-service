@@ -12,6 +12,12 @@ function normalizeCurriculumStructure(extracted) {
   if (!extracted || typeof extracted !== 'object') {
     throw new CurriculumNormalizationError('extracted_structure is missing or not an object');
   }
+  // The AI-found structure (saved at extraction, checked against the document) wins; the rules below are the backup.
+  const normalized = extracted.aiStructure?.units?.length ? extracted.aiStructure : normalizeByFormat(extracted);
+  return { ...normalized, metadata: { ...normalized.metadata, ...(extracted.uploadConfig || {}) } };
+}
+
+function normalizeByFormat(extracted) {
   switch (extracted.format) {
     case 'pdf':
     case 'docx':

@@ -2,6 +2,8 @@
 // Used for the knowledge tier's LLM, which is provider-agnostic (Groq/Gemini/
 // anything else that speaks this API shape). Callers must fall back to the
 // existing Groq gpt-oss-120b path on any thrown error (rate limit, no key, etc.).
+const DAILY_LIMIT_RE = /tokens per day|requests per day|\btpd\b|\brpd\b|per day|quota exceeded/i;
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -31,7 +33,9 @@ async function withLLMRetry(fn, { maxRetries = 3 } = {}) {
       const code = err.error?.error?.code || err.code;
       const isRateLimited = status === 429;
       const isJsonValidateFailed = status === 400 && code === 'json_validate_failed';
-      if (attempt >= maxRetries || !(isRateLimited || isJsonValidateFailed)) throw err;
+      // A daily quota will not clear in a minute — fail now so the fallback chain moves to the next provider.
+      const isDailyLimit = isRateLimited && DAILY_LIMIT_RE.test(String(err.message || err.error?.error?.message || ''));
+      if (attempt >= maxRetries || isDailyLimit || !(isRateLimited || isJsonValidateFailed)) throw err;
 
       let delay = 500 * 2 ** attempt;
       if (isRateLimited) {

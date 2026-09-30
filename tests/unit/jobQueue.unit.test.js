@@ -31,6 +31,15 @@ function pollChain(response) {
   return chain;
 }
 
+function reclaimChain() {
+  const chain = {};
+  chain.update = jest.fn(() => chain);
+  chain.eq = jest.fn(() => chain);
+  chain.lt = jest.fn(() => chain);
+  chain.in = jest.fn(() => Promise.resolve({ data: null, error: null }));
+  return chain;
+}
+
 const jobQueue = require('../../services/jobQueue');
 
 describe('jobQueue', () => {
@@ -89,10 +98,31 @@ describe('jobQueue', () => {
 
   test('runWorkerOnce scopes the poll to registered handler types', async () => {
     const chain = pollChain({ data: [] });
-    supabase.from.mockReturnValueOnce(chain);
+    supabase.from.mockReturnValueOnce(reclaimChain()).mockReturnValueOnce(chain);
 
     await jobQueue.runWorkerOnce(5);
 
     expect(chain.in).toHaveBeenCalledWith('type', expect.arrayContaining(['curriculum_extract_ok']));
+  });
+
+  test('runWorkerOnce first puts jobs stuck in processing for 15+ minutes back to pending', async () => {
+    const reclaim = reclaimChain();
+    supabase.from.mockReturnValueOnce(reclaim).mockReturnValueOnce(pollChain({ data: [] }));
+
+    await jobQueue.runWorkerOnce(5);
+
+    expect(reclaim.update).toHaveBeenCalledWith(expect.objectContaining({ status: 'pending', locked_at: null }));
+    expect(reclaim.eq).toHaveBeenCalledWith('status', 'processing');
+    const cutoff = new Date(reclaim.lt.mock.calls[0][1]).getTime();
+    expect(Date.now() - cutoff).toBeGreaterThanOrEqual(15 * 60 * 1000 - 1000);
+    expect(reclaim.in).toHaveBeenCalledWith('type', expect.arrayContaining(['curriculum_extract_ok']));
+  });
+
+  test('a failed reclaim never stops the poll', async () => {
+    const broken = reclaimChain();
+    broken.in = jest.fn(() => Promise.reject(new Error('db down')));
+    supabase.from.mockReturnValueOnce(broken).mockReturnValueOnce(pollChain({ data: [] }));
+
+    await expect(jobQueue.runWorkerOnce(5)).resolves.toEqual({ claimed: 0, processed: 0 });
   });
 });

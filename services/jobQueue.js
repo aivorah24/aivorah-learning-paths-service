@@ -5,8 +5,10 @@ const DRIVER = (process.env.QUEUE_DRIVER || 'db').toLowerCase();
 const TOPIC = process.env.KAFKA_TOPIC || 'uploads';
 
 const handlers = new Map();
+// Optional prefix so a local run never shares job types with the deployed worker polling the same table.
+const JOB_NAMESPACE = process.env.JOB_NAMESPACE || '';
 
-function registerHandler(type, fn) { handlers.set(type, fn); }
+function registerHandler(type, fn) { handlers.set(`${JOB_NAMESPACE}${type}`, fn); }
 
 let _kafka = null, _producer = null, _producerPromise = null;
 function getKafka() {
@@ -37,8 +39,9 @@ async function getProducer() {
   return _producerPromise;
 }
 
-async function publishJob(type, payload = {}) {
+async function publishJob(baseType, payload = {}) {
   const id = crypto.randomUUID();
+  const type = `${JOB_NAMESPACE}${baseType}`;
   const { error } = await supabase.from('upload_jobs').insert({ id, type, payload, status: 'pending' });
   if (error) throw new Error(`[jobQueue] enqueue failed (${error.message})`);
   if (DRIVER === 'kafka') {
@@ -75,11 +78,23 @@ async function processJobById(id) {
   }
 }
 
+// A job still 'processing' this long after it was claimed lost its worker (restart/crash) — put it back in the queue.
+const STALE_LOCK_MS = 15 * 60 * 1000;
+
+async function reclaimStaleJobs(knownTypes) {
+  if (!knownTypes.length) return;
+  const cutoff = new Date(Date.now() - STALE_LOCK_MS).toISOString();
+  await supabase.from('upload_jobs')
+    .update({ status: 'pending', locked_at: null, updated_at: new Date().toISOString() })
+    .eq('status', 'processing').lt('locked_at', cutoff).in('type', knownTypes);
+}
+
 async function runWorkerOnce(limit = 5) {
   // This service and aivorah-assignments-service share the same Supabase
   // upload_jobs table; scoping the poll to registered types avoids both
   // instances racing to claim job types they can't handle.
   const knownTypes = [...handlers.keys()];
+  await reclaimStaleJobs(knownTypes).catch((err) => console.error('[jobQueue] reclaim failed:', err.message));
   let query = supabase
     .from('upload_jobs')
     .select('id')

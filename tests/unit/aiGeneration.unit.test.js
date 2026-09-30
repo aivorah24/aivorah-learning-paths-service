@@ -52,8 +52,18 @@ jest.mock('../../services/curriculumUpload/topicCache', () => ({
   dedupeGeneration: (...args) => mockDedupeGeneration(...args),
 }));
 
+jest.mock('../../services/supabase', () => ({}));
+const mockMatchTopicsToBook = jest.fn().mockResolvedValue(new Map());
+const mockLoadBookSections = jest.fn().mockResolvedValue([]);
+jest.mock('../../services/curriculumUpload/bookMatch', () => ({
+  ...jest.requireActual('../../services/curriculumUpload/bookMatch'),
+  matchTopicsToBook: (...args) => mockMatchTopicsToBook(...args),
+  loadBookSections: (...args) => mockLoadBookSections(...args),
+}));
+
 const {
   generateLearningPathDraft,
+  rebuildTopic,
   collectTopicRefs,
   validateGeneratedTopics,
   mergeGeneratedContent,
@@ -148,7 +158,7 @@ describe('validateGeneratedTopics', () => {
       topics: [{ unitOrder: 0, topicOrder: 0, objectives: ['Add two numbers'], lessons: [{ title: 'Intro', summary: 'x' }] }],
     }, refs);
     expect(result.valid).toBe(true);
-    expect(result.topics).toEqual([{ unitOrder: 0, topicOrder: 0, objectives: ['Add two numbers'], lessons: [{ title: 'Intro', summary: 'x' }], status: 'ready', teacherHint: null, groundingSource: 'upload_text_only' }]);
+    expect(result.topics).toEqual([{ unitOrder: 0, topicOrder: 0, objectives: ['Add two numbers'], lessons: [{ title: 'Intro', summary: 'x' }], status: 'needs_teacher_input', teacherHint: expect.stringContaining('No lesson could be written'), groundingSource: 'upload_text_only' }]);
   });
 
   test('carries needs_teacher_input status and teacherHint through when the model flags a gap', () => {
@@ -164,11 +174,12 @@ describe('validateGeneratedTopics', () => {
     expect(result.topics[0].teacherHint).toBe('The uploaded document lists this topic with no subtopics — specify scope.');
   });
 
-  test('ignores a teacherHint when status is not needs_teacher_input', () => {
+  test('an outline-only topic is never "ready" (it has no lesson), even if the model says so', () => {
     const result = validateGeneratedTopics({
-      topics: [{ unitOrder: 0, topicOrder: 0, status: 'ready', teacherHint: 'should be dropped', objectives: ['x'], lessons: [] }],
+      topics: [{ unitOrder: 0, topicOrder: 0, status: 'ready', objectives: ['x'], lessons: [] }],
     }, refs);
-    expect(result.topics[0].teacherHint).toBeNull();
+    expect(result.topics[0].status).toBe('needs_teacher_input');
+    expect(result.topics[0].teacherHint).toMatch(/Generate lesson again/);
   });
 
   test('drops an entry referencing an unknown unitOrder/topicOrder rather than merging it', () => {
@@ -295,6 +306,216 @@ describe('generateWorkedExample', () => {
 
     const sentPrompt = mockCreate.mock.calls[0][0].messages[0].content;
     expect(sentPrompt).toMatch(/not taken from the source material/i);
+  });
+});
+
+describe('generateLearningPathDraft — topics matched to book sections', () => {
+  beforeEach(() => jest.clearAllMocks());
+  afterEach(() => {
+    [mockGenerateStructuredContent, mockRetrieveGroundingContext, mockCreate].forEach((m) => m.mockReset());
+    mockMatchTopicsToBook.mockReset().mockResolvedValue(new Map());
+  });
+
+  const section = {
+    id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', bookTitle: 'Ganita Prakash',
+    chapterTitle: 'Number Play', title: '3.3 Patterns of Numbers on the Number Line', page: 5,
+    tutor: {
+      intro: 'Numbers sit on a line.', keyIdea: 'Bigger numbers are to the right.',
+      examples: [{ title: 'Placing 7', problem: 'Where is 7?', steps: [{ say: 'Count from 0', show: '0..7' }], answer: 'Right of 6', why: 'Counting up moves right.', page: 5, yourTurn: { question: 'What comes right after 9?', answer: '10' } }],
+    },
+  };
+  const twoSubtopics = {
+    ...normalized,
+    units: [{ title: 'Numbers', order: 0, topics: [{ title: 'Whole Numbers', order: 0, subtopics: [{ title: 'Number line', order: 0 }, { title: 'Successor', order: 1 }], content: [] }] }],
+  };
+  const gapAnswer = {
+    explanation: 'The successor of a number is one more than it.',
+    example: 'The successor of 57 is 58.',
+    listen: 'Add one to get the successor.',
+    questions: [{ question: 'Successor of 9?', options: ['8', '10', '11', '9'], correctIndex: 1, explanation: '9 + 1 = 10' }],
+  };
+
+  test('Learn, Listen and Practice come straight from the book section; no AI writing, no grade-fit pass', async () => {
+    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { subtopics: [{ title: 'Addition', section, sections: [section] }] }]]));
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'Fractions.' }] });
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+
+    const draft = await generateLearningPathDraft(normalized);
+    const topic = draft.units[0].topics[0];
+
+    expect(mockGenerateStructuredContent).not.toHaveBeenCalledWith(expect.objectContaining({ topic: 'Whole Numbers' }));
+    expect(mockCheckGradeFit).not.toHaveBeenCalledWith(expect.objectContaining({ topicTitle: 'Whole Numbers' }));
+    expect(topic).toMatchObject({ groundingSource: 'ncert_book', status: 'ready', objectives: ['Bigger numbers are to the right.'] });
+    expect(topic.content.blocks[0].text).toBe('From the book: 3.3 Patterns of Numbers on the Number Line (Grade 6, Ganita Prakash, page 5)');
+    expect(topic.content.blocks).toContainEqual(expect.objectContaining({ type: 'worked_example', problem: 'Where is 7?', finalAnswer: 'Right of 6', exampleType: 'SOURCE_DERIVED', bookPage: 5 }));
+    expect(topic.content.listenParts).toEqual([{ heading: 'Placing 7', text: 'Numbers sit on a line. Where is 7? Count from 0 So the answer is Right of 6.', keyIdea: 'Counting up moves right.' }]);
+    expect(topic.content.practiceQuiz).toEqual([expect.objectContaining({ type: 'fill_blank', question: 'What comes right after 9?', correct: '10' })]);
+    expect(topic.content.mathTutor).toEqual({
+      intro: 'Numbers sit on a line.', keyIdea: 'Bigger numbers are to the right.',
+      examples: [expect.objectContaining({ title: 'Placing 7', problem: 'Where is 7?', page: 5, yourTurn: { question: 'What comes right after 9?', answer: '10' } })],
+    });
+    expect(topic.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, pages: [expect.objectContaining({ subtopic: 'Addition', pdfPage: 5 })] });
+    // The unmatched topic still goes through the normal AI pipeline.
+    expect(draft.units[0].topics[1].groundingSource).toBe('model_knowledge');
+  });
+
+  test('a subtopic the book does not teach gets one small, clearly labelled AI part', async () => {
+    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { subtopics: [{ title: 'Number line', section, sections: [section] }, { title: 'Successor', section: null, sections: [] }] }]]));
+    mockCreate.mockResolvedValue(completionWith(gapAnswer));
+
+    const topic = (await generateLearningPathDraft(twoSubtopics)).units[0].topics[0];
+
+    expect(mockCreate).toHaveBeenCalledTimes(1);
+    expect(mockCreate.mock.calls[0][0].messages[0].content).toContain('Subtopic: "Successor"');
+    expect(topic.status).toBe('ready');
+    expect(topic.content.aiWrittenSubtopics).toEqual(['Successor']);
+    expect(topic.content.blocks).toContainEqual({ type: 'explanation', text: 'Not in the book, explained by AI (please check): Successor', aiWritten: true });
+    expect(topic.content.listenParts.at(-1)).toEqual({ heading: 'Successor', text: 'Add one to get the successor.', keyIdea: '' });
+    expect(topic.content.practiceQuiz.at(-1)).toMatchObject({ type: 'mcq', question: 'Successor of 9?', options: expect.arrayContaining(['10']) });
+    const q = topic.content.practiceQuiz.at(-1);
+    expect(q.options[q.correct]).toBe('10');
+  });
+
+  test('if the AI cannot write a missing subtopic, the teacher is asked for it', async () => {
+    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { subtopics: [{ title: 'Number line', section, sections: [section] }, { title: 'Successor', section: null, sections: [] }] }]]));
+    mockCreate.mockResolvedValue(completionWith({ nope: true }));
+
+    const topic = (await generateLearningPathDraft(twoSubtopics)).units[0].topics[0];
+
+    expect(topic.status).toBe('needs_teacher_input');
+    expect(topic.teacherHint).toMatch(/Successor/);
+    expect(topic.content.blocks.some((b) => b.aiWritten)).toBe(false);
+  });
+});
+
+describe('generateLearningPathDraft — IB and other curricula without their own books here', () => {
+  beforeEach(() => jest.clearAllMocks());
+  afterEach(() => {
+    [mockGenerateStructuredContent, mockRetrieveGroundingContext, mockCreate].forEach((m) => m.mockReset());
+    mockMatchTopicsToBook.mockReset().mockResolvedValue(new Map());
+  });
+
+  const ib = { ...normalized, metadata: { grade: '6', subject: 'Mathematics', curriculum: 'IB MYP' } };
+  const section = {
+    id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', bookTitle: 'Ganita Prakash',
+    chapterTitle: 'Number Play', title: '3.3 Patterns of Numbers on the Number Line', page: 5,
+    tutor: { intro: 'Numbers sit on a line.', keyIdea: 'Bigger numbers are to the right.', examples: [{ title: 'Placing 7', problem: 'Where is 7?', steps: [{ say: 'Count from 0', show: '0..7' }], answer: 'Right of 6' }] },
+  };
+  const lesson = {
+    ok: true, whatYoullLearn: ['Use a number line'],
+    blocks: [
+      { type: 'overview', text: 'Where do numbers live?' },
+      { type: 'worked_example', concept: 'Placing numbers', problem: 'Where is 7?', steps: [{ explanation: 'Count from 0', calculation: '0 + 7 = 7' }], finalAnswer: 'Right of 6' },
+    ],
+  };
+
+  test('a matched book section is used only as reference: no book pane, no book assembly, neutral lesson', async () => {
+    mockMatchTopicsToBook.mockResolvedValueOnce(new Map([[0, { subtopics: [{ title: 'Addition', section, sections: [section] }] }]]));
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'IB MYP: integers on a number line.', meta: { selected: 1 }, sources: [{ score: 0.6 }] });
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+
+    const topic = (await generateLearningPathDraft(ib)).units[0].topics[0];
+
+    const call = mockGenerateStructuredContent.mock.calls.find((c) => c[0].topic.startsWith('Whole Numbers'))[0];
+    expect(call).toMatchObject({ curriculum: 'IB MYP', neutralSource: true, contextText: "Teacher's notes: Covers place value and number lines." });
+    expect(call.primaryText).toContain('Bigger numbers are to the right.');
+    expect(call.primaryText).toContain('IB MYP: integers on a number line.');
+    expect(call.primaryText).not.toMatch(/Ganita|Number Play|3\.3|page/);
+    expect(topic.groundingSource).toBe('reference_sources');
+    expect(topic.content.book).toBeUndefined();
+    expect(mockFindTopicImages).not.toHaveBeenCalled();
+  });
+
+  test('searches the vector store once for the topic and once per subtopic; every subtopic must be taught', async () => {
+    const twoSubs = { ...ib, units: [{ title: 'Numbers', order: 0, topics: [{ title: 'Whole Numbers', order: 0, subtopics: [{ title: 'Number line', order: 0 }, { title: 'Successor', order: 1 }], content: [] }] }] };
+    mockRetrieveGroundingContext.mockImplementation(async ({ topic }) => ({ context: `about ${topic}`, meta: { selected: 1 }, sources: [{ score: 0.6 }] }));
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [{ heading: 'h', text: 't' }], questions: [] }));
+
+    await generateLearningPathDraft(twoSubs);
+
+    expect(mockRetrieveGroundingContext.mock.calls.map((c) => c[0].topic)).toEqual(['Whole Numbers', 'Number line (Whole Numbers)', 'Successor (Whole Numbers)']);
+    const call = mockGenerateStructuredContent.mock.calls[0][0];
+    expect(call.mustCover).toEqual(['Number line', 'Successor']);
+    expect(call.primaryText).toContain('about Successor (Whole Numbers)');
+  });
+
+  test('Listen and Practice are retried once when the first attempt fails', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'x', meta: { selected: 1 }, sources: [{ score: 0.6 }] });
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    let companionCalls = 0;
+    mockCreate.mockImplementation(async (opts) => {
+      if (!opts.messages[0].content.includes('audio script')) return completionWith({});
+      companionCalls += 1;
+      return companionCalls === 1 ? completionWith({ nope: true }) : completionWith({ listenParts: [{ heading: 'Intro', text: 'Hello' }], questions: [] });
+    });
+
+    const topic = (await generateLearningPathDraft(ib)).units[0].topics[0];
+
+    expect(companionCalls).toBeGreaterThanOrEqual(2);
+    expect(topic.content.listenParts).toEqual([expect.objectContaining({ heading: 'Intro', text: 'Hello' })]);
+  });
+
+  test('Maths gets an AI Tutor board built from the lesson\'s own worked examples', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue({ context: 'IB MYP: whole numbers.', meta: { selected: 1 }, sources: [{ score: 0.6 }] });
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+
+    const topic = (await generateLearningPathDraft(ib)).units[0].topics[0];
+
+    expect(topic.content.mathTutor).toEqual({
+      intro: 'Where do numbers live?', keyIdea: '',
+      examples: [{ title: 'Placing numbers', problem: 'Where is 7?', steps: [{ say: 'Count from 0', show: '0 + 7 = 7' }], answer: 'Right of 6' }],
+    });
+  });
+
+  test('with no reference material at all, the AI writes it from knowledge (still neutral, no NCERT chapter)', async () => {
+    mockRetrieveGroundingContext.mockResolvedValue(null);
+    mockGenerateStructuredContent.mockResolvedValue(lesson);
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+
+    const topic = (await generateLearningPathDraft(ib)).units[0].topics[0];
+
+    const call = mockGenerateStructuredContent.mock.calls.find((c) => c[0].mode === 'knowledge')[0];
+    expect(call).toMatchObject({ neutralSource: true, chapterMatched: false });
+    expect(topic.groundingSource).toBe('model_knowledge');
+    expect(topic.content.book).toBeUndefined();
+  });
+});
+
+describe('rebuildTopic — teacher-picked book sections', () => {
+  beforeEach(() => jest.clearAllMocks());
+  afterEach(() => {
+    [mockGenerateStructuredContent, mockCreate].forEach((m) => m.mockReset());
+    mockLoadBookSections.mockReset().mockResolvedValue([]);
+  });
+
+  const sections = [
+    { id: 'S1', grade: 6, pdfFile: 'fegp103.pdf', bookPath: 'grade6/mathematics/fegp103.pdf', chapterTitle: 'Number Play', title: '3.3 Patterns', page: 5, tutor: { intro: 'Line intro', keyIdea: 'Line idea', examples: [] } },
+    { id: 'S2', grade: 6, pdfFile: 'fegp105.pdf', chapterTitle: 'Prime Time', title: '5.1 Multiples', page: 1, tutor: { intro: 'Other', examples: [] } },
+  ];
+
+  test('a picked section rebuilds from the book with no AI writing', async () => {
+    mockLoadBookSections.mockResolvedValue(sections);
+    const fields = await rebuildTopic(normalized, 0, 0, [{ pdfFile: 'fegp103.pdf', title: '3.3 Patterns' }]);
+    expect(mockGenerateStructuredContent).not.toHaveBeenCalled();
+    expect(fields.groundingSource).toBe('ncert_book');
+    expect(fields.content.book).toMatchObject({ pdfFile: 'fegp103.pdf', pdfPage: 5, pages: [expect.objectContaining({ subtopic: 'Addition', section: '3.3 Patterns' })] });
+    expect(fields.content.blocks[0].text).toMatch(/^From the book: 3.3 Patterns/);
+  });
+
+  test('no pick at all falls back to the AI pipeline', async () => {
+    mockLoadBookSections.mockResolvedValue(sections);
+    mockGenerateStructuredContent.mockResolvedValue({ ok: true, whatYoullLearn: ['x'], blocks: [{ type: 'explanation', text: 'Numbers on a line.' }] });
+    mockCreate.mockResolvedValue(completionWith({ listenParts: [], questions: [] }));
+    const fields = await rebuildTopic(normalized, 0, 0, [null]);
+    expect(fields.groundingSource).toBe('model_knowledge');
+  });
+
+  test('unknown topic -> error', async () => {
+    await expect(rebuildTopic(normalized, 9, 9, [])).rejects.toThrow(/not found/);
   });
 });
 
@@ -462,8 +683,10 @@ describe('groundTopic — worked-example disclosure', () => {
 
     const draft = await generateLearningPathDraft(singleTopicNormalized);
 
-    // Only the generateCompanions call fires — no targeted generateWorkedExample call needed.
-    expect(mockCreate).toHaveBeenCalledTimes(1);
+    // Only generateCompanions calls fire (one retry when its answer is unusable) — never a generateWorkedExample call.
+    const prompts = mockCreate.mock.calls.map((c) => c[0].messages[0].content);
+    expect(prompts.every((p) => p.includes('audio script'))).toBe(true);
+    expect(prompts.some((p) => p.includes('worked mathematical PRACTICE example'))).toBe(false);
     const block = draft.units[0].topics[0].content.blocks.find((b) => b.type === 'worked_example');
     expect(block.synthetic).toBeUndefined();
     expect(block.finalAnswer).toBe('623');

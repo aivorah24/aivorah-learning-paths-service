@@ -194,6 +194,25 @@ describe('buildPrompt grade calibration wiring', () => {
   });
 });
 
+describe('buildPrompt for curricula without their own books here', () => {
+  const base = { curriculum: 'IB MYP', grade: '6', subject: 'Mathematics', topic: 'Integers', primaryText: 'x', contextText: '', contentType: 'mathematics' };
+  test('never names another curriculum, book, chapter, page or figure', () => {
+    const prompt = buildPrompt({ ...base, neutralSource: true });
+    expect(prompt).toContain('This lesson is for a IB MYP class');
+    expect(prompt).toMatch(/NEVER mention any textbook, book series, chapter, page or figure number, or another curriculum/);
+  });
+  test("the teacher's subtopics must all be taught, at the student's reading level", () => {
+    const prompt = buildPrompt({ ...base, neutralSource: true, mustCover: ['Integers', 'primes'] });
+    expect(prompt).toContain(`THE TEACHER'S SYLLABUS FOR THIS TOPIC: "Integers", "primes"`);
+    expect(prompt).toMatch(/Teach EVERY one of these/);
+    expect(prompt).toMatch(/Ignore any part of the source that is about a different topic/);
+    expect(prompt).toMatch(/short sentences \(mostly under 15 words\)/);
+  });
+  test('CBSE prompts are unchanged', () => {
+    expect(buildPrompt({ ...base, curriculum: 'CBSE' })).not.toContain('NEVER mention any textbook');
+  });
+});
+
 describe('buildPrompt dual-concept and Indian place-value instructions', () => {
   test('always includes the dual/composite concept instruction, regardless of topic title', () => {
     const prompt = buildPrompt({ curriculum: 'NCERT', grade: '6', subject: 'Mathematics', topic: 'Place Value and Face Value', primaryText: 'x', contextText: '', contentType: 'mathematics' });

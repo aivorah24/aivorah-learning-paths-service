@@ -11,6 +11,7 @@ jest.mock('../../middleware/auth', () => ({
 const mockGetLearningPathByCurriculumId = jest.fn();
 const mockListPublishedLearningPathsForTeachers = jest.fn();
 jest.mock('../../services/curriculumUpload/learningPathRepository', () => ({
+  learningPathTitle: jest.requireActual('../../services/curriculumUpload/learningPathTitle').learningPathTitle,
   getLearningPathByCurriculumId: (...args) => mockGetLearningPathByCurriculumId(...args),
   listPublishedLearningPathsForTeachers: (...args) => mockListPublishedLearningPathsForTeachers(...args),
 }));
@@ -20,6 +21,11 @@ const mockListTeacherIdsForStudent = jest.fn();
 jest.mock('../../services/curriculumUpload/studentAccess', () => ({
   isStudentOfTeacher: (...args) => mockIsStudentOfTeacher(...args),
   listTeacherIdsForStudent: (...args) => mockListTeacherIdsForStudent(...args),
+}));
+
+const mockPublishedEdits = jest.fn();
+jest.mock('../../services/subjectEdits/repository', () => ({
+  publishedEditsForTeachers: (...args) => mockPublishedEdits(...args),
 }));
 
 const mockGetCurriculaByIds = jest.fn();
@@ -54,19 +60,34 @@ describe('GET /student/learning-paths', () => {
     expect(res.body.learningPaths).toEqual([]);
   });
 
-  test('returns published paths with a friendly title from the curriculum file name', async () => {
+  test('returns published paths named by the teacher title, else grade + subject, else the file name', async () => {
     mockListTeacherIdsForStudent.mockResolvedValueOnce(['t1']);
     mockListPublishedLearningPathsForTeachers.mockResolvedValueOnce([
-      { id: 'lp1', curriculum_id: 'c1', teacher_id: 't1', published_at: '2026-09-12T00:00:00Z' },
+      { id: 'lp1', curriculum_id: 'c1', teacher_id: 't1', published_at: '2026-09-12T00:00:00Z', meta: { grade: '6', subject: 'Mathematics' } },
+      { id: 'lp2', curriculum_id: 'c2', teacher_id: 't1', published_at: '2026-09-11T00:00:00Z', meta: { title: 'Term 1', grade: '6', subject: 'Science' } },
+      { id: 'lp3', curriculum_id: 'c3', teacher_id: 't1', published_at: '2026-09-10T00:00:00Z', meta: null },
     ]);
-    mockGetCurriculaByIds.mockResolvedValueOnce([{ id: 'c1', file_name: 'grade6-maths.pdf' }]);
+    mockGetCurriculaByIds.mockResolvedValueOnce([{ id: 'c3', file_name: 'grade6-maths.pdf' }]);
 
     const res = await request(app).get('/student/learning-paths');
 
     expect(res.status).toBe(200);
-    expect(res.body.learningPaths).toEqual([
-      { id: 'lp1', curriculumId: 'c1', title: 'grade6-maths.pdf', publishedAt: '2026-09-12T00:00:00Z' },
+    expect(res.body.learningPaths.map((p) => p.title)).toEqual(['Grade 6 Mathematics', 'Term 1', 'grade6 maths']);
+    expect(res.body.learningPaths[0]).toEqual({ id: 'lp1', curriculumId: 'c1', title: 'Grade 6 Mathematics', grade: '6', subject: 'Mathematics', publishedAt: '2026-09-12T00:00:00Z' });
+  });
+
+  test('?grade=&subject= keeps only that subject screen\'s paths', async () => {
+    mockListTeacherIdsForStudent.mockResolvedValueOnce(['t1']);
+    mockListPublishedLearningPathsForTeachers.mockResolvedValueOnce([
+      { id: 'lp1', curriculum_id: 'c1', teacher_id: 't1', published_at: 'x', meta: { grade: '6', subject: 'Mathematics' } },
+      { id: 'lp2', curriculum_id: 'c2', teacher_id: 't1', published_at: 'x', meta: { grade: '7', subject: 'Mathematics' } },
+      { id: 'lp3', curriculum_id: 'c3', teacher_id: 't1', published_at: 'x', meta: { grade: '6', subject: 'Science' } },
     ]);
+    mockGetCurriculaByIds.mockResolvedValueOnce([]);
+
+    const res = await request(app).get('/student/learning-paths?grade=Grade%206&subject=mathematics');
+
+    expect(res.body.learningPaths.map((p) => p.id)).toEqual(['lp1']);
   });
 
   test('500s when the list query fails', async () => {
@@ -139,5 +160,23 @@ describe('GET /student/learning-paths/:curriculumId', () => {
 
     const res = await request(app).get('/student/learning-paths/c1');
     expect(res.status).toBe(500);
+  });
+});
+
+describe('GET /student/learning-paths/subject-edits', () => {
+  test("returns the latest published changes from the student's teachers for that subject", async () => {
+    mockListTeacherIdsForStudent.mockResolvedValueOnce(['t1', 't2']);
+    mockPublishedEdits.mockResolvedValueOnce({ teacher_id: 't2', published: { chapters: [], topics: {} }, published_at: '2026-09-30T10:00:00Z' });
+    const res = await request(app).get('/student/learning-paths/subject-edits').query({ curriculum: 'NCERT', grade: 'Grade 6', subject: 'Maths' });
+    expect(res.status).toBe(200);
+    expect(mockPublishedEdits).toHaveBeenCalledWith(['t1', 't2'], { curriculum: 'cbse', grade: '6', subject: 'mathematics' });
+    expect(res.body.edits).toEqual({ chapters: [], topics: {} });
+  });
+
+  test('no teacher changes gives null', async () => {
+    mockListTeacherIdsForStudent.mockResolvedValueOnce([]);
+    mockPublishedEdits.mockResolvedValueOnce(null);
+    const res = await request(app).get('/student/learning-paths/subject-edits').query({ curriculum: 'CBSE', grade: '6', subject: 'Science' });
+    expect(res.body).toEqual({ edits: null, publishedAt: null });
   });
 });
