@@ -97,20 +97,28 @@ function load() {
     docs.push({ file, doc, grade, subject, info });
   }
   // Books with lessons first, then the catalog's preferred order.
-  docs.sort((a, b) => (b.info.withLessons > 0) - (a.info.withLessons > 0) || (a.info.rank || 9) - (b.info.rank || 9) || a.file.localeCompare(b.file));
+  // A catalogued book (it has a code) wins over an old uncatalogued copy of the same book.
+  docs.sort((a, b) => (b.info.withLessons > 0) - (a.info.withLessons > 0) || (!!b.doc.code) - (!!a.doc.code) || (a.info.rank || 9) - (b.info.rank || 9) || a.file.localeCompare(b.file));
 
   const maxByKey = new Map();
+  const pdfsByKey = new Map();
   for (const { doc, grade, subject, info } of docs) {
     const key = `${grade}|${subject.toLowerCase()}`;
-    const nums = (doc.chapters || []).map(c => c.chapter).filter(Number.isFinite);
+    // The same book described by two files (same chapter PDFs) is one book, not a second volume.
+    const loaded = pdfsByKey.get(key) || new Set();
+    pdfsByKey.set(key, loaded);
+    const chapters = (doc.chapters || []).filter((c) => !loaded.has(String(c.pdfFile || '').toLowerCase()));
+    if (!chapters.length) continue;
+    const nums = chapters.map(c => c.chapter).filter(Number.isFinite);
     const prevMax = maxByKey.get(key) || 0;
     // A later volume restarts at chapter 1; continue the numbering so its chapters
     // aren't dropped as duplicates of the first volume's.
     const offset = prevMax && nums.length && Math.min(...nums) <= prevMax ? prevMax : 0;
 
-    for (const ch of doc.chapters || []) {
+    for (const ch of chapters) {
       const code = String(ch.pdfFile || '').replace(/\.pdf$/i, '');
       if (!code) continue;
+      loaded.add(String(ch.pdfFile).toLowerCase());
       const hasRealTitle = ch.title && !/^Chapter \d+$/i.test(ch.title) && looksLikeRealTitle(ch.title);
       const chapterNo = ch.chapter + offset;
       const rec = {
