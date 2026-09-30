@@ -2,14 +2,18 @@ const express = require('express');
 const router = express.Router();
 
 const { requireStudentAuth } = require('../middleware/auth');
-const { getLearningPathByCurriculumId, listPublishedLearningPathsForTeachers } = require('../services/curriculumUpload/learningPathRepository');
+const { getLearningPathByCurriculumId, listPublishedLearningPathsForTeachers, learningPathTitle } = require('../services/curriculumUpload/learningPathRepository');
 const { getCurriculaByIds } = require('../services/curriculumUpload/curriculumRepository');
 const { isStudentOfTeacher, listTeacherIdsForStudent } = require('../services/curriculumUpload/studentAccess');
 
 router.get('/', requireStudentAuth, async (req, res) => {
   try {
     const teacherIds = await listTeacherIdsForStudent(req.auth.studentId);
-    const paths = await listPublishedLearningPathsForTeachers(teacherIds);
+    // Optional ?grade=&subject= narrows to one subject screen (e.g. Grade 6 Mathematics).
+    const norm = (v) => String(v || '').toLowerCase().replace(/^grade\s*/, '').trim();
+    const paths = (await listPublishedLearningPathsForTeachers(teacherIds)).filter((p) =>
+      (!req.query.grade || norm(p.meta?.grade) === norm(req.query.grade))
+      && (!req.query.subject || norm(p.meta?.subject) === norm(req.query.subject)));
     const curricula = await getCurriculaByIds([...new Set(paths.map((p) => p.curriculum_id))]);
     const titleByCurriculumId = new Map(curricula.map((c) => [c.id, c.file_name]));
 
@@ -17,7 +21,9 @@ router.get('/', requireStudentAuth, async (req, res) => {
       learningPaths: paths.map((p) => ({
         id: p.id,
         curriculumId: p.curriculum_id,
-        title: titleByCurriculumId.get(p.curriculum_id) || 'Learning Path',
+        title: learningPathTitle(p.meta, titleByCurriculumId.get(p.curriculum_id)),
+        grade: p.meta?.grade || null,
+        subject: p.meta?.subject || null,
         publishedAt: p.published_at,
       })),
     });

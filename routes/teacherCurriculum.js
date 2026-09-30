@@ -10,12 +10,15 @@ const {
   MAX_FILE_BYTES,
 } = require('../services/curriculumUpload/fileValidation');
 const { uploadCurriculumFile } = require('../services/curriculumUpload/cloudinaryStorage');
-const { createCurriculum, updateCurriculumStatus } = require('../services/curriculumUpload/curriculumRepository');
+const { createCurriculum, updateCurriculumStatus, getCurriculaByIds, deleteCurriculum } = require('../services/curriculumUpload/curriculumRepository');
 const {
   getDraftByCurriculumId,
   updateDraftContent,
   getLearningPathByCurriculumId,
   publishLearningPath,
+  listLearningPathsForTeacher,
+  deleteLearningPathsForCurriculum,
+  learningPathTitle,
 } = require('../services/curriculumUpload/learningPathRepository');
 const {
   validateLearningPathContent,
@@ -101,6 +104,33 @@ router.get('/book-sections', requireAuth, async (req, res) => {
   }
 });
 
+// "My Learning Paths": every path this teacher has, newest edit first, with its name and publish state.
+router.get('/learning-paths', requireAuth, async (req, res) => {
+  try {
+    const rows = await listLearningPathsForTeacher(req.auth.teacherId);
+    const curricula = await getCurriculaByIds([...new Set(rows.map((r) => r.curriculum_id))]);
+    const fileById = new Map(curricula.map((c) => [c.id, c.file_name]));
+    return res.json({
+      learningPaths: rows.map((r) => ({
+        id: r.id,
+        curriculumId: r.curriculum_id,
+        title: learningPathTitle(r.meta, fileById.get(r.curriculum_id)),
+        fileName: fileById.get(r.curriculum_id) || null,
+        grade: r.meta?.grade || null,
+        subject: r.meta?.subject || null,
+        status: r.status,
+        updatedAt: r.updated_at,
+        publishedAt: r.published_at,
+        // Edited after the last publish -> students still see the older version.
+        hasUnpublishedChanges: r.status === 'published' && !!r.published_at && new Date(r.updated_at) > new Date(r.published_at),
+      })),
+    });
+  } catch (err) {
+    console.error('[teacher-curriculum/learning-paths] list failed:', err.message);
+    return res.status(500).json({ error: 'Failed to list learning paths' });
+  }
+});
+
 router.get('/', requireAuth, async (req, res) => {
   const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 5, 1), 20);
   const { data, error } = await supabase.from('teacher_curricula')
@@ -114,6 +144,18 @@ router.get('/', requireAuth, async (req, res) => {
 
 router.get('/:id', requireAuth, requireOwnedCurriculum('id'), async (req, res) => {
   res.json({ curriculum: req.curriculum, progress: await getProgress(req.curriculum) });
+});
+
+// Removes the curriculum and its learning path (students lose access). The uploaded file stays in storage.
+router.delete('/:id', requireAuth, requireOwnedCurriculum('id'), async (req, res) => {
+  try {
+    await deleteLearningPathsForCurriculum(req.params.id);
+    await deleteCurriculum(req.params.id);
+    return res.status(204).end();
+  } catch (err) {
+    console.error('[teacher-curriculum/delete] failed:', err.message);
+    return res.status(500).json({ error: 'Failed to delete the learning path' });
+  }
 });
 
 router.post('/:id/retry', requireAuth, requireOwnedCurriculum('id'), async (req, res) => {
@@ -220,12 +262,6 @@ router.post('/:id/learning-path/publish', requireAuth, requireOwnedCurriculum('i
   }
   if (!learningPath) return res.status(404).json({ error: 'No draft learning path for this curriculum yet' });
 
-  if (learningPath.status === 'published') {
-    return res.status(200).json({ learningPath, alreadyPublished: true });
-  }
-  if (learningPath.status !== 'draft') {
-    return res.status(409).json({ error: `Cannot publish a learning path in status "${learningPath.status}"` });
-  }
 
   try {
     validateLearningPathContent(learningPath.content);
@@ -238,10 +274,7 @@ router.post('/:id/learning-path/publish', requireAuth, requireOwnedCurriculum('i
 
   try {
     const published = await publishLearningPath(learningPath.id, learningPath.content);
-    if (!published) {
-      const current = await getLearningPathByCurriculumId(req.params.id);
-      return res.status(200).json({ learningPath: current, alreadyPublished: true });
-    }
+    if (!published) return res.status(404).json({ error: 'No learning path for this curriculum yet' });
     return res.status(200).json({ learningPath: published });
   } catch (err) {
     console.error('[teacher-curriculum/learning-path/publish] publish failed:', err.message);
