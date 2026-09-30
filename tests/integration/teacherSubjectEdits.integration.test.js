@@ -16,7 +16,8 @@ jest.mock('../../services/subjectEdits/repository', () => ({
   listSubjectEditsForTeacher: (...a) => mockList(...a),
 }));
 const mockUploadImage = jest.fn();
-jest.mock('../../services/curriculumUpload/cloudinaryStorage', () => ({ uploadLessonImage: (...a) => mockUploadImage(...a) }));
+const mockUploadBook = jest.fn();
+jest.mock('../../services/curriculumUpload/cloudinaryStorage', () => ({ uploadLessonImage: (...a) => mockUploadImage(...a), uploadLessonBook: (...a) => mockUploadBook(...a) }));
 
 const express = require('express');
 const request = require('supertest');
@@ -81,4 +82,15 @@ test('uploads a lesson picture and rejects other files', async () => {
 
   const bad = await request(app).post('/teacher-subject-edits/images').attach('image', Buffer.from('%PDF'), { filename: 'a.pdf', contentType: 'application/pdf' });
   expect(bad.status).toBe(400);
+});
+
+test('uploads a teacher book PDF; anything that is not a PDF is refused', async () => {
+  mockUploadBook.mockResolvedValueOnce({ url: 'https://res/book_1.pdf', fileName: 'ch1.pdf' });
+  const ok = await request(app).post('/teacher-subject-edits/books').attach('book', Buffer.from('%PDF-1.4 x'), { filename: 'ch1.pdf', contentType: 'application/pdf' });
+  expect(ok.status).toBe(200);
+  expect(ok.body).toEqual({ url: 'https://res/book_1.pdf', fileName: 'ch1.pdf' });
+
+  const bad = await request(app).post('/teacher-subject-edits/books').attach('book', Buffer.from('hello'), { filename: 'x.pdf', contentType: 'application/pdf' });
+  expect(bad.status).toBe(400);
+  expect(mockUploadBook).toHaveBeenCalledTimes(1);
 });

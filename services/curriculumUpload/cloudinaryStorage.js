@@ -28,8 +28,19 @@ async function uploadLessonImage(buffer, { mimeType }) {
   return { url: result.secure_url, width: result.width, height: result.height };
 }
 
+// A book (PDF) a teacher adds to a lesson; kept as a .pdf so browsers open it in place at a page.
+async function uploadLessonBook(buffer, { fileName }) {
+  const result = await cloudinary.uploader.upload(`data:application/pdf;base64,${buffer.toString('base64')}`, {
+    folder: 'aivorah/teacher-lesson-books',
+    resource_type: 'raw',
+    public_id: `book_${Date.now()}.pdf`,
+    filename_override: fileName,
+  });
+  return { url: result.secure_url, fileName };
+}
+
 async function deleteCurriculumFile(publicId) {
   await cloudinary.uploader.destroy(publicId, { resource_type: 'raw' });
 }
 
-module.exports = { uploadCurriculumFile, deleteCurriculumFile, uploadLessonImage };
+module.exports = { uploadCurriculumFile, deleteCurriculumFile, uploadLessonImage, uploadLessonBook };

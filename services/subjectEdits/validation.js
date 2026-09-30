@@ -4,7 +4,7 @@
 const MAX_BYTES = 3 * 1024 * 1024;
 const MAX_CHAPTERS = 200;
 const MAX_TOPICS_PER_CHAPTER = 200;
-const LESSON_FIELDS = ['whatYoullLearn', 'blocks', 'listenScript', 'listenParts', 'mathTutor', 'practiceQuiz', 'pdfFile', 'pdfPage', 'bookPath'];
+const LESSON_FIELDS = ['whatYoullLearn', 'blocks', 'listenScript', 'listenParts', 'mathTutor', 'practiceQuiz', 'pdfFile', 'pdfPage', 'bookPath', 'bookUrl', 'bookTitle'];
 
 class SubjectEditsValidationError extends Error {}
 

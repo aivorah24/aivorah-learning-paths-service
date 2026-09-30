@@ -8,10 +8,12 @@ const { validateSubjectEdits, SubjectEditsValidationError } = require('../servic
 const {
   getSubjectEdits, saveSubjectDraft, publishSubjectEdits, listSubjectEditsForTeacher,
 } = require('../services/subjectEdits/repository');
-const { uploadLessonImage } = require('../services/curriculumUpload/cloudinaryStorage');
+const { uploadLessonImage, uploadLessonBook } = require('../services/curriculumUpload/cloudinaryStorage');
 
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
+const MAX_BOOK_BYTES = 10 * 1024 * 1024;
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: MAX_IMAGE_BYTES } });
+const uploadBook = multer({ storage: multer.memoryStorage(), limits: { fileSize: MAX_BOOK_BYTES } });
 
 function summary(row) {
   if (!row) return { status: 'none', updatedAt: null, publishedAt: null, hasUnpublishedChanges: false };
@@ -85,6 +87,19 @@ router.post('/images', requireAuth, (req, res) => {
     }
     try {
       res.json(await uploadLessonImage(req.file.buffer, { mimeType: req.file.mimetype }));
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+});
+
+// A teacher's own book (PDF) shown next to a lesson instead of the standard book.
+router.post('/books', requireAuth, (req, res) => {
+  uploadBook.single('book')(req, res, async (err) => {
+    if (err) return res.status(400).json({ error: err.code === 'LIMIT_FILE_SIZE' ? 'Books must be under 10MB — upload the chapter you need' : err.message });
+    if (!req.file || req.file.buffer.subarray(0, 5).toString() !== '%PDF-') return res.status(400).json({ error: 'Choose a PDF file' });
+    try {
+      res.json(await uploadLessonBook(req.file.buffer, { fileName: String(req.file.originalname || 'book.pdf').slice(0, 120) }));
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
