@@ -158,7 +158,7 @@ describe('validateGeneratedTopics', () => {
       topics: [{ unitOrder: 0, topicOrder: 0, objectives: ['Add two numbers'], lessons: [{ title: 'Intro', summary: 'x' }] }],
     }, refs);
     expect(result.valid).toBe(true);
-    expect(result.topics).toEqual([{ unitOrder: 0, topicOrder: 0, objectives: ['Add two numbers'], lessons: [{ title: 'Intro', summary: 'x' }], status: 'ready', teacherHint: null, groundingSource: 'upload_text_only' }]);
+    expect(result.topics).toEqual([{ unitOrder: 0, topicOrder: 0, objectives: ['Add two numbers'], lessons: [{ title: 'Intro', summary: 'x' }], status: 'needs_teacher_input', teacherHint: expect.stringContaining('No lesson could be written'), groundingSource: 'upload_text_only' }]);
   });
 
   test('carries needs_teacher_input status and teacherHint through when the model flags a gap', () => {
@@ -174,11 +174,12 @@ describe('validateGeneratedTopics', () => {
     expect(result.topics[0].teacherHint).toBe('The uploaded document lists this topic with no subtopics — specify scope.');
   });
 
-  test('ignores a teacherHint when status is not needs_teacher_input', () => {
+  test('an outline-only topic is never "ready" (it has no lesson), even if the model says so', () => {
     const result = validateGeneratedTopics({
-      topics: [{ unitOrder: 0, topicOrder: 0, status: 'ready', teacherHint: 'should be dropped', objectives: ['x'], lessons: [] }],
+      topics: [{ unitOrder: 0, topicOrder: 0, status: 'ready', objectives: ['x'], lessons: [] }],
     }, refs);
-    expect(result.topics[0].teacherHint).toBeNull();
+    expect(result.topics[0].status).toBe('needs_teacher_input');
+    expect(result.topics[0].teacherHint).toMatch(/Generate lesson again/);
   });
 
   test('drops an entry referencing an unknown unitOrder/topicOrder rather than merging it', () => {

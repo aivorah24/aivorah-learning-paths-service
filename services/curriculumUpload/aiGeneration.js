@@ -609,6 +609,8 @@ async function callGroq(prompt) {
   return { choices: [{ message: { content } }] };
 }
 
+const NO_LESSON_HINT = 'No lesson could be written for this topic just now (the AI service was busy). Use "Generate lesson again", or add the lesson yourself in Edit.';
+
 function validateGeneratedTopics(parsed, topicRefs) {
   if (!parsed || !Array.isArray(parsed.topics)) {
     return { valid: false, errors: ['response.topics must be an array'] };
@@ -639,10 +641,12 @@ function validateGeneratedTopics(parsed, topicRefs) {
     // Model omitting status/teacherHint (older prompt behavior, or a lenient
     // model) defaults to "ready"/null rather than failing validation — the
     // gap-resolution protocol is a quality signal, not a required field.
-    const status = entry.status === 'needs_teacher_input' ? 'needs_teacher_input' : 'ready';
-    const teacherHint = status === 'needs_teacher_input' && typeof entry.teacherHint === 'string' && entry.teacherHint.trim()
+    // This last-resort path writes objectives only, never a lesson: the topic always needs the teacher before
+    // students see it (it used to be marked ready and could be published empty).
+    const status = 'needs_teacher_input';
+    const teacherHint = typeof entry.teacherHint === 'string' && entry.teacherHint.trim()
       ? entry.teacherHint.trim()
-      : null;
+      : NO_LESSON_HINT;
     topics.push({ unitOrder: entry.unitOrder, topicOrder: entry.topicOrder, objectives, lessons, status, teacherHint, groundingSource: 'upload_text_only' });
   });
 
@@ -668,8 +672,8 @@ function mergeGeneratedContent(normalized, generatedTopics) {
           subtopics: topic.subtopics.map((s) => ({ title: s.title, order: s.order })),
           objectives: generated?.objectives || [],
           lessons: generated?.lessons || [],
-          status: generated?.status || 'ready',
-          teacherHint: generated?.teacherHint ?? null,
+          status: generated ? (generated.status || 'ready') : 'needs_teacher_input',
+          teacherHint: generated ? (generated.teacherHint ?? null) : NO_LESSON_HINT,
           content: generated?.content || null,
           groundingSource: generated?.groundingSource || 'none',
           quality: generated?.quality || null,
