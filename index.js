@@ -14,6 +14,7 @@ app.use('/curriculum', require('./routes/curriculum'));
 app.use('/teacher-curriculum', require('./routes/teacherCurriculum'));
 app.use('/teacher-subject-edits', require('./routes/teacherSubjectEdits'));
 app.use('/student/learning-paths', require('./routes/studentLearningPath'));
+app.use('/read-aloud', require('./routes/readAloud'));
 
 require('./services/jobHandlers');
 

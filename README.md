@@ -59,6 +59,13 @@ Runs on `PORT` (default `3014`).
   wrongAnswer, correctAnswer }` → `{ explanation }`. A warm, encouraging
   explanation for a wrong answer.
 - `POST /ibpyp/track-result` — logs a completed quiz attempt to analytics.
+- `/read-aloud/*` — student Read Aloud (signed-in student only, `Authorization:
+  Bearer <Firebase ID token>`): `GET passages?grade=&lexile=`, `POST passage`,
+  `GET calibration?grade=`, `GET|POST lexile`, `POST assess`, `GET history`,
+  `POST transcribe` / `transcribe-live` (multipart `audio` + `passage`, Groq
+  Whisper), `POST tts` (ElevenLabs, shipped passages only, cached on
+  Cloudinary). Needs `GROQ_API_KEY`, `ELEVENLABS_API_KEY` and the
+  `read_aloud_levels` / `read_aloud_sessions` tables (aivorah-db `0008`).
 - `GET /health`
 
 ## Branching
