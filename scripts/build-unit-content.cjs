@@ -28,6 +28,7 @@ const WRITE = process.argv.includes('--write');
 const GRADES = (arg('--grades') || '8,9,10,6,7,11,12,5,4,3,2,1').split(',').map(Number);
 const SUBJECTS = arg('--subjects') ? arg('--subjects').toLowerCase().split(',') : null;
 const LIMIT = Number(arg('--limit') || 0);
+const SKIP_SAVED = process.argv.includes('--skip-saved');
 const BOOKS = 'https://aivorah-auth-service-g27s.onrender.com/data/ncert_books/';
 const MODELS = ['gemini-3-flash-preview', 'gemini-flash-lite-latest'];
 fs.mkdirSync(OUT, { recursive: true });
@@ -78,31 +79,41 @@ const language = (u) => (/hindi/i.test(u.subject) ? 'Hindi (Devanagari script)' 
 const level = (g) => (g <= 2 ? 'very short sentences and everyday words for a 6-7 year old' : g <= 5 ? 'short sentences and simple words'
   : g <= 8 ? 'clear, friendly and simple language' : 'precise subject terms, explained step by step, suitable for board exams');
 
-const prompt = (u, pages) => `You are Aivorah, a friendly NCERT tutor. The attached PDF is Unit ${u.unitNo} "${u.unitTitle}" (${pages} pages) of the NCERT Grade ${u.grade} ${u.subject} textbook "${u.book}".
+const prompt = (u, pages) => `You are Aivorah, an expert NCERT teacher. The attached PDF is Unit ${u.unitNo} "${u.unitTitle}" (${pages} pages) of the NCERT Grade ${u.grade} ${u.subject} textbook "${u.book}".
 Write everything in ${language(u)}, using ${level(u.grade)}. Use ONLY this book's content - no outside facts, names, dates or numbers. Say "unit", never "chapter".
+This is a full lesson that sits beside the real book, NOT a summary: cover EVERY idea, fact, example, activity, question box and new word in each section, in order, explained so a Grade ${u.grade} student understands it. You may explain more simply or give an extra everyday example to make an idea clear, but never leave content out and never add facts the book does not have.
 
-Return the unit's SECTIONS as printed (numbered headings, or the main headings / the individual stories and poems; at most 6 - merge small ones; if there are no headings, one section titled with the unit title). For each section:
+Return the unit's SECTIONS as printed (numbered headings, or the main headings / the individual stories and poems; at most 10 - merge only very small ones; if there are no headings, one section titled with the unit title). Skip pages meant only for teachers (e.g. "Teacher's Page", notes to the teacher). For each section:
 - "title" exactly as printed, "from"/"to" PDF pages (first attached page = 1).
-- "learn": {"whatYoullLearn": [3 short points], "blocks": [5-8 blocks]} using ONLY these block types:
+- "learn": {"whatYoullLearn": [3-4 short points], "blocks": [...]} - as many blocks as the section needs to cover all of it (about 2 blocks per printed page, at least 6), using ONLY these block types:
   {"type":"overview","text":"a hook question or 1-2 sentence opener"}
-  {"type":"explanation","text":"..."}
+  {"type":"explanation","text":"..."}   (one idea per block, 2-5 sentences)
   {"type":"key_terms","items":[{"term":"...","definition":"..."}]}
+  {"type":"vocabulary","items":[{"term":"a word from the text","meaning":"its meaning here"}]}
   {"type":"example","text":"a concrete example from the book"}
+  {"type":"worked_example","problem":"a solved example from the book","steps":[{"action":"what to do","why":"why"}],"finalAnswer":"..."}
+  {"type":"formula","name":"...","expression":"..."} | {"type":"chemical_equation","equation":"..."}
   {"type":"process","title":"...","steps":["...","..."]}
   {"type":"comparison","title":"...","items":[{"name":"...","description":"..."}]}
   {"type":"table","caption":"...","headers":["...","..."],"rows":[["...","..."]]}
   {"type":"timeline","title":"...","events":[{"date":"...","description":"..."}]}
   {"type":"cause_and_effect","title":"...","items":[{"cause":"...","effect":"..."}]}
+  {"type":"case_study","title":"...","text":"a story, case or situation from the book, retold"}
+  {"type":"poem_line","sourceText":"one stanza or lines copied exactly from the book","explanation":"what they mean"}
   {"type":"prose_excerpt","sourceText":"a key line copied exactly from the book","explanation":"what it means"}
-  {"type":"key_points","items":["...","..."]}
-  Include at least one visual block (process, comparison, table, timeline or cause_and_effect) when the content allows.
-- "listen": 3-5 scenes, each {"heading":"...","lines":[{"speaker":"Narrator","text":"one or two spoken sentences","page":N}] (3-6 lines), "visual": one diagram that explains the scene, one of:
+  {"type":"activity","text":"an activity or 'think about it' box from the book, with how to do it"}
+  {"type":"tip","text":"..."} | {"type":"common_mistake","text":"..."}
+  {"type":"key_points","items":["...","..."]}   (end every section with key_points)
+  Use visual blocks (table, process, comparison, timeline, cause_and_effect) wherever the content has steps, groups, dates, causes or data - at least one per section.
+  A POEM: give EVERY stanza as its own poem_line block (exact lines, then meaning), then explain the poem's theme and poetic devices.
+- "figures": the book's own pictures on this section's pages that help understanding: [{"page":N,"caption":"one sentence saying what the picture shows and why it matters"}] (empty if none).
+- "listen": AT LEAST 3 scenes (4-6 for a long section) that teach the whole section like a friendly teacher, each {"heading":"...","lines":[{"speaker":"Narrator","text":"one or two spoken sentences","page":N}] (3-6 lines), "visual": one diagram that explains the scene, one of:
   {"kind":"flow","title":"...","steps":["...","..."]} | {"kind":"venn","title":"...","left":{"label":"...","items":["..."]},"right":{"label":"...","items":["..."]},"both":["..."]}
   | {"kind":"table","title":"...","headers":["...","..."],"rows":[["...","..."]]} | {"kind":"timeline","title":"...","events":[{"when":"...","what":"..."}]}
   | {"kind":"cause_effect","title":"...","pairs":[{"cause":"...","effect":"..."}]} | {"kind":"compare","title":"...","columns":[{"label":"...","points":["..."]}]}
-  | {"kind":"web","title":"...","center":"...","nodes":[{"label":"...","note":"..."}]} (labels at most 12 words). The first scene says which book, unit and section this is.
+  | {"kind":"web","title":"...","center":"...","nodes":[{"label":"...","note":"..."}]} (labels at most 12 words). The first scene says which book, unit and section this is. For a POEM, first read the poem aloud stanza by stanza (exact lines), then explain it.
 - "quiz": 5 multiple-choice questions on this section: {"question":"...","options":["...","...","...","..."],"correctIndex":0-3,"explanation":"why, citing the book","page":N}. The correct option must be stated in the book. Test understanding of the section's ideas, facts and vocabulary - never trivia about the textbook, its grade, unit numbers or page numbers.
-Output ONLY JSON: {"sections":[{"title":"...","from":1,"to":4,"learn":{...},"listen":[...],"quiz":[...]}]}`;
+Output ONLY JSON: {"sections":[{"title":"...","from":1,"to":4,"learn":{...},"figures":[...],"listen":[...],"quiz":[...]}]}`;
 
 // Gemini occasionally returns cut-off or malformed JSON for a long unit; ask again (up to 3 tries) before failing.
 async function parseWithRetry(pdfB64, text) {
@@ -149,6 +160,63 @@ const inBook = (s, hay, need = 0.6) => {
 };
 const str = (v) => typeof v === 'string' && v.trim().length > 0;
 const VISUAL_KINDS = new Set(['flow', 'venn', 'table', 'timeline', 'cause_effect', 'compare', 'web']);
+const LEARN_VISUALS = new Set(['process', 'comparison', 'table', 'timeline', 'cause_and_effect', 'image']);
+
+// The book's own pictures: a figure the model named is used only if that page really has a sizeable colour image.
+function pagePictures(pdfPath) {
+  const list = spawnSync('pdfimages', ['-list', pdfPath], { encoding: 'utf8', maxBuffer: 1 << 26 }).stdout || '';
+  const rows = [];
+  const firstIdx = {};
+  for (const ln of list.split('\n').slice(2)) {
+    const c = ln.trim().split(/\s+/);
+    if (c.length < 10) continue;
+    const page = Number(c[0]);
+    const idx = Number(c[1]);
+    firstIdx[page] ??= idx;
+    if (c[2] === 'image') rows.push({ page, local: idx - firstIdx[page], w: Number(c[3]), h: Number(c[4]), color: c[5] });
+  }
+  // A size repeated on many pages is a whole-page scan, not a picture.
+  const sizes = {};
+  for (const r of rows) sizes[`${r.w}x${r.h}`] = (sizes[`${r.w}x${r.h}`] || 0) + 1;
+  const pageCount = new Set(rows.map((r) => r.page)).size || 1;
+  const best = {};
+  for (const r of rows) {
+    if (sizes[`${r.w}x${r.h}`] > Math.max(2, pageCount * 0.4)) continue;
+    if (!/rgb|cmyk|icc/.test(r.color) || r.w < 400 || r.h < 250) continue;
+    if (!best[r.page] || r.w * r.h > best[r.page].area) best[r.page] = { idx: r.local, area: r.w * r.h };
+  }
+  return best;
+}
+
+async function uploadPicture(u, pdfPath, page, idx) {
+  const cloudinary = require('cloudinary').v2;
+  cloudinary.config({ cloud_name: process.env.CLOUDINARY_CLOUD_NAME, api_key: process.env.CLOUDINARY_API_KEY, api_secret: process.env.CLOUDINARY_API_SECRET });
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'unitpic-'));
+  spawnSync('pdfimages', ['-png', '-f', String(page), '-l', String(page), pdfPath, path.join(tmp, 'p')]);
+  const png = path.join(tmp, `p-${String(idx).padStart(3, '0')}.png`);
+  if (!fs.existsSync(png)) return null;
+  const up = await cloudinary.uploader.upload(png, { public_id: `aivorah/book-images/${u.pdf.replace('.pdf', '')}-p${page}`, overwrite: true });
+  return up.secure_url.replace('/upload/', '/upload/f_auto,q_auto,w_1000/');
+}
+
+async function addBookPictures(u, pdfPath, sections) {
+  const pics = pagePictures(pdfPath);
+  let added = 0;
+  for (const s of sections) {
+    if (!s.learn) continue;
+    const used = new Set();
+    const images = [];
+    for (const f of s.figures || []) {
+      if (!pics[f.page] || used.has(f.page)) continue;
+      used.add(f.page);
+      const url = WRITE && process.env.CLOUDINARY_CLOUD_NAME ? await uploadPicture(u, pdfPath, f.page, pics[f.page].idx).catch(() => null) : null;
+      if (WRITE && !url) continue;
+      images.push({ type: 'image', url: url || `(book picture p${f.page})`, caption: f.caption, page: f.page });
+    }
+    if (images.length) { s.learn.blocks.splice(1, 0, ...images); s.hasVisual = true; added += images.length; }
+  }
+  return added;
+}
 
 function check(u, parsed, text, pages, englishText) {
   const hay = ` ${norm(text)} `;
@@ -171,7 +239,10 @@ function check(u, parsed, text, pages, englishText) {
       && Number.isInteger(q.correctIndex) && q.correctIndex >= 0 && q.correctIndex < 4
       && (!englishText || inBook(q.options[q.correctIndex], hay, 0.5)));
     if (!learn && !listen.length) continue;
-    sections.push({ no: i + 1, title: String(s.title).trim(), from, to, learn, listen, quiz });
+    const hasVisual = (learn?.blocks || []).some((b) => LEARN_VISUALS.has(b.type)) || listen.some((sc) => sc.visual);
+    if (!hasVisual) notes.push(`no visual in "${s.title}"`);
+    const figures = (Array.isArray(s.figures) ? s.figures : []).filter((f) => Number.isInteger(f.page) && f.page >= from && f.page <= to && str(f.caption)).slice(0, 3);
+    sections.push({ no: i + 1, title: String(s.title).trim(), from, to, learn, listen, quiz, figures, hasVisual });
   }
   return { sections, notes };
 }
@@ -188,7 +259,13 @@ async function save(u, result, model, lang) {
 }
 
 (async () => {
-  const list = units();
+  let list = units();
+  if (SKIP_SAVED) {
+    const { data, error } = await require('../services/supabase').from('unit_content_sections').select('pdf_file').in('pdf_file', list.map((u) => u.pdf));
+    if (error) throw new Error(`skip-saved lookup failed: ${error.message}`);
+    const saved = new Set((data || []).map((r) => r.pdf_file));
+    list = list.filter((u) => !saved.has(u.pdf));
+  }
   console.log(`units: ${list.length}; keys: ${KEYS.length}; write: ${WRITE}`);
   let n = 0;
   for (const u of list) {
@@ -213,12 +290,15 @@ async function save(u, result, model, lang) {
       const t0 = Date.now();
       const { model, key, parsed } = await parseWithRetry(b64, prompt(u, pages));
       const result = check(u, parsed, text, pages, englishText);
+      const pictures = await addBookPictures(u, p, result.sections);
       const rec = { ...u, lang, model, sections: result.sections, notes: result.notes, saved: false };
-      if (result.sections.length && WRITE) { try { await save(u, result, model, lang); rec.saved = true; } catch (e) { result.notes.push(e.message); } }
+      const visualOk = result.sections.some((s) => s.hasVisual);
+      if (!visualOk) result.notes.unshift('NOT SAVED: no visuals in any section');
+      if (result.sections.length && visualOk && WRITE) { try { await save(u, result, model, lang); rec.saved = true; } catch (e) { result.notes.push(e.message); } }
       if (result.sections.length) fs.writeFileSync(done, JSON.stringify(rec));
       const q = result.sections.reduce((a, s) => a + s.quiz.length, 0);
       const sc = result.sections.reduce((a, s) => a + s.listen.length, 0);
-      console.log(`G${u.grade} ${u.subject} U${u.unitNo} ${u.unitTitle.slice(0, 30)} [${model} k${key} ${Math.round((Date.now() - t0) / 1000)}s]: ${result.sections.length} sections, ${sc} scenes, ${q} quiz${rec.saved ? ', saved' : ''}${result.notes.length ? ` | ${result.notes.slice(0, 2).join('; ')}` : ''}`);
+      console.log(`G${u.grade} ${u.subject} U${u.unitNo} ${u.unitTitle.slice(0, 30)} [${model} k${key} ${Math.round((Date.now() - t0) / 1000)}s]: ${result.sections.length} sections, ${result.sections.reduce((a, s) => a + (s.learn?.blocks.length || 0), 0)} learn blocks, ${pictures} pictures, ${sc} scenes, ${q} quiz${rec.saved ? ', saved' : ''}${result.notes.length ? ` | ${result.notes.slice(0, 2).join('; ')}` : ''}`);
     } catch (e) {
       console.log(`G${u.grade} ${u.subject} ${u.pdf}: FAILED ${String(e.message).slice(0, 160)}`);
       if (/unavailable/.test(e.message)) await sleep(60000);
