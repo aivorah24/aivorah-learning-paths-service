@@ -1,0 +1,67 @@
+name: Build NCERT unit content
+
+# Manual only. Each job uses its own Gemini key; units already saved in
+# unit_content_sections are skipped, so a re-run continues where the last stopped.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'sample = 1 unit per grade (dry run, nothing saved); full = build and save'
+        type: choice
+        options: [sample, full]
+        default: sample
+      group_a:
+        description: 'Grades for key 1 (comma list)'
+        default: '12,9,7,6,5,3,2,1'
+      group_b:
+        description: 'Grades for key 2 (comma list)'
+        default: '11,10,8,4'
+
+concurrency:
+  group: content-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - worker: a
+            key: GEMINI_KEY_1
+          - worker: b
+            key: GEMINI_KEY_2
+    env:
+      SUPABASE_URL: ${{ secrets.CONTENT_SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.CONTENT_SUPABASE_SERVICE_KEY }}
+      GEMINI_API_KEY: ${{ secrets[matrix.key] }}
+      NCERT_CHAPTER_CACHE: ${{ github.workspace }}/.ncert-cache
+      GRADES: ${{ matrix.worker == 'a' && inputs.group_a || inputs.group_b }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - run: mkdir -p "$NCERT_CHAPTER_CACHE"
+      - name: Sample (1 unit per grade, not saved)
+        if: inputs.mode == 'sample'
+        run: |
+          for g in ${GRADES//,/ }; do
+            node scripts/build-unit-content.cjs --grades "$g" --limit 1 --skip-saved || true
+          done
+      - name: Full build (saved)
+        if: inputs.mode == 'full'
+        run: node scripts/build-unit-content.cjs --grades "$GRADES" --skip-saved --write
+      - name: Keep the generated lessons for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-content-${{ inputs.mode }}-${{ matrix.worker }}
+          path: out/unit-content/
+          if-no-files-found: ignore
+          retention-days: 14
