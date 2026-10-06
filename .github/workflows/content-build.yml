@@ -12,10 +12,13 @@ on:
         default: sample
       group_a:
         description: 'Grades for key 1 (comma list)'
-        default: '12,9,7,6,5,3,2,1'
+        default: '12,7,5,1'
       group_b:
         description: 'Grades for key 2 (comma list)'
-        default: '11,10,8,4'
+        default: '11,9,6,4'
+      group_c:
+        description: 'Grades for key 3 (comma list)'
+        default: '10,8,3,2'
 
 concurrency:
   group: content-build
@@ -33,12 +36,14 @@ jobs:
             key: GEMINI_KEY_1
           - worker: b
             key: GEMINI_KEY_2
+          - worker: c
+            key: GEMINI_KEY_3
     env:
       SUPABASE_URL: ${{ secrets.CONTENT_SUPABASE_URL }}
       SUPABASE_SERVICE_KEY: ${{ secrets.CONTENT_SUPABASE_SERVICE_KEY }}
       GEMINI_API_KEY: ${{ secrets[matrix.key] }}
       NCERT_CHAPTER_CACHE: ${{ github.workspace }}/.ncert-cache
-      GRADES: ${{ matrix.worker == 'a' && inputs.group_a || inputs.group_b }}
+      GRADES: ${{ matrix.worker == 'a' && inputs.group_a || matrix.worker == 'b' && inputs.group_b || inputs.group_c }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
