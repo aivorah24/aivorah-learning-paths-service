@@ -107,7 +107,7 @@ Return the unit's SECTIONS as printed (numbered headings, or the main headings /
   Use visual blocks (table, process, comparison, timeline, cause_and_effect) wherever the content has steps, groups, dates, causes or data - at least one per section.
   A POEM: give EVERY stanza as its own poem_line block (exact lines, then meaning), then explain the poem's theme and poetic devices.
 - "figures": the book's own pictures on this section's pages that help understanding: [{"page":N,"caption":"one sentence saying what the picture shows and why it matters"}] (empty if none).
-- "listen": AT LEAST 3 scenes (4-6 for a long section) that teach the whole section like a friendly teacher, each {"heading":"...","lines":[{"speaker":"Narrator","text":"one or two spoken sentences","page":N}] (3-6 lines), "visual": one diagram that explains the scene, one of:
+- "listen": as many scenes as this section's own content needs to teach it fully like a friendly teacher - a short section can be 1-2 scenes, a dense one 6+; never pad with filler scenes and never skip content to fit fewer. Each {"heading":"...","lines":[{"speaker":"Narrator","text":"one or two spoken sentences","page":N}] (3-6 lines), "visual": one diagram that explains the scene, one of:
   {"kind":"flow","title":"...","steps":["...","..."]} | {"kind":"venn","title":"...","left":{"label":"...","items":["..."]},"right":{"label":"...","items":["..."]},"both":["..."]}
   | {"kind":"table","title":"...","headers":["...","..."],"rows":[["...","..."]]} | {"kind":"timeline","title":"...","events":[{"when":"...","what":"..."}]}
   | {"kind":"cause_effect","title":"...","pairs":[{"cause":"...","effect":"..."}]} | {"kind":"compare","title":"...","columns":[{"label":"...","points":["..."]}]}
