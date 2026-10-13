@@ -30,13 +30,14 @@ const { publishJob } = require('../services/jobQueue');
 const { loadBookSections } = require('../services/curriculumUpload/bookMatch');
 const { normalizeCurriculumStructure } = require('../services/curriculumUpload/normalization');
 const { rebuildTopic } = require('../services/curriculumUpload/aiGeneration');
+const { normalizeCurriculum } = require('../services/curriculumName');
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: MAX_FILE_BYTES } });
 
 // Grade/subject/curriculum picked on the upload screen; they override any lines inside the document.
 function uploadConfigFrom(body = {}) {
   const pick = (v) => (typeof v === 'string' && v.trim() ? v.trim().slice(0, 80) : undefined);
-  const config = { grade: pick(body.grade)?.match(/\d+/)?.[0], subject: pick(body.subject), curriculum: pick(body.curriculum) };
+  const config = { grade: pick(body.grade)?.match(/\d+/)?.[0], subject: pick(body.subject), curriculum: normalizeCurriculum(pick(body.curriculum)) };
   return Object.values(config).some(Boolean) ? JSON.parse(JSON.stringify(config)) : null;
 }
 
