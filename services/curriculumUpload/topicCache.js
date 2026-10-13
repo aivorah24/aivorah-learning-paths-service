@@ -6,6 +6,7 @@
 // read/write below fails silently and generation just runs every time).
 const crypto = require('crypto');
 const supabase = require('../supabase');
+const { normalizeCurriculum } = require('../curriculumName');
 
 // Bump to invalidate every cached entry (prompt/recipe/schema change).
 const PIPELINE_VERSION = 2;
@@ -18,7 +19,7 @@ function normalize(s) {
 function buildCacheKey(metadata, ref) {
   const subtopicsKey = (ref.subtopics || []).map(normalize).filter(Boolean).sort().join('|');
   return [
-    normalize(metadata?.curriculum || 'CBSE'),
+    normalize(normalizeCurriculum(metadata?.curriculum || 'CBSE')),
     normalize(metadata?.grade),
     normalize(metadata?.subject),
     normalize(ref.topicTitle),
@@ -56,7 +57,7 @@ async function persistCachedTopic(cacheKey, { curriculum, grade, subject, topic,
     await supabase.from('topic_generation_cache').upsert(
       {
         cache_key: cacheKey,
-        curriculum: curriculum || 'CBSE',
+        curriculum: normalizeCurriculum(curriculum || 'CBSE'),
         grade: String(grade || ''),
         subject: subject || '',
         topic,

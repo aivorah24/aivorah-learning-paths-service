@@ -13,6 +13,7 @@
 // aivorah-assignments-service/routes/assignments.js) — there is no shared
 // LLM-provider abstraction in this stack to plug into instead.
 const supabase = require('../supabase');
+const { normalizeCurriculum } = require('../curriculumName');
 const { validateEnrichment } = require('./blockSchema');
 const { gradeCalibrationNote } = require('./gradeCalibration');
 const { callWithFallback } = require('../llm/fallback');
@@ -300,7 +301,7 @@ async function getCachedEnrichment({ curriculum, grade, subject, topic }) {
     const { data, error } = await supabase
       .from('topic_ai_enrichment')
       .select('*')
-      .eq('curriculum', curriculum)
+      .eq('curriculum', normalizeCurriculum(curriculum))
       .eq('grade', grade)
       .eq('subject', subject)
       .eq('topic', topic)
@@ -317,7 +318,7 @@ async function persistEnrichment({ curriculum, grade, subject, topic, contentTyp
   try {
     await supabase.from('topic_ai_enrichment').upsert(
       {
-        curriculum, grade, subject, topic,
+        curriculum: normalizeCurriculum(curriculum), grade, subject, topic,
         content_type: contentType,
         structured_content: { whatYoullLearn, blocks },
         source_chunk_ids: sourceChunkIds,

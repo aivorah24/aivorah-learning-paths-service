@@ -26,16 +26,10 @@ const NCERT_COLLECTION = 'aivorah_curriculum_chunks_v1';
 
 // The rest of the app calls this curriculum "CBSE" (users.curriculum,
 // syllabus-map.js's book data, every frontend route param) — Qdrant's own
-// NCERT_COLLECTION tags the exact same content "NCERT" instead. `/current`
-// already mapped this for the pending-check; `/topic-by-name/resources`
-// (Bug #8) did not, so it silently matched zero points for any topic
-// reached the normal way (frontend always sends "CBSE") — confirmed live,
-// this was the actual cause of "Content coming soon" surviving three
-// earlier fix attempts to Bug #11's chain. Every NCERT_COLLECTION query
-// must go through this first.
-function toQdrantCurriculum(curriculum) {
-  return /^cbse$/i.test(String(curriculum).trim()) ? 'NCERT' : curriculum;
-}
+// NCERT_COLLECTION tags the exact same content "NCERT" instead (Bug #8/#11).
+// Every NCERT_COLLECTION query must go through toQdrantCurriculum() first;
+// it lives in curriculumName.js with the rest of the CBSE/NCERT mapping.
+const { isCbse, toQdrantCurriculum } = require('./curriculumName');
 
 const client = new QdrantClient({
   url: process.env.QDRANT_URL,
@@ -97,12 +91,11 @@ async function topicCount(curriculum, grade) {
   if (cached && cached.expiresAt > Date.now()) return cached.count;
 
   try {
-    const isNcert = /^(ncert|cbse)$/i.test(String(curriculum).trim());
     let collection, qCurriculum, qGrade;
-    if (isNcert) {
+    if (isCbse(curriculum)) {
       // NCERT collection stores grade as an integer (6, 7, ...), not "Grade N".
       collection = TOPIC_COUNT_NCERT_COLLECTION;
-      qCurriculum = 'NCERT';
+      qCurriculum = toQdrantCurriculum(curriculum);
       const m = String(grade || '').match(/(\d+)/);
       qGrade = m ? parseInt(m[1], 10) : grade;
     } else {

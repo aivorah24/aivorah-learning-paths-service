@@ -11,6 +11,7 @@ const express = require('express');
 const router = express.Router();
 const { listSubjects, listSyllabus, topicCount } = require('../services/qdrant');
 const { subjectsFor } = require('../services/syllabus-map');
+const { isCbse } = require('../services/curriculumName');
 
 // ── GET /curriculum/subjects ────────────────────────────────────────────
 router.get('/subjects', async (req, res) => {
@@ -22,7 +23,7 @@ router.get('/subjects', async (req, res) => {
   // endpoint already uses, not Qdrant — that data is proven complete for
   // every CBSE grade, whereas Qdrant coverage for CBSE (esp. primary grades)
   // is not guaranteed. Every other curriculum keeps its existing Qdrant path.
-  if (/^(cbse|ncert)$/i.test(String(curriculum).trim())) {
+  if (isCbse(curriculum)) {
     return res.json({ grade, curriculum, subjects: subjectsFor(grade) });
   }
   try {
