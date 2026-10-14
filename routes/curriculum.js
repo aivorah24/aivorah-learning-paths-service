@@ -12,6 +12,7 @@ const router = express.Router();
 const { listSubjects, listSyllabus, topicCount } = require('../services/qdrant');
 const { subjectsFor } = require('../services/syllabus-map');
 const { isCbse } = require('../services/curriculumName');
+const { isBoardWithoutBooks, listBoardSubjects, listBoardSyllabus } = require('../services/boardSyllabus');
 
 // ── GET /curriculum/subjects ────────────────────────────────────────────
 router.get('/subjects', async (req, res) => {
@@ -27,7 +28,11 @@ router.get('/subjects', async (req, res) => {
     return res.json({ grade, curriculum, subjects: subjectsFor(grade) });
   }
   try {
-    const subjects = await listSubjects(curriculum, grade);
+    // ICSE/Cambridge: no textbook yet — syllabus-only subjects resolved across
+    // the grade labels their content was ingested under (boardSyllabus.js).
+    const subjects = isBoardWithoutBooks(curriculum)
+      ? await listBoardSubjects(curriculum, grade)
+      : await listSubjects(curriculum, grade);
     res.json({ grade, curriculum, subjects });
   } catch (err) {
     console.error('[curriculum/subjects] error:', err.message, err.cause || '');
@@ -44,7 +49,9 @@ router.get('/syllabus', async (req, res) => {
     return res.status(400).json({ error: 'curriculum, grade and subject are required.' });
   }
   try {
-    const units = await listSyllabus(curriculum, grade, subject);
+    const units = isBoardWithoutBooks(curriculum)
+      ? await listBoardSyllabus(curriculum, grade, subject)
+      : await listSyllabus(curriculum, grade, subject);
     res.json({ units });
   } catch (err) {
     console.error('[curriculum/syllabus] error:', err.message);
