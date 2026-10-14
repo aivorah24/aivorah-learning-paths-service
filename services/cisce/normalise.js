@@ -9,7 +9,7 @@
  *   subject,                       // source subject, or FRAMEWORK_SUBJECT for frameworks
  *   provenance_status,             // VERIFIED_OFFICIAL | OFFICIAL_PARTIAL
  *   preamble,                      // { page_from, page_to, text } before the first CLASS heading, or null
- *   cross_class: [{ context, page_from, page_to, text }],  // multi-class text that could not be split by class
+ *   cross_class: [{ context, kind, page_from, page_to, text }],  // kind: subject_intro (a subject's shared intro) | unsplit_table
  *   grades: [{ grade_label, grade_number, student_grade, section_count,
  *              nodes: [{ id, level, parent_id, ordinal, number_label, path, title, body,
  *                        page_from, page_to, content_hash }] }],
@@ -34,18 +34,38 @@ const CLASS_HEADING = /^\s*CLASS(?:ES)?\s*[-–:]?\s*([IVX]{1,4}|\d{1,2})\s*$/i;
 const PRESCHOOL_HEADING = /^\s*(PRE[-\s]?PRIMARY|PRE[-\s]?SCHOOL|NURSERY|KINDERGARTEN|LKG|UKG)(\s+(CLASS(ES)?|LEVEL|STAGE|EDUCATION))?\s*$/i;
 const CLASS_IN_CELL = /^\s*CLASS(?:ES)?\s*[-–:]?\s*([IVX]{1,4}|\d{1,2})\s*$/i;
 const CLASS_TOKEN = /\bCLASS\s*[-–:]?\s*([IVX]{1,4}|\d{1,2})\b/gi;
+// "Classes I & II", "CLASSES – I to III", "Classes I-II": one section shared by a band of classes.
+const CLASS_BAND = /^\s*CLASS(?:ES)?\s*[-–:]?\s*([IVX]{1,4}|\d{1,2})\s*(?:&|and|to|-|–|,)\s*(?:CLASS(?:ES)?\s*)?([IVX]{1,4}|\d{1,2})\s*$/i;
+// Hindi "कक्षा - I" / "कक्षा 1 – 2"; the conjunct often extracts as "क�ा".
+const HINDI_CLASS = /^\s*क\S{0,4}ा\s*[-–:]?\s*([IVX]{1,4}|\d{1,2})\s*$/;
+const HINDI_BAND = /^\s*क\S{0,4}ा\s*([IVX]{1,4}|\d{1,2})\s*[-–]\s*([IVX]{1,4}|\d{1,2})\s*$/;
+// Subject headings in a framework document; a new one ends the previous subject's class section.
+const FRAMEWORK_SUBJECTS = new Set(['ENGLISH', 'ENGLISH LANGUAGE', 'ENGLISH LITERATURE', 'HINDI', 'SECOND LANGUAGE', 'THIRD LANGUAGE',
+  'MATHEMATICS', 'ENVIRONMENTAL STUDIES', 'SCIENCE', 'SOCIAL STUDIES', 'COMPUTER STUDIES', 'ARTS EDUCATION', 'ART EDUCATION',
+  'PHYSICAL EDUCATION', 'HEALTH AND PHYSICAL EDUCATION', 'GENERAL KNOWLEDGE', 'VALUE EDUCATION']);
 const UNIT_LINE = /^\s*(\d{1,2})\.\s+([A-Z(“"'][^\t]{2,150})$/;
 const TOPIC_LINE = /^\s*\(([ivx]{1,5}|[a-z])\)\s+(\S.{1,300})$/;
-// Theme-based curricula: "THEME 3: My Family", "Unit II – Plants".
-const THEME_LINE = /^\s*(?:THEME|UNIT)\s*[-–:]?\s*(\d{1,2}|[IVX]{1,4})\s*[-–:.]?\s+(\S.{1,120})$/i;
+// Theme-based curricula: "THEME 3: My Family", "Unit II – Plants", "Topic 4: Keyboard".
+const THEME_LINE = /^\s*(?:THEME|UNIT|TOPIC)\s*[-–:]?\s*(\d{1,2}|[IVX]{1,4})\s*[-–:.]?\s+(\S.{1,120})$/i;
 
 function gradeFromHeading(line) {
-  const m = line.match(CLASS_HEADING);
+  const m = line.match(CLASS_HEADING) || line.match(HINDI_CLASS);
   if (m) {
     const label = classLabel(gradeNumber(`Class ${m[1].toUpperCase()}`));
     return GRADE_LABELS.includes(label) ? label : null;
   }
   return PRESCHOOL_HEADING.test(line) ? PRESCHOOL : null;
+}
+
+// "Classes I to III" → ['Class I', 'Class II', 'Class III']; null when the line is not a band.
+function gradesFromBand(line) {
+  const m = line.match(CLASS_BAND) || line.match(HINDI_BAND);
+  if (!m) return null;
+  const [a, b] = [m[1], m[2]].map((x) => gradeNumber(`Class ${x.toUpperCase()}`));
+  if (!(a >= 1 && b > a && b <= 12)) return null;
+  const out = [];
+  for (let n = a; n <= b; n++) out.push(classLabel(n));
+  return out.every((g) => GRADE_LABELS.includes(g)) ? out : null;
 }
 
 function normalise(source, extraction) {
@@ -57,23 +77,36 @@ function normalise(source, extraction) {
 
   // Pass 1: walk lines, splitting at every CLASS heading. Each split is its
   // own segment (a 300-page framework repeats "CLASS I" once per subject),
-  // labelled with the last heading-like line seen before it (e.g. a subject).
+  // labelled with its subject: the heading above it, or the cell next to it
+  // ("CLASS - I | ENGLISH"). A band heading ("Classes I & II") starts one
+  // segment shared by every class in the band.
+  //
+  // In a framework, a new subject heading ("HINDI") ends the previous class
+  // section; the subject's introduction is kept in doc.cross_class.
   //
   // Some parts are laid out by skill with the classes as table columns
   // ("Class I | Class II | …"). After such a header row, each tab-separated
   // row is split by column into per-class segments; whatever cannot be tied
   // to a column is kept in doc.cross_class, never given to a guessed class.
-  const segments = []; // { grade, context, lines: [{ text, first, rest, page }] }
-  const crossClass = []; // { context, lines }
-  let current = { grade: null, context: null, lines: [] };
+  const segments = []; // { grades, kind: start|class|band|subject, context, startLine, lines: [{ text, first, rest, page }] }
+  const crossClass = []; // { context, kind: 'unsplit_table', lines }
+  let lineNo = 0;
+  let current = { grades: [], kind: 'start', context: null, startLine: 0, lines: [] };
   segments.push(current);
   let lastHeading = null;
   let prevHeading = null; // the previous line, when it was heading-like
+  let subjectHeading = null; // framework only
+  let pendingTheme = null; // a "Theme N:" line above class bands, repeated into each band under it
   let table = null; // { cols: [grade|null], context, byGrade: Map, block }
 
+  const startSeg = (grades, kind, context) => {
+    current = { grades, kind, context, startLine: lineNo, lines: [] };
+    segments.push(current);
+    prevHeading = null;
+  };
   const gradeSeg = (grade, context) => {
     if (!table.byGrade.has(grade)) {
-      const seg = { grade, context, lines: [] };
+      const seg = { grades: [grade], kind: 'class', context, startLine: lineNo, lines: [] };
       table.byGrade.set(grade, seg);
       segments.push(seg);
     }
@@ -81,11 +114,15 @@ function normalise(source, extraction) {
   };
 
   for (const p of extraction.pages) {
+    let pageLine = 0;
+    let headingAtTop = false; // the heading so far on this page began on its first line
     for (const raw of String(p.text || '').split('\n')) {
       const cells = raw.split('\t').map((c) => c.replace(/\s+/g, ' ').trim());
       const filled = cells.filter(Boolean);
       const text = filled.join(' ');
       if (!text) continue;
+      lineNo++;
+      pageLine++;
       const line = { text, first: filled[0], rest: filled.slice(1).join(' '), page: p.page };
       // A by-class table that has had no matching row for two pages is over;
       // later text stays in its cross-class block rather than being split.
@@ -96,25 +133,47 @@ function normalise(source, extraction) {
       const tokenGrades = [...text.matchAll(CLASS_TOKEN)].map((m) => gradeFromHeading(`CLASS ${m[1]}`)).filter(Boolean);
       const onlyClasses = text.replace(CLASS_TOKEN, '').replace(/[\s|,;&/-]|and/gi, '') === '';
       if (cellGrades.filter(Boolean).length >= 2 || (tokenGrades.length >= 2 && onlyClasses)) {
-        const block = { context: lastHeading, lines: [] };
+        let cols = cellGrades.filter(Boolean).length >= 2 ? cellGrades : null;
+        // "Class III" alone on the line before "Class IV | Class V" is the same header
+        // wrapped over two lines, so its columns cannot be trusted.
+        if (current.kind === 'class' && !current.lines.length && current.startLine === lineNo - 1) {
+          segments.splice(segments.indexOf(current), 1);
+          cols = null;
+        }
+        const context = (isFramework && subjectHeading) || lastHeading;
+        const block = { context, kind: 'unsplit_table', lines: [] };
         crossClass.push(block);
-        table = { cols: cellGrades.filter(Boolean).length >= 2 ? cellGrades : null, context: lastHeading, byGrade: new Map(), block, lastRowPage: p.page };
+        table = { cols, context, byGrade: new Map(), block, lastRowPage: p.page };
         current = block;
         prevHeading = null;
         continue;
       }
 
-      const g = gradeFromHeading(text);
-      if (g) {
+      // "CLASS - I | ENGLISH": a class heading with its subject in the next cell.
+      let g = gradeFromHeading(text);
+      let cellSubject = null;
+      if (!g && filled.length === 2) {
+        const i = filled.findIndex((c) => gradeFromHeading(c));
+        if (i >= 0 && isHeadingLike(filled[1 - i])) { g = gradeFromHeading(filled[i]); cellSubject = filled[1 - i]; }
+      }
+      // A band in a framework's general introduction ("Classes VI - VIII" in a subject list) is not a section.
+      const band = g || (isFramework && !subjectHeading) ? null : gradesFromBand(text);
+      if (g || band) {
         table = null;
         // "ENGLISH" directly above "CLASS I" introduces the new section, not the end of the last one.
         const prev = current.lines[current.lines.length - 1];
         if (prev && prev.text === lastHeading) current.lines.pop();
-        // The same class under the same heading again (a repeated page header) continues the section.
-        if (current.grade === g && current.context === lastHeading) { prevHeading = null; continue; }
-        current = { grade: g, context: lastHeading, lines: [] };
-        segments.push(current);
-        prevHeading = null;
+        if (cellSubject && isFramework && FRAMEWORK_SUBJECTS.has(cellSubject.toUpperCase())) subjectHeading = cellSubject;
+        const context = cellSubject || (isFramework && subjectHeading) || lastHeading;
+        if (g) {
+          pendingTheme = null;
+          // The same class under the same heading again (a repeated page header) continues the section.
+          if (current.kind === 'class' && current.grades[0] === g && current.context === context) { prevHeading = null; continue; }
+          startSeg([g], 'class', context);
+        } else {
+          startSeg(band, 'band', context);
+          if (pendingTheme && pendingTheme.context === context) current.lines.push(pendingTheme.line);
+        }
         continue;
       }
 
@@ -123,6 +182,15 @@ function normalise(source, extraction) {
         const joined = prevHeading && (!/\s/.test(prevHeading) || !/\s/.test(text)) && `${prevHeading} ${text}`.length <= 60;
         lastHeading = joined ? `${prevHeading} ${text}` : text;
         if (joined && current.lines.length && current.lines[current.lines.length - 1].text === prevHeading) current.lines.pop();
+        headingAtTop = joined ? headingAtTop : pageLine === 1;
+        // A subject starts at the top of its own page; the same name in a contents list does not.
+        const subj = isFramework && headingAtTop && FRAMEWORK_SUBJECTS.has(lastHeading.toUpperCase()) ? lastHeading : null;
+        if (subj && subj !== subjectHeading) {
+          subjectHeading = subj;
+          pendingTheme = null;
+          table = null;
+          startSeg([], 'subject', subj);
+        }
         prevHeading = lastHeading;
         current.lines.push({ ...line, text: lastHeading, first: lastHeading, rest: '' });
         continue;
@@ -139,6 +207,13 @@ function normalise(source, extraction) {
         });
         continue;
       }
+
+      // Arts: "Theme 2: Colour" then "CLASSES – I to III" … "CLASSES – IV & V".
+      // The theme belongs to every band under it, not to the band before it.
+      if (isFramework && current.kind !== 'class' && THEME_LINE.test(line.first)) {
+        if (current.kind === 'band') startSeg([], 'subject', current.context);
+        pendingTheme = { line, context: current.context };
+      }
       current.lines.push(line);
     }
   }
@@ -147,21 +222,30 @@ function normalise(source, extraction) {
     const pages = new Set(unassigned.flatMap((b) => b.lines.map((l) => l.page)));
     warnings.push(`${pages.size} page(s) of multi-class content could not be split by class — kept in cross_class, not assigned to any grade`);
   }
+  // A subject's own introduction (before its first CLASS heading) is shared by all its classes.
+  const subjectIntros = segments.filter((s) => s.kind === 'subject' && s.lines.length);
 
   // Lines before the first CLASS heading (cover, introduction, shared aims)
   // are kept once as the document preamble — never copied into every grade.
   // A document with no CLASS heading at all belongs to its declared grades.
-  const headed = segments.filter((s) => s.grade);
+  const headed = segments.filter((s) => s.grades.length && s.lines.length);
   const first = segments[0].lines;
   const byGrade = new Map();
-  const push = (grade, seg) => { if (!byGrade.has(grade)) byGrade.set(grade, []); byGrade.get(grade).push(seg); };
+  // The same subject reached twice for one class (e.g. split by an overview table) is one section.
+  const push = (grade, seg) => {
+    if (!byGrade.has(grade)) byGrade.set(grade, []);
+    const list = byGrade.get(grade);
+    const i = seg.context ? list.findIndex((s) => s.context === seg.context && s.kind === seg.kind) : -1;
+    if (i >= 0) list[i] = { ...list[i], lines: [...list[i].lines, ...seg.lines] };
+    else list.push(seg);
+  };
   let preamble = null;
-  if (headed.length === 0) {
+  if (!segments.some((s) => s.grades.length)) {
     const targets = defaultGrades.length ? defaultGrades : [];
     if (!targets.length) warnings.push('no CLASS heading found and the source declares no grades — content not assigned to any grade');
     for (const g of targets) push(g, segments[0]);
   } else {
-    for (const seg of headed) push(seg.grade, seg);
+    for (const seg of headed) for (const g of seg.grades) push(g, seg);
     if (first.length) {
       preamble = { page_from: first[0].page, page_to: first[first.length - 1].page, text: first.map((l) => l.text).join('\n') };
     }
@@ -185,6 +269,15 @@ function normalise(source, extraction) {
     : PROVENANCE.OFFICIAL_PARTIAL;
   if (!hasStructure) warnings.push('no unit/topic structure found for at least one grade — framework text only');
   if (!fullyRead) warnings.push(`${extraction.emptyPages} page(s) have no text`);
+  // Some fonts (e.g. Devanagari conjuncts) extract as U+FFFD.
+  const garbled = new Set();
+  for (const g of grades) {
+    for (const n of g.nodes.filter((x) => x.level === 'FRAMEWORK_SECTION')) {
+      const all = `${n.title}\n${n.body || ''}`;
+      if ((all.match(/�/g) || []).length / all.length > 0.002) garbled.add(n.title.split(' — ')[0]);
+    }
+  }
+  if (garbled.size) warnings.push(`text did not extract cleanly (font encoding) in: ${[...garbled].join(', ')} — check it, or re-run with OCR`);
 
   return {
     schema_version: 1,
@@ -203,8 +296,9 @@ function normalise(source, extraction) {
     subject,
     provenance_status: provenance,
     preamble,
-    cross_class: unassigned.map((b) => ({
-      context: b.context, page_from: b.lines[0].page, page_to: b.lines[b.lines.length - 1].page, text: b.lines.map((l) => l.text).join('\n'),
+    cross_class: [...subjectIntros, ...unassigned].sort((a, b) => a.lines[0].page - b.lines[0].page).map((b) => ({
+      context: b.context, kind: b.kind === 'subject' ? 'subject_intro' : 'unsplit_table',
+      page_from: b.lines[0].page, page_to: b.lines[b.lines.length - 1].page, text: b.lines.map((l) => l.text).join('\n'),
     })),
     grades,
     extraction: {
@@ -229,6 +323,8 @@ function isHeadingLike(text) {
     && !/^\d/.test(text) && !/^\(/.test(text);
 }
 
+const bandName = (grades) => `Classes ${grades[0].replace('Class ', '')}–${grades[grades.length - 1].replace('Class ', '')}`;
+
 // Pass 2 for one grade: its segments → FRAMEWORK_SECTION / UNIT / TOPIC nodes.
 // Each segment keeps its own page range; with several segments, paths are
 // prefixed "s<k>/" so units numbered "1." in two subjects never collide.
@@ -250,14 +346,18 @@ function buildNodes(segs, { version, sourceId, label, subject }) {
     let unitCount = 0;
     const frameworkNode = (page) => framework || (framework = open({
       level: 'FRAMEWORK_SECTION', parent_id: null, ordinal: k + 1, number_label: null, path: `${prefix}framework`,
-      title: seg.context ? `${seg.context} — ${label}` : `${label} — general text`, body: '', page_from: page, page_to: page,
+      title: seg.context ? `${seg.context} — ${label}${seg.kind === 'band' ? ` (shared: ${bandName(seg.grades)})` : ''}` : `${label} — general text`,
+      body: '', page_from: page, page_to: page,
     }));
     // In a multi-section document every section gets its node up front, so
     // its units can hang under it and keep the subject they belong to.
     if (prefix && seg.lines.length) frameworkNode(seg.lines[0].page);
+    // Once a section uses "Theme/Topic N:" units, its "1." lines are list items, not units.
+    // A band's text is shared aims; its numbered lists are not units either.
+    const themed = seg.kind === 'band' || seg.lines.some((l) => THEME_LINE.test(l.first || l.text));
     for (const { text, first = text, rest = '', page } of seg.lines) {
       // Headings are read from the first table cell only; the other cells are body text.
-      const u = first.match(UNIT_LINE) || first.match(THEME_LINE);
+      const u = (themed ? null : first.match(UNIT_LINE)) || first.match(THEME_LINE);
       if (u && looksLikeTitle(u[2])) {
         unitCount++;
         const no = /^\d+$/.test(u[1]) ? parseInt(u[1], 10) : unitCount;
