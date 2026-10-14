@@ -39,8 +39,22 @@ async function uploadLessonBook(buffer, { fileName }) {
   return { url: result.secure_url, fileName };
 }
 
+// A file that must never be publicly reachable (e.g. official CISCE PDFs):
+// authenticated delivery, so only signed URLs can fetch it.
+async function uploadPrivateFile(buffer, { folder, publicId, fileName }) {
+  const result = await cloudinary.uploader.upload(`data:application/pdf;base64,${buffer.toString('base64')}`, {
+    folder,
+    public_id: publicId,
+    resource_type: 'raw',
+    type: 'authenticated',
+    overwrite: false,
+    filename_override: fileName,
+  });
+  return { publicId: result.public_id, type: result.type };
+}
+
 async function deleteCurriculumFile(publicId) {
   await cloudinary.uploader.destroy(publicId, { resource_type: 'raw' });
 }
 
-module.exports = { uploadCurriculumFile, deleteCurriculumFile, uploadLessonImage, uploadLessonBook };
+module.exports = { uploadCurriculumFile, deleteCurriculumFile, uploadLessonImage, uploadLessonBook, uploadPrivateFile };

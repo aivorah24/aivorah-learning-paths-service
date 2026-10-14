@@ -45,6 +45,11 @@ function gradeNumber(grade) {
   return roman && ROMAN_TO_NUM[roman[1]] ? ROMAN_TO_NUM[roman[1]] : null;
 }
 
+// 9 → "Class IX". The one place a grade number becomes a CISCE class label.
+function classLabel(n) {
+  return ROMAN[n] ? `Class ${ROMAN[n]}` : null;
+}
+
 // Every grade label a board's content may have been stored under.
 function boardGradeAliases(curriculum, grade) {
   const n = gradeNumber(grade);
@@ -52,7 +57,7 @@ function boardGradeAliases(curriculum, grade) {
   if (n) {
     out.add(`Grade ${n}`);
     out.add(`Class ${n}`);
-    if (ROMAN[n]) out.add(`Class ${ROMAN[n]}`);
+    if (ROMAN[n]) out.add(classLabel(n));
     if (boardKind(curriculum) === 'Cambridge') {
       out.add(`Stage ${n}`);
       out.add(`Year ${n}`);
@@ -204,4 +209,4 @@ async function listBoardSyllabus(curriculum, grade, subject) {
   }));
 }
 
-module.exports = { isBoardWithoutBooks, boardGradeAliases, gradeNumber, listBoardSubjects, listBoardSyllabus };
+module.exports = { isBoardWithoutBooks, boardGradeAliases, gradeNumber, classLabel, listBoardSubjects, listBoardSyllabus };
