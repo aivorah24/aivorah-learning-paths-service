@@ -19,6 +19,8 @@ describe('grade labels', () => {
     expect(gradeFromHeading('CLASS IX')).toBe('Class IX');
     expect(gradeFromHeading('CLASS – 10')).toBe('Class X');
     expect(gradeFromHeading('Pre-Primary')).toBe('Preschool');
+    expect(gradeFromHeading('PRE-PRIMARY CLASSES')).toBe('Preschool');
+    expect(gradeFromHeading('Pre-primary education lays the foundation')).toBeNull();
     expect(gradeFromHeading('CLASS XIII')).toBeNull();
     expect(gradeFromHeading('Class IX students will study')).toBeNull();
   });
@@ -86,6 +88,59 @@ describe('normalise', () => {
     expect(doc.grades.every((g) => g.nodes.every((n) => n.page_from > 1))).toBe(true);
     expect(doc.provenance_status).toBe('OFFICIAL_PARTIAL');
     expect(validateCanonical(doc).valid).toBe(true);
+  });
+
+  // Each case below is a layout from the first real Primary Curriculum run.
+  describe('primary framework layouts', () => {
+    let doc;
+    const grade = (g) => doc.grades.find((x) => x.grade_label === g);
+    const titles = (g) => grade(g).nodes.map((n) => n.title);
+    beforeAll(async () => {
+      doc = normalise(source({ id: 'primary', kind: 'FRAMEWORK_PDF', programme: 'PRIMARY', subject: null, grades: [], version: null, exam_year: null }), await extract('primary-layouts.pdf'));
+    });
+
+    test('a by-skill table with classes as columns is split into each class', () => {
+      for (const [g, phonics] of [['Class I', 'Hears made-up sounds'], ['Class II', 'Blends sounds'], ['Class III', 'Reads made-up words']]) {
+        const sec = grade(g).nodes.find((n) => /READING/.test(n.title));
+        expect(sec.body.split('\n')[0]).toBe(`Phonics — ${phonics}`);
+        expect(sec.page_from).toBe(2);
+      }
+      expect(doc.cross_class).toEqual([]);
+    });
+
+    test('a sentence that mentions pre-primary does not create a Preschool grade', () => {
+      expect(doc.grades.map((g) => g.grade_label)).toEqual(['Class I', 'Class II', 'Class III']);
+    });
+
+    test('a topic title comes from the first table column only; the other columns are body', () => {
+      const topic = grade('Class I').nodes.find((n) => n.level === 'TOPIC');
+      expect(topic.title).toBe('Length');
+      expect(topic.body).toMatch(/^Using concrete toy blocks/);
+    });
+
+    test('a lower-case sentence in a lettered list is body text, not a topic', () => {
+      expect(grade('Class I').nodes.filter((n) => n.level === 'TOPIC')).toHaveLength(1);
+      expect(titles('Class I').some((t) => /printing/.test(t))).toBe(false);
+    });
+
+    test('a heading wrapped over two lines is joined, and a repeated CLASS page header continues its section', () => {
+      expect(titles('Class III')).toEqual(['INVENTED LANGUAGE READING — Class III', 'SOCIAL STUDIES — Class III']);
+      const social = grade('Class III').nodes[1];
+      expect([social.page_from, social.page_to]).toEqual([5, 6]);
+      expect(social.body).not.toMatch(/SOCIAL|STUDIES/);
+    });
+  });
+
+  test('multi-class text that cannot be split by column stays in cross_class with a warning', () => {
+    const page = (n, text) => ({ page: n, method: 'text', text });
+    const doc = normalise(source({ kind: 'FRAMEWORK_PDF', subject: null, grades: [] }), {
+      sha256: 'a'.repeat(64), pageCount: 3, emptyPages: 0,
+      pages: [page(1, 'WRITING'), page(2, 'Class I Class II Class III\nLearners write invented words across classes.'), page(3, 'CLASS I\nOwn section text here for class one.')],
+    });
+    expect(doc.cross_class).toEqual([{ context: 'WRITING', page_from: 2, page_to: 2, text: 'Learners write invented words across classes.' }]);
+    expect(doc.warnings.join(' ')).toMatch(/could not be split by class/);
+    expect(doc.grades.map((g) => g.grade_label)).toEqual(['Class I']);
+    expect(doc.grades[0].nodes[0].body).toBe('Own section text here for class one.');
   });
 
   test('an unread (scanned, no OCR) page downgrades to OFFICIAL_PARTIAL', async () => {

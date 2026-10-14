@@ -58,7 +58,36 @@ def theme_framework():
     c.save()
 
 
+def row(c, y, cells, xs=(60, 200, 330, 460)):
+    for x, text in zip(xs, cells):
+        if text:
+            c.drawString(x, y, text)
+
+
+def primary_layouts():
+    # The layouts that broke the first real Primary Curriculum run: a by-skill
+    # table with classes as columns, two-column table rows under a topic, a
+    # sentence in a lettered list, a heading wrapped over two lines, a repeated
+    # CLASS page header, and a sentence that mentions pre-primary.
+    c = canvas.Canvas(os.path.join(HERE, 'primary-layouts.pdf'), pagesize=A4, invariant=1)
+    page(c, ['FICTIONAL PRIMARY CURRICULUM', 'Pre-primary learning in this fixture is mentioned only in passing.'])
+    c.drawString(60, 800, 'INVENTED LANGUAGE')
+    c.drawString(60, 782, 'READING')
+    row(c, 764, ['Skill', 'Class I', 'Class II', 'Class III'])
+    row(c, 746, ['Phonics', 'Hears made-up sounds', 'Blends sounds', 'Reads made-up words'])
+    row(c, 728, ['Stories', 'Listens to fake tales', 'Retells fake tales', 'Writes fake tales'])
+    c.showPage()
+    page(c, ['INVENTED MATHS', 'CLASS I', '1. Pretend Measurement'])
+    row(c, 746, ['(a) Length', 'Using concrete toy blocks to bring', 'Material available in a box'], xs=(60, 230, 420))
+    c.drawString(60, 728, '(b) printing done by the pretend robot can also be beautiful and it is fun for everyone')
+    c.showPage()
+    page(c, ['SOCIAL', 'STUDIES', 'CLASS III', 'Learners map an imaginary town in this fixture.'])
+    page(c, ['SOCIAL', 'STUDIES', 'CLASS III', 'Learners continue the imaginary town map.'])
+    c.save()
+
+
 if __name__ == '__main__':
+    primary_layouts()
     theme_framework()
     syllabus()
     scanned()

@@ -85,7 +85,8 @@ const pdfPath = (cacheDir, source) => path.join(cacheDir, 'sources', source.id, 
 
 async function commandExists(cmd) {
   try {
-    await run('sh', ['-c', `command -v ${cmd}`]);
+    if (process.platform === 'win32') await run('where', [cmd]);
+    else await run('sh', ['-c', `command -v ${cmd}`]);
     return true;
   } catch {
     return false;

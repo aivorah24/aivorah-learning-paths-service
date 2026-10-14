@@ -3,7 +3,13 @@
 // the parent on Node ≥15) or hang; isolating each parse in its own process
 // means a bad PDF fails only itself. Used by services/cisce/pdf.js.
 const pdfParse = require('pdf-parse');
-const { pageLines } = require('../curriculumUpload/extraction');
+const { pageLines, isDefaultHeaderRow } = require('../curriculumUpload/extraction');
+
+// CISCE frameworks also lay tables out with the classes as columns.
+const CLASS_CELL = /^\s*class(es)?\s*[-–:]?\s*([ivx]{1,4}|\d{1,2})\s*$/i;
+// Wider than any word space at body text sizes, narrower than a table's column gutter.
+const COLUMN_GAP_PX = 12;
+const isHeaderRow = (texts) => isDefaultHeaderRow(texts) || texts.filter((t) => CLASS_CELL.test(t)).length >= 2;
 
 // Newer bundled pdf.js — same fallback extraction.js uses for PDFs the default rejects.
 const PDF_FALLBACK_VERSION = 'v2.0.550';
@@ -18,7 +24,7 @@ async function parsePages(buffer, attempts = 3) {
     const pages = [];
     const options = {
       pagerender: async (page) => {
-        const text = pageLines((await page.getTextContent()).items);
+        const text = pageLines((await page.getTextContent()).items, { isHeaderRow, columnGapPx: COLUMN_GAP_PX });
         pages.push(text);
         return text;
       },

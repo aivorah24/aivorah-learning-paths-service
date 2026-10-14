@@ -12,7 +12,10 @@ const CELL_GAP_PX = 2;
 // Column names a curriculum table header is made of ("Chapter / Topic", "Sub-topics", "Learning Outcomes"...).
 const HEADER_CELL_RE = /^(s\.?\s*no\.?|sl\.?\s*no\.?|#|unit|units|chapter|chapters|topic|topics|sub[-\s]?topics?|lesson|lessons|theme|themes|strand|strands|module|content|contents|concepts?|key concepts?|learning (outcomes?|objectives?)|objectives?|outcomes?|skills?|activities|activity|assessment|resources|periods?|weeks?|month|term|duration|hours?)$/i;
 const isHeaderCell = (t) => t.split(/\s*[/&,]\s*|\s+and\s+/i).every((part) => HEADER_CELL_RE.test(part.trim()));
-function pageLines(items) {
+const isDefaultHeaderRow = (texts) => texts.filter(isHeaderCell).length >= 2 && texts.some((t) => /topic|chapter|unit|lesson|theme|strand|module|content/i.test(t));
+// isHeaderRow lets a caller recognise extra header layouts (the CISCE pipeline adds "Class I | Class II | …").
+// columnGapPx (off by default) turns a gap wider than that between two pieces of a non-table line into a tab.
+function pageLines(items, { isHeaderRow = isDefaultHeaderRow, columnGapPx = null } = {}) {
   const rows = [];
   for (const it of items) {
     if (!it.str || !it.str.trim()) continue;
@@ -45,7 +48,7 @@ function pageLines(items) {
       }
     }
     const texts = cells.map((c) => c.text.trim());
-    if (cells.length > 1 && texts.filter(isHeaderCell).length >= 2 && texts.some((t) => /topic|chapter|unit|lesson|theme|strand|module|content/i.test(t))) {
+    if (cells.length > 1 && isHeaderRow(texts)) {
       columns = cells.map((c) => c.x);
       out.push(texts.join('\t'));
       continue;
@@ -82,6 +85,16 @@ function pageLines(items) {
       }
     }
     columns = null;
+    if (columnGapPx != null && cells.length > 1) {
+      // Outside a recognised table, a wide gap between two pieces of a line is still a column break.
+      const parts = [texts[0]];
+      for (let i = 1; i < cells.length; i++) {
+        if (cells[i].x - cells[i - 1].end > columnGapPx) parts.push(texts[i]);
+        else parts[parts.length - 1] += ` ${texts[i]}`;
+      }
+      out.push(parts.map((t) => t.replace(/\s+/g, ' ').trim()).join('\t'));
+      continue;
+    }
     out.push(texts.join(' ').replace(/\s+/g, ' ').trim());
   }
   return out.join('\n');
@@ -184,4 +197,4 @@ function isExtractionEmpty(extracted) {
   return !extracted.text || extracted.text.trim().length === 0;
 }
 
-module.exports = { extractCurriculumContent, isExtractionEmpty, CurriculumExtractionError, pageLines, docxHtmlToText };
+module.exports = { extractCurriculumContent, isExtractionEmpty, CurriculumExtractionError, pageLines, isDefaultHeaderRow, docxHtmlToText };
