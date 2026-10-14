@@ -24,7 +24,7 @@ const ALL_STAGES = [...STAGES, 'store', 'coverage'];
 const DEFAULT_STAGES = [...STAGES, 'coverage'];
 const CURRICULUM_KINDS = ['SYLLABUS_PDF', 'FRAMEWORK_PDF'];
 const DEFAULT_CACHE_DIR = path.join(__dirname, '..', '..', '.cisce-cache');
-const DEFAULT_COVERAGE_DIR = path.join(__dirname, '..', '..', 'data', 'cisce', 'coverage');
+const DEFAULT_COVERAGE_DIR = path.join(__dirname, '..', '..', 'data', 'cisce', 'reports');
 
 const readJson = (f, fallback) => { try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch { return fallback; } };
 function writeJson(file, data) {

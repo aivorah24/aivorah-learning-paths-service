@@ -8,7 +8,7 @@ from everything else:
 | Source registry | `data/cisce/source-registry.json` + Supabase `cisce_sources` |
 | Canonical curriculum tree | Supabase `cisce_curriculum_nodes` (`curriculum_id = 'cisce'`, `version` per exam year, e.g. `icse-2028`) |
 | Vectors | Qdrant collection `cisce_curriculum_v1` (384-d cosine, `Xenova/all-MiniLM-L6-v2`) |
-| Coverage | `data/cisce/coverage/coverage-<date>.{json,md}` + Supabase `cisce_coverage` |
+| Coverage | `data/cisce/reports/coverage-<date>.{json,md}` + Supabase `cisce_coverage` |
 | Downloaded PDFs, extractions, run state | `.cisce-cache/` (git-ignored, local only) |
 
 Schema: aivorah-db migration `0017_cisce_official_curriculum.sql`.
