@@ -44,7 +44,22 @@ def framework():
     c.save()
 
 
+def theme_framework():
+    # Shaped like a theme-based primary framework: cover/introduction, then
+    # per subject a CLASS I and a CLASS II section, no numbered topic list.
+    c = canvas.Canvas(os.path.join(HERE, 'theme-framework.pdf'), pagesize=A4, invariant=1)
+    page(c, ['INVENTED CURRICULUM FOR PRIMARY CLASSES', 'Introduction to a made-up framework.',
+             'This fixture curriculum is theme based and does not proceed with a list of topics.'])
+    page(c, ['SYNTHETIC LANGUAGE', 'CLASS I', 'Learners listen to invented rhymes and talk about fictional pictures.',
+             'CLASS II', 'Learners retell invented stories in their own words in this fixture.'])
+    page(c, ['SYNTHETIC NUMBERS', 'CLASS I', 'THEME 1: Made-up Shapes Around Us', 'Learners sort imaginary shapes by colour.',
+             'THEME 2: Pretend Patterns', 'Learners continue pretend patterns using beads.',
+             'CLASS II', 'Learners compare invented quantities in this fixture text.'])
+    c.save()
+
+
 if __name__ == '__main__':
+    theme_framework()
     syllabus()
     scanned()
     framework()

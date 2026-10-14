@@ -39,8 +39,11 @@ describe('normalise', () => {
     ]);
     expect(topics[0].parent_id).toBe(units[0].id);
     expect(topics[0].body).toBe('Detail line for placeholder topic one.');
-    expect(x.nodes.every((n) => n.page_from === 2)).toBe(false); // preamble from page 1 is shared framework text
-    expect(x.nodes.find((n) => n.level === 'UNIT').page_from).toBe(2);
+    // Text before the first CLASS heading is the document preamble, kept once — not copied into each grade.
+    expect(doc.preamble).toMatchObject({ page_from: 1, page_to: 1 });
+    expect(doc.preamble.text).toMatch(/^TESTOLOGY\nAims:/);
+    expect(x.nodes.every((n) => n.page_from === 2)).toBe(true);
+    expect(ix.nodes.some((n) => /Aims/.test(n.body || ''))).toBe(false);
     expect(validateCanonical(doc)).toEqual({ valid: true, errors: [] });
   });
 
@@ -58,6 +61,30 @@ describe('normalise', () => {
     expect(doc.subject).toBe('All subjects (framework)');
     expect(doc.grades.map((g) => g.grade_label)).toEqual(['Class I', 'Class II']);
     expect(doc.grades.every((g) => g.nodes.every((n) => n.level === 'FRAMEWORK_SECTION'))).toBe(true);
+    expect(validateCanonical(doc).valid).toBe(true);
+  });
+
+  test('theme-based framework: one section per CLASS heading, each with its own pages and subject, themes as units', async () => {
+    const doc = normalise(source({ id: 'primary', kind: 'FRAMEWORK_PDF', programme: 'PRIMARY', subject: null, grades: [], version: null, exam_year: null }), await extract('theme-framework.pdf'));
+    expect(doc.preamble).toMatchObject({ page_from: 1, page_to: 1 });
+    const [one, two] = doc.grades;
+    expect(one).toMatchObject({ grade_label: 'Class I', section_count: 2 });
+    expect(two).toMatchObject({ grade_label: 'Class II', section_count: 2 });
+    const summary = (g) => g.nodes.map((n) => [n.level, n.title, n.page_from, n.page_to]);
+    expect(summary(one)).toEqual([
+      ['FRAMEWORK_SECTION', 'SYNTHETIC LANGUAGE — Class I', 2, 2],
+      ['FRAMEWORK_SECTION', 'SYNTHETIC NUMBERS — Class I', 3, 3],
+      ['UNIT', 'Made-up Shapes Around Us', 3, 3],
+      ['UNIT', 'Pretend Patterns', 3, 3],
+    ]);
+    expect(summary(two)).toEqual([
+      ['FRAMEWORK_SECTION', 'SYNTHETIC LANGUAGE — Class II', 2, 2],
+      ['FRAMEWORK_SECTION', 'SYNTHETIC NUMBERS — Class II', 3, 3],
+    ]);
+    // Theme units hang under their subject's section; no node starts on the cover page.
+    expect(one.nodes[2].parent_id).toBe(one.nodes[1].id);
+    expect(doc.grades.every((g) => g.nodes.every((n) => n.page_from > 1))).toBe(true);
+    expect(doc.provenance_status).toBe('OFFICIAL_PARTIAL');
     expect(validateCanonical(doc).valid).toBe(true);
   });
 

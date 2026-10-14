@@ -45,10 +45,12 @@ function buildPoints(doc, { now = () => new Date().toISOString() } = {}) {
   for (const g of doc.grades) {
     const byId = new Map(g.nodes.map((n) => [n.id, n]));
     for (const n of g.nodes) {
-      // Units that have topics are covered by their topics' points.
-      if (n.level === 'UNIT' && g.nodes.some((t) => t.parent_id === n.id)) continue;
+      // A unit with topics, or an empty section holding theme units, is covered by its children's points.
+      const hasChildren = g.nodes.some((t) => t.parent_id === n.id);
+      if (hasChildren && (n.level === 'UNIT' || !n.body)) continue;
       const unit = n.level === 'TOPIC' ? byId.get(n.parent_id) : n.level === 'UNIT' ? n : null;
-      const heading = [doc.subject, g.grade_label, unit && unit.title, n.level === 'TOPIC' ? n.title : null]
+      const section = unit && byId.get(unit.parent_id); // a framework section (subject) above a theme unit
+      const heading = [doc.subject, g.grade_label, section && section.title, unit && unit.title, n.level === 'TOPIC' ? n.title : null]
         .filter(Boolean).join(' — ');
       const pieces = chunk([n.level === 'FRAMEWORK_SECTION' ? n.title : '', n.body].filter(Boolean).join('\n'));
       pieces.forEach((piece, i) => {
