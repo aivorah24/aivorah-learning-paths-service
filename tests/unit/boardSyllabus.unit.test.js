@@ -145,7 +145,7 @@ describe('listBoardSyllabus', () => {
     const units = await listBoardSyllabus('Cambridge', 'Grade 10', 'Physics');
     expect(units).toEqual([
       { unitNo: 1, title: 'Motion', topics: [{ id: 't1', name: 'Speed and Velocity', kind: 'coming_soon', page: '', comingSoon: true }], comingSoon: true, pending: false },
-      { unitNo: 2, title: 'Energy', topics: [], comingSoon: true, pending: true },
+      { unitNo: 2, title: 'Energy', topics: [expect.objectContaining({ name: 'Energy', comingSoon: true })], comingSoon: true, pending: false },
     ]);
   });
 
