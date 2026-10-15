@@ -44,7 +44,7 @@ const FRAMEWORK_SUBJECTS = new Set(['ENGLISH', 'ENGLISH LANGUAGE', 'ENGLISH LITE
   'MATHEMATICS', 'ENVIRONMENTAL STUDIES', 'SCIENCE', 'SOCIAL STUDIES', 'COMPUTER STUDIES', 'ARTS EDUCATION', 'ART EDUCATION',
   'PHYSICAL EDUCATION', 'HEALTH AND PHYSICAL EDUCATION', 'GENERAL KNOWLEDGE', 'VALUE EDUCATION']);
 const UNIT_LINE = /^\s*(\d{1,2})\.\s+([A-Z(“"'][^\t]{2,150})$/;
-const TOPIC_LINE = /^\s*\(([ivx]{1,5}|[a-z])\)\s+(\S.{1,300})$/;
+const TOPIC_LINE = /^\s*\(([ivx]{1,5}|[a-z])\)\s*(\S.{1,300})$/;
 // Theme-based curricula: "THEME 3: My Family", "Unit II – Plants", "Topic 4: Keyboard".
 const THEME_LINE = /^\s*(?:THEME|UNIT|TOPIC)\s*[-–:]?\s*(\d{1,2}|[IVX]{1,4})\s*[-–:.]?\s+(\S.{1,120})$/i;
 
@@ -369,7 +369,8 @@ function buildNodes(segs, { version, sourceId, label, subject }) {
         continue;
       }
       const t = unit && first.match(TOPIC_LINE);
-      if (t && looksLikeTitle(t[2])) {
+      // Roman-numbered items inside a unit are topics even when the heading runs long.
+      if (t && (looksLikeTitle(t[2]) || (/^[ivx]+$/.test(t[1]) && /^[A-Z0-9“"'(]/.test(t[2]) && t[2].length <= 300))) {
         const ordinal = nodes.filter((n) => n.level === 'TOPIC' && n._unit === unit).length + 1;
         topic = open({
           level: 'TOPIC', parent_id: null, ordinal, number_label: `(${t[1]})`, path: `${unit.path}.${ordinal}`,

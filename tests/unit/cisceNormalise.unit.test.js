@@ -143,6 +143,21 @@ describe('normalise', () => {
     expect(doc.grades[0].nodes[0].body).toBe('Own section text here for class one.');
   });
 
+  test('roman topics with a long heading or no space after ")" are still topics', () => {
+    const doc = normalise(source({ grades: ['Class IX'] }), {
+      sha256: 'b'.repeat(64), pageCount: 1, emptyPages: 0,
+      pages: [{ page: 1, method: 'text', text: [
+        'CLASS IX', '3. Laws of Motion',
+        '(i) Contact and non-contact forces; cgs & SI units.',
+        '(ii) Newton’s First Law of Motion (qualitative discussion) introduction of the idea of inertia, mass and force.',
+        '(iii)Newton’s Second Law of Motion (including F=ma); weight and mass.',
+        '(a) not a topic: a long lettered list item inside the topic body text goes on and on here.',
+      ].join('\n') }],
+    });
+    const topics = doc.grades[0].nodes.filter((n) => n.level === 'TOPIC').map((n) => n.number_label);
+    expect(topics).toEqual(['(i)', '(ii)', '(iii)']);
+  });
+
   test('an unread (scanned, no OCR) page downgrades to OFFICIAL_PARTIAL', async () => {
     const doc = normalise(source({ subject: 'Mockology' }), await extract('scanned-mixed.pdf'));
     expect(doc.provenance_status).toBe('OFFICIAL_PARTIAL');
