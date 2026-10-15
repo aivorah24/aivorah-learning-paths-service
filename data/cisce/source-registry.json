@@ -2004,7 +2004,7 @@
       "sha256": null,
       "bytes": null,
       "page_count": null,
-      "checked_at": "2026-10-15T18:19:21.965Z",
+      "checked_at": "2026-10-15T19:01:56.569Z",
       "checked_from": "local-cli",
       "discovered_from": null,
       "licence": "CISCE_COPYRIGHT_METADATA_ONLY",
@@ -4235,7 +4235,7 @@
       "sha256": null,
       "bytes": null,
       "page_count": null,
-      "checked_at": "2026-10-15T18:19:22.720Z",
+      "checked_at": "2026-10-15T19:01:57.425Z",
       "checked_from": "local-cli",
       "discovered_from": null,
       "licence": "CISCE_COPYRIGHT_METADATA_ONLY",
@@ -4320,6 +4320,36 @@
       }
     },
     {
+      "id": "preschool-curriculum",
+      "url": "https://cisce.org/wp-content/uploads/2025/03/PreSchoolCurriculum2.pdf",
+      "kind": "FRAMEWORK_PDF",
+      "programme": "PRESCHOOL",
+      "exam_year": null,
+      "version": "cisce-curriculum",
+      "is_primary_version": true,
+      "subject": null,
+      "title": "CISCE Curriculum — null",
+      "grades": [
+        "Preschool"
+      ],
+      "link_status": "VERIFIED",
+      "http_status": 200,
+      "final_url": "https://cisce.org/wp-content/uploads/2025/03/PreSchoolCurriculum2.pdf",
+      "content_type": "application/pdf",
+      "sha256": "efe049058d286984e1273ec914cb1e6eada2e4ac12ed7f2e515f96904906d63f",
+      "bytes": 4169223,
+      "page_count": 94,
+      "checked_at": "2026-10-15T19:01:59.104Z",
+      "checked_from": "local-cli",
+      "discovered_from": "rdcd-curriculum-page",
+      "licence": "CISCE_COPYRIGHT_METADATA_ONLY",
+      "storage": "NONE",
+      "storage_public_id": null,
+      "storage_approved_by": null,
+      "notes": "official RDCD curriculum page, read via browser 2026-10-16",
+      "metadata": {}
+    },
+    {
       "id": "primary-curriculum",
       "url": "https://cisce.org/wp-content/uploads/2025/03/PrimaryCurriculum.pdf",
       "kind": "FRAMEWORK_PDF",
@@ -4352,6 +4382,38 @@
           "detail": "cloud build container: egress proxy answered 403 to CONNECT cisce.org (environment network policy), retried twice"
         }
       }
+    },
+    {
+      "id": "upper-primary-curriculum",
+      "url": "https://cisce.org/wp-content/uploads/2025/03/UpperPrimary.pdf",
+      "kind": "FRAMEWORK_PDF",
+      "programme": "UPPER_PRIMARY",
+      "exam_year": null,
+      "version": "cisce-curriculum",
+      "is_primary_version": true,
+      "subject": null,
+      "title": "CISCE Curriculum — null",
+      "grades": [
+        "Class VI",
+        "Class VII",
+        "Class VIII"
+      ],
+      "link_status": "VERIFIED",
+      "http_status": 200,
+      "final_url": "https://cisce.org/wp-content/uploads/2025/03/UpperPrimary.pdf",
+      "content_type": "application/pdf",
+      "sha256": "ef81ffedc34c20b7dccb37552b8403fde43d747c70df70dcbd6098e88da2e9ed",
+      "bytes": 10261795,
+      "page_count": 388,
+      "checked_at": "2026-10-15T19:02:01.971Z",
+      "checked_from": "local-cli",
+      "discovered_from": "rdcd-curriculum-page",
+      "licence": "CISCE_COPYRIGHT_METADATA_ONLY",
+      "storage": "NONE",
+      "storage_public_id": null,
+      "storage_approved_by": null,
+      "notes": "official RDCD curriculum page, read via browser 2026-10-16",
+      "metadata": {}
     }
   ],
   "awaiting_sources": [

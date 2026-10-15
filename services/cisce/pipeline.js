@@ -194,6 +194,8 @@ async function runPipeline(opts = {}, deps = {}) {
   };
 
   log(`run ${runId}: ${targets.length} PDF source(s), stages ${stages.join(',')}${dryRun ? ' (dry run)' : ''}`);
+  // Documents reference their source rows, so new sources must exist first.
+  if (has('persist')) await writer.persistSources(registry.sources);
   await pool(targets, opts.concurrency || 2, async (s) => {
     try { await perSource(s); } catch (err) { result.failures[s.id] = { stage: 'unknown', reason: err.message }; log(`  x ${s.id}: ${err.message}`); }
   });
