@@ -273,12 +273,16 @@ async function listBoardSyllabus(curriculum, grade, subject) {
   const official = await officialChapters(curriculum, grade, subject).catch(() => []);
   const chapters = official.length ? official : await dbChapters(curriculum, grade, subject).catch(() => []);
   if (chapters.length) {
-    return chapters.map((ch) => ({
+    // A chapter whose syllabus lists no topics (e.g. CISCE Classes I–VIII) is
+    // shown as one topic of the same name; a pending chapter is hidden by the app.
+    return chapters.map((ch, i) => ({
       unitNo: ch.unitNo,
       title: ch.title,
-      topics: ch.topics.map((t) => comingSoonTopic(t.id, t.name)),
+      topics: ch.topics.length
+        ? ch.topics.map((t) => comingSoonTopic(t.id, t.name))
+        : [comingSoonTopic(`board:${curriculum}:${grade}:${subject}:${i + 1}`, ch.title)],
       comingSoon: true,
-      pending: ch.topics.length === 0,
+      pending: false,
     }));
   }
   // No outline in the DB: group the Qdrant topics by their unit label.
