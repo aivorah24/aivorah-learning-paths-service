@@ -24,12 +24,19 @@ if (!TOKEN || !DEV_REF || !TEST_REF) throw new Error('SUPABASE_ACCESS_TOKEN, DEV
 const dryRun = process.argv.includes('--dry-run');
 
 async function sql(ref, query, attempt = 1) {
-  const res = await fetch(`https://api.supabase.com/v1/projects/${ref}/database/query`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query }),
-  });
-  const text = await res.text();
+  let res, text;
+  try {
+    res = await fetch(`https://api.supabase.com/v1/projects/${ref}/database/query`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query }),
+    });
+    text = await res.text();
+  } catch (err) {
+    // Dropped connection ("terminated", "fetch failed"): retry like a 5xx.
+    if (attempt < 6) { await new Promise((r) => setTimeout(r, 3000 * attempt)); return sql(ref, query, attempt + 1); }
+    throw err;
+  }
   if (!res.ok) {
     if (attempt < 4) { await new Promise((r) => setTimeout(r, 2000 * attempt)); return sql(ref, query, attempt + 1); }
     throw new Error(`${ref}: HTTP ${res.status} ${text.slice(0, 300)}`);
@@ -52,10 +59,10 @@ const CHUNK = 400;
 
 async function readAll(table) {
   const rows = [];
-  for (let off = 0; ; off += 1000) {
-    const page = await sql(DEV_REF, `select * from public.${table.name} order by ${table.order} limit 1000 offset ${off}`);
+  for (let off = 0; ; off += 500) {
+    const page = await sql(DEV_REF, `select * from public.${table.name} order by ${table.order} limit 500 offset ${off}`);
     rows.push(...page);
-    if (page.length < 1000) return rows;
+    if (page.length < 500) return rows;
   }
 }
 
