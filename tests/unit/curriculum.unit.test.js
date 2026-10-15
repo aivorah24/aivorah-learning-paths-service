@@ -11,6 +11,14 @@ jest.mock('../../services/qdrant', () => ({
   topicCount: (...args) => mockTopicCount(...args),
 }));
 
+const mockBoardSubjects = jest.fn();
+const mockBoardSyllabus = jest.fn();
+jest.mock('../../services/boardSyllabus', () => ({
+  ...jest.requireActual('../../services/boardSyllabus'),
+  listBoardSubjects: (...args) => mockBoardSubjects(...args),
+  listBoardSyllabus: (...args) => mockBoardSyllabus(...args),
+}));
+
 const express = require('express');
 const request = require('supertest');
 const curriculumRoute = require('../../routes/curriculum');
@@ -108,5 +116,30 @@ describe('GET /curriculum/topic-count', () => {
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ totalTopics: 0 });
+  });
+});
+
+describe('ICSE / Cambridge (no textbook yet) route to the board syllabus reader', () => {
+  test.each(['ICSE', 'Cambridge'])('%s /subjects uses listBoardSubjects, not the Qdrant-only listSubjects', async (curriculum) => {
+    mockBoardSubjects.mockResolvedValueOnce([{ subject: 'English', topicCount: 1, topics: [], units: ['U1'], chapters: [{ unitNo: 1, title: 'U1' }], comingSoon: true }]);
+    const res = await request(app).get('/curriculum/subjects').query({ curriculum, grade: 'Grade 6' });
+    expect(res.status).toBe(200);
+    expect(res.body.subjects[0]).toMatchObject({ subject: 'English', comingSoon: true });
+    expect(mockBoardSubjects).toHaveBeenCalledWith(curriculum, 'Grade 6');
+    expect(mockListSubjects).not.toHaveBeenCalled();
+  });
+
+  test.each(['ICSE', 'Cambridge'])('%s /syllabus uses listBoardSyllabus', async (curriculum) => {
+    mockBoardSyllabus.mockResolvedValueOnce([{ unitNo: 1, title: 'U1', topics: [{ id: 't', name: 'T', kind: 'coming_soon', page: '', comingSoon: true }], comingSoon: true, pending: false }]);
+    const res = await request(app).get('/curriculum/syllabus').query({ curriculum, grade: 'Grade 3', subject: 'English' });
+    expect(res.body.units[0].topics[0].comingSoon).toBe(true);
+    expect(mockListSyllabus).not.toHaveBeenCalled();
+  });
+
+  test('a board reader failure still degrades to an empty list, not a 500', async () => {
+    mockBoardSubjects.mockRejectedValueOnce(new Error('boom'));
+    const res = await request(app).get('/curriculum/subjects').query({ curriculum: 'ICSE', grade: 'Grade 6' });
+    expect(res.status).toBe(200);
+    expect(res.body.subjects).toEqual([]);
   });
 });

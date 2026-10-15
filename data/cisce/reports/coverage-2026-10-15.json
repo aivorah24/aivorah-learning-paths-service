@@ -1,0 +1,1911 @@
+{
+  "run_id": "cisce-20261015183452",
+  "generated_at": "2026-10-15T18:34:54.100Z",
+  "curriculum_id": "cisce",
+  "rows": [
+    {
+      "grade_label": "Preschool",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class I",
+      "subject": "All subjects (framework)",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "primary-curriculum"
+      ],
+      "unit_count": 34,
+      "topic_count": 4,
+      "notes": "framework only, no chapters"
+    },
+    {
+      "grade_label": "Class II",
+      "subject": "All subjects (framework)",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "primary-curriculum"
+      ],
+      "unit_count": 35,
+      "topic_count": 0,
+      "notes": "framework only, no chapters"
+    },
+    {
+      "grade_label": "Class III",
+      "subject": "All subjects (framework)",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "primary-curriculum"
+      ],
+      "unit_count": 36,
+      "topic_count": 7,
+      "notes": "framework only, no chapters"
+    },
+    {
+      "grade_label": "Class IV",
+      "subject": "All subjects (framework)",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "primary-curriculum"
+      ],
+      "unit_count": 40,
+      "topic_count": 0,
+      "notes": "framework only, no chapters"
+    },
+    {
+      "grade_label": "Class V",
+      "subject": "All subjects (framework)",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "primary-curriculum"
+      ],
+      "unit_count": 42,
+      "topic_count": 0,
+      "notes": "framework only, no chapters"
+    },
+    {
+      "grade_label": "Class VI",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class VII",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class VIII",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Art",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-art",
+        "icse-2028-art"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Biology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-biology",
+        "icse-2028-biology"
+      ],
+      "unit_count": 13,
+      "topic_count": 39,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Chemistry",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-chemistry",
+        "icse-2028-chemistry"
+      ],
+      "unit_count": 16,
+      "topic_count": 57,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Classical Language",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-classical-language",
+        "icse-2028-classical-language"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Commercial Applications",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-commercial-applications",
+        "icse-2028-commercial-applications"
+      ],
+      "unit_count": 8,
+      "topic_count": 29,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Commercial Studies",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-commercial-studies",
+        "icse-2028-commercial-studies"
+      ],
+      "unit_count": 14,
+      "topic_count": 47,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Computer Applications",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-computer-applications",
+        "icse-2028-computer-applications"
+      ],
+      "unit_count": 20,
+      "topic_count": 4,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Cookery",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-cookery",
+        "icse-2028-cookery"
+      ],
+      "unit_count": 7,
+      "topic_count": 13,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Economic Applications",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-economic-applications",
+        "icse-2028-economic-applications"
+      ],
+      "unit_count": 9,
+      "topic_count": 4,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Economics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-economics",
+        "icse-2028-economics"
+      ],
+      "unit_count": 11,
+      "topic_count": 51,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "English",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-english",
+        "icse-2028-english"
+      ],
+      "unit_count": 21,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Environmental Applications",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-environmental-applications",
+        "icse-2028-environmental-applications"
+      ],
+      "unit_count": 9,
+      "topic_count": 59,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Environmental Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-environmental-science",
+        "icse-2028-environmental-science"
+      ],
+      "unit_count": 18,
+      "topic_count": 59,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Fashion Designing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-fashion-designing",
+        "icse-2028-fashion-designing"
+      ],
+      "unit_count": 3,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Geography",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-geography",
+        "icse-2028-geography"
+      ],
+      "unit_count": 19,
+      "topic_count": 57,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "History & Civics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-history-civics",
+        "icse-2028-history-and-civics"
+      ],
+      "unit_count": 20,
+      "topic_count": 14,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Home Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-home-science",
+        "icse-2028-home-science"
+      ],
+      "unit_count": 12,
+      "topic_count": 34,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Hospitality Management",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-hospitality-management",
+        "icse-2028-hospitality-management"
+      ],
+      "unit_count": 11,
+      "topic_count": 2,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Mass Media Communication",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-mass-media-communication",
+        "icse-2028-mass-media-communication"
+      ],
+      "unit_count": 11,
+      "topic_count": 50,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Mathematics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-mathematics",
+        "icse-2028-mathematics"
+      ],
+      "unit_count": 15,
+      "topic_count": 71,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Modern Foreign Languages (Group I)",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2028-modern-foreign-languages-1"
+      ],
+      "unit_count": 1,
+      "topic_count": 0,
+      "notes": "icse-2028-modern-foreign-languages-1: persist failed (cisce_extractions upsert failed: insert or update on table \"cisce_extractions\" violates foreign key constraint \"cisce_extractions_source_id_fkey\")"
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Modern Foreign Languages Group I",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-modern-foreign-languages-group-i"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Modern Foreign Languages Group II",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-modern-foreign-languages-group-ii",
+        "icse-2028-modern-foreign-languages-group-ii"
+      ],
+      "unit_count": 1,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Modern Foreign Languages Group III",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-modern-foreign-languages-group-iii"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Performing Arts",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-performing-arts",
+        "icse-2028-performing-arts"
+      ],
+      "unit_count": 32,
+      "topic_count": 3,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Physical Education",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-physical-education",
+        "icse-2028-physical-education"
+      ],
+      "unit_count": 45,
+      "topic_count": 41,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Physics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-physics",
+        "icse-2028-physics"
+      ],
+      "unit_count": 14,
+      "topic_count": 36,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Second Languages",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-second-languages",
+        "icse-2028-second-languages"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "icse-2028-second-languages: persist failed (cisce_extractions upsert failed: insert or update on table \"cisce_extractions\" violates foreign key constraint \"cisce_extractions_source_id_fkey\")"
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "SUPW Community Service",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-supw-community-service",
+        "icse-2028-supw-community-service"
+      ],
+      "unit_count": 18,
+      "topic_count": 15,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Technical Drawing Applications",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-technical-drawing-applications",
+        "icse-2028-technical-drawing-applications"
+      ],
+      "unit_count": 16,
+      "topic_count": 49,
+      "notes": null
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Yoga",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-yoga",
+        "icse-2028-yoga"
+      ],
+      "unit_count": 91,
+      "topic_count": 64,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Art",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-art",
+        "icse-2028-art"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Biology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-biology",
+        "icse-2028-biology"
+      ],
+      "unit_count": 12,
+      "topic_count": 41,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Chemistry",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-chemistry",
+        "icse-2028-chemistry"
+      ],
+      "unit_count": 18,
+      "topic_count": 75,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Classical Language",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-classical-language",
+        "icse-2028-classical-language"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Commercial Applications",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-commercial-applications",
+        "icse-2028-commercial-applications"
+      ],
+      "unit_count": 8,
+      "topic_count": 42,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Commercial Studies",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-commercial-studies",
+        "icse-2028-commercial-studies"
+      ],
+      "unit_count": 14,
+      "topic_count": 59,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Computer Applications",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-computer-applications",
+        "icse-2028-computer-applications"
+      ],
+      "unit_count": 16,
+      "topic_count": 2,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Cookery",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-cookery",
+        "icse-2028-cookery"
+      ],
+      "unit_count": 12,
+      "topic_count": 38,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Economic Applications",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-economic-applications",
+        "icse-2028-economic-applications"
+      ],
+      "unit_count": 10,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Economics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-economics",
+        "icse-2028-economics"
+      ],
+      "unit_count": 12,
+      "topic_count": 45,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "English",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-english",
+        "icse-2028-english"
+      ],
+      "unit_count": 21,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Environmental Applications",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-environmental-applications",
+        "icse-2028-environmental-applications"
+      ],
+      "unit_count": 8,
+      "topic_count": 59,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Environmental Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-environmental-science",
+        "icse-2028-environmental-science"
+      ],
+      "unit_count": 23,
+      "topic_count": 64,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Fashion Designing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-fashion-designing",
+        "icse-2028-fashion-designing"
+      ],
+      "unit_count": 4,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Geography",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-geography",
+        "icse-2028-geography"
+      ],
+      "unit_count": 22,
+      "topic_count": 33,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "History & Civics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-history-civics",
+        "icse-2028-history-and-civics"
+      ],
+      "unit_count": 12,
+      "topic_count": 34,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Home Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-home-science",
+        "icse-2028-home-science"
+      ],
+      "unit_count": 10,
+      "topic_count": 28,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Hospitality Management",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-hospitality-management",
+        "icse-2028-hospitality-management"
+      ],
+      "unit_count": 8,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Mass Media Communication",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-mass-media-communication",
+        "icse-2028-mass-media-communication"
+      ],
+      "unit_count": 10,
+      "topic_count": 43,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Mathematics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-mathematics",
+        "icse-2028-mathematics"
+      ],
+      "unit_count": 14,
+      "topic_count": 111,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Modern Foreign Languages (Group I)",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2028-modern-foreign-languages-1"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "icse-2028-modern-foreign-languages-1: persist failed (cisce_extractions upsert failed: insert or update on table \"cisce_extractions\" violates foreign key constraint \"cisce_extractions_source_id_fkey\")"
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Modern Foreign Languages Group I",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-modern-foreign-languages-group-i"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Modern Foreign Languages Group II",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-modern-foreign-languages-group-ii",
+        "icse-2028-modern-foreign-languages-group-ii"
+      ],
+      "unit_count": 1,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Modern Foreign Languages Group III",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-modern-foreign-languages-group-iii"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Performing Arts",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-performing-arts",
+        "icse-2028-performing-arts"
+      ],
+      "unit_count": 37,
+      "topic_count": 2,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Physical Education",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-physical-education",
+        "icse-2028-physical-education"
+      ],
+      "unit_count": 51,
+      "topic_count": 26,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Physics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-physics",
+        "icse-2028-physics"
+      ],
+      "unit_count": 12,
+      "topic_count": 39,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Robotics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-robotics"
+      ],
+      "unit_count": 10,
+      "topic_count": 15,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Second Languages",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-second-languages",
+        "icse-2028-second-languages"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "icse-2028-second-languages: persist failed (cisce_extractions upsert failed: insert or update on table \"cisce_extractions\" violates foreign key constraint \"cisce_extractions_source_id_fkey\")"
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "SUPW Community Service",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "icse-2027-supw-community-service",
+        "icse-2028-supw-community-service"
+      ],
+      "unit_count": 12,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Technical Drawing Applications",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-technical-drawing-applications",
+        "icse-2028-technical-drawing-applications"
+      ],
+      "unit_count": 22,
+      "topic_count": 68,
+      "notes": null
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Yoga",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "icse-2027-yoga",
+        "icse-2028-yoga"
+      ],
+      "unit_count": 72,
+      "topic_count": 15,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Accountancy",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-accountancy",
+        "isc-2028-accountancy"
+      ],
+      "unit_count": 18,
+      "topic_count": 132,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Applied Mathematics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-applied-mathematics",
+        "isc-2028-applied-mathematics"
+      ],
+      "unit_count": 20,
+      "topic_count": 55,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Art",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-art",
+        "isc-2028-art"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Artificial Intelligence",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-artificial-intelligence",
+        "isc-2028-artificial-intelligence"
+      ],
+      "unit_count": 15,
+      "topic_count": 41,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Biology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-biology",
+        "isc-2028-biology"
+      ],
+      "unit_count": 10,
+      "topic_count": 90,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Biotechnology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-biotechnology",
+        "isc-2028-biotechnology"
+      ],
+      "unit_count": 10,
+      "topic_count": 18,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Business Studies",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-business-studies",
+        "isc-2028-business-studies"
+      ],
+      "unit_count": 15,
+      "topic_count": 40,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Chemistry",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-chemistry",
+        "isc-2028-chemistry"
+      ],
+      "unit_count": 18,
+      "topic_count": 80,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Classical Languages",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-classical-languages",
+        "isc-2028-classical-languages"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Commerce",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-commerce"
+      ],
+      "unit_count": 12,
+      "topic_count": 48,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Computer Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-computer-science",
+        "isc-2028-computer-science"
+      ],
+      "unit_count": 38,
+      "topic_count": 25,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Economics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-economics",
+        "isc-2028-economics"
+      ],
+      "unit_count": 10,
+      "topic_count": 41,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Elective English",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-elective-english",
+        "isc-2028-elective-english"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Electricity Electronics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-electricity-electronics",
+        "isc-2028-electricity-electronics"
+      ],
+      "unit_count": 18,
+      "topic_count": 14,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Engineering Science",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-engineering-science",
+        "isc-2028-engineering-science"
+      ],
+      "unit_count": 15,
+      "topic_count": 10,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "English",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-english",
+        "isc-2028-english"
+      ],
+      "unit_count": 10,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Entrepreneurship",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2028-entrepreneurship"
+      ],
+      "unit_count": 6,
+      "topic_count": 41,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Environmental Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-environmental-science",
+        "isc-2028-environmental-science"
+      ],
+      "unit_count": 17,
+      "topic_count": 59,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Fashion Designing",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-fashion-designing",
+        "isc-2028-fashion-designing"
+      ],
+      "unit_count": 9,
+      "topic_count": 32,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Geography",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2028-geography"
+      ],
+      "unit_count": 4,
+      "topic_count": 16,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Geometrical and Building Drawing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2028-geometrical-and-building-drawing"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Geometrical and Mechanical Drawing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2028-geometrical-and-mechanical-drawing"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Geometrical Building Drawing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-geometrical-building-drawing"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Geometrical Mechanical Drawing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-geometrical-mechanical-drawing"
+      ],
+      "unit_count": 5,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "History",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-history",
+        "isc-2028-history"
+      ],
+      "unit_count": 56,
+      "topic_count": 55,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Home Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-home-science",
+        "isc-2028-home-science"
+      ],
+      "unit_count": 14,
+      "topic_count": 54,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Hospitality Management",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-hospitality-management",
+        "isc-2028-hospitality-management"
+      ],
+      "unit_count": 5,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Indian Languages",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-indian-languages",
+        "isc-2028-indian-languages"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Legal Studies",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-legal-studies",
+        "isc-2028-legal-studies"
+      ],
+      "unit_count": 19,
+      "topic_count": 135,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Mass Media Communication",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-mass-media-communication",
+        "isc-2028-mass-media-communication"
+      ],
+      "unit_count": 12,
+      "topic_count": 78,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Mathematics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-mathematics",
+        "isc-2028-mathematics"
+      ],
+      "unit_count": 10,
+      "topic_count": 39,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Modern English",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-modern-english",
+        "isc-2028-modern-english"
+      ],
+      "unit_count": 20,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Modern Foreign Languages",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-modern-foreign-languages",
+        "isc-2028-modern-foreign-languages"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Music",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-music",
+        "isc-2028-music"
+      ],
+      "unit_count": 41,
+      "topic_count": 79,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Physical Education",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-physical-education",
+        "isc-2028-physical-education"
+      ],
+      "unit_count": 21,
+      "topic_count": 37,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Physics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-physics",
+        "isc-2028-physics"
+      ],
+      "unit_count": 22,
+      "topic_count": 82,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Political Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-political-science",
+        "isc-2028-political-science"
+      ],
+      "unit_count": 56,
+      "topic_count": 10,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Psychology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-psychology",
+        "isc-2028-psychology"
+      ],
+      "unit_count": 14,
+      "topic_count": 57,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Robotics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-robotics",
+        "isc-2028-robotics"
+      ],
+      "unit_count": 14,
+      "topic_count": 49,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "Sociology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-sociology",
+        "isc-2028-sociology"
+      ],
+      "unit_count": 21,
+      "topic_count": 30,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "SUPW",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-supw",
+        "isc-2028-supw"
+      ],
+      "unit_count": 9,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Accountancy",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-accountancy",
+        "isc-2028-accountancy"
+      ],
+      "unit_count": 34,
+      "topic_count": 274,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Applied Mathematics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-applied-mathematics",
+        "isc-2028-applied-mathematics"
+      ],
+      "unit_count": 36,
+      "topic_count": 20,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Art",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-art",
+        "isc-2028-art"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Artificial Intelligence",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-artificial-intelligence",
+        "isc-2028-artificial-intelligence"
+      ],
+      "unit_count": 10,
+      "topic_count": 40,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Biology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-biology",
+        "isc-2028-biology"
+      ],
+      "unit_count": 10,
+      "topic_count": 54,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Biotechnology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-biotechnology",
+        "isc-2028-biotechnology"
+      ],
+      "unit_count": 8,
+      "topic_count": 64,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Business Studies",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-business-studies",
+        "isc-2028-business-studies"
+      ],
+      "unit_count": 14,
+      "topic_count": 68,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Chemistry",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-chemistry",
+        "isc-2028-chemistry"
+      ],
+      "unit_count": 18,
+      "topic_count": 34,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Classical Languages",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-classical-languages",
+        "isc-2028-classical-languages"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Commerce",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-commerce"
+      ],
+      "unit_count": 10,
+      "topic_count": 27,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Computer Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-computer-science",
+        "isc-2028-computer-science"
+      ],
+      "unit_count": 27,
+      "topic_count": 21,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Economics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-economics",
+        "isc-2028-economics"
+      ],
+      "unit_count": 14,
+      "topic_count": 39,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Elective English",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-elective-english",
+        "isc-2028-elective-english"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Electricity Electronics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-electricity-electronics",
+        "isc-2028-electricity-electronics"
+      ],
+      "unit_count": 35,
+      "topic_count": 7,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Engineering Science",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-engineering-science",
+        "isc-2028-engineering-science"
+      ],
+      "unit_count": 15,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "English",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-english",
+        "isc-2028-english"
+      ],
+      "unit_count": 15,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Entrepreneurship",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2028-entrepreneurship"
+      ],
+      "unit_count": 6,
+      "topic_count": 44,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Environmental Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-environmental-science",
+        "isc-2028-environmental-science"
+      ],
+      "unit_count": 15,
+      "topic_count": 64,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Fashion Designing",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-fashion-designing",
+        "isc-2028-fashion-designing"
+      ],
+      "unit_count": 18,
+      "topic_count": 57,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Geography",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-geography",
+        "isc-2028-geography"
+      ],
+      "unit_count": 14,
+      "topic_count": 75,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Geometrical and Building Drawing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2028-geometrical-and-building-drawing"
+      ],
+      "unit_count": 7,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Geometrical and Mechanical Drawing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2028-geometrical-and-mechanical-drawing"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Geometrical Building Drawing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-geometrical-building-drawing"
+      ],
+      "unit_count": 7,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Geometrical Mechanical Drawing",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-geometrical-mechanical-drawing"
+      ],
+      "unit_count": 5,
+      "topic_count": 2,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "History",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-history",
+        "isc-2028-history"
+      ],
+      "unit_count": 43,
+      "topic_count": 79,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Home Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-home-science",
+        "isc-2028-home-science"
+      ],
+      "unit_count": 14,
+      "topic_count": 69,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Hospitality Management",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-hospitality-management",
+        "isc-2028-hospitality-management"
+      ],
+      "unit_count": 10,
+      "topic_count": 1,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Indian Languages",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-indian-languages",
+        "isc-2028-indian-languages"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Legal Studies",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-legal-studies",
+        "isc-2028-legal-studies"
+      ],
+      "unit_count": 21,
+      "topic_count": 160,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Mass Media Communication",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-mass-media-communication",
+        "isc-2028-mass-media-communication"
+      ],
+      "unit_count": 15,
+      "topic_count": 41,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Mathematics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-mathematics",
+        "isc-2028-mathematics"
+      ],
+      "unit_count": 16,
+      "topic_count": 17,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Modern English",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-modern-english",
+        "isc-2028-modern-english"
+      ],
+      "unit_count": 20,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Modern Foreign Languages",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-modern-foreign-languages",
+        "isc-2028-modern-foreign-languages"
+      ],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Music",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-music",
+        "isc-2028-music"
+      ],
+      "unit_count": 40,
+      "topic_count": 60,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Physical Education",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-physical-education",
+        "isc-2028-physical-education"
+      ],
+      "unit_count": 21,
+      "topic_count": 44,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Physics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-physics",
+        "isc-2028-physics"
+      ],
+      "unit_count": 19,
+      "topic_count": 79,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Political Science",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-political-science",
+        "isc-2028-political-science"
+      ],
+      "unit_count": 20,
+      "topic_count": 12,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Psychology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-psychology",
+        "isc-2028-psychology"
+      ],
+      "unit_count": 16,
+      "topic_count": 62,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Robotics",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2028-robotics"
+      ],
+      "unit_count": 5,
+      "topic_count": 15,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "Sociology",
+      "status": "VERIFIED_OFFICIAL",
+      "source_ids": [
+        "isc-2027-sociology",
+        "isc-2028-sociology"
+      ],
+      "unit_count": 56,
+      "topic_count": 39,
+      "notes": null
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "SUPW",
+      "status": "OFFICIAL_PARTIAL",
+      "source_ids": [
+        "isc-2027-supw",
+        "isc-2028-supw"
+      ],
+      "unit_count": 8,
+      "topic_count": 38,
+      "notes": null
+    }
+  ],
+  "summary": {
+    "Preschool": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class I": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 1,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 0
+    },
+    "Class II": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 1,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 0
+    },
+    "Class III": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 1,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 0
+    },
+    "Class IV": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 1,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 0
+    },
+    "Class V": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 1,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 0
+    },
+    "Class VI": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class VII": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class VIII": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class IX": {
+      "VERIFIED_OFFICIAL": 19,
+      "OFFICIAL_PARTIAL": 12,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 0
+    },
+    "Class X": {
+      "VERIFIED_OFFICIAL": 20,
+      "OFFICIAL_PARTIAL": 12,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 0
+    },
+    "Class XI": {
+      "VERIFIED_OFFICIAL": 27,
+      "OFFICIAL_PARTIAL": 14,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 0
+    },
+    "Class XII": {
+      "VERIFIED_OFFICIAL": 27,
+      "OFFICIAL_PARTIAL": 14,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 0
+    }
+  },
+  "supplementary_checked": false
+}

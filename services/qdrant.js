@@ -512,4 +512,4 @@ async function saveSchoolQuiz(quizId, vector, payload) {
     wait: true,
   });
 }
-module.exports = { saveSchoolQuiz,  listSubjects, listSyllabus, resolveTopicContent, resolveTopicWithContext, topicsByPdfFile, topicCount, toQdrantCurriculum, findTopicImages, IB_COLLECTION, NCERT_COLLECTION };
+module.exports = { saveSchoolQuiz, scrollAll, listSubjects, listSyllabus, resolveTopicContent, resolveTopicWithContext, topicsByPdfFile, topicCount, toQdrantCurriculum, findTopicImages, IB_COLLECTION, NCERT_COLLECTION };

@@ -6,3 +6,6 @@ coverage/
 
 # generated content output (scripts/build-math-units.cjs)
 out/
+
+# CISCE ingestion cache (downloaded PDFs, extractions, run state) — never committed (copyright)
+.cisce-cache/

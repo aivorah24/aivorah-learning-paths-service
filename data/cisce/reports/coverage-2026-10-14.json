@@ -1,0 +1,218 @@
+{
+  "run_id": "cisce-20261014173230",
+  "generated_at": "2026-10-14T17:32:30.128Z",
+  "curriculum_id": "cisce",
+  "rows": [
+    {
+      "grade_label": "Preschool",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class I",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class II",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class III",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class IV",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class V",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class VI",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class VII",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class VIII",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class IX",
+      "subject": "Physics",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "icse-2028-physics: registered, not extracted yet"
+    },
+    {
+      "grade_label": "Class X",
+      "subject": "Physics",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "icse-2028-physics: registered, not extracted yet"
+    },
+    {
+      "grade_label": "Class XI",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    },
+    {
+      "grade_label": "Class XII",
+      "subject": "All subjects",
+      "status": "AWAITING_SOURCE",
+      "source_ids": [],
+      "unit_count": 0,
+      "topic_count": 0,
+      "notes": "no official source extracted for this grade"
+    }
+  ],
+  "summary": {
+    "Preschool": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class I": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class II": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class III": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class IV": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class V": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class VI": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class VII": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class VIII": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class IX": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class X": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class XI": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    },
+    "Class XII": {
+      "VERIFIED_OFFICIAL": 0,
+      "OFFICIAL_PARTIAL": 0,
+      "EXTRACTION_FAILED": 0,
+      "SUPPLEMENTARY_ONLY": 0,
+      "AWAITING_SOURCE": 1
+    }
+  },
+  "supplementary_checked": false
+}
