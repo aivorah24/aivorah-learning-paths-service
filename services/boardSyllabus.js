@@ -122,6 +122,51 @@ async function dbChapters(curriculum, grade, subject) {
     }));
 }
 
+// Exam year a grade sits its board exam in, for the current academic year
+// (April–March): in Oct 2026, Class X/XII → 2027, Class IX/XI → 2028.
+function examYearFor(n, now = new Date()) {
+  const yearEnd = now.getMonth() >= 3 ? now.getFullYear() + 1 : now.getFullYear();
+  return n === 9 || n === 11 ? yearEnd + 1 : yearEnd;
+}
+
+// Official CISCE syllabus (cisce_curriculum_nodes, from the cisce-ingest
+// pipeline) for ICSE IX–X / ISC XI–XII. Per subject, the version for the
+// student's exam year wins, else the nearest year available.
+async function officialChapters(curriculum, grade, subject) {
+  const n = gradeNumber(grade);
+  if (boardKind(curriculum) !== 'ICSE' || !n || n < 9 || n > 12) return [];
+  const supabase = require('./supabase');
+  let q = supabase
+    .from('cisce_curriculum_nodes')
+    .select('id, exam_year, subject, level, parent_id, ordinal, title')
+    .eq('grade_label', classLabel(n))
+    .in('programme', ['ICSE', 'ISC'])
+    .in('level', ['UNIT', 'TOPIC']);
+  if (subject) q = q.ilike('subject', subject);
+  const { data, error } = await q;
+  if (error || !data?.length) return [];
+
+  const want = examYearFor(n);
+  const yearBySubject = {};
+  for (const r of data) {
+    if (r.level !== 'UNIT') continue;
+    const cur = yearBySubject[r.subject];
+    if (cur === undefined || Math.abs(r.exam_year - want) < Math.abs(cur - want)) yearBySubject[r.subject] = r.exam_year;
+  }
+  const rows = data.filter((r) => r.exam_year === yearBySubject[r.subject]);
+  const topicsByUnit = {};
+  for (const t of rows.filter((r) => r.level === 'TOPIC')) (topicsByUnit[t.parent_id] ||= []).push(t);
+  return rows
+    .filter((r) => r.level === 'UNIT')
+    .sort((a, b) => a.subject.localeCompare(b.subject) || a.ordinal - b.ordinal)
+    .map((u) => ({
+      subject: u.subject,
+      unitNo: u.ordinal,
+      title: u.title,
+      topics: (topicsByUnit[u.id] || []).sort((a, b) => a.ordinal - b.ordinal).map((t) => ({ id: t.id, name: t.title })),
+    }));
+}
+
 // Topic-level content in Qdrant (no chapter structure).
 async function qdrantTopics(curriculum, grade, subject) {
   const must = [
@@ -147,10 +192,16 @@ function unitTitle(unit) {
 
 /** Subjects grid for an ICSE/Cambridge student — same shape as listSubjects(). */
 async function listBoardSubjects(curriculum, grade) {
-  const [chapters, points] = await Promise.all([
+  const [official, aiChapters, aiPoints] = await Promise.all([
+    officialChapters(curriculum, grade).catch(() => []),
     dbChapters(curriculum, grade).catch(() => []),
     qdrantTopics(curriculum, grade).catch(() => []),
   ]);
+  // A subject with an official CISCE syllabus never mixes in the AI outline.
+  const officialSubjects = new Set(official.map((c) => c.subject.trim().toLowerCase()));
+  const notOfficial = (x) => !officialSubjects.has(x.subject.trim().toLowerCase());
+  const chapters = [...official, ...aiChapters.filter(notOfficial)];
+  const points = aiPoints.filter(notOfficial);
   const bySubject = new Map();
   const entry = (subject) => {
     const key = subject.trim().toLowerCase();
@@ -181,7 +232,8 @@ async function listBoardSubjects(curriculum, grade) {
 
 /** Chapter → topic tree for one subject — same unit shape as listSyllabus(). */
 async function listBoardSyllabus(curriculum, grade, subject) {
-  const chapters = await dbChapters(curriculum, grade, subject).catch(() => []);
+  const official = await officialChapters(curriculum, grade, subject).catch(() => []);
+  const chapters = official.length ? official : await dbChapters(curriculum, grade, subject).catch(() => []);
   if (chapters.length) {
     return chapters.map((ch) => ({
       unitNo: ch.unitNo,
@@ -209,4 +261,4 @@ async function listBoardSyllabus(curriculum, grade, subject) {
   }));
 }
 
-module.exports = { isBoardWithoutBooks, boardGradeAliases, gradeNumber, classLabel, listBoardSubjects, listBoardSyllabus };
+module.exports = { isBoardWithoutBooks, boardGradeAliases, gradeNumber, classLabel, examYearFor, listBoardSubjects, listBoardSyllabus };
