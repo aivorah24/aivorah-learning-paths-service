@@ -42,7 +42,8 @@ const HINDI_BAND = /^\s*क\S{0,4}ा\s*([IVX]{1,4}|\d{1,2})\s*[-–]\s*([IVX]{1
 // Subject headings in a framework document; a new one ends the previous subject's class section.
 const FRAMEWORK_SUBJECTS = new Set(['ENGLISH', 'ENGLISH LANGUAGE', 'ENGLISH LITERATURE', 'HINDI', 'SECOND LANGUAGE', 'THIRD LANGUAGE',
   'MATHEMATICS', 'ENVIRONMENTAL STUDIES', 'SCIENCE', 'SOCIAL STUDIES', 'COMPUTER STUDIES', 'ARTS EDUCATION', 'ART EDUCATION',
-  'PHYSICAL EDUCATION', 'HEALTH AND PHYSICAL EDUCATION', 'GENERAL KNOWLEDGE', 'VALUE EDUCATION']);
+  'PHYSICAL EDUCATION', 'HEALTH AND PHYSICAL EDUCATION', 'GENERAL KNOWLEDGE', 'VALUE EDUCATION',
+  'HISTORY', 'CIVICS', 'HISTORY & CIVICS', 'HISTORY AND CIVICS', 'GEOGRAPHY', 'PHYSICS', 'CHEMISTRY', 'BIOLOGY']);
 const UNIT_LINE = /^\s*(\d{1,2})\.\s+([A-Z(“"'][^\t]{2,150})$/;
 const TOPIC_LINE = /^\s*\(([ivx]{1,5}|[a-z])\)\s*(\S.{1,300})$/;
 // Theme-based curricula: "THEME 3: My Family", "Unit II – Plants", "Topic 4: Keyboard".
@@ -184,6 +185,13 @@ function normalise(source, extraction) {
         lastHeading = joined ? `${prevHeading} ${text}` : text;
         if (joined && current.lines.length && current.lines[current.lines.length - 1].text === prevHeading) current.lines.pop();
         headingAtTop = joined ? headingAtTop : pageLine === 1;
+        // "CLASS - VI" then "HISTORY": the subject names the class section just opened.
+        if (isFramework && !joined && current.kind === 'class' && current.startLine === lineNo - 1 && FRAMEWORK_SUBJECTS.has(lastHeading.toUpperCase())) {
+          subjectHeading = lastHeading;
+          current.context = lastHeading;
+          prevHeading = lastHeading;
+          continue;
+        }
         // A subject starts at the top of its own page; the same name in a contents list does not.
         const subj = isFramework && headingAtTop && FRAMEWORK_SUBJECTS.has(lastHeading.toUpperCase()) ? lastHeading : null;
         if (subj && subj !== subjectHeading) {

@@ -134,7 +134,8 @@ function examYearFor(n, now = new Date()) {
 // student's exam year wins, else the nearest year available.
 async function officialChapters(curriculum, grade, subject) {
   const n = gradeNumber(grade);
-  if (boardKind(curriculum) !== 'ICSE' || !n || n < 9 || n > 12) return [];
+  if (boardKind(curriculum) !== 'ICSE' || !n || n > 12) return [];
+  if (n <= 8) return frameworkChapters(n, subject);
   const supabase = require('./supabase');
   let q = supabase
     .from('cisce_curriculum_nodes')
@@ -162,6 +163,43 @@ async function officialChapters(curriculum, grade, subject) {
     .map((u) => ({
       subject: u.subject,
       unitNo: u.ordinal,
+      title: u.title,
+      topics: (topicsByUnit[u.id] || []).sort((a, b) => a.ordinal - b.ordinal).map((t) => ({ id: t.id, name: t.title })),
+    }));
+}
+
+// CISCE's Classes I–VIII curricula are one framework document per stage; each
+// subject is a section ("MATHEMATICS — Class VI") whose units are its chapters.
+const SECTION_SUBJECT = { HISTORY: 'History & Civics', CIVICS: 'History & Civics', 'HISTORY & CIVICS': 'History & Civics', 'HISTORY AND CIVICS': 'History & Civics', 'ARTS EDUCATION': 'Art', 'ART EDUCATION': 'Art' };
+const titleCase = (s) => s.toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());
+function sectionSubject(title) {
+  const head = String(title || '').split(' — ')[0].trim().toUpperCase();
+  return SECTION_SUBJECT[head] || titleCase(head);
+}
+
+async function frameworkChapters(n, subject) {
+  const supabase = require('./supabase');
+  const { data, error } = await supabase
+    .from('cisce_curriculum_nodes')
+    .select('id, level, parent_id, ordinal, path, title')
+    .eq('grade_label', classLabel(n))
+    .in('programme', ['PRIMARY', 'UPPER_PRIMARY'])
+    .in('level', ['FRAMEWORK_SECTION', 'UNIT', 'TOPIC']);
+  if (error || !data?.length) return [];
+  const sections = new Map(data.filter((r) => r.level === 'FRAMEWORK_SECTION').map((r) => [r.id, sectionSubject(r.title)]));
+  const topicsByUnit = {};
+  for (const t of data.filter((r) => r.level === 'TOPIC')) (topicsByUnit[t.parent_id] ||= []).push(t);
+  const want = subject && String(subject).trim().toLowerCase();
+  const perSubject = {};
+  return data
+    .filter((r) => r.level === 'UNIT' && sections.has(r.parent_id))
+    .map((u) => ({ u, subj: sections.get(u.parent_id) }))
+    .filter(({ subj }) => !want || subj.toLowerCase() === want)
+    .sort((a, b) => a.subj.localeCompare(b.subj) || a.u.path.localeCompare(b.u.path, undefined, { numeric: true }))
+    .map(({ u, subj }) => ({
+      subject: subj,
+      // History and Civics share one card; keep their chapters in document order.
+      unitNo: (perSubject[subj] = (perSubject[subj] || 0) + 1),
       title: u.title,
       topics: (topicsByUnit[u.id] || []).sort((a, b) => a.ordinal - b.ordinal).map((t) => ({ id: t.id, name: t.title })),
     }));
@@ -197,9 +235,9 @@ async function listBoardSubjects(curriculum, grade) {
     dbChapters(curriculum, grade).catch(() => []),
     qdrantTopics(curriculum, grade).catch(() => []),
   ]);
-  // A subject with an official CISCE syllabus never mixes in the AI outline.
-  const officialSubjects = new Set(official.map((c) => c.subject.trim().toLowerCase()));
-  const notOfficial = (x) => !officialSubjects.has(x.subject.trim().toLowerCase());
+  // A class with an official CISCE syllabus shows only official subjects; the AI
+  // outline fills in only classes that have none.
+  const notOfficial = () => official.length === 0;
   const chapters = [...official, ...aiChapters.filter(notOfficial)];
   const points = aiPoints.filter(notOfficial);
   const bySubject = new Map();

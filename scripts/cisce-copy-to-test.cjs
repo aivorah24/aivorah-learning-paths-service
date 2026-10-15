@@ -46,7 +46,7 @@ const TABLES = [
   { name: 'cisce_extractions', order: 'source_id, sha256' },
   { name: 'cisce_ingestion_runs', order: 'run_id' },
   { name: 'cisce_coverage', order: 'run_id, grade_label, subject' },
-  { name: 'cisce_curriculum_nodes', order: `${LEVEL_ORDER}, path` },
+  { name: 'cisce_curriculum_nodes', order: `${LEVEL_ORDER}, id` },
 ];
 const CHUNK = 400;
 
@@ -73,7 +73,7 @@ async function readAll(table) {
     const rows = data[t.name];
     for (let i = 0; i < rows.length; i += CHUNK) {
       const json = JSON.stringify(rows.slice(i, i + CHUNK));
-      await sql(TEST_REF, `insert into public.${t.name} select * from json_populate_recordset(null::public.${t.name}, ${lit(json)}::json)`);
+      await sql(TEST_REF, `insert into public.${t.name} select * from json_populate_recordset(null::public.${t.name}, ${lit(json)}::json) on conflict do nothing`);
     }
     const [{ n }] = await sql(TEST_REF, `select count(*)::int n from public.${t.name}`);
     console.log(`test ${t.name}: ${n} rows${n === rows.length ? '' : `  ← MISMATCH (dev ${rows.length})`}`);
