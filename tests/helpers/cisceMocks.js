@@ -21,6 +21,7 @@ function memoryDb(seed = {}) {
       if (kind === 'neq') return r[col] !== v;
       if (kind === 'in') return v.includes(r[col]);
       if (kind === 'is') return (r[col] ?? null) === v;
+      if (kind === 'not_in') return !v.includes(r[col]);
       return true;
     });
     const q = {
@@ -31,6 +32,7 @@ function memoryDb(seed = {}) {
       neq: (c, v) => { filters.push(['neq', c, v]); return q; },
       in: (c, v) => { filters.push(['in', c, v]); return q; },
       is: (c, v) => { filters.push(['is', c, v]); return q; },
+      not: (c, operator, v) => { filters.push(['not_' + operator, c, String(v).replace(/^\(|\)$/g, '').split(',')]); return q; },
       order: () => q,
       range: (a, b) => { range = [a, b]; return q; },
       then: (resolve, reject) => {

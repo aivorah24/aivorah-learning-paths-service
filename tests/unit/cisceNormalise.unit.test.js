@@ -158,6 +158,17 @@ describe('normalise', () => {
     expect(topics).toEqual(['(i)', '(ii)', '(iii)']);
   });
 
+  test('numbered lines that break the unit sequence (practical-work lists) are not units', () => {
+    const doc = normalise(source({ grades: ['Class X'] }), {
+      sha256: 'c'.repeat(64), pageCount: 1, emptyPages: 0,
+      pages: [{ page: 1, method: 'text', text: [
+        'CLASS X', '1. Force, Work, Power and Energy', '2. Light', '3. Sound',
+        'PRACTICAL WORK', '2. Determine the VR and MA of a given pulley system.', '10. Determination of specific latent heat of ice.',
+      ].join('\n') }],
+    });
+    expect(doc.grades[0].nodes.filter((n) => n.level === 'UNIT').map((n) => n.title)).toEqual(['Force, Work, Power and Energy', 'Light', 'Sound']);
+  });
+
   test('an unread (scanned, no OCR) page downgrades to OFFICIAL_PARTIAL', async () => {
     const doc = normalise(source({ subject: 'Mockology' }), await extract('scanned-mixed.pdf'));
     expect(doc.provenance_status).toBe('OFFICIAL_PARTIAL');

@@ -46,6 +46,7 @@ const FRAMEWORK_SUBJECTS = new Set(['ENGLISH', 'ENGLISH LANGUAGE', 'ENGLISH LITE
 const UNIT_LINE = /^\s*(\d{1,2})\.\s+([A-Z(“"'][^\t]{2,150})$/;
 const TOPIC_LINE = /^\s*\(([ivx]{1,5}|[a-z])\)\s*(\S.{1,300})$/;
 // Theme-based curricula: "THEME 3: My Family", "Unit II – Plants", "Topic 4: Keyboard".
+const PRACTICAL_HEADING = /^\s*(PAPER\s*[-–]?\s*II|PRACTICAL\s+WORK|PROJECT\s+WORK|INTERNAL\s+ASSESSMENT|LIST\s+OF\s+(EXPERIMENTS|PRACTICALS))/i;
 const THEME_LINE = /^\s*(?:THEME|UNIT|TOPIC)\s*[-–:]?\s*(\d{1,2}|[IVX]{1,4})\s*[-–:.]?\s+(\S.{1,120})$/i;
 
 function gradeFromHeading(line) {
@@ -123,7 +124,7 @@ function normalise(source, extraction) {
       if (!text) continue;
       lineNo++;
       pageLine++;
-      const line = { text, first: filled[0], rest: filled.slice(1).join(' '), page: p.page };
+      const line = { text, first: filled[0], rest: filled.slice(1).join(' '), cells: filled, page: p.page };
       // A by-class table that has had no matching row for two pages is over;
       // later text stays in its cross-class block rather than being split.
       if (table && p.page > table.lastRowPage + 1) table = null;
@@ -344,6 +345,10 @@ function buildNodes(segs, { version, sourceId, label, subject }) {
     let topic = null;
     let framework = null;
     let unitCount = 0;
+    let lastUnitNo = null;
+    let practical = false;
+    const run = { units: 0, withTopics: new Set() }; // current numbered run: a body has topics, a contents list does not
+    let newSection = false; // "SECTION B: HISTORY" — numbering restarts legitimately
     const frameworkNode = (page) => framework || (framework = open({
       level: 'FRAMEWORK_SECTION', parent_id: null, ordinal: k + 1, number_label: null, path: `${prefix}framework`,
       title: seg.context ? `${seg.context} — ${label}${seg.kind === 'band' ? ` (shared: ${bandName(seg.grades)})` : ''}` : `${label} — general text`,
@@ -355,10 +360,34 @@ function buildNodes(segs, { version, sourceId, label, subject }) {
     // Once a section uses "Theme/Topic N:" units, its "1." lines are list items, not units.
     // A band's text is shared aims; its numbered lists are not units either.
     const themed = seg.kind === 'band' || seg.lines.some((l) => THEME_LINE.test(l.first || l.text));
-    for (const { text, first = text, rest = '', page } of seg.lines) {
+    for (const { text, first = text, rest = '', cells = [], page } of seg.lines) {
+      // Paper II / practical / project lists are numbered too but are not syllabus units.
+      if (unitCount && (cells.length ? cells : [first]).some((c) => PRACTICAL_HEADING.test(c))) { practical = true; unit = null; topic = null; }
+      if (practical) { append(frameworkNode(page), text, page); continue; }
       // Headings are read from the first table cell only; the other cells are body text.
-      const u = (themed ? null : first.match(UNIT_LINE)) || first.match(THEME_LINE);
-      if (u && looksLikeTitle(u[2])) {
+      let u = (themed ? null : first.match(UNIT_LINE)) || first.match(THEME_LINE);
+      // Two columns merged into one line: the next unit can sit in a later cell.
+      let headingCell = first;
+      if (!u && !themed && lastUnitNo !== null) {
+        const cell = cells.slice(1).find((c) => {
+          const m = c.match(UNIT_LINE);
+          return m && parseInt(m[1], 10) === lastUnitNo + 1;
+        });
+        if (cell) { u = cell.match(UNIT_LINE); headingCell = cell; }
+      }
+      // Numbered units run in order (a restart at 1 is a contents list followed
+      // by the body; one missed heading is tolerated); other jumps are body text.
+      const numbered = u && /^\d+$/.test(u[1]) && !THEME_LINE.test(headingCell);
+      const n = numbered ? parseInt(u[1], 10) : null;
+      if ((cells.length ? cells : [first]).some((c) => /^SECTION\s+[A-Z]\b/i.test(c))) newSection = true;
+      // A restart at 1 follows a contents list or a new section — not a body that
+      // had topics (that restart is a practical/project list).
+      const restartOk = n === 1 && (run.withTopics.size * 2 < run.units || newSection);
+      const inSequence = !numbered || lastUnitNo === null || restartOk || (n > lastUnitNo && n <= lastUnitNo + 2);
+      if (u && inSequence && n === 1) { run.units = 0; run.withTopics = new Set(); newSection = false; }
+      if (u && inSequence && looksLikeTitle(u[2])) {
+        if (numbered) lastUnitNo = parseInt(u[1], 10);
+        run.units++;
         unitCount++;
         const no = /^\d+$/.test(u[1]) ? parseInt(u[1], 10) : unitCount;
         unit = open({
@@ -372,6 +401,7 @@ function buildNodes(segs, { version, sourceId, label, subject }) {
       // Roman-numbered items inside a unit are topics even when the heading runs long.
       if (t && (looksLikeTitle(t[2]) || (/^[ivx]+$/.test(t[1]) && /^[A-Z0-9“"'(]/.test(t[2]) && t[2].length <= 300))) {
         const ordinal = nodes.filter((n) => n.level === 'TOPIC' && n._unit === unit).length + 1;
+        run.withTopics.add(unit);
         topic = open({
           level: 'TOPIC', parent_id: null, ordinal, number_label: `(${t[1]})`, path: `${unit.path}.${ordinal}`,
           title: t[2].trim(), body: rest, page_from: page, page_to: page, _unit: unit,
@@ -383,6 +413,25 @@ function buildNodes(segs, { version, sourceId, label, subject }) {
       else append(frameworkNode(page), text, page);
     }
   });
+
+  // A unit listed twice (contents list, then body) keeps only the copy with the
+  // most topics; titles match regardless of word order or punctuation.
+  const topicCount = new Map();
+  for (const n of nodes) if (n._unit) topicCount.set(n._unit, (topicCount.get(n._unit) || 0) + 1);
+  // Letters only, sorted: also matches "Physical World andMeasurement" (lost space).
+  const key = (n) => `${n.path.split('/')[0]}|${n.title.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]/g, '').split('').sort().join('')}`;
+  const best = new Map();
+  for (const n of nodes.filter((x) => x.level === 'UNIT')) {
+    const b = best.get(key(n));
+    if (!b || (topicCount.get(n) || 0) >= (topicCount.get(b) || 0)) best.set(key(n), n);
+  }
+  const dropped = new Set(nodes.filter((n) => n.level === 'UNIT' && best.get(key(n)) !== n));
+  // A shortened contents-list title ("Behaviour of Perfect Gases and Kinetic") with
+  // no topics, when a unit with topics starts the same way.
+  const lead = (n) => `${n.path.split('/')[0]}|${n.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 16)}`;
+  const leadsWithTopics = new Set(nodes.filter((n) => n.level === 'UNIT' && topicCount.get(n)).map(lead));
+  for (const n of nodes) if (n.level === 'UNIT' && !topicCount.get(n) && leadsWithTopics.has(lead(n))) dropped.add(n);
+  for (let i = nodes.length - 1; i >= 0; i--) if (dropped.has(nodes[i]) || dropped.has(nodes[i]._unit)) nodes.splice(i, 1);
 
   // A unit number seen twice in one segment (e.g. a contents list then the
   // body) keeps the later occurrence's path unique.

@@ -86,13 +86,24 @@ function createWriter(db, { dryRun = false, log = () => {} } = {}) {
       .eq('source_id', doc.source.source_id).eq('version', doc.version).neq('source_sha256', doc.source.sha256);
     if (error) throw new Error(`${TABLES.nodes} stale delete failed: ${error.message}`);
   }
+  // Same file, re-normalised: nodes the new rules no longer produce (e.g. a
+  // misread practical-work list) are removed; kept ids keep their approval.
+  async function deleteDroppedNodes(doc, keepIds) {
+    planned.push({ op: 'delete-dropped', table: TABLES.nodes, source_id: doc.source.source_id, version: doc.version });
+    if (dryRun || !keepIds.length) return;
+    const { error } = await table(TABLES.nodes).delete()
+      .eq('source_id', doc.source.source_id).eq('version', doc.version).not('id', 'in', `(${keepIds.join(',')})`);
+    if (error) throw new Error(`${TABLES.nodes} dropped-node delete failed: ${error.message}`);
+  }
   return {
     planned,
     persistSources: (sources) => upsert(TABLES.sources, sources.map(sourceRow), 'id'),
     async persistDocument(doc) {
       await upsert(TABLES.extractions, [extractionRow(doc)], 'source_id,sha256');
       await deleteStaleNodes(doc);
-      await upsert(TABLES.nodes, nodeRows(doc), 'id');
+      const rows = nodeRows(doc);
+      await upsert(TABLES.nodes, rows, 'id');
+      await deleteDroppedNodes(doc, rows.map((r) => r.id));
     },
     persistRun: (run) => upsert(TABLES.runs, [run], 'run_id'),
     persistCoverage: (runId, rows) => upsert(TABLES.coverage, rows.map((r) => ({
