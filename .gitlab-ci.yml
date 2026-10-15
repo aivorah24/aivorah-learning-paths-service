@@ -1,0 +1,21 @@
+# Official CISCE curriculum ingestion, run by hand on GitLab (Build → Pipelines → Run pipeline).
+# CI/CD variables: SUPABASE_URL + SUPABASE_SERVICE_KEY (Dev only — the script refuses any other project),
+# QDRANT_URL, QDRANT_API_KEY. Optional: CISCE_SOURCES (default primary-curriculum), CISCE_ARGS (e.g. --dry-run).
+cisce-ingest:
+  image: node:22-bookworm
+  rules:
+    - if: '$CI_PIPELINE_SOURCE =~ /^(web|api|schedule|trigger)$/'
+  timeout: 2h
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq poppler-utils tesseract-ocr > /dev/null
+    - npm ci --no-audit --no-fund
+  script:
+    - node scripts/cisce-ingest.cjs run --source "${CISCE_SOURCES:-primary-curriculum}" --log-file cisce-run.log $CISCE_ARGS
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - cisce-run.log
+      - data/cisce/reports/
+      - .cisce-cache/sources/*/canonical.json
+      - .cisce-cache/sources/*/validation.json
