@@ -60,10 +60,15 @@ async function download(s) {
   return f;
 }
 
-const UNIT = /^\s*(\d{1,2})\s{1,4}([A-Z][A-Za-z0-9,.'’()&:\- ]{2,90}?)\s*$/;
+// Chapter heading in the subject content: "1 Motion, forces and energy" or "Topic 1 Hydrology…".
+const UNIT = /^\s*(?:Topic\s+)?(\d{1,2})\s{1,8}([A-Z][A-Za-z0-9,.'’()&:\- ]{2,90}?)\s*$/;
+// Overview list rows may carry a second layout column ("1 Functions      a function.").
+const OVERVIEW_UNIT =/^\s*(\d{1,2})\s{1,4}([A-Z][A-Za-z0-9,.'’()&:\-]*(?: [A-Za-z0-9,.'’()&:\-]+){0,11})(?:\s{2,}.*)?\s*$/;
 // IGCSE Mathematics numbers topics C1.1 / E1.1 (Core / Extended).
-const TOPIC = /^\s*[CE]?(\d{1,2})\.(\d{1,2})\s{1,4}([A-Z][^\t]{2,120}?)\s*$/;
-const clean = (t) => t.replace(/\s{2,}.*$/, '').replace(/\s+(continued|Supplement|Core)$/i, '').replace(/\s+continued$/i, '').trim();
+const TOPIC = /^\s*[CE]?(\d{1,2})\.(\d{1,2})\s{1,8}([A-Z][^\t]{2,120}?)\s*$/;
+// Assessment-route rows and learning-objective statements are not chapters.
+const NOT_A_CHAPTER = /^(AS Level|A Level|Details of|What else|Why choose|Syllabus overview|Understand|Describe|Explain|Identify|Show|Use|Define|State|Calculate|Know|Demonstrate|Recognise|Recognize|Investigate|Construct|Predict|Suggest|Interpret|Deduce|Compare|Outline|Measure|Plan|Classify|Determine|Draw|Recording|Research log|Research proposal)\b/;
+const clean = (t) => t.replace(/\s{2,}.*$/, '').replace(/\s+(continued|Supplement|Core)$/i, '').replace(/\s+continued$/i, '').replace(/\s*\((AS|A) Level\)$/i, '').trim();
 
 // Splits the syllabus into its "Syllabus overview" (which lists the chapter
 // names) and its "Subject content" (topics, often without chapter headings).
@@ -92,12 +97,36 @@ function overviewUnits(lines) {
   const out = new Map();
   let last = 0;
   for (const l of lines) {
-    const m = l.replace(/\f/g, '').match(UNIT);
+    const m = l.replace(/\f/g, '').match(OVERVIEW_UNIT);
     if (!m) continue;
     const n = +m[1];
-    if (n === last + 1 && !out.has(n) && clean(m[2]).split(' ').length <= 12) { out.set(n, clean(m[2])); last = n; }
+    if (n === last + 1 && !out.has(n) && clean(m[2]).split(' ').length <= 12 && !NOT_A_CHAPTER.test(clean(m[2]))) { out.set(n, clean(m[2])); last = n; }
   }
   return out;
+}
+
+// Combined / Co-ordinated Sciences number by science: B1, C1, P1 with topics B1.1.
+const LETTERED = new Set(['0653', '0654']);
+const L_UNIT = /^\s*([BCP])(\d{1,2})\s{1,4}([A-Z][A-Za-z0-9,.'’()&:\- ]{2,90}?)(?:\s{2,}.*)?\s*$/;
+const L_TOPIC = /^\s*([BCP])(\d{1,2})\.(\d{1,2})\s{1,4}([A-Z][^\t]{2,120}?)(?:\s{2,}.*)?\s*$/;
+function parseLettered({ content }) {
+  const units = new Map();
+  for (const raw of content) {
+    const l = raw.replace(/\f/g, '');
+    const t = l.match(L_TOPIC);
+    if (t) {
+      const u = units.get(t[1] + t[2]);
+      const key = `${t[1]}${t[2]}.${t[3]}`;
+      if (u && !u.topics.has(key)) u.topics.set(key, clean(t[4]));
+      continue;
+    }
+    const m = l.match(L_UNIT);
+    if (m && !units.has(m[1] + m[2]) && !NOT_A_CHAPTER.test(m[3])) units.set(m[1] + m[2], { key: m[1] + m[2], title: clean(m[3]), topics: new Map() });
+  }
+  const order = { B: 0, C: 100, P: 200 };
+  return [...units.values()]
+    .map((u) => ({ n: order[u.key[0]] + parseInt(u.key.slice(1), 10), label: u.key, title: u.title, topics: [...u.topics.entries()].map(([k, v]) => ({ k, title: v })) }))
+    .sort((a, b) => a.n - b.n);
 }
 
 function parse({ overview, content }) {
@@ -124,10 +153,15 @@ function parse({ overview, content }) {
       const title = clean(m[2]);
       if (units.has(n)) continue; // repeated heading ("continued")
       if (n !== last + 1 && n !== 1) continue; // page numbers, list items
-      if (title.split(' ').length > 12) continue;
-      units.set(n, { n, title, topics: new Map() });
+      if (title.split(' ').length > 12 || NOT_A_CHAPTER.test(title)) continue;
+      // The overview names chapters properly; body headings can be objective lines.
+      units.set(n, { n, title: named.get(n) || title, topics: new Map() });
       last = n;
     }
+  }
+  // No numbered topics anywhere: the overview's chapter list is the syllabus.
+  if (![...units.values()].some((u) => u.topics.size) && named.size > units.size) {
+    for (const [n, title] of named) if (!units.has(n)) units.set(n, { n, title, topics: new Map() });
   }
   return [...units.values()].sort((a, b) => a.n - b.n).map((u) => ({ n: u.n, title: u.title, topics: [...u.topics.entries()].map(([k, v]) => ({ k, title: v })) }));
 }
@@ -165,13 +199,13 @@ const lit = (v) => (v == null ? 'null' : `'${String(v).replace(/'/g, "''")}'`);
   for (const s of sources()) {
     try {
       const pdf = await download(s);
-      const units = parse(sections(pdf));
+      const units = LETTERED.has(s.code) ? parseLettered(sections(pdf)) : parse(sections(pdf));
       const version = `${s.code}-${s.year_from}-${s.year_to}`;
       const stage = STAGES[s.stage];
       report.push(`${s.stage.padEnd(5)} ${s.code} ${s.subject.padEnd(32)} ${s.label.padEnd(22)} ${String(units.length).padStart(3)} ch ${String(units.reduce((a, u) => a + u.topics.length, 0)).padStart(4)} topics`);
       for (const u of units) {
         const uid = uuid(`cambridge|${version}|${u.n}`);
-        rows.push({ id: uid, board: 'CAMBRIDGE', stage: stage.label, grade_from: stage.grades[0], grade_to: stage.grades[1], subject: s.subject, code: s.code, version, year_from: s.year_from, year_to: s.year_to, source_url: s.url, level: 'UNIT', parent_id: null, ordinal: u.n, number_label: String(u.n), title: u.title });
+        rows.push({ id: uid, board: 'CAMBRIDGE', stage: stage.label, grade_from: stage.grades[0], grade_to: stage.grades[1], subject: s.subject, code: s.code, version, year_from: s.year_from, year_to: s.year_to, source_url: s.url, level: 'UNIT', parent_id: null, ordinal: u.n, number_label: u.label || String(u.n), title: u.title });
         u.topics.forEach((t, i) => rows.push({ id: uuid(`cambridge|${version}|${t.k}`), board: 'CAMBRIDGE', stage: stage.label, grade_from: stage.grades[0], grade_to: stage.grades[1], subject: s.subject, code: s.code, version, year_from: s.year_from, year_to: s.year_to, source_url: s.url, level: 'TOPIC', parent_id: uid, ordinal: i + 1, number_label: t.k, title: t.title }));
       }
     } catch (err) {

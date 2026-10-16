@@ -60,3 +60,14 @@ ASAL|Psychology|9990|2028 - 2030 Syllabus|744686-2028-2030-syllabus.pdf
 ASAL|Sociology|9699|2027 - 2028 Syllabus|721413-2027-2028-syllabus.pdf
 ASAL|Thinking Skills|9694|2026 - 2027 Syllabus|697412-2026-2027-syllabus.pdf
 ASAL|Thinking Skills|9694|2028 - 2030 Syllabus|743336-2028-2030-syllabus.pdf
+IGCSE|Additional Mathematics|0606|2025-2027 Syllabus|662470-2025-2027-syllabus.pdf
+IGCSE|Additional Mathematics|0606|2028 - 2030 Syllabus|745683-2028-2030-syllabus.pdf
+IGCSE|International Mathematics|0607|2025-2027 Syllabus|662472-2025-2027-syllabus.pdf
+IGCSE|International Mathematics|0607|2028 - 2030 Syllabus|745685-2028-2030-syllabus.pdf
+IGCSE|Combined Science|0653|2025-2027 Syllabus|662474-2025-2027-syllabus.pdf
+IGCSE|Combined Science|0653|2028 - 2029 Syllabus|745687-2028-2029-syllabus.pdf
+IGCSE|Co-ordinated Sciences|0654|2025-2027 Syllabus|664572-2025-2027-syllabus.pdf
+IGCSE|Co-ordinated Sciences|0654|2028 - 2029 Syllabus|745689-2028-2029-syllabus.pdf
+IGCSE|English as a Second Language|0510|2027 - 2029 Syllabus|721337-2027-2029-syllabus.pdf
+IGCSE|Literature in English|0992|2027 Syllabus|721390-2027-syllabus.pdf
+IGCSE|Literature in English|0992|2028 - 2030 Syllabus|743323-2028-2030-syllabus.pdf
