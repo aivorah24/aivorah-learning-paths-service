@@ -8,6 +8,9 @@ const os = require('os');
 const path = require('path');
 const { memoryDb, memoryQdrant, fakeFetch, fakeEmbed, fixture } = require('../helpers/cisceMocks');
 
+// Full pipeline runs parse real PDF fixtures; jest's 5s default flakes on a busy machine.
+jest.setTimeout(30000);
+
 const mockState = { db: null, qdrant: null };
 jest.mock('../../services/supabase', () => new Proxy({}, { get: (_t, k) => mockState.db[k] }));
 jest.mock('@qdrant/js-client-rest', () => ({

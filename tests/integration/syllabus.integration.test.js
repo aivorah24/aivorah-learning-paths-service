@@ -517,24 +517,28 @@ describe('topic-by-name enrichment time budget', () => {
   });
 
   test('a slow AI generation does not hold the response: plain lesson comes back within the budget', async () => {
-    mockGetOrGenerateEnrichment.mockImplementation(() => new Promise((resolve) => setTimeout(() => resolve({ whatYoullLearn: [], blocks: [{ type: 'overview', text: 'x' }], contentType: 'theory' }), 400)));
+    let finishAi;
+    mockGetOrGenerateEnrichment.mockImplementation(() => new Promise((resolve) => { finishAi = resolve; }));
 
-    const t0 = Date.now();
-    const res = await get('slow-topic');
-    expect(Date.now() - t0).toBeLessThan(300);
+    const res = await get('slow-topic'); // AI never finishes before this returns
     expect(res.status).toBe(200);
     expect(res.body.resources[0].payload).toEqual({ intro: 'plain text' });
+    finishAi(null);
   });
 
   test('while the first opener is still waiting on the AI, the next student is not made to wait again', async () => {
-    mockGetOrGenerateEnrichment.mockImplementation(() => new Promise((resolve) => setTimeout(() => resolve(null), 600)));
+    let finishAi;
+    mockGetOrGenerateEnrichment.mockImplementation(() => new Promise((resolve) => { finishAi = resolve; }));
 
-    await get('shared-topic'); // first opener: waits the budget (~60ms) then gets plain text
-    const t0 = Date.now();
+    await get('shared-topic'); // first opener: waits the budget then gets plain text
+    const timers = jest.spyOn(global, 'setTimeout');
     const res = await get('shared-topic');
-    expect(Date.now() - t0).toBeLessThan(40);
+    const budgetWaits = timers.mock.calls.filter(([, ms]) => ms === Number(process.env.ENRICH_WAIT_MS));
+    timers.mockRestore();
+    expect(budgetWaits).toHaveLength(0);
     expect(res.body.resources[0].payload).toEqual({ intro: 'plain text' });
     expect(mockGetOrGenerateEnrichment).toHaveBeenCalledTimes(1);
+    finishAi(null);
   });
 
   test('after a failed generation the same topic is not retried straight away', async () => {
