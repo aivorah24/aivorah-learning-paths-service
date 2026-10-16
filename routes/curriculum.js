@@ -14,9 +14,21 @@ const { subjectsFor } = require('../services/syllabus-map');
 const { isCbse } = require('../services/curriculumName');
 const { isBoardWithoutBooks, listBoardSubjects, listBoardSyllabus } = require('../services/boardSyllabus');
 
+// IB programmes are grade-bound (PYP 1–5, MYP 6–10, DP 11–12). A profile saved
+// with a mismatched pair (e.g. IB DP + Grade 9, before validation existed)
+// is served the programme that actually covers its grade.
+const IB_BY_GRADE = [[1, 5, 'IB PYP'], [6, 10, 'IB MYP'], [11, 12, 'IB DP']];
+function ibProgrammeFor(curriculum, grade) {
+  if (!/^ib[\s_]?(pyp|myp|dp)$/i.test(String(curriculum || '').trim())) return curriculum;
+  const n = parseInt((String(grade || '').match(/(\d{1,2})/) || [])[1], 10);
+  const hit = IB_BY_GRADE.find(([a, b]) => n >= a && n <= b);
+  return hit ? hit[2] : curriculum;
+}
+
 // ── GET /curriculum/subjects ────────────────────────────────────────────
 router.get('/subjects', async (req, res) => {
-  const { curriculum, grade } = req.query;
+  const { grade } = req.query;
+  const curriculum = ibProgrammeFor(req.query.curriculum, grade);
   if (!curriculum || !grade) {
     return res.status(400).json({ error: 'curriculum and grade are required.' });
   }
@@ -44,7 +56,8 @@ router.get('/subjects', async (req, res) => {
 
 // ── GET /curriculum/syllabus ─────────────────────────────────────────────
 router.get('/syllabus', async (req, res) => {
-  const { curriculum, grade, subject } = req.query;
+  const { grade, subject } = req.query;
+  const curriculum = ibProgrammeFor(req.query.curriculum, grade);
   if (!curriculum || !grade || !subject) {
     return res.status(400).json({ error: 'curriculum, grade and subject are required.' });
   }
@@ -75,4 +88,5 @@ router.get('/topic-count', async (req, res) => {
 });
 
 router.post('/school-quizzes', async (req, res) => { const { quizId, vector, payload } = req.body; if (!quizId || !vector || !payload) return res.status(400).json({ error: 'Missing payload' }); const { saveSchoolQuiz } = require('../services/qdrant'); try { await saveSchoolQuiz(quizId, vector, payload); res.json({ success: true }); } catch (err) { res.status(500).json({ error: err.message }); } });
+router.ibProgrammeFor = ibProgrammeFor;
 module.exports = router;
