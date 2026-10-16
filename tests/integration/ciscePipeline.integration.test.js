@@ -1,3 +1,4 @@
+jest.setTimeout(30000); // real PDF parsing in child processes is slow under parallel load
 // End-to-end CISCE pipeline with mocked network, Supabase, Qdrant and Cloudinary.
 // Proves: dry run writes nothing; a real run writes only cisce_* tables and
 // the cisce collection; re-runs are idempotent; --resume/--source/--stage
