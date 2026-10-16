@@ -145,7 +145,7 @@ async function selectAll(build) {
 
 async function officialChapters(curriculum, grade, subject) {
   const n = gradeNumber(grade);
-  if (boardKind(curriculum) === 'Cambridge' && n >= 9 && n <= 12) return boardNodeChapters('CAMBRIDGE', n, subject);
+  if (boardKind(curriculum) === 'Cambridge' && n >= 1 && n <= 12) return boardNodeChapters('CAMBRIDGE', n, subject);
   if (boardKind(curriculum) !== 'ICSE' || !n || n > 12) return [];
   if (n <= 8) return frameworkChapters(n, subject);
   const supabase = require('./supabase');

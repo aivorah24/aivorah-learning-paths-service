@@ -71,3 +71,46 @@ IGCSE|Co-ordinated Sciences|0654|2028 - 2029 Syllabus|745689-2028-2029-syllabus.
 IGCSE|English as a Second Language|0510|2027 - 2029 Syllabus|721337-2027-2029-syllabus.pdf
 IGCSE|Literature in English|0992|2027 Syllabus|721390-2027-syllabus.pdf
 IGCSE|Literature in English|0992|2028 - 2030 Syllabus|743323-2028-2030-syllabus.pdf
+IGCSE|Agriculture|0600|2027 - 2028 Syllabus|721347-2027-2028-syllabus.pdf
+IGCSE|Business|0264|2027 - 2029 Syllabus|718123-2027-2029-syllabus.pdf
+IGCSE|Commerce|0715|2028 Syllabus|745979-2028-syllabus.pdf
+IGCSE|Design & Technology|0445|2027 Syllabus|721302-2027-syllabus.pdf
+IGCSE|Design & Technology|0445|2028 - 2030 Syllabus|743280-2028-2030-syllabus.pdf
+IGCSE|Drama|0411|2025 - 2027 Syllabus|664602-2025-2027-syllabus.pdf
+IGCSE|Drama|0411|2028 Syllabus|744756-2028-syllabus.pdf
+IGCSE|Food & Nutrition|0648|2026 - 2028 Syllabus|697228-2026-2028-syllabus.pdf
+IGCSE|German - Foreign Language|0525|2025 - 2027 Syllabus|664624-2025-2027-syllabus.pdf
+IGCSE|German - Foreign Language|0525|2028 - 2030 Syllabus|743346-2028-2030-syllabus.pdf
+IGCSE|Spanish - Foreign Language|0530|2025 - 2027 Syllabus|664626-2025-2027-syllabus.pdf
+IGCSE|Spanish - Foreign Language|0530|2028 - 2030 Syllabus|743350-2028-2030-syllabus.pdf
+IGCSE|Mandarin Chinese - Foreign Language|0547|2025 - 2027 Syllabus|664639-2025-2027-syllabus.pdf
+IGCSE|Mandarin Chinese - Foreign Language|0547|2028 - 2030 Syllabus|743359-2028-2030-syllabus.pdf
+IGCSE|Psychology|0266|2027 - 2029 Syllabus|718092-2027-2029-syllabus.pdf
+IGCSE|Religious Studies|0490|2025 - 2027 Syllabus|663158-2025-2027-syllabus.pdf
+IGCSE|Religious Studies|0490|2028 Syllabus|744791-2028-syllabus.pdf
+IGCSE|Sanskrit|0499|2026 - 2027 Syllabus|711319-2026-2027-syllabus.pdf
+IGCSE|Statistics|0479|2027 Syllabus|718153-2027-syllabus.pdf
+IGCSE|Statistics|0479|2028 - 2030 Syllabus|744788-2028-2030-syllabus.pdf
+IGCSE|Urdu as a Second Language|0539|2025 - 2027 Syllabus|664633-2025-2027-syllabus.pdf
+IGCSE|Urdu as a Second Language|0539|2028 - 2029 Syllabus|745678-2028-2029-syllabus.pdf
+ASAL|Further Mathematics|9231|2026 - 2027 Syllabus|697357-2026-2027-syllabus.pdf
+ASAL|Further Mathematics|9231|2028 - 2030 Syllabus|744603-2028-2030-syllabus.pdf
+ASAL|English Literature|9695|2027 - 2028 Syllabus|721410-2027-2028-syllabus.pdf
+ASAL|English General Paper|8021|2025 - 2027 Syllabus|664519-2025-2027-syllabus.pdf
+ASAL|English General Paper|8021|2028 - 2030 Syllabus|743333-2028-2030-syllabus.pdf
+ASAL|Design & Technology|9705|2025 - 2027 Syllabus|675267-2025-2027-syllabus.pdf
+ASAL|Design & Technology|9705|2028 - 2030 Syllabus|744633-2028-2030-syllabus.pdf
+ASAL|Digital Media & Design|9481|2026 - 2028 Syllabus|693608-2026-2028-syllabus.pdf
+ASAL|Drama|9482|2027 - 2029 Syllabus|721645-2027-2029-syllabus.pdf
+ASAL|Music|9483|2027 - 2028 Syllabus|721445-2027-2028-syllabus.pdf
+ASAL|Classical Studies|9274|2025 - 2027 Syllabus|664534-2025-2027-syllabus.pdf
+ASAL|Classical Studies|9274|2028 - 2030 Syllabus|744606-2028-2030-syllabus.pdf
+ASAL|French Language & Literature|9898|2025 - 2027 Syllabus|664368-2025-2027-syllabus.pdf
+ASAL|French Language & Literature|9898|2028 - 2030 Syllabus|744655-2028-2030-syllabus.pdf
+ASAL|German|9897|2025 - 2027 Syllabus|664366-2025-2027-syllabus.pdf
+ASAL|German|9897|2028 - 2030 Syllabus|744651-2028-2030-syllabus.pdf
+ASAL|Spanish Language & Literature|9844|2027 - 2029 Syllabus|721428-2027-2029-syllabus.pdf
+ASAL|Travel & Tourism|9395|2027 - 2029 Syllabus|721364-2027-2029-syllabus.pdf
+ASAL|Hinduism|9487|2027 - 2028 Syllabus|757378-2027-2028-syllabus.pdf
+ASAL|Tamil|9689|2027 Syllabus|721408-2027-syllabus.pdf
+ASAL|Tamil|9689|2028 - 2029 Syllabus|744617-2028-2029-syllabus.pdf

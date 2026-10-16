@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Official Cambridge syllabus ingestion (IGCSE + AS & A Level).
+ * Official Cambridge syllabus ingestion (IGCSE + AS & A Level, plus the
+ * public Primary / Lower Secondary strands in data/cambridge/frameworks.json).
  *
  *   node scripts/cambridge-ingest.cjs --dry-run            parse, print chapter/topic counts
  *   node scripts/cambridge-ingest.cjs --only 0625,9702     limit to syllabus codes
@@ -64,16 +65,20 @@ async function download(s) {
 const UNIT = /^\s*(?:Topic\s+)?(\d{1,2})\s{1,8}([A-Z][A-Za-z0-9,.'’()&:\- ]{2,90}?)\s*$/;
 // Overview list rows may carry a second layout column ("1 Functions      a function.").
 const OVERVIEW_UNIT =/^\s*(\d{1,2})\s{1,4}([A-Z][A-Za-z0-9,.'’()&:\-]*(?: [A-Za-z0-9,.'’()&:\-]+){0,11})(?:\s{2,}.*)?\s*$/;
-// IGCSE Mathematics numbers topics C1.1 / E1.1 (Core / Extended).
-const TOPIC = /^\s*[CE]?(\d{1,2})\.(\d{1,2})\s{1,8}([A-Z][^\t]{2,120}?)\s*$/;
+// IGCSE Mathematics numbers topics C1.1 / E1.1 (Core / Extended); some syllabi write "1.1." .
+const TOPIC = /^\s*[CE]?(\d{1,2})\.(\d{1,2})\.?\s{1,8}([A-Z][^\t]{2,120}?)\s*$/;
 // Assessment-route rows and learning-objective statements are not chapters.
 const NOT_A_CHAPTER = /^(AS Level|A Level|Details of|What else|Why choose|Syllabus overview|Understand|Describe|Explain|Identify|Show|Use|Define|State|Calculate|Know|Demonstrate|Recognise|Recognize|Investigate|Construct|Predict|Suggest|Interpret|Deduce|Compare|Outline|Measure|Plan|Classify|Determine|Draw|Recording|Research log|Research proposal)\b/;
 const clean = (t) => t.replace(/\s{2,}.*$/, '').replace(/\s+(continued|Supplement|Core)$/i, '').replace(/\s+continued$/i, '').replace(/\s*\((AS|A) Level\)$/i, '').trim();
 
+// UTF-8 text; pdftotext leaves tabs/control bytes inside some lines ("11.1 <tab><bell>Title").
+const pdfText = (pdf) => execFileSync('pdftotext', ['-layout', '-enc', 'UTF-8', pdf, '-'], { maxBuffer: 64 * 1024 * 1024 })
+  .toString('utf8').replace(/[\x00-\x09\x0B\x0E-\x1F\x7F]/g, ' ');
+
 // Splits the syllabus into its "Syllabus overview" (which lists the chapter
 // names) and its "Subject content" (topics, often without chapter headings).
 function sections(pdf) {
-  const text = execFileSync('pdftotext', ['-layout', pdf, '-'], { maxBuffer: 64 * 1024 * 1024 }).toString('utf8');
+  const text = pdfText(pdf);
   const lines = text.split(/\r?\n/);
   const isOverview = (l) => /^\s*\d\s+Syllabus overview\s*$/i.test(l);
   const isStart = (l) => /^\s*\d?\s*(AS Level |A Level |)Subject content\s*$/i.test(l);
@@ -166,6 +171,105 @@ function parse({ overview, content }) {
   return [...units.values()].sort((a, b) => a.n - b.n).map((u) => ({ n: u.n, title: u.title, topics: [...u.topics.entries()].map(([k, v]) => ({ k, title: v })) }));
 }
 
+// Prose syllabi (languages, humanities, arts) have no numbered topic list, so
+// each gets its own rule: which lines are chapters and which are topics,
+// or a two-column topic list ("list") whose items are the chapters.
+const BULLET = '[•\\uFFFD]';
+const SKILLS = (...names) => new RegExp(`^\\s*(${names.join('|')})\\s*$`);
+const LANG = { ch: /^\s*[A-E]\s{1,6}([A-Z][^•�]*?)(?:\s{2,}|$)/, tp: new RegExp(`${BULLET}\\s+([A-Z][^(]+?)\\s*(?:\\(|$)`), from: /^Topic areas\s*$/ };
+// AS & A Level languages list their topic areas as bullets in the overview.
+const AS_LANG = { from: /described in more detail in section 3/, to: /^\s*A course based on/, ch: new RegExp(`^${BULLET}\\s+(.+?)\\s*$`) };
+const PROSE = {
+  '0400': { ch: /^\s*(Painting and related media|Painting and\/or other media|Graphic communication|Three-dimensional design|Photography|Textiles and fashion|Textiles and\/or Fashion)\s*$/ },
+  '9479': { ch: /^\s*(?:Area of study: (.+?)|(Fine art|Graphic communication|Three-dimensional design|Textiles and\/or Fashion|Photography))\s*$/ },
+  '9479-2028': { ch: /^\s*Component \d: (.+?)\s*$/, tp: /^\s*AO\d (Record|Explore|Develop|Present)\s*$/ },
+  '0410': { ch: /^\s*(Listening|Composing|Performing|Area of study \d: .+?)\s*$/ },
+  '0413': { ch: /^\s*\d ([A-Z][a-z]+(?:,? [a-z]+)*)\s*$/, tp: /^\s{0,2}([A-Z][a-z]+(?: [a-z]+){0,5})\s*$/ },
+  '0457': { list: /^\s*Topic list/ },
+  '9239': { list: /^\s*Global topics\s*$/ },
+  '0470': { ch: /^\s*(Core content: Option [AB]|Depth study [A-E]: .+?)\s*$/, tp: /^\s*\d\s*([A-Z][^?]*\?)\s*$/ },
+  '9489': { ch: /^\s*(?:\d\s+([A-Z][^?]{3,70}?)|Topic \d: (.+?))\s*$/, tp: /^\s*\d\.\d\s*([A-Z][^?]*\?)/ },
+  '0500': { ch: SKILLS('Reading', 'Writing', 'Speaking and Listening') },
+  '0510': { ch: SKILLS('Reading', 'Writing', 'Listening', 'Speaking') },
+  '0549': { ch: SKILLS('Reading', 'Writing', 'Listening', 'Speaking'), tp: /^\s*\d\s+([A-Z][^|]{10,110}?)\s*$/ },
+  '0520': LANG,
+  // These layouts misalign sub-topics against their areas: areas only.
+  '0520-2028': { ...LANG, tp: null },
+  '0525': { ...LANG, tp: null },
+  '0530': { ...LANG, tp: null },
+  '0547': { ...LANG, tp: null },
+  '9898': AS_LANG, '9897': AS_LANG, '9844': AS_LANG,
+  '0411': { ch: /^\s*(Elements of practical drama|Performance skills|Staging and design|From script to performance|Devising original drama from a stimulus)\s*$/ },
+  '9482': { ch: /^\s*Component \d – (.+?)\s*$/ },
+  '9483': { from: /^\s*Contents\s*$/, to: /^\s*1\s+Why choose this syllabus/, ch: /^\s*(?:Paper|Component) \d (.+?)\s{2,}\d+\s*$/ },
+  '9695': { ch: /^\s*Paper \d ([A-Z].+?)\s*$/ },
+  '9481': { from: /grouped into three broad areas of study/, to: /^\s*You do not have to cover/, ch: new RegExp(`^${BULLET}\\s+(.+?)\\s*$`) },
+  // Area names wrap across lines; kept verbatim and checked against the PDF.
+  '8021': { fixed: ['Economic, historical, moral, political and social issues', 'Science, including its history, philosophy, ethics, general principles and applications; environmental issues; technology and mathematics', 'Literature, language, the arts, crafts, and the media'] },
+  '9274': { ch: /^\s*Topic [A-F] – (.+?)\s*$/ },
+  '9487': { ch: /^\s*Section [A-D]: (.+?)\s*$/, tp: /^\s*\d\.\d\.\d\s+([A-Z].+?)\s*$/ },
+  '0499': { ch: /^\s*Paper \d – (.+?)\s*$/, tp: /^\s*(Lexicology – Vocabulary List|Grammar|\d (?:Verse|Prose|Drama) – [^:]+)/ },
+  '9093': { ch: /^\s*(?:Paper \d \S (.+?)|Section [A-C]: (.+?))\s*$/ },
+  '0992': { ch: /^\s*(?:Section [A-C]: (Poetry|Prose|Drama)|Set texts for examination in \d{4} – (Paper [23]))\s*$/, name: { 'Paper 2': 'Drama', 'Paper 3': 'Drama (Open Text)' } },
+  '9607': {
+    from: /^Candidates must study:/, to: /^\s*Support for Cambridge/,
+    ch: /^(Candidates must study:|Candidates must study at least one media area|In addition to the above|Candidates must also study:)/,
+    tp: new RegExp(`^${BULLET}\\s+(.+?)\\s*$`),
+    name: { 'Candidates must study:': 'Core concepts', 'Candidates must study at least one media area': 'Media areas', 'In addition to the above': 'A Level topics', 'Candidates must also study:': 'Media ecology' },
+  },
+};
+
+function proseLines(pdf, from) {
+  const text = pdfText(pdf);
+  const lines = text.split(/\r?\n/).map((l) => l.replace(/\f/g, '')).filter((l) => !/\.{5,}|Back to contents page|syllabus for 20\d\d/.test(l));
+  const start = from ? lines.findIndex((l) => from.test(l)) : lines.findIndex((l) => /^\s*\d?\s*(AS Level |A Level |)Subject content\s*$/i.test(l));
+  if (start < 0) return [];
+  const end = lines.findIndex((l, i) => i > start && /^\s*\d\s+Details of the assessment\s*$/i.test(l));
+  return lines.slice(from ? start : start + 1, end < 0 ? undefined : end);
+}
+
+function parseProse(pdf, rule) {
+  if (rule.fixed) {
+    const flat = pdfText(pdf).replace(/\s+/g, ' ');
+    return rule.fixed.filter((t) => flat.includes(t.slice(0, 40))).map((title, i) => ({ n: i + 1, title, topics: [] }));
+  }
+  const lines = proseLines(pdf, rule.list || rule.from);
+  if (rule.list) {
+    // Two columns: left column first, then right, each item becomes a chapter.
+    const left = []; const right = [];
+    for (const l of lines) {
+      if (!l.trim()) { if (left.length) break; continue; }
+      if (/^\s*(The|Learners|Students)\b/.test(l) && left.length) break;
+      const row = l.replace(/^(\s*)(Topic list|Global topics)/, (_, s, w) => s + ' '.repeat(w.length));
+      if (/^\s{20,}\S/.test(row)) { right.push(row.trim()); continue; }
+      const [a, b] = row.trim().split(/\s{2,}/);
+      if (a) left.push(a);
+      if (b) right.push(b);
+    }
+    return [...left, ...right].map((title, i) => ({ n: i + 1, title, topics: [] }));
+  }
+  const units = [];
+  let cur = null;
+  for (const l of lines) {
+    if (rule.to && rule.to.test(l)) break;
+    const m = l.match(rule.ch);
+    if (m) {
+      const raw = clean(m.slice(1).find(Boolean) || '').replace(/\s+\(?continued\)?$/i, '').replace(/\.$/, '');
+      const title = rule.name?.[raw] || raw;
+      // A heading that wrapped onto two lines repeats as a prefix of the full one.
+      cur = units.find((u) => u.title === title || (title.length > 25 && u.title.startsWith(title)));
+      if (!cur && title) { cur = { n: units.length + 1, title, topics: [] }; units.push(cur); }
+      if (!rule.tp) continue;
+    }
+    const t = cur && rule.tp && l.replace(m ? m[0] : '', ' ').match(rule.tp);
+    if (t) {
+      const title = clean(t[1]).replace(/\s+continued$/i, '').replace(/\s+$/, '');
+      if (title && title !== cur.title && !cur.topics.some((x) => x.title === title)) cur.topics.push({ k: `${cur.n}.${cur.topics.length + 1}`, title });
+    }
+  }
+  return units;
+}
+
 const uuid = (s) => {
   const h = crypto.createHash('sha1').update(s).digest('hex');
   return `${h.slice(0, 8)}-${h.slice(8, 12)}-5${h.slice(13, 16)}-a${h.slice(17, 20)}-${h.slice(20, 32)}`;
@@ -199,10 +303,12 @@ const lit = (v) => (v == null ? 'null' : `'${String(v).replace(/'/g, "''")}'`);
   for (const s of sources()) {
     try {
       const pdf = await download(s);
-      const units = LETTERED.has(s.code) ? parseLettered(sections(pdf)) : parse(sections(pdf));
+      const rule = PROSE[`${s.code}-${s.year_from}`] || PROSE[s.code];
+      const units = rule ? parseProse(pdf, rule) : LETTERED.has(s.code) ? parseLettered(sections(pdf)) : parse(sections(pdf));
       const version = `${s.code}-${s.year_from}-${s.year_to}`;
       const stage = STAGES[s.stage];
       report.push(`${s.stage.padEnd(5)} ${s.code} ${s.subject.padEnd(32)} ${s.label.padEnd(22)} ${String(units.length).padStart(3)} ch ${String(units.reduce((a, u) => a + u.topics.length, 0)).padStart(4)} topics`);
+      if (args.includes('--show')) for (const u of units) report.push(`    ${u.n} ${u.title}${u.topics.length ? `\n      - ${u.topics.map((t) => t.title).join('\n      - ')}` : ''}`);
       for (const u of units) {
         const uid = uuid(`cambridge|${version}|${u.n}`);
         rows.push({ id: uid, board: 'CAMBRIDGE', stage: stage.label, grade_from: stage.grades[0], grade_to: stage.grades[1], subject: s.subject, code: s.code, version, year_from: s.year_from, year_to: s.year_to, source_url: s.url, level: 'UNIT', parent_id: null, ordinal: u.n, number_label: u.label || String(u.n), title: u.title });
@@ -210,6 +316,18 @@ const lit = (v) => (v == null ? 'null' : `'${String(v).replace(/'/g, "''")}'`);
       }
     } catch (err) {
       report.push(`${s.stage.padEnd(5)} ${s.code} ${s.subject.padEnd(32)} FAILED: ${err.message}`);
+    }
+  }
+  // Primary / Lower Secondary: strand outline from the public subject pages
+  // (data/cambridge/frameworks.json) until official frameworks are available.
+  if (!only.length) {
+    const fw = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'cambridge', 'frameworks.json'), 'utf8'));
+    for (const s of fw.subjects) {
+      const stage = fw.stages[s.stage];
+      const version = `${s.code}-public`;
+      const source_url = `${stage.page}${s.slug}/`;
+      report.push(`${s.stage.slice(0, 5).padEnd(5)} ${s.code} ${s.subject.padEnd(32)} ${'public strands'.padEnd(22)} ${String(s.strands.length).padStart(3)} ch    0 topics`);
+      s.strands.forEach((title, i) => rows.push({ id: uuid(`cambridge|${version}|${i + 1}`), board: 'CAMBRIDGE', stage: stage.label, grade_from: stage.grades[0], grade_to: stage.grades[1], subject: s.subject, code: s.code, version, year_from: 2020, year_to: 2030, source_url, level: 'UNIT', parent_id: null, ordinal: i + 1, number_label: String(i + 1), title }));
     }
   }
   console.log(report.join('\n'));

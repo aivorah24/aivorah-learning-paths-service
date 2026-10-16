@@ -1,0 +1,25 @@
+{
+  "_note": "Cambridge Primary / Lower Secondary strands as listed on the public subject pages of cambridgeinternational.org (the full curriculum frameworks are schools-only). Subjects whose page lists no strands (Art & Design, Digital Literacy, Music, Physical Education, Wellbeing) are left out until official frameworks are available.",
+  "stages": {
+    "PRIMARY": { "label": "Primary", "grades": [1, 6], "page": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-primary/curriculum/" },
+    "LOWER_SECONDARY": { "label": "Lower Secondary", "grades": [7, 8], "page": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-lower-secondary/curriculum/" }
+  },
+  "subjects": [
+    { "stage": "PRIMARY", "subject": "Computing", "code": "0059", "slug": "computing", "strands": ["Computational Thinking", "Programming", "Managing Data", "Networks and Digital Communication", "Computer Systems"] },
+    { "stage": "PRIMARY", "subject": "English", "code": "0058", "slug": "english", "strands": ["Reading", "Writing", "Speaking and Listening"] },
+    { "stage": "PRIMARY", "subject": "English as a Second Language", "code": "0057", "slug": "english-as-a-second-language", "strands": ["Reading", "Writing", "Use of English", "Listening", "Speaking"] },
+    { "stage": "PRIMARY", "subject": "Global Perspectives", "code": "0838", "slug": "cambridge-primary-global-perspectives", "strands": ["Digital world", "Education for all", "Family, friends, community and culture", "Globalisation", "Health and wellbeing", "Improving communication", "Looking after planet Earth", "Moving goods and people", "Moving to a new country", "Obeying the law", "Rich and poor", "Sport and recreation", "The world of work", "Values and belief", "Water, food and farming", "Working with other countries"] },
+    { "stage": "PRIMARY", "subject": "Humanities", "code": "0065", "slug": "humanities", "strands": ["People", "Past", "Places"] },
+    { "stage": "PRIMARY", "subject": "Mathematics", "code": "0096", "slug": "mathematics", "strands": ["Number", "Geometry and Measure", "Statistics and Probability"] },
+    { "stage": "PRIMARY", "subject": "Modern Foreign Language", "code": "0064", "slug": "modern-foreign-language", "strands": ["Listening", "Reading", "Speaking", "Writing", "Vocabulary", "Grammar", "Cultural understanding"] },
+    { "stage": "PRIMARY", "subject": "Science", "code": "0097", "slug": "science", "strands": ["Biology", "Chemistry", "Physics", "Earth and Space", "Thinking and Working Scientifically", "Science in Context"] },
+    { "stage": "LOWER_SECONDARY", "subject": "Computing", "code": "0860", "slug": "computing", "strands": ["Computational Thinking", "Programming", "Managing Data", "Networks and Digital Communication", "Computer Systems"] },
+    { "stage": "LOWER_SECONDARY", "subject": "English", "code": "0861", "slug": "english", "strands": ["Reading", "Writing", "Speaking and Listening"] },
+    { "stage": "LOWER_SECONDARY", "subject": "English as a Second Language", "code": "0876", "slug": "english-as-a-second-language", "strands": ["Reading", "Writing", "Use of English", "Listening", "Speaking"] },
+    { "stage": "LOWER_SECONDARY", "subject": "Global Perspectives", "code": "1129", "slug": "cambridge-lower-secondary-global-perspectives", "strands": ["Arts in society", "Change in culture and communities", "Climate change, energy and resources", "Conflict and peace", "Development, trade and aid", "Digital world", "Education for all", "Employment", "Environment, pollution and conservation", "Globalisation", "Health and wellbeing", "Law and criminality", "Media and communication", "Migration and urbanisation", "Political power and action", "Poverty and inequality", "Social identity and inclusion", "Sport and recreation", "Technology, industry and innovation", "Transport, travel and tourism", "Values and beliefs", "Water, food and agriculture"] },
+    { "stage": "LOWER_SECONDARY", "subject": "Humanities", "code": "0839", "slug": "humanities", "strands": ["People", "Past", "Places"] },
+    { "stage": "LOWER_SECONDARY", "subject": "Mathematics", "code": "0862", "slug": "mathematics", "strands": ["Number", "Algebra, Geometry and Measure", "Statistics and Probability"] },
+    { "stage": "LOWER_SECONDARY", "subject": "Modern Foreign Language", "code": "0771", "slug": "modern-foreign-language", "strands": ["Listening", "Reading", "Speaking", "Writing", "Vocabulary", "Grammar", "Cultural understanding"] },
+    { "stage": "LOWER_SECONDARY", "subject": "Science", "code": "0893", "slug": "science", "strands": ["Biology", "Chemistry", "Physics", "Earth and Space", "Thinking and Working Scientifically", "Science in Context"] }
+  ]
+}

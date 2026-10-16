@@ -11,7 +11,7 @@ jest.mock('@qdrant/js-client-rest', () => ({
 
 // Minimal chainable Supabase double: records every filter, resolves from a
 // per-table fixture filtered the way the real query would be.
-const mockDb = { syllabus_chapters: [], syllabus_topics: [] };
+const mockDb = { syllabus_chapters: [], syllabus_topics: [], board_syllabus_nodes: [] };
 const mockCalls = [];
 jest.mock('../../services/supabase', () => ({
   from: (table) => {
@@ -21,6 +21,10 @@ jest.mock('../../services/supabase', () => ({
       in: (col, vals) => { filters.push(['in', col, vals]); return q; },
       is: (col, val) => { filters.push(['is', col, val]); return q; },
       ilike: (col, val) => { filters.push(['ilike', col, val]); return q; },
+      eq: (col, val) => { filters.push(['eq', col, val]); return q; },
+      lte: (col, val) => { filters.push(['lte', col, val]); return q; },
+      gte: (col, val) => { filters.push(['gte', col, val]); return q; },
+      range: () => q,
       order: () => q,
       then: (resolve) => {
         mockCalls.push({ table, filters });
@@ -28,6 +32,9 @@ jest.mock('../../services/supabase', () => ({
           if (op === 'in') return v.includes(r[col]);
           if (op === 'is') return (r[col] ?? null) === v;
           if (op === 'ilike') return String(r[col]).toLowerCase() === String(v).toLowerCase();
+          if (op === 'eq') return r[col] === v;
+          if (op === 'lte') return r[col] <= v;
+          if (op === 'gte') return r[col] >= v;
           return true;
         }));
         return Promise.resolve({ data: rows, error: null }).then(resolve);
@@ -46,6 +53,7 @@ beforeEach(() => {
   mockCalls.length = 0;
   mockDb.syllabus_chapters = [];
   mockDb.syllabus_topics = [];
+  mockDb.board_syllabus_nodes = [];
   mockScroll.mockResolvedValue({ points: [], next_page_offset: null });
 });
 
@@ -132,6 +140,32 @@ describe('listBoardSubjects', () => {
     mockDb.syllabus_chapters = [{ id: 'c1', curriculum: 'Cambridge', grade: 'Stage 4', subject: 'English', unit_no: 1, title: 'Stories', school_id: null }];
     const subjects = await listBoardSubjects('Cambridge', 'Grade 4');
     expect(subjects.map((s) => s.subject)).toEqual(['English']);
+  });
+});
+
+describe('Cambridge Primary / Lower Secondary strands', () => {
+  const strand = (id, subject, ordinal, title, [from, to] = [1, 6]) => ({
+    id, board: 'CAMBRIDGE', subject, version: `${subject}-public`, year_from: 2020, year_to: 2030, level: 'UNIT', parent_id: null, ordinal, title, grade_from: from, grade_to: to,
+  });
+
+  test('a Primary class shows the official strands instead of the AI outline', async () => {
+    mockDb.board_syllabus_nodes = [strand('n1', 'Mathematics', 1, 'Number'), strand('n2', 'Mathematics', 2, 'Geometry and Measure')];
+    mockDb.syllabus_chapters = [{ id: 'c1', curriculum: 'Cambridge', grade: 'Stage 4', subject: 'Social Studies', unit_no: 1, title: 'Maps', school_id: null }];
+    const subjects = await listBoardSubjects('Cambridge', 'Grade 4');
+    expect(subjects.map((s) => s.subject)).toEqual(['Mathematics']);
+    expect(subjects[0].units).toEqual(['Number', 'Geometry and Measure']);
+  });
+
+  test('strands only reach the classes of their stage', async () => {
+    mockDb.board_syllabus_nodes = [strand('n1', 'Mathematics', 1, 'Number', [7, 8])];
+    expect(await listBoardSubjects('Cambridge', 'Grade 6')).toEqual([]);
+    expect((await listBoardSubjects('Cambridge', 'Grade 8')).map((s) => s.subject)).toEqual(['Mathematics']);
+  });
+
+  test('a strand with no topics opens as one Coming soon topic of the same name', async () => {
+    mockDb.board_syllabus_nodes = [strand('n1', 'Science', 1, 'Earth and Space')];
+    const units = await listBoardSyllabus('Cambridge', 'Grade 2', 'Science');
+    expect(units).toEqual([expect.objectContaining({ title: 'Earth and Space', topics: [expect.objectContaining({ name: 'Earth and Space' })] })]);
   });
 });
 
