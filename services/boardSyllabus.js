@@ -132,20 +132,32 @@ function examYearFor(n, now = new Date()) {
 // Official CISCE syllabus (cisce_curriculum_nodes, from the cisce-ingest
 // pipeline) for ICSE IX–X / ISC XI–XII. Per subject, the version for the
 // student's exam year wins, else the nearest year available.
+// Supabase returns at most 1000 rows per request; read every page.
+async function selectAll(build) {
+  const rows = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await build().order('id').range(from, from + 999);
+    if (error) return { data: null, error };
+    rows.push(...(data || []));
+    if (!data || data.length < 1000) return { data: rows, error: null };
+  }
+}
+
 async function officialChapters(curriculum, grade, subject) {
   const n = gradeNumber(grade);
   if (boardKind(curriculum) === 'Cambridge' && n >= 9 && n <= 12) return boardNodeChapters('CAMBRIDGE', n, subject);
   if (boardKind(curriculum) !== 'ICSE' || !n || n > 12) return [];
   if (n <= 8) return frameworkChapters(n, subject);
   const supabase = require('./supabase');
-  let q = supabase
-    .from('cisce_curriculum_nodes')
-    .select('id, exam_year, subject, level, parent_id, ordinal, title')
-    .eq('grade_label', classLabel(n))
-    .in('programme', ['ICSE', 'ISC'])
-    .in('level', ['UNIT', 'TOPIC']);
-  if (subject) q = q.ilike('subject', subject);
-  const { data, error } = await q;
+  const { data, error } = await selectAll(() => {
+    const q = supabase
+      .from('cisce_curriculum_nodes')
+      .select('id, exam_year, subject, level, parent_id, ordinal, title')
+      .eq('grade_label', classLabel(n))
+      .in('programme', ['ICSE', 'ISC'])
+      .in('level', ['UNIT', 'TOPIC']);
+    return subject ? q.ilike('subject', subject) : q;
+  });
   if (error || !data?.length) return [];
 
   const want = examYearFor(n);
@@ -174,14 +186,15 @@ async function officialChapters(curriculum, grade, subject) {
 // student's exam year wins, else the nearest.
 async function boardNodeChapters(board, n, subject) {
   const supabase = require('./supabase');
-  let q = supabase
-    .from('board_syllabus_nodes')
-    .select('id, subject, version, year_from, year_to, level, parent_id, ordinal, title')
-    .eq('board', board)
-    .lte('grade_from', n)
-    .gte('grade_to', n);
-  if (subject) q = q.ilike('subject', subject);
-  const { data, error } = await q;
+  const { data, error } = await selectAll(() => {
+    const q = supabase
+      .from('board_syllabus_nodes')
+      .select('id, subject, version, year_from, year_to, level, parent_id, ordinal, title')
+      .eq('board', board)
+      .lte('grade_from', n)
+      .gte('grade_to', n);
+    return subject ? q.ilike('subject', subject) : q;
+  });
   if (error || !data?.length) return [];
   const want = examYearFor(n);
   const distance = (r) => (want < r.year_from ? r.year_from - want : want > r.year_to ? want - r.year_to : 0);
@@ -215,12 +228,12 @@ function sectionSubject(title) {
 
 async function frameworkChapters(n, subject) {
   const supabase = require('./supabase');
-  const { data, error } = await supabase
+  const { data, error } = await selectAll(() => supabase
     .from('cisce_curriculum_nodes')
     .select('id, level, parent_id, ordinal, path, title')
     .eq('grade_label', classLabel(n))
     .in('programme', ['PRIMARY', 'UPPER_PRIMARY'])
-    .in('level', ['FRAMEWORK_SECTION', 'UNIT', 'TOPIC']);
+    .in('level', ['FRAMEWORK_SECTION', 'UNIT', 'TOPIC']));
   if (error || !data?.length) return [];
   const sections = new Map(data.filter((r) => r.level === 'FRAMEWORK_SECTION').map((r) => [r.id, sectionSubject(r.title)]));
   const topicsByUnit = {};
