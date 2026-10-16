@@ -9,3 +9,4 @@ out/
 
 # CISCE ingestion cache (downloaded PDFs, extractions, run state) — never committed (copyright)
 .cisce-cache/
+.cambridge-cache/

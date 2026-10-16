@@ -216,7 +216,16 @@ async function listSyllabus(curriculum, grade, subject) {
 
   return [...byUnit.values()]
     .sort((a, b) => a.unitNo - b.unitNo)
-    .map((u) => ({ unitNo: u.unitNo, title: u.title, topics: [...u.topics.values()], pending: u.topics.size === 0 }));
+    .map((u) => ({ unitNo: u.unitNo, title: u.title, topics: byTopicCode([...u.topics.values()]), pending: u.topics.size === 0 }));
+}
+
+// Syllabus codes ("A2.1 Origins of cells", "A.3 Work…") order the topics when
+// every topic in the unit has one; otherwise the stored order is kept.
+const TOPIC_CODE = /^([A-Z]?\d*\.?\d+(?:\.\d+)*|[A-Z]\.\d+)\s/;
+function byTopicCode(topics) {
+  if (topics.length < 2 || !topics.every((t) => TOPIC_CODE.test(t.name))) return topics;
+  const code = (t) => t.name.match(TOPIC_CODE)[1];
+  return [...topics].sort((a, b) => code(a).localeCompare(code(b), undefined, { numeric: true }));
 }
 
 // Extracts the PDF filename (lowercased, e.g. "iebe105.pdf") a Qdrant point
@@ -512,4 +521,4 @@ async function saveSchoolQuiz(quizId, vector, payload) {
     wait: true,
   });
 }
-module.exports = { saveSchoolQuiz, scrollAll, listSubjects, listSyllabus, resolveTopicContent, resolveTopicWithContext, topicsByPdfFile, topicCount, toQdrantCurriculum, findTopicImages, IB_COLLECTION, NCERT_COLLECTION };
+module.exports = { saveSchoolQuiz, scrollAll, listSubjects, listSyllabus, byTopicCode, resolveTopicContent, resolveTopicWithContext, topicsByPdfFile, topicCount, toQdrantCurriculum, findTopicImages, IB_COLLECTION, NCERT_COLLECTION };

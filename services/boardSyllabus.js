@@ -134,6 +134,7 @@ function examYearFor(n, now = new Date()) {
 // student's exam year wins, else the nearest year available.
 async function officialChapters(curriculum, grade, subject) {
   const n = gradeNumber(grade);
+  if (boardKind(curriculum) === 'Cambridge' && n >= 9 && n <= 12) return boardNodeChapters('CAMBRIDGE', n, subject);
   if (boardKind(curriculum) !== 'ICSE' || !n || n > 12) return [];
   if (n <= 8) return frameworkChapters(n, subject);
   const supabase = require('./supabase');
@@ -155,6 +156,41 @@ async function officialChapters(curriculum, grade, subject) {
     if (cur === undefined || Math.abs(r.exam_year - want) < Math.abs(cur - want)) yearBySubject[r.subject] = r.exam_year;
   }
   const rows = data.filter((r) => r.exam_year === yearBySubject[r.subject]);
+  const topicsByUnit = {};
+  for (const t of rows.filter((r) => r.level === 'TOPIC')) (topicsByUnit[t.parent_id] ||= []).push(t);
+  return rows
+    .filter((r) => r.level === 'UNIT')
+    .sort((a, b) => a.subject.localeCompare(b.subject) || a.ordinal - b.ordinal)
+    .map((u) => ({
+      subject: u.subject,
+      unitNo: u.ordinal,
+      title: u.title,
+      topics: (topicsByUnit[u.id] || []).sort((a, b) => a.ordinal - b.ordinal).map((t) => ({ id: t.id, name: t.title })),
+    }));
+}
+
+// Cambridge (and later IB) outlines from board_syllabus_nodes (scripts/cambridge-ingest.cjs).
+// A syllabus covers a range of exam years; per subject the one covering the
+// student's exam year wins, else the nearest.
+async function boardNodeChapters(board, n, subject) {
+  const supabase = require('./supabase');
+  let q = supabase
+    .from('board_syllabus_nodes')
+    .select('id, subject, version, year_from, year_to, level, parent_id, ordinal, title')
+    .eq('board', board)
+    .lte('grade_from', n)
+    .gte('grade_to', n);
+  if (subject) q = q.ilike('subject', subject);
+  const { data, error } = await q;
+  if (error || !data?.length) return [];
+  const want = examYearFor(n);
+  const distance = (r) => (want < r.year_from ? r.year_from - want : want > r.year_to ? want - r.year_to : 0);
+  const versionBySubject = {};
+  for (const r of data.filter((x) => x.level === 'UNIT')) {
+    const cur = versionBySubject[r.subject];
+    if (!cur || distance(r) < cur.d) versionBySubject[r.subject] = { v: r.version, d: distance(r) };
+  }
+  const rows = data.filter((r) => versionBySubject[r.subject]?.v === r.version);
   const topicsByUnit = {};
   for (const t of rows.filter((r) => r.level === 'TOPIC')) (topicsByUnit[t.parent_id] ||= []).push(t);
   return rows
