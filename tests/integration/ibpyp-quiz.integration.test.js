@@ -280,3 +280,65 @@ describe('POST /ibpyp/track-result', () => {
     expect(logEvent).toHaveBeenCalledWith('ibpyp_quiz_result', expect.objectContaining({ role: 'student' }));
   });
 });
+
+describe('POST /ibpyp/evaluate-explanation (the spoken practice question)', () => {
+  const BODY = {
+    topic: 'The Wit that Won Hearts', subject: 'English', grade: 'Grade 8', curriculum: 'CBSE',
+    keyPoints: ['Krishnadeva Raya ruled the Vijayanagara Empire', 'Tenali Rama used wit to solve problems'],
+    transcript: 'Tenali Rama was a clever poet in the court of King Krishnadeva Raya and he used his wit to make the king and queen friends again',
+  };
+  const GOOD = { score: 8, covered: ['Tenali Rama used wit'], missing: ['the Vijayanagara Empire'], mistakes: [], feedback: 'Great explaining! Next time, mention the Vijayanagara Empire.' };
+
+  test('grades the transcript against the key points', async () => {
+    mockCreate.mockResolvedValueOnce(groqResponse(GOOD));
+    const res = await request(app).post('/ibpyp/evaluate-explanation').send(BODY);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      score: 8, outOf: 10, passed: true, verdict: 'excellent',
+      covered: ['Tenali Rama used wit'], missing: ['the Vijayanagara Empire'], mistakes: [],
+      feedback: 'Great explaining! Next time, mention the Vijayanagara Empire.',
+    });
+    const prompt = mockCreate.mock.calls[0][0].messages.map((m) => m.content).join('\n');
+    expect(prompt).toContain('1. Krishnadeva Raya ruled the Vijayanagara Empire');
+    expect(prompt).toContain('<<<STUDENT>>>');
+    expect(prompt).toContain('Tenali Rama was a clever poet');
+  });
+
+  test('a low score is not passed; out-of-range scores are clamped', async () => {
+    mockCreate.mockResolvedValueOnce(groqResponse({ ...GOOD, score: 4 }));
+    expect((await request(app).post('/ibpyp/evaluate-explanation').send(BODY)).body).toMatchObject({ score: 4, passed: false, verdict: 'partial' });
+    mockCreate.mockResolvedValueOnce(groqResponse({ ...GOOD, score: 14 }));
+    expect((await request(app).post('/ibpyp/evaluate-explanation').send(BODY)).body.score).toBe(10);
+  });
+
+  test('without key points from the client, the topic\'s stored "What you\'ll learn" is used', async () => {
+    supabase._chain.maybeSingle.mockResolvedValueOnce({ data: { static_payload: { whatYoullLearn: ['Stored key idea'] } }, error: null });
+    mockCreate.mockResolvedValueOnce(groqResponse(GOOD));
+    await request(app).post('/ibpyp/evaluate-explanation').send({ ...BODY, keyPoints: undefined, topicId: 't1' });
+    expect(mockCreate.mock.calls[0][0].messages.map((m) => m.content).join('\n')).toContain('1. Stored key idea');
+  });
+
+  test('an unusable AI reply is retried once', async () => {
+    mockCreate
+      .mockResolvedValueOnce({ choices: [{ message: { content: 'not json' } }] })
+      .mockResolvedValueOnce(groqResponse(GOOD));
+    const res = await request(app).post('/ibpyp/evaluate-explanation').send(BODY);
+    expect(res.status).toBe(200);
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+  });
+
+  test('two unusable replies -> 500 with a friendly message', async () => {
+    mockCreate
+      .mockResolvedValueOnce({ choices: [{ message: { content: '{"feedback":"no score"}' } }] })
+      .mockResolvedValueOnce({ choices: [{ message: { content: '' } }] });
+    const res = await request(app).post('/ibpyp/evaluate-explanation').send(BODY);
+    expect(res.status).toBe(500);
+    expect(res.body.error).toMatch(/Could not check your explanation/);
+  });
+
+  test('too little said, or no topic -> 400 without calling the AI', async () => {
+    expect((await request(app).post('/ibpyp/evaluate-explanation').send({ ...BODY, transcript: 'um okay' })).status).toBe(400);
+    expect((await request(app).post('/ibpyp/evaluate-explanation').send({ ...BODY, topic: '' })).status).toBe(400);
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+});

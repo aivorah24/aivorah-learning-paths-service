@@ -16,6 +16,7 @@ const supabase = require('../services/supabase');
 const { normalizeQuizQuestion } = require('../services/quizNormalize');
 const { buildQuizPrompt } = require('../services/curriculum/quizPrompt');
 const { callWithFallback } = require('../services/llm/fallback');
+const explanationEval = require('../services/explanationEval');
 
 // Grade → student age range (SUBJECT_CONTEXT moved into quizPrompt.js, shared with generateCompanions)
 const GRADE_AGE = { 'Grade 3': '8-9', 'Grade 4': '9-10', 'Grade 5': '10-11' };
@@ -156,6 +157,50 @@ Keep it warm, simple, and age-appropriate for ${grade} (ages ${ageRange}).`;
     console.error('POST /ibpyp/explain-wrong error:', err.message);
     res.status(500).json({ error: err.message });
   }
+});
+
+// ── POST /ibpyp/evaluate-explanation ──────────────────────────────────────────
+// The practice test's spoken question (services/explanationEval.js): grades the
+// student's own explanation of the topic, transcribed on their device, against
+// the topic's key points. { topic, subject, grade, curriculum, topicId?,
+// keyPoints?: string[], passageText?, transcript } -> { score (0-10), outOf,
+// passed, verdict, covered[], missing[], mistakes[], feedback }
+router.post('/evaluate-explanation', async (req, res) => {
+  const { topic, subject = '', grade = 'Grade 3', curriculum = '', topicId, passageText, transcript } = req.body || {};
+  if (!topic) return res.status(400).json({ error: 'topic is required' });
+  if (explanationEval.wordCount(transcript) < explanationEval.MIN_WORDS) {
+    return res.status(400).json({ error: 'Say a little more about the topic, then submit.' });
+  }
+
+  let keyPoints = explanationEval.cleanPoints(req.body?.keyPoints);
+  if (!keyPoints.length && topicId) {
+    // The topic's stored "What you'll learn" points, when the client had none.
+    try {
+      const { data: r } = await supabase
+        .from('topic_resources')
+        .select('static_payload')
+        .eq('topic_id', topicId)
+        .eq('resource_type', 'AI_EXPLANATION')
+        .maybeSingle();
+      keyPoints = explanationEval.cleanPoints(r?.static_payload?.whatYoullLearn || r?.static_payload?.readText?.keyLearnings);
+    } catch { /* grade against the lesson text / topic instead */ }
+  }
+
+  const prompt = explanationEval.buildExplanationPrompt({ topic, subject, grade, curriculum, keyPoints, passageText, transcript });
+  // One retry: a reply that isn't usable JSON is usually fine the second time.
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    try {
+      const raw = await callWithFallback(prompt, { json: true, temperature: 0.2 });
+      const evaluation = explanationEval.normalizeEvaluation(explanationEval.parseModelJSON(raw));
+      logEvent('ibpyp_explanation_evaluated', {
+        source: 'ibpyp_quiz', status: 'success', topic, subject, grade, meta: { score: evaluation.score },
+      }).catch(() => {});
+      return res.json(evaluation);
+    } catch (err) {
+      console.error(`POST /ibpyp/evaluate-explanation attempt ${attempt} failed:`, err.message);
+    }
+  }
+  res.status(500).json({ error: 'Could not check your explanation. Please try again.' });
 });
 
 // ── POST /ibpyp/track-result ──────────────────────────────────────────────────
