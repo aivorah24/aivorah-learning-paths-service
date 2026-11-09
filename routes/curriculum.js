@@ -18,6 +18,11 @@ const { isBoardWithoutBooks, listBoardSubjects, listBoardSyllabus } = require('.
 // with a mismatched pair (e.g. IB DP + Grade 9, before validation existed)
 // is served the programme that actually covers its grade.
 const IB_BY_GRADE = [[1, 5, 'IB PYP'], [6, 10, 'IB MYP'], [11, 12, 'IB DP']];
+// Subject and syllabus lists change only when new content is ingested, so
+// browsers (and any CDN in front) may reuse them for 5 minutes. Only set on
+// real results: the empty fallback sent on a Qdrant error must not be cached.
+const CACHE_5_MIN = 'public, max-age=300, s-maxage=300';
+
 function ibProgrammeFor(curriculum, grade) {
   if (!/^ib[\s_]?(pyp|myp|dp)$/i.test(String(curriculum || '').trim())) return curriculum;
   const n = parseInt((String(grade || '').match(/(\d{1,2})/) || [])[1], 10);
@@ -37,6 +42,7 @@ router.get('/subjects', async (req, res) => {
   // every CBSE grade, whereas Qdrant coverage for CBSE (esp. primary grades)
   // is not guaranteed. Every other curriculum keeps its existing Qdrant path.
   if (isCbse(curriculum)) {
+    res.set('Cache-Control', CACHE_5_MIN);
     return res.json({ grade, curriculum, subjects: subjectsFor(grade) });
   }
   try {
@@ -45,6 +51,7 @@ router.get('/subjects', async (req, res) => {
     const subjects = isBoardWithoutBooks(curriculum)
       ? await listBoardSubjects(curriculum, grade)
       : await listSubjects(curriculum, grade);
+    res.set('Cache-Control', CACHE_5_MIN);
     res.json({ grade, curriculum, subjects });
   } catch (err) {
     console.error('[curriculum/subjects] error:', err.message, err.cause || '');
@@ -65,6 +72,7 @@ router.get('/syllabus', async (req, res) => {
     const units = isBoardWithoutBooks(curriculum)
       ? await listBoardSyllabus(curriculum, grade, subject)
       : await listSyllabus(curriculum, grade, subject);
+    res.set('Cache-Control', CACHE_5_MIN);
     res.json({ units });
   } catch (err) {
     console.error('[curriculum/syllabus] error:', err.message);
